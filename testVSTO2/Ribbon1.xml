@@ -1,0 +1,20 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<customUI xmlns="http://schemas.microsoft.com/office/2009/07/customui" onLoad="Ribbon_Load">
+  <ribbon>
+    <tabs>
+      <tab id="mercatto" label="ALMACENES MERCATTO"  insertAfterMso="TabView">
+          <group id="myGroupDD" label="Inventario">
+              <button id="button1" label="Importar Información" imageMso="ClickToRunApplyUpdates" size="large" onAction="ImportarInformacion"/>
+            <button id="button2" label="Guardar máximos y mínimos" imageMso="SaveObjectAs" size="large" onAction="GuardarMaximosMinimos"/>
+          <button id="button3" label="Guardar ajustes de inventario" imageMso="SaveItem" size="large" onAction="AjustarInventario"/>
+      <button id="button4" label="Configuración" imageMso="ResolveConflictOrError" size="large" onAction="AbrirConfiguracion"/>
+          </group>
+        <group id ="recetario" label="Recetario">
+          <button id="button5" label="Abrir panel de recetas" imageMso="ArrangeByCreatedDate" size="large" onAction="AbrirRecetario"/>
+          <button id ="button6" label="Agregar y editar receta" imageMso="ArrangeByStore" size="large" onAction="CrearReceta"/>
+        </group>
+      </tab>
+    </tabs>
+  </ribbon>
+</customUI>
+

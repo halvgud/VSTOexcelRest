@@ -1,11 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 using testVSTO2.Respuesta;
 
@@ -13,8 +8,8 @@ namespace testVSTO2
 {
     public partial class BuscarArticulo : Form
     {
-        private List<Articulo> _listaArticulo;
-        private Action<List<Articulo>> _callback;
+        private readonly List<Articulo> _listaArticulo;
+        private readonly Action<List<Articulo>> _callback;
         public BuscarArticulo(List<Articulo> listaArticulo,Action<List<Articulo>> callback )
         {
             _listaArticulo = listaArticulo;

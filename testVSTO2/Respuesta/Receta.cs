@@ -8,7 +8,7 @@ namespace testVSTO2.Respuesta
 {
    public class Receta
     {
-        public string rec_id { get; set; }
+        public int rec_id { get; set; }
         public string clave { get; set; }
         public string descripcion { get; set; }
         public double precio { get; set; }
@@ -19,11 +19,11 @@ namespace testVSTO2.Respuesta
 
        public class Detalle
        {
-            public string rec_id { get; set; }
+            public int rec_id { get; set; }
             public string art_id { get; set; }
             public string descripcion { get; set; }
             public string clave { get; set; }
-            public string cantidad { get; set; }
+            public double cantidad { get; set; }
             public double  precioCompra { get; set; }
             public double precioVenta { get; set; }
             public int idUnidad { get; set; }

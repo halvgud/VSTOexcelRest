@@ -8,7 +8,7 @@ namespace testVSTO2.Respuesta
 {
     public class Articulo
     {
-        public string art_id { get; set; }
+        public int art_id { get; set; }
         public string clave { get; set; }
         public string claveAlterna { get; set; }
         public double precioCompra { get; set; }
@@ -20,11 +20,12 @@ namespace testVSTO2.Respuesta
 
         public Basica CopiadoSencillo()
         {
-            var art = new Basica {clave = clave, descripcion = descripcion, precioCompra = precioCompra, cantidad=cantidad};
+            var art = new Basica {clave = clave, descripcion = descripcion, precioCompra = precioCompra, cantidad=cantidad,art_id=art_id};
             return art;
         }
         public class Basica
         {
+            public int  art_id { get; set; }
             public string clave { get; set; }
             public string descripcion { get; set; }
             public double precioCompra { get; set; }

@@ -75,11 +75,11 @@ namespace testVSTO2
                     {          
                         oReportWs.Range["A" + inicioTabla].Value2 = rrd[i].clave; //clave
                         oReportWs.Range["B" + inicioTabla].Value2 = rrd[i].cantidad; //cantidad unitaria por medida
-                        oReportWs.Range["C" + inicioTabla].Value2 = double.Parse(rrd[i].cantidad)*cantidad; //cantidad total
+                        oReportWs.Range["C" + inicioTabla].Value2 = (rrd[i].cantidad)*cantidad; //cantidad total
                         oReportWs.Range["D" + inicioTabla].Value2 = rrd[i].unidad; //tipo de unidad
                         oReportWs.Range["E" + inicioTabla].Value2 = rrd[i].descripcion;//nombre
                         oReportWs.Range["F" + inicioTabla].Value2 = rrd[i].precioVenta; //valor unitario
-                        oReportWs.Range["G" + inicioTabla].Value2 = (rrd[i].precioVenta)*(double.Parse(rrd[i].cantidad) * cantidad); //
+                        oReportWs.Range["G" + inicioTabla].Value2 = (rrd[i].precioVenta)*((rrd[i].cantidad) * cantidad); //
                         inicioTabla++;
                     }
                 }

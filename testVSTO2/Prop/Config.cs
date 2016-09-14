@@ -35,7 +35,10 @@ namespace testVSTO2.Prop
             {
                 public static string Lista { get; set; } = "receta/";
                 public static string DetalleLista { get; set; } = "receta/detalle/";
-                public static string IdReceta { get; set; } = "";
+                public static int IdReceta { get; set; }
+                public static string Insertar { get; set; } = "receta";
+                public static string InsertarDetalle { get; set; } = "receta/detalle";
+
             }
             public class Categoria
             {

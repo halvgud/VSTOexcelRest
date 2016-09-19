@@ -2,15 +2,12 @@
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
+using System.Globalization;
 using System.Linq;
-using System.Text;
 using System.Windows.Forms;
-using System.Xml.Linq;
 using Excel = Microsoft.Office.Interop.Excel;
-using Office = Microsoft.Office.Core;
-using Microsoft.Office.Tools.Excel;
 using System.IO;
-
+using RestSharp;
 namespace testVSTO2
 {
     public partial class ThisAddIn
@@ -43,22 +40,115 @@ namespace testVSTO2
 
         }
 
+        public Excel.Worksheet InicializarExcelConTemplate(string nombreHoja)
+        {
+            var reporte=new Excel.Worksheet();
+            try
+            {
+                var found = Application.Sheets.Cast<Excel.Worksheet>().Any(sheet => sheet.Name == nombreHoja);
+                var awa = Application.Workbooks.Application;//nueva app
+                var ows = Application.Worksheets[1];// excel actual
+                var sPath = Path.GetTempFileName(); // archivo temporal
+                File.WriteAllBytes(sPath, Properties.Resources.FICHA_RECETA);//se copia el template
+                var oTemplate = Application.Workbooks.Add(sPath); //path del template temporal
+                var worksheet = oTemplate.Worksheets[nombreHoja] as Excel.Worksheet;//nombre del template
+                if (!found)
+                    worksheet?.Copy(After: ows);
+                oTemplate.Close(false, missing, missing);
+                File.Delete(sPath);
+                reporte = awa.Worksheets[nombreHoja] as Excel.Worksheet;//nombre de la hoja actual   
+
+            }
+            catch (Exception e)
+            {
+                MessageBox.Show(e.Message);
+            }
+            return reporte;
+        }
+        public Excel.Worksheet InicializarExcelConTemplate(string nombreHoja,string xw)
+        {
+            Excel.Worksheet reporte = new Excel.Worksheet();
+            try
+            {
+                bool found = Application.Sheets.Cast<Excel.Worksheet>().Any(sheet => sheet.Name == nombreHoja);
+                var awa = Application.Workbooks.Application;//nueva app
+                var ows = Application.Worksheets[1];// excel actual
+                var sPath = Path.GetTempFileName(); // archivo temporal
+                File.WriteAllBytes(sPath, Properties.Resources.FICHA_RECETA);//se copia el template
+                var oTemplate = Application.Workbooks.Add(sPath); //path del template temporal
+                var worksheet = oTemplate.Worksheets[nombreHoja] as Excel.Worksheet;//nombre del template
+                if (found)
+                {
+                    //worksheet?.Copy(After: ows);
+                    oTemplate.Close(false, missing, missing);
+                    File.Delete(sPath);
+                    reporte = awa.Worksheets[nombreHoja] as Excel.Worksheet;//nombre de la hoja actual
+                }
+                else
+                {
+                    worksheet?.Copy(After: ows);
+                    oTemplate.Close(false, missing, missing);
+                    File.Delete(sPath);
+                    //awa.Worksheets.Add("tabla1").InsertDataTable(dt, 0, 0, true);
+  
+
+                    reporte = awa.Worksheets[nombreHoja] as Excel.Worksheet;//nombre de la hoja actual   
+                    
+                }
+            }
+            catch (Exception e)
+            {
+                MessageBox.Show(e.Message);
+            }
+            return reporte;
+        }
+        public void ReporteGeneral(IRestResponse restResponse)
+        {
+            var rrg = Prop.Opcion.JsonaListaGenerica<Respuesta.Reporte.General.Respuesta>(restResponse);
+            var reporte=InicializarExcelConTemplate("ReporteInventario");
+            if (reporte != null)
+            {
+                try
+                {
+                    var lista = new string[rrg.Count, 19];
+                    for (var x = 0; x < rrg.Count; x++)
+                    {
+                        lista[x, 0] = rrg[x].clave;
+                        lista[x, 1] = rrg[x].departamento;
+                        lista[x, 2] = rrg[x].categoria;
+                        lista[x, 3] = rrg[x].descripcion;
+                        lista[x, 4] = rrg[x].tipo;
+                        lista[x, 5] = rrg[x].existencia;
+                        lista[x, 6] = rrg[x].consumoDiario;
+                        lista[x, 7] = rrg[x].puntoReorden;
+                        lista[x, 8] = rrg[x].inventarioMinimo;
+                        lista[x, 9] = rrg[x].inventarioMaximo;
+                        lista[x, 10] = rrg[x].factor;
+                        lista[x, 11] = rrg[x].cantidadVendida;
+                        lista[x, 12] = rrg[x].ventas;
+                        lista[x, 13] = rrg[x].fechaUltimaCompra.ToString(CultureInfo.InvariantCulture);
+                        lista[x, 14] = rrg[x].cantidadComprada;
+                        lista[x, 15] = rrg[x].radioInventario;
+                        lista[x, 16] = rrg[x].precioCompra;
+                        lista[x, 17] = rrg[x].precioVenta;
+                        lista[x, 18] = rrg[x].margen;
+                    }
+                    reporte.Range["A"+2+":S"+rrg.Count].Value2 = lista;
+                }
+                catch (Exception e)
+                {
+                    Console.WriteLine(e.Message);
+                }
+            }
+        }
+
         public void Agregar(Respuesta.Receta receta,double cantidad)
         {
             Prop.Config.Local.Receta.IdReceta = receta.rec_id;
             Prop.Opcion.EjecucionAsync(Data.Receta.DetalleLista, jsonResult =>
             {
                 List<Respuesta.Receta.Detalle> rrd = Prop.Opcion.JsonaListaGenerica<Respuesta.Receta.Detalle>(jsonResult);
-                var oWb = Application.Workbooks.Application;
-                var oWs = oWb.Worksheets.Item["Hoja1"];
-                var sPath = Path.GetTempFileName();
-                File.WriteAllBytes(sPath, Properties.Resources.FICHA_RECETA);
-                var oTemplate = Application.Workbooks.Add(sPath);
-                var worksheet = oTemplate.Worksheets[1] as Excel.Worksheet;
-                worksheet?.Copy(After: oWs);
-                oTemplate.Close(false, missing, missing);
-                File.Delete(sPath);
-                var oReportWs = oWb.Worksheets["Receta"] as Excel.Worksheet;
+                var oReportWs = InicializarExcelConTemplate("Receta");
                 if (oReportWs != null)
                 {
                     ((oReportWs.Range["NOMBRE"])).Value2 = receta.descripcion;
@@ -85,57 +175,21 @@ namespace testVSTO2
                 }
             });     
         }
-        public static DataTable ListToDataTable<T>(IList<T> lst)
+        public DataTable ConvertToDataTable<T>(IList<T> data)
         {
-
-            var currentDT = CreateTable<T>();
-
-            Type entType = typeof(T);
-
-            PropertyDescriptorCollection properties = TypeDescriptor.GetProperties(entType);
-            foreach (T item in lst)
-            {
-                DataRow row = currentDT.NewRow();
-                foreach (PropertyDescriptor prop in properties)
-                {
-
-                    if (prop.PropertyType == typeof(Nullable<decimal>) || prop.PropertyType == typeof(Nullable<int>) || prop.PropertyType == typeof(Nullable<Int64>))
-                    {
-                        if (prop.GetValue(item) == null)
-                            row[prop.Name] = 0;
-                        else
-                            row[prop.Name] = prop.GetValue(item);
-                    }
-                    else
-                        row[prop.Name] = prop.GetValue(item);
-
-
-
-                }
-                currentDT.Rows.Add(row);
-            }
-
-            return currentDT;
-
-        }
-
-        public static DataTable CreateTable<T>()
-        {
-            Type entType = typeof(T);
-            DataTable tbl = new DataTable("Tabla1");
-            PropertyDescriptorCollection properties = TypeDescriptor.GetProperties(entType);
+            PropertyDescriptorCollection properties =
+               TypeDescriptor.GetProperties(typeof(T));
+            DataTable table = new DataTable();
             foreach (PropertyDescriptor prop in properties)
+                table.Columns.Add(prop.Name, Nullable.GetUnderlyingType(prop.PropertyType) ?? prop.PropertyType);
+            foreach (T item in data)
             {
-                if (prop.PropertyType == typeof(Nullable<decimal>))
-                    tbl.Columns.Add(prop.Name, typeof(decimal));
-                else if (prop.PropertyType == typeof(Nullable<int>))
-                    tbl.Columns.Add(prop.Name, typeof(int));
-                else if (prop.PropertyType == typeof(Nullable<Int64>))
-                    tbl.Columns.Add(prop.Name, typeof(Int64));
-                else
-                    tbl.Columns.Add(prop.Name, prop.PropertyType);
+                DataRow row = table.NewRow();
+                foreach (PropertyDescriptor prop in properties)
+                    row[prop.Name] = prop.GetValue(item) ?? DBNull.Value;
+                table.Rows.Add(row);
             }
-            return tbl;
+            return table;
         }
 
         private void ThisAddIn_Shutdown(object sender, System.EventArgs e)

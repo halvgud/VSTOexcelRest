@@ -189,13 +189,21 @@
     <Compile Include="Data\Articulo.cs" />
     <Compile Include="Data\Categoria.cs" />
     <Compile Include="Data\Departamento.cs" />
+    <Compile Include="Data\Proveedor.cs" />
     <Compile Include="Data\Receta.cs" />
+    <Compile Include="Data\Reporte.cs" />
     <Compile Include="Data\Rest.cs" />
     <Compile Include="ImportarInformacion.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="ImportarInformacion.Designer.cs">
       <DependentUpon>ImportarInformacion.cs</DependentUpon>
+    </Compile>
+    <Compile Include="MensajeDeEspera.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="MensajeDeEspera.Designer.cs">
+      <DependentUpon>MensajeDeEspera.cs</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs">
       <SubType>Code</SubType>
@@ -214,6 +222,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="ImportarInformacion.resx">
       <DependentUpon>ImportarInformacion.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="MensajeDeEspera.resx">
+      <DependentUpon>MensajeDeEspera.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>
@@ -244,7 +255,9 @@
     <Compile Include="Respuesta\Articulo.cs" />
     <Compile Include="Respuesta\Departamento.cs" />
     <Compile Include="Respuesta\InterfaceBase.cs" />
+    <Compile Include="Respuesta\Permiso.cs" />
     <Compile Include="Respuesta\Receta.cs" />
+    <Compile Include="Respuesta\Reporte.cs" />
     <Compile Include="Ribbon1.cs" />
     <Compile Include="SideBarImportarInformacion.cs">
       <SubType>UserControl</SubType>
@@ -273,7 +286,9 @@
     <AppDesigner Include="Properties\" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Ribbon1.xml" />
+    <EmbeddedResource Include="Ribbon1.xml">
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

@@ -10,6 +10,7 @@ namespace testVSTO2.Respuesta
     {
         public string id { get; set; }
         public string nombre { get; set; }
+        public string margen { get; set; }
 
        /* public ComboBox(string id, string nombre)
         {

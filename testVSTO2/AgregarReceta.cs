@@ -3,8 +3,10 @@ using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
 using System.Windows.Forms;
+using Newtonsoft.Json.Linq;
 using testVSTO2.Prop;
 using testVSTO2.Respuesta;
+using RestSharp;
 
 namespace testVSTO2
 {
@@ -13,10 +15,30 @@ namespace testVSTO2
         public AgregarReceta()
         {
             InitializeComponent();
+            //Opcion.EjecucionAsync();
+            Opcion.EjecucionAsync(Data.Receta.Tipo.Lista,CargarComboBox);
         }
 
         private List<Articulo.Basica> _listaArticuloBasica1;
         private List<Articulo.Basica> _listaArticuloBasica2;
+         
+        public void CargarComboBox(IRestResponse json)
+        {
+            BeginInvoke((MethodInvoker)(() =>
+            {
+                var bindingSource1 = new BindingSource
+                {
+                    DataSource = Opcion.JsonaListaGenerica<CbGenerico>(json)
+                };
+                cbTipoReceta.DataSource = bindingSource1;
+                cbTipoReceta.DisplayMember = "nombre";
+                cbTipoReceta.ValueMember = "id";
+                cbTipoReceta.Tag = json;
+                
+            }
+            )
+        );
+        }
         private void btBuscar_Click(object sender, EventArgs e)
         {
             Config.Local.Articulo.IdArticulo = tbCodigo.Text;
@@ -32,10 +54,11 @@ namespace testVSTO2
                              _listaArticuloBasica2.AddRange(_listaArticuloBasica1);
                          }
                          var listaAgrupada = _listaArticuloBasica2
-                                       .GroupBy(p => p.clave)
+                                       .GroupBy(p => p.art_id)
                                        .Select(g => new Articulo.Basica()
                                                                            {
-                                                                               clave = g.Key,
+                                                                               art_id = g.Key,
+                                                                               clave = g.First().clave,
                                                                                descripcion = g.First().descripcion,
                                                                                precioCompra = g.First().precioCompra,
                                                                                cantidad = g.Sum(i => i.cantidad)
@@ -56,18 +79,28 @@ namespace testVSTO2
             sum = 0;
             for (var i = 0; i < dgvIngredientes.Rows.Count; ++i)
             {
-                var costo1 = Convert.ToDouble(dgvIngredientes.Rows[i].Cells[2].Value);
-                var cantidad1 = Convert.ToDouble(dgvIngredientes.Rows[i].Cells[3].Value);
+                var costo1 = Convert.ToDouble(dgvIngredientes.Rows[i].Cells[3].Value);
+                var cantidad1 = Convert.ToDouble(dgvIngredientes.Rows[i].Cells[4].Value);
                 sum += (costo1 * cantidad1);
             }
             tbCostoEstimado.Text = sum.ToString(CultureInfo.InvariantCulture);
-            tbMargenSugerido.Text = @"35%";
+            //tbMargenSugerido.Text = @"35%";
+
+            ActualizarMargen();
             var costo = (sum) + (tbCostoElaboracion.Text != string.Empty ? Convert.ToDouble(tbCostoElaboracion.Text) : 0);
-            const double margen = 0.65;
+            double margen = 1-Convert.ToDouble(tbMargenSugerido.Text);
             tbPrecioSugerido.Text = (Math.Round((costo / margen), 2)).ToString(CultureInfo.InvariantCulture);
 
         }
 
+        private void ActualizarMargen()
+        {
+            if (cbTipoReceta.Items.Count > 0) { 
+                List<Respuesta.CbGenerico> lista = new List<CbGenerico>();
+                lista = Prop.Opcion.JsonaListaGenerica<Respuesta.CbGenerico>((IRestResponse)cbTipoReceta.Tag);
+                tbMargenSugerido.Text = lista[cbTipoReceta.SelectedIndex].margen;
+            }
+        }
         private void tbCostoElaboracion_TextChanged(object sender, EventArgs e)
         {
             ActualizarInputs();
@@ -80,8 +113,8 @@ namespace testVSTO2
                 sum = 0;
                 for (var i = 0; i < dgvIngredientes.Rows.Count; ++i)
                 {
-                    var costo = Convert.ToDouble(dgvIngredientes.Rows[i].Cells[2].Value);
-                    var cantidad = Convert.ToDouble(dgvIngredientes.Rows[i].Cells[3].Value);
+                    var costo = Convert.ToDouble(dgvIngredientes.Rows[i].Cells[3].Value);
+                    var cantidad = Convert.ToDouble(dgvIngredientes.Rows[i].Cells[4].Value);
                     sum += (costo * cantidad);
                 }
                 if (tbMargenConPrecio.Text != string.Empty)
@@ -104,8 +137,8 @@ namespace testVSTO2
                 sum = 0;
                 for (var i = 0; i < dgvIngredientes.Rows.Count; ++i)
                 {
-                    var costo1 = Convert.ToDouble(dgvIngredientes.Rows[i].Cells[2].Value);
-                    var cantidad1 = Convert.ToDouble(dgvIngredientes.Rows[i].Cells[3].Value);
+                    var costo1 = Convert.ToDouble(dgvIngredientes.Rows[i].Cells[3].Value);
+                    var cantidad1 = Convert.ToDouble(dgvIngredientes.Rows[i].Cells[4].Value);
                     sum += (costo1 * cantidad1);
                 }
                 var costo = sum + (tbCostoElaboracion.Text != string.Empty ? Convert.ToDouble(tbCostoElaboracion.Text) : 0);
@@ -124,6 +157,89 @@ namespace testVSTO2
              char.IsSymbol(e.KeyChar) ||
              char.IsWhiteSpace(e.KeyChar))
                 e.Handled = true;
+        }
+
+        private void btBorrarSeleccion_Click(object sender, EventArgs e)
+        {
+            if(dgvIngredientes.CurrentCell.RowIndex!=-1 && dgvIngredientes.Rows.Count > 0)
+            { 
+                var result = dgvIngredientes.DataSource as List<Articulo.Basica>;
+                if (result != null)
+                {
+                    result.RemoveAt(dgvIngredientes.CurrentCell.RowIndex);
+                    dgvIngredientes.DataSource = null;
+                    dgvIngredientes.Refresh();
+                    dgvIngredientes.DataSource = result;
+                }
+            }
+        }
+
+        private void btBorrarLista_Click(object sender, EventArgs e)
+        {
+            dgvIngredientes.DataSource = null;
+            dgvIngredientes.Refresh();  
+        }
+
+        private void btGuardar_Click(object sender, EventArgs e)
+        {
+            MensajeDeEspera mde = new MensajeDeEspera();
+            mde.Show();
+            Receta receta = new Receta
+            {
+                clave = tbClaveReceta.Text,
+                costoCreacion = double.Parse(tbCostoEstimado.Text),
+                descripcion = tbDescripcion.Text,
+                fechaModificacion = DateTime.Today,
+                margen = double.Parse(tbMargenConPrecio.Text),
+                pesoLitro = Convert.ToDouble(tbPesoLitro.Text),
+                precio = double.Parse(tbPrecio.Text),
+                rec_id = 0
+            };
+            
+            Data.Receta.CReceta = receta;
+            Opcion.EjecucionAsync(Data.Receta.Insertar, x =>
+            {
+                List<Receta.Detalle> listRecetaDetalle = new List<Receta.Detalle>();
+                for (var i = 0; i < dgvIngredientes.Rows.Count; i++)
+                {
+                    var art_id = dgvIngredientes.Rows[i].Cells[0].Value.ToString();
+                    var cantidad = double.Parse(dgvIngredientes.Rows[i].Cells[4].Value.ToString());
+                    var clave = dgvIngredientes.Rows[i].Cells[1].Value.ToString();
+                    var descripcion = dgvIngredientes.Rows[i].Cells[2].Value.ToString();
+                    var precioCompra = Convert.ToDouble(dgvIngredientes.Rows[i].Cells[3].Value);
+                    var precioTotal = precioCompra * cantidad;
+                    var recetaDetalle = new Receta.Detalle
+                    {
+                        rec_id = Data.Receta.CReceta.rec_id,
+                        art_id = art_id,
+                        cantidad = cantidad,
+                        clave = clave,
+                        descripcion = descripcion,
+                        idUnidad = 1,
+                        precioCompra = precioCompra,
+                        precioTotal = precioTotal
+                    };
+                    listRecetaDetalle.Add(recetaDetalle);
+                }
+                Data.Receta.Detalle.CRecetaDetalle = listRecetaDetalle;
+                Data.Receta.Detalle.Insertar(x);
+            },resultadoDeAmbos=>
+            {
+                BeginInvoke((MethodInvoker) (() => {
+                                                       mde.Close();
+                }));
+            });
+
+        }
+
+        private void cbTipoReceta_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (cbTipoReceta.SelectedIndex != -1 && dgvIngredientes.Rows.Count > 0)
+            {
+                ActualizarMargen();
+                ActualizarInputs();
+            }
+                     
         }
     }
 }

@@ -1,18 +1,10 @@
 ﻿using System;
-using System.Collections;
 using System.Collections.Generic;
-using System.Diagnostics;
 using System.IO;
 using System.Linq;
-using System.Text;
 using System.Text.RegularExpressions;
-using System.Threading.Tasks;
-using System.Windows.Forms;
 using RestSharp;
 using RestSharp.Deserializers;
-using RestSharp.Extensions;
-using RestSharp.Serializers;
-using testVSTO2.Respuesta;
 
 
 namespace testVSTO2.Prop
@@ -91,17 +83,33 @@ namespace testVSTO2.Prop
 
         public static List<T> JsonaListaGenerica<T>(IRestResponse json)
         {
-			JsonDeserializer desSerializer=new JsonDeserializer();
-            var x= desSerializer.Deserialize<List<T>>(json);
-            return x;
+            List<T> x=new List<T>();
+            try
+            {
+                JsonDeserializer desSerializer = new JsonDeserializer();
+                x = desSerializer.Deserialize<List<T>>(json);
+                return x;
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e.Message);
+                return x;
+            }
+            
         }
 
-   
+
         public static void EjecucionAsync(Action<Action<IRestResponse>> accionInicial, Action<IRestResponse> accionFinal)
         {
             accionInicial(accionFinal);
         }
-
+        public static void EjecucionAsync(Action<Action<IRestResponse>> accionInicial, Action<Action<IRestResponse>> accionFinal,Action<IRestResponse> callback)
+        {
+            accionInicial(x =>
+            {
+                accionFinal(callback);
+            });
+        }
         /* public static string LimpiarJson(string json)
          {
              return JObject.Parse(json.Substring(json.IndexOf('{'),

@@ -9,6 +9,7 @@ using System.Windows.Forms;
 using Office = Microsoft.Office.Core;
 using Microsoft.Office.Tools.Excel;
 using Microsoft.Office.Tools;
+using testVSTO2.Respuesta;
 
 // TODO:  Siga estos pasos para habilitar el elemento (XML) de la cinta de opciones:
 
@@ -54,14 +55,24 @@ namespace testVSTO2
 
         public void Ribbon_Load(Office.IRibbonUI ribbonUI)
         {
-            this.ribbon = ribbonUI;
+            ribbon = ribbonUI;
+            _listaribbon.Add(
+            new Permiso.Respuesta{
+                Descripcion = "SetBtnEnabled",IdPermiso = 1,Valor = true
+            });
+            foreach (var elemento in _listaribbon)
+            {
+                GetType().GetMethod(elemento.Descripcion).Invoke(this, new object[] { elemento.Valor });
+            }
 
         }
-
+        private List<Respuesta.Permiso.Respuesta> _listaribbon = new List<Respuesta.Permiso.Respuesta>();
         public void ImportarInformacion(Office.IRibbonControl control)
         {
             ThisAddIn.Recetario.Visible = false;
             ThisAddIn.Inventario.Visible = true;
+
+            SetBtnEnabled(true);
         }
 
         public void AbrirRecetario(Office.IRibbonControl control)
@@ -73,8 +84,25 @@ namespace testVSTO2
         {
             ThisAddIn.Inventario.Visible = false;
             ThisAddIn.Recetario.Visible = false;
-            AgregarReceta ar=new AgregarReceta();
+            var ar=new AgregarReceta();
             ar.Show();
+        }
+        public bool btn_GetEnabled(Office.IRibbonControl control)
+        {
+            return _btnIsEnabled;
+        }
+
+        // This is internal bookkeeping
+        bool _btnIsEnabled;
+        public void SetBtnEnabled(bool isEnabled)
+        {
+            _btnIsEnabled = isEnabled;
+            ribbon.Invalidate();
+        }
+        public void AbrirConfiguracion(Office.IRibbonControl control)
+        {
+            
+            ribbon.Invalidate();
         }
         #endregion
 
@@ -84,17 +112,12 @@ namespace testVSTO2
         {
             Assembly asm = Assembly.GetExecutingAssembly();
             string[] resourceNames = asm.GetManifestResourceNames();
-            for (int i = 0; i < resourceNames.Length; ++i)
+            foreach (string t in resourceNames)
             {
-                if (string.Compare(resourceName, resourceNames[i], StringComparison.OrdinalIgnoreCase) == 0)
+                if (string.Compare(resourceName, t, StringComparison.OrdinalIgnoreCase) != 0) continue;
+                using (var resourceReader = new StreamReader(asm.GetManifestResourceStream(t)))
                 {
-                    using (StreamReader resourceReader = new StreamReader(asm.GetManifestResourceStream(resourceNames[i])))
-                    {
-                        if (resourceReader != null)
-                        {
-                            return resourceReader.ReadToEnd();
-                        }
-                    }
+                    return resourceReader.ReadToEnd();
                 }
             }
             return null;

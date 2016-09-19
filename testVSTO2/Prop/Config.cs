@@ -36,8 +36,10 @@ namespace testVSTO2.Prop
                 public static string Lista { get; set; } = "receta/";
                 public static string DetalleLista { get; set; } = "receta/detalle/";
                 public static int IdReceta { get; set; }
+                public static string clave { get; set; }
                 public static string Insertar { get; set; } = "receta";
                 public static string InsertarDetalle { get; set; } = "receta/detalle";
+                public static string Tipo { get; set; } = "receta/tipo";
 
             }
             public class Categoria
@@ -71,9 +73,14 @@ namespace testVSTO2.Prop
                 public static string UrlActualizar { get; set; }
             }
 
-            public class ProveedorArticulo
+            public class Proveedor
             {
-                public static string UrlExportar { get; set; }
+                public static string Lista { get; set; } = "proveedor";
+            }
+
+            public class Reporte
+            {
+                public static string General { get; set; } = "reporte/general";
             }
         }
     }

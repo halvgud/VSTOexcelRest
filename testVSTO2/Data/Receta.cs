@@ -17,7 +17,7 @@ namespace testVSTO2.Data
         {
             try
             {
-                var rest = new Rest(Config.Local.Api.UrlApi, Config.Local.Receta.Lista + Config.Local.Receta.IdReceta,
+                var rest = new Rest(Config.Local.Api.UrlApi, Config.Local.Receta.Lista + Config.Local.Receta.clave,
                     Method.GET);
                 rest.Peticion.AddHeader(Constantes.Http.ObtenerTipoDeContenido,
                     Constantes.Http.TipoDeContenido.Json);
@@ -113,6 +113,36 @@ namespace testVSTO2.Data
                             throw new Exception(@"error al buscar articulo");
                     }
                 });
+            }
+        }
+
+        public class Tipo
+        {
+            public static void Lista(Action<IRestResponse> callback)
+            {
+                try
+                {
+                    var rest = new Rest(Config.Local.Api.UrlApi, Config.Local.Receta.Tipo,
+                        Method.GET);
+                    rest.Peticion.AddHeader(Constantes.Http.ObtenerTipoDeContenido,
+                        Constantes.Http.TipoDeContenido.Json);
+                    rest.Cliente.ExecuteAsync(rest.Peticion, response =>
+                    {
+                        switch (response.StatusCode)
+                        {
+                            case HttpStatusCode.OK:
+                                callback(response);
+                                break;
+                            default:
+                                throw new Exception(@"error al buscar articulo");
+                        }
+                    });
+                }
+                catch (Exception e)
+                {
+                    Opcion.Log(Config.Log.Interno.Categoria, "EXCEPCION: " + e.Message);
+                    // callback("CONTINUAR");
+                }
             }
         }
     }

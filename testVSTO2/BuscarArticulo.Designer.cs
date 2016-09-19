@@ -81,7 +81,10 @@
             this.Controls.Add(this.tbCantidad);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedToolWindow;
             this.Name = "BuscarArticulo";
+            this.ShowInTaskbar = false;
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Buscar ingrediente...";
+            this.TopMost = true;
             ((System.ComponentModel.ISupportInitialize)(this.dgvListaArticulos)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();

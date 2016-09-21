@@ -189,6 +189,7 @@
     <Compile Include="Data\Articulo.cs" />
     <Compile Include="Data\Categoria.cs" />
     <Compile Include="Data\Departamento.cs" />
+    <Compile Include="Data\Permiso.cs" />
     <Compile Include="Data\Proveedor.cs" />
     <Compile Include="Data\Receta.cs" />
     <Compile Include="Data\Reporte.cs" />
@@ -253,8 +254,7 @@
     <Compile Include="Prop\Config.cs" />
     <Compile Include="Prop\Constantes.cs" />
     <Compile Include="Respuesta\Articulo.cs" />
-    <Compile Include="Respuesta\Departamento.cs" />
-    <Compile Include="Respuesta\InterfaceBase.cs" />
+    <Compile Include="Respuesta\CbGenerico.cs" />
     <Compile Include="Respuesta\Permiso.cs" />
     <Compile Include="Respuesta\Receta.cs" />
     <Compile Include="Respuesta\Reporte.cs" />

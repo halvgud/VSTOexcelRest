@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
 using System.Windows.Forms;
-using Newtonsoft.Json.Linq;
 using testVSTO2.Prop;
 using testVSTO2.Respuesta;
 using RestSharp;
@@ -73,21 +72,21 @@ namespace testVSTO2
                 }));
             });
         }
-        double sum = 0;
+        double _sum;
         private void ActualizarInputs()
         {
-            sum = 0;
+            _sum = 0;
             for (var i = 0; i < dgvIngredientes.Rows.Count; ++i)
             {
                 var costo1 = Convert.ToDouble(dgvIngredientes.Rows[i].Cells[3].Value);
                 var cantidad1 = Convert.ToDouble(dgvIngredientes.Rows[i].Cells[4].Value);
-                sum += (costo1 * cantidad1);
+                _sum += (costo1 * cantidad1);
             }
-            tbCostoEstimado.Text = sum.ToString(CultureInfo.InvariantCulture);
+            tbCostoEstimado.Text = _sum.ToString(CultureInfo.InvariantCulture);
             //tbMargenSugerido.Text = @"35%";
 
             ActualizarMargen();
-            var costo = (sum) + (tbCostoElaboracion.Text != string.Empty ? Convert.ToDouble(tbCostoElaboracion.Text) : 0);
+            var costo = (_sum) + (tbCostoElaboracion.Text != string.Empty ? Convert.ToDouble(tbCostoElaboracion.Text) : 0);
             double margen = 1-Convert.ToDouble(tbMargenSugerido.Text);
             tbPrecioSugerido.Text = (Math.Round((costo / margen), 2)).ToString(CultureInfo.InvariantCulture);
 
@@ -95,10 +94,10 @@ namespace testVSTO2
 
         private void ActualizarMargen()
         {
-            if (cbTipoReceta.Items.Count > 0) { 
-                List<Respuesta.CbGenerico> lista = new List<CbGenerico>();
-                lista = Prop.Opcion.JsonaListaGenerica<Respuesta.CbGenerico>((IRestResponse)cbTipoReceta.Tag);
-                tbMargenSugerido.Text = lista[cbTipoReceta.SelectedIndex].margen;
+            if (cbTipoReceta.Items.Count > 0)
+            {
+                var lista = Opcion.JsonaListaGenerica<CbGenerico>((IRestResponse)cbTipoReceta.Tag);
+                tbMargenSugerido.Text = lista[cbTipoReceta.SelectedIndex].Margen;
             }
         }
         private void tbCostoElaboracion_TextChanged(object sender, EventArgs e)
@@ -110,18 +109,18 @@ namespace testVSTO2
         {
             if (!tbPrecio.Focused)
             {
-                sum = 0;
+                _sum = 0;
                 for (var i = 0; i < dgvIngredientes.Rows.Count; ++i)
                 {
                     var costo = Convert.ToDouble(dgvIngredientes.Rows[i].Cells[3].Value);
                     var cantidad = Convert.ToDouble(dgvIngredientes.Rows[i].Cells[4].Value);
-                    sum += (costo * cantidad);
+                    _sum += (costo * cantidad);
                 }
                 if (tbMargenConPrecio.Text != string.Empty)
                 {
                     tbPrecio.Text = (Math.Round(
                      (
-                      (sum) + (tbCostoElaboracion.Text != string.Empty ? Convert.ToDouble(tbCostoElaboracion.Text) : 0)
+                      (_sum) + (tbCostoElaboracion.Text != string.Empty ? Convert.ToDouble(tbCostoElaboracion.Text) : 0)
                      ) /
                      (
                       1 - (Convert.ToDouble(tbMargenConPrecio.Text) / 100)
@@ -134,14 +133,14 @@ namespace testVSTO2
         {
             if (!tbMargenConPrecio.Focused)
             {
-                sum = 0;
+                _sum = 0;
                 for (var i = 0; i < dgvIngredientes.Rows.Count; ++i)
                 {
                     var costo1 = Convert.ToDouble(dgvIngredientes.Rows[i].Cells[3].Value);
                     var cantidad1 = Convert.ToDouble(dgvIngredientes.Rows[i].Cells[4].Value);
-                    sum += (costo1 * cantidad1);
+                    _sum += (costo1 * cantidad1);
                 }
-                var costo = sum + (tbCostoElaboracion.Text != string.Empty ? Convert.ToDouble(tbCostoElaboracion.Text) : 0);
+                var costo = _sum + (tbCostoElaboracion.Text != string.Empty ? Convert.ToDouble(tbCostoElaboracion.Text) : 0);
                 if (tbPrecio.Text != string.Empty)
                 {
                     var precio = Convert.ToDouble(tbPrecio.Text);
@@ -199,10 +198,10 @@ namespace testVSTO2
             Data.Receta.CReceta = receta;
             Opcion.EjecucionAsync(Data.Receta.Insertar, x =>
             {
-                List<Receta.Detalle> listRecetaDetalle = new List<Receta.Detalle>();
+                var listRecetaDetalle = new List<Receta.Detalle>();
                 for (var i = 0; i < dgvIngredientes.Rows.Count; i++)
                 {
-                    var art_id = dgvIngredientes.Rows[i].Cells[0].Value.ToString();
+                    var artId = dgvIngredientes.Rows[i].Cells[0].Value.ToString();
                     var cantidad = double.Parse(dgvIngredientes.Rows[i].Cells[4].Value.ToString());
                     var clave = dgvIngredientes.Rows[i].Cells[1].Value.ToString();
                     var descripcion = dgvIngredientes.Rows[i].Cells[2].Value.ToString();
@@ -211,7 +210,7 @@ namespace testVSTO2
                     var recetaDetalle = new Receta.Detalle
                     {
                         rec_id = Data.Receta.CReceta.rec_id,
-                        art_id = art_id,
+                        art_id = artId,
                         cantidad = cantidad,
                         clave = clave,
                         descripcion = descripcion,

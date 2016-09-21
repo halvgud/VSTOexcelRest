@@ -16,33 +16,64 @@ namespace testVSTO2
         private SideBarRecetario _recetario;
         public static Microsoft.Office.Tools.CustomTaskPane Inventario;
         public static Microsoft.Office.Tools.CustomTaskPane Recetario;
+        private Excel.Worksheet _reporte;
        // internal Microsoft.Office.Interop.Excel.Application Application2;
-        private void ThisAddIn_Startup(object sender, System.EventArgs e)
+        private void ThisAddIn_Startup(object sender, EventArgs e)
         {
             _inventario = new SideBarImportarInformacion();
             _recetario = new SideBarRecetario();
-            Inventario = this.CustomTaskPanes.Add(_inventario, "Importar...");
+            Inventario = CustomTaskPanes.Add(_inventario, "Importar...");
             Inventario.Visible = false;
             Inventario.Width = 250;
-            Recetario = this.CustomTaskPanes.Add(_recetario, "Recetario");
+            Recetario = CustomTaskPanes.Add(_recetario, "Recetario");
             Recetario.Visible = false;
             Recetario.Width = 250;
-           /* var oWB = Application.Workbooks.Add(missing);
-            var oWS = oWB.Worksheets.Add(missing, missing, 1, missing) as Excel.Worksheet;
-            var sPath = Path.GetTempFileName();
-            File.WriteAllBytes(sPath,Properties.Resources.FICHA_RECETA);
-            var oTemplate = Application.Workbooks.Add(sPath);
-            (oTemplate.Worksheets[1] as Excel.Worksheet).Copy(missing, oWS);
-            oTemplate.Close(false, missing, missing);
-            File.Delete(sPath);
-            var oReportWS = oWB.Worksheets["Template"] as Excel.Worksheet;
-            ((oReportWS.Range["NOMBRE"]) as Excel.Range).Value2 = "Here I am!";*/
+            Application.WorkbookActivate +=
+           Application_ActiveWorkbookChanges;
+            Application.WorkbookDeactivate +=
+                Application_ActiveWorkbookChanges;
+            Globals.ThisAddIn.Application.SheetSelectionChange += activeSheet_SelectionChange;
+            _sheet1 = (Excel.Worksheet) Application.ActiveSheet;
+            /* var oWB = Application.Workbooks.Add(missing);
+             var oWS = oWB.Worksheets.Add(missing, missing, 1, missing) as Excel.Worksheet;
+             var sPath = Path.GetTempFileName();
+             File.WriteAllBytes(sPath,Properties.Resources.FICHA_RECETA);
+             var oTemplate = Application.Workbooks.Add(sPath);
+             (oTemplate.Worksheets[1] as Excel.Worksheet).Copy(missing, oWS);
+             oTemplate.Close(false, missing, missing);
+             File.Delete(sPath);
+             var oReportWS = oWB.Worksheets["Template"] as Excel.Worksheet;
+             ((oReportWS.Range["NOMBRE"]) as Excel.Range).Value2 = "Here I am!";*/
 
         }
-
+        Excel.Worksheet _sheet1;
+        void activeSheet_SelectionChange(Object sh,Excel.Range target)
+        {
+            _sheet1 = (Excel.Worksheet)Application.ActiveSheet;
+            // Put your code here
+            if (target.Row == 1)
+            {
+                _sheet1.Unprotect();
+            }
+            else
+            {
+                try
+                {
+                    Globals.ThisAddIn.Application.Cells.Locked = false;
+                    BloquearRango(_rowCount);
+                    _sheet1.Protect(AllowSorting: true, AllowFiltering: true);
+                }
+                catch (Exception e)
+                {
+                    Console.WriteLine(e.Message);
+                }
+            }
+        }
         public Excel.Worksheet InicializarExcelConTemplate(string nombreHoja)
         {
-            var reporte=new Excel.Worksheet();
+            var reportet=new Excel.Worksheet();
+            _sheet1 = (Excel.Worksheet)Application.ActiveSheet;
+            _sheet1.Unprotect();
             try
             {
                 var found = Application.Sheets.Cast<Excel.Worksheet>().Any(sheet => sheet.Name == nombreHoja);
@@ -56,56 +87,98 @@ namespace testVSTO2
                     worksheet?.Copy(After: ows);
                 oTemplate.Close(false, missing, missing);
                 File.Delete(sPath);
-                reporte = awa.Worksheets[nombreHoja] as Excel.Worksheet;//nombre de la hoja actual   
+                reportet = awa.Worksheets[nombreHoja] as Excel.Worksheet;//nombre de la hoja actual   
 
             }
             catch (Exception e)
             {
                 MessageBox.Show(e.Message);
             }
-            return reporte;
+            return reportet;
         }
-        public Excel.Worksheet InicializarExcelConTemplate(string nombreHoja,string xw)
-        {
-            Excel.Worksheet reporte = new Excel.Worksheet();
-            try
-            {
-                bool found = Application.Sheets.Cast<Excel.Worksheet>().Any(sheet => sheet.Name == nombreHoja);
-                var awa = Application.Workbooks.Application;//nueva app
-                var ows = Application.Worksheets[1];// excel actual
-                var sPath = Path.GetTempFileName(); // archivo temporal
-                File.WriteAllBytes(sPath, Properties.Resources.FICHA_RECETA);//se copia el template
-                var oTemplate = Application.Workbooks.Add(sPath); //path del template temporal
-                var worksheet = oTemplate.Worksheets[nombreHoja] as Excel.Worksheet;//nombre del template
-                if (found)
-                {
-                    //worksheet?.Copy(After: ows);
-                    oTemplate.Close(false, missing, missing);
-                    File.Delete(sPath);
-                    reporte = awa.Worksheets[nombreHoja] as Excel.Worksheet;//nombre de la hoja actual
-                }
-                else
-                {
-                    worksheet?.Copy(After: ows);
-                    oTemplate.Close(false, missing, missing);
-                    File.Delete(sPath);
-                    //awa.Worksheets.Add("tabla1").InsertDataTable(dt, 0, 0, true);
-  
-
-                    reporte = awa.Worksheets[nombreHoja] as Excel.Worksheet;//nombre de la hoja actual   
-                    
-                }
-            }
-            catch (Exception e)
-            {
-                MessageBox.Show(e.Message);
-            }
-            return reporte;
-        }
+       
+        private int _rowCount;
         public void ReporteGeneral(IRestResponse restResponse)
         {
             var rrg = Prop.Opcion.JsonaListaGenerica<Respuesta.Reporte.General.Respuesta>(restResponse);
-            var reporte=InicializarExcelConTemplate("ReporteInventario");
+            _rowCount = (rrg.Count + 1);
+            _reporte =InicializarExcelConTemplate("ReporteInventario");
+            if (_reporte != null)
+            {
+                try
+                {
+                    var list = new List<string> {"P-1", "P-.5", "1", "4", "DESCONOCIDO"};
+                    var flatList = string.Join(",", list.ToArray());
+                    var lista = new object[rrg.Count, 19];
+                    for (var x = 0; x < rrg.Count; x++)
+                    {
+                        lista[x, 0] = rrg[x].clave;
+                        lista[x, 1] = rrg[x].departamento;
+                        lista[x, 2] = rrg[x].categoria;
+                        lista[x, 3] = rrg[x].descripcion;
+                        lista[x, 4] = rrg[x].tipo;
+                        lista[x, 5] = (rrg[x].existencia);
+                        lista[x, 6] = rrg[x].consumoDiario;
+                        lista[x, 7] = rrg[x].puntoReorden;
+                        lista[x, 8] = rrg[x].inventarioMinimo;
+                        lista[x, 9] = rrg[x].inventarioMaximo;
+                        lista[x, 10] = rrg[x].factor;
+                        lista[x, 11] = rrg[x].cantidadVendida;
+                        lista[x, 12] = rrg[x].ventas;
+                        lista[x, 13] = rrg[x].fechaUltimaCompra.ToString(CultureInfo.InvariantCulture);
+                        lista[x, 14] = rrg[x].cantidadComprada;
+                        lista[x, 15] = rrg[x].radioInventario;
+                        lista[x, 16] = rrg[x].precioCompra;
+                        lista[x, 17] = rrg[x].precioVenta;
+                        lista[x, 18] = Double.Parse(rrg[x].margen)/100;
+                    }
+                    Globals.ThisAddIn.Application.Cells.Locked = false;
+                    _reporte.Range["A" + 2 + ":S" + _rowCount].Value2 = lista;
+                    _reporte.Range["F" + 2 + ":F" + _rowCount].NumberFormat = "0.0";
+                    var sourceRange = _reporte.Range["A" + 1 + ":S" + (rrg.Count+1)];
+                    sourceRange.Worksheet.ListObjects.Add(Excel.XlListObjectSourceType.xlSrcRange,
+ sourceRange, Type.Missing, Excel.XlYesNoGuess.xlYes, Type.Missing).Name =
+ "tabla2";
+
+                    sourceRange.Select();
+
+                    sourceRange.Worksheet.ListObjects["tabla2"].TableStyle = "TableStyleLight8";
+                    _reporte.Range["E" + 2 + ":E" + _rowCount].Validation.Delete();
+                    _reporte.Range["E" + 2 + ":E" + _rowCount].Validation.Add(Excel.XlDVType.xlValidateList,
+                           Excel.XlDVAlertStyle.xlValidAlertInformation,
+                           Excel.XlFormatConditionOperator.xlBetween,
+                           flatList,
+                           Type.Missing);
+                    BloquearRango(_rowCount);
+                    _sheet1.Protect(AllowSorting:true, AllowFiltering:true);
+                    
+                }
+                catch (Exception e)
+                {
+                    Console.WriteLine(e.Message);
+                }
+            }
+        }
+
+        private void BloquearRango(int posicion)
+        {
+            _reporte.Range["A" + 2 + ":A" + posicion].Locked = true;
+            _reporte.Range["B" + 2 + ":B" + posicion].Locked = true;
+            _reporte.Range["C" + 2 + ":C" + posicion].Locked = true;
+            _reporte.Range["D" + 2 + ":D" + posicion].Locked = true;
+            _reporte.Range["F" + 2 + ":F" + posicion].Locked = true;
+            _reporte.Range["G" + 2 + ":G" + posicion].Locked = true;
+            _reporte.Range["H" + 2 + ":H" + posicion].Locked = true;
+        }
+        void Application_ActiveWorkbookChanges(Excel.Workbook wb)
+        {
+            // TODO: Active Workbook has changed. Ribbon should be updated.    
+            wb.Unprotect();
+        }
+        public void ReporteImprimir(IRestResponse restResponse)
+        {
+            var rrg = Prop.Opcion.JsonaListaGenerica<Respuesta.Reporte.General.Respuesta>(restResponse);
+            var reporte = InicializarExcelConTemplate("ReporteInventarioImprimir");
             if (reporte != null)
             {
                 try
@@ -133,7 +206,7 @@ namespace testVSTO2
                         lista[x, 17] = rrg[x].precioVenta;
                         lista[x, 18] = rrg[x].margen;
                     }
-                    reporte.Range["A"+2+":S"+rrg.Count].Value2 = lista;
+                    reporte.Range["A" + 2 + ":S" + rrg.Count].Value2 = lista;
                 }
                 catch (Exception e)
                 {
@@ -192,7 +265,7 @@ namespace testVSTO2
             return table;
         }
 
-        private void ThisAddIn_Shutdown(object sender, System.EventArgs e)
+        private void ThisAddIn_Shutdown(object sender, EventArgs e)
         {
         }
         public static SideBarImportarInformacion SideBarImportarInformacion;
@@ -211,8 +284,8 @@ namespace testVSTO2
         /// </summary>
         private void InternalStartup()
         {
-            this.Startup += new System.EventHandler(ThisAddIn_Startup);
-            this.Shutdown += new System.EventHandler(ThisAddIn_Shutdown);
+            Startup += ThisAddIn_Startup;
+            Shutdown += ThisAddIn_Shutdown;
             
         }
         

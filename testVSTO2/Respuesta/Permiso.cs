@@ -10,9 +10,11 @@ namespace testVSTO2.Respuesta
     {
         public class Respuesta
         {
-            public int IdPermiso { get; set; }
+            public string IdPermiso { get; set; }
+            public string IdControl { get; set; }
             public string Descripcion { get; set; }
-            public bool Valor { get; set; }
+
+            public string Valor { get; set; }
         }
     }
 }

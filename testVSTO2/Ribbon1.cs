@@ -56,23 +56,25 @@ namespace testVSTO2
         public void Ribbon_Load(Office.IRibbonUI ribbonUI)
         {
             ribbon = ribbonUI;
-            _listaribbon.Add(
-            new Permiso.Respuesta{
-                Descripcion = "SetBtnEnabled",IdPermiso = 1,Valor = true
+            Prop.Opcion.EjecucionAsync(Data.Permiso.ObtenerPermiso, x =>
+            {
+                _listaribbon = Prop.Opcion.JsonaListaGenerica<Respuesta.Permiso.Respuesta>(x);
             });
             foreach (var elemento in _listaribbon)
             {
-                GetType().GetMethod(elemento.Descripcion).Invoke(this, new object[] { elemento.Valor });
+                listaBools.Add(elemento.IdControl,(elemento.Valor=="1"));
+                SetearPermiso((elemento.Valor=="1"),elemento.IdControl);// GetType().GetMethod(elemento.Descripcion).Invoke(this, new object[] { elemento.Valor,elemento.IdControl });
             }
 
         }
         private List<Respuesta.Permiso.Respuesta> _listaribbon = new List<Respuesta.Permiso.Respuesta>();
+        Dictionary<string, bool> listaBools = new Dictionary<string, bool>();
         public void ImportarInformacion(Office.IRibbonControl control)
         {
             ThisAddIn.Recetario.Visible = false;
             ThisAddIn.Inventario.Visible = true;
 
-            SetBtnEnabled(true);
+            SetearPermiso(true, control.Id);
         }
 
         public void AbrirRecetario(Office.IRibbonControl control)
@@ -87,16 +89,15 @@ namespace testVSTO2
             var ar=new AgregarReceta();
             ar.Show();
         }
-        public bool btn_GetEnabled(Office.IRibbonControl control)
+        
+        public bool BuscarPermiso(Office.IRibbonControl control)
         {
-            return _btnIsEnabled;
+            return listaBools[control.Id];
         }
 
-        // This is internal bookkeeping
-        bool _btnIsEnabled;
-        public void SetBtnEnabled(bool isEnabled)
+        public void SetearPermiso(bool isEnabled,string id)
         {
-            _btnIsEnabled = isEnabled;
+            listaBools[id] = isEnabled;
             ribbon.Invalidate();
         }
         public void AbrirConfiguracion(Office.IRibbonControl control)

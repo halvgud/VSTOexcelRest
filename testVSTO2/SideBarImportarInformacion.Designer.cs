@@ -30,36 +30,38 @@
         {
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.tabPage1 = new System.Windows.Forms.TabPage();
-            this.dtFechaFin = new System.Windows.Forms.DateTimePicker();
+            this.cbImprimir = new System.Windows.Forms.CheckBox();
+            this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.dtFechaIni = new System.Windows.Forms.DateTimePicker();
+            this.dtFechaFin = new System.Windows.Forms.DateTimePicker();
+            this.label3 = new System.Windows.Forms.Label();
+            this.label4 = new System.Windows.Forms.Label();
+            this.groupBox3 = new System.Windows.Forms.GroupBox();
+            this.cbTipoProducto = new System.Windows.Forms.ComboBox();
+            this.cbProveedor = new System.Windows.Forms.ComboBox();
+            this.chTipoProducto = new System.Windows.Forms.CheckBox();
+            this.chProveedor = new System.Windows.Forms.CheckBox();
+            this.label5 = new System.Windows.Forms.Label();
+            this.label6 = new System.Windows.Forms.Label();
+            this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.cbCategoria = new System.Windows.Forms.ComboBox();
             this.cbDepartamento = new System.Windows.Forms.ComboBox();
-            this.label4 = new System.Windows.Forms.Label();
-            this.label1 = new System.Windows.Forms.Label();
-            this.label3 = new System.Windows.Forms.Label();
+            this.chCategoria = new System.Windows.Forms.CheckBox();
+            this.chDepartamento = new System.Windows.Forms.CheckBox();
             this.label2 = new System.Windows.Forms.Label();
+            this.label1 = new System.Windows.Forms.Label();
             this.tabPage2 = new System.Windows.Forms.TabPage();
             this.panel1 = new System.Windows.Forms.Panel();
             this.btAyuda = new System.Windows.Forms.Button();
             this.btAceptar = new System.Windows.Forms.Button();
-            this.groupBox1 = new System.Windows.Forms.GroupBox();
-            this.groupBox2 = new System.Windows.Forms.GroupBox();
-            this.groupBox3 = new System.Windows.Forms.GroupBox();
-            this.chDepartamento = new System.Windows.Forms.CheckBox();
-            this.chCategoria = new System.Windows.Forms.CheckBox();
-            this.chTipoProducto = new System.Windows.Forms.CheckBox();
-            this.chProveedor = new System.Windows.Forms.CheckBox();
-            this.cbTipoProducto = new System.Windows.Forms.ComboBox();
-            this.label5 = new System.Windows.Forms.Label();
-            this.label6 = new System.Windows.Forms.Label();
-            this.cbProveedor = new System.Windows.Forms.ComboBox();
-            this.cbImprimir = new System.Windows.Forms.CheckBox();
+            this.cbOrderBy = new System.Windows.Forms.ComboBox();
+            this.label7 = new System.Windows.Forms.Label();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
-            this.panel1.SuspendLayout();
             this.groupBox1.SuspendLayout();
-            this.groupBox2.SuspendLayout();
             this.groupBox3.SuspendLayout();
+            this.groupBox2.SuspendLayout();
+            this.panel1.SuspendLayout();
             this.SuspendLayout();
             // 
             // tabControl1
@@ -75,6 +77,8 @@
             // 
             // tabPage1
             // 
+            this.tabPage1.Controls.Add(this.label7);
+            this.tabPage1.Controls.Add(this.cbOrderBy);
             this.tabPage1.Controls.Add(this.cbImprimir);
             this.tabPage1.Controls.Add(this.groupBox1);
             this.tabPage1.Controls.Add(this.groupBox3);
@@ -87,25 +91,155 @@
             this.tabPage1.Text = "Parámetros de búsqueda";
             this.tabPage1.UseVisualStyleBackColor = true;
             // 
+            // cbImprimir
+            // 
+            this.cbImprimir.AutoSize = true;
+            this.cbImprimir.Location = new System.Drawing.Point(9, 383);
+            this.cbImprimir.Name = "cbImprimir";
+            this.cbImprimir.Size = new System.Drawing.Size(109, 17);
+            this.cbImprimir.TabIndex = 11;
+            this.cbImprimir.Text = "Versión imprimible";
+            this.cbImprimir.UseVisualStyleBackColor = true;
+            // 
+            // groupBox1
+            // 
+            this.groupBox1.Controls.Add(this.dtFechaIni);
+            this.groupBox1.Controls.Add(this.dtFechaFin);
+            this.groupBox1.Controls.Add(this.label3);
+            this.groupBox1.Controls.Add(this.label4);
+            this.groupBox1.Dock = System.Windows.Forms.DockStyle.Top;
+            this.groupBox1.Location = new System.Drawing.Point(3, 223);
+            this.groupBox1.Name = "groupBox1";
+            this.groupBox1.Size = new System.Drawing.Size(237, 114);
+            this.groupBox1.TabIndex = 8;
+            this.groupBox1.TabStop = false;
+            this.groupBox1.Text = "Rango de fechas";
+            // 
+            // dtFechaIni
+            // 
+            this.dtFechaIni.Location = new System.Drawing.Point(6, 33);
+            this.dtFechaIni.Name = "dtFechaIni";
+            this.dtFechaIni.Size = new System.Drawing.Size(183, 20);
+            this.dtFechaIni.TabIndex = 2;
+            // 
             // dtFechaFin
             // 
-            this.dtFechaFin.Location = new System.Drawing.Point(13, 77);
+            this.dtFechaFin.Location = new System.Drawing.Point(6, 72);
             this.dtFechaFin.Name = "dtFechaFin";
             this.dtFechaFin.Size = new System.Drawing.Size(183, 20);
             this.dtFechaFin.TabIndex = 3;
             // 
-            // dtFechaIni
+            // label3
             // 
-            this.dtFechaIni.Location = new System.Drawing.Point(13, 38);
-            this.dtFechaIni.Name = "dtFechaIni";
-            this.dtFechaIni.Size = new System.Drawing.Size(183, 20);
-            this.dtFechaIni.TabIndex = 2;
+            this.label3.AutoSize = true;
+            this.label3.Location = new System.Drawing.Point(3, 17);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(65, 13);
+            this.label3.TabIndex = 6;
+            this.label3.Text = "Fecha Inicio";
+            // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.Location = new System.Drawing.Point(3, 56);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(54, 13);
+            this.label4.TabIndex = 7;
+            this.label4.Text = "Fecha Fin";
+            // 
+            // groupBox3
+            // 
+            this.groupBox3.Controls.Add(this.cbTipoProducto);
+            this.groupBox3.Controls.Add(this.cbProveedor);
+            this.groupBox3.Controls.Add(this.chTipoProducto);
+            this.groupBox3.Controls.Add(this.chProveedor);
+            this.groupBox3.Controls.Add(this.label5);
+            this.groupBox3.Controls.Add(this.label6);
+            this.groupBox3.Dock = System.Windows.Forms.DockStyle.Top;
+            this.groupBox3.Location = new System.Drawing.Point(3, 108);
+            this.groupBox3.Name = "groupBox3";
+            this.groupBox3.Size = new System.Drawing.Size(237, 115);
+            this.groupBox3.TabIndex = 10;
+            this.groupBox3.TabStop = false;
+            this.groupBox3.Text = "Proveedor/Tipo producto";
+            // 
+            // cbTipoProducto
+            // 
+            this.cbTipoProducto.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cbTipoProducto.FormattingEnabled = true;
+            this.cbTipoProducto.Location = new System.Drawing.Point(6, 73);
+            this.cbTipoProducto.Name = "cbTipoProducto";
+            this.cbTipoProducto.Size = new System.Drawing.Size(183, 21);
+            this.cbTipoProducto.TabIndex = 9;
+            // 
+            // cbProveedor
+            // 
+            this.cbProveedor.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cbProveedor.FormattingEnabled = true;
+            this.cbProveedor.Location = new System.Drawing.Point(6, 31);
+            this.cbProveedor.Name = "cbProveedor";
+            this.cbProveedor.Size = new System.Drawing.Size(183, 21);
+            this.cbProveedor.TabIndex = 8;
+            // 
+            // chTipoProducto
+            // 
+            this.chTipoProducto.AutoSize = true;
+            this.chTipoProducto.Location = new System.Drawing.Point(197, 76);
+            this.chTipoProducto.Name = "chTipoProducto";
+            this.chTipoProducto.Size = new System.Drawing.Size(15, 14);
+            this.chTipoProducto.TabIndex = 13;
+            this.chTipoProducto.UseVisualStyleBackColor = true;
+            this.chTipoProducto.CheckedChanged += new System.EventHandler(this.chTipoProducto_CheckedChanged);
+            // 
+            // chProveedor
+            // 
+            this.chProveedor.AutoSize = true;
+            this.chProveedor.Location = new System.Drawing.Point(197, 34);
+            this.chProveedor.Name = "chProveedor";
+            this.chProveedor.Size = new System.Drawing.Size(15, 14);
+            this.chProveedor.TabIndex = 12;
+            this.chProveedor.UseVisualStyleBackColor = true;
+            this.chProveedor.CheckedChanged += new System.EventHandler(this.chProveedor_CheckedChanged);
+            // 
+            // label5
+            // 
+            this.label5.AutoSize = true;
+            this.label5.Location = new System.Drawing.Point(3, 57);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(74, 13);
+            this.label5.TabIndex = 11;
+            this.label5.Text = "Tipo Producto";
+            // 
+            // label6
+            // 
+            this.label6.AutoSize = true;
+            this.label6.Location = new System.Drawing.Point(3, 15);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(56, 13);
+            this.label6.TabIndex = 10;
+            this.label6.Text = "Proveedor";
+            // 
+            // groupBox2
+            // 
+            this.groupBox2.Controls.Add(this.cbCategoria);
+            this.groupBox2.Controls.Add(this.cbDepartamento);
+            this.groupBox2.Controls.Add(this.chCategoria);
+            this.groupBox2.Controls.Add(this.chDepartamento);
+            this.groupBox2.Controls.Add(this.label2);
+            this.groupBox2.Controls.Add(this.label1);
+            this.groupBox2.Dock = System.Windows.Forms.DockStyle.Top;
+            this.groupBox2.Location = new System.Drawing.Point(3, 3);
+            this.groupBox2.Name = "groupBox2";
+            this.groupBox2.Size = new System.Drawing.Size(237, 105);
+            this.groupBox2.TabIndex = 9;
+            this.groupBox2.TabStop = false;
+            this.groupBox2.Text = "Categoria / Departamento";
             // 
             // cbCategoria
             // 
             this.cbCategoria.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cbCategoria.FormattingEnabled = true;
-            this.cbCategoria.Location = new System.Drawing.Point(13, 84);
+            this.cbCategoria.Location = new System.Drawing.Point(6, 74);
             this.cbCategoria.Name = "cbCategoria";
             this.cbCategoria.Size = new System.Drawing.Size(183, 21);
             this.cbCategoria.TabIndex = 1;
@@ -115,47 +249,53 @@
             // 
             this.cbDepartamento.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cbDepartamento.FormattingEnabled = true;
-            this.cbDepartamento.Location = new System.Drawing.Point(13, 42);
+            this.cbDepartamento.Location = new System.Drawing.Point(6, 32);
             this.cbDepartamento.Name = "cbDepartamento";
             this.cbDepartamento.Size = new System.Drawing.Size(183, 21);
             this.cbDepartamento.TabIndex = 0;
             this.cbDepartamento.SelectedIndexChanged += new System.EventHandler(this.cbDepartamento_SelectedIndexChanged);
             // 
-            // label4
+            // chCategoria
             // 
-            this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(10, 61);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(54, 13);
-            this.label4.TabIndex = 7;
-            this.label4.Text = "Fecha Fin";
+            this.chCategoria.AutoSize = true;
+            this.chCategoria.Checked = true;
+            this.chCategoria.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.chCategoria.Location = new System.Drawing.Point(197, 77);
+            this.chCategoria.Name = "chCategoria";
+            this.chCategoria.Size = new System.Drawing.Size(15, 14);
+            this.chCategoria.TabIndex = 7;
+            this.chCategoria.UseVisualStyleBackColor = true;
+            this.chCategoria.CheckedChanged += new System.EventHandler(this.chCategoria_CheckedChanged);
             // 
-            // label1
+            // chDepartamento
             // 
-            this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(10, 26);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(77, 13);
-            this.label1.TabIndex = 4;
-            this.label1.Text = "Departamento ";
-            // 
-            // label3
-            // 
-            this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(10, 22);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(65, 13);
-            this.label3.TabIndex = 6;
-            this.label3.Text = "Fecha Inicio";
+            this.chDepartamento.AutoSize = true;
+            this.chDepartamento.Checked = true;
+            this.chDepartamento.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.chDepartamento.Location = new System.Drawing.Point(197, 35);
+            this.chDepartamento.Name = "chDepartamento";
+            this.chDepartamento.Size = new System.Drawing.Size(15, 14);
+            this.chDepartamento.TabIndex = 6;
+            this.chDepartamento.UseVisualStyleBackColor = true;
+            this.chDepartamento.CheckedChanged += new System.EventHandler(this.chDepartamento_CheckedChanged);
             // 
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(10, 68);
+            this.label2.Location = new System.Drawing.Point(3, 58);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(52, 13);
             this.label2.TabIndex = 5;
             this.label2.Text = "Categoria";
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(3, 16);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(77, 13);
+            this.label1.TabIndex = 4;
+            this.label1.Text = "Departamento ";
             // 
             // tabPage2
             // 
@@ -198,141 +338,23 @@
             this.btAceptar.UseVisualStyleBackColor = true;
             this.btAceptar.Click += new System.EventHandler(this.btAceptar_Click);
             // 
-            // groupBox1
+            // cbOrderBy
             // 
-            this.groupBox1.Controls.Add(this.dtFechaIni);
-            this.groupBox1.Controls.Add(this.dtFechaFin);
-            this.groupBox1.Controls.Add(this.label3);
-            this.groupBox1.Controls.Add(this.label4);
-            this.groupBox1.Dock = System.Windows.Forms.DockStyle.Top;
-            this.groupBox1.Location = new System.Drawing.Point(3, 277);
-            this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(237, 114);
-            this.groupBox1.TabIndex = 8;
-            this.groupBox1.TabStop = false;
-            this.groupBox1.Text = "Rango de fechas";
+            this.cbOrderBy.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cbOrderBy.FormattingEnabled = true;
+            this.cbOrderBy.Location = new System.Drawing.Point(9, 356);
+            this.cbOrderBy.Name = "cbOrderBy";
+            this.cbOrderBy.Size = new System.Drawing.Size(183, 21);
+            this.cbOrderBy.TabIndex = 12;
             // 
-            // groupBox2
+            // label7
             // 
-            this.groupBox2.Controls.Add(this.cbCategoria);
-            this.groupBox2.Controls.Add(this.cbDepartamento);
-            this.groupBox2.Controls.Add(this.chCategoria);
-            this.groupBox2.Controls.Add(this.chDepartamento);
-            this.groupBox2.Controls.Add(this.label2);
-            this.groupBox2.Controls.Add(this.label1);
-            this.groupBox2.Dock = System.Windows.Forms.DockStyle.Top;
-            this.groupBox2.Location = new System.Drawing.Point(3, 3);
-            this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Size = new System.Drawing.Size(237, 143);
-            this.groupBox2.TabIndex = 9;
-            this.groupBox2.TabStop = false;
-            this.groupBox2.Text = "Categoria / Departamento";
-            // 
-            // groupBox3
-            // 
-            this.groupBox3.Controls.Add(this.cbTipoProducto);
-            this.groupBox3.Controls.Add(this.cbProveedor);
-            this.groupBox3.Controls.Add(this.chTipoProducto);
-            this.groupBox3.Controls.Add(this.chProveedor);
-            this.groupBox3.Controls.Add(this.label5);
-            this.groupBox3.Controls.Add(this.label6);
-            this.groupBox3.Dock = System.Windows.Forms.DockStyle.Top;
-            this.groupBox3.Location = new System.Drawing.Point(3, 146);
-            this.groupBox3.Name = "groupBox3";
-            this.groupBox3.Size = new System.Drawing.Size(237, 131);
-            this.groupBox3.TabIndex = 10;
-            this.groupBox3.TabStop = false;
-            this.groupBox3.Text = "Proveedor/Tipo producto";
-            // 
-            // chDepartamento
-            // 
-            this.chDepartamento.AutoSize = true;
-            this.chDepartamento.Checked = true;
-            this.chDepartamento.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.chDepartamento.Location = new System.Drawing.Point(204, 45);
-            this.chDepartamento.Name = "chDepartamento";
-            this.chDepartamento.Size = new System.Drawing.Size(15, 14);
-            this.chDepartamento.TabIndex = 6;
-            this.chDepartamento.UseVisualStyleBackColor = true;
-            this.chDepartamento.CheckedChanged += new System.EventHandler(this.chDepartamento_CheckedChanged);
-            // 
-            // chCategoria
-            // 
-            this.chCategoria.AutoSize = true;
-            this.chCategoria.Checked = true;
-            this.chCategoria.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.chCategoria.Location = new System.Drawing.Point(204, 87);
-            this.chCategoria.Name = "chCategoria";
-            this.chCategoria.Size = new System.Drawing.Size(15, 14);
-            this.chCategoria.TabIndex = 7;
-            this.chCategoria.UseVisualStyleBackColor = true;
-            this.chCategoria.CheckedChanged += new System.EventHandler(this.chCategoria_CheckedChanged);
-            // 
-            // chTipoProducto
-            // 
-            this.chTipoProducto.AutoSize = true;
-            this.chTipoProducto.Location = new System.Drawing.Point(204, 87);
-            this.chTipoProducto.Name = "chTipoProducto";
-            this.chTipoProducto.Size = new System.Drawing.Size(15, 14);
-            this.chTipoProducto.TabIndex = 13;
-            this.chTipoProducto.UseVisualStyleBackColor = true;
-            this.chTipoProducto.CheckedChanged += new System.EventHandler(this.chTipoProducto_CheckedChanged);
-            // 
-            // chProveedor
-            // 
-            this.chProveedor.AutoSize = true;
-            this.chProveedor.Location = new System.Drawing.Point(204, 45);
-            this.chProveedor.Name = "chProveedor";
-            this.chProveedor.Size = new System.Drawing.Size(15, 14);
-            this.chProveedor.TabIndex = 12;
-            this.chProveedor.UseVisualStyleBackColor = true;
-            this.chProveedor.CheckedChanged += new System.EventHandler(this.chProveedor_CheckedChanged);
-            // 
-            // cbTipoProducto
-            // 
-            this.cbTipoProducto.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.cbTipoProducto.FormattingEnabled = true;
-            this.cbTipoProducto.Location = new System.Drawing.Point(13, 84);
-            this.cbTipoProducto.Name = "cbTipoProducto";
-            this.cbTipoProducto.Size = new System.Drawing.Size(183, 21);
-            this.cbTipoProducto.TabIndex = 9;
-            // 
-            // label5
-            // 
-            this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(10, 68);
-            this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(74, 13);
-            this.label5.TabIndex = 11;
-            this.label5.Text = "Tipo Producto";
-            // 
-            // label6
-            // 
-            this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(10, 26);
-            this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(56, 13);
-            this.label6.TabIndex = 10;
-            this.label6.Text = "Proveedor";
-            // 
-            // cbProveedor
-            // 
-            this.cbProveedor.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.cbProveedor.FormattingEnabled = true;
-            this.cbProveedor.Location = new System.Drawing.Point(13, 42);
-            this.cbProveedor.Name = "cbProveedor";
-            this.cbProveedor.Size = new System.Drawing.Size(183, 21);
-            this.cbProveedor.TabIndex = 8;
-            // 
-            // cbImprimir
-            // 
-            this.cbImprimir.AutoSize = true;
-            this.cbImprimir.Location = new System.Drawing.Point(16, 398);
-            this.cbImprimir.Name = "cbImprimir";
-            this.cbImprimir.Size = new System.Drawing.Size(109, 17);
-            this.cbImprimir.TabIndex = 11;
-            this.cbImprimir.Text = "Versión imprimible";
-            this.cbImprimir.UseVisualStyleBackColor = true;
+            this.label7.AutoSize = true;
+            this.label7.Location = new System.Drawing.Point(6, 340);
+            this.label7.Name = "label7";
+            this.label7.Size = new System.Drawing.Size(66, 13);
+            this.label7.TabIndex = 13;
+            this.label7.Text = "Ordenar por:";
             // 
             // SideBarImportarInformacion
             // 
@@ -346,13 +368,13 @@
             this.tabControl1.ResumeLayout(false);
             this.tabPage1.ResumeLayout(false);
             this.tabPage1.PerformLayout();
-            this.panel1.ResumeLayout(false);
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
-            this.groupBox2.ResumeLayout(false);
-            this.groupBox2.PerformLayout();
             this.groupBox3.ResumeLayout(false);
             this.groupBox3.PerformLayout();
+            this.groupBox2.ResumeLayout(false);
+            this.groupBox2.PerformLayout();
+            this.panel1.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -385,5 +407,7 @@
         private System.Windows.Forms.CheckBox chCategoria;
         private System.Windows.Forms.CheckBox chDepartamento;
         private System.Windows.Forms.CheckBox cbImprimir;
+        private System.Windows.Forms.Label label7;
+        private System.Windows.Forms.ComboBox cbOrderBy;
     }
 }

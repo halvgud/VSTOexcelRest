@@ -13,7 +13,7 @@ namespace testVSTO2
 
         private void btBuscar_Click(object sender, EventArgs e)
         {
-            BusquedaReceta br = new BusquedaReceta();
+            var br = new BusquedaReceta();
             br.Show();
         }
 
@@ -24,7 +24,7 @@ namespace testVSTO2
             {
                 BeginInvoke((MethodInvoker) (() =>
                 {
-                    BusquedaRecetaDetalle brd =
+                    var brd =
                         new BusquedaRecetaDetalle(Opcion.JsonaListaGenerica<Respuesta.Receta>(jsonResult));
                     brd.Show();
                 }));

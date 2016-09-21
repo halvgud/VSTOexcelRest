@@ -16,14 +16,15 @@ namespace testVSTO2
         {
             if (cbDepartamento.SelectedValue.ToString() != "")
             {
-                Prop.Config.Local.Departamento.IdDepartamento = cbDepartamento.SelectedValue.ToString();
-                Prop.Opcion.EjecucionAsync(Data.Categoria.Lista,x=> CargarComboBox(x, cbCategoria, true));
+                Config.Local.Departamento.IdDepartamento = cbDepartamento.SelectedValue.ToString();
+                Opcion.EjecucionAsync(Data.Categoria.Lista,x=> CargarComboBox(x, cbCategoria, true));
             }
         }
         private void ImportarInformacion_Load(object sender, EventArgs e)
         {
-            Prop.Opcion.EjecucionAsync(Data.Departamento.Lista, x => CargarComboBox(x,cbDepartamento,true));
-            Prop.Opcion.EjecucionAsync(Data.Proveedor.Lista, x => CargarComboBox(x,cbProveedor,false));
+            Opcion.EjecucionAsync(Data.Departamento.Lista, x => CargarComboBox(x,cbDepartamento,true));
+            Opcion.EjecucionAsync(Data.Proveedor.Lista, x => CargarComboBox(x,cbProveedor,false));
+            Opcion.EjecucionAsync(Data.Articulo.Tipo.Seleccionar,x=>CargarComboBox(x,cbTipoProducto,false));
         }
         public void CargarComboBox(IRestResponse json,ComboBox cb,bool habilitar)
         {
@@ -31,7 +32,7 @@ namespace testVSTO2
             {
                 var bindingSource1 = new BindingSource
                 {
-                    DataSource = Prop.Opcion.JsonaListaGenerica<Respuesta.CbGenerico>(json)
+                    DataSource = Opcion.JsonaListaGenerica<Respuesta.CbGenerico>(json)
                 };
                 cb.DataSource = bindingSource1;
                 cb.DisplayMember = "nombre";
@@ -46,20 +47,61 @@ namespace testVSTO2
             btAceptar.Enabled = cbCategoria.SelectedValue.ToString() != "" && cbDepartamento.SelectedValue.ToString() != "";
         }
 
+        private void HabilitarSideBar(bool bandera)
+        {
+            panel1.Enabled = bandera;
+            btAceptar.Enabled = bandera;
+            btAyuda.Enabled = bandera;
+            tabControl1.Enabled = bandera;
+            
+        }
         private void btAceptar_Click(object sender, EventArgs e)
         {
+            MensajeDeEspera mse=new MensajeDeEspera();
+            HabilitarSideBar(false);
+            mse.Show();
             var addIn = Globals.ThisAddIn;
-            Opcion.EjecucionAsync(x =>
+            var rrg = new Respuesta.Reporte.General
             {
-                Data.Reporte.General(x, new Respuesta.Reporte.General
+                cat_id = Convert.ToInt32(cbCategoria.SelectedValue),
+                dep_id = Convert.ToInt32(cbDepartamento.SelectedValue),
+                fechaFin = dtFechaFin.Value,
+                fechaIni = dtFechaIni.Value
+            };
+            if (!cbImprimir.Checked)
+            {
+
+                Opcion.EjecucionAsync(x =>
                 {
-                    cat_id = Convert.ToInt32(cbCategoria.SelectedValue),
-                    dep_id = Convert.ToInt32(cbDepartamento.SelectedValue),
-                    fechaFin = dtFechaFin.Value,
-                    fechaIni = dtFechaIni.Value
+                    Data.Reporte.General(x, rrg);
+                }, y =>
+                {
+                    addIn.ReporteGeneral(y);
+                    BeginInvoke((MethodInvoker)(() =>
+                    {
+                        mse.Close();
+                        HabilitarSideBar(true);
+                    }));
                 });
-            }, addIn.ReporteGeneral);
+            }
+            else
+            {
+                Opcion.EjecucionAsync(x =>
+                {
+                    Data.Reporte.Imprimir(x, rrg);
+                }, y =>
+                {
+                    addIn.ReporteImprimir(y);
+                    BeginInvoke((MethodInvoker) (() =>
+                    {
+                        mse.Close();
+                        HabilitarSideBar(true);
+                    }));
+                });
+
+            }
         }
+
         private static void ValidarComboBox(ComboBox cb, CheckBox ch)
         {
             cb.Enabled = ch.Checked;

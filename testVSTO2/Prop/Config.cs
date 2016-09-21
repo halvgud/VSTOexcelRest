@@ -29,6 +29,11 @@ namespace testVSTO2.Prop
             {
                 public static string Lista { get; set; } = "articulo/";
                 public static string IdArticulo { get; set; } = "";
+
+                public class Tipo
+                {
+                    public static string Seleccionar { get; set; } = "articulo/tipo";
+                }
             }
 
             public class Receta
@@ -57,6 +62,10 @@ namespace testVSTO2.Prop
                 public static string UrlImportar { get; set; }
             }
 
+            public class Permiso
+            {
+                public static string Obtener { get; set; } = "permiso";
+            }
 
 
             public class Inventario

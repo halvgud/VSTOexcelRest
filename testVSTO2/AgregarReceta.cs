@@ -83,8 +83,6 @@ namespace testVSTO2
                 _sum += (costo1 * cantidad1);
             }
             tbCostoEstimado.Text = _sum.ToString(CultureInfo.InvariantCulture);
-            //tbMargenSugerido.Text = @"35%";
-
             ActualizarMargen();
             var costo = (_sum) + (tbCostoElaboracion.Text != string.Empty ? Convert.ToDouble(tbCostoElaboracion.Text) : 0);
             double margen = 1-Convert.ToDouble(tbMargenSugerido.Text);

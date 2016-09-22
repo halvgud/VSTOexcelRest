@@ -7,7 +7,7 @@
               <button id="btGenerarReporte" label="Generar reporte" imageMso="ClickToRunApplyUpdates" size="large" onAction="ImportarInformacion" getEnabled="BuscarPermiso"/>
             <button id="btAjustar" label="Ajustar máximos y mínimos" imageMso="SaveObjectAs" size="large" onAction="GuardarMaximosMinimos" getEnabled="BuscarPermiso"/>
           <!--<button id="btGuardarAjuste" label="Guardar ajustes de inventario" imageMso="SaveItem" size="large" onAction="AjustarInventario"/>-->
-            <button id="btGuardarTipo" label="Guardar tipo de producto" imageMso="ConvertSmartArtMenu" size="large" onAction="AjustarInventario" getEnabled="BuscarPermiso"/>
+            <button id="btGuardarTipo" label="Guardar tipo de producto" imageMso="ConvertSmartArtMenu" size="large" onAction="GuardarTipoArticulo" getEnabled="BuscarPermiso"/>
             <button id="btAjustarPrecio" label="Guardar precio y margen de venta" imageMso="CalculatedCurrency" size="large" onAction="AjustarInventario" getEnabled="BuscarPermiso"/>
           <button id="btConfiguracion" label="Configuración" imageMso="ResolveConflictOrError" size="large" onAction="AbrirConfiguracion"  getEnabled="BuscarPermiso"/>
           </group>

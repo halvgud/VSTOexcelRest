@@ -38,7 +38,7 @@ namespace testVSTO2.Data
         {
             try
             {
-                var rest = new Rest(Config.Local.Api.UrlApi, Config.Local.Reporte.General,
+                var rest = new Rest(Config.Local.Api.UrlApi, Config.Local.Reporte.Imprimir,
                     Method.POST);
                 rest.Peticion.AddHeader(Constantes.Http.ObtenerTipoDeContenido,
                     Constantes.Http.TipoDeContenido.Json);

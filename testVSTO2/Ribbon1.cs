@@ -1,14 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.IO;
-using System.Linq;
 using System.Reflection;
 using System.Runtime.InteropServices;
-using System.Text;
 using System.Windows.Forms;
 using Office = Microsoft.Office.Core;
-using Microsoft.Office.Tools.Excel;
-using Microsoft.Office.Tools;
 using testVSTO2.Respuesta;
 
 // TODO:  Siga estos pasos para habilitar el elemento (XML) de la cinta de opciones:
@@ -35,15 +31,11 @@ namespace testVSTO2
     [ComVisible(true)]
     public class Ribbon1 : Office.IRibbonExtensibility
     {
-        private Office.IRibbonUI ribbon;
-
-        public Ribbon1()
-        {
-        }
+        private Office.IRibbonUI _ribbon;
 
         #region Miembros de IRibbonExtensibility
 
-        public string GetCustomUI(string ribbonID)
+        public string GetCustomUI(string ribbonId)
         {
             return GetResourceText("testVSTO2.Ribbon1.xml");
         }
@@ -53,22 +45,22 @@ namespace testVSTO2
         #region Devoluciones de llamada de la cinta de opciones
         //Cree aquí métodos de devolución de llamada. Para obtener más información sobre los métodos de devolución de llamada, visite http://go.microsoft.com/fwlink/?LinkID=271226.
 
-        public void Ribbon_Load(Office.IRibbonUI ribbonUI)
+        public void Ribbon_Load(Office.IRibbonUI ribbonUi)
         {
-            ribbon = ribbonUI;
+            _ribbon = ribbonUi;
             Prop.Opcion.EjecucionAsync(Data.Permiso.ObtenerPermiso, x =>
             {
-                _listaribbon = Prop.Opcion.JsonaListaGenerica<Respuesta.Permiso.Respuesta>(x);
+                _listaribbon = Prop.Opcion.JsonaListaGenerica<Permiso.Respuesta>(x);
             });
             foreach (var elemento in _listaribbon)
             {
-                listaBools.Add(elemento.IdControl,(elemento.Valor=="1"));
+                _listaBools.Add(elemento.IdControl,(elemento.Valor=="1"));
                 SetearPermiso((elemento.Valor=="1"),elemento.IdControl);// GetType().GetMethod(elemento.Descripcion).Invoke(this, new object[] { elemento.Valor,elemento.IdControl });
             }
 
         }
-        private List<Respuesta.Permiso.Respuesta> _listaribbon = new List<Respuesta.Permiso.Respuesta>();
-        Dictionary<string, bool> listaBools = new Dictionary<string, bool>();
+        private List<Permiso.Respuesta> _listaribbon = new List<Permiso.Respuesta>();
+        readonly Dictionary<string, bool> _listaBools = new Dictionary<string, bool>();
         public void ImportarInformacion(Office.IRibbonControl control)
         {
             ThisAddIn.Recetario.Visible = false;
@@ -89,21 +81,46 @@ namespace testVSTO2
             var ar=new AgregarReceta();
             ar.Show();
         }
-        
+
+        public void GuardarTipoArticulo(Office.IRibbonControl control)
+        {
+            string name = Globals.ThisAddIn.Application.ActiveSheet.Name;
+            if (name.Equals(@"ReporteInventario"))
+            {
+                var sheet = Globals.ThisAddIn.Application.ActiveSheet;
+                sheet.Range["T1"] = "KEK";
+                var nInLastRow = sheet.Cells.Find("*", Missing.Value,
+                Missing.Value, Missing.Value, Microsoft.Office.Interop.Excel.XlSearchOrder.xlByRows, Microsoft.Office.Interop.Excel.XlSearchDirection.xlPrevious, false, Missing.Value, Missing.Value).Row;
+                object[,] value = sheet.Range["A2", "E"+ nInLastRow].Value;
+                List<Articulo.Guardar.Tipo> lista = new List<Articulo.Guardar.Tipo>();
+                for (var x = 1; x <value.Length; x++)
+                {
+                    lista.Add(new Articulo.Guardar.Tipo{clave=value[x,1].ToString(),tipo=value[x,5].ToString()});
+                }
+                Prop.Opcion.EjecucionAsync(x=> {},y=> {});
+
+            }
+            else
+            {
+                MessageBox.Show(@"Debes escoger la hoja de trabajo 'ReporteInventario' para seleccionar esta opción.");
+            }
+        }
+
+
         public bool BuscarPermiso(Office.IRibbonControl control)
         {
-            return listaBools[control.Id];
+            return _listaBools[control.Id];
         }
 
         public void SetearPermiso(bool isEnabled,string id)
         {
-            listaBools[id] = isEnabled;
-            ribbon.Invalidate();
+            _listaBools[id] = isEnabled;
+            _ribbon.Invalidate();
         }
         public void AbrirConfiguracion(Office.IRibbonControl control)
         {
             
-            ribbon.Invalidate();
+            _ribbon.Invalidate();
         }
         #endregion
 

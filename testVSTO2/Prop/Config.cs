@@ -23,7 +23,7 @@ namespace testVSTO2.Prop
         {
             public class Api
             {
-                public static string UrlApi { get; set; } = "http://mercattoserver/apiMovStock/public/";
+                public static string UrlApi { get; set; } = "http://192.168.0.2/apiMovStock/public/";
             }
             public class Articulo
             {
@@ -90,6 +90,7 @@ namespace testVSTO2.Prop
             public class Reporte
             {
                 public static string General { get; set; } = "reporte/general";
+                public static string Imprimir { get; set; } = "reporte/general/imprimir";
             }
         }
     }

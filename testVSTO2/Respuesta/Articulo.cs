@@ -26,6 +26,15 @@ namespace testVSTO2.Respuesta
             public double precioCompra { get; set; }
             public double cantidad { get; set; }
         }
+
+        public class Guardar
+        {
+            public class Tipo
+            {
+                public string clave { get; set; }
+                public string tipo { get; set; }
+            }
+        }
     }
 
 }

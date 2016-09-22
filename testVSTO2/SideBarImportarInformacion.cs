@@ -57,16 +57,17 @@ namespace testVSTO2
         }
         private void btAceptar_Click(object sender, EventArgs e)
         {
-            MensajeDeEspera mse=new MensajeDeEspera();
+            var mse=new MensajeDeEspera();
             HabilitarSideBar(false);
             mse.Show();
             var addIn = Globals.ThisAddIn;
             var rrg = new Respuesta.Reporte.General
             {
-                cat_id = Convert.ToInt32(cbCategoria.SelectedValue),
-                dep_id = Convert.ToInt32(cbDepartamento.SelectedValue),
-                fechaFin = dtFechaFin.Value,
-                fechaIni = dtFechaIni.Value
+                CatId = chCategoria.Checked?(cbCategoria.SelectedValue.ToString()):"%",
+                DepId = chDepartamento.Checked?(cbDepartamento.SelectedValue.ToString()):"%",
+                FechaFin = dtFechaFin.Value,
+                FechaIni = dtFechaIni.Value,
+                ProId =  chProveedor.Checked?(cbProveedor.SelectedValue.ToString()):"%"
             };
             if (!cbImprimir.Checked)
             {

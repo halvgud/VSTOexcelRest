@@ -1,8 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace testVSTO2.Respuesta
 {
@@ -10,10 +6,11 @@ namespace testVSTO2.Respuesta
     {
         public class General
         {
-            public DateTime fechaIni { get; set; }
-            public DateTime fechaFin { get; set; }
-            public int dep_id { get; set; }
-            public int cat_id { get; set; }
+            public DateTime FechaIni { get; set; }
+            public DateTime FechaFin { get; set; }
+            public string DepId { get; set; }
+            public string CatId { get; set; }
+            public string ProId { get; set; }
 
             public class Respuesta
             {
@@ -36,6 +33,7 @@ namespace testVSTO2.Respuesta
                 public string precioCompra { get; set; }
                 public string precioVenta { get; set; }
                 public string margen { get; set; }
+                public string cantidadPedir { get; set; }
             }
         }
     }

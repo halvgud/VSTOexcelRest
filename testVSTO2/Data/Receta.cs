@@ -3,7 +3,8 @@ using System.Collections.Generic;
 using Newtonsoft.Json.Linq;
 using System.Net;
 using RestSharp;
-using testVSTO2.Prop;
+using testVSTO2.Herramienta;
+using testVSTO2.Herramienta.Config;
 
 namespace testVSTO2.Data
 {
@@ -15,25 +16,14 @@ namespace testVSTO2.Data
         {
             try
             {
-                var rest = new Rest(Config.Local.Api.UrlApi, Config.Local.Receta.Lista + Config.Local.Receta.clave,
+                var rest = new Rest(Local.Api.UrlApi, Local.Receta.Lista + Local.Receta.clave,
                     Method.GET);
                 rest.Peticion.AddHeader(Constantes.Http.ObtenerTipoDeContenido,
                     Constantes.Http.TipoDeContenido.Json);
-                rest.Cliente.ExecuteAsync(rest.Peticion, response =>
-                {
-                    switch (response.StatusCode)
-                    {
-                        case HttpStatusCode.OK:
-                            callback(response);
-                            break;
-                        default:
-                            throw new Exception(@"error al buscar articulo");
-                    }
-                });
-            }
-            catch (Exception e)
+                rest.Cliente.ExecuteAsync(rest.Peticion, callback);
+            }catch (Exception e)
             {
-                Opcion.Log(Config.Log.Interno.Categoria, "EXCEPCION: " + e.Message);
+                Opcion.Log(Log.Interno.Categoria, "EXCEPCION: " + e.Message);
                 // callback("CONTINUAR");
             }
         }
@@ -41,7 +31,7 @@ namespace testVSTO2.Data
         {
             try
             {
-                var rest = new Rest(Config.Local.Api.UrlApi, Config.Local.Receta.DetalleLista + Config.Local.Receta.IdReceta,
+                var rest = new Rest(Local.Api.UrlApi, Local.Receta.DetalleLista + Local.Receta.IdReceta,
                     Method.GET);
                 rest.Peticion.AddHeader(Constantes.Http.ObtenerTipoDeContenido,
                     Constantes.Http.TipoDeContenido.Json);
@@ -59,16 +49,15 @@ namespace testVSTO2.Data
             }
             catch (Exception e)
             {
-                Opcion.Log(Config.Log.Interno.Categoria, "EXCEPCION: " + e.Message);
+                Opcion.Log(Log.Interno.Categoria, "EXCEPCION: " + e.Message);
                 // callback("CONTINUAR");
             }
         }
-
         public static void Insertar(Action<IRestResponse> callback)
         {
             try
             {
-                var rest = new Rest(Config.Local.Api.UrlApi, Config.Local.Receta.Insertar, Method.POST);
+                var rest = new Rest(Local.Api.UrlApi, Local.Receta.Insertar, Method.POST);
                 rest.Peticion.AddHeader(Constantes.Http.ObtenerTipoDeContenido, Constantes.Http.TipoDeContenido.Json);
                 rest.Peticion.AddJsonBody(CReceta);
                 rest.Cliente.ExecuteAsync(rest.Peticion, response =>
@@ -76,7 +65,7 @@ namespace testVSTO2.Data
                     switch (response.StatusCode)
                     {
                         case HttpStatusCode.OK:
-                            CReceta.rec_id= Convert.ToInt32(JObject.Parse(response.Content).Property("rec_id").Value);
+                            CReceta.RecId= Convert.ToInt32(JObject.Parse(response.Content).Property("RecId").Value);
                             callback(response);
                             break;
                         default:
@@ -86,7 +75,7 @@ namespace testVSTO2.Data
             }
             catch (Exception e)
             {
-                Opcion.Log(Config.Log.Interno.Categoria, "EXCEPCION: " + e.Message);
+                Opcion.Log(Log.Interno.Categoria, "EXCEPCION: " + e.Message);
             }
             
         }
@@ -97,7 +86,7 @@ namespace testVSTO2.Data
 
             public static void Insertar(Action<IRestResponse> callback)
             {
-                var rest = new Rest(Config.Local.Api.UrlApi, Config.Local.Receta.InsertarDetalle, Method.POST);
+                var rest = new Rest(Local.Api.UrlApi, Local.Receta.InsertarDetalle, Method.POST);
                 rest.Peticion.AddHeader(Constantes.Http.ObtenerTipoDeContenido, Constantes.Http.TipoDeContenido.Json);
                 rest.Peticion.AddJsonBody(CRecetaDetalle);
                 rest.Cliente.ExecuteAsync(rest.Peticion, response =>
@@ -120,7 +109,7 @@ namespace testVSTO2.Data
             {
                 try
                 {
-                    var rest = new Rest(Config.Local.Api.UrlApi, Config.Local.Receta.Tipo,
+                    var rest = new Rest(Local.Api.UrlApi, Local.Receta.Tipo,
                         Method.GET);
                     rest.Peticion.AddHeader(Constantes.Http.ObtenerTipoDeContenido,
                         Constantes.Http.TipoDeContenido.Json);
@@ -138,7 +127,7 @@ namespace testVSTO2.Data
                 }
                 catch (Exception e)
                 {
-                    Opcion.Log(Config.Log.Interno.Categoria, "EXCEPCION: " + e.Message);
+                    Opcion.Log(Log.Interno.Categoria, "EXCEPCION: " + e.Message);
                     // callback("CONTINUAR");
                 }
             }

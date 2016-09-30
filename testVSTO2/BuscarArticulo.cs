@@ -16,8 +16,8 @@ namespace testVSTO2
             _callback = callback;
             InitializeComponent();
             dgvListaArticulos.DataSource = _listaArticulo.Select(x => new { x.clave, x.descripcion, x.precioCompra }).ToArray();
+            dgvListaArticulos.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
         }
-
         private void btAceptar_Click(object sender, EventArgs e)
         {
             _listaArticulo[dgvListaArticulos.CurrentCell.RowIndex].cantidad = double.Parse(tbCantidad.Text);

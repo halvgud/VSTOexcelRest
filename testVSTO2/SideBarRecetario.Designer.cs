@@ -30,7 +30,9 @@
         {
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.tabPage1 = new System.Windows.Forms.TabPage();
-            this.lbRecetas = new System.Windows.Forms.ListBox();
+            this.label4 = new System.Windows.Forms.Label();
+            this.dateTimePicker1 = new System.Windows.Forms.DateTimePicker();
+            this.dgvListaReceta = new System.Windows.Forms.DataGridView();
             this.btSeleccion = new System.Windows.Forms.Button();
             this.btBorrarLista = new System.Windows.Forms.Button();
             this.label2 = new System.Windows.Forms.Label();
@@ -45,6 +47,7 @@
             this.btGuardar = new System.Windows.Forms.Button();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvListaReceta)).BeginInit();
             this.tabPage2.SuspendLayout();
             this.panel1.SuspendLayout();
             this.SuspendLayout();
@@ -62,7 +65,9 @@
             // 
             // tabPage1
             // 
-            this.tabPage1.Controls.Add(this.lbRecetas);
+            this.tabPage1.Controls.Add(this.label4);
+            this.tabPage1.Controls.Add(this.dateTimePicker1);
+            this.tabPage1.Controls.Add(this.dgvListaReceta);
             this.tabPage1.Controls.Add(this.btSeleccion);
             this.tabPage1.Controls.Add(this.btBorrarLista);
             this.tabPage1.Controls.Add(this.label2);
@@ -76,13 +81,30 @@
             this.tabPage1.Text = "Menú del día";
             this.tabPage1.UseVisualStyleBackColor = true;
             // 
-            // lbRecetas
+            // label4
             // 
-            this.lbRecetas.FormattingEnabled = true;
-            this.lbRecetas.Location = new System.Drawing.Point(7, 69);
-            this.lbRecetas.Name = "lbRecetas";
-            this.lbRecetas.Size = new System.Drawing.Size(190, 264);
-            this.lbRecetas.TabIndex = 7;
+            this.label4.AutoSize = true;
+            this.label4.Location = new System.Drawing.Point(73, 8);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(89, 13);
+            this.label4.TabIndex = 9;
+            this.label4.Text = "Fecha del menú :";
+            // 
+            // dateTimePicker1
+            // 
+            this.dateTimePicker1.Location = new System.Drawing.Point(76, 24);
+            this.dateTimePicker1.Name = "dateTimePicker1";
+            this.dateTimePicker1.Size = new System.Drawing.Size(168, 20);
+            this.dateTimePicker1.TabIndex = 8;
+            // 
+            // dgvListaReceta
+            // 
+            this.dgvListaReceta.BackgroundColor = System.Drawing.SystemColors.ButtonHighlight;
+            this.dgvListaReceta.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dgvListaReceta.Location = new System.Drawing.Point(4, 68);
+            this.dgvListaReceta.Name = "dgvListaReceta";
+            this.dgvListaReceta.Size = new System.Drawing.Size(240, 281);
+            this.dgvListaReceta.TabIndex = 7;
             // 
             // btSeleccion
             // 
@@ -92,6 +114,7 @@
             this.btSeleccion.TabIndex = 6;
             this.btSeleccion.Text = "Borrar selección";
             this.btSeleccion.UseVisualStyleBackColor = true;
+            this.btSeleccion.Click += new System.EventHandler(this.btSeleccion_Click);
             // 
             // btBorrarLista
             // 
@@ -196,6 +219,7 @@
             this.btGuardar.TabIndex = 7;
             this.btGuardar.Text = "Guardar";
             this.btGuardar.UseVisualStyleBackColor = true;
+            this.btGuardar.Click += new System.EventHandler(this.btGuardar_Click);
             // 
             // SideBarRecetario
             // 
@@ -208,6 +232,7 @@
             this.tabControl1.ResumeLayout(false);
             this.tabPage1.ResumeLayout(false);
             this.tabPage1.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvListaReceta)).EndInit();
             this.tabPage2.ResumeLayout(false);
             this.tabPage2.PerformLayout();
             this.panel1.ResumeLayout(false);
@@ -231,6 +256,8 @@
         private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.Button btAyuda;
         private System.Windows.Forms.Button btGuardar;
-        private System.Windows.Forms.ListBox lbRecetas;
+        private System.Windows.Forms.DataGridView dgvListaReceta;
+        private System.Windows.Forms.Label label4;
+        private System.Windows.Forms.DateTimePicker dateTimePicker1;
     }
 }

@@ -38,11 +38,11 @@
             // tbCantidad
             // 
             this.tbCantidad.Location = new System.Drawing.Point(342, 26);
-            this.tbCantidad.Mask = "999.99";
             this.tbCantidad.Name = "tbCantidad";
             this.tbCantidad.Size = new System.Drawing.Size(100, 20);
             this.tbCantidad.TabIndex = 1;
-            this.tbCantidad.Text = "00100";
+            this.tbCantidad.Text = "1";
+            this.tbCantidad.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.tbCantidad_KeyPress);
             // 
             // label1
             // 

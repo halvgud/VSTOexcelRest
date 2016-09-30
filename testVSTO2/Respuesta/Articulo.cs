@@ -34,7 +34,22 @@ namespace testVSTO2.Respuesta
                 public string clave { get; set; }
                 public string tipo { get; set; }
             }
+
+            public class MaximosMinimos
+            {
+                public string clave { get; set; }
+                public string invMax { get; set; }
+                public string invMin { get; set; }
+            }
+
+            public class PrecioMargen
+            {
+                public string clave { get; set; }
+                public string precio1 { get; set; }
+                public string margen1 { get; set; }
+            }
         }
+        
     }
 
 }

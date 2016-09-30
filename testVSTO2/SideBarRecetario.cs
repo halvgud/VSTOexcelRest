@@ -1,6 +1,12 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.Drawing;
+using System.Linq;
+using System.Net;
 using System.Windows.Forms;
-using testVSTO2.Prop;
+using testVSTO2.Herramienta;
+using testVSTO2.Herramienta.Config;
+using testVSTO2.Respuesta;
 
 namespace testVSTO2
 {
@@ -10,25 +16,71 @@ namespace testVSTO2
         {
             InitializeComponent();
         }
-
+        private List<Receta.Basica> _listaArticuloBasica1;
+        private List<Receta.Basica> _listaArticuloBasica2;
         private void btBuscar_Click(object sender, EventArgs e)
         {
-            var br = new BusquedaReceta();
+            var br = new BusquedaReceta(receta =>
+            {
+                _listaArticuloBasica1 = dgvListaReceta.DataSource as List<Receta.Basica>;
+                _listaArticuloBasica2 = (receta.Select(x => x.CopiadoSencillo()).ToList());
+            if (_listaArticuloBasica1 != null)
+                {
+                    _listaArticuloBasica2.AddRange(_listaArticuloBasica1);
+                }
+                dgvListaReceta.DataSource = _listaArticuloBasica2
+                    .GroupBy(p => p.Clave).Select(g => new Receta.Basica
+                    {
+                        Clave = g.Key,
+                        Descripcion = g.First().Descripcion,
+                        Cantidad = g.Sum(i => i.Cantidad),
+                        Precio = g.First().Precio
+                    }).ToList();
+                for (var x = 0; x < 3; x++)
+                {
+                    dgvListaReceta.Columns[x].ReadOnly = true;
+                    dgvListaReceta.Columns[x].DefaultCellStyle.BackColor = Color.LightGray;
+                }
+                dgvListaReceta.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
+            });
             br.Show();
         }
 
         private void btBuscarReceta_Click(object sender, EventArgs e)
         {
-            Config.Local.Receta.clave = (tbBuscarReceta.Text);
+            Local.Receta.clave = (tbBuscarReceta.Text);
             Opcion.EjecucionAsync(Data.Receta.Lista, jsonResult =>
             {
                 BeginInvoke((MethodInvoker) (() =>
                 {
-                    var brd =
-                        new BusquedaRecetaDetalle(Opcion.JsonaListaGenerica<Respuesta.Receta>(jsonResult));
-                    brd.Show();
-                }));
+                    switch (jsonResult.StatusCode)
+                    {
+                        case HttpStatusCode.OK:
+                            var brd =
+                             new BusquedaRecetaDetalle(Opcion.JsonaListaGenerica<Receta>(jsonResult),
+                                 resultado =>
+                                 {
+                                     using (var addIn = Globals.ThisAddIn)
+                                     {
+                                         addIn.Agregar(resultado);
+                                     }
+                                 });
+                            brd.Show();
+                            break;
+                        default:
+                            throw new Exception(@"No se encontraron recetas con los parametros de busqueda ingresados");
+                    }}));
             });
+        }
+
+        private void btSeleccion_Click(object sender, EventArgs e)
+        {
+            Opcion.BorrarSeleccion(dgvListaReceta);
+        }
+
+        private void btGuardar_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }

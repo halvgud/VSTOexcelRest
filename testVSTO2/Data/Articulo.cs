@@ -1,7 +1,9 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Net;
 using RestSharp;
-using testVSTO2.Prop;
+using testVSTO2.Herramienta;
+using testVSTO2.Herramienta.Config;
 
 namespace testVSTO2.Data
 {
@@ -11,7 +13,7 @@ namespace testVSTO2.Data
         {
             try
             {
-                var rest = new Rest(Config.Local.Api.UrlApi, Config.Local.Articulo.Lista + Config.Local.Articulo.IdArticulo,
+                var rest = new Rest(Local.Api.UrlApi, Local.Articulo.Lista + Local.Articulo.IdArticulo,
                     Method.GET);
                 rest.Peticion.AddHeader(Constantes.Http.ObtenerTipoDeContenido,
                     Constantes.Http.TipoDeContenido.Json);
@@ -29,7 +31,7 @@ namespace testVSTO2.Data
             }
             catch (Exception e)
             {
-                Opcion.Log(Config.Log.Interno.Categoria, "EXCEPCION: " + e.Message);
+                Opcion.Log(Log.Interno.Categoria, "EXCEPCION: " + e.Message);
                 // callback("CONTINUAR");
             }
         }
@@ -40,7 +42,7 @@ namespace testVSTO2.Data
             {
                 try
                 {
-                    var rest = new Rest(Config.Local.Api.UrlApi, Config.Local.Articulo.Tipo.Seleccionar,
+                    var rest = new Rest(Local.Api.UrlApi, Local.Articulo.Tipo.Seleccionar,
                         Method.GET);
                     rest.Peticion.AddHeader(Constantes.Http.ObtenerTipoDeContenido,
                         Constantes.Http.TipoDeContenido.Json);
@@ -58,11 +60,99 @@ namespace testVSTO2.Data
                 }
                 catch (Exception e)
                 {
-                    Opcion.Log(Config.Log.Interno.Categoria, "EXCEPCION: " + e.Message);
+                    Opcion.Log(Log.Interno.Categoria, "EXCEPCION: " + e.Message);
+                    // callback("CONTINUAR");
+                }
+            }
+
+            public static void Guardar(Action<IRestResponse> callback, List<Respuesta.Articulo.Guardar.Tipo> guardarTipo)
+            {
+
+                try
+                {
+                    var rest = new Rest(Local.Api.UrlApi, Local.Articulo.Tipo.Guardar,
+                        Method.POST);
+                    rest.Peticion.AddHeader(Constantes.Http.ObtenerTipoDeContenido,
+                        Constantes.Http.TipoDeContenido.Json);
+                    rest.Peticion.AddJsonBody(guardarTipo);
+                    rest.Cliente.ExecuteAsync(rest.Peticion, response =>
+                    {
+                        switch (response.StatusCode)
+                        {
+                            case HttpStatusCode.OK:
+                                callback(response);
+                                break;
+                            default:
+                                throw new Exception(@"error al buscar articulo");
+                        }
+                    });
+                }
+                catch (Exception e)
+                {
+                    Opcion.Log(Log.Interno.Categoria, "EXCEPCION: " + e.Message);
                     // callback("CONTINUAR");
                 }
             }
         }
-      
+        public static class MaximosMinimos
+        {
+            public static void Guardar(Action<IRestResponse> callback, List<Respuesta.Articulo.Guardar.MaximosMinimos> guardarMaximosMinimos)
+            {
+                try
+                {
+                    var rest = new Rest(Local.Api.UrlApi, Local.Articulo.MaximosMinimos.Guardar,
+                        Method.POST);
+                    rest.Peticion.AddHeader(Constantes.Http.ObtenerTipoDeContenido,
+                        Constantes.Http.TipoDeContenido.Json);
+                    rest.Peticion.AddJsonBody(guardarMaximosMinimos);
+                    rest.Cliente.ExecuteAsync(rest.Peticion, response =>
+                    {
+                        switch (response.StatusCode)
+                        {
+                            case HttpStatusCode.OK:
+                                callback(response);
+                                break;
+                            default:
+                                throw new Exception(@"error al buscar articulo");
+                        }
+                    });
+                }
+                catch (Exception e)
+                {
+                    Opcion.Log(Log.Interno.Categoria, "EXCEPCION: " + e.Message);
+                    // callback("CONTINUAR");
+                }
+            }
+        }
+        public static class PrecioMargen
+        {
+            public static void Guardar(Action<IRestResponse> callback, List<Respuesta.Articulo.Guardar.PrecioMargen> guardarPrecioMargen)
+            {
+                try
+                {
+                    var rest = new Rest(Local.Api.UrlApi, Local.Articulo.PrecioMargen.Guardar,
+                        Method.POST);
+                    rest.Peticion.AddHeader(Constantes.Http.ObtenerTipoDeContenido,
+                        Constantes.Http.TipoDeContenido.Json);
+                    rest.Peticion.AddJsonBody(guardarPrecioMargen);
+                    rest.Cliente.ExecuteAsync(rest.Peticion, response =>
+                    {
+                        switch (response.StatusCode)
+                        {
+                            case HttpStatusCode.OK:
+                                callback(response);
+                                break;
+                            default:
+                                throw new Exception(@"error al buscar articulo");
+                        }
+                    });
+                }
+                catch (Exception e)
+                {
+                    Opcion.Log(Log.Interno.Categoria, "EXCEPCION: " + e.Message);
+                    // callback("CONTINUAR");
+                }
+            }
+        }
     }
 }

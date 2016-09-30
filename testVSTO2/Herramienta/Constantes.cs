@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace testVSTO2.Prop
+﻿namespace testVSTO2.Herramienta
 {
     class Constantes
     {
@@ -27,20 +21,6 @@ namespace testVSTO2.Prop
             {
                 public static readonly string Post = "POST";
                 public static readonly string Get = "GET";
-            }
-        }
-
-        public class Gcm
-        {
-            public class Parametro
-            {
-                public static readonly string CollapseKey = "collapse_key";
-                public static readonly string TimeToLive = "time_to_live";
-                public static readonly string DelayWhileIdle = "delay_while_idle";
-                public static readonly string Message = "message";
-                public static readonly string Data = "data";
-                public static readonly string Time = "Time";
-                public static readonly string RegistrationIds = "registration_ids";
             }
         }
     }

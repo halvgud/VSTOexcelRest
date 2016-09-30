@@ -1,7 +1,8 @@
 ﻿using System;
 using System.Windows.Forms;
 using RestSharp;
-
+using testVSTO2.Herramienta;
+using testVSTO2.Herramienta.Config;
 
 namespace testVSTO2
 {
@@ -14,7 +15,7 @@ namespace testVSTO2
 
         private void ImportarInformacion_Load(object sender, EventArgs e)
         {
-            Prop.Opcion.EjecucionAsync(Data.Departamento.Lista, CargarComboBox);
+            Opcion.EjecucionAsync(Data.Departamento.Lista, CargarComboBox);
         }
         public void CargarComboBox(IRestResponse json)
         {
@@ -22,7 +23,7 @@ namespace testVSTO2
                 {
                     var bindingSource1 = new BindingSource
                     {
-                        DataSource = Prop.Opcion.JsonaListaGenerica<Respuesta.CbGenerico>(json)
+                        DataSource = Opcion.JsonaListaGenerica<Respuesta.CbGenerico>(json)
                     };
                     cbDepartamento.DataSource = bindingSource1;
                     cbDepartamento.DisplayMember = "nombre";
@@ -41,14 +42,14 @@ namespace testVSTO2
         {
             if (cbDepartamento.SelectedValue.ToString() != "")
             {
-                Prop.Config.Local.Departamento.IdDepartamento = cbDepartamento.SelectedValue.ToString();
-               Prop.Opcion.EjecucionAsync(Data.Categoria.Lista, x =>
+                Local.Departamento.IdDepartamento = cbDepartamento.SelectedValue.ToString();
+               Opcion.EjecucionAsync(Data.Categoria.Lista, x =>
                 {
                     BeginInvoke((MethodInvoker)(() =>
                     {
                         var bindingSource1 = new BindingSource
                         {
-                            DataSource = Prop.Opcion.JsonaListaGenerica<Respuesta.CbGenerico>(x)
+                            DataSource = Opcion.JsonaListaGenerica<Respuesta.CbGenerico>(x)
                         };
                         
                         cbCategoria.DataSource = bindingSource1;

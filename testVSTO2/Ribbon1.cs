@@ -4,6 +4,7 @@ using System.IO;
 using System.Reflection;
 using System.Runtime.InteropServices;
 using System.Windows.Forms;
+using testVSTO2.Herramienta;
 using Office = Microsoft.Office.Core;
 using testVSTO2.Respuesta;
 
@@ -48,9 +49,9 @@ namespace testVSTO2
         public void Ribbon_Load(Office.IRibbonUI ribbonUi)
         {
             _ribbon = ribbonUi;
-            Prop.Opcion.EjecucionAsync(Data.Permiso.ObtenerPermiso, x =>
+            Opcion.EjecucionAsync(Data.Permiso.ObtenerPermiso, x =>
             {
-                _listaribbon = Prop.Opcion.JsonaListaGenerica<Permiso.Respuesta>(x);
+                _listaribbon = Opcion.JsonaListaGenerica<Permiso.Respuesta>(x);
             });
             foreach (var elemento in _listaribbon)
             {
@@ -73,8 +74,7 @@ namespace testVSTO2
         {
             ThisAddIn.Inventario.Visible = false;
             ThisAddIn.Recetario.Visible = true;
-        }
-        public void CrearReceta(Office.IRibbonControl control)
+        }public void CrearReceta(Office.IRibbonControl control)
         {
             ThisAddIn.Inventario.Visible = false;
             ThisAddIn.Recetario.Visible = false;
@@ -82,27 +82,151 @@ namespace testVSTO2
             ar.Show();
         }
 
+        public void GuardarPrecioMargen(Office.IRibbonControl control)
+        {
+            try
+            {
+                var mse = new MensajeDeEspera();
+                mse.Show();
+                string name = Globals.ThisAddIn.Application.ActiveSheet.Name;
+                if (name.Equals(@"ReporteInventario"))
+                {
+                    var sheet = Globals.ThisAddIn.Application.ActiveSheet;
+                    var nInLastRow = sheet.Cells.Find("*", Missing.Value,
+    Missing.Value, Missing.Value, Microsoft.Office.Interop.Excel.XlSearchOrder.xlByRows,
+    Microsoft.Office.Interop.Excel.XlSearchDirection.xlPrevious, false, Missing.Value, Missing.Value)
+    .Row;
+                    object[,] value = sheet.Range["A2","T" + nInLastRow].Value;
+                    var lista = new List<Articulo.Guardar.PrecioMargen>();
+                    for (var x =0; x <= (value.Length / 20); x++)
+                    {
+                        lista.Add(new Articulo.Guardar.PrecioMargen
+                        {
+                            clave = value[x+1, Reporte.General.Posicion.clave+1].ToString(),
+                            precio1 = value[x+1, Reporte.General.Posicion.precioVenta+1].ToString(),
+                            margen1 = value[x+1, Reporte.General.Posicion.margen+1].ToString()
+                        });
+                    }
+                    Opcion.EjecucionAsync(x =>
+                    {
+                        Data.Articulo.PrecioMargen.Guardar(x, lista);
+                    }, y =>
+                    {
+                        mse.BeginInvoke((MethodInvoker)(() =>
+                        {
+
+                            mse.Close();
+                        }));
+                        MessageBox.Show(y.Content);
+                        Console.WriteLine(y.Content);
+                    });
+                }
+                else
+                {
+                    throw new Exception(@"Debes escoger la hoja de trabajo 'ReporteInventario' para seleccionar esta opción.");
+                }
+            }
+            catch (Exception e)
+            {
+                MessageBox.Show(e.Message);
+            }
+        }
+        public void GuardarMaximosMinimos(Office.IRibbonControl control)
+        {
+            try
+            {
+                var mse = new MensajeDeEspera();
+                string name = Globals.ThisAddIn.Application.ActiveSheet.Name;
+                if (name.Equals(@"ReporteInventario"))
+                {
+                    var sheet = Globals.ThisAddIn.Application.ActiveSheet;
+                    var nInLastRow = sheet.Cells.Find("*", Missing.Value,
+    Missing.Value, Missing.Value, Microsoft.Office.Interop.Excel.XlSearchOrder.xlByRows,
+    Microsoft.Office.Interop.Excel.XlSearchDirection.xlPrevious, false, Missing.Value, Missing.Value)
+    .Row;
+                    object[,] value = sheet.Range["A2", "K" + nInLastRow].Value;
+                    var lista = new List<Articulo.Guardar.MaximosMinimos>();
+                    for (var x = 1; x <= (value.Length / 11); x++)
+                    {
+                        lista.Add(new Articulo.Guardar.MaximosMinimos
+                        {
+                            clave = value[x, Reporte.General.Posicion.clave+1].ToString(),
+                            invMin = value[x, Reporte.General.Posicion.inventarioMinimo+1].ToString(),
+                            invMax = value[x, Reporte.General.Posicion.inventarioMaximo+1].ToString()
+                        });
+                    }
+                    Opcion.EjecucionAsync(x =>
+                    {
+                        Data.Articulo.MaximosMinimos.Guardar(x, lista);
+                    }, y =>
+                    {
+                        mse.BeginInvoke((MethodInvoker)(() =>
+                        {
+
+                            mse.Close();
+                        }));
+                        MessageBox.Show(y.Content);
+                        Console.WriteLine(y.Content);
+                    });
+                }
+                else
+                {
+                    throw new Exception(@"Debes escoger la hoja de trabajo 'ReporteInventario' para seleccionar esta opción.");
+                }
+            }
+            catch (Exception e)
+            {
+                MessageBox.Show(e.Message);
+            }
+        }
         public void GuardarTipoArticulo(Office.IRibbonControl control)
         {
-            string name = Globals.ThisAddIn.Application.ActiveSheet.Name;
-            if (name.Equals(@"ReporteInventario"))
+            try
             {
-                var sheet = Globals.ThisAddIn.Application.ActiveSheet;
-                sheet.Range["T1"] = "KEK";
-                var nInLastRow = sheet.Cells.Find("*", Missing.Value,
-                Missing.Value, Missing.Value, Microsoft.Office.Interop.Excel.XlSearchOrder.xlByRows, Microsoft.Office.Interop.Excel.XlSearchDirection.xlPrevious, false, Missing.Value, Missing.Value).Row;
-                object[,] value = sheet.Range["A2", "E"+ nInLastRow].Value;
-                List<Articulo.Guardar.Tipo> lista = new List<Articulo.Guardar.Tipo>();
-                for (var x = 1; x <value.Length; x++)
+                var mse = new MensajeDeEspera();
+                string name = Globals.ThisAddIn.Application.ActiveSheet.Name;
+                if (name.Equals(@"ReporteInventario"))
                 {
-                    lista.Add(new Articulo.Guardar.Tipo{clave=value[x,1].ToString(),tipo=value[x,5].ToString()});
-                }
-                Prop.Opcion.EjecucionAsync(x=> {},y=> {});
+                    var sheet = Globals.ThisAddIn.Application.ActiveSheet;
+                    var nInLastRow = sheet.Cells.Find("*", Missing.Value,
+                        Missing.Value, Missing.Value, Microsoft.Office.Interop.Excel.XlSearchOrder.xlByRows,
+                        Microsoft.Office.Interop.Excel.XlSearchDirection.xlPrevious, false, Missing.Value, Missing.Value)
+                        .Row;
+                    object[,] value = sheet.Range["A2", "E" + nInLastRow].Value;
+                   var lista = new List<Articulo.Guardar.Tipo>();
+                    for (var x = 1; x <= (value.Length/5); x++)
+                    {
+                        lista.Add(new Articulo.Guardar.Tipo
+                        {
+                            clave = value[x, Reporte.General.Posicion.clave+1].ToString(),
+                            tipo = value[x, Reporte.General.Posicion.tipo+1].ToString()
+                        });
+                    }
+                    Opcion.EjecucionAsync(x =>
+                    {
+                        Data.Articulo.Tipo.Guardar(x, lista);
 
+                    }, y =>
+                    {
+                        mse.BeginInvoke((MethodInvoker)(() =>
+                        {
+
+                            mse.Close();
+                        }));
+                        MessageBox.Show(y.Content);
+                        Console.WriteLine(y.Content);
+                    });
+
+                }
+                else
+                {
+                    MessageBox.Show(
+                        @"Debes escoger la hoja de trabajo 'ReporteInventario' para seleccionar esta opción.");
+                }
             }
-            else
+            catch (Exception e)
             {
-                MessageBox.Show(@"Debes escoger la hoja de trabajo 'ReporteInventario' para seleccionar esta opción.");
+                Console.WriteLine(e.Message);
             }
         }
 

@@ -1,7 +1,8 @@
 ﻿using System;
 using System.Net;
 using RestSharp;
-using testVSTO2.Prop;
+using testVSTO2.Herramienta;
+using testVSTO2.Herramienta.Config;
 
 namespace testVSTO2.Data
 {
@@ -11,7 +12,7 @@ namespace testVSTO2.Data
         {
             try
             {
-                var rest = new Rest(Config.Local.Api.UrlApi, Config.Local.Proveedor.Lista,
+                var rest = new Rest(Local.Api.UrlApi, Local.Proveedor.Lista,
                     Method.GET);
                 rest.Peticion.AddHeader(Constantes.Http.ObtenerTipoDeContenido,
                     Constantes.Http.TipoDeContenido.Json);
@@ -29,7 +30,7 @@ namespace testVSTO2.Data
             }
             catch (Exception e)
             {
-                Opcion.Log(Config.Log.Interno.Categoria, "EXCEPCION: " + e.Message);
+                Opcion.Log(Log.Interno.Categoria, "EXCEPCION: " + e.Message);
                 // callback("CONTINUAR");
             }
         }

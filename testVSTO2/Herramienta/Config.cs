@@ -1,16 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace testVSTO2.Prop
+﻿namespace testVSTO2.Herramienta
 {
-    public class Config
+    namespace Config
     {
-        public class Log
+        public static class Log
         {
-            public class Interno
+            public static class Interno
             {
                 public static string Articulo { get; set; } = "articulo.log";
                 public static string Categoria { get; set; } = "categoria.log";
@@ -19,24 +13,35 @@ namespace testVSTO2.Prop
 
             
         }
-        public class Local
+        public static class Local
         {
-            public class Api
+            public static class Api
             {
                 public static string UrlApi { get; set; } = "http://192.168.0.2/apiMovStock/public/";
             }
-            public class Articulo
+            public static class Articulo
             {
                 public static string Lista { get; set; } = "articulo/";
                 public static string IdArticulo { get; set; } = "";
 
-                public class Tipo
+                public static class Tipo
                 {
                     public static string Seleccionar { get; set; } = "articulo/tipo";
+                    public static string Guardar { get; set; } = "articulo/tipo";
+                }
+
+                public static class MaximosMinimos
+                {
+                    public static string Guardar { get; set; } = "articulo/maximosminimos";
+                }
+
+                public static class PrecioMargen
+                {
+                    public static string Guardar { get; set; } = "articulo/preciomargen";
                 }
             }
 
-            public class Receta
+            public static class Receta
             {
                 public static string Lista { get; set; } = "receta/";
                 public static string DetalleLista { get; set; } = "receta/detalle/";
@@ -47,47 +52,47 @@ namespace testVSTO2.Prop
                 public static string Tipo { get; set; } = "receta/tipo";
 
             }
-            public class Categoria
+            public static class Categoria
             {
                 public static string Lista { get; set; } = "categoria/";
             }
 
-            public class Departamento
+            public static class Departamento
             {
                 public static string Lista { get; set; } = "departamento";
                 public static string IdDepartamento { get; set; }
             }
-            public class Parametro
+            public static class Parametro
             {
                 public static string UrlImportar { get; set; }
             }
 
-            public class Permiso
+            public static class Permiso
             {
                 public static string Obtener { get; set; } = "permiso";
             }
 
 
-            public class Inventario
+            public static class Inventario
             {
                 public static string UrlImportar { get; set; }
                 public static string UrlExportar { get; set; }
                 public static string UrlActualizar { get; set; }
             }
 
-            public class Ajuste
+            public static class Ajuste
             {
                 public static string UrlImportar { get; set; }
                 public static string UrlExportar { get; set; }
                 public static string UrlActualizar { get; set; }
             }
 
-            public class Proveedor
+            public static class Proveedor
             {
                 public static string Lista { get; set; } = "proveedor";
             }
 
-            public class Reporte
+            public static class Reporte
             {
                 public static string General { get; set; } = "reporte/general";
                 public static string Imprimir { get; set; } = "reporte/general/imprimir";

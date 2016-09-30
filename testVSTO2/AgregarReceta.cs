@@ -1,27 +1,177 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Drawing;
 using System.Globalization;
 using System.Linq;
 using System.Windows.Forms;
-using testVSTO2.Prop;
 using testVSTO2.Respuesta;
 using RestSharp;
-
+using testVSTO2.Herramienta;
+using testVSTO2.Herramienta.Config;
+using System.Net;
 namespace testVSTO2
 {
     public partial class AgregarReceta : Form
     {
-        public AgregarReceta()
-        {
-            InitializeComponent();
-            //Opcion.EjecucionAsync();
-            Opcion.EjecucionAsync(Data.Receta.Tipo.Lista,CargarComboBox);
-        }
-
         private List<Articulo.Basica> _listaArticuloBasica1;
         private List<Articulo.Basica> _listaArticuloBasica2;
-         
-        public void CargarComboBox(IRestResponse json)
+        public class Inputs
+        {
+
+            public DataGridView Ingredientes;
+            public TextBox ClaveReceta;
+            public MaskedTextBox PesoLitro;
+            public TextBox Descripcion;
+            public MaskedTextBox CostoEstimado;
+            public MaskedTextBox CostoElaboracion;
+            public Action<MaskedTextBox> ActualizarMargen;
+            public MaskedTextBox MargenSugerido;
+            public MaskedTextBox MargenConPrecio;
+            public MaskedTextBox PrecioSugerido;
+            public MaskedTextBox Precio;
+            public CheckBox Diario;
+        }
+        public AgregarReceta(){
+            InitializeComponent();
+            Opcion.EjecucionAsync(Data.Receta.Tipo.Lista, x =>
+            {
+                CargarComboBox(x, cbTipoReceta);
+                CargarComboBox(x, cbTipoBE);
+            });
+        }
+        private void tbClaveReceta_TextChanged(object sender, EventArgs e)
+        {
+            btGuardar.Enabled = ValidarCampos();
+            tsmGuardar.Enabled = ValidarCampos();
+        }
+        private void tbDescripcion_TextChanged(object sender, EventArgs e)
+        {
+            btGuardar.Enabled = ValidarCampos();
+        }
+        private void AgregarReceta_Load(object sender, EventArgs e){
+            ActiveControl = tbCodigo;
+            tbCodigo.Focus();
+        }
+        private void btBuscar_Click(object sender, EventArgs e)
+        {
+            BuscarReceta(ActualizarInputs, new Inputs
+            {
+                ClaveReceta = tbCodigo,
+                ActualizarMargen = ActualizarMargen,
+                CostoElaboracion = tbCostoElaboracion,
+                CostoEstimado = tbCostoEstimado,
+                Ingredientes = dgvIngredientes,
+                MargenSugerido = tbMargenSugerido,
+                PrecioSugerido = tbPrecioSugerido
+            });
+        }
+        private void tbCostoElaboracion_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            e.Handled = Opcion.ValidarCaracter(e);
+        }
+        private void tbCostoElaboracion_TextChanged(object sender, EventArgs e)
+        {
+            if (!Opcion.ValidarDouble(tbCostoElaboracion)) return;
+            ActualizarInputs(new Inputs
+            {
+                ActualizarMargen = ActualizarMargen,
+                CostoElaboracion = tbCostoElaboracion,
+                CostoEstimado = tbCostoEstimado,
+                Ingredientes = dgvIngredientes,
+                MargenSugerido = tbMargenSugerido,
+                PrecioSugerido = tbPrecioSugerido
+            });
+            btGuardar.Enabled = ValidarCampos();
+            tsmGuardar.Enabled = ValidarCampos();
+        }
+        private void tbMargenConPrecio_TextChanged(object sender, EventArgs e)
+        {
+            if (!Opcion.ValidarDouble(tbMargenConPrecio)) return;
+            ActualizarPrecio(new Inputs
+            {
+                Precio = tbPrecio,
+                Ingredientes = dgvIngredientes,
+                MargenConPrecio = tbMargenConPrecio,
+                CostoElaboracion = tbCostoElaboracion
+            });
+            btGuardar.Enabled = ValidarCampos();
+            tsmGuardar.Enabled = ValidarCampos();
+        }
+        private void tbMargenConPrecioBE_TextChanged(object sender, EventArgs e)
+        {
+            if (!Opcion.ValidarDouble(tbMargenConPrecioBE)) return;
+            ActualizarPrecio(new Inputs
+            {
+                Precio = tbPrecioBE,
+                Ingredientes = dgvIngredientesBusqueda,
+                MargenConPrecio = tbMargenConPrecioBE,
+                CostoElaboracion = tbCostoElaboracionBE
+            });
+        }
+
+        private void btBorrarSeleccion_Click(object sender, EventArgs e)
+        {
+            Opcion.BorrarSeleccion(dgvIngredientes);
+        }
+        private void tbPrecio_TextChanged(object sender, EventArgs e)
+        {
+            if (!Opcion.ValidarDouble(tbPrecio)) return;
+            ActualizarMargen(new Inputs
+            {
+                MargenConPrecio = tbMargenConPrecio,
+                Ingredientes = dgvIngredientes,
+                CostoElaboracion = tbCostoElaboracion,
+                Precio = tbPrecio
+            });
+            btGuardar.Enabled = ValidarCampos();
+            tsmGuardar.Enabled = ValidarCampos();
+        }
+        private void tbPrecioBE_TextChanged(object sender, EventArgs e)
+        {
+            if (!Opcion.ValidarDouble(tbPrecioBE)) return;
+            ActualizarMargen(new Inputs
+            {
+                MargenConPrecio = tbMargenConPrecioBE,
+                Ingredientes = dgvIngredientesBusqueda,
+                CostoElaboracion = tbCostoElaboracionBE,
+                Precio = tbPrecioBE
+            });
+        }
+
+
+        private bool ValidarCampos()
+        {
+            return (tbClaveReceta.Text != string.Empty && tbDescripcion.Text != string.Empty
+                    && tbPrecio.Text != string.Empty && tbMargenConPrecio.Text != string.Empty &&
+                                 tbPesoLitro.Text != string.Empty && tbCostoEstimado.Text != string.Empty);
+        }
+        
+        private static void ActualizarInputs(Inputs inputs)
+        {
+            double sum = 0;
+            for (var i = 0; i < inputs.Ingredientes.Rows.Count; ++i)
+            {
+                var costo1 = Convert.ToDouble(inputs.Ingredientes.Rows[i].Cells[3].Value);
+                var cantidad1 = Convert.ToDouble(inputs.Ingredientes.Rows[i].Cells[4].Value);
+                sum += (costo1*cantidad1);
+            }
+            inputs.CostoEstimado.Text = sum.ToString(CultureInfo.InvariantCulture);
+            inputs.ActualizarMargen(inputs.MargenSugerido);
+            var costo = (sum) +
+                        (inputs.CostoElaboracion.Text != string.Empty
+                            ? Convert.ToDouble(inputs.CostoElaboracion.Text)
+                            : 0);
+            var margen = 1 - (Convert.ToDouble(inputs.MargenSugerido.Text)/100);
+            inputs.PrecioSugerido.Text = (Math.Round((costo/margen), 2)).ToString(CultureInfo.InvariantCulture);
+        }
+        private void ActualizarMargen(MaskedTextBox margenSugerido)
+        {
+            if (cbTipoReceta.Items.Count <= 0) return;
+            var lista = Opcion.JsonaListaGenerica<CbGenerico>((IRestResponse)cbTipoReceta.Tag);
+            margenSugerido.Text = lista[cbTipoReceta.SelectedIndex].Margen;
+        }
+
+        public void CargarComboBox(IRestResponse json,ComboBox tipoReceta)
         {
             BeginInvoke((MethodInvoker)(() =>
             {
@@ -29,214 +179,314 @@ namespace testVSTO2
                 {
                     DataSource = Opcion.JsonaListaGenerica<CbGenerico>(json)
                 };
-                cbTipoReceta.DataSource = bindingSource1;
-                cbTipoReceta.DisplayMember = "nombre";
-                cbTipoReceta.ValueMember = "id";
-                cbTipoReceta.Tag = json;
-                
-            }
-            )
-        );
+                tipoReceta.DataSource = bindingSource1;
+                tipoReceta.DisplayMember = "nombre";
+                tipoReceta.ValueMember = "id";
+                tipoReceta.Tag = json;
+            }));
         }
-        private void btBuscar_Click(object sender, EventArgs e)
+
+        private void BuscarReceta(Action<Inputs> actualizarInputs,Inputs parametros)
         {
-            Config.Local.Articulo.IdArticulo = tbCodigo.Text;
-            _listaArticuloBasica1 = new List<Articulo.Basica>();
-            Opcion.EjecucionAsync(Data.Articulo.Lista, jsonResult => {
-                BeginInvoke((MethodInvoker)(() => {
-                    var brd =
-                     new BuscarArticulo(Opcion.JsonaListaGenerica<Articulo>(jsonResult), listaArticulo => {
-                         _listaArticuloBasica1 = dgvIngredientes.DataSource as List<Articulo.Basica>;
-                         _listaArticuloBasica2 = (listaArticulo.Select(x => x.CopiadoSencillo()).ToList());
-                         if (_listaArticuloBasica1 != null)
-                         {
-                             _listaArticuloBasica2.AddRange(_listaArticuloBasica1);
-                         }
-                         var listaAgrupada = _listaArticuloBasica2
-                                       .GroupBy(p => p.art_id)
-                                       .Select(g => new Articulo.Basica()
-                                                                           {
-                                                                               art_id = g.Key,
-                                                                               clave = g.First().clave,
-                                                                               descripcion = g.First().descripcion,
-                                                                               precioCompra = g.First().precioCompra,
-                                                                               cantidad = g.Sum(i => i.cantidad)
-                                                                           })
-                                                                            .ToList();
-                         dgvIngredientes.DataSource = listaAgrupada;
-                         tbCodigo.Text = "";
-                         tbCodigo.Focus();
-                         ActualizarInputs();
+            Local.Articulo.IdArticulo = parametros.ClaveReceta.Text;
+            Opcion.EjecucionAsync(Data.Articulo.Lista, jsonResult => 
+            {
+                BeginInvoke((MethodInvoker)(() => 
+                {
+                    var brd =new BuscarArticulo(Opcion.JsonaListaGenerica<Articulo>(jsonResult), listaArticulo =>
+                     {
+                        BeginInvoke((MethodInvoker) (() =>
+                        {
+                            _listaArticuloBasica1 = parametros.Ingredientes.DataSource as List<Articulo.Basica>;
+                            _listaArticuloBasica2 = (listaArticulo.Select(x => x.CopiadoSencillo()).ToList());
+                            if (_listaArticuloBasica1 != null)
+                            {
+                                _listaArticuloBasica2.AddRange(_listaArticuloBasica1);
+                            }
+                            parametros.Ingredientes.DataSource = _listaArticuloBasica2
+                                    .GroupBy(p => p.art_id)
+                                    .Select(g => new Articulo.Basica
+                                    {
+                                        art_id = g.Key,
+                                        clave = g.First().clave,
+                                        descripcion = g.First().descripcion,
+                                        precioCompra = g.First().precioCompra,
+                                        cantidad = g.Sum(i => i.cantidad)
+                                    }).ToList();
+                            for (var x = 0; x == 3; x++)
+                            {
+                                parametros.Ingredientes.Columns[x].ReadOnly = true;
+                                parametros.Ingredientes.Columns[x].DefaultCellStyle.BackColor = Color.LightGray;
+                            }
+                            parametros.Ingredientes.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
+                            parametros.ClaveReceta.Text = "";
+                            parametros.ClaveReceta.Focus();
+                            actualizarInputs(parametros);
+                        }));
                      });
                     brd.Show();
                 }));
             });
         }
-        double _sum;
-        private void ActualizarInputs()
+
+        /// <summary>
+        /// Funcion que actualiza el Precio en base al margen
+        /// </summary>
+        /// <param name="inputs">Actualmente solo utiliza Precio,Ingredientes,MargenConPrecio,CostoElaboracion</param>
+        private void ActualizarPrecio(Inputs inputs)
         {
-            _sum = 0;
-            for (var i = 0; i < dgvIngredientes.Rows.Count; ++i)
+            if (inputs.Precio.Focused) return;
+            double sum = 0;
+            for (var i = 0; i < inputs.Ingredientes.Rows.Count; ++i)
             {
-                var costo1 = Convert.ToDouble(dgvIngredientes.Rows[i].Cells[3].Value);
-                var cantidad1 = Convert.ToDouble(dgvIngredientes.Rows[i].Cells[4].Value);
-                _sum += (costo1 * cantidad1);
+                var costo = Convert.ToDouble(inputs.Ingredientes.Rows[i].Cells[3].Value);
+                var cantidad = Convert.ToDouble(inputs.Ingredientes.Rows[i].Cells[4].Value);
+                sum += (costo*cantidad);
             }
-            tbCostoEstimado.Text = _sum.ToString(CultureInfo.InvariantCulture);
-            ActualizarMargen();
-            var costo = (_sum) + (tbCostoElaboracion.Text != string.Empty ? Convert.ToDouble(tbCostoElaboracion.Text) : 0);
-            double margen = 1-Convert.ToDouble(tbMargenSugerido.Text);
-            tbPrecioSugerido.Text = (Math.Round((costo / margen), 2)).ToString(CultureInfo.InvariantCulture);
-
-        }
-
-        private void ActualizarMargen()
-        {
-            if (cbTipoReceta.Items.Count > 0)
+            if (tbMargenConPrecio.Text != string.Empty)
             {
-                var lista = Opcion.JsonaListaGenerica<CbGenerico>((IRestResponse)cbTipoReceta.Tag);
-                tbMargenSugerido.Text = lista[cbTipoReceta.SelectedIndex].Margen;
-            }
-        }
-        private void tbCostoElaboracion_TextChanged(object sender, EventArgs e)
-        {
-            ActualizarInputs();
-        }
-
-        private void tbMargenConPrecio_TextChanged(object sender, EventArgs e)
-        {
-            if (!tbPrecio.Focused)
-            {
-                _sum = 0;
-                for (var i = 0; i < dgvIngredientes.Rows.Count; ++i)
-                {
-                    var costo = Convert.ToDouble(dgvIngredientes.Rows[i].Cells[3].Value);
-                    var cantidad = Convert.ToDouble(dgvIngredientes.Rows[i].Cells[4].Value);
-                    _sum += (costo * cantidad);
-                }
-                if (tbMargenConPrecio.Text != string.Empty)
-                {
-                    tbPrecio.Text = (Math.Round(
-                     (
-                      (_sum) + (tbCostoElaboracion.Text != string.Empty ? Convert.ToDouble(tbCostoElaboracion.Text) : 0)
-                     ) /
-                     (
-                      1 - (Convert.ToDouble(tbMargenConPrecio.Text) / 100)
-                     ), 2)).ToString(CultureInfo.InvariantCulture);
-                }
+                inputs.Precio.Text = (Math.Round(((sum) +
+                                                    (inputs.CostoElaboracion.Text != string.Empty
+                                                        ? Convert.ToDouble(inputs.CostoElaboracion.Text)
+                                                        : 0))
+                                                        /
+                                                    (1 - (Convert.ToDouble(inputs.MargenConPrecio.Text)/100)), 2))
+                    .ToString(CultureInfo.InvariantCulture);
             }
         }
 
-        private void tbPrecio_TextChanged(object sender, EventArgs e)
+        private void ActualizarMargen(Inputs inputs)
         {
-            if (!tbMargenConPrecio.Focused)
-            {
-                _sum = 0;
-                for (var i = 0; i < dgvIngredientes.Rows.Count; ++i)
+                if (inputs.MargenConPrecio.Focused) return;
+                double sum = 0;
+                for (var i = 0; i < inputs.Ingredientes.Rows.Count; ++i)
                 {
-                    var costo1 = Convert.ToDouble(dgvIngredientes.Rows[i].Cells[3].Value);
-                    var cantidad1 = Convert.ToDouble(dgvIngredientes.Rows[i].Cells[4].Value);
-                    _sum += (costo1 * cantidad1);
+                    var costo1 = Convert.ToDouble(inputs.Ingredientes.Rows[i].Cells[3].Value);
+                    var cantidad1 = Convert.ToDouble(inputs.Ingredientes.Rows[i].Cells[4].Value);
+                    sum += (costo1*cantidad1);
                 }
-                var costo = _sum + (tbCostoElaboracion.Text != string.Empty ? Convert.ToDouble(tbCostoElaboracion.Text) : 0);
-                if (tbPrecio.Text != string.Empty)
-                {
-                    var precio = Convert.ToDouble(tbPrecio.Text);
-
-                    tbMargenConPrecio.Text = Math.Round(((1 - (costo / precio)) * 100), 2).ToString(CultureInfo.InvariantCulture);
-                }
-            }
+                var costo = sum +(inputs.CostoElaboracion.Text != string.Empty
+                                ? Convert.ToDouble(inputs.CostoElaboracion.Text)
+                                : 0);
+                if (inputs.Precio.Text == string.Empty) return;
+                var precio = Convert.ToDouble(inputs.Precio.Text);
+                inputs.MargenConPrecio.Text =
+                    Math.Round(((1 - (costo/precio))*100), 2).ToString(CultureInfo.InvariantCulture);
         }
-
-        private void tbCostoElaboracion_KeyPress(object sender, KeyPressEventArgs e)
-        {
-            if (char.IsLetter(e.KeyChar) ||
-             char.IsSymbol(e.KeyChar) ||
-             char.IsWhiteSpace(e.KeyChar))
-                e.Handled = true;
-        }
-
-        private void btBorrarSeleccion_Click(object sender, EventArgs e)
-        {
-            if(dgvIngredientes.CurrentCell.RowIndex!=-1 && dgvIngredientes.Rows.Count > 0)
-            { 
-                var result = dgvIngredientes.DataSource as List<Articulo.Basica>;
-                if (result != null)
-                {
-                    result.RemoveAt(dgvIngredientes.CurrentCell.RowIndex);
-                    dgvIngredientes.DataSource = null;
-                    dgvIngredientes.Refresh();
-                    dgvIngredientes.DataSource = result;
-                }
-            }
-        }
-
         private void btBorrarLista_Click(object sender, EventArgs e)
         {
-            dgvIngredientes.DataSource = null;
-            dgvIngredientes.Refresh();  
+            Opcion.BorrarDataGridView(dgvIngredientes);  
         }
 
+        private bool ValidarClave(TextBox claveReceta,IRestResponse jsonResult)
+        {
+            if (jsonResult.StatusCode == HttpStatusCode.OK)
+            {
+                BeginInvoke((MethodInvoker)(() =>
+                {
+                    MessageBox.Show(@"La Clave ingresada ya existe");
+                    claveReceta.Text = "";
+                    claveReceta.Focus();
+                    btGuardar.Enabled = true;
+                }));
+                return false;
+            }
+            return true;
+        }
+
+        private void Guardar(Inputs inputs)
+        {
+            btGuardar.Enabled = false;
+            Local.Receta.clave = (inputs.ClaveReceta.Text);
+            if (ValidarCampos())
+            {
+                Opcion.EjecucionAsync(Data.Receta.Lista, jsonResult =>
+                {
+                    if (!ValidarClave(inputs.ClaveReceta, jsonResult)) return;
+                    var mde = new MensajeDeEspera();
+                    BeginInvoke((MethodInvoker)(() =>
+                    {
+                        mde.Show();
+                        var receta = new Receta{
+                            Clave = inputs.ClaveReceta.Text,
+                            CostoCreacion = double.Parse(inputs.CostoEstimado.Text),
+                            CostoElaboracion = double.Parse(inputs.CostoElaboracion.Text),
+                            Descripcion = inputs.Descripcion.Text,
+                            FechaModificacion = DateTime.Today,
+                            Margen = double.Parse(inputs.MargenConPrecio.Text),
+                            PesoLitro = Convert.ToDouble(inputs.PesoLitro.Text),
+                            Precio = double.Parse(inputs.Precio.Text),
+                            RecId = 0,
+                            Diario = Convert.ToInt32(inputs.Diario.Checked)
+                        };
+                        Data.Receta.CReceta = receta;
+                        Opcion.EjecucionAsync(Data.Receta.Insertar, resultado =>
+                        {
+                            Guardado(resultado,inputs);
+                        }, x =>
+                        {
+                            Limpiar(inputs, mde);
+                        });
+                    }));
+                });}}
+        private void Guardado(Action<IRestResponse> x, Inputs inputs)
+        {
+            var listRecetaDetalle = new List<Receta.Detalle>();
+            for (var i = 0; i < inputs.Ingredientes.Rows.Count; i++)
+            {
+                var cantidad = double.Parse(inputs.Ingredientes.Rows[i].Cells[4].Value.ToString());
+                var precioCompra = Convert.ToDouble(inputs.Ingredientes.Rows[i].Cells[3].Value);
+                var precioTotal = precioCompra * cantidad;
+                listRecetaDetalle.Add(new Receta.Detalle
+                {
+                    RecId = Data.Receta.CReceta.RecId,
+                    ArtId = Convert.ToInt32(inputs.Ingredientes.Rows[i].Cells[0].Value),
+                    Cantidad = double.Parse(inputs.Ingredientes.Rows[i].Cells[4].Value.ToString()),
+                    Clave = inputs.Ingredientes.Rows[i].Cells[1].Value.ToString(),
+                    Descripcion = inputs.Ingredientes.Rows[i].Cells[2].Value.ToString(),
+                    IdUnidad = 1,
+                    PrecioCompra = Convert.ToDouble(inputs.Ingredientes.Rows[i].Cells[3].Value),
+                    PrecioTotal = precioTotal
+                });
+            }
+            Data.Receta.Detalle.CRecetaDetalle = listRecetaDetalle;
+            Data.Receta.Detalle.Insertar(x);
+        }
+        private void Limpiar(Inputs inputs, MensajeDeEspera mde)
+        {
+
+            BeginInvoke((MethodInvoker)(() =>
+            {
+                MessageBox.Show(@"Se a guardado con éxito con Clave :" + inputs.ClaveReceta.Text);
+                inputs.ClaveReceta.Text = "";
+                inputs.Precio.Text = "";
+                inputs.PesoLitro.Text = "";
+                inputs.Descripcion.Text = "";
+                inputs.MargenConPrecio.Text = "";
+                inputs.Ingredientes.DataSource = null;
+                inputs.Ingredientes.Update();
+                mde?.Close();
+            }));
+        }
         private void btGuardar_Click(object sender, EventArgs e)
         {
-            MensajeDeEspera mde = new MensajeDeEspera();
-            mde.Show();
-            Receta receta = new Receta
-            {
-                clave = tbClaveReceta.Text,
-                costoCreacion = double.Parse(tbCostoEstimado.Text),
-                descripcion = tbDescripcion.Text,
-                fechaModificacion = DateTime.Today,
-                margen = double.Parse(tbMargenConPrecio.Text),
-                pesoLitro = Convert.ToDouble(tbPesoLitro.Text),
-                precio = double.Parse(tbPrecio.Text),
-                rec_id = 0
-            };
-            
-            Data.Receta.CReceta = receta;
-            Opcion.EjecucionAsync(Data.Receta.Insertar, x =>
-            {
-                var listRecetaDetalle = new List<Receta.Detalle>();
-                for (var i = 0; i < dgvIngredientes.Rows.Count; i++)
+            if (tabControl1.SelectedTab == tabControl1.TabPages[0])
+                Guardar(new Inputs
                 {
-                    var artId = dgvIngredientes.Rows[i].Cells[0].Value.ToString();
-                    var cantidad = double.Parse(dgvIngredientes.Rows[i].Cells[4].Value.ToString());
-                    var clave = dgvIngredientes.Rows[i].Cells[1].Value.ToString();
-                    var descripcion = dgvIngredientes.Rows[i].Cells[2].Value.ToString();
-                    var precioCompra = Convert.ToDouble(dgvIngredientes.Rows[i].Cells[3].Value);
-                    var precioTotal = precioCompra * cantidad;
-                    var recetaDetalle = new Receta.Detalle
-                    {
-                        rec_id = Data.Receta.CReceta.rec_id,
-                        art_id = artId,
-                        cantidad = cantidad,
-                        clave = clave,
-                        descripcion = descripcion,
-                        idUnidad = 1,
-                        precioCompra = precioCompra,
-                        precioTotal = precioTotal
-                    };
-                    listRecetaDetalle.Add(recetaDetalle);
-                }
-                Data.Receta.Detalle.CRecetaDetalle = listRecetaDetalle;
-                Data.Receta.Detalle.Insertar(x);
-            },resultadoDeAmbos=>
-            {
-                BeginInvoke((MethodInvoker) (() => {
-                                                       mde.Close();
-                }));
-            });
-
+                    ClaveReceta = tbClaveReceta,
+                    CostoElaboracion = tbCostoElaboracion,
+                    CostoEstimado = tbCostoEstimado,
+                    Descripcion = tbDescripcion,
+                    Diario = chDiario,
+                    Ingredientes = dgvIngredientes,
+                    MargenConPrecio = tbMargenConPrecio,
+                    MargenSugerido = tbMargenSugerido,
+                    PesoLitro = tbPesoLitro,
+                    Precio = tbPrecio
+                });
+            else{
+                Guardar(new Inputs
+                {
+                    ClaveReceta = tbClaveReceta,
+                    CostoElaboracion = tbCostoElaboracionBE,
+                    CostoEstimado = tbCostoEstimadoBE,
+                    Descripcion = tbDescripcionBE,
+                    Diario = chDiarioBE,
+                    Ingredientes = dgvIngredientesBusqueda,
+                    MargenConPrecio = tbMargenConPrecioBE,
+                    MargenSugerido = tbMargenSugeridoBE,
+                    PesoLitro = tbPesoLitro,
+                    Precio = tbPrecio
+                });
+            }
         }
-
         private void cbTipoReceta_SelectedIndexChanged(object sender, EventArgs e)
         {
-            if (cbTipoReceta.SelectedIndex != -1 && dgvIngredientes.Rows.Count > 0)
+            if (cbTipoReceta.SelectedIndex == -1 || dgvIngredientes.Rows.Count <= 0) return;
+            ActualizarMargen(tbMargenSugerido);
+            ActualizarInputs(new Inputs
             {
-                ActualizarMargen();
-                ActualizarInputs();
-            }
-                     
+                ActualizarMargen = ActualizarMargen,
+                CostoElaboracion = tbCostoElaboracion,
+                CostoEstimado = tbCostoEstimado,
+                Ingredientes = dgvIngredientes,
+                MargenSugerido = tbMargenSugerido,
+                PrecioSugerido = tbPrecioSugerido
+            });}
+        /****************************************************************************/
+        private void btBuscarClave_Click(object sender, EventArgs e)
+        {
+            Local.Receta.clave = (tbBuscarReceta.Text);
+            Opcion.EjecucionAsync(Data.Receta.Lista, jsonResult =>
+            {
+                BeginInvoke((MethodInvoker)(() =>
+                {
+                    switch (jsonResult.StatusCode){
+                        case HttpStatusCode.OK:
+                            var brd =
+                             new BusquedaRecetaDetalle(Opcion.JsonaListaGenerica<Receta>(jsonResult),   
+                                 resultado =>
+                                 {
+                                     BeginInvoke((MethodInvoker)(() =>
+                                     {
+                                         dgvIngredientesBusqueda.DataSource = resultado.Ingredientes
+                                         .Select(x => new Articulo.Basica
+                                         {
+                                             art_id = x.ArtId,
+                                             clave = x.Clave,
+                                             descripcion = x.Descripcion,
+                                             precioCompra = x.PrecioCompra,
+                                             cantidad = x.Cantidad
+                                         }).ToList();
+                                         tbPrecioBE.Text = resultado.Precio.ToString(CultureInfo.InvariantCulture);
+                                         tbDescripcionBE.Text = resultado.Descripcion;
+                                         tbPesoLitroBE.Text = resultado.PesoLitro.ToString(CultureInfo.InvariantCulture);
+                                         tbMargenConPrecioBE.Text = resultado.Margen.ToString(CultureInfo.InvariantCulture);
+                                         chDiarioBE.Checked = (resultado.Diario == 1);
+                                         tbCodigoBE.Enabled = true;
+                                         tbCostoElaboracionBE.Text =
+                                             resultado.CostoElaboracion.ToString(CultureInfo.InvariantCulture);
+                                         btBuscarBE.Enabled = true;
+                                       }));
+                                 });
+                            brd.Show();
+                            break;
+                        default:
+                            throw new Exception(@"No se encontraron recetas con los parametros de busqueda ingresados");
+                    }
+
+                }));
+            });
+        }
+        private void btBuscarBE_Click(object sender, EventArgs e)
+        {
+            BuscarReceta(ActualizarInputs, new Inputs
+            {
+                ClaveReceta = tbCodigoBE,
+                ActualizarMargen = ActualizarMargen,
+                CostoElaboracion = tbCostoElaboracionBE,
+                CostoEstimado = tbCostoEstimadoBE,
+                Ingredientes = dgvIngredientesBusqueda,
+                MargenSugerido = tbMargenSugeridoBE,
+                PrecioSugerido = tbPrecioSugeridoBE
+            });
+        }
+
+        private void tbPesoLitro_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            e.Handled = Opcion.ValidarCaracter(e);
+        }
+        private void tbMargenConPrecio_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            e.Handled = Opcion.ValidarCaracter(e);
+        }
+        private void tbPrecio_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            e.Handled = Opcion.ValidarCaracter(e);
+        }
+        private void tbPesoLitro_TextChanged(object sender, EventArgs e)
+        {
+           Opcion.ValidarDouble(tbPesoLitro);
         }
     }
 }

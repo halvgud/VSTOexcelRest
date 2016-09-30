@@ -1,7 +1,8 @@
 ﻿using System;
 using System.Net;
 using RestSharp;
-using testVSTO2.Prop;
+using testVSTO2.Herramienta;
+using testVSTO2.Herramienta.Config;
 
 namespace testVSTO2.Data
 {
@@ -11,34 +12,22 @@ namespace testVSTO2.Data
         {
             try
             {
-                var rest = new Rest(Config.Local.Api.UrlApi, Config.Local.Permiso.Obtener,
-                    Method.GET);
-                rest.Peticion.AddHeader(Constantes.Http.ObtenerTipoDeContenido,
+                var rest = new Rest(Local.Api.UrlApi, Local.Permiso.Obtener,
+                    Method.POST);rest.Peticion.AddHeader(Constantes.Http.ObtenerTipoDeContenido,
                     Constantes.Http.TipoDeContenido.Json);
+                rest.Peticion.AddJsonBody(new {Nombre= Environment.MachineName.ToUpper()});
                var response= rest.Cliente.Execute(rest.Peticion);
                 switch (response.StatusCode)
                 {
-                    case HttpStatusCode.OK:
-                        callback(response);
+                    case HttpStatusCode.OK:callback(response);
                         break;
                     default:
                         throw new Exception(@"error al buscar permisos");
                 }
-               /* rest.Cliente.ExecuteAsync(rest.Peticion, response1 =>
-                {
-                    switch (response1.StatusCode)
-                    {
-                        case HttpStatusCode.OK:
-                            callback(response);
-                            break;
-                        default:
-                            throw new Exception(@"error al buscar permisos");
-                    }
-                });*/
             }
             catch (Exception e)
             {
-                Opcion.Log(Config.Log.Interno.Categoria, "EXCEPCION: " + e.Message);
+                Opcion.Log(Log.Interno.Categoria, "EXCEPCION: " + e.Message);
                 // callback("CONTINUAR");
             }
         }

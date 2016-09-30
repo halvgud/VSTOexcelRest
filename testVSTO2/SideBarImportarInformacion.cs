@@ -1,7 +1,8 @@
 ﻿using System;
 using System.Windows.Forms;
 using RestSharp;
-using testVSTO2.Prop;
+using testVSTO2.Herramienta;
+using testVSTO2.Herramienta.Config;
 
 namespace testVSTO2
 {
@@ -16,7 +17,7 @@ namespace testVSTO2
         {
             if (cbDepartamento.SelectedValue.ToString() != "")
             {
-                Config.Local.Departamento.IdDepartamento = cbDepartamento.SelectedValue.ToString();
+                Local.Departamento.IdDepartamento = cbDepartamento.SelectedValue.ToString();
                 Opcion.EjecucionAsync(Data.Categoria.Lista,x=> CargarComboBox(x, cbCategoria, true));
             }
         }
@@ -69,6 +70,10 @@ namespace testVSTO2
                 FechaIni = dtFechaIni.Value,
                 ProId =  chProveedor.Checked?(cbProveedor.SelectedValue.ToString()):"%"
             };
+            Data.Reporte.FechaIni = dtFechaIni.Value;
+            Data.Reporte.FechaFin = dtFechaFin.Value;
+            Data.Reporte.Categoria = cbCategoria.Text;
+            Data.Reporte.Departamento = cbDepartamento.Text;
             if (!cbImprimir.Checked)
             {
 

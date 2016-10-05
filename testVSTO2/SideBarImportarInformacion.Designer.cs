@@ -46,7 +46,7 @@
             this.label5 = new System.Windows.Forms.Label();
             this.label6 = new System.Windows.Forms.Label();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
-            this.comboBox1 = new System.Windows.Forms.ComboBox();
+            this.cbSucursal = new System.Windows.Forms.ComboBox();
             this.label8 = new System.Windows.Forms.Label();
             this.cbCategoria = new System.Windows.Forms.ComboBox();
             this.cbDepartamento = new System.Windows.Forms.ComboBox();
@@ -97,7 +97,7 @@
             // 
             this.cbOrderBy.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cbOrderBy.FormattingEnabled = true;
-            this.cbOrderBy.Location = new System.Drawing.Point(9, 380);
+            this.cbOrderBy.Location = new System.Drawing.Point(9, 370);
             this.cbOrderBy.Name = "cbOrderBy";
             this.cbOrderBy.Size = new System.Drawing.Size(183, 21);
             this.cbOrderBy.TabIndex = 12;
@@ -105,7 +105,7 @@
             // label7
             // 
             this.label7.AutoSize = true;
-            this.label7.Location = new System.Drawing.Point(6, 364);
+            this.label7.Location = new System.Drawing.Point(6, 355);
             this.label7.Name = "label7";
             this.label7.Size = new System.Drawing.Size(66, 13);
             this.label7.TabIndex = 13;
@@ -128,7 +128,7 @@
             this.groupBox1.Controls.Add(this.label3);
             this.groupBox1.Controls.Add(this.label4);
             this.groupBox1.Dock = System.Windows.Forms.DockStyle.Top;
-            this.groupBox1.Location = new System.Drawing.Point(3, 261);
+            this.groupBox1.Location = new System.Drawing.Point(3, 243);
             this.groupBox1.Name = "groupBox1";
             this.groupBox1.Size = new System.Drawing.Size(237, 111);
             this.groupBox1.TabIndex = 8;
@@ -176,7 +176,7 @@
             this.groupBox3.Controls.Add(this.label5);
             this.groupBox3.Controls.Add(this.label6);
             this.groupBox3.Dock = System.Windows.Forms.DockStyle.Top;
-            this.groupBox3.Location = new System.Drawing.Point(3, 147);
+            this.groupBox3.Location = new System.Drawing.Point(3, 129);
             this.groupBox3.Name = "groupBox3";
             this.groupBox3.Size = new System.Drawing.Size(237, 114);
             this.groupBox3.TabIndex = 10;
@@ -241,7 +241,7 @@
             // 
             // groupBox2
             // 
-            this.groupBox2.Controls.Add(this.comboBox1);
+            this.groupBox2.Controls.Add(this.cbSucursal);
             this.groupBox2.Controls.Add(this.label8);
             this.groupBox2.Controls.Add(this.cbCategoria);
             this.groupBox2.Controls.Add(this.cbDepartamento);
@@ -252,19 +252,19 @@
             this.groupBox2.Dock = System.Windows.Forms.DockStyle.Top;
             this.groupBox2.Location = new System.Drawing.Point(3, 3);
             this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Size = new System.Drawing.Size(237, 144);
+            this.groupBox2.Size = new System.Drawing.Size(237, 126);
             this.groupBox2.TabIndex = 9;
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "Categoria / Departamento";
             // 
-            // comboBox1
+            // cbSucursal
             // 
-            this.comboBox1.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.comboBox1.FormattingEnabled = true;
-            this.comboBox1.Location = new System.Drawing.Point(6, 29);
-            this.comboBox1.Name = "comboBox1";
-            this.comboBox1.Size = new System.Drawing.Size(183, 21);
-            this.comboBox1.TabIndex = 8;
+            this.cbSucursal.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cbSucursal.FormattingEnabled = true;
+            this.cbSucursal.Location = new System.Drawing.Point(6, 27);
+            this.cbSucursal.Name = "cbSucursal";
+            this.cbSucursal.Size = new System.Drawing.Size(183, 21);
+            this.cbSucursal.TabIndex = 8;
             // 
             // label8
             // 
@@ -279,7 +279,7 @@
             // 
             this.cbCategoria.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cbCategoria.FormattingEnabled = true;
-            this.cbCategoria.Location = new System.Drawing.Point(6, 105);
+            this.cbCategoria.Location = new System.Drawing.Point(6, 97);
             this.cbCategoria.Name = "cbCategoria";
             this.cbCategoria.Size = new System.Drawing.Size(183, 21);
             this.cbCategoria.TabIndex = 1;
@@ -289,7 +289,7 @@
             // 
             this.cbDepartamento.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cbDepartamento.FormattingEnabled = true;
-            this.cbDepartamento.Location = new System.Drawing.Point(6, 69);
+            this.cbDepartamento.Location = new System.Drawing.Point(6, 62);
             this.cbDepartamento.Name = "cbDepartamento";
             this.cbDepartamento.Size = new System.Drawing.Size(183, 21);
             this.cbDepartamento.TabIndex = 0;
@@ -300,7 +300,7 @@
             this.chCategoria.AutoSize = true;
             this.chCategoria.Checked = true;
             this.chCategoria.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.chCategoria.Location = new System.Drawing.Point(197, 111);
+            this.chCategoria.Location = new System.Drawing.Point(197, 101);
             this.chCategoria.Name = "chCategoria";
             this.chCategoria.Size = new System.Drawing.Size(15, 14);
             this.chCategoria.TabIndex = 7;
@@ -312,7 +312,7 @@
             this.chDepartamento.AutoSize = true;
             this.chDepartamento.Checked = true;
             this.chDepartamento.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.chDepartamento.Location = new System.Drawing.Point(197, 72);
+            this.chDepartamento.Location = new System.Drawing.Point(197, 67);
             this.chDepartamento.Name = "chDepartamento";
             this.chDepartamento.Size = new System.Drawing.Size(15, 14);
             this.chDepartamento.TabIndex = 6;
@@ -322,7 +322,7 @@
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(3, 90);
+            this.label2.Location = new System.Drawing.Point(3, 83);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(52, 13);
             this.label2.TabIndex = 5;
@@ -331,7 +331,7 @@
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(3, 53);
+            this.label1.Location = new System.Drawing.Point(3, 48);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(77, 13);
             this.label1.TabIndex = 4;
@@ -430,7 +430,7 @@
         private System.Windows.Forms.Label label7;
         private System.Windows.Forms.ComboBox cbOrderBy;
         private System.Windows.Forms.Label label8;
-        public System.Windows.Forms.ComboBox comboBox1;
+        public System.Windows.Forms.ComboBox cbSucursal;
         public System.Windows.Forms.DateTimePicker dtFechaFin;
         public System.Windows.Forms.DateTimePicker dtFechaIni;
     }

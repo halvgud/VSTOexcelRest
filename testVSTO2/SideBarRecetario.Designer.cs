@@ -105,6 +105,7 @@
             this.dgvListaReceta.Name = "dgvListaReceta";
             this.dgvListaReceta.Size = new System.Drawing.Size(240, 281);
             this.dgvListaReceta.TabIndex = 7;
+            this.dgvListaReceta.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvListaReceta_CellDoubleClick);
             // 
             // btSeleccion
             // 

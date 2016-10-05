@@ -7,30 +7,28 @@ using testVSTO2.Herramienta.Config;
 namespace testVSTO2
 {
     public partial class SideBarImportarInformacion : UserControl
-    {
-        public SideBarImportarInformacion()
+    {public SideBarImportarInformacion()
         {
             InitializeComponent();
         }
 
         private void cbDepartamento_SelectedIndexChanged(object sender, EventArgs e)
         {
-            if (cbDepartamento.SelectedValue.ToString() != "")
-            {
-                Local.Departamento.IdDepartamento = cbDepartamento.SelectedValue.ToString();
-                Opcion.EjecucionAsync(Data.Categoria.Lista,x=> CargarComboBox(x, cbCategoria, true));
-            }
+            if (cbDepartamento.SelectedValue.ToString() == "") return;
+            Local.Departamento.IdDepartamento = cbDepartamento.SelectedValue.ToString();
+            Opcion.EjecucionAsync(Data.Categoria.Lista,x=> CargarComboBox(x, cbCategoria, true));
         }
         private void ImportarInformacion_Load(object sender, EventArgs e)
         {
             Opcion.EjecucionAsync(Data.Departamento.Lista, x => CargarComboBox(x,cbDepartamento,true));
             Opcion.EjecucionAsync(Data.Proveedor.Lista, x => CargarComboBox(x,cbProveedor,false));
             Opcion.EjecucionAsync(Data.Articulo.Tipo.Seleccionar,x=>CargarComboBox(x,cbTipoProducto,false));
+            Opcion.EjecucionAsync(Data.Reporte.Lista,x=>CargarComboBox(x,cbOrderBy,true));
+            Opcion.EjecucionAsync(Data.Sucursal.Lista,x=>CargarComboBox(x,cbSucursal,false));
         }
         public void CargarComboBox(IRestResponse json,ComboBox cb,bool habilitar)
         {
-            BeginInvoke((MethodInvoker)(() =>
-            {
+            BeginInvoke((MethodInvoker)(() =>{
                 var bindingSource1 = new BindingSource
                 {
                     DataSource = Opcion.JsonaListaGenerica<Respuesta.CbGenerico>(json)
@@ -39,8 +37,7 @@ namespace testVSTO2
                 cb.DisplayMember = "nombre";
                 cb.ValueMember = "id";
                 cb.Enabled = habilitar;
-            }
-            ));
+            }));
         }
 
         private void cbCategoria_SelectedIndexChanged(object sender, EventArgs e)
@@ -56,8 +53,7 @@ namespace testVSTO2
             tabControl1.Enabled = bandera;
             
         }
-        private void btAceptar_Click(object sender, EventArgs e)
-        {
+        private void btAceptar_Click(object sender, EventArgs e){
             var mse=new MensajeDeEspera();
             HabilitarSideBar(false);
             mse.Show();
@@ -68,44 +64,34 @@ namespace testVSTO2
                 DepId = chDepartamento.Checked?(cbDepartamento.SelectedValue.ToString()):"%",
                 FechaFin = dtFechaFin.Value,
                 FechaIni = dtFechaIni.Value,
-                ProId =  chProveedor.Checked?(cbProveedor.SelectedValue.ToString()):"%"
+                ProId =  chProveedor.Checked?(cbProveedor.SelectedValue.ToString()):"%",
+                OrderBy = cbOrderBy.SelectedValue.ToString()
             };
             Data.Reporte.FechaIni = dtFechaIni.Value;
             Data.Reporte.FechaFin = dtFechaFin.Value;
             Data.Reporte.Categoria = cbCategoria.Text;
             Data.Reporte.Departamento = cbDepartamento.Text;
-            if (!cbImprimir.Checked)
+            Opcion.EjecucionAsync(x =>
             {
-
-                Opcion.EjecucionAsync(x =>
-                {
-                    Data.Reporte.General(x, rrg);
-                }, y =>
-                {
-                    addIn.ReporteGeneral(y);
-                    BeginInvoke((MethodInvoker)(() =>
-                    {
-                        mse.Close();
-                        HabilitarSideBar(true);
-                    }));
-                });
-            }
-            else
-            {
-                Opcion.EjecucionAsync(x =>
-                {
+                if (cbImprimir.Checked)
                     Data.Reporte.Imprimir(x, rrg);
-                }, y =>
+                else
+                    Data.Reporte.General(x, rrg);
+            }, y =>
+            {
+                BeginInvoke((MethodInvoker)(() =>
                 {
-                    addIn.ReporteImprimir(y);
-                    BeginInvoke((MethodInvoker) (() =>
+                    if (y != null)
                     {
-                        mse.Close();
-                        HabilitarSideBar(true);
-                    }));
-                });
-
-            }
+                        if(cbImprimir.Checked)
+                            addIn.ReporteImprimir(y);
+                        else
+                            addIn.ReporteGeneral(y);
+                    }
+                    mse.Close();
+                    HabilitarSideBar(true);
+                }));
+            });
         }
 
         private static void ValidarComboBox(ComboBox cb, CheckBox ch)

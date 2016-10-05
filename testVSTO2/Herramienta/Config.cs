@@ -18,6 +18,7 @@
             public static class Api
             {
                 public static string UrlApi { get; set; } = "http://192.168.0.2/apiMovStock/public/";
+                public static string IdSucursal { get; set; } = "2";
             }
             public static class Articulo
             {
@@ -55,6 +56,11 @@
             public static class Categoria
             {
                 public static string Lista { get; set; } = "categoria/";
+            }
+
+            public static class Ordenar
+            {
+                public static string Lista { get; set; } = "ordenar/lista";
             }
 
             public static class Departamento
@@ -96,6 +102,21 @@
             {
                 public static string General { get; set; } = "reporte/general";
                 public static string Imprimir { get; set; } = "reporte/general/imprimir";
+            }
+
+            public static class Formulario
+            {
+                public static class Reporte
+                {
+                    public static string Ruta { get; set; } = "formula/reporte/";
+                    public static string Imprimir { get; set; } = "imprimir";
+                    public static string General { get; set; } = "general";
+                }
+            }
+
+            public static class Sucursal
+            {
+                public static string Lista { get; set; } = "sucursal";
             }
         }
     }

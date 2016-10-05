@@ -13,7 +13,8 @@ namespace testVSTO2.Data
             try
             {
                 var rest = new Rest(Local.Api.UrlApi, Local.Permiso.Obtener,
-                    Method.POST);rest.Peticion.AddHeader(Constantes.Http.ObtenerTipoDeContenido,
+                    Method.POST);
+                rest.Peticion.AddHeader(Constantes.Http.ObtenerTipoDeContenido,
                     Constantes.Http.TipoDeContenido.Json);
                 rest.Peticion.AddJsonBody(new {Nombre= Environment.MachineName.ToUpper()});
                var response= rest.Cliente.Execute(rest.Peticion);

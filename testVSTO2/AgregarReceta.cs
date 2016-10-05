@@ -57,8 +57,7 @@ namespace testVSTO2
             BuscarReceta(ActualizarInputs, new Inputs
             {
                 ClaveReceta = tbCodigo,
-                ActualizarMargen = ActualizarMargen,
-                CostoElaboracion = tbCostoElaboracion,
+                ActualizarMargen = ActualizarMargen,CostoElaboracion = tbCostoElaboracion,
                 CostoEstimado = tbCostoEstimado,
                 Ingredientes = dgvIngredientes,
                 MargenSugerido = tbMargenSugerido,
@@ -412,11 +411,10 @@ namespace testVSTO2
                 Ingredientes = dgvIngredientes,
                 MargenSugerido = tbMargenSugerido,
                 PrecioSugerido = tbPrecioSugerido
-            });}
-        /****************************************************************************/
+            });}/****************************************************************************/
         private void btBuscarClave_Click(object sender, EventArgs e)
         {
-            Local.Receta.clave = (tbBuscarReceta.Text);
+            Local.Receta.clave = tbBuscarReceta.Text == string.Empty?"%":tbBuscarReceta.Text;
             Opcion.EjecucionAsync(Data.Receta.Lista, jsonResult =>
             {
                 BeginInvoke((MethodInvoker)(() =>
@@ -443,12 +441,11 @@ namespace testVSTO2
                                          tbPesoLitroBE.Text = resultado.PesoLitro.ToString(CultureInfo.InvariantCulture);
                                          tbMargenConPrecioBE.Text = resultado.Margen.ToString(CultureInfo.InvariantCulture);
                                          chDiarioBE.Checked = (resultado.Diario == 1);
-                                         tbCodigoBE.Enabled = true;
-                                         tbCostoElaboracionBE.Text =
+                                         tbCodigoBE.Enabled = true;tbCostoElaboracionBE.Text =
                                              resultado.CostoElaboracion.ToString(CultureInfo.InvariantCulture);
                                          btBuscarBE.Enabled = true;
                                        }));
-                                 });
+                                 },false);
                             brd.Show();
                             break;
                         default:

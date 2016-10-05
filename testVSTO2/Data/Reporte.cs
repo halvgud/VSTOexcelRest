@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Net;
+using System.Windows.Forms;
 using RestSharp;
 using testVSTO2.Herramienta;
 using testVSTO2.Herramienta.Config;
@@ -30,7 +31,9 @@ namespace testVSTO2.Data
                             callback(response);
                             break;
                         default:
-                            throw new Exception(@"error al buscar articulo");
+                            MessageBox.Show(@"No se encontró registros con los parámetros utilizados");
+                            callback(null);
+                            break;
                     }
                 });
             }
@@ -57,13 +60,40 @@ namespace testVSTO2.Data
                             callback(response);
                             break;
                         default:
-                            throw new Exception(@"error al buscar articulo");
+                            MessageBox.Show(@"No se encontró registros con los parámetros utilizados");
+                            break;
                     }
                 });
             }
             catch (Exception e)
             {
                 Opcion.Log(Log.Interno.Categoria, "EXCEPCION: " + e.Message);
+                // callback("CONTINUAR");
+            }
+        }
+        public static void Lista(Action<IRestResponse> callback)
+        {
+            try{
+                var rest = new Rest(Local.Api.UrlApi, Local.Ordenar.Lista, Method.GET);
+                rest.Peticion.AddHeader(Constantes.Http.ObtenerTipoDeContenido,
+                    Constantes.Http.TipoDeContenido.Json);
+                rest.Cliente.ExecuteAsync(rest.Peticion, response =>{
+                    switch (response.StatusCode)
+                    {
+                        case HttpStatusCode.OK:
+                            callback(response);
+                            break;
+                        default:
+                            //Opcion.Log(Config.Log.Interno.Departamento, response.Content);
+                            throw new Exception(@"error al cargar orden");
+                            // callback("CONTINUAR");
+                    }
+
+                });
+            }
+            catch (Exception e)
+            {
+                Opcion.Log(Log.Interno.Departamento, "EXCEPCION: " + e.Message);
                 // callback("CONTINUAR");
             }
         }

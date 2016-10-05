@@ -31,10 +31,10 @@
     <DefineConstants>VSTO40</DefineConstants>
     <IsWebBootstrapper>False</IsWebBootstrapper>
     <BootstrapperEnabled>true</BootstrapperEnabled>
-    <PublishUrl>C:\Users\Ryu\Documents\DOC. MERCATTO\</PublishUrl>
-    <InstallUrl />
+    <PublishUrl>\\mercattoserver\ftp\VSTO\</PublishUrl>
+    <InstallUrl>\\mercattoserver\ftp\vsto\install\</InstallUrl>
     <TargetCulture>es</TargetCulture>
-    <ApplicationVersion>1.0.0.1</ApplicationVersion>
+    <ApplicationVersion>1.0.0.3</ApplicationVersion>
     <AutoIncrementApplicationRevision>true</AutoIncrementApplicationRevision>
     <UpdateEnabled>true</UpdateEnabled>
     <UpdateInterval>7</UpdateInterval>
@@ -208,11 +208,13 @@
     <Compile Include="Data\Articulo.cs" />
     <Compile Include="Data\Categoria.cs" />
     <Compile Include="Data\Departamento.cs" />
+    <Compile Include="Data\Formulario.cs" />
     <Compile Include="Data\Permiso.cs" />
     <Compile Include="Data\Proveedor.cs" />
     <Compile Include="Data\Receta.cs" />
     <Compile Include="Data\Reporte.cs" />
     <Compile Include="Data\Rest.cs" />
+    <Compile Include="Data\Sucursal.cs" />
     <Compile Include="ImportarInformacion.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -275,6 +277,7 @@
     <Compile Include="Herramienta\Constantes.cs" />
     <Compile Include="Respuesta\Articulo.cs" />
     <Compile Include="Respuesta\CbGenerico.cs" />
+    <Compile Include="Respuesta\Formulario.cs" />
     <Compile Include="Respuesta\Permiso.cs" />
     <Compile Include="Respuesta\Receta.cs" />
     <Compile Include="Respuesta\Reporte.cs" />
@@ -332,7 +335,7 @@
       <FlavorProperties GUID="{BAA0C2D2-18E2-41B9-852F-F413020CAA33}">
         <ProjectProperties HostName="Excel" HostPackage="{29A7B9D7-A7F1-4328-8EF0-6B2D1A56B2C1}" OfficeVersion="15.0" VstxVersion="4.0" ApplicationType="Excel" Language="cs" TemplatesPath="" DebugInfoExeName="#Software\Microsoft\Office\15.0\Excel\InstallRoot\Path#excel.exe" DebugInfoCommandLine="/x" AddItemTemplatesGuid="{51063C3A-E220-4D12-8922-BDA915ACD783}" />
         <Host Name="Excel" GeneratedCodeNamespace="testVSTO2" PublishedHash="69C324AB27932AA2FBF2B7EA72250886FF164DE6" IconIndex="0">
-          <HostItem Name="ThisAddIn" Code="ThisAddIn.cs" CanonicalName="AddIn" CanActivate="false" IconIndex="1" Blueprint="ThisAddIn.Designer.xml" GeneratedCode="ThisAddIn.Designer.cs" PublishedHash="04AE70D7E2A813C9A0EC595D6370CFC26189E94F" />
+          <HostItem Name="ThisAddIn" Code="ThisAddIn.cs" CanonicalName="AddIn" PublishedHash="04AE70D7E2A813C9A0EC595D6370CFC26189E94F" CanActivate="false" IconIndex="1" Blueprint="ThisAddIn.Designer.xml" GeneratedCode="ThisAddIn.Designer.cs" />
         </Host>
       </FlavorProperties>
     </VisualStudio>

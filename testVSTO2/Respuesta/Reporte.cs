@@ -11,6 +11,7 @@ namespace testVSTO2.Respuesta
             public string DepId { get; set; }
             public string CatId { get; set; }
             public string ProId { get; set; }
+            public string OrderBy { get; set; }
 
             public class Respuesta
             {

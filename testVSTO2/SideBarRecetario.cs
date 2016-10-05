@@ -18,10 +18,25 @@ namespace testVSTO2
         }
         private List<Receta.Basica> _listaArticuloBasica1;
         private List<Receta.Basica> _listaArticuloBasica2;
+        private List<Receta> _listaRecetas;
         private void btBuscar_Click(object sender, EventArgs e)
         {
             var br = new BusquedaReceta(receta =>
             {
+                _listaRecetas.AddRange(receta);
+                _listaRecetas = _listaRecetas.GroupBy(p => p.Clave).Select(g => new Receta
+                {   
+                    Clave = g.Key,
+                    Cantidad = g.Sum(i=>i.Cantidad),
+                    CostoCreacion = g.First().CostoCreacion,
+                    CostoElaboracion = g.First().CostoElaboracion,
+                    Descripcion = g.First().Descripcion,
+                    Diario = g.First().Diario,
+                    FechaModificacion = g.First().FechaModificacion,
+                    Ingredientes = g.First().Ingredientes,
+                    Margen = g.First().Margen,
+                    PesoLitro = g.First().PesoLitro
+                }).ToList();
                 _listaArticuloBasica1 = dgvListaReceta.DataSource as List<Receta.Basica>;
                 _listaArticuloBasica2 = (receta.Select(x => x.CopiadoSencillo()).ToList());
             if (_listaArticuloBasica1 != null)
@@ -64,7 +79,7 @@ namespace testVSTO2
                                      {
                                          addIn.Agregar(resultado);
                                      }
-                                 });
+                                 },true);
                             brd.Show();
                             break;
                         default:
@@ -79,6 +94,11 @@ namespace testVSTO2
         }
 
         private void btGuardar_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void dgvListaReceta_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
         {
 
         }

@@ -29,13 +29,13 @@ namespace testVSTO2
             _recetario = new SideBarRecetario();
             Inventario = CustomTaskPanes.Add(_inventario, "Importar...");
             Inventario.Visible = false;
-            Inventario.Width = 280;Recetario = CustomTaskPanes.Add(_recetario, "Recetario");
+            Inventario.Width = 280;
+            Recetario = CustomTaskPanes.Add(_recetario, "Recetario");
             Recetario.Visible = false;
             Recetario.Width = 280;
             Application.WorkbookActivate +=
            Application_ActiveWorkbookChanges;
-            Application.WorkbookDeactivate +=
-                Application_ActiveWorkbookChanges;
+            Application.WorkbookDeactivate +=Application_ActiveWorkbookChanges;
             Globals.ThisAddIn.Application.SheetSelectionChange += activeSheet_SelectionChange;
             _sheet1 = (Excel.Worksheet) Application.ActiveSheet;
         }
@@ -81,8 +81,8 @@ namespace testVSTO2
                     File.Delete(sPath);
                 }
                 _reporte = awa.Worksheets[nombreHoja] as Excel.Worksheet;//nombre de la hoja actual   
-
-            }
+                _reporte?.Activate();
+                }
             catch (Exception e)
             {
                 MessageBox.Show(e.Message);
@@ -95,7 +95,7 @@ namespace testVSTO2
             var rrg = Opcion.JsonaListaGenerica<Reporte.General.Respuesta>(restResponse);
             _rowCount = (rrg.Count + 1);
             _reporte =InicializarExcelConTemplate("ReporteInventario"); //TODO traer de la base de datos 
-            var list = new List<string> { "P-1", "P-.5", "1", "4", "DESCONOCIDO" };//TODO traer de la base de datos
+            var list = new List<string> { "P-1", "P-.5","PD", "1", "4", "DESCONOCIDO" };//TODO traer de la base de datos
             var flatList = string.Join(",", list.ToArray());
             if (_reporte != null)
             {
@@ -103,8 +103,7 @@ namespace testVSTO2
                 {
                     Application.Cells.Locked = false;
                     var oRng = _reporte.Range["A1", "T" + (rrg.Count+1)];
-                    oRng.Cells.AutoFilter(1, Type.Missing,
-                                            Excel.XlAutoFilterOperator.xlAnd, Type.Missing, true);
+                    oRng.Cells.AutoFilter(1, Type.Missing,Excel.XlAutoFilterOperator.xlAnd, Type.Missing, true);
                     _reporte.Range[
                         "A" + 2 + ":T" + Globals.ThisAddIn.Application.ActiveSheet.Cells.Find("*", Missing.Value,
                             Missing.Value, Missing.Value, Excel.XlSearchOrder.xlByRows,
@@ -117,18 +116,10 @@ namespace testVSTO2
                     _reporte.Range["E" + 2 + ":E" + _rowCount].Validation.Delete();
                     _reporte.Range["E" + 2 + ":E" + _rowCount].Validation.Add(Excel.XlDVType.xlValidateList,
                     Excel.XlDVAlertStyle.xlValidAlertInformation,Excel.XlFormatConditionOperator.xlBetween,flatList,Type.Missing);
-                    for (var x = 0; x < rrg.Count; x++)
+                    ConfigurarFormulas(Local.Formulario.Reporte.General, 2, rrg.Count, resultado =>
                     {
-                        var c = (x + 2);
-                        var formula = @"=SI(E" + c + @"=""P-.5"",""Semanal"",SI(E" + c +
-                                      @"=""P-1"",""Semanal"",SI(E" + c + @"=""1"",REDONDEAR.MAS(J" + c + @"+(G" + c +
-                                      @"*2),0),SI(E" + c + @"=""4"",REDONDEAR.MAS(J" + c + @"/2,0),""N/A""))))";
-
-                        _reporte.Range["I" + c].FormulaLocal = formula;
-                        formula = "=REDONDEAR.MAS((((R"+c+"/L"+c+")/S"+c+")-1)*-100,3)";
-                        _reporte.Range["T" + c].FormulaLocal = formula;
-                    }
-                    _sheet1.Protect(AllowSorting: true, AllowFiltering: true,UserInterfaceOnly:true);
+                        _sheet1.Protect(AllowSorting: true, AllowFiltering: true, UserInterfaceOnly: true);
+                    });
                 }
                 catch (Exception e)
                 {
@@ -140,31 +131,59 @@ namespace testVSTO2
                 MessageBox.Show(@"No se encontraron resultados con la busqueda indicada");
             }
         }
+
+        private void ConfigurarFormulas(string reporte,int posicion,int longitud, Action<Excel.Worksheet> callback)
+        {
+            Opcion.EjecucionAsync(parametro =>
+            {
+                Data.Formulario.Obtener(reporte, parametro);
+            }, jsonResult =>
+            {
+                try
+                {
+                    var formulario = Opcion.JsonaListaGenerica<Formulario>(jsonResult);
+                    for (var x = 0; x < longitud; x++)
+                    {
+                        var c = (x + posicion);
+                        foreach (var t in formulario)
+                        {
+                            _reporte.Range[t.PosicionRegex(c)].FormulaLocal = t.FormulaRegex(_reporte, c);
+                        }
+                    }
+                    callback(_reporte);
+                }
+                catch (Exception e)
+                {
+                    MessageBox.Show(e.Message);
+                }
+               
+            });
+        }
         private static object[,] InicializarLista(IReadOnlyList<Reporte.General.Respuesta> rrg)
         {
             var lista = new object[rrg.Count, 20];
             for (var x = 0; x < rrg.Count; x++)
             {
-                lista[x, Reporte.General.Posicion.clave] = rrg[x].clave+"";
-                lista[x, Reporte.General.Posicion.departamento] = rrg[x].departamento;
-                lista[x, Reporte.General.Posicion.categoria] = rrg[x].categoria;
-                lista[x, Reporte.General.Posicion.descripcion] = rrg[x].descripcion;
-                lista[x, Reporte.General.Posicion.tipo] = rrg[x].tipo;
-                lista[x, Reporte.General.Posicion.existencia] = rrg[x].existencia;
-                lista[x, Reporte.General.Posicion.existenciaCedis] = rrg[x].existenciaCedis;
-                lista[x, Reporte.General.Posicion.consumoDiario] = rrg[x].consumoDiario;
-                lista[x, Reporte.General.Posicion.puntoReorden] = rrg[x].puntoReorden;
-                lista[x, Reporte.General.Posicion.inventarioMinimo] = rrg[x].inventarioMinimo;
-                lista[x, Reporte.General.Posicion.inventarioMaximo] = rrg[x].inventarioMaximo;
-                lista[x, Reporte.General.Posicion.factor] = rrg[x].factor;
-                lista[x, Reporte.General.Posicion.cantidadVendida] = rrg[x].cantidadVendida;
-                lista[x, Reporte.General.Posicion.ventas] = rrg[x].ventas;
-                lista[x, Reporte.General.Posicion.fechaUltimaCompra] = rrg[x].fechaUltimaCompra.ToString(CultureInfo.InvariantCulture);
-                lista[x, Reporte.General.Posicion.cantidadComprada] = rrg[x].cantidadComprada;
-                lista[x, Reporte.General.Posicion.radioInventario] = rrg[x].radioInventario;
-                lista[x, Reporte.General.Posicion.precioCompra] = rrg[x].precioCompra;
-                lista[x, Reporte.General.Posicion.precioVenta] = rrg[x].precioVenta;
-                lista[x, Reporte.General.Posicion.margen] = double.Parse(rrg[x].margen) / 100;
+                lista[x, Reporte.General.Posicion.clave]                = rrg[x].clave+"";
+                lista[x, Reporte.General.Posicion.departamento]         = rrg[x].departamento;
+                lista[x, Reporte.General.Posicion.categoria]            = rrg[x].categoria;
+                lista[x, Reporte.General.Posicion.descripcion]          = rrg[x].descripcion;
+                lista[x, Reporte.General.Posicion.tipo]                 = rrg[x].tipo;
+                lista[x, Reporte.General.Posicion.existencia]           = rrg[x].existencia;
+                lista[x, Reporte.General.Posicion.existenciaCedis]      = rrg[x].existenciaCedis;
+                lista[x, Reporte.General.Posicion.consumoDiario]        = rrg[x].consumoDiario;
+                lista[x, Reporte.General.Posicion.puntoReorden]         = rrg[x].puntoReorden;
+                lista[x, Reporte.General.Posicion.inventarioMinimo]     = rrg[x].inventarioMinimo;
+                lista[x, Reporte.General.Posicion.inventarioMaximo]     = rrg[x].inventarioMaximo;
+                lista[x, Reporte.General.Posicion.factor]               = rrg[x].factor;
+                lista[x, Reporte.General.Posicion.cantidadVendida]      = rrg[x].cantidadVendida;
+                lista[x, Reporte.General.Posicion.ventas]               = rrg[x].ventas;
+                lista[x, Reporte.General.Posicion.fechaUltimaCompra]    = rrg[x].fechaUltimaCompra.ToString(CultureInfo.InvariantCulture);
+                lista[x, Reporte.General.Posicion.cantidadComprada]     = rrg[x].cantidadComprada;
+                lista[x, Reporte.General.Posicion.radioInventario]      = rrg[x].radioInventario;
+                lista[x, Reporte.General.Posicion.precioCompra]         = rrg[x].precioCompra;
+                lista[x, Reporte.General.Posicion.precioVenta]          = rrg[x].precioVenta;
+                lista[x, Reporte.General.Posicion.margen]               = double.Parse(rrg[x].margen) / 100;
             }
             return lista;
         }
@@ -193,8 +212,9 @@ namespace testVSTO2
             // TODO: Active Workbook has changed. Ribbon should be updated.    
             wb.Unprotect();
         }
-        public void ReporteImprimir(IRestResponse restResponse)
-        {
+
+
+        public void ReporteImprimir(IRestResponse restResponse){
             var rrg = Opcion.JsonaListaGenerica<Reporte.General.Respuesta>(restResponse);
 
             _reporte = InicializarExcelConTemplate("ReporteInventarioImprimir");
@@ -231,47 +251,15 @@ namespace testVSTO2
                     _reporte.Range["A" + 5 + ":I" + _rowCount].WrapText = true;
                     _reporte.Range["A"+5+":I"+_rowCount].Cells.HorizontalAlignment =Excel.XlHAlign.xlHAlignLeft;
                     _reporte.Range["I5:I"+_rowCount].Interior.Color = ColorTranslator.ToOle(Color.Yellow);
-                    for (var x = 0; x < rrg.Count; x++)
+                    ConfigurarFormulas(Local.Formulario.Reporte.Imprimir, 5, rrg.Count, resultado =>
                     {
-                        var c = (x + 5);
-                        /*Inventario Minimo*/
-                        string formula = @"=SI(B"+c+ @"=4,MULTIPLO.SUPERIOR.MAT(" 
-                                         + _reporte.Range["D"+c].Value2*30+ "," + _reporte.Range["H" + c].Value2 
-                                         + "),MULTIPLO.SUPERIOR.MAT(" + _reporte.Range["D" + c].Value2 * 7+","
-                                         + _reporte.Range["H" + c].Value2 + "))";
-                        _reporte.Range["F" + c].FormulaLocal = formula;
-                        /*Inventario Máximo*/
-                        formula = @"=SI(B" + c + @"=4,MULTIPLO.SUPERIOR.MAT(" 
-                        + (_reporte.Range["F" + c].Value2 + (_reporte.Range["D" + c].Value2 * 3))+ "," + _reporte.Range["H" + c].Value2 + "),SI(B"+c+@"=1,MULTIPLO.SUPERIOR.MAT(" 
-                        + _reporte.Range["F" + c].Value2 * 2 + "," + _reporte.Range["H" + c].Value2 
-                        + "),SI(B" + c + @"=""P-1"",MULTIPLO.SUPERIOR.MAT(" + _reporte.Range["F" + c].Value2 * 1.5
-                        + "," + _reporte.Range["H" + c].Value2 + "),SI(B" + c + @"=""P-.5"",MULTIPLO.SUPERIOR.MAT("
-                        + (Convert.ToDouble(_reporte.Range["F" + c].Value2) + (_reporte.Range["D" + c].Value2*2))
-                        + "," + _reporte.Range["H" + c].Value2 + ")))))";
-                        _reporte.Range["G" + c].FormulaLocal = formula;
-                        /*PUNTO DE REORDEN*/
-                        formula = @"=SI(B" + c + @"=""P-.5"",""Semanal"",SI(B" + c + @"=""P-1"",""Semanal"",SI(B" 
-                        + c + @"=1,REDONDEAR.MAS(F" + c + @"+(D" + c + @"*2),0),SI(B" + c + @"=4,REDONDEAR.MAS(F"
-                        + c + @"/2,0),""N/A""))))";
-                        _reporte.Range["E" + c].FormulaLocal = formula;
-                        /*CANTIDAD A PEDIR*/
-                        formula = @"=SI(B" + c + @"=""P-.5"",REDONDEA.IMPAR((G" + c 
-                            + @"- SI(C" + c + @"<0,0,C" + c + @") ) / H" + c + @"),SI(B" + c
-                            + @" = ""P-1"",REDONDEAR.MAS(((G" + c + @" - SI(C" + c 
-                            + @"<0,0,C" + c + @")) / H" + c + @"), 0), SI(B" + c 
-                            + @" = 1,REDONDEAR.MAS((G" + c + @" / H" + c + @"), 0), SI(B" + c
-                            + @" = 4,SI(F" + c + @" > H" + c + @", F" + c + @", H" + c 
-                            + @"),""PEDIDO DESCONOCIDO""))))";
-                        _reporte.Range["I" + c].FormulaLocal = formula;
-                    }
-                    _reporte.Range["C" + 5 + ":D" + _rowCount].NumberFormat = "0.00";
-                    _reporte.Range["F" + 5 + ":H" + _rowCount].NumberFormat = "0.00";
-                    _reporte.Range["FECHA_INI_IMP"].Value2 = Data.Reporte.FechaIni;
-                    _reporte.Range["FECHA_FIN_IMP"].Value2 = Data.Reporte.FechaFin;
-                        var oRng = _reporte.Range["A4", "I"+(rrg.Count+5)];
-                    oRng.Cells.AutoFilter(9, ">0",
-                                            Excel.XlAutoFilterOperator.xlAnd, Type.Missing, true);
-
+                        resultado.Range["C" + 5 + ":D" + _rowCount].NumberFormat = "0.00";
+                        resultado.Range["F" + 5 + ":H" + _rowCount].NumberFormat = "0.00";
+                        resultado.Range["FECHA_INI_IMP"].Value2 = Data.Reporte.FechaIni;
+                        resultado.Range["FECHA_FIN_IMP"].Value2 = Data.Reporte.FechaFin;
+                        var oRng = resultado.Range["A4", "I" + (rrg.Count + 5)];
+                        oRng.Cells.AutoFilter(9, ">0", Excel.XlAutoFilterOperator.xlAnd, Type.Missing, true);
+                    });
                 }
                 catch (Exception e)
                 {
@@ -316,8 +304,6 @@ namespace testVSTO2
         }
         public static SideBarImportarInformacion SideBarImportarInformacion;
         public static Microsoft.Office.Tools.CustomTaskPane MyCustomTaskPane;
-
-
         protected override Microsoft.Office.Core.IRibbonExtensibility CreateRibbonExtensibilityObject()
           {
               return new Ribbon1();
@@ -332,7 +318,6 @@ namespace testVSTO2
         {
             Startup += ThisAddIn_Startup;
             Shutdown += ThisAddIn_Shutdown;
-            
         }
         
         #endregion

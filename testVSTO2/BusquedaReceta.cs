@@ -29,22 +29,21 @@ namespace testVSTO2
                 BeginInvoke((MethodInvoker)(() =>
                 {
                     switch (jsonResult.StatusCode)
-                    {case HttpStatusCode.OK:
+                    {
+                        case HttpStatusCode.OK:
                             _listaRecetas = Opcion.JsonaListaGenerica<Receta>(jsonResult);
-                            dgvRecetas.DataSource = _listaRecetas.Select(x => new { clave = x.Clave, descripcion = x.Descripcion, precio = x.Precio }).ToArray();
+                            dgvRecetas.DataSource = _listaRecetas.Select(x => new { x.Clave, x.Descripcion, x.Precio }).ToArray();
                             dgvRecetas.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
                             for (var x = 0; x < 3; x++)
                             {
                                 dgvRecetas.Columns[x].ReadOnly = true;
                                 dgvRecetas.Columns[x].DefaultCellStyle.BackColor = Color.LightGray;
                             }
-                            
                             break;
                         default:
-                            MessageBox.Show(@"No se encontraron recetas con los parametros de busqueda ingresados");
+                            MessageBox.Show(this, @"No se encontraron recetas con los parametros de busqueda ingresados");
                             break;
                     }
-
                 }));
             });}
 
@@ -57,10 +56,10 @@ namespace testVSTO2
             tbMargenConPrecio.Text= _listaRecetas[dgvRecetas.CurrentCell.RowIndex].Margen.ToString(CultureInfo.InvariantCulture);
             tbDescripcion.Text = _listaRecetas[dgvRecetas.CurrentCell.RowIndex].Descripcion;
             tbCostoElaboracion.Text = _listaRecetas[dgvRecetas.CurrentCell.RowIndex].CostoElaboracion.ToString(CultureInfo.InvariantCulture);
-            tbCostoEstimado.Text =
-                _listaRecetas[dgvRecetas.CurrentCell.RowIndex].CostoCreacion.ToString(CultureInfo.InvariantCulture);
+            tbCostoEstimado.Text =_listaRecetas[dgvRecetas.CurrentCell.RowIndex].CostoCreacion.ToString(CultureInfo.InvariantCulture);
             tbClaveReceta.Text = _listaRecetas[dgvRecetas.CurrentCell.RowIndex].Clave;
-            tbPesoLitro.Text = _listaRecetas[dgvRecetas.CurrentCell.RowIndex].PesoLitro.ToString(CultureInfo.InvariantCulture);}
+            tbPesoLitro.Text = _listaRecetas[dgvRecetas.CurrentCell.RowIndex].PesoLitro.ToString(CultureInfo.InvariantCulture);
+        }
 
         private void btAceptar_Click(object sender, EventArgs e)
         {

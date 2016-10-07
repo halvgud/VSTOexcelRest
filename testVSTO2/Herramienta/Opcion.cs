@@ -2,6 +2,8 @@
 using System.Collections.Generic;
 using System.IO;
 using System.Windows.Forms;
+using Newtonsoft.Json;
+using Newtonsoft.Json.Linq;
 using RestSharp;
 using RestSharp.Deserializers;
 
@@ -51,7 +53,12 @@ namespace testVSTO2.Herramienta
                 Console.WriteLine(e.Message);
                 return x;
             }
-            
+        }
+
+        public static string JsonaString(string json)
+        {
+            dynamic myObject = JsonConvert.DeserializeObject<dynamic>(json);
+            return Convert.ToString(myObject.mensaje);
         }
 
 

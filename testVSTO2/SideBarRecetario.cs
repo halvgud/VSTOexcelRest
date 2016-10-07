@@ -15,6 +15,7 @@ namespace testVSTO2
         public SideBarRecetario()
         {
             InitializeComponent();
+            _listaRecetas = new List<Receta>();
         }
         private List<Receta.Basica> _listaArticuloBasica1;
         private List<Receta.Basica> _listaArticuloBasica2;
@@ -66,7 +67,7 @@ namespace testVSTO2
             Local.Receta.clave = (tbBuscarReceta.Text);
             Opcion.EjecucionAsync(Data.Receta.Lista, jsonResult =>
             {
-                BeginInvoke((MethodInvoker) (() =>
+                BeginInvoke((MethodInvoker) (() =>  
                 {
                     switch (jsonResult.StatusCode)
                     {
@@ -83,7 +84,8 @@ namespace testVSTO2
                             brd.Show();
                             break;
                         default:
-                            throw new Exception(@"No se encontraron recetas con los parametros de busqueda ingresados");
+                            MessageBox.Show(this, (Opcion.JsonaString(jsonResult.Content)));
+                            break;
                     }}));
             });
         }

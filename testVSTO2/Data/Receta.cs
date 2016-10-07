@@ -21,7 +21,8 @@ namespace testVSTO2.Data
                 rest.Peticion.AddHeader(Constantes.Http.ObtenerTipoDeContenido,
                     Constantes.Http.TipoDeContenido.Json);
                 rest.Cliente.ExecuteAsync(rest.Peticion, callback);
-            }catch (Exception e)
+            }
+            catch (Exception e)
             {
                 Opcion.Log(Log.Interno.Categoria, "EXCEPCION: " + e.Message);
                 // callback("CONTINUAR");

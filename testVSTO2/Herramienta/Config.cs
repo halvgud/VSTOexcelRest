@@ -17,55 +17,54 @@
         {
             public static class Api
             {
-                public static string UrlApi { get; set; } = "http://192.168.0.2/apiMovStock/public/";
-                public static string IdSucursal { get; set; } = "2";
+                public static string UrlApi { get; set; } = Properties.Settings.Default.UrlApi;
+                public static string IdSucursal { get; set; } = Properties.Settings.Default.IdSucursal;
             }
             public static class Articulo
             {
-                public static string Lista { get; set; } = "articulo/";
+                public static string Lista { get; set; } = Properties.Settings.Default.ArticuloLista;
                 public static string IdArticulo { get; set; } = "";
 
                 public static class Tipo
                 {
-                    public static string Seleccionar { get; set; } = "articulo/tipo";
-                    public static string Guardar { get; set; } = "articulo/tipo";
+                    public static string Seleccionar { get; set; } = Properties.Settings.Default.TipoSeleccionar;
+                    public static string Guardar { get; set; } = Properties.Settings.Default.TipoGuardar;
                 }
 
                 public static class MaximosMinimos
                 {
-                    public static string Guardar { get; set; } = "articulo/maximosminimos";
+                    public static string Guardar { get; set; } = Properties.Settings.Default.MaximosMinimosGuardar;
                 }
 
                 public static class PrecioMargen
                 {
-                    public static string Guardar { get; set; } = "articulo/preciomargen";
+                    public static string Guardar { get; set; } = Properties.Settings.Default.PrecioMargenGuardar;
                 }
             }
 
             public static class Receta
             {
-                public static string Lista { get; set; } = "receta/";
-                public static string DetalleLista { get; set; } = "receta/detalle/";
+                public static string Lista { get; set; } = Properties.Settings.Default.RecetaLista;
+                public static string DetalleLista { get; set; } = Properties.Settings.Default.RecetaDetalleLista;
                 public static int IdReceta { get; set; }
                 public static string clave { get; set; }
-                public static string Insertar { get; set; } = "receta";
-                public static string InsertarDetalle { get; set; } = "receta/detalle";
-                public static string Tipo { get; set; } = "receta/tipo";
-
+                public static string Insertar { get; set; } = Properties.Settings.Default.RecetaInsertar;
+                public static string InsertarDetalle { get; set; } = Properties.Settings.Default.RecetaInsertarDetalle;
+                public static string Tipo { get; set; } = Properties.Settings.Default.RecetaTipo;
             }
             public static class Categoria
             {
-                public static string Lista { get; set; } = "categoria/";
+                public static string Lista { get; set; } = Properties.Settings.Default.CategoriaLista;
             }
 
             public static class Ordenar
             {
-                public static string Lista { get; set; } = "ordenar/lista";
+                public static string Lista { get; set; } = Properties.Settings.Default.OrdenarLista;
             }
 
             public static class Departamento
             {
-                public static string Lista { get; set; } = "departamento";
+                public static string Lista { get; set; } = Properties.Settings.Default.DepartamentoLista;
                 public static string IdDepartamento { get; set; }
             }
             public static class Parametro
@@ -75,7 +74,7 @@
 
             public static class Permiso
             {
-                public static string Obtener { get; set; } = "permiso";
+                public static string Obtener { get; set; } = Properties.Settings.Default.PermisoObtener;
             }
 
 
@@ -95,28 +94,27 @@
 
             public static class Proveedor
             {
-                public static string Lista { get; set; } = "proveedor";
+                public static string Lista { get; set; } = Properties.Settings.Default.ProveedorLista;
             }
 
             public static class Reporte
             {
-                public static string General { get; set; } = "reporte/general";
-                public static string Imprimir { get; set; } = "reporte/general/imprimir";
+                public static string General { get; set; } = Properties.Settings.Default.ReporteGeneral;
+                public static string Imprimir { get; set; } = Properties.Settings.Default.ReporteImprimir;
             }
 
             public static class Formulario
             {
                 public static class Reporte
                 {
-                    public static string Ruta { get; set; } = "formula/reporte/";
-                    public static string Imprimir { get; set; } = "imprimir";
-                    public static string General { get; set; } = "general";
-                }
-            }
+                    public static string Ruta { get; set; } = Properties.Settings.Default.FormularioReporteRuta;
+                    public static string Imprimir { get; set; } = Properties.Settings.Default.FormularioReporteImprimir;
+                    public static string General { get; set; } = Properties.Settings.Default.FormularioReporteGeneral;
+                }}
 
             public static class Sucursal
             {
-                public static string Lista { get; set; } = "sucursal";
+                public static string Lista { get; set; } = Properties.Settings.Default.SucursalLista;
             }
         }
     }

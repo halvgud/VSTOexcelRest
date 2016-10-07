@@ -18,7 +18,7 @@ namespace testVSTO2.Data
         {
             try
             {
-                var rest = new Rest(Local.Api.UrlApi,Local.Reporte.General,
+                var rest = new Rest(Local.Api.UrlApi, Local.Reporte.General,
                     Method.POST);
                 rest.Peticion.AddHeader(Constantes.Http.ObtenerTipoDeContenido,
                     Constantes.Http.TipoDeContenido.Json);
@@ -40,7 +40,7 @@ namespace testVSTO2.Data
             catch (Exception e)
             {
                 Opcion.Log(Log.Interno.Categoria, "EXCEPCION: " + e.Message);
-                // callback("CONTINUAR");
+                callback(null);
             }
         }
         public static void Imprimir(Action<IRestResponse> callback, Respuesta.Reporte.General repGeneral)

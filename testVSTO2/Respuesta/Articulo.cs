@@ -15,16 +15,16 @@ namespace testVSTO2.Respuesta
 
         public Basica CopiadoSencillo()
         {
-            var art = new Basica {clave = clave, descripcion = descripcion, precioCompra = precioCompra, cantidad=cantidad,art_id=art_id};
+            var art = new Basica {Clave = clave, Descripcion = descripcion, PrecioCompra = precioCompra, Cantidad=cantidad,ArtId=art_id};
             return art;
         }
         public class Basica
         {
-            public int  art_id { get; set; }
-            public string clave { get; set; }
-            public string descripcion { get; set; }
-            public double precioCompra { get; set; }
-            public double cantidad { get; set; }
+            public int  ArtId { get; set; }
+            public string Clave { get; set; }
+            public string Descripcion { get; set; }
+            public double PrecioCompra { get; set; }
+            public double Cantidad { get; set; }
         }
 
         public class Guardar

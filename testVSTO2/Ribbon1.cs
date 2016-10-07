@@ -86,11 +86,12 @@ namespace testVSTO2
         {
             try
             {
-                var mse = new MensajeDeEspera();
-                mse.Show();
+
                 string name = Globals.ThisAddIn.Application.ActiveSheet.Name;
                 if (name.Equals(@"ReporteInventario"))
                 {
+                    var mse = new MensajeDeEspera();
+                    mse.Show();
                     var sheet = Globals.ThisAddIn.Application.ActiveSheet;
                     var nInLastRow = sheet.Cells.Find("*", Missing.Value,
     Missing.Value, Missing.Value, Microsoft.Office.Interop.Excel.XlSearchOrder.xlByRows,
@@ -98,27 +99,24 @@ namespace testVSTO2
     .Row;
                     object[,] value = sheet.Range["A2","T" + nInLastRow].Value;
                     var lista = new List<Articulo.Guardar.PrecioMargen>();
-                    for (var x =0; x <= (value.Length / 20); x++)
+                    for (var x =1; x <= (value.Length / 20); x++)
                     {
                         lista.Add(new Articulo.Guardar.PrecioMargen
                         {
-                            clave = value[x+1, Reporte.General.Posicion.clave+1].ToString(),
-                            precio1 = value[x+1, Reporte.General.Posicion.precioVenta+1].ToString(),
-                            margen1 = value[x+1, Reporte.General.Posicion.margen+1].ToString()
+                            clave = value[x, Reporte.General.Posicion.clave+1].ToString(),
+                            precio1 = value[x, Reporte.General.Posicion.precioVenta+1].ToString(),
+                            margen1 = value[x, Reporte.General.Posicion.margen+1].ToString()
                         });
                     }
                     Opcion.EjecucionAsync(x =>
                     {
                         Data.Articulo.PrecioMargen.Guardar(x, lista);
-                    }, y =>
-                    {
+                    }, y =>{
                         mse.BeginInvoke((MethodInvoker)(() =>
                         {
-
                             mse.Close();
                         }));
-                        MessageBox.Show(y.Content);
-                        Console.WriteLine(y.Content);
+                        MessageBox.Show(Opcion.JsonaString(y.Content));
                     });
                 }
                 else
@@ -135,10 +133,12 @@ namespace testVSTO2
         {
             try
             {
-                var mse = new MensajeDeEspera();
+
                 string name = Globals.ThisAddIn.Application.ActiveSheet.Name;
                 if (name.Equals(@"ReporteInventario"))
                 {
+                    var mse = new MensajeDeEspera();
+                    mse.Show();
                     var sheet = Globals.ThisAddIn.Application.ActiveSheet;
                     var nInLastRow = sheet.Cells.Find("*", Missing.Value,
     Missing.Value, Missing.Value, Microsoft.Office.Interop.Excel.XlSearchOrder.xlByRows,
@@ -165,7 +165,7 @@ namespace testVSTO2
 
                             mse.Close();
                         }));
-                        MessageBox.Show(y.Content);
+                        MessageBox.Show(Opcion.JsonaString(y.Content));
                         Console.WriteLine(y.Content);
                     });
                 }
@@ -183,11 +183,12 @@ namespace testVSTO2
         {
             try
             {
-                var mse = new MensajeDeEspera();
+
                 string name = Globals.ThisAddIn.Application.ActiveSheet.Name;
                 if (name.Equals(@"ReporteInventario"))
                 {
-                    var sheet = Globals.ThisAddIn.Application.ActiveSheet;
+                    var mse = new MensajeDeEspera();
+                    mse.Show();var sheet = Globals.ThisAddIn.Application.ActiveSheet;
                     var nInLastRow = sheet.Cells.Find("*", Missing.Value,
                         Missing.Value, Missing.Value, Microsoft.Office.Interop.Excel.XlSearchOrder.xlByRows,
                         Microsoft.Office.Interop.Excel.XlSearchDirection.xlPrevious, false, Missing.Value, Missing.Value)
@@ -213,10 +214,9 @@ namespace testVSTO2
 
                             mse.Close();
                         }));
-                        MessageBox.Show(y.Content);
+                        MessageBox.Show(Opcion.JsonaString(y.Content));
                         Console.WriteLine(y.Content);
                     });
-
                 }
                 else
                 {

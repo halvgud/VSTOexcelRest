@@ -203,14 +203,14 @@ namespace testVSTO2
                                 _listaArticuloBasica2.AddRange(_listaArticuloBasica1);
                             }
                             parametros.Ingredientes.DataSource = _listaArticuloBasica2
-                                    .GroupBy(p => p.art_id)
+                                    .GroupBy(p => p.ArtId)
                                     .Select(g => new Articulo.Basica
                                     {
-                                        art_id = g.Key,
-                                        clave = g.First().clave,
-                                        descripcion = g.First().descripcion,
-                                        precioCompra = g.First().precioCompra,
-                                        cantidad = g.Sum(i => i.cantidad)
+                                        ArtId = g.Key,
+                                        Clave = g.First().Clave,
+                                        Descripcion = g.First().Descripcion,
+                                        PrecioCompra = g.First().PrecioCompra,
+                                        Cantidad = g.Sum(i => i.Cantidad)
                                     }).ToList();
                             for (var x = 0; x == 3; x++)
                             {
@@ -283,7 +283,7 @@ namespace testVSTO2
             {
                 BeginInvoke((MethodInvoker)(() =>
                 {
-                    MessageBox.Show(@"La Clave ingresada ya existe");
+                    MessageBox.Show(this,@"La Clave ingresada ya existe");
                     claveReceta.Text = "";
                     claveReceta.Focus();
                     btGuardar.Enabled = true;
@@ -356,7 +356,7 @@ namespace testVSTO2
 
             BeginInvoke((MethodInvoker)(() =>
             {
-                MessageBox.Show(@"Se a guardado con éxito con Clave :" + inputs.ClaveReceta.Text);
+                MessageBox.Show(this, @"Se a guardado con éxito con Clave :" + inputs.ClaveReceta.Text);
                 inputs.ClaveReceta.Text = "";
                 inputs.Precio.Text = "";
                 inputs.PesoLitro.Text = "";
@@ -430,11 +430,11 @@ namespace testVSTO2
                                          dgvIngredientesBusqueda.DataSource = resultado.Ingredientes
                                          .Select(x => new Articulo.Basica
                                          {
-                                             art_id = x.ArtId,
-                                             clave = x.Clave,
-                                             descripcion = x.Descripcion,
-                                             precioCompra = x.PrecioCompra,
-                                             cantidad = x.Cantidad
+                                             ArtId = x.ArtId,
+                                             Clave = x.Clave,
+                                             Descripcion = x.Descripcion,
+                                             PrecioCompra = x.PrecioCompra,
+                                             Cantidad = x.Cantidad
                                          }).ToList();
                                          tbPrecioBE.Text = resultado.Precio.ToString(CultureInfo.InvariantCulture);
                                          tbDescripcionBE.Text = resultado.Descripcion;
@@ -449,7 +449,9 @@ namespace testVSTO2
                             brd.Show();
                             break;
                         default:
-                            throw new Exception(@"No se encontraron recetas con los parametros de busqueda ingresados");
+                            MessageBox.Show(this, @"No se encontraron recetas con los parametros de busqueda ingresados");
+                            Console.WriteLine(jsonResult.Content);
+                            break;
                     }
 
                 }));

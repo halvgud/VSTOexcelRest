@@ -20,11 +20,20 @@ namespace testVSTO2
         private SideBarRecetario _recetario;
         public static Microsoft.Office.Tools.CustomTaskPane Inventario;
         public static Microsoft.Office.Tools.CustomTaskPane Recetario;
+        private List<Reportes> _reportes; 
+        class Reportes
+        {
+            public string Nombre { get; set; }
+        }
         private Excel.Worksheet _reporte;
         Excel.Worksheet _sheet1;
         private int _rowCount;
         private void ThisAddIn_Startup(object sender, EventArgs e)
         {
+            _reportes = new List<Reportes> { 
+            new Reportes { Nombre = "ReporteInventario"},
+            new Reportes { Nombre= "ReporteInventarioImprimir" }
+            };
             _inventario = new SideBarImportarInformacion();
             _recetario = new SideBarRecetario();
             Inventario = CustomTaskPanes.Add(_inventario, "Importar...");
@@ -42,11 +51,12 @@ namespace testVSTO2
         
         void activeSheet_SelectionChange(object sh,Excel.Range target)
         {
-            _sheet1 = (Excel.Worksheet)Application.ActiveSheet;
-            if (target.Row != 1)
+             _sheet1 = (Excel.Worksheet)sh;
+            if (target.Row != 1 && (_reportes.FirstOrDefault(x=>x.Nombre== _sheet1.Name)!=null) )
             {
                 try
                 {
+                    _sheet1.Unprotect();
                     Globals.ThisAddIn.Application.Cells.Locked = false;
                     BloquearRango(_rowCount);
                     _sheet1.Protect(AllowSorting: true, AllowFiltering: true);
@@ -76,8 +86,7 @@ namespace testVSTO2
                     File.WriteAllBytes(sPath, Properties.Resources.FICHA_RECETA);//se copia el template
                     var oTemplate = Application.Workbooks.Add(sPath); //path del template temporal  
                     var worksheet = oTemplate.Worksheets[nombreHoja] as Excel.Worksheet;//nombre del template
-                    worksheet?.Copy(After: ows);
-                    oTemplate.Close(false, missing, missing);
+                    worksheet?.Copy(After: ows);oTemplate.Close(false, missing, missing);
                     File.Delete(sPath);
                 }
                 _reporte = awa.Worksheets[nombreHoja] as Excel.Worksheet;//nombre de la hoja actual   
@@ -89,9 +98,10 @@ namespace testVSTO2
             }
             return _reporte;
         }
-             
-        public void ReporteGeneral(IRestResponse restResponse)
+                
+        public void ReporteGeneral(IRestResponse restResponse,Action callback)
         {
+            Application.ScreenUpdating = false;
             var rrg = Opcion.JsonaListaGenerica<Reporte.General.Respuesta>(restResponse);
             _rowCount = (rrg.Count + 1);
             _reporte =InicializarExcelConTemplate("ReporteInventario"); //TODO traer de la base de datos 
@@ -119,6 +129,8 @@ namespace testVSTO2
                     ConfigurarFormulas(Local.Formulario.Reporte.General, 2, rrg.Count, resultado =>
                     {
                         _sheet1.Protect(AllowSorting: true, AllowFiltering: true, UserInterfaceOnly: true);
+                        callback();
+                        Application.ScreenUpdating = true;
                     });
                 }
                 catch (Exception e)
@@ -134,6 +146,7 @@ namespace testVSTO2
 
         private void ConfigurarFormulas(string reporte,int posicion,int longitud, Action<Excel.Worksheet> callback)
         {
+
             Opcion.EjecucionAsync(parametro =>
             {
                 Data.Formulario.Obtener(reporte, parametro);
@@ -205,24 +218,21 @@ namespace testVSTO2
             _reporte.Range["Q" + 2 + ":Q" + posicion].Locked = true;//RADIO INVENTARIO
             _reporte.Range["R" + 2 + ":R" + posicion].Locked = true;//PRECIO DE COMPRA
             _reporte.Range["T" + 2 + ":T" + posicion].Locked = true;//MARGEN
-
         }
         void Application_ActiveWorkbookChanges(Excel.Workbook wb)
         {
             // TODO: Active Workbook has changed. Ribbon should be updated.    
-            wb.Unprotect();
+            //wb.Unprotect();
         }
 
-
-        public void ReporteImprimir(IRestResponse restResponse){
+        public void ReporteImprimir(IRestResponse restResponse,Action callback ){
             var rrg = Opcion.JsonaListaGenerica<Reporte.General.Respuesta>(restResponse);
-
+            Application.ScreenUpdating = false;
             _reporte = InicializarExcelConTemplate("ReporteInventarioImprimir");
             _rowCount = rrg.Count + 4;
             if (_reporte != null)
             {
-                try
-                {
+                try{
                     var lista = new object[rrg.Count, 9];
                     for (var x = 0; x < rrg.Count; x++)
                     {
@@ -245,8 +255,6 @@ namespace testVSTO2
                     _reporte.Range["A" + 5 + ":I" + _rowCount].Borders[Excel.XlBordersIndex.xlEdgeTop].LineStyle = Excel.XlLineStyle.xlContinuous;
                     _reporte.Range["A" + 5 + ":I" + _rowCount].Borders[Excel.XlBordersIndex.xlEdgeBottom].LineStyle = Excel.XlLineStyle.xlContinuous;
                     _reporte.Range["A" + 5 + ":I" + _rowCount].Borders.Color = Color.Black;
-                    
-                    //TODO ADJUST TEXT, CALIBRI 8, CENTER, 
                     _reporte.Range["A" + 5 + ":I" + _rowCount].Font.Size = 8;
                     _reporte.Range["A" + 5 + ":I" + _rowCount].WrapText = true;
                     _reporte.Range["A"+5+":I"+_rowCount].Cells.HorizontalAlignment =Excel.XlHAlign.xlHAlignLeft;
@@ -259,6 +267,8 @@ namespace testVSTO2
                         resultado.Range["FECHA_FIN_IMP"].Value2 = Data.Reporte.FechaFin;
                         var oRng = resultado.Range["A4", "I" + (rrg.Count + 5)];
                         oRng.Cells.AutoFilter(9, ">0", Excel.XlAutoFilterOperator.xlAnd, Type.Missing, true);
+                        callback();
+                        Application.ScreenUpdating = true;
                     });
                 }
                 catch (Exception e)

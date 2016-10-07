@@ -1,7 +1,75 @@
 ﻿<?xml version='1.0' encoding='utf-8'?>
-<SettingsFile xmlns="http://schemas.microsoft.com/VisualStudio/2004/01/settings" CurrentProfile="(Default)">
-  <Profiles>
-    <Profile Name="(Default)" />
-  </Profiles>
-  <Settings />
+<SettingsFile xmlns="http://schemas.microsoft.com/VisualStudio/2004/01/settings" CurrentProfile="(Default)" GeneratedClassNamespace="testVSTO2.Properties" GeneratedClassName="Settings">
+  <Profiles />
+  <Settings>
+    <Setting Name="UrlApi" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">http://192.168.0.2/apiMovStock/public/</Value>
+    </Setting>
+    <Setting Name="IdSucursal" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">2</Value>
+    </Setting>
+    <Setting Name="ArticuloLista" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">articulo/</Value>
+    </Setting>
+    <Setting Name="TipoSeleccionar" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">articulo/tipo</Value>
+    </Setting>
+    <Setting Name="TipoGuardar" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">articulo/tipo</Value>
+    </Setting>
+    <Setting Name="MaximosMinimosGuardar" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">articulo/maximosminimos</Value>
+    </Setting>
+    <Setting Name="PrecioMargenGuardar" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">articulo/preciomargen</Value>
+    </Setting>
+    <Setting Name="RecetaLista" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">receta/</Value>
+    </Setting>
+    <Setting Name="RecetaDetalleLista" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">receta/detalle/</Value>
+    </Setting>
+    <Setting Name="RecetaInsertar" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">receta</Value>
+    </Setting>
+    <Setting Name="RecetaInsertarDetalle" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">receta/detalle</Value>
+    </Setting>
+    <Setting Name="RecetaTipo" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">receta/tipo</Value>
+    </Setting>
+    <Setting Name="CategoriaLista" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">categoria/</Value>
+    </Setting>
+    <Setting Name="OrdenarLista" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">ordenar/lista</Value>
+    </Setting>
+    <Setting Name="DepartamentoLista" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">departamento</Value>
+    </Setting>
+    <Setting Name="PermisoObtener" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">permiso</Value>
+    </Setting>
+    <Setting Name="ProveedorLista" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">proveedor</Value>
+    </Setting>
+    <Setting Name="ReporteGeneral" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">reporte/general</Value>
+    </Setting>
+    <Setting Name="ReporteImprimir" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">reporte/general/imprimir</Value>
+    </Setting>
+    <Setting Name="FormularioReporteRuta" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">formula/reporte/</Value>
+    </Setting>
+    <Setting Name="FormularioReporteImprimir" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">imprimir</Value>
+    </Setting>
+    <Setting Name="FormularioReporteGeneral" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">general</Value>
+    </Setting>
+    <Setting Name="SucursalLista" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">sucursal</Value>
+    </Setting>
+  </Settings>
 </SettingsFile>

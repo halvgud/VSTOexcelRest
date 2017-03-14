@@ -27,17 +27,18 @@
     <NoStandardLibraries>false</NoStandardLibraries>
     <RootNamespace>testVSTO2</RootNamespace>
     <AssemblyName>testVSTO2</AssemblyName>
-    <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <DefineConstants>VSTO40</DefineConstants>
     <IsWebBootstrapper>False</IsWebBootstrapper>
+    <TargetFrameworkProfile />
     <BootstrapperEnabled>true</BootstrapperEnabled>
     <PublishUrl>\\mercattoserver\ftp\VSTO\</PublishUrl>
     <InstallUrl>\\mercattoserver\ftp\vsto\install\</InstallUrl>
     <TargetCulture>es</TargetCulture>
-    <ApplicationVersion>1.0.0.11</ApplicationVersion>
+    <ApplicationVersion>1.0.0.29</ApplicationVersion>
     <AutoIncrementApplicationRevision>true</AutoIncrementApplicationRevision>
     <UpdateEnabled>true</UpdateEnabled>
-    <UpdateInterval>7</UpdateInterval>
+    <UpdateInterval>0</UpdateInterval>
     <UpdateIntervalUnits>days</UpdateIntervalUnits>
     <ProductName>testVSTO2</ProductName>
     <PublisherName />
@@ -47,9 +48,9 @@
     <LoadBehavior>3</LoadBehavior>
   </PropertyGroup>
   <ItemGroup>
-    <BootstrapperPackage Include=".NETFramework,Version=v4.5.2">
+    <BootstrapperPackage Include=".NETFramework,Version=v4.5">
       <Visible>False</Visible>
-      <ProductName>Microsoft .NET Framework 4.5.2 %28x86 y x64%29</ProductName>
+      <ProductName>Microsoft .NET Framework 4.5 %28x86 y x64%29</ProductName>
       <Install>true</Install>
     </BootstrapperPackage>
     <BootstrapperPackage Include="Microsoft.Net.Framework.3.5.SP1">
@@ -132,8 +133,9 @@
     <Reference Include="Newtonsoft.Json">
       <HintPath>..\..\ServicioMercastock\ServicioMercastock\bin\Debug\Newtonsoft.Json.dll</HintPath>
     </Reference>
-    <Reference Include="RestSharp">
-      <HintPath>..\..\ServicioMercastock\ServicioMercastock\bin\Debug\RestSharp.dll</HintPath>
+    <Reference Include="RestSharp, Version=105.2.3.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\RestSharp.105.2.3\lib\net45\RestSharp.dll</HintPath>
+      <Private>True</Private>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Data" />
@@ -257,7 +259,6 @@
     <EmbeddedResource Include="MensajeDeEspera.resx">
       <DependentUpon>MensajeDeEspera.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Properties\licenses.licx" />
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
@@ -268,6 +269,9 @@
       <DependentUpon>Resources.resx</DependentUpon>
       <DesignTime>True</DesignTime>
     </Compile>
+    <EmbeddedResource Include="ReporteGeneral.resx">
+      <DependentUpon>ReporteGeneral.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="SideBarImportarInformacion.resx">
       <DependentUpon>SideBarImportarInformacion.cs</DependentUpon>
     </EmbeddedResource>
@@ -275,6 +279,7 @@
       <DependentUpon>SideBarRecetario.cs</DependentUpon>
     </EmbeddedResource>
     <None Include="app.config" />
+    <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
@@ -286,10 +291,17 @@
     </Compile>
     <Compile Include="Herramienta\Config.cs" />
     <Compile Include="Herramienta\Constantes.cs" />
+    <Compile Include="ReporteGeneral.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ReporteGeneral.Designer.cs">
+      <DependentUpon>ReporteGeneral.cs</DependentUpon>
+    </Compile>
     <Compile Include="Respuesta\Articulo.cs" />
     <Compile Include="Respuesta\CbGenerico.cs" />
     <Compile Include="Respuesta\Formulario.cs" />
     <Compile Include="Respuesta\Permiso.cs" />
+    <Compile Include="Respuesta\Proveedor.cs" />
     <Compile Include="Respuesta\Receta.cs" />
     <Compile Include="Respuesta\Reporte.cs" />
     <Compile Include="Ribbon1.cs" />
@@ -346,7 +358,7 @@
       <FlavorProperties GUID="{BAA0C2D2-18E2-41B9-852F-F413020CAA33}">
         <ProjectProperties HostName="Excel" HostPackage="{29A7B9D7-A7F1-4328-8EF0-6B2D1A56B2C1}" OfficeVersion="15.0" VstxVersion="4.0" ApplicationType="Excel" Language="cs" TemplatesPath="" DebugInfoExeName="#Software\Microsoft\Office\15.0\Excel\InstallRoot\Path#excel.exe" DebugInfoCommandLine="/x" AddItemTemplatesGuid="{51063C3A-E220-4D12-8922-BDA915ACD783}" />
         <Host Name="Excel" GeneratedCodeNamespace="testVSTO2" PublishedHash="69C324AB27932AA2FBF2B7EA72250886FF164DE6" IconIndex="0">
-          <HostItem Name="ThisAddIn" Code="ThisAddIn.cs" CanonicalName="AddIn" PublishedHash="04AE70D7E2A813C9A0EC595D6370CFC26189E94F" CanActivate="false" IconIndex="1" Blueprint="ThisAddIn.Designer.xml" GeneratedCode="ThisAddIn.Designer.cs" />
+          <HostItem Name="ThisAddIn" Code="ThisAddIn.cs" CanonicalName="AddIn" PublishedHash="12DD05B785C8ED56C0A1E251EE576291D87C5907" CanActivate="false" IconIndex="1" Blueprint="ThisAddIn.Designer.xml" GeneratedCode="ThisAddIn.Designer.cs" />
         </Host>
       </FlavorProperties>
     </VisualStudio>

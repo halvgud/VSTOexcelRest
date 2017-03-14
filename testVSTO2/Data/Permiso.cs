@@ -2,12 +2,14 @@
 using System.Net;
 using RestSharp;
 using testVSTO2.Herramienta;
+using System.Collections.Generic;
 using testVSTO2.Herramienta.Config;
 
 namespace testVSTO2.Data
 {
     class Permiso
     {
+        public static List<Respuesta.Permiso.Respuesta> ListaPermisos = new List<Respuesta.Permiso.Respuesta>();
         public static void ObtenerPermiso(Action<IRestResponse> callback)
         {
             try

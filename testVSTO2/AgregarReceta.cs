@@ -1,5 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System;using System.Collections.Generic;
 using System.Drawing;
 using System.Globalization;
 using System.Linq;
@@ -31,7 +30,8 @@ namespace testVSTO2
             public MaskedTextBox Precio;
             public CheckBox Diario;
         }
-        public AgregarReceta(){
+        public AgregarReceta()
+        {
             InitializeComponent();
             Opcion.EjecucionAsync(Data.Receta.Tipo.Lista, x =>
             {
@@ -155,13 +155,13 @@ namespace testVSTO2
                 sum += (costo1*cantidad1);
             }
             inputs.CostoEstimado.Text = sum.ToString(CultureInfo.InvariantCulture);
-            inputs.ActualizarMargen(inputs.MargenSugerido);
+            inputs.ActualizarMargen(inputs.MargenSugerido);                                                                            
             var costo = (sum) +
                         (inputs.CostoElaboracion.Text != string.Empty
                             ? Convert.ToDouble(inputs.CostoElaboracion.Text)
                             : 0);
             var margen = 1 - (Convert.ToDouble(inputs.MargenSugerido.Text)/100);
-            inputs.PrecioSugerido.Text = (Math.Round((costo/margen), 2)).ToString(CultureInfo.InvariantCulture);
+            inputs.PrecioSugerido.Text = (Math.Round((costo/margen), 2)).ToString(CultureInfo.InvariantCulture);    
         }
         private void ActualizarMargen(MaskedTextBox margenSugerido)
         {
@@ -188,7 +188,10 @@ namespace testVSTO2
         private void BuscarReceta(Action<Inputs> actualizarInputs,Inputs parametros)
         {
             Local.Articulo.IdArticulo = parametros.ClaveReceta.Text;
-            Opcion.EjecucionAsync(Data.Articulo.Lista, jsonResult => 
+            Opcion.EjecucionAsync(x =>
+            {
+                Data.Articulo.Lista(x, this);
+            }, jsonResult => 
             {
                 BeginInvoke((MethodInvoker)(() => 
                 {
@@ -353,7 +356,6 @@ namespace testVSTO2
         }
         private void Limpiar(Inputs inputs, MensajeDeEspera mde)
         {
-
             BeginInvoke((MethodInvoker)(() =>
             {
                 MessageBox.Show(this, @"Se a guardado con éxito con Clave :" + inputs.ClaveReceta.Text);
@@ -411,7 +413,9 @@ namespace testVSTO2
                 Ingredientes = dgvIngredientes,
                 MargenSugerido = tbMargenSugerido,
                 PrecioSugerido = tbPrecioSugerido
-            });}/****************************************************************************/
+            });
+        }
+        /****************************************************************************/
         private void btBuscarClave_Click(object sender, EventArgs e)
         {
             Local.Receta.clave = tbBuscarReceta.Text == string.Empty?"%":tbBuscarReceta.Text;

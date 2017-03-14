@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Net;
-using System.Windows.Forms;
 using RestSharp;
 using testVSTO2.Herramienta;
 using testVSTO2.Herramienta.Config;
@@ -31,7 +30,6 @@ namespace testVSTO2.Data
                             callback(response);
                             break;
                         default:
-                            MessageBox.Show(@"No se encontró registros con los parámetros utilizados");
                             callback(null);
                             break;
                     }
@@ -60,7 +58,7 @@ namespace testVSTO2.Data
                             callback(response);
                             break;
                         default:
-                            MessageBox.Show(@"No se encontró registros con los parámetros utilizados");
+                            callback(null);
                             break;
                     }
                 });
@@ -88,7 +86,7 @@ namespace testVSTO2.Data
                             throw new Exception(@"error al cargar orden");
                             // callback("CONTINUAR");
                     }
-
+                        
                 });
             }
             catch (Exception e)
@@ -96,6 +94,107 @@ namespace testVSTO2.Data
                 Opcion.Log(Log.Interno.Departamento, "EXCEPCION: " + e.Message);
                 // callback("CONTINUAR");
             }
+        }
+
+        public static void Tag(Action<IRestResponse> callback)
+        {
+            try
+            {
+                var rest = new Rest(Local.Api.UrlApi, Local.Reporte.Tag, Method.GET);
+                rest.Peticion.AddHeader(Constantes.Http.ObtenerTipoDeContenido, Constantes.Http.TipoDeContenido.Json);
+                rest.Cliente.ExecuteAsync(rest.Peticion, response =>
+                {
+                    switch (response.StatusCode)
+                    {
+                        case HttpStatusCode.OK:
+                            callback(response);
+                            break;
+                        default:
+                            throw new Exception(@"Error al cargar el indice de tags");
+                    }
+                });
+            }
+            catch (Exception e)
+            {
+                Opcion.Log(Log.Interno.Departamento,"EXCEPCION: "+e.Message);
+            }
+        }
+
+        public static void TagPorNombre(Action<IRestResponse> callback,Respuesta.Reporte.General repGeneral)
+        {
+            try
+            {
+                var rest = new Rest(Local.Api.UrlApi, Local.Reporte.Tag, Method.POST);
+                rest.Peticion.AddHeader(Constantes.Http.ObtenerTipoDeContenido, Constantes.Http.TipoDeContenido.Json);
+                rest.Peticion.AddJsonBody(repGeneral);
+                rest.Cliente.ExecuteAsync(rest.Peticion, response =>
+                {
+                    switch (response.StatusCode)
+                    {
+                        case HttpStatusCode.OK:
+                            callback(response);
+                            break;
+                        default:
+                            callback(null);
+                            break;
+                    }
+                });
+            }
+            catch (Exception e)
+            {
+                Opcion.Log(Log.Interno.Categoria, "EXCEPCION: " + e.Message);
+                // callback("CONTINUAR");
+            }
+        }
+
+        public static void UltimosRegistros(Action<IRestResponse> callback)
+        {
+            try
+            {
+                var rest = new Rest(Local.Api.UrlApi, Local.Reporte.UltimosRegistros, Method.GET);
+                rest.Peticion.AddHeader(Constantes.Http.ObtenerTipoDeContenido, Constantes.Http.TipoDeContenido.Json);
+                rest.Cliente.ExecuteAsync(rest.Peticion, response =>
+                {
+                    switch (response.StatusCode)
+                    {
+                        case HttpStatusCode.OK:
+                            callback(response);
+                            break;
+                        default:
+                            throw new Exception(@"Error al cargar el indice de tags");
+                    }
+                });
+            }
+            catch (Exception e)
+            {
+                Opcion.Log(Log.Interno.Departamento, "EXCEPCION: " + e.Message);
+            }
+        }
+
+        public static void ActualizarUltimoRegistro(Action<IRestResponse> callback,Respuesta.Reporte.General repGeneral)
+        {
+            try
+            {
+                var rest = new Rest(Local.Api.UrlApi, Local.Reporte.ActualizarUltimoRegistro, Method.POST);
+                rest.Peticion.AddHeader(Constantes.Http.ObtenerTipoDeContenido, Constantes.Http.TipoDeContenido.Json);
+                rest.Peticion.AddJsonBody(repGeneral);
+                rest.Cliente.ExecuteAsync(rest.Peticion, response =>
+                {
+                    switch (response.StatusCode)
+                    {
+                        case HttpStatusCode.OK:
+                            callback(response);
+                            break;
+                        default:
+                            throw new Exception(@"Error al guardar la busqueda");
+                    }
+                });
+            }
+            catch (Exception e)
+            {
+                Opcion.Log(Log.Interno.Departamento, "EXCEPCION: " + e.Message);
+            }
+            
         }
     }
 }

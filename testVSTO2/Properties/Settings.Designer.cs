@@ -229,5 +229,50 @@ namespace testVSTO2.Properties {
                 return ((string)(this["SucursalLista"]));
             }
         }
+        
+        [global::System.Configuration.ApplicationScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("reporte/tag")]
+        public string ReporteTag {
+            get {
+                return ((string)(this["ReporteTag"]));
+            }
+        }
+        
+        [global::System.Configuration.ApplicationScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("reporte/tag/nombre")]
+        public string ReporteTagNombre {
+            get {
+                return ((string)(this["ReporteTagNombre"]));
+            }
+        }
+        
+        [global::System.Configuration.ApplicationScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("reporte/registros")]
+        public string ReporteUltimosRegistros {
+            get {
+                return ((string)(this["ReporteUltimosRegistros"]));
+            }
+        }
+        
+        [global::System.Configuration.ApplicationScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("proveedor/buscar")]
+        public string ProveedorBuscar {
+            get {
+                return ((string)(this["ProveedorBuscar"]));
+            }
+        }
+        
+        [global::System.Configuration.ApplicationScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("reporte/actualizar/busqueda")]
+        public string ReporteActualizarUltimoRegistro {
+            get {
+                return ((string)(this["ReporteActualizarUltimoRegistro"]));
+            }
+        }
     }
 }

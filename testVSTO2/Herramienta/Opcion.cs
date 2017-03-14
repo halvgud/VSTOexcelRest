@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using System.IO;
 using System.Windows.Forms;
 using Newtonsoft.Json;
-using Newtonsoft.Json.Linq;
 using RestSharp;
 using RestSharp.Deserializers;
 
@@ -12,7 +11,7 @@ namespace testVSTO2.Herramienta
 {
     class Opcion
     {
-        
+
         /// <summary>
         /// Función que realiza la escritura de mensajes a un archivo
         /// </summary>
@@ -44,7 +43,7 @@ namespace testVSTO2.Herramienta
             List<T> x=new List<T>();
             try
             {
-                JsonDeserializer desSerializer = new JsonDeserializer();
+                var desSerializer = new JsonDeserializer();
                 x = desSerializer.Deserialize<List<T>>(json);
                 return x;
             }
@@ -58,7 +57,8 @@ namespace testVSTO2.Herramienta
         public static string JsonaString(string json)
         {
             dynamic myObject = JsonConvert.DeserializeObject<dynamic>(json);
-            return Convert.ToString(myObject.mensaje);
+            dynamic mensaje = myObject.message ?? myObject.mensaje;
+            return Convert.ToString(mensaje);
         }
 
 
@@ -99,7 +99,6 @@ namespace testVSTO2.Herramienta
             }
             return true;
         }
-
         public static bool ValidarCaracter(KeyPressEventArgs e)
         {
             if (char.IsLetter(e.KeyChar) || char.IsSymbol(e.KeyChar) || char.IsWhiteSpace(e.KeyChar))

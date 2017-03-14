@@ -8,6 +8,7 @@ namespace testVSTO2.Respuesta
 {
     public class Permiso
     {
+        
         public class Respuesta
         {
             public string IdPermiso { get; set; }

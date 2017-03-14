@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Net;
+using System.Windows.Forms;
 using RestSharp;
 using testVSTO2.Herramienta;
 using testVSTO2.Herramienta.Config;
@@ -9,23 +10,29 @@ namespace testVSTO2.Data
 {
     class Articulo
     {
-        public static void Lista(Action<IRestResponse> callback)
+        public static void Lista(Action<IRestResponse> callback, Form f1)
         {
             try
             {
-                var rest = new Rest(Local.Api.UrlApi, Local.Articulo.Lista + Local.Articulo.IdArticulo,
-                    Method.GET);
-                rest.Peticion.AddHeader(Constantes.Http.ObtenerTipoDeContenido,
-                    Constantes.Http.TipoDeContenido.Json);
-                rest.Cliente.ExecuteAsync(rest.Peticion, response =>
-                {
+                var rest = new Rest(Local.Api.UrlApi, Local.Articulo.Lista + Local.Articulo.IdArticulo,Method.GET);
+                rest.Peticion.AddHeader(Constantes.Http.ObtenerTipoDeContenido,Constantes.Http.TipoDeContenido.Json);
+                rest.Cliente.ExecuteAsync(rest.Peticion, response =>{
                     switch (response.StatusCode)
                     {
                         case HttpStatusCode.OK:
                             callback(response);
                             break;
                         default:
-                            throw new Exception(@"error al buscar articulo");
+                            f1.BeginInvoke((MethodInvoker)(() =>
+                            {
+                                MessageBox.Show(f1, Opcion.JsonaString(response.Content));
+                            }));
+                            callback = x =>
+                            {
+                                
+                                // Opcion.Mensaje(Opcion.JsonaString(response.Content));
+                            };
+                            break;
                     }
                 });
             }
@@ -42,10 +49,8 @@ namespace testVSTO2.Data
             {
                 try
                 {
-                    var rest = new Rest(Local.Api.UrlApi, Local.Articulo.Tipo.Seleccionar,
-                        Method.GET);
-                    rest.Peticion.AddHeader(Constantes.Http.ObtenerTipoDeContenido,
-                        Constantes.Http.TipoDeContenido.Json);
+                    var rest = new Rest(Local.Api.UrlApi, Local.Articulo.Tipo.Seleccionar,Method.GET);
+                    rest.Peticion.AddHeader(Constantes.Http.ObtenerTipoDeContenido,Constantes.Http.TipoDeContenido.Json);
                     rest.Cliente.ExecuteAsync(rest.Peticion, response =>
                     {
                         switch (response.StatusCode)
@@ -67,13 +72,10 @@ namespace testVSTO2.Data
 
             public static void Guardar(Action<IRestResponse> callback, List<Respuesta.Articulo.Guardar.Tipo> guardarTipo)
             {
-
                 try
                 {
-                    var rest = new Rest(Local.Api.UrlApi, Local.Articulo.Tipo.Guardar,
-                        Method.POST);
-                    rest.Peticion.AddHeader(Constantes.Http.ObtenerTipoDeContenido,
-                        Constantes.Http.TipoDeContenido.Json);
+                    var rest = new Rest(Local.Api.UrlApi, Local.Articulo.Tipo.Guardar,Method.POST);
+                    rest.Peticion.AddHeader(Constantes.Http.ObtenerTipoDeContenido,Constantes.Http.TipoDeContenido.Json);
                     rest.Peticion.AddJsonBody(guardarTipo);
                     rest.Cliente.ExecuteAsync(rest.Peticion, response =>
                     {
@@ -100,10 +102,8 @@ namespace testVSTO2.Data
             {
                 try
                 {
-                    var rest = new Rest(Local.Api.UrlApi, Local.Articulo.MaximosMinimos.Guardar,
-                        Method.POST);
-                    rest.Peticion.AddHeader(Constantes.Http.ObtenerTipoDeContenido,
-                        Constantes.Http.TipoDeContenido.Json);
+                    var rest = new Rest(Local.Api.UrlApi, Local.Articulo.MaximosMinimos.Guardar,Method.POST);
+                    rest.Peticion.AddHeader(Constantes.Http.ObtenerTipoDeContenido,Constantes.Http.TipoDeContenido.Json);
                     rest.Peticion.AddJsonBody(guardarMaximosMinimos);
                     rest.Cliente.ExecuteAsync(rest.Peticion, response =>
                     {
@@ -130,10 +130,8 @@ namespace testVSTO2.Data
             {
                 try
                 {
-                    var rest = new Rest(Local.Api.UrlApi, Local.Articulo.PrecioMargen.Guardar,
-                        Method.POST);
-                    rest.Peticion.AddHeader(Constantes.Http.ObtenerTipoDeContenido,
-                        Constantes.Http.TipoDeContenido.Json);
+                    var rest = new Rest(Local.Api.UrlApi, Local.Articulo.PrecioMargen.Guardar,Method.POST);
+                    rest.Peticion.AddHeader(Constantes.Http.ObtenerTipoDeContenido,Constantes.Http.TipoDeContenido.Json);
                     rest.Peticion.AddJsonBody(guardarPrecioMargen);
                     rest.Cliente.ExecuteAsync(rest.Peticion, response =>
                     {

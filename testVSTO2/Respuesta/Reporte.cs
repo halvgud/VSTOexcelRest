@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 
 namespace testVSTO2.Respuesta
 {
@@ -11,7 +12,10 @@ namespace testVSTO2.Respuesta
             public string DepId { get; set; }
             public string CatId { get; set; }
             public string ProId { get; set; }
+            public List<string> ProId2 { get; set; } 
             public string OrderBy { get; set; }
+            public string IdTipo { get; set; }
+            public General() { }
 
             public class Respuesta
             {

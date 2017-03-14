@@ -135,8 +135,7 @@ namespace testVSTO2
                 }
                 catch (Exception e)
                 {
-                    MessageBox.Show(e.Message);
-                }
+                    MessageBox.Show(e.Message);}
             }
             else
             {
@@ -233,7 +232,7 @@ namespace testVSTO2
             if (_reporte != null)
             {
                 try{
-                    var lista = new object[rrg.Count, 9];
+                    var lista = new object[rrg.Count, 10];
                     for (var x = 0; x < rrg.Count; x++)
                     {
                         lista[x, 0] = rrg[x].descripcion;
@@ -243,30 +242,35 @@ namespace testVSTO2
                         lista[x, 5] = rrg[x].inventarioMinimo;
                         lista[x, 6] = rrg[x].inventarioMaximo;
                         lista[x, 7] = rrg[x].factor;
+                        lista[x, 8] = rrg[x].radioInventario;
                     }
                     if (_reporte.AutoFilter != null)
                     {
                         _reporte.AutoFilterMode = false;
                     }
-                    _reporte.Range["A" + 5 + ":I" + _rowCount].Value2 = lista;
-                    _reporte.Range["A" + 5 + ":I" + _rowCount].Borders[Excel.XlBordersIndex.xlEdgeBottom].LineStyle = Excel.XlLineStyle.xlContinuous;
-                    _reporte.Range["A" + 5 + ":I" + _rowCount].Borders[Excel.XlBordersIndex.xlEdgeLeft].LineStyle = Excel.XlLineStyle.xlContinuous;
-                    _reporte.Range["A" + 5 + ":I" + _rowCount].Borders[Excel.XlBordersIndex.xlEdgeRight].LineStyle = Excel.XlLineStyle.xlContinuous;
-                    _reporte.Range["A" + 5 + ":I" + _rowCount].Borders[Excel.XlBordersIndex.xlEdgeTop].LineStyle = Excel.XlLineStyle.xlContinuous;
-                    _reporte.Range["A" + 5 + ":I" + _rowCount].Borders[Excel.XlBordersIndex.xlEdgeBottom].LineStyle = Excel.XlLineStyle.xlContinuous;
-                    _reporte.Range["A" + 5 + ":I" + _rowCount].Borders.Color = Color.Black;
-                    _reporte.Range["A" + 5 + ":I" + _rowCount].Font.Size = 8;
-                    _reporte.Range["A" + 5 + ":I" + _rowCount].WrapText = true;
-                    _reporte.Range["A"+5+":I"+_rowCount].Cells.HorizontalAlignment =Excel.XlHAlign.xlHAlignLeft;
-                    _reporte.Range["I5:I"+_rowCount].Interior.Color = ColorTranslator.ToOle(Color.Yellow);
+                    _reporte.Range["A" + 5 + ":J" + Globals.ThisAddIn.Application.ActiveSheet.Cells.Find("*", Missing.Value,
+                           Missing.Value, Missing.Value, Excel.XlSearchOrder.xlByRows,
+                          Excel.XlSearchDirection.xlPrevious, false, Missing.Value,
+                           Missing.Value).Row+1].Value2 = "";_reporte.Range["A" + 5 + ":I" + _rowCount].Value2 = lista;
+                    _reporte.Range["A" + 5 + ":J" + _rowCount].Borders[Excel.XlBordersIndex.xlEdgeBottom].LineStyle = Excel.XlLineStyle.xlContinuous;
+                    _reporte.Range["A" + 5 + ":J" + _rowCount].Borders[Excel.XlBordersIndex.xlEdgeLeft].LineStyle = Excel.XlLineStyle.xlContinuous;
+                    _reporte.Range["A" + 5 + ":J" + _rowCount].Borders[Excel.XlBordersIndex.xlEdgeRight].LineStyle = Excel.XlLineStyle.xlContinuous;
+                    _reporte.Range["A" + 5 + ":J" + _rowCount].Borders[Excel.XlBordersIndex.xlEdgeTop].LineStyle = Excel.XlLineStyle.xlContinuous;
+                    _reporte.Range["A" + 5 + ":J" + _rowCount].Borders[Excel.XlBordersIndex.xlEdgeBottom].LineStyle = Excel.XlLineStyle.xlContinuous;
+                    _reporte.Range["A" + 5 + ":J" + _rowCount].Borders.Color = Color.Black;
+                    _reporte.Range["A" + 5 + ":J" + _rowCount].Font.Size = 8;
+                    _reporte.Range["A" + 5 + ":J" + _rowCount].WrapText = true;
+                    _reporte.Range["A"+5+":J"+_rowCount].Cells.HorizontalAlignment =Excel.XlHAlign.xlHAlignLeft;
+                    _reporte.Range["J5:J"+_rowCount].Interior.Color = ColorTranslator.ToOle(Color.Yellow);
                     ConfigurarFormulas(Local.Formulario.Reporte.Imprimir, 5, rrg.Count, resultado =>
                     {
+                        
                         resultado.Range["C" + 5 + ":D" + _rowCount].NumberFormat = "0.00";
                         resultado.Range["F" + 5 + ":H" + _rowCount].NumberFormat = "0.00";
                         resultado.Range["FECHA_INI_IMP"].Value2 = Data.Reporte.FechaIni;
                         resultado.Range["FECHA_FIN_IMP"].Value2 = Data.Reporte.FechaFin;
-                        var oRng = resultado.Range["A4", "I" + (rrg.Count + 5)];
-                        oRng.Cells.AutoFilter(9, ">0", Excel.XlAutoFilterOperator.xlAnd, Type.Missing, true);
+                        var oRng = resultado.Range["A4", "J" + (rrg.Count + 5)];
+                        oRng.Cells.AutoFilter(10, ">0", Excel.XlAutoFilterOperator.xlAnd, Type.Missing, true);
                         callback();
                         Application.ScreenUpdating = true;
                     });

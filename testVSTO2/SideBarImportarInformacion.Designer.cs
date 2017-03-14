@@ -72,7 +72,7 @@
             this.panel1.Dock = System.Windows.Forms.DockStyle.Bottom;
             this.panel1.Location = new System.Drawing.Point(0, 494);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(251, 50);
+            this.panel1.Size = new System.Drawing.Size(292, 50);
             this.panel1.TabIndex = 9;
             // 
             // btAyuda
@@ -107,7 +107,7 @@
             this.tabPage1.Location = new System.Drawing.Point(4, 22);
             this.tabPage1.Name = "tabPage1";
             this.tabPage1.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage1.Size = new System.Drawing.Size(243, 468);
+            this.tabPage1.Size = new System.Drawing.Size(284, 468);
             this.tabPage1.TabIndex = 0;
             this.tabPage1.Text = "Parámetros de búsqueda";
             this.tabPage1.UseVisualStyleBackColor = true;
@@ -125,7 +125,7 @@
             this.groupBox2.Dock = System.Windows.Forms.DockStyle.Top;
             this.groupBox2.Location = new System.Drawing.Point(3, 3);
             this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Size = new System.Drawing.Size(237, 126);
+            this.groupBox2.Size = new System.Drawing.Size(278, 126);
             this.groupBox2.TabIndex = 9;
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "Categoria / Departamento";
@@ -153,7 +153,7 @@
             this.chDepartamento.AutoSize = true;
             this.chDepartamento.Checked = true;
             this.chDepartamento.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.chDepartamento.Location = new System.Drawing.Point(197, 67);
+            this.chDepartamento.Location = new System.Drawing.Point(228, 66);
             this.chDepartamento.Name = "chDepartamento";
             this.chDepartamento.Size = new System.Drawing.Size(15, 14);
             this.chDepartamento.TabIndex = 6;
@@ -165,7 +165,7 @@
             this.chCategoria.AutoSize = true;
             this.chCategoria.Checked = true;
             this.chCategoria.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.chCategoria.Location = new System.Drawing.Point(197, 101);
+            this.chCategoria.Location = new System.Drawing.Point(228, 100);
             this.chCategoria.Name = "chCategoria";
             this.chCategoria.Size = new System.Drawing.Size(15, 14);
             this.chCategoria.TabIndex = 7;
@@ -178,7 +178,7 @@
             this.cbDepartamento.FormattingEnabled = true;
             this.cbDepartamento.Location = new System.Drawing.Point(6, 62);
             this.cbDepartamento.Name = "cbDepartamento";
-            this.cbDepartamento.Size = new System.Drawing.Size(183, 21);
+            this.cbDepartamento.Size = new System.Drawing.Size(216, 21);
             this.cbDepartamento.TabIndex = 0;
             this.cbDepartamento.SelectedIndexChanged += new System.EventHandler(this.cbDepartamento_SelectedIndexChanged);
             // 
@@ -188,7 +188,7 @@
             this.cbCategoria.FormattingEnabled = true;
             this.cbCategoria.Location = new System.Drawing.Point(6, 97);
             this.cbCategoria.Name = "cbCategoria";
-            this.cbCategoria.Size = new System.Drawing.Size(183, 21);
+            this.cbCategoria.Size = new System.Drawing.Size(216, 21);
             this.cbCategoria.TabIndex = 1;
             this.cbCategoria.SelectedIndexChanged += new System.EventHandler(this.cbCategoria_SelectedIndexChanged);
             // 
@@ -207,7 +207,7 @@
             this.cbSucursal.FormattingEnabled = true;
             this.cbSucursal.Location = new System.Drawing.Point(6, 27);
             this.cbSucursal.Name = "cbSucursal";
-            this.cbSucursal.Size = new System.Drawing.Size(183, 21);
+            this.cbSucursal.Size = new System.Drawing.Size(216, 21);
             this.cbSucursal.TabIndex = 8;
             // 
             // groupBox3
@@ -221,7 +221,7 @@
             this.groupBox3.Dock = System.Windows.Forms.DockStyle.Top;
             this.groupBox3.Location = new System.Drawing.Point(3, 129);
             this.groupBox3.Name = "groupBox3";
-            this.groupBox3.Size = new System.Drawing.Size(237, 114);
+            this.groupBox3.Size = new System.Drawing.Size(278, 114);
             this.groupBox3.TabIndex = 10;
             this.groupBox3.TabStop = false;
             this.groupBox3.Text = "Proveedor/Tipo producto";
@@ -247,7 +247,7 @@
             // chProveedor
             // 
             this.chProveedor.AutoSize = true;
-            this.chProveedor.Location = new System.Drawing.Point(197, 39);
+            this.chProveedor.Location = new System.Drawing.Point(228, 39);
             this.chProveedor.Name = "chProveedor";
             this.chProveedor.Size = new System.Drawing.Size(15, 14);
             this.chProveedor.TabIndex = 12;
@@ -257,7 +257,7 @@
             // chTipoProducto
             // 
             this.chTipoProducto.AutoSize = true;
-            this.chTipoProducto.Location = new System.Drawing.Point(197, 81);
+            this.chTipoProducto.Location = new System.Drawing.Point(228, 81);
             this.chTipoProducto.Name = "chTipoProducto";
             this.chTipoProducto.Size = new System.Drawing.Size(15, 14);
             this.chTipoProducto.TabIndex = 13;
@@ -270,7 +270,7 @@
             this.cbProveedor.FormattingEnabled = true;
             this.cbProveedor.Location = new System.Drawing.Point(6, 36);
             this.cbProveedor.Name = "cbProveedor";
-            this.cbProveedor.Size = new System.Drawing.Size(183, 21);
+            this.cbProveedor.Size = new System.Drawing.Size(216, 21);
             this.cbProveedor.TabIndex = 8;
             // 
             // cbTipoProducto
@@ -279,7 +279,7 @@
             this.cbTipoProducto.FormattingEnabled = true;
             this.cbTipoProducto.Location = new System.Drawing.Point(6, 78);
             this.cbTipoProducto.Name = "cbTipoProducto";
-            this.cbTipoProducto.Size = new System.Drawing.Size(183, 21);
+            this.cbTipoProducto.Size = new System.Drawing.Size(216, 21);
             this.cbTipoProducto.TabIndex = 9;
             // 
             // groupBox1
@@ -291,7 +291,7 @@
             this.groupBox1.Dock = System.Windows.Forms.DockStyle.Top;
             this.groupBox1.Location = new System.Drawing.Point(3, 243);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(237, 111);
+            this.groupBox1.Size = new System.Drawing.Size(278, 111);
             this.groupBox1.TabIndex = 8;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Rango de fechas";
@@ -318,14 +318,14 @@
             // 
             this.dtFechaFin.Location = new System.Drawing.Point(6, 72);
             this.dtFechaFin.Name = "dtFechaFin";
-            this.dtFechaFin.Size = new System.Drawing.Size(183, 20);
+            this.dtFechaFin.Size = new System.Drawing.Size(216, 20);
             this.dtFechaFin.TabIndex = 3;
             // 
             // dtFechaIni
             // 
             this.dtFechaIni.Location = new System.Drawing.Point(6, 33);
             this.dtFechaIni.Name = "dtFechaIni";
-            this.dtFechaIni.Size = new System.Drawing.Size(183, 20);
+            this.dtFechaIni.Size = new System.Drawing.Size(216, 20);
             this.dtFechaIni.TabIndex = 2;
             // 
             // cbImprimir
@@ -353,7 +353,7 @@
             this.cbOrderBy.FormattingEnabled = true;
             this.cbOrderBy.Location = new System.Drawing.Point(9, 370);
             this.cbOrderBy.Name = "cbOrderBy";
-            this.cbOrderBy.Size = new System.Drawing.Size(183, 21);
+            this.cbOrderBy.Size = new System.Drawing.Size(216, 21);
             this.cbOrderBy.TabIndex = 12;
             // 
             // tabControl1
@@ -363,7 +363,7 @@
             this.tabControl1.Location = new System.Drawing.Point(0, 0);
             this.tabControl1.Name = "tabControl1";
             this.tabControl1.SelectedIndex = 0;
-            this.tabControl1.Size = new System.Drawing.Size(251, 494);
+            this.tabControl1.Size = new System.Drawing.Size(292, 494);
             this.tabControl1.TabIndex = 8;
             // 
             // SideBarImportarInformacion
@@ -373,7 +373,7 @@
             this.Controls.Add(this.tabControl1);
             this.Controls.Add(this.panel1);
             this.Name = "SideBarImportarInformacion";
-            this.Size = new System.Drawing.Size(251, 544);
+            this.Size = new System.Drawing.Size(292, 544);
             this.Load += new System.EventHandler(this.ImportarInformacion_Load);
             this.panel1.ResumeLayout(false);
             this.tabPage1.ResumeLayout(false);

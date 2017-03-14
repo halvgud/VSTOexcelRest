@@ -31,7 +31,7 @@
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.tabPage1 = new System.Windows.Forms.TabPage();
             this.label4 = new System.Windows.Forms.Label();
-            this.dateTimePicker1 = new System.Windows.Forms.DateTimePicker();
+            this.dtFecha = new System.Windows.Forms.DateTimePicker();
             this.dgvListaReceta = new System.Windows.Forms.DataGridView();
             this.btSeleccion = new System.Windows.Forms.Button();
             this.btBorrarLista = new System.Windows.Forms.Button();
@@ -66,7 +66,7 @@
             // tabPage1
             // 
             this.tabPage1.Controls.Add(this.label4);
-            this.tabPage1.Controls.Add(this.dateTimePicker1);
+            this.tabPage1.Controls.Add(this.dtFecha);
             this.tabPage1.Controls.Add(this.dgvListaReceta);
             this.tabPage1.Controls.Add(this.btSeleccion);
             this.tabPage1.Controls.Add(this.btBorrarLista);
@@ -90,12 +90,13 @@
             this.label4.TabIndex = 9;
             this.label4.Text = "Fecha del menú :";
             // 
-            // dateTimePicker1
+            // dtFecha
             // 
-            this.dateTimePicker1.Location = new System.Drawing.Point(76, 24);
-            this.dateTimePicker1.Name = "dateTimePicker1";
-            this.dateTimePicker1.Size = new System.Drawing.Size(168, 20);
-            this.dateTimePicker1.TabIndex = 8;
+            this.dtFecha.Location = new System.Drawing.Point(76, 24);
+            this.dtFecha.Name = "dtFecha";
+            this.dtFecha.Size = new System.Drawing.Size(168, 20);
+            this.dtFecha.TabIndex = 8;
+            this.dtFecha.ValueChanged += new System.EventHandler(this.dtFecha_ValueChanged);
             // 
             // dgvListaReceta
             // 
@@ -259,6 +260,6 @@
         private System.Windows.Forms.Button btGuardar;
         private System.Windows.Forms.DataGridView dgvListaReceta;
         private System.Windows.Forms.Label label4;
-        private System.Windows.Forms.DateTimePicker dateTimePicker1;
+        private System.Windows.Forms.DateTimePicker dtFecha;
     }
 }

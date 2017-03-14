@@ -71,5 +71,20 @@
     <Setting Name="SucursalLista" Type="System.String" Scope="Application">
       <Value Profile="(Default)">sucursal</Value>
     </Setting>
+    <Setting Name="ReporteTag" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">reporte/tag</Value>
+    </Setting>
+    <Setting Name="ReporteTagNombre" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">reporte/tag/nombre</Value>
+    </Setting>
+    <Setting Name="ReporteUltimosRegistros" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">reporte/registros</Value>
+    </Setting>
+    <Setting Name="ProveedorBuscar" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">proveedor/buscar</Value>
+    </Setting>
+    <Setting Name="ReporteActualizarUltimoRegistro" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">reporte/actualizar/busqueda</Value>
+    </Setting>
   </Settings>
 </SettingsFile>

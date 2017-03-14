@@ -95,12 +95,17 @@
             public static class Proveedor
             {
                 public static string Lista { get; set; } = Properties.Settings.Default.ProveedorLista;
+                public static string Buscar { get; set; } = Properties.Settings.Default.ProveedorBuscar;
             }
 
             public static class Reporte
             {
                 public static string General { get; set; } = Properties.Settings.Default.ReporteGeneral;
                 public static string Imprimir { get; set; } = Properties.Settings.Default.ReporteImprimir;
+                public static string Tag { get; set; } = Properties.Settings.Default.ReporteTag;
+                public static string TagPorNombre { get; set; } = Properties.Settings.Default.ReporteTagNombre;
+                public static string UltimosRegistros { get; set; } =Properties.Settings.Default.ReporteUltimosRegistros;
+                public static string ActualizarUltimoRegistro { get; set; } =Properties.Settings.Default.ReporteActualizarUltimoRegistro;
             }
 
             public static class Formulario

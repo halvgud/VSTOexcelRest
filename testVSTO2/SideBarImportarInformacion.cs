@@ -1,4 +1,4 @@
-﻿using System;
+﻿ using System;
 using System.Windows.Forms;
 using RestSharp;
 using testVSTO2.Herramienta;
@@ -7,16 +7,22 @@ using testVSTO2.Herramienta.Config;
 namespace testVSTO2
 {
     public partial class SideBarImportarInformacion : UserControl
-    {public SideBarImportarInformacion()
+    {
+        public SideBarImportarInformacion()
         {
             InitializeComponent();
         }
-
+        
         private void cbDepartamento_SelectedIndexChanged(object sender, EventArgs e)
         {
             if (cbDepartamento.SelectedValue.ToString() == "") return;
             Local.Departamento.IdDepartamento = cbDepartamento.SelectedValue.ToString();
-            Opcion.EjecucionAsync(Data.Categoria.Lista,x=> CargarComboBox(x, cbCategoria, true));
+            Opcion.EjecucionAsync(Data.Categoria.Lista, x =>
+            {
+                CargarComboBox(x, cbCategoria, true);
+                ValidarComboBox(cbCategoria, chCategoria);
+            });
+        
         }
         private void ImportarInformacion_Load(object sender, EventArgs e)
         {
@@ -25,6 +31,9 @@ namespace testVSTO2
             Opcion.EjecucionAsync(Data.Articulo.Tipo.Seleccionar,x=>CargarComboBox(x,cbTipoProducto,false));
             Opcion.EjecucionAsync(Data.Reporte.Lista,x=>CargarComboBox(x,cbOrderBy,true));
             Opcion.EjecucionAsync(Data.Sucursal.Lista,x=>CargarComboBox(x,cbSucursal,false));
+            cbImprimir.Checked = Data.Permiso.ListaPermisos.Find(x => x.IdControl == "cbImprimir.Checked")?.Valor == "1";
+            cbImprimir.Enabled = Data.Permiso.ListaPermisos.Find(x => x.IdControl == "cbImprimir.Enabled")?.Valor == "1";
+            dtFechaIni.Value = dtFechaFin.Value.AddDays(-30);
         }
         public void CargarComboBox(IRestResponse json,ComboBox cb,bool habilitar)
         {
@@ -40,7 +49,6 @@ namespace testVSTO2
                 cb.Enabled = habilitar;
             }));
         }
-
         private void cbCategoria_SelectedIndexChanged(object sender, EventArgs e)
         {
             btAceptar.Enabled = cbCategoria.SelectedValue.ToString() != "" && cbDepartamento.SelectedValue.ToString() != "";
@@ -53,26 +61,43 @@ namespace testVSTO2
             btAyuda.Enabled = bandera;
             tabControl1.Enabled = bandera;
         }
+        ///todo: validar que haya checkbox checked, tomar el ProId y agruparlo para enviarlo en el json
+        /// 
         private void btAceptar_Click(object sender, EventArgs e)
         {
-            var mse=new MensajeDeEspera();
+            var cancelar = false;
+            var mse = new MensajeDeEspera(() =>
+            {
+                var continuarCancelacion = MessageBox.Show(@"¿Desea detener la operación?",
+                @"Alerta",
+                MessageBoxButtons.YesNoCancel,
+                MessageBoxIcon.Question);
+                if (continuarCancelacion != DialogResult.Yes)
+                    return false;
+                cancelar = true;
+                HabilitarSideBar(true);
+                return true;
+            });
+            mse.Show(); 
             HabilitarSideBar(false);
-            mse.Show();
+            
             var addIn = Globals.ThisAddIn;
             var respuestaReporteGeneral = new Respuesta.Reporte.General
             {
-                CatId = chCategoria.Checked?(cbCategoria.SelectedValue.ToString()):"%",
-                DepId = chDepartamento.Checked?(cbDepartamento.SelectedValue.ToString()):"%",
+                CatId = chCategoria.Checked?(cbCategoria.SelectedValue.ToString() == "%25"?"%":cbCategoria.SelectedValue.ToString()):"%",
+                DepId = chDepartamento.Checked? (cbDepartamento.SelectedValue.ToString() == "%25" ? "%" : cbDepartamento.SelectedValue.ToString()) : "%",
                 FechaFin = dtFechaFin.Value,
                 FechaIni = dtFechaIni.Value,
                 ProId =  chProveedor.Checked?(cbProveedor.SelectedValue.ToString()):"%",
-                OrderBy = cbOrderBy.SelectedValue.ToString()
-            };Data.Reporte.FechaIni = dtFechaIni.Value;
+                OrderBy = cbOrderBy.SelectedValue.ToString(),
+                IdTipo = chTipoProducto.Checked?(cbTipoProducto.SelectedValue.ToString()):"%"
+            };
+            Data.Reporte.FechaIni = dtFechaIni.Value;
             Data.Reporte.FechaFin = dtFechaFin.Value;
             Data.Reporte.Categoria = cbCategoria.Text;
             Data.Reporte.Departamento = cbDepartamento.Text;
             Opcion.EjecucionAsync(x =>
-            {
+            {   
                 if (cbImprimir.Checked)
                     Data.Reporte.Imprimir(x, respuestaReporteGeneral);
                 else
@@ -81,19 +106,19 @@ namespace testVSTO2
             {
                 BeginInvoke((MethodInvoker)(() =>
                 {
-                    if (y != null)
+                    if (y != null&&!cancelar)
                         if (cbImprimir.Checked)
-                            addIn.ReporteImprimir(y, () =>
-                            {
-                                CerrarCuadroDeEspera(mse);
-                            });
+                            addIn.ReporteImprimir(y, () => CerrarCuadroDeEspera(mse));
                         else
-                            addIn.ReporteGeneral(y, () =>
-                            {
-                                CerrarCuadroDeEspera(mse);
-                            });
+                            addIn.ReporteGeneral(y, () => CerrarCuadroDeEspera(mse));
                     else
+                    {
                         CerrarCuadroDeEspera(mse);
+                        BeginInvoke((MethodInvoker) (() =>
+                        {
+                            MessageBox.Show(@"No se encontró registros con los parámetros utilizados");
+                        }));
+                    }    
                 }));
             });
         }
@@ -106,14 +131,16 @@ namespace testVSTO2
             }));
         }
 
-        private static void ValidarComboBox(ComboBox cb, CheckBox ch)
+        private void ValidarComboBox(ComboBox cb, CheckBox ch)
         {
-            cb.Enabled = ch.Checked;
+            BeginInvoke((MethodInvoker)(() =>
+            {
+                cb.Enabled = ch.Checked;
+            }));
         }
         private void chCategoria_CheckedChanged(object sender, EventArgs e)
         {
-            ValidarComboBox(cbCategoria, chCategoria);
-        }
+            ValidarComboBox(cbCategoria, chCategoria);}
 
         private void chDepartamento_CheckedChanged(object sender, EventArgs e)
         {

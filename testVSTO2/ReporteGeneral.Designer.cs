@@ -159,7 +159,7 @@
             // btGenerar
             // 
             this.btGenerar.BackColor = System.Drawing.Color.LimeGreen;
-            this.btGenerar.Location = new System.Drawing.Point(530, 39);
+            this.btGenerar.Location = new System.Drawing.Point(533, 38);
             this.btGenerar.Name = "btGenerar";
             this.btGenerar.Size = new System.Drawing.Size(150, 34);
             this.btGenerar.TabIndex = 11;

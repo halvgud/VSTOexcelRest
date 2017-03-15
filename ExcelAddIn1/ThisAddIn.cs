@@ -1,14 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Xml.Linq;
 using Excel = Microsoft.Office.Interop.Excel;
-using Office = Microsoft.Office.Core;
-using Microsoft.Office.Tools.Excel;
-using Herramienta;
-using Respuesta;
-using Herramienta.Config;
 
 namespace ExcelAddIn1
 {
@@ -19,7 +12,7 @@ namespace ExcelAddIn1
             public string Nombre { get; set; }
         }
 
-        private void ThisAddIn_Startup(object sender, System.EventArgs e)
+        private void ThisAddIn_Startup(object sender, EventArgs e)
         {
             _reportes = new List<Reportes> {
             new Reportes { Nombre = "ReporteInventario"},
@@ -61,7 +54,7 @@ namespace ExcelAddIn1
             //wb.Unprotect();
         }
 
-        private void ThisAddIn_Shutdown(object sender, System.EventArgs e)
+        private void ThisAddIn_Shutdown(object sender, EventArgs e)
         {
         }
 
@@ -78,8 +71,8 @@ namespace ExcelAddIn1
         }
         private void InternalStartup()
         {
-            this.Startup += new System.EventHandler(ThisAddIn_Startup);
-            this.Shutdown += new System.EventHandler(ThisAddIn_Shutdown);
+            this.Startup += new EventHandler(ThisAddIn_Startup);
+            this.Shutdown += new EventHandler(ThisAddIn_Shutdown);
         }
         
         #endregion

@@ -3,8 +3,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Windows.Forms;
 
-using testVSTO2.Herramienta;
-using testVSTO2.Respuesta;
+using Herramienta;
+using Respuesta;
 
 namespace testVSTO2
 {

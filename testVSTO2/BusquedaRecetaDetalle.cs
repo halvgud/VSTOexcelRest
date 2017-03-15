@@ -3,7 +3,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Linq.Expressions;
 using System.Windows.Forms;
-using testVSTO2.Respuesta;
+using Respuesta;
+
 
 namespace testVSTO2
 {

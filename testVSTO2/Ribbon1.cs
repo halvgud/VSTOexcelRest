@@ -6,9 +6,12 @@ using System.Reflection;
 using System.Runtime.InteropServices;
 using System.Windows.Forms;
 using Microsoft.Office.Interop.Excel;
-using testVSTO2.Herramienta;
+using Respuesta;
+using Herramienta;
+
+
+
 using Office = Microsoft.Office.Core;
-using testVSTO2.Respuesta;
 
 // TODO:  Siga estos pasos para habilitar el elemento (XML) de la cinta de opciones:
 
@@ -51,6 +54,7 @@ namespace testVSTO2
         public void Ribbon_Load(Office.IRibbonUI ribbonUi)
         {
             _ribbon = ribbonUi;
+           
             Opcion.EjecucionAsync(Data.Permiso.ObtenerPermiso, x =>
             {
                 Data.Permiso.ListaPermisos = Opcion.JsonaListaGenerica<Permiso.Respuesta>(x);

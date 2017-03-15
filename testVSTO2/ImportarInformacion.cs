@@ -1,8 +1,8 @@
 ﻿using System;
 using System.Windows.Forms;
 using RestSharp;
-using testVSTO2.Herramienta;
-using testVSTO2.Herramienta.Config;
+using Herramienta;
+using Herramienta.Config;
 
 namespace testVSTO2
 {

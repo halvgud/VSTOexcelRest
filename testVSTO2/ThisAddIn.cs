@@ -8,9 +8,9 @@ using Excel = Microsoft.Office.Interop.Excel;
 using System.IO;
 using System.Reflection;
 using RestSharp;
-using testVSTO2.Herramienta;
-using testVSTO2.Respuesta;
-using testVSTO2.Herramienta.Config;
+using Herramienta;
+using Respuesta;
+using Herramienta.Config;
 
 namespace testVSTO2
 {

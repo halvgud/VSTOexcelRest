@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Windows.Forms;
-using testVSTO2.Respuesta;
+using Respuesta;
 
 namespace testVSTO2
 {

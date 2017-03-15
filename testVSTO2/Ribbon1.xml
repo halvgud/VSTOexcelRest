@@ -2,7 +2,7 @@
 <customUI xmlns="http://schemas.microsoft.com/office/2009/07/customui" onLoad="Ribbon_Load">
   <ribbon>
     <tabs>
-      <tab id="mercatto" label="ALMACENES MERCATTO"  insertAfterMso="TabView">
+      <tab id="mercatto1" label="Inventario"  insertAfterMso="TabView">
           <group id="myGroupDD" label="Inventario">
             <button id="btGenerarReporteGenerico" label="Generar reporte por Proveedor" imageMso="ColumnsGroup" size="large" onAction="ImportarInformacionGeneral" getEnabled ="BuscarPermiso"/>
               <button id="btGenerarReporte" label="Generar reporte" imageMso="ClickToRunApplyUpdates" size="large" onAction="ImportarInformacion" getEnabled="BuscarPermiso"/>

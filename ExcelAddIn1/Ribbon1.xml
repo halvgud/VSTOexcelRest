@@ -1,0 +1,24 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<customUI xmlns="http://schemas.microsoft.com/office/2009/07/customui" onLoad="Ribbon_Load">
+  <ribbon>
+    <tabs>
+      <tab id="mercatto2" label="Cocina"  insertAfterMso="TabView">
+        <group id="myGroupDD" label="Inventario">
+          <button id="btGenerarReporteGenerico" label="Generar reporte por Proveedor" imageMso="ColumnsGroup" size="large" onAction="ImportarInformacionGeneral" getEnabled ="BuscarPermiso"/>
+          <button id="btGenerarReporte" label="Generar reporte" imageMso="ClickToRunApplyUpdates" size="large" onAction="ImportarInformacion" getEnabled="BuscarPermiso"/>
+          <button id="btAjustar" label="Ajustar máximos y mínimos" imageMso="SaveObjectAs" size="large" onAction="GuardarMaximosMinimos" getEnabled="BuscarPermiso"/>
+          <!--<button id="btGuardarAjuste" label="Guardar ajustes de inventario" imageMso="SaveItem" size="large" onAction="AjustarInventario"/>-->
+          <button id="btGuardarTipo" label="Guardar tipo de producto" imageMso="ConvertSmartArtMenu" size="large" onAction="GuardarTipoArticulo" getEnabled="BuscarPermiso"/>
+          <button id="btAjustarPrecio" label="Guardar precio y margen de venta" imageMso="CalculatedCurrency" size="large" onAction="GuardarPrecioMargen" getEnabled="BuscarPermiso"/>
+          <button id="btConfiguracion" label="Configuración" imageMso="ResolveConflictOrError" size="large" onAction="AbrirConfiguracion"  getEnabled="BuscarPermiso"/>
+        </group>
+        <group id ="recetario" label="Recetario">
+          <button id="btAbrirRecetario" label="Abrir panel de recetas" imageMso="ArrangeByCreatedDate" size="large" onAction="AbrirRecetario" getEnabled="BuscarPermiso"/>
+          <button id ="btCrearReceta" label="Agregar y editar receta" imageMso="ArrangeByStore" size="large" onAction="CrearReceta" getEnabled="BuscarPermiso"/>
+          <button id ="btReporteDia" label="Reporte de Cocina" imageMso="ArrangeByStore" size="large" onAction="CrearReceta" getEnabled="BuscarPermiso"/>
+        </group>
+      </tab>
+    </tabs>
+  </ribbon>
+</customUI>
+

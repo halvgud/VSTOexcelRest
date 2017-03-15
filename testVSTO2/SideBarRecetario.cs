@@ -5,9 +5,9 @@ using System.Drawing.Text;
 using System.Linq;
 using System.Net;
 using System.Windows.Forms;
-using testVSTO2.Herramienta;
-using testVSTO2.Herramienta.Config;
-using testVSTO2.Respuesta;
+using Herramienta;
+using Herramienta.Config;
+using Respuesta;
 
 namespace testVSTO2
 {

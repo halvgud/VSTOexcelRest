@@ -1,12 +1,13 @@
-﻿using System;using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Drawing;
 using System.Globalization;
 using System.Linq;
 using System.Windows.Forms;
-using testVSTO2.Respuesta;
+using Respuesta;
 using RestSharp;
-using testVSTO2.Herramienta;
-using testVSTO2.Herramienta.Config;
+using Herramienta;
+using Herramienta.Config;
 using System.Net;
 namespace testVSTO2
 {

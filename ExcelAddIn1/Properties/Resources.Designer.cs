@@ -59,5 +59,15 @@ namespace ExcelAddIn1.Properties {
                 resourceCulture = value;
             }
         }
+        
+        /// <summary>
+        ///   Busca un recurso adaptado de tipo System.Byte[].
+        /// </summary>
+        internal static byte[] FICHA_RECETA {
+            get {
+                object obj = ResourceManager.GetObject("FICHA_RECETA", resourceCulture);
+                return ((byte[])(obj));
+            }
+        }
     }
 }

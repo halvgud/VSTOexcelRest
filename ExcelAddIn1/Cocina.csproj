@@ -107,6 +107,10 @@
   -->
   <ItemGroup>
     <Reference Include="Accessibility" />
+    <Reference Include="RestSharp, Version=105.2.3.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\Herramienta\bin\Debug\RestSharp.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Data" />
     <Reference Include="System.Drawing" />
@@ -153,9 +157,54 @@
     can be found.
   -->
   <ItemGroup>
+    <Compile Include="AgregarReceta.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="AgregarReceta.Designer.cs">
+      <DependentUpon>AgregarReceta.cs</DependentUpon>
+    </Compile>
+    <Compile Include="BuscarArticulo.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="BuscarArticulo.Designer.cs">
+      <DependentUpon>BuscarArticulo.cs</DependentUpon>
+    </Compile>
+    <Compile Include="BusquedaReceta.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="BusquedaReceta.Designer.cs">
+      <DependentUpon>BusquedaReceta.cs</DependentUpon>
+    </Compile>
+    <Compile Include="BusquedaRecetaDetalle.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="BusquedaRecetaDetalle.Designer.cs">
+      <DependentUpon>BusquedaRecetaDetalle.cs</DependentUpon>
+    </Compile>
+    <Compile Include="MensajeDeEspera.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="MensajeDeEspera.Designer.cs">
+      <DependentUpon>MensajeDeEspera.cs</DependentUpon>
+    </Compile>
     <Compile Include="Properties\AssemblyInfo.cs">
       <SubType>Code</SubType>
     </Compile>
+    <EmbeddedResource Include="AgregarReceta.resx">
+      <DependentUpon>AgregarReceta.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="BuscarArticulo.resx">
+      <DependentUpon>BuscarArticulo.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="BusquedaReceta.resx">
+      <DependentUpon>BusquedaReceta.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="BusquedaRecetaDetalle.resx">
+      <DependentUpon>BusquedaRecetaDetalle.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="MensajeDeEspera.resx">
+      <DependentUpon>MensajeDeEspera.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
@@ -166,6 +215,9 @@
       <DependentUpon>Resources.resx</DependentUpon>
       <DesignTime>True</DesignTime>
     </Compile>
+    <EmbeddedResource Include="SideBarRecetario.resx">
+      <DependentUpon>SideBarRecetario.cs</DependentUpon>
+    </EmbeddedResource>
     <None Include="Cocina_TemporaryKey.pfx" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
@@ -177,9 +229,16 @@
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
     <Compile Include="Ribbon1.cs" />
+    <Compile Include="SideBarRecetario.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="SideBarRecetario.Designer.cs">
+      <DependentUpon>SideBarRecetario.cs</DependentUpon>
+    </Compile>
     <Compile Include="ThisAddIn.cs">
       <SubType>Code</SubType>
     </Compile>
+    <None Include="Resources\FICHA RECETA.xlsx" />
     <None Include="ThisAddIn.Designer.xml">
       <DependentUpon>ThisAddIn.cs</DependentUpon>
     </None>
@@ -213,10 +272,11 @@
     <SignManifests>true</SignManifests>
   </PropertyGroup>
   <PropertyGroup>
-    <ManifestKeyFile>Cocina_TemporaryKey.pfx</ManifestKeyFile>
+    <ManifestKeyFile>
+    </ManifestKeyFile>
   </PropertyGroup>
   <PropertyGroup>
-    <ManifestCertificateThumbprint>7DEFA42A709D0FBA326F4A71199FF39378DC29AB</ManifestCertificateThumbprint>
+    <ManifestCertificateThumbprint>B6F5AA1C1914613CB330CB32E57C5312209C3291</ManifestCertificateThumbprint>
   </PropertyGroup>
   <!-- Include the build rules for a C# project. -->
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

@@ -9,7 +9,7 @@ using Herramienta;
 using Herramienta.Config;
 using Respuesta;
 
-namespace testVSTO2
+namespace ExcelAddIn1
 {
     public partial class BusquedaReceta : Form
     {

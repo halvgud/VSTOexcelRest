@@ -1,4 +1,4 @@
-﻿namespace testVSTO2
+﻿namespace ExcelAddIn1
 {
     partial class BusquedaRecetaDetalle
     {

@@ -1,8 +1,13 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
+using System.Windows.Forms;
+using Herramienta.Config;
 using Excel = Microsoft.Office.Interop.Excel;
-
+using Herramienta;
+using Respuesta;
+using Herramienta.Config;
 namespace ExcelAddIn1
 {
     public partial class ThisAddIn
@@ -11,6 +16,9 @@ namespace ExcelAddIn1
         {
             public string Nombre { get; set; }
         }
+        private SideBarRecetario _recetario;
+        public static Microsoft.Office.Tools.CustomTaskPane Recetario;
+        private Excel.Worksheet _reporte;
 
         private void ThisAddIn_Startup(object sender, EventArgs e)
         {
@@ -18,6 +26,10 @@ namespace ExcelAddIn1
             new Reportes { Nombre = "ReporteInventario"},
             new Reportes { Nombre= "ReporteInventarioImprimir" }
             };
+            _recetario = new SideBarRecetario();
+             Recetario = CustomTaskPanes.Add(_recetario, "Recetario");
+            Recetario.Visible = false;
+            Recetario.Width = 280;
             Application.WorkbookActivate +=
    Application_ActiveWorkbookChanges;
             Application.WorkbookDeactivate += Application_ActiveWorkbookChanges;
@@ -53,9 +65,69 @@ namespace ExcelAddIn1
             // TODO: Active Workbook has changed. Ribbon should be updated.    
             //wb.Unprotect();
         }
-
+        public void Agregar(Receta receta)
+        {
+            Local.Receta.IdReceta = receta.RecId;
+            var oReportWs = InicializarExcelConTemplate("Receta");
+            if (oReportWs == null) return;
+            ((oReportWs.Range["NOMBRE"])).Value2 = receta.Descripcion;
+            ((oReportWs.Range["PESO_LITRO"])).Value2 = receta.PesoLitro;
+            ((oReportWs.Range["LITROS_A_ELABORAR"])).Value2 = receta.Cantidad;
+            ((oReportWs.Range["CANTIDAD_A_ELABORAR"])).Value2 = receta.Cantidad * receta.PesoLitro;
+            ((oReportWs.Range["CODIGO"])).Value2 = receta.Clave;
+            ((oReportWs.Range["MARGEN_ANTERIOR"])).Value2 = receta.Margen;
+            ((oReportWs.Range["PRECIO_VENTA"])).Value2 = receta.Precio;
+            ((oReportWs.Range["COSTO_PREPARACION"])).Value2 = receta.CostoCreacion;
+            //oReportWs.Range["TABLA1"].CopyFromRecordset(ListToDataTable(rrd));
+            int inicioTabla = 5;
+            foreach (Receta.Detalle t in receta.Ingredientes)
+            {
+                oReportWs.Range["A" + inicioTabla].Value2 = t.Clave; //Clave
+                oReportWs.Range["B" + inicioTabla].Value2 = t.Cantidad;
+                //cantidad unitaria por medida
+                oReportWs.Range["C" + inicioTabla].Value2 = (t.Cantidad) * receta.Cantidad;
+                //cantidad total
+                oReportWs.Range["D" + inicioTabla].Value2 = t.Unidad; //tipo de unidad
+                oReportWs.Range["E" + inicioTabla].Value2 = t.Descripcion; //nombre
+                oReportWs.Range["F" + inicioTabla].Value2 = t.PrecioVenta; //valor unitario
+                oReportWs.Range["G" + inicioTabla].Value2 = (t.PrecioVenta) *
+                                                            ((t.Cantidad) * receta.Cantidad); //
+                inicioTabla++;
+            }
+        }
         private void ThisAddIn_Shutdown(object sender, EventArgs e)
         {
+        }
+        public Excel.Worksheet InicializarExcelConTemplate(string nombreHoja)
+        {
+            try
+            {
+                _sheet1 = (Excel.Worksheet)Application.ActiveSheet;
+                _sheet1.Unprotect();
+                var found = Application.Sheets.Cast<Excel.Worksheet>().Any(sheet => sheet.Name == nombreHoja);
+                var awa = Application.Workbooks.Application;//nueva app
+                if (!found)
+                {
+                    var ows = Application.Worksheets[1];// excel actual
+                    var sPath = Path.GetTempFileName(); // archivo temporal
+                    File.WriteAllBytes(sPath, Properties.Resources.FICHA_RECETA);//se copia el template
+                    var oTemplate = Application.Workbooks.Add(sPath); //path del template temporal  
+                    var worksheet = oTemplate.Worksheets[nombreHoja] as Excel.Worksheet;//nombre del template
+                    worksheet?.Copy(After: ows); oTemplate.Close(false, missing, missing);
+                    File.Delete(sPath);
+                }
+                _reporte = awa.Worksheets[nombreHoja] as Excel.Worksheet;//nombre de la hoja actual   
+                _reporte?.Activate();
+            }
+            catch (Exception e)
+            {
+                MessageBox.Show(e.Message);
+            }
+            return _reporte;
+        }
+        public static bool BuscarPermiso()
+        {
+            return true;
         }
 
         #region Código generado por VSTO

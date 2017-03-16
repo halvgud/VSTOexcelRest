@@ -6,7 +6,7 @@ using System.Windows.Forms;
 using Respuesta;
 
 
-namespace testVSTO2
+namespace ExcelAddIn1
 {
     public partial class BusquedaRecetaDetalle : Form
     {

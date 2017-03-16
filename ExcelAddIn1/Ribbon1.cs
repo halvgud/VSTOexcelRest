@@ -31,10 +31,25 @@ namespace ExcelAddIn1
     [ComVisible(true)]
     public class Ribbon1 : Office.IRibbonExtensibility
     {
-        private Office.IRibbonUI ribbon;
+        private Office.IRibbonUI _ribbon;
 
         public Ribbon1()
         {
+        }
+        public void AbrirRecetario(Office.IRibbonControl control)
+        {
+            
+             ThisAddIn.Recetario.Visible = true;
+        }
+    
+        public void CrearReceta(Office.IRibbonControl control)
+        {
+            var ar = new AgregarReceta();
+            ar.Show();
+        }
+        public bool BuscarPermiso(Office.IRibbonControl control)
+        {
+            return true;
         }
 
         #region Miembros de IRibbonExtensibility
@@ -51,7 +66,7 @@ namespace ExcelAddIn1
 
         public void Ribbon_Load(Office.IRibbonUI ribbonUI)
         {
-            this.ribbon = ribbonUI;
+            this._ribbon = ribbonUI;
         }
 
         #endregion

@@ -9,7 +9,7 @@ using RestSharp;
 using Herramienta;
 using Herramienta.Config;
 using System.Net;
-namespace testVSTO2
+namespace ExcelAddIn1
 {
     public partial class AgregarReceta : Form
     {
@@ -196,37 +196,37 @@ namespace testVSTO2
             {
                 BeginInvoke((MethodInvoker)(() => 
                 {
-                    var brd =new BuscarArticulo(Opcion.JsonaListaGenerica<Articulo>(jsonResult), listaArticulo =>
-                     {
-                        BeginInvoke((MethodInvoker) (() =>
-                        {
-                            _listaArticuloBasica1 = parametros.Ingredientes.DataSource as List<Articulo.Basica>;
-                            _listaArticuloBasica2 = (listaArticulo.Select(x => x.CopiadoSencillo()).ToList());
-                            if (_listaArticuloBasica1 != null)
-                            {
-                                _listaArticuloBasica2.AddRange(_listaArticuloBasica1);
-                            }
-                            parametros.Ingredientes.DataSource = _listaArticuloBasica2
-                                    .GroupBy(p => p.ArtId)
-                                    .Select(g => new Articulo.Basica
-                                    {
-                                        ArtId = g.Key,
-                                        Clave = g.First().Clave,
-                                        Descripcion = g.First().Descripcion,
-                                        PrecioCompra = g.First().PrecioCompra,
-                                        Cantidad = g.Sum(i => i.Cantidad)
-                                    }).ToList();
-                            for (var x = 0; x == 3; x++)
-                            {
-                                parametros.Ingredientes.Columns[x].ReadOnly = true;
-                                parametros.Ingredientes.Columns[x].DefaultCellStyle.BackColor = Color.LightGray;
-                            }
-                            parametros.Ingredientes.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
-                            parametros.ClaveReceta.Text = "";
-                            parametros.ClaveReceta.Focus();
-                            actualizarInputs(parametros);
-                        }));
-                     });
+                    var brd = new BuscarArticulo(Opcion.JsonaListaGenerica<Articulo>(jsonResult), listaArticulo =>
+                      {
+                          BeginInvoke((MethodInvoker)(() =>
+                         {
+                             _listaArticuloBasica1 = parametros.Ingredientes.DataSource as List<Articulo.Basica>;
+                             _listaArticuloBasica2 = (listaArticulo.Select(x => x.CopiadoSencillo()).ToList());
+                             if (_listaArticuloBasica1 != null)
+                             {
+                                 _listaArticuloBasica2.AddRange(_listaArticuloBasica1);
+                             }
+                             parametros.Ingredientes.DataSource = _listaArticuloBasica2
+                                     .GroupBy(p => p.ArtId)
+                                     .Select(g => new Articulo.Basica
+                                     {
+                                         ArtId = g.Key,
+                                         Clave = g.First().Clave,
+                                         Descripcion = g.First().Descripcion,
+                                         PrecioCompra = g.First().PrecioCompra,
+                                         Cantidad = g.Sum(i => i.Cantidad)
+                                     }).ToList();
+                             for (var x = 0; x == 3; x++)
+                             {
+                                 parametros.Ingredientes.Columns[x].ReadOnly = true;
+                                 parametros.Ingredientes.Columns[x].DefaultCellStyle.BackColor = Color.LightGray;
+                             }
+                             parametros.Ingredientes.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
+                             parametros.ClaveReceta.Text = "";
+                             parametros.ClaveReceta.Focus();
+                             actualizarInputs(parametros);
+                         }));
+                      });
                     brd.Show();
                 }));
             });
@@ -427,7 +427,7 @@ namespace testVSTO2
                     switch (jsonResult.StatusCode){
                         case HttpStatusCode.OK:
                             var brd =
-                             new BusquedaRecetaDetalle(Opcion.JsonaListaGenerica<Receta>(jsonResult),   
+                             new BusquedaRecetaDetalle(Opcion.JsonaListaGenerica<Receta>(jsonResult),
                                  resultado =>
                                  {
                                      BeginInvoke((MethodInvoker)(() =>
@@ -446,11 +446,11 @@ namespace testVSTO2
                                          tbPesoLitroBE.Text = resultado.PesoLitro.ToString(CultureInfo.InvariantCulture);
                                          tbMargenConPrecioBE.Text = resultado.Margen.ToString(CultureInfo.InvariantCulture);
                                          chDiarioBE.Checked = (resultado.Diario == 1);
-                                         tbCodigoBE.Enabled = true;tbCostoElaboracionBE.Text =
-                                             resultado.CostoElaboracion.ToString(CultureInfo.InvariantCulture);
+                                         tbCodigoBE.Enabled = true; tbCostoElaboracionBE.Text =
+                                              resultado.CostoElaboracion.ToString(CultureInfo.InvariantCulture);
                                          btBuscarBE.Enabled = true;
-                                       }));
-                                 },false);
+                                     }));
+                                 }, false);
                             brd.Show();
                             break;
                         default:

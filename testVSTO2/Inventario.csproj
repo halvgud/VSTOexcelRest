@@ -337,10 +337,11 @@
     <SignManifests>true</SignManifests>
   </PropertyGroup>
   <PropertyGroup>
-    <ManifestKeyFile>testVSTO2_TemporaryKey.pfx</ManifestKeyFile>
+    <ManifestKeyFile>
+    </ManifestKeyFile>
   </PropertyGroup>
   <PropertyGroup>
-    <ManifestCertificateThumbprint>B011C8B54B7A5239AD5C21AA64B2AA6D62488C81</ManifestCertificateThumbprint>
+    <ManifestCertificateThumbprint>B6F5AA1C1914613CB330CB32E57C5312209C3291</ManifestCertificateThumbprint>
   </PropertyGroup>
   <!-- Include the build rules for a C# project. -->
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

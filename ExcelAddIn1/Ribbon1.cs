@@ -38,10 +38,16 @@ namespace ExcelAddIn1
         }
         public void AbrirRecetario(Office.IRibbonControl control)
         {
-            
+            ThisAddIn.ReporteReceta.Visible = false;
              ThisAddIn.Recetario.Visible = true;
         }
-    
+
+        public void AbrirReporteReceta(Office.IRibbonControl control)
+        {
+            ThisAddIn.Recetario.Visible = false;
+            ThisAddIn.ReporteReceta.Visible = true;
+        }
+
         public void CrearReceta(Office.IRibbonControl control)
         {
             var ar = new AgregarReceta();
@@ -51,6 +57,7 @@ namespace ExcelAddIn1
         {
             return true;
         }
+
 
         #region Miembros de IRibbonExtensibility
 

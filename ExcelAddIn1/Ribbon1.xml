@@ -4,8 +4,8 @@
     <tabs>
       <tab id="mercatto2" label="COCINA"  insertAfterMso="TabView">
         <group id ="recetario">
-          <button id="btReporteCocina" label="Reporte Cocina" imageMso="AddRulesMenu" size="large" onAction="AbrirRecetario" getEnabled="BuscarPermiso"/>
-          <button id ="btMenuSemanal" label="Menu Semanal" imageMso="CalendarHorizontal" size="large" onAction="CrearMenu" getEnabled="BuscarPermiso"/>
+          <button id="btReporteCocina" label="Reporte Cocina" imageMso="AddRulesMenu" size="large" onAction="AbrirReporteReceta" getEnabled="BuscarPermiso"/>
+          <button id ="btMenuSemanal" label="Menu Semanal" imageMso="CalendarHorizontal" size="large" onAction="AbrirRecetario" getEnabled="BuscarPermiso"/>
           <button id ="btReceta" label="Recetario" imageMso="BuildingBlocksCreateTableOfAuthorities" size="large" onAction="CrearReceta" getEnabled="BuscarPermiso"/>
           <button id ="btOrden" label="Orden de Trabajo" imageMso="CalendarToolImport" size="large" onAction="CrearOrdenTrabajo" getEnabled="BuscarPermiso"/>
         </group>

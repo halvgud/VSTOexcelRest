@@ -16,18 +16,25 @@ namespace ExcelAddIn1
         {
             public string Nombre { get; set; }
         }
+        private SideBarReporteReceta _reporteReceta;
         private SideBarRecetario _recetario;
         public static Microsoft.Office.Tools.CustomTaskPane Recetario;
+        public static Microsoft.Office.Tools.CustomTaskPane ReporteReceta;
         private Excel.Worksheet _reporte;
 
         private void ThisAddIn_Startup(object sender, EventArgs e)
         {
             _reportes = new List<Reportes> {
-            new Reportes { Nombre = "ReporteInventario"},
-            new Reportes { Nombre= "ReporteInventarioImprimir" }
+            new Reportes { Nombre = "ReporteCocina"},
+            new Reportes { Nombre= "Recetario" }
             };
+            _reporteReceta = new SideBarReporteReceta();
             _recetario = new SideBarRecetario();
-             Recetario = CustomTaskPanes.Add(_recetario, "Recetario");
+
+            ReporteReceta = CustomTaskPanes.Add(_reporteReceta, "ReporteCocina");
+            ReporteReceta.Visible = false;
+            ReporteReceta.Width = 280;
+            Recetario = CustomTaskPanes.Add(_recetario, "Recetario");
             Recetario.Visible = false;
             Recetario.Width = 280;
             Application.WorkbookActivate +=

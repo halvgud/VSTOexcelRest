@@ -218,6 +218,9 @@
     <EmbeddedResource Include="SideBarRecetario.resx">
       <DependentUpon>SideBarRecetario.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="SideBarReporteReceta.resx">
+      <DependentUpon>SideBarReporteReceta.cs</DependentUpon>
+    </EmbeddedResource>
     <None Include="Cocina_TemporaryKey.pfx" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
@@ -228,12 +231,19 @@
       <DependentUpon>Settings.settings</DependentUpon>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
+    <Compile Include="ReporteRecetaCocina.cs" />
     <Compile Include="Ribbon1.cs" />
     <Compile Include="SideBarRecetario.cs">
       <SubType>UserControl</SubType>
     </Compile>
     <Compile Include="SideBarRecetario.Designer.cs">
       <DependentUpon>SideBarRecetario.cs</DependentUpon>
+    </Compile>
+    <Compile Include="SideBarReporteReceta.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="SideBarReporteReceta.Designer.cs">
+      <DependentUpon>SideBarReporteReceta.cs</DependentUpon>
     </Compile>
     <Compile Include="ThisAddIn.cs">
       <SubType>Code</SubType>

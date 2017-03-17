@@ -274,5 +274,23 @@ namespace Herramienta.Properties {
                 return ((string)(this["ReporteActualizarUltimoRegistro"]));
             }
         }
+        
+        [global::System.Configuration.ApplicationScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("reporte/OrdenarReceta")]
+        public string Orden {
+            get {
+                return ((string)(this["Orden"]));
+            }
+        }
+        
+        [global::System.Configuration.ApplicationScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("reporte/OrdenarConcepto")]
+        public string Concepto {
+            get {
+                return ((string)(this["Concepto"]));
+            }
+        }
     }
 }

@@ -1,5 +1,5 @@
 ﻿<?xml version='1.0' encoding='utf-8'?>
-<SettingsFile xmlns="http://schemas.microsoft.com/VisualStudio/2004/01/settings" CurrentProfile="(Default)" GeneratedClassNamespace="testVSTO2.Properties" GeneratedClassName="Settings">
+<SettingsFile xmlns="http://schemas.microsoft.com/VisualStudio/2004/01/settings" CurrentProfile="(Default)" GeneratedClassNamespace="Herramienta.Properties" GeneratedClassName="Settings">
   <Profiles />
   <Settings>
     <Setting Name="UrlApi" Type="System.String" Scope="Application">
@@ -85,6 +85,12 @@
     </Setting>
     <Setting Name="ReporteActualizarUltimoRegistro" Type="System.String" Scope="Application">
       <Value Profile="(Default)">reporte/actualizar/busqueda</Value>
+    </Setting>
+    <Setting Name="Orden" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">reporte/OrdenarReceta</Value>
+    </Setting>
+    <Setting Name="Concepto" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">reporte/OrdenarConcepto</Value>
     </Setting>
   </Settings>
 </SettingsFile>

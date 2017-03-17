@@ -68,14 +68,17 @@
             // 
             // cbConceptoReceta
             // 
+            this.cbConceptoReceta.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend;
             this.cbConceptoReceta.FormattingEnabled = true;
-            this.cbConceptoReceta.Location = new System.Drawing.Point(98, 71);
+            this.cbConceptoReceta.Location = new System.Drawing.Point(98, 68);
             this.cbConceptoReceta.Name = "cbConceptoReceta";
             this.cbConceptoReceta.Size = new System.Drawing.Size(121, 21);
             this.cbConceptoReceta.TabIndex = 3;
+            this.cbConceptoReceta.SelectedIndexChanged += new System.EventHandler(this.cbConceptoReceta_SelectedIndexChanged);
             // 
             // cbOrdenarReceta
             // 
+            this.cbOrdenarReceta.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend;
             this.cbOrdenarReceta.FormattingEnabled = true;
             this.cbOrdenarReceta.Location = new System.Drawing.Point(98, 151);
             this.cbOrdenarReceta.Name = "cbOrdenarReceta";
@@ -91,12 +94,13 @@
             // 
             // btGenerarReceta
             // 
-            this.btGenerarReceta.Location = new System.Drawing.Point(144, 225);
+            this.btGenerarReceta.Location = new System.Drawing.Point(144, 203);
             this.btGenerarReceta.Name = "btGenerarReceta";
             this.btGenerarReceta.Size = new System.Drawing.Size(75, 23);
             this.btGenerarReceta.TabIndex = 6;
             this.btGenerarReceta.Text = "Generar";
             this.btGenerarReceta.UseVisualStyleBackColor = true;
+            this.btGenerarReceta.Click += new System.EventHandler(this.btGenerarReceta_Click);
             // 
             // panel1
             // 
@@ -120,6 +124,7 @@
             this.Controls.Add(this.panel1);
             this.Name = "SideBarReporteReceta";
             this.Size = new System.Drawing.Size(244, 291);
+            this.Load += new System.EventHandler(this.SideBarReporteReceta_Load);
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
             this.ResumeLayout(false);

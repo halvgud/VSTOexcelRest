@@ -13,8 +13,25 @@
 
             
         }
+
+        public static class Cocina
+        {
+            public static class ReporteRecetario
+            {
+                public static string Orden { get; set; } = Properties.Settings.Default.Orden;
+            }
+
+            public static class Concepto
+            {
+                public static string OrdenConcepto { get; set; } = Properties.Settings.Default.Concepto;
+            }
+        }
+
+       
+
         public static class Local
         {
+
             public static class Api
             {
                 public static string UrlApi { get; set; } = Properties.Settings.Default.UrlApi;

@@ -29,22 +29,17 @@
         private void InitializeComponent()
         {
             this.groupBox1 = new System.Windows.Forms.GroupBox();
-            this.btBuscar = new System.Windows.Forms.Button();
-            this.tbCodigo = new System.Windows.Forms.TextBox();
-            this.panel1 = new System.Windows.Forms.Panel();
-            this.panel2 = new System.Windows.Forms.Panel();
-            this.btCancelar = new System.Windows.Forms.Button();
-            this.btAceptar = new System.Windows.Forms.Button();
-            this.panel3 = new System.Windows.Forms.Panel();
             this.panel4 = new System.Windows.Forms.Panel();
-            this.groupBox4 = new System.Windows.Forms.GroupBox();
             this.groupBox3 = new System.Windows.Forms.GroupBox();
             this.dgvIngredientes = new System.Windows.Forms.DataGridView();
-            this.groupBox2 = new System.Windows.Forms.GroupBox();
-            this.dgvRecetas = new System.Windows.Forms.DataGridView();
+            this.groupBox4 = new System.Windows.Forms.GroupBox();
+            this.tbDescripcion = new System.Windows.Forms.TextBox();
+            this.tbClaveReceta = new System.Windows.Forms.TextBox();
             this.cbTipoReceta = new System.Windows.Forms.ComboBox();
+            this.label8 = new System.Windows.Forms.Label();
             this.tbPesoLitro = new System.Windows.Forms.MaskedTextBox();
             this.tbMargenConPrecio = new System.Windows.Forms.MaskedTextBox();
+            this.label11 = new System.Windows.Forms.Label();
             this.tbPrecio = new System.Windows.Forms.MaskedTextBox();
             this.tbCostoElaboracion = new System.Windows.Forms.MaskedTextBox();
             this.tbCostoEstimado = new System.Windows.Forms.MaskedTextBox();
@@ -54,22 +49,27 @@
             this.label9 = new System.Windows.Forms.Label();
             this.label7 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
-            this.tbDescripcion = new System.Windows.Forms.TextBox();
-            this.tbClaveReceta = new System.Windows.Forms.TextBox();
-            this.label11 = new System.Windows.Forms.Label();
-            this.label8 = new System.Windows.Forms.Label();
+            this.groupBox2 = new System.Windows.Forms.GroupBox();
+            this.dgvRecetas = new System.Windows.Forms.DataGridView();
+            this.panel3 = new System.Windows.Forms.Panel();
+            this.tbCodigo = new System.Windows.Forms.TextBox();
+            this.label2 = new System.Windows.Forms.Label();
             this.tbCantidad = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
-            this.label2 = new System.Windows.Forms.Label();
+            this.btBuscar = new System.Windows.Forms.Button();
+            this.panel1 = new System.Windows.Forms.Panel();
+            this.btCancelar = new System.Windows.Forms.Button();
+            this.panel2 = new System.Windows.Forms.Panel();
+            this.btAceptar = new System.Windows.Forms.Button();
             this.groupBox1.SuspendLayout();
-            this.panel1.SuspendLayout();
-            this.panel3.SuspendLayout();
             this.panel4.SuspendLayout();
-            this.groupBox4.SuspendLayout();
             this.groupBox3.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvIngredientes)).BeginInit();
+            this.groupBox4.SuspendLayout();
             this.groupBox2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvRecetas)).BeginInit();
+            this.panel3.SuspendLayout();
+            this.panel1.SuspendLayout();
             this.SuspendLayout();
             // 
             // groupBox1
@@ -84,74 +84,6 @@
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Búsqueda";
             // 
-            // btBuscar
-            // 
-            this.btBuscar.Location = new System.Drawing.Point(283, 17);
-            this.btBuscar.Name = "btBuscar";
-            this.btBuscar.Size = new System.Drawing.Size(75, 21);
-            this.btBuscar.TabIndex = 2;
-            this.btBuscar.Text = "Buscar";
-            this.btBuscar.UseVisualStyleBackColor = true;
-            this.btBuscar.Click += new System.EventHandler(this.btBuscar_Click);
-            // 
-            // tbCodigo
-            // 
-            this.tbCodigo.Location = new System.Drawing.Point(9, 17);
-            this.tbCodigo.Name = "tbCodigo";
-            this.tbCodigo.Size = new System.Drawing.Size(268, 20);
-            this.tbCodigo.TabIndex = 0;
-            // 
-            // panel1
-            // 
-            this.panel1.Controls.Add(this.btCancelar);
-            this.panel1.Controls.Add(this.panel2);
-            this.panel1.Controls.Add(this.btAceptar);
-            this.panel1.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.panel1.Location = new System.Drawing.Point(0, 424);
-            this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(798, 57);
-            this.panel1.TabIndex = 1;
-            // 
-            // panel2
-            // 
-            this.panel2.Dock = System.Windows.Forms.DockStyle.Right;
-            this.panel2.Location = new System.Drawing.Point(500, 0);
-            this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(298, 57);
-            this.panel2.TabIndex = 0;
-            // 
-            // btCancelar
-            // 
-            this.btCancelar.Location = new System.Drawing.Point(94, 6);
-            this.btCancelar.Name = "btCancelar";
-            this.btCancelar.Size = new System.Drawing.Size(75, 23);
-            this.btCancelar.TabIndex = 1;
-            this.btCancelar.Text = "Cancelar";
-            this.btCancelar.UseVisualStyleBackColor = true;
-            // 
-            // btAceptar
-            // 
-            this.btAceptar.Location = new System.Drawing.Point(13, 6);
-            this.btAceptar.Name = "btAceptar";
-            this.btAceptar.Size = new System.Drawing.Size(75, 23);
-            this.btAceptar.TabIndex = 0;
-            this.btAceptar.Text = "Aceptar";
-            this.btAceptar.UseVisualStyleBackColor = true;
-            this.btAceptar.Click += new System.EventHandler(this.btAceptar_Click);
-            // 
-            // panel3
-            // 
-            this.panel3.Controls.Add(this.tbCodigo);
-            this.panel3.Controls.Add(this.label2);
-            this.panel3.Controls.Add(this.tbCantidad);
-            this.panel3.Controls.Add(this.label1);
-            this.panel3.Controls.Add(this.btBuscar);
-            this.panel3.Dock = System.Windows.Forms.DockStyle.Top;
-            this.panel3.Location = new System.Drawing.Point(3, 16);
-            this.panel3.Name = "panel3";
-            this.panel3.Size = new System.Drawing.Size(792, 41);
-            this.panel3.TabIndex = 9;
-            // 
             // panel4
             // 
             this.panel4.Controls.Add(this.groupBox3);
@@ -162,6 +94,27 @@
             this.panel4.Name = "panel4";
             this.panel4.Size = new System.Drawing.Size(792, 364);
             this.panel4.TabIndex = 2;
+            // 
+            // groupBox3
+            // 
+            this.groupBox3.Controls.Add(this.dgvIngredientes);
+            this.groupBox3.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.groupBox3.Location = new System.Drawing.Point(258, 0);
+            this.groupBox3.Name = "groupBox3";
+            this.groupBox3.Size = new System.Drawing.Size(334, 364);
+            this.groupBox3.TabIndex = 10;
+            this.groupBox3.TabStop = false;
+            this.groupBox3.Text = "Ingredientes";
+            // 
+            // dgvIngredientes
+            // 
+            this.dgvIngredientes.BackgroundColor = System.Drawing.SystemColors.ButtonFace;
+            this.dgvIngredientes.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dgvIngredientes.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.dgvIngredientes.Location = new System.Drawing.Point(3, 16);
+            this.dgvIngredientes.Name = "dgvIngredientes";
+            this.dgvIngredientes.Size = new System.Drawing.Size(328, 345);
+            this.dgvIngredientes.TabIndex = 4;
             // 
             // groupBox4
             // 
@@ -189,48 +142,21 @@
             this.groupBox4.TabStop = false;
             this.groupBox4.Text = "Detalle";
             // 
-            // groupBox3
+            // tbDescripcion
             // 
-            this.groupBox3.Controls.Add(this.dgvIngredientes);
-            this.groupBox3.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.groupBox3.Location = new System.Drawing.Point(258, 0);
-            this.groupBox3.Name = "groupBox3";
-            this.groupBox3.Size = new System.Drawing.Size(334, 364);
-            this.groupBox3.TabIndex = 10;
-            this.groupBox3.TabStop = false;
-            this.groupBox3.Text = "Ingredientes";
+            this.tbDescripcion.Location = new System.Drawing.Point(6, 71);
+            this.tbDescripcion.Name = "tbDescripcion";
+            this.tbDescripcion.ReadOnly = true;
+            this.tbDescripcion.Size = new System.Drawing.Size(169, 20);
+            this.tbDescripcion.TabIndex = 46;
             // 
-            // dgvIngredientes
+            // tbClaveReceta
             // 
-            this.dgvIngredientes.BackgroundColor = System.Drawing.SystemColors.ButtonFace;
-            this.dgvIngredientes.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dgvIngredientes.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.dgvIngredientes.Location = new System.Drawing.Point(3, 16);
-            this.dgvIngredientes.Name = "dgvIngredientes";
-            this.dgvIngredientes.Size = new System.Drawing.Size(328, 345);
-            this.dgvIngredientes.TabIndex = 4;
-            // 
-            // groupBox2
-            // 
-            this.groupBox2.Controls.Add(this.dgvRecetas);
-            this.groupBox2.Dock = System.Windows.Forms.DockStyle.Left;
-            this.groupBox2.Location = new System.Drawing.Point(0, 0);
-            this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Size = new System.Drawing.Size(258, 364);
-            this.groupBox2.TabIndex = 9;
-            this.groupBox2.TabStop = false;
-            this.groupBox2.Text = "Recetas";
-            // 
-            // dgvRecetas
-            // 
-            this.dgvRecetas.BackgroundColor = System.Drawing.SystemColors.ButtonFace;
-            this.dgvRecetas.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dgvRecetas.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.dgvRecetas.Location = new System.Drawing.Point(3, 16);
-            this.dgvRecetas.Name = "dgvRecetas";
-            this.dgvRecetas.Size = new System.Drawing.Size(252, 345);
-            this.dgvRecetas.TabIndex = 4;
-            this.dgvRecetas.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvRecetas_CellClick);
+            this.tbClaveReceta.Location = new System.Drawing.Point(6, 30);
+            this.tbClaveReceta.Name = "tbClaveReceta";
+            this.tbClaveReceta.ReadOnly = true;
+            this.tbClaveReceta.Size = new System.Drawing.Size(169, 20);
+            this.tbClaveReceta.TabIndex = 45;
             // 
             // cbTipoReceta
             // 
@@ -239,6 +165,15 @@
             this.cbTipoReceta.Name = "cbTipoReceta";
             this.cbTipoReceta.Size = new System.Drawing.Size(169, 21);
             this.cbTipoReceta.TabIndex = 43;
+            // 
+            // label8
+            // 
+            this.label8.AutoSize = true;
+            this.label8.Location = new System.Drawing.Point(5, 14);
+            this.label8.Name = "label8";
+            this.label8.Size = new System.Drawing.Size(99, 13);
+            this.label8.TabIndex = 47;
+            this.label8.Text = "Clave de la receta :";
             // 
             // tbPesoLitro
             // 
@@ -255,6 +190,15 @@
             this.tbMargenConPrecio.ReadOnly = true;
             this.tbMargenConPrecio.Size = new System.Drawing.Size(169, 20);
             this.tbMargenConPrecio.TabIndex = 32;
+            // 
+            // label11
+            // 
+            this.label11.AutoSize = true;
+            this.label11.Location = new System.Drawing.Point(3, 55);
+            this.label11.Name = "label11";
+            this.label11.Size = new System.Drawing.Size(109, 13);
+            this.label11.TabIndex = 48;
+            this.label11.Text = "Nombre de la receta :";
             // 
             // tbPrecio
             // 
@@ -337,39 +281,56 @@
             this.label4.TabIndex = 34;
             this.label4.Text = "Costo Estimado :";
             // 
-            // tbDescripcion
+            // groupBox2
             // 
-            this.tbDescripcion.Location = new System.Drawing.Point(6, 71);
-            this.tbDescripcion.Name = "tbDescripcion";
-            this.tbDescripcion.ReadOnly = true;
-            this.tbDescripcion.Size = new System.Drawing.Size(169, 20);
-            this.tbDescripcion.TabIndex = 46;
+            this.groupBox2.Controls.Add(this.dgvRecetas);
+            this.groupBox2.Dock = System.Windows.Forms.DockStyle.Left;
+            this.groupBox2.Location = new System.Drawing.Point(0, 0);
+            this.groupBox2.Name = "groupBox2";
+            this.groupBox2.Size = new System.Drawing.Size(258, 364);
+            this.groupBox2.TabIndex = 9;
+            this.groupBox2.TabStop = false;
+            this.groupBox2.Text = "Recetas";
             // 
-            // tbClaveReceta
+            // dgvRecetas
             // 
-            this.tbClaveReceta.Location = new System.Drawing.Point(6, 30);
-            this.tbClaveReceta.Name = "tbClaveReceta";
-            this.tbClaveReceta.ReadOnly = true;
-            this.tbClaveReceta.Size = new System.Drawing.Size(169, 20);
-            this.tbClaveReceta.TabIndex = 45;
+            this.dgvRecetas.BackgroundColor = System.Drawing.SystemColors.ButtonFace;
+            this.dgvRecetas.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dgvRecetas.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.dgvRecetas.Location = new System.Drawing.Point(3, 16);
+            this.dgvRecetas.Name = "dgvRecetas";
+            this.dgvRecetas.Size = new System.Drawing.Size(252, 345);
+            this.dgvRecetas.TabIndex = 4;
+            this.dgvRecetas.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvRecetas_CellClick);
             // 
-            // label11
+            // panel3
             // 
-            this.label11.AutoSize = true;
-            this.label11.Location = new System.Drawing.Point(3, 55);
-            this.label11.Name = "label11";
-            this.label11.Size = new System.Drawing.Size(109, 13);
-            this.label11.TabIndex = 48;
-            this.label11.Text = "Nombre de la receta :";
+            this.panel3.Controls.Add(this.tbCodigo);
+            this.panel3.Controls.Add(this.label2);
+            this.panel3.Controls.Add(this.tbCantidad);
+            this.panel3.Controls.Add(this.label1);
+            this.panel3.Controls.Add(this.btBuscar);
+            this.panel3.Dock = System.Windows.Forms.DockStyle.Top;
+            this.panel3.Location = new System.Drawing.Point(3, 16);
+            this.panel3.Name = "panel3";
+            this.panel3.Size = new System.Drawing.Size(792, 41);
+            this.panel3.TabIndex = 9;
             // 
-            // label8
+            // tbCodigo
             // 
-            this.label8.AutoSize = true;
-            this.label8.Location = new System.Drawing.Point(5, 14);
-            this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(99, 13);
-            this.label8.TabIndex = 47;
-            this.label8.Text = "Clave de la receta :";
+            this.tbCodigo.Location = new System.Drawing.Point(9, 17);
+            this.tbCodigo.Name = "tbCodigo";
+            this.tbCodigo.Size = new System.Drawing.Size(268, 20);
+            this.tbCodigo.TabIndex = 0;
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Location = new System.Drawing.Point(9, 5);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(143, 13);
+            this.label2.TabIndex = 50;
+            this.label2.Text = "Clave o nombre de la receta:";
             // 
             // tbCantidad
             // 
@@ -377,6 +338,8 @@
             this.tbCantidad.Name = "tbCantidad";
             this.tbCantidad.Size = new System.Drawing.Size(98, 20);
             this.tbCantidad.TabIndex = 3;
+            this.tbCantidad.TextChanged += new System.EventHandler(this.tbCantidad_TextChanged);
+            this.tbCantidad.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.tbCantidad_KeyPress);
             // 
             // label1
             // 
@@ -387,14 +350,53 @@
             this.label1.TabIndex = 49;
             this.label1.Text = "Cantidad:";
             // 
-            // label2
+            // btBuscar
             // 
-            this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(9, 5);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(143, 13);
-            this.label2.TabIndex = 50;
-            this.label2.Text = "Clave o nombre de la receta:";
+            this.btBuscar.Location = new System.Drawing.Point(283, 17);
+            this.btBuscar.Name = "btBuscar";
+            this.btBuscar.Size = new System.Drawing.Size(75, 21);
+            this.btBuscar.TabIndex = 2;
+            this.btBuscar.Text = "Buscar";
+            this.btBuscar.UseVisualStyleBackColor = true;
+            this.btBuscar.Click += new System.EventHandler(this.btBuscar_Click);
+            // 
+            // panel1
+            // 
+            this.panel1.Controls.Add(this.btCancelar);
+            this.panel1.Controls.Add(this.panel2);
+            this.panel1.Controls.Add(this.btAceptar);
+            this.panel1.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.panel1.Location = new System.Drawing.Point(0, 424);
+            this.panel1.Name = "panel1";
+            this.panel1.Size = new System.Drawing.Size(798, 57);
+            this.panel1.TabIndex = 1;
+            // 
+            // btCancelar
+            // 
+            this.btCancelar.Location = new System.Drawing.Point(94, 6);
+            this.btCancelar.Name = "btCancelar";
+            this.btCancelar.Size = new System.Drawing.Size(75, 23);
+            this.btCancelar.TabIndex = 1;
+            this.btCancelar.Text = "Cancelar";
+            this.btCancelar.UseVisualStyleBackColor = true;
+            // 
+            // panel2
+            // 
+            this.panel2.Dock = System.Windows.Forms.DockStyle.Right;
+            this.panel2.Location = new System.Drawing.Point(500, 0);
+            this.panel2.Name = "panel2";
+            this.panel2.Size = new System.Drawing.Size(298, 57);
+            this.panel2.TabIndex = 0;
+            // 
+            // btAceptar
+            // 
+            this.btAceptar.Location = new System.Drawing.Point(13, 6);
+            this.btAceptar.Name = "btAceptar";
+            this.btAceptar.Size = new System.Drawing.Size(75, 23);
+            this.btAceptar.TabIndex = 0;
+            this.btAceptar.Text = "Aceptar";
+            this.btAceptar.UseVisualStyleBackColor = true;
+            this.btAceptar.Click += new System.EventHandler(this.btAceptar_Click);
             // 
             // BusquedaReceta
             // 
@@ -407,16 +409,16 @@
             this.Name = "BusquedaReceta";
             this.Text = "Buscar receta...";
             this.groupBox1.ResumeLayout(false);
-            this.panel1.ResumeLayout(false);
-            this.panel3.ResumeLayout(false);
-            this.panel3.PerformLayout();
             this.panel4.ResumeLayout(false);
-            this.groupBox4.ResumeLayout(false);
-            this.groupBox4.PerformLayout();
             this.groupBox3.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.dgvIngredientes)).EndInit();
+            this.groupBox4.ResumeLayout(false);
+            this.groupBox4.PerformLayout();
             this.groupBox2.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.dgvRecetas)).EndInit();
+            this.panel3.ResumeLayout(false);
+            this.panel3.PerformLayout();
+            this.panel1.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }

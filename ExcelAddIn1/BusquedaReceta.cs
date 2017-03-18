@@ -66,5 +66,20 @@ namespace ExcelAddIn1
             _listaRecetas[dgvRecetas.CurrentCell.RowIndex].Cantidad = double.Parse(tbCantidad.Text);
             _callback(new List<Receta> { _listaRecetas[dgvRecetas.CurrentCell.RowIndex] });
         }
+
+        private void tbCantidad_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void tbCantidad_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (!(char.IsNumber(e.KeyChar)) && (e.KeyChar != (char)Keys.Back))
+            {
+                MessageBox.Show("Solo se permiten numeros");
+                e.Handled = true;
+                return;
+            }
+        }
     }
 }

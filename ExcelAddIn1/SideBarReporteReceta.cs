@@ -8,6 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using Herramienta;
+using Herramienta.Config;
 using Respuesta;
 using RestSharp;
 
@@ -39,24 +40,14 @@ namespace ExcelAddIn1
             //Data.Reporte.FechaFin = dtFechaFin.Value;
             //Data.Reporte.Categoria = "%";
             //Data.Reporte.Departamento = "%";
-            //Opcion.EjecucionAsync(x =>
-            //{
-            //    //if (cbImprimir.Checked)
-            //    //    Data.Reporte.Imprimir(x, respuestaReporteGeneral);
-            //    //else
-            //    //    Data.Reporte.General(x, respuestaReporteGeneral);
-
-            //}, y =>
-            //{
-            //    BeginInvoke((MethodInvoker)(() =>
-            //    {
-            //        addIn.ReporteCocina();
-            //    }));
-            //});
-            BeginInvoke((MethodInvoker)(() =>
+            Opcion.EjecucionAsync(Data.Reporte.Cocina, y =>
             {
-                addIn.ReporteCocina();
-            }));
+                BeginInvoke((MethodInvoker)(() =>
+                {
+                    addIn.ReporteCocina(y);
+                }));
+            });
+     
         }
 
         private void cbConceptoReceta_SelectedIndexChanged(object sender, EventArgs e)

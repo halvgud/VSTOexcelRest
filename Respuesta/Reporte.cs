@@ -17,6 +17,36 @@ namespace Respuesta
             public string IdTipo { get; set; }
             public General() { }
 
+            public class RespuestaCocina
+            {
+
+                public string Clave { get; set; }
+                public string Receta { get; set; }
+                public string Categoria { get; set; }
+                public string Estado { get; set; }
+                public DateTime UltimaElaboracion { get; set; }
+                public string Medida { get; set; }
+                public string consumopordia { get; set; }
+                public string Total { get; set; }
+                public string Nombre { get; set; }
+                public double Costo { get; set; }
+                public double Venta { get; set; }
+                public string Margen { get; set; }
+                public string Qty { get; set; }
+                public double Sale { get; set; }
+                public double Profit { get; set; }
+                public string Qtycongelado { get; set; }
+                public double Preciocongelado { get; set; }
+                public string Qtymermas { get; set; }
+                public string Porcentajemerma { get; set; }
+                public string Qtyempleado { get; set; }
+                public string Porcentajeempleado { get; set; }
+                public  string Qtyperdidas { get; set; }
+                public string Porcentajeperdida { get; set; }
+                
+
+
+            }
             public class Respuesta
             {
                 public string clave { get; set; }

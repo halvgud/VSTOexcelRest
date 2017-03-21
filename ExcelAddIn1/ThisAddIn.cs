@@ -8,6 +8,8 @@ using Excel = Microsoft.Office.Interop.Excel;
 using Herramienta;
 using Respuesta;
 using Herramienta.Config;
+using RestSharp;
+
 namespace ExcelAddIn1
 {
     public partial class ThisAddIn
@@ -157,13 +159,53 @@ namespace ExcelAddIn1
         #endregion
 
         //template recetario
-        public void ReporteCocina()
+        public void ReporteCocina(IRestResponse restResponse)
         {
             Application.ScreenUpdating = false;
+            var rrg = Opcion.JsonaListaGenerica<Reporte.General.RespuestaCocina>(restResponse);
             var oReportWs = InicializarExcelConTemplate("ReporterCocina");
             if (oReportWs == null) return;
+            var rowcount = rrg.Count + 2;
+            _reporte.Range["A3:U"+rowcount].Value2 = InicializarLista(rrg);
             Application.Cells.Locked = false;
             Application.ScreenUpdating = true;
+           
+
         }
+
+        private static object[,] InicializarLista(IReadOnlyList<Reporte.General.RespuestaCocina> rrg)
+        {
+            var lista = new object[rrg.Count, 21];
+            for (var x = 0; x < rrg.Count; x++)
+            {
+                lista[x, 0] = "'"+rrg[x].Clave;
+                lista[x, 1] = rrg[x].Receta.ToString();
+                lista[x, 2] = rrg[x].Categoria;
+                lista[x, 3] = rrg[x].Estado;
+                lista[x, 4] = rrg[x].UltimaElaboracion;
+                lista[x, 5] = rrg[x].Medida;
+                lista[x, 6] = rrg[x].consumopordia;
+                lista[x, 7] = rrg[x].Costo;
+                lista[x, 8] = rrg[x].Venta;
+                lista[x, 9] = rrg[x].Margen;
+                lista[x, 10] = rrg[x].Qty;
+                lista[x, 11] = rrg[x].Sale;
+                lista[x, 12] = rrg[x].Profit;
+                lista[x, 13] = rrg[x].Qtycongelado;
+                lista[x, 14] = rrg[x].Preciocongelado;
+                lista[x, 15] = rrg[x].Qtymermas;
+                lista[x, 16] = rrg[x].Porcentajemerma;
+                lista[x, 17] = rrg[x].Qtyperdidas;
+                lista[x, 18] = rrg[x].Porcentajeperdida;
+                lista[x, 19] = rrg[x].Qtyempleado;
+                lista[x, 20] = rrg[x].Porcentajeempleado;
+ 
+
+
+
+            }
+            return lista;
+        }
+
     }
 }

@@ -19,7 +19,10 @@
             public static class ReporteRecetario
             {
                 public static string Orden { get; set; } = Properties.Settings.Default.Orden;
+                public static string ReporteCocina { get; set; } = Properties.Settings.Default.ReporteReceta;
             }
+
+           
 
             public static class Concepto
             {
@@ -35,6 +38,7 @@
             public static class Api
             {
                 public static string UrlApi { get; set; } = Properties.Settings.Default.UrlApi;
+                public static string UrlLocal { get; set; } = "http://localhost:8080/apimovstock/public/";
                 public static string IdSucursal { get; set; } = Properties.Settings.Default.IdSucursal;
             }
             public static class Articulo

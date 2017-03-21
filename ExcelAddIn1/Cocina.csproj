@@ -230,6 +230,7 @@
     <EmbeddedResource Include="SideBarReporteReceta.resx">
       <DependentUpon>SideBarReporteReceta.cs</DependentUpon>
     </EmbeddedResource>
+    <None Include="app.config" />
     <None Include="Cocina_TemporaryKey.pfx" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>

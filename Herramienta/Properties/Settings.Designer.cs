@@ -292,5 +292,14 @@ namespace Herramienta.Properties {
                 return ((string)(this["Concepto"]));
             }
         }
+        
+        [global::System.Configuration.ApplicationScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("reporte/ReporteCocinaExcel")]
+        public string ReporteReceta {
+            get {
+                return ((string)(this["ReporteReceta"]));
+            }
+        }
     }
 }

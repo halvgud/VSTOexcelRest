@@ -153,7 +153,17 @@ namespace ExcelAddIn1
             this.Startup += new EventHandler(ThisAddIn_Startup);
             this.Shutdown += new EventHandler(ThisAddIn_Shutdown);
         }
-        
+
         #endregion
+
+        //template recetario
+        public void ReporteCocina()
+        {
+            Application.ScreenUpdating = false;
+            var oReportWs = InicializarExcelConTemplate("ReporterCocina");
+            if (oReportWs == null) return;
+            Application.Cells.Locked = false;
+            Application.ScreenUpdating = true;
+        }
     }
 }

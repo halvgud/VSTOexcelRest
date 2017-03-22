@@ -252,6 +252,7 @@ namespace testVSTO2
                            Missing.Value, Missing.Value, Excel.XlSearchOrder.xlByRows,
                           Excel.XlSearchDirection.xlPrevious, false, Missing.Value,
                            Missing.Value).Row+1].Value2 = "";_reporte.Range["A" + 5 + ":I" + _rowCount].Value2 = lista;
+                    //LINEAS BORDES Y ESTRUCTURA DE EXCEL
                     _reporte.Range["A" + 5 + ":J" + _rowCount].Borders[Excel.XlBordersIndex.xlEdgeBottom].LineStyle = Excel.XlLineStyle.xlContinuous;
                     _reporte.Range["A" + 5 + ":J" + _rowCount].Borders[Excel.XlBordersIndex.xlEdgeLeft].LineStyle = Excel.XlLineStyle.xlContinuous;
                     _reporte.Range["A" + 5 + ":J" + _rowCount].Borders[Excel.XlBordersIndex.xlEdgeRight].LineStyle = Excel.XlLineStyle.xlContinuous;

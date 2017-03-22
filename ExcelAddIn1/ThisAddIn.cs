@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Drawing;
 using System.IO;
 using System.Linq;
 using System.Windows.Forms;
@@ -7,7 +8,6 @@ using Herramienta.Config;
 using Excel = Microsoft.Office.Interop.Excel;
 using Herramienta;
 using Respuesta;
-using Herramienta.Config;
 using RestSharp;
 
 namespace ExcelAddIn1
@@ -167,6 +167,24 @@ namespace ExcelAddIn1
             if (oReportWs == null) return;
             var rowcount = rrg.Count + 2;
             _reporte.Range["A3:U"+rowcount].Value2 = InicializarLista(rrg);
+
+            _reporte.Range["A3:X" + rowcount].Borders[Excel.XlBordersIndex.xlEdgeBottom].LineStyle = Excel.XlLineStyle.xlContinuous;
+            _reporte.Range["A3:X" + rowcount].Borders[Excel.XlBordersIndex.xlEdgeLeft].LineStyle = Excel.XlLineStyle.xlContinuous;
+            _reporte.Range["A3:X" + rowcount].Borders[Excel.XlBordersIndex.xlEdgeRight].LineStyle = Excel.XlLineStyle.xlContinuous;
+            _reporte.Range["A3:X" + rowcount].Borders[Excel.XlBordersIndex.xlEdgeTop].LineStyle = Excel.XlLineStyle.xlContinuous;
+            _reporte.Range["A3:X" + rowcount].Borders[Excel.XlBordersIndex.xlEdgeBottom].LineStyle = Excel.XlLineStyle.xlContinuous;
+            _reporte.Range["A3:X" + rowcount].Borders.Color = Color.Black;
+            _reporte.Range["A3:X" + rowcount].Font.Size = 8;
+            _reporte.Range["A2:X2"].Interior.Color = ColorTranslator.ToOle(Color.Orange);
+            _reporte.Range["Q1:X1"].Interior.Color = ColorTranslator.ToOle(Color.Orange);
+            _reporte.Range["K3:K"+  rowcount].Interior.Color = ColorTranslator.ToOle(Color.Yellow);
+            _reporte.Range["L3:L" + rowcount].Interior.Color = ColorTranslator.ToOle(Color.Green);
+            _reporte.Range["O3:P" + rowcount].Interior.Color = ColorTranslator.ToOle(Color.Pink);
+            _reporte.Range["P3:P" + rowcount].Interior.Color = ColorTranslator.ToOle(Color.Pink);
+            
+            _reporte.Range["B3:B" + rowcount].Columns.AutoFit();
+
+
             Application.Cells.Locked = false;
             Application.ScreenUpdating = true;
            
@@ -199,12 +217,12 @@ namespace ExcelAddIn1
                 lista[x, 18] = rrg[x].Porcentajeperdida;
                 lista[x, 19] = rrg[x].Qtyempleado;
                 lista[x, 20] = rrg[x].Porcentajeempleado;
- 
-
-
-
+                
             }
             return lista;
+
+  
+
         }
 
     }

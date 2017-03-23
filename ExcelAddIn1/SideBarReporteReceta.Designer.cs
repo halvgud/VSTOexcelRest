@@ -126,6 +126,7 @@
             this.Name = "SideBarReporteReceta";
             this.Size = new System.Drawing.Size(244, 291);
             this.Load += new System.EventHandler(this.SideBarReporteReceta_Load);
+            this.MouseClick += new System.Windows.Forms.MouseEventHandler(this.SideBarReporteReceta_MouseClick);
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
             this.ResumeLayout(false);

@@ -88,5 +88,10 @@ namespace ExcelAddIn1
         {
 
         }
+
+        private void SideBarReporteReceta_MouseClick(object sender, MouseEventArgs e)
+        {
+
+        }
     }
 }

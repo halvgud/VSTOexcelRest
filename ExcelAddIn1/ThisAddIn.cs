@@ -22,7 +22,7 @@ namespace ExcelAddIn1
         private SideBarRecetario _recetario;
         public static Microsoft.Office.Tools.CustomTaskPane Recetario;
         public static Microsoft.Office.Tools.CustomTaskPane ReporteReceta;
-        private Excel.Worksheet _reporte;
+        private Excel.Worksheet _reporte;   
 
         private void ThisAddIn_Startup(object sender, EventArgs e)
         {
@@ -50,24 +50,30 @@ namespace ExcelAddIn1
         private List<Reportes> _reportes;
         void activeSheet_SelectionChange(object sh, Excel.Range target)
         {
-            _sheet1 = (Excel.Worksheet)sh;
-            if (target.Row != 1 && (_reportes.FirstOrDefault(x => x.Nombre == _sheet1.Name) != null))
-            {
-                try
-                {
-                    _sheet1.Unprotect();
-                    Globals.ThisAddIn.Application.Cells.Locked = false;
-                    _sheet1.Protect(AllowSorting: true, AllowFiltering: true);
-                }
-                catch (Exception e)
-                {
-                    Console.WriteLine(e.Message);
-                }
-            }
-            else
-            {
-                _sheet1.Unprotect();
-            }
+
+            var oReportWs = InicializarExcelConTemplate("DetalleReceta");
+            ((oReportWs.Range["A1"])).Value2 = target.Value2;
+            //Microsoft.Office.Interop.Excel.Range excelCell = (Microsoft.Office.Interop.Excel.Range)target;
+            //_reporte.Hyperlinks.Add(excelCell, "http://www.microsoft.com/", Type.Missing, target.Value2, target.Value2);
+
+            //_sheet1 = (Excel.Worksheet)sh;
+            //if (target.Row != 1 && (_reportes.FirstOrDefault(x => x.Nombre == _sheet1.Name) != null))
+            //{
+            //    try
+            //    {
+            //        _sheet1.Unprotect();
+            //        Globals.ThisAddIn.Application.Cells.Locked = false;
+            //        _sheet1.Protect(AllowSorting: true, AllowFiltering: true);
+            //    }
+            //    catch (Exception e)
+            //    {
+            //        Console.WriteLine(e.Message);
+            //    }
+            //}
+            //else
+            //{
+            //    _sheet1.Unprotect();
+            //}
         }
         void Application_ActiveWorkbookChanges(Excel.Workbook wb)
         {
@@ -223,6 +229,13 @@ namespace ExcelAddIn1
 
   
 
+        }
+
+        private void MouseClick(object sender, MouseEventArgs e)
+        {
+            var oReportWs = InicializarExcelConTemplate("DetalleReceta");
+            Microsoft.Office.Interop.Excel.Range excelCell = (Microsoft.Office.Interop.Excel.Range)_reporte.Range["A:6"];
+            _reporte.Hyperlinks.Add(excelCell, "http://www.microsoft.com/", Type.Missing, "Microsoft", "Microsoft");
         }
 
     }

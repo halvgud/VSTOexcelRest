@@ -301,5 +301,14 @@ namespace Herramienta.Properties {
                 return ((string)(this["ReporteReceta"]));
             }
         }
+        
+        [global::System.Configuration.ApplicationScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("prueba/seleccionar")]
+        public string prueba {
+            get {
+                return ((string)(this["prueba"]));
+            }
+        }
     }
 }

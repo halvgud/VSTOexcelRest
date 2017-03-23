@@ -22,6 +22,11 @@
                 public static string ReporteCocina { get; set; } = Properties.Settings.Default.ReporteReceta;
             }
 
+            public class Prueba
+            {
+                public static string Calis { get; set; } = Properties.Settings.Default.prueba;
+            }
+
            
 
             public static class Concepto

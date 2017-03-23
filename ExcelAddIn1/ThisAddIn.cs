@@ -3,11 +3,11 @@ using System.Collections.Generic;
 using System.Drawing;
 using System.IO;
 using System.Linq;
-using System.Security.Cryptography.X509Certificates;
 using System.Windows.Forms;
 using Herramienta.Config;
 using Excel = Microsoft.Office.Interop.Excel;
 using Herramienta;
+using Microsoft.Office.Tools.Excel;
 using Respuesta;
 using RestSharp;
 
@@ -23,7 +23,9 @@ namespace ExcelAddIn1
         private SideBarRecetario _recetario;
         public static Microsoft.Office.Tools.CustomTaskPane Recetario;
         public static Microsoft.Office.Tools.CustomTaskPane ReporteReceta;
-        private Excel.Worksheet _reporte;   
+        private Excel.Worksheet _reporte;
+
+        public NamedRange ClickRange { get; }
 
         private void ThisAddIn_Startup(object sender, EventArgs e)
         {
@@ -44,16 +46,39 @@ namespace ExcelAddIn1
    Application_ActiveWorkbookChanges;
             Application.WorkbookDeactivate += Application_ActiveWorkbookChanges;
             Globals.ThisAddIn.Application.SheetSelectionChange += activeSheet_SelectionChange;
+            this.Application.SheetBeforeDoubleClick += Application_SheetBeforeDoubleClick;
             _sheet1 = (Excel.Worksheet)Application.ActiveSheet;
+
+
         }
+        void Application_SheetBeforeDoubleClick(object sh,
+        Excel.Range target, ref bool cancel)
+        {
+            _sheet1 = (Excel.Worksheet)Application.ActiveSheet;
+            if (_sheet1.Name == "ReporterCocina" && target.Column == 1)
+            {
+                cancel = true;
+                MessageBox.Show(@"Doublek");
+                //MessageBox.Show("mejorando");
+
+            }
+
+        }
+
 
         Excel.Worksheet _sheet1;
         private List<Reportes> _reportes;
+
         void activeSheet_SelectionChange(object sh, Excel.Range target)
         {
+ 
+            //else
+            //{
+            //    var oReportWs = InicializarExcelConTemplate("DetalleReceta");
+            //}
 
-            //var oReportWs = InicializarExcelConTemplate("DetalleReceta");
-           //ejecucion asincrona donde el primer parametro es la informacion sacada de la base de datos 
+
+            //ejecucion asincrona donde el primer parametro es la informacion sacada de la base de datos 
 
             //segundo parametro con el resultado 
             //((oReportWs.Range["A1"])).Value2 = target.Value2;
@@ -180,7 +205,6 @@ namespace ExcelAddIn1
             if (oReportWs == null) return;
             var rowcount = rrg.Count + 2;
             _reporte.Range["A3:U"+rowcount].Value2 = InicializarLista(rrg);
-
             _reporte.Range["A3:X" + rowcount].Borders[Excel.XlBordersIndex.xlEdgeBottom].LineStyle = Excel.XlLineStyle.xlContinuous;
             _reporte.Range["A3:X" + rowcount].Borders[Excel.XlBordersIndex.xlEdgeLeft].LineStyle = Excel.XlLineStyle.xlContinuous;
             _reporte.Range["A3:X" + rowcount].Borders[Excel.XlBordersIndex.xlEdgeRight].LineStyle = Excel.XlLineStyle.xlContinuous;

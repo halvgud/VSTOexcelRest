@@ -95,5 +95,8 @@
     <Setting Name="ReporteReceta" Type="System.String" Scope="Application">
       <Value Profile="(Default)">reporte/ReporteCocinaExcel</Value>
     </Setting>
+    <Setting Name="prueba" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">prueba/seleccionar</Value>
+    </Setting>
   </Settings>
 </SettingsFile>

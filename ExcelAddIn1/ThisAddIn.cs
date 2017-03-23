@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Drawing;
 using System.IO;
 using System.Linq;
+using System.Security.Cryptography.X509Certificates;
 using System.Windows.Forms;
 using Herramienta.Config;
 using Excel = Microsoft.Office.Interop.Excel;
@@ -51,8 +52,14 @@ namespace ExcelAddIn1
         void activeSheet_SelectionChange(object sh, Excel.Range target)
         {
 
-            var oReportWs = InicializarExcelConTemplate("DetalleReceta");
-            ((oReportWs.Range["A1"])).Value2 = target.Value2;
+            //var oReportWs = InicializarExcelConTemplate("DetalleReceta");
+           //ejecucion asincrona donde el primer parametro es la informacion sacada de la base de datos 
+
+            //segundo parametro con el resultado 
+            //((oReportWs.Range["A1"])).Value2 = target.Value2;
+
+
+
             //Microsoft.Office.Interop.Excel.Range excelCell = (Microsoft.Office.Interop.Excel.Range)target;
             //_reporte.Hyperlinks.Add(excelCell, "http://www.microsoft.com/", Type.Missing, target.Value2, target.Value2);
 

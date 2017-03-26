@@ -53,6 +53,22 @@ namespace Herramienta
                 return x;
             }
         }
+        public static T JsonaClaseGenerica<T>(IRestResponse json) where T : new()
+        {
+           T x = new T();
+            try
+            {
+                var desSerializer = new JsonDeserializer();
+                x = desSerializer.Deserialize<List<T>>(json)[0];
+                return x;
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e.Message);
+                return x;
+            }
+        }
+
 
         public static string JsonaString(string json)
         {

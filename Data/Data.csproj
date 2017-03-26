@@ -61,6 +61,7 @@
     <Compile Include="Prueba.cs" />
     <Compile Include="Receta.cs" />
     <Compile Include="Reporte.cs" />
+    <Compile Include="ReporteCocina.cs" />
     <Compile Include="Rest.cs" />
     <Compile Include="Sucursal.cs" />
   </ItemGroup>

@@ -40,7 +40,7 @@ namespace ExcelAddIn1
             //Data.Reporte.FechaFin = dtFechaFin.Value;
             //Data.Reporte.Categoria = "%";
             //Data.Reporte.Departamento = "%";
-            Opcion.EjecucionAsync(Data.Reporte.Cocina, y =>
+            Opcion.EjecucionAsync(Data.ReporteCocina.VersionExtendida, y =>
             {
                 BeginInvoke((MethodInvoker)(() =>
                 {

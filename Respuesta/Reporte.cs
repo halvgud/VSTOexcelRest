@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 
+
 namespace Respuesta
 {
     public class Reporte
@@ -17,36 +18,7 @@ namespace Respuesta
             public string IdTipo { get; set; }
             public General() { }
 
-            public class RespuestaCocina
-            {
-
-                public string Clave { get; set; }
-                public string Receta { get; set; }
-                public string Categoria { get; set; }
-                public string Estado { get; set; }
-                public DateTime UltimaElaboracion { get; set; }
-                public string Medida { get; set; }
-                public string consumopordia { get; set; }
-                public string Total { get; set; }
-                public string Nombre { get; set; }
-                public double Costo { get; set; }
-                public double Venta { get; set; }
-                public string Margen { get; set; }
-                public string Qty { get; set; }
-                public double Sale { get; set; }
-                public double Profit { get; set; }
-                public string Qtycongelado { get; set; }
-                public double Preciocongelado { get; set; }
-                public string Qtymermas { get; set; }
-                public string Porcentajemerma { get; set; }
-                public string Qtyempleado { get; set; }
-                public string Porcentajeempleado { get; set; }
-                public  string Qtyperdidas { get; set; }
-                public string Porcentajeperdida { get; set; }
-                
-
-
-            }
+           
             public class Respuesta
             {
                 public string clave { get; set; }
@@ -96,6 +68,64 @@ namespace Respuesta
                 public static int margen { get; set; } = 19;
 
             }
+        }
+
+        public class RespuestaCocina
+        {
+
+            //public static CocinaDetalle cocinadetalle { get; set; }
+
+        public string Clave { get; set; }
+            public string Receta { get; set; }
+            public string TipoProducto { get; set; }
+            public string CantidadInventario { get; set; }
+            public string Categoria { get; set; }
+            public string Estado { get; set; }
+            public string Since { get; set; }
+            public DateTime UltimaElaboracion { get; set; }
+            public string Medida { get; set; }
+            public string Consumopordia { get; set; }
+            //public string Total { get; set; }
+            //public string Nombre { get; set; }
+            public string Costo { get; set; }
+            public string Venta { get; set; }
+            public string Margen { get; set; }
+            public string Qty { get; set; }
+            public string Sale { get; set; }
+            public string Profit { get; set; }
+            public string Qtycongelado { get; set; }
+            public string Preciocongelado { get; set; }
+            public string Qtymermas { get; set; }
+            public string Porcentajemerma { get; set; }
+            public string Qtyperdidas { get; set; }
+            public string Porcentajeperdida { get; set; }
+            public string Qtyempleado { get; set; }
+            public string Porcentajeempleado { get; set; }
+           
+
+            public List<IngredientesCocina> Ingredientes { get; set; }
+            public class IngredientesCocina
+            {
+                public string Nombre { get; set; }
+                public double Cantidad { get; set; }
+                public double Medida { get; set; }
+                public double Costo { get; set; }
+            }
+
+            public  class CocinaDetalle
+            {
+                public int NoMenus { get; set; }
+                public double CantidadElaborada { get; set; }
+                public double SobrantesPendiente { get; set; }
+                public double Densidad { get; set; }
+                public double Medida { get; set; }
+                public string Receta { get; set; }
+                public string Foto { get; set; }
+                public double RecetaPara { get; set; }
+                
+            }
+
+
         }
     }
 }

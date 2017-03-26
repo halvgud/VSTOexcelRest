@@ -58,7 +58,90 @@ namespace ExcelAddIn1
             if (_sheet1.Name == "ReporterCocina" && target.Column == 1)
             {
                 cancel = true;
-                MessageBox.Show(@"Doublek");
+                MessageBox.Show(target.Row.ToString());
+                var excel = target.EntireRow.Value2;
+                MessageBox.Show(excel[1,1].ToString());
+                Reporte.RespuestaCocina rrc = new Reporte.RespuestaCocina
+                {
+                    // SEGUIR EL LUNES
+
+                    Clave = excel[1,1],
+                    Receta = excel[1,2],
+                    Categoria = excel[1, 3],
+                    Estado =excel[1, 4],
+                    UltimaElaboracion = DateTime.Now,
+                    Medida = excel[1, 7],
+                    Consumopordia = excel[1, 8],
+                    //Total = "",
+                    //Nombre = "",
+                    Costo = excel[1, 11],
+                    Venta = excel[1, 12],
+                    Margen = excel[1, 13],
+                    Qty = ""/*excel[1, 14]*/,
+                    Sale = "",
+                    Profit = "",
+                    Qtycongelado = "",
+                    Preciocongelado = "",
+                    Qtymermas = "",
+                    Porcentajemerma = "",
+                    Qtyempleado = "",
+                    Porcentajeempleado = "",
+                    Qtyperdidas = "",
+                    Porcentajeperdida = ""
+
+
+                };
+                rrc.Clave = "";
+                Opcion.EjecucionAsync(Data.ReporteCocina.VersionDetallada, jsonResult =>
+                {
+                    Reporte.RespuestaCocina.CocinaDetalle lista = Opcion.JsonaClaseGenerica<Reporte.RespuestaCocina.CocinaDetalle>(jsonResult);
+                    var excelazo = InicializarExcelConTemplate("DetalleReceta");
+
+                    ///*Local.Receta.IdReceta = receta.RecI*/d;*/
+                    //var oReportWs = InicializarExcelConTemplate("Receta");
+                    if (excelazo == null) return;
+                    ((excelazo.Range["A1"])).Value2 = rrc.Receta;
+                    ((excelazo.Range["M7"])).Value2 =rrc.Margen ;
+                    ((excelazo.Range["K5"])).Value2 =lista.CantidadElaborada ;
+                    ((excelazo.Range["F7"])).Value2 = rrc.UltimaElaboracion;
+                    ((excelazo.Range["H7"])).Value2 = rrc.Venta;
+                    ((excelazo.Range["G7"])).Value2 = lista.Densidad;
+                    ((excelazo.Range["G5"])).Value2 = lista.NoMenus;
+                    ((excelazo.Range["H7"])).Value2 = lista.Medida;
+                    ((excelazo.Range["L10"])).Value2 = lista.Foto;
+                    ((excelazo.Range["M5"])).Value2 = rrc.Costo;
+                    ((excelazo.Range["N5"])).Value2 = rrc.Venta;
+                    ((excelazo.Range["L5"])).Value2 = lista.SobrantesPendiente;
+                    //((excelazo.Range["L10"])).Value2 = lista.Foto;
+                    //((excelazo.Range["L10"])).Value2 = lista.Foto;
+
+
+
+                    //oReportWs.Range["TABLA1"].CopyFromRecordset(ListToDataTable(rrd));
+                    //int inicioTabla = 5;
+                    //foreach (Receta.Detalle t in receta.Ingredientes)
+                    //{
+                    //    oReportWs.Range["A" + inicioTabla].Value2 = t.Clave; //Clave
+                    //    oReportWs.Range["B" + inicioTabla].Value2 = t.Cantidad;
+                    //    //cantidad unitaria por medida
+                    //    oReportWs.Range["C" + inicioTabla].Value2 = (t.Cantidad) * receta.Cantidad;
+                    //    //cantidad total
+                    //    oReportWs.Range["D" + inicioTabla].Value2 = t.Unidad; //tipo de unidad
+                    //    oReportWs.Range["E" + inicioTabla].Value2 = t.Descripcion; //nombre
+                    //    oReportWs.Range["F" + inicioTabla].Value2 = t.PrecioVenta; //valor unitario
+                    //    oReportWs.Range["G" + inicioTabla].Value2 = (t.PrecioVenta) *
+                    //                                                ((t.Cantidad) * receta.Cantidad); //
+                    //    inicioTabla++;
+                    //}
+
+
+                } );
+
+
+
+
+
+                        
                 //MessageBox.Show("mejorando");
 
             }
@@ -200,7 +283,7 @@ namespace ExcelAddIn1
         public void ReporteCocina(IRestResponse restResponse)
         {
             Application.ScreenUpdating = false;
-            var rrg = Opcion.JsonaListaGenerica<Reporte.General.RespuestaCocina>(restResponse);
+            var rrg = Opcion.JsonaListaGenerica<Reporte.RespuestaCocina>(restResponse);
             var oReportWs = InicializarExcelConTemplate("ReporterCocina");
             if (oReportWs == null) return;
             var rowcount = rrg.Count + 2;
@@ -228,33 +311,35 @@ namespace ExcelAddIn1
 
         }
 
-        private static object[,] InicializarLista(IReadOnlyList<Reporte.General.RespuestaCocina> rrg)
+        private static object[,] InicializarLista(IReadOnlyList<Reporte.RespuestaCocina> rrg)
         {
-            var lista = new object[rrg.Count, 21];
+            var lista = new object[rrg.Count, 24];
             for (var x = 0; x < rrg.Count; x++)
             {
                 lista[x, 0] = "'"+rrg[x].Clave;
                 lista[x, 1] = rrg[x].Receta.ToString();
-                lista[x, 2] = rrg[x].Categoria;
-                lista[x, 3] = rrg[x].Estado;
-                lista[x, 4] = rrg[x].UltimaElaboracion;
-                lista[x, 5] = rrg[x].Medida;
-                lista[x, 6] = rrg[x].consumopordia;
-                lista[x, 7] = rrg[x].Costo;
-                lista[x, 8] = rrg[x].Venta;
-                lista[x, 9] = rrg[x].Margen;
-                lista[x, 10] = rrg[x].Qty;
-                lista[x, 11] = rrg[x].Sale;
-                lista[x, 12] = rrg[x].Profit;
-                lista[x, 13] = rrg[x].Qtycongelado;
-                lista[x, 14] = rrg[x].Preciocongelado;
-                lista[x, 15] = rrg[x].Qtymermas;
-                lista[x, 16] = rrg[x].Porcentajemerma;
-                lista[x, 17] = rrg[x].Qtyperdidas;
-                lista[x, 18] = rrg[x].Porcentajeperdida;
-                lista[x, 19] = rrg[x].Qtyempleado;
-                lista[x, 20] = rrg[x].Porcentajeempleado;
-                
+                lista[x, 2] = rrg[x].TipoProducto;
+                lista[x, 3] = rrg[x].CantidadInventario;
+                lista[x, 4] = rrg[x].Categoria;
+                lista[x, 5] = rrg[x].Estado;
+                lista[x, 6] = rrg[x].Since;
+                lista[x, 7] = rrg[x].UltimaElaboracion;
+                lista[x, 8] = rrg[x].Medida;
+                lista[x, 9] = rrg[x].Consumopordia;
+                lista[x, 10] = rrg[x].Costo;
+                lista[x, 11] = rrg[x].Venta;
+                lista[x, 12] = rrg[x].Margen;
+                lista[x, 13] = rrg[x].Qty;
+                lista[x, 14] = rrg[x].Sale;
+                lista[x, 15] = rrg[x].Profit;
+                lista[x, 16] = rrg[x].Qtycongelado;
+                lista[x, 17] = rrg[x].Preciocongelado;
+                lista[x, 18] = rrg[x].Qtymermas;
+                lista[x, 19] = rrg[x].Porcentajemerma;
+                lista[x, 20] = rrg[x].Qtyperdidas;
+                lista[x, 21] = rrg[x].Porcentajeperdida;
+                lista[x, 22] = rrg[x].Qtyempleado;
+                lista[x, 23] = rrg[x].Porcentajeempleado;
             }
             return lista;
 
@@ -262,12 +347,7 @@ namespace ExcelAddIn1
 
         }
 
-        private void MouseClick(object sender, MouseEventArgs e)
-        {
-            var oReportWs = InicializarExcelConTemplate("DetalleReceta");
-            Microsoft.Office.Interop.Excel.Range excelCell = (Microsoft.Office.Interop.Excel.Range)_reporte.Range["A:6"];
-            _reporte.Hyperlinks.Add(excelCell, "http://www.microsoft.com/", Type.Missing, "Microsoft", "Microsoft");
-        }
+
 
     }
 }

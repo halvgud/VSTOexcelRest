@@ -15,34 +15,7 @@ namespace Data
         public static DateTime FechaIni { get; set; }
         public static DateTime FechaFin { get; set; }
 
-        public static void Cocina(Action<IRestResponse> callback)
-        {
-            try
-            {
-                var rest = new Rest(Local.Api.UrlLocal, Herramienta.Config.Cocina.ReporteRecetario.ReporteCocina,
-                    Method.GET);
-                rest.Peticion.AddHeader(Constantes.Http.ObtenerTipoDeContenido,
-                    Constantes.Http.TipoDeContenido.Json);
-               // rest.Peticion.AddJsonBody(repGeneral);
-                rest.Cliente.ExecuteAsync(rest.Peticion, response =>
-                {
-                    switch (response.StatusCode)
-                    {
-                        case HttpStatusCode.OK:
-                            callback(response);
-                            break;
-                        default:
-                            callback(null);
-                            break;
-                    }
-                });
-            }
-            catch (Exception e)
-            {
-                Opcion.Log(Log.Interno.Categoria, "EXCEPCION: " + e.Message);
-                callback(null);
-            }
-        }
+        
         public static void General(Action<IRestResponse> callback, Respuesta.Reporte.General repGeneral)
         {
             try

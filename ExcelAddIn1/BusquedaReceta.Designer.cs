@@ -302,6 +302,7 @@
             this.dgvRecetas.Size = new System.Drawing.Size(252, 345);
             this.dgvRecetas.TabIndex = 4;
             this.dgvRecetas.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvRecetas_CellClick);
+            this.dgvRecetas.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvRecetas_CellClick);
             // 
             // panel3
             // 

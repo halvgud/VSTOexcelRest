@@ -17,6 +17,8 @@ namespace testVSTO2
             InitializeComponent();
             dgvListaArticulos.DataSource = _listaArticulo.Select(x => new { x.clave, x.descripcion, x.precioCompra }).ToArray();
             dgvListaArticulos.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
+            this.ActiveControl = tbCantidad;
+            tbCantidad.Focus();
         }
         private void btAceptar_Click(object sender, EventArgs e)
         {
@@ -31,6 +33,35 @@ namespace testVSTO2
             tbCantidad.SelectionStart = 0;
             tbCantidad.SelectionLength = tbCantidad.Text.Length;
             tbCantidad.Focus();
+        }
+
+        private void BuscarArticulo_Load(object sender, EventArgs e)
+        {
+            ActiveControl = tbCantidad;
+            tbCantidad.Focus();
+        }
+
+        private void tbCantidad_MaskInputRejected(object sender, MaskInputRejectedEventArgs e)
+        {
+
+        }
+
+        private void dgvListaArticulos_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+
+        }
+
+        private void BuscarArticulo_Activated(object sender, EventArgs e)
+        {
+           this.ActiveControl = tbCantidad;
+            tbCantidad.Focus();
+        }
+
+        private void BuscarArticulo_Shown(object sender, EventArgs e)
+        {
+            this.ActiveControl =tbCantidad ;
+            tbCantidad.Focus();
+            tbCantidad.Select();
         }
     }
 }

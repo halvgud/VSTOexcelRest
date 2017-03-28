@@ -16,7 +16,7 @@ namespace Data
         {
             try
             {
-                var rest = new Rest(/*Local.Api.UrlApi*/"http://localhost:8080/apimovstock/public/", Cocina.Concepto.OrdenConcepto,
+                var rest = new Rest(/*Local.Api.UrlApi*/"http://192.168.0.36:8080/apimovstock/public/", Cocina.Concepto.OrdenConcepto,
                     Method.GET);
                 rest.Peticion.AddHeader(Constantes.Http.ObtenerTipoDeContenido,
                     Constantes.Http.TipoDeContenido.Json);

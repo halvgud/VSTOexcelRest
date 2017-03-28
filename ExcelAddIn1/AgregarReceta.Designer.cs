@@ -62,7 +62,7 @@
             this.tbBuscarReceta = new System.Windows.Forms.TextBox();
             this.label3 = new System.Windows.Forms.Label();
             this.tabPage1 = new System.Windows.Forms.TabPage();
-            this.button4 = new System.Windows.Forms.Button();
+            this.btValidar = new System.Windows.Forms.Button();
             this.chDiario = new System.Windows.Forms.CheckBox();
             this.dgvIngredientes = new System.Windows.Forms.DataGridView();
             this.cbTipoReceta = new System.Windows.Forms.ComboBox();
@@ -436,7 +436,7 @@
             // 
             // tabPage1
             // 
-            this.tabPage1.Controls.Add(this.button4);
+            this.tabPage1.Controls.Add(this.btValidar);
             this.tabPage1.Controls.Add(this.chDiario);
             this.tabPage1.Controls.Add(this.dgvIngredientes);
             this.tabPage1.Controls.Add(this.cbTipoReceta);
@@ -473,14 +473,15 @@
             this.tabPage1.Text = "Agregar";
             this.tabPage1.UseVisualStyleBackColor = true;
             // 
-            // button4
+            // btValidar
             // 
-            this.button4.Location = new System.Drawing.Point(408, 24);
-            this.button4.Name = "button4";
-            this.button4.Size = new System.Drawing.Size(62, 20);
-            this.button4.TabIndex = 55;
-            this.button4.Text = "Validar";
-            this.button4.UseVisualStyleBackColor = true;
+            this.btValidar.Location = new System.Drawing.Point(408, 24);
+            this.btValidar.Name = "btValidar";
+            this.btValidar.Size = new System.Drawing.Size(62, 20);
+            this.btValidar.TabIndex = 55;
+            this.btValidar.Text = "Validar";
+            this.btValidar.UseVisualStyleBackColor = true;
+            this.btValidar.Click += new System.EventHandler(this.btValidar_Click);
             // 
             // chDiario
             // 
@@ -617,6 +618,8 @@
             this.tbCodigo.Name = "tbCodigo";
             this.tbCodigo.Size = new System.Drawing.Size(187, 20);
             this.tbCodigo.TabIndex = 0;
+            this.tbCodigo.TextChanged += new System.EventHandler(this.tbCodigo_TextChanged);
+            this.tbCodigo.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.tbCodigo_KeyPress);
             // 
             // label11
             // 
@@ -721,6 +724,7 @@
             // 
             // btBuscar
             // 
+            this.btBuscar.Enabled = false;
             this.btBuscar.Location = new System.Drawing.Point(201, 24);
             this.btBuscar.Name = "btBuscar";
             this.btBuscar.Size = new System.Drawing.Size(62, 21);
@@ -876,6 +880,6 @@
         private System.Windows.Forms.TextBox tbCodigoBE;
         private System.Windows.Forms.Label label24;
         private System.Windows.Forms.Button btBuscarBE;
-        private System.Windows.Forms.Button button4;
+        private System.Windows.Forms.Button btValidar;
     }
 }

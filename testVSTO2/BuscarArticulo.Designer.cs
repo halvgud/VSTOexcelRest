@@ -59,7 +59,8 @@
             this.tbCantidad.Location = new System.Drawing.Point(307, 30);
             this.tbCantidad.Name = "tbCantidad";
             this.tbCantidad.Size = new System.Drawing.Size(100, 20);
-            this.tbCantidad.TabIndex = 5;
+            this.tbCantidad.TabIndex = 0;
+            this.tbCantidad.MaskInputRejected += new System.Windows.Forms.MaskInputRejectedEventHandler(this.tbCantidad_MaskInputRejected);
             // 
             // dgvListaArticulos
             // 
@@ -69,6 +70,7 @@
             this.dgvListaArticulos.Size = new System.Drawing.Size(301, 171);
             this.dgvListaArticulos.TabIndex = 8;
             this.dgvListaArticulos.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvListaArticulos_CellClick);
+            this.dgvListaArticulos.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvListaArticulos_CellContentClick);
             // 
             // BuscarArticulo
             // 
@@ -79,12 +81,14 @@
             this.Controls.Add(this.btAceptar);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.tbCantidad);
-            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedToolWindow;
             this.Name = "BuscarArticulo";
             this.ShowInTaskbar = false;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Buscar ingrediente...";
             this.TopMost = true;
+            this.Activated += new System.EventHandler(this.BuscarArticulo_Activated);
+            this.Load += new System.EventHandler(this.BuscarArticulo_Load);
+            this.Shown += new System.EventHandler(this.BuscarArticulo_Shown);
             ((System.ComponentModel.ISupportInitialize)(this.dgvListaArticulos)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();

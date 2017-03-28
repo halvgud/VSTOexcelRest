@@ -49,7 +49,8 @@ namespace ExcelAddIn1
         {
             btGuardar.Enabled = ValidarCampos();
         }
-        private void AgregarReceta_Load(object sender, EventArgs e){
+        private void AgregarReceta_Load(object sender, EventArgs e)
+        {
             ActiveControl = tbCodigo;
             tbCodigo.Focus();
         }
@@ -188,7 +189,7 @@ namespace ExcelAddIn1
 
         private void BuscarReceta(Action<Inputs> actualizarInputs,Inputs parametros)
         {
-            Local.Articulo.IdArticulo = parametros.ClaveReceta.Text;
+            Local.Articulo.IdArticulo = parametros.ClaveReceta.Text.Trim();
             Opcion.EjecucionAsync(x =>
             {
                 Data.Articulo.Lista(x, this);
@@ -256,6 +257,7 @@ namespace ExcelAddIn1
                                                     (1 - (Convert.ToDouble(inputs.MargenConPrecio.Text)/100)), 2))
                     .ToString(CultureInfo.InvariantCulture);
             }
+            ValidarBusquedaVacia();
         }
 
         private void ActualizarMargen(Inputs inputs)
@@ -275,10 +277,12 @@ namespace ExcelAddIn1
                 var precio = Convert.ToDouble(inputs.Precio.Text);
                 inputs.MargenConPrecio.Text =
                     Math.Round(((1 - (costo/precio))*100), 2).ToString(CultureInfo.InvariantCulture);
+            ValidarBusquedaVacia();
         }
         private void btBorrarLista_Click(object sender, EventArgs e)
         {
-            Opcion.BorrarDataGridView(dgvIngredientes);  
+            Opcion.BorrarDataGridView(dgvIngredientes);
+            ValidarBusquedaVacia();
         }
 
         private bool ValidarClave(TextBox claveReceta,IRestResponse jsonResult)
@@ -359,6 +363,7 @@ namespace ExcelAddIn1
         {
             BeginInvoke((MethodInvoker)(() =>
             {
+                mde?.Close();
                 MessageBox.Show(this, @"Se a guardado con éxito con Clave :" + inputs.ClaveReceta.Text);
                 inputs.ClaveReceta.Text = "";
                 inputs.Precio.Text = "";
@@ -367,7 +372,7 @@ namespace ExcelAddIn1
                 inputs.MargenConPrecio.Text = "";
                 inputs.Ingredientes.DataSource = null;
                 inputs.Ingredientes.Update();
-                mde?.Close();
+               
             }));
         }
         private void btGuardar_Click(object sender, EventArgs e)
@@ -400,7 +405,9 @@ namespace ExcelAddIn1
                     PesoLitro = tbPesoLitro,
                     Precio = tbPrecio
                 });
+           
             }
+
         }
         private void cbTipoReceta_SelectedIndexChanged(object sender, EventArgs e)
         {
@@ -491,6 +498,61 @@ namespace ExcelAddIn1
         private void tbPesoLitro_TextChanged(object sender, EventArgs e)
         {
            Opcion.ValidarDouble(tbPesoLitro);
+        }
+
+        private void tbCodigo_TextChanged(object sender, EventArgs e)
+        {
+            btBuscar.Enabled = ValidarBusquedaVacia();
+            
+        }
+
+        private bool ValidarBusquedaVacia()
+        {
+            return tbCodigo.Text.Trim().Length > 0;
+        }
+        private void tbCodigo_KeyPress(object sender, KeyPressEventArgs e)
+        {
+          //  e.Handled = Opcion.ValidarCaracter(e);
+
+            if (e.KeyChar == 13 &&ValidarBusquedaVacia())
+            {
+                btBuscar_Click(sender,new EventArgs());
+            }
+        }
+
+        private void button4_Click(object sender, EventArgs e)
+        {
+                
+        }
+
+        private void btAyuda_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void tbClaveReceta_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            e.Handled = Opcion.ValidarCaracter(e);
+        }
+
+        private void GuardarContinuar_Click(object sender, EventArgs e)
+        {
+            this.Controls.OfType<TextBox>().ToList().ForEach(o => o.Text = "");
+            tbClaveReceta.Clear();
+            tbDescripcion.Clear();
+            tbPesoLitro.Clear();
+            tbCostoElaboracion.Clear();
+            tbMargenConPrecio.Clear();
+            tbPrecio.Clear();
+        }
+
+        private void btValidar_Click(object sender, EventArgs e)
+        {
+            Local.Receta.clave = (tbClaveReceta.Text);
+            Opcion.EjecucionAsync(Data.Receta.Lista, jsonResult =>
+            {
+                if (!ValidarClave(tbClaveReceta, jsonResult)) return;
+            });
         }
     }
 }

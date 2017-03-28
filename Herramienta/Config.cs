@@ -43,7 +43,7 @@
             public static class Api
             {
                 public static string UrlApi { get; set; } = Properties.Settings.Default.UrlApi;
-                public static string UrlLocal { get; set; } = "http://localhost:8080/apimovstock/public/";
+                public static string UrlLocal { get; set; } = "http://192.168.0.36:8080/apimovstock/public/";
                 public static string IdSucursal { get; set; } = Properties.Settings.Default.IdSucursal;
             }
             public static class Articulo

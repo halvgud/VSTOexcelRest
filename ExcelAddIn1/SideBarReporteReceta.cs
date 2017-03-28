@@ -25,21 +25,7 @@ namespace ExcelAddIn1
         private void btGenerarReceta_Click(object sender, EventArgs e)
         {
             var addIn = Globals.ThisAddIn;
-            //var respuestaReporteGeneral = new Reporte.General
-            //{
-            //    CatId = "%",
-            //    DepId = "%",
-            //    FechaFin = dtFechaFin.Value,
-            //    FechaIni = dtFechaIni.Value,
-            //    ProId = "0",
-            //    ProId2 = arregloList,
-            //    OrderBy = "ORDER BY a.margen1 DESC",
-            //    IdTipo = "%"
-            //};
-            //Data.Reporte.FechaIni = dtFechaIni.Value;
-            //Data.Reporte.FechaFin = dtFechaFin.Value;
-            //Data.Reporte.Categoria = "%";
-            //Data.Reporte.Departamento = "%";
+
             Opcion.EjecucionAsync(Data.ReporteCocina.VersionExtendida, y =>
             {
                 BeginInvoke((MethodInvoker)(() =>

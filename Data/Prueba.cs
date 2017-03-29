@@ -16,7 +16,7 @@ namespace Data
         {
             try
             {
-                var rest = new Rest(/*Local.Api.UrlApi*/"http://192.168.0.36:8080/apimovstock/public/", "prueba/seleccionar",
+                var rest = new Rest(Local.Api.UrlApi, "prueba/seleccionar",
                     Method.GET);
                 rest.Peticion.AddHeader(Constantes.Http.ObtenerTipoDeContenido,
                     Constantes.Http.TipoDeContenido.Json);

@@ -14,9 +14,10 @@ namespace Data
     {
         public static void Lista(Action<IRestResponse> callback)
         {
+
             try
             {
-                var rest = new Rest(/*Local.Api.UrlApi*/"http://192.168.0.36:8080/apimovstock/public/", Cocina.Concepto.OrdenConcepto,
+                var rest = new Rest(Local.Api.UrlApi, Cocina.Concepto.OrdenConcepto,
                     Method.GET);
                 rest.Peticion.AddHeader(Constantes.Http.ObtenerTipoDeContenido,
                     Constantes.Http.TipoDeContenido.Json);

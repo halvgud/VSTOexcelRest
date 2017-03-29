@@ -205,12 +205,6 @@
     <Compile Include="BusquedaRecetaDetalle.Designer.cs">
       <DependentUpon>BusquedaRecetaDetalle.cs</DependentUpon>
     </Compile>
-    <Compile Include="CrearRecetas.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="CrearRecetas.Designer.cs">
-      <DependentUpon>CrearRecetas.cs</DependentUpon>
-    </Compile>
     <Compile Include="EditarOrden.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -237,9 +231,6 @@
     </EmbeddedResource>
     <EmbeddedResource Include="BusquedaRecetaDetalle.resx">
       <DependentUpon>BusquedaRecetaDetalle.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="CrearRecetas.resx">
-      <DependentUpon>CrearRecetas.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="EditarOrden.resx">
       <DependentUpon>EditarOrden.cs</DependentUpon>

@@ -29,7 +29,6 @@
         private void InitializeComponent()
         {
             this.panel1 = new System.Windows.Forms.Panel();
-            this.btGuardarContinuar = new System.Windows.Forms.Button();
             this.btAyuda = new System.Windows.Forms.Button();
             this.btGuardar = new System.Windows.Forms.Button();
             this.tabPage2 = new System.Windows.Forms.TabPage();
@@ -107,7 +106,6 @@
             // 
             // panel1
             // 
-            this.panel1.Controls.Add(this.btGuardarContinuar);
             this.panel1.Controls.Add(this.btAyuda);
             this.panel1.Controls.Add(this.btGuardar);
             this.panel1.Dock = System.Windows.Forms.DockStyle.Bottom;
@@ -116,18 +114,10 @@
             this.panel1.Size = new System.Drawing.Size(669, 48);
             this.panel1.TabIndex = 3;
             // 
-            // btGuardarContinuar
-            // 
-            this.btGuardarContinuar.Location = new System.Drawing.Point(11, 6);
-            this.btGuardarContinuar.Name = "btGuardarContinuar";
-            this.btGuardarContinuar.Size = new System.Drawing.Size(119, 23);
-            this.btGuardarContinuar.TabIndex = 12;
-            this.btGuardarContinuar.UseVisualStyleBackColor = true;
-            // 
             // btAyuda
             // 
             this.btAyuda.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btAyuda.Location = new System.Drawing.Point(250, 6);
+            this.btAyuda.Location = new System.Drawing.Point(126, 6);
             this.btAyuda.Name = "btAyuda";
             this.btAyuda.Size = new System.Drawing.Size(75, 23);
             this.btAyuda.TabIndex = 11;
@@ -140,7 +130,7 @@
             this.btGuardar.Enabled = false;
             this.btGuardar.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(255)))), ((int)(((byte)(128)))));
             this.btGuardar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btGuardar.Location = new System.Drawing.Point(135, 6);
+            this.btGuardar.Location = new System.Drawing.Point(11, 6);
             this.btGuardar.Name = "btGuardar";
             this.btGuardar.Size = new System.Drawing.Size(109, 23);
             this.btGuardar.TabIndex = 10;
@@ -205,6 +195,7 @@
             this.tbCodigoBE.Name = "tbCodigoBE";
             this.tbCodigoBE.Size = new System.Drawing.Size(187, 20);
             this.tbCodigoBE.TabIndex = 52;
+            this.tbCodigoBE.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.tbCodigoBE_KeyPress);
             // 
             // label24
             // 
@@ -891,6 +882,5 @@
         private System.Windows.Forms.Label label24;
         private System.Windows.Forms.Button btBuscarBE;
         private System.Windows.Forms.Button btValidar;
-        private System.Windows.Forms.Button btGuardarContinuar;
     }
 }

@@ -535,5 +535,15 @@ namespace ExcelAddIn1
                 if (!ValidarClave(tbClaveReceta, jsonResult)) return;
             });
         }
+
+        private void tbCodigoBE_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            //  e.Handled = Opcion.ValidarCaracter(e);
+
+            if (e.KeyChar == 13 && ValidarBusquedaVacia())
+            {
+                btBuscar_Click(sender, new EventArgs());
+            }
+        }
     }
 }

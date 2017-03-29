@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Windows.Forms;
+using Herramienta;
 using Respuesta;
 
 namespace testVSTO2
@@ -12,13 +13,14 @@ namespace testVSTO2
         private readonly Action<List<Articulo>> _callback;
         public BuscarArticulo(List<Articulo> listaArticulo,Action<List<Articulo>> callback )
         {
+            this.ActiveControl = tbCantidad;
+            tbCantidad.Focus();
             _listaArticulo = listaArticulo;
             _callback = callback;
             InitializeComponent();
             dgvListaArticulos.DataSource = _listaArticulo.Select(x => new { x.clave, x.descripcion, x.precioCompra }).ToArray();
             dgvListaArticulos.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
-            this.ActiveControl = tbCantidad;
-            tbCantidad.Focus();
+        
         }
         private void btAceptar_Click(object sender, EventArgs e)
         {
@@ -37,18 +39,10 @@ namespace testVSTO2
 
         private void BuscarArticulo_Load(object sender, EventArgs e)
         {
-            ActiveControl = tbCantidad;
+           this.ActiveControl = tbCantidad;
             tbCantidad.Focus();
-        }
-
-        private void tbCantidad_MaskInputRejected(object sender, MaskInputRejectedEventArgs e)
-        {
-
-        }
-
-        private void dgvListaArticulos_CellContentClick(object sender, DataGridViewCellEventArgs e)
-        {
-
+           
+          
         }
 
         private void BuscarArticulo_Activated(object sender, EventArgs e)
@@ -62,6 +56,18 @@ namespace testVSTO2
             this.ActiveControl =tbCantidad ;
             tbCantidad.Focus();
             tbCantidad.Select();
+        }
+        private bool ValidarBusquedaVacia()
+        {
+            return btAceptar.Text.Trim().Length > 0;
+        }
+
+        private void tbCantidad_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (e.KeyChar == 13 && ValidarBusquedaVacia())
+            {
+                btAceptar_Click(sender, new EventArgs());
+            }
         }
     }
 }

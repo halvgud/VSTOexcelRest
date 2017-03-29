@@ -364,7 +364,7 @@ namespace ExcelAddIn1
             BeginInvoke((MethodInvoker)(() =>
             {
                 mde?.Close();
-                MessageBox.Show(this, @"Se a guardado con éxito con Clave :" + inputs.ClaveReceta.Text);
+                MessageBox.Show(this, @"Se a guardado con éxito  Clave :" + inputs.ClaveReceta.Text);
                 inputs.ClaveReceta.Text = "";
                 inputs.Precio.Text = "";
                 inputs.PesoLitro.Text = "";
@@ -391,8 +391,9 @@ namespace ExcelAddIn1
                     PesoLitro = tbPesoLitro,
                     Precio = tbPrecio
                 });
-            else{
-                Guardar(new Inputs
+            else
+            {
+                 Guardar(new Inputs
                 {
                     ClaveReceta = tbClaveReceta,
                     CostoElaboracion = tbCostoElaboracionBE,
@@ -404,10 +405,9 @@ namespace ExcelAddIn1
                     MargenSugerido = tbMargenSugeridoBE,
                     PesoLitro = tbPesoLitro,
                     Precio = tbPrecio
-                });
-           
+                }); 
             }
-
+           
         }
         private void cbTipoReceta_SelectedIndexChanged(object sender, EventArgs e)
         {
@@ -520,30 +520,11 @@ namespace ExcelAddIn1
             }
         }
 
-        private void button4_Click(object sender, EventArgs e)
-        {
-                
-        }
-
-        private void btAyuda_Click(object sender, EventArgs e)
-        {
-
-        }
+ 
 
         private void tbClaveReceta_KeyPress(object sender, KeyPressEventArgs e)
         {
             e.Handled = Opcion.ValidarCaracter(e);
-        }
-
-        private void GuardarContinuar_Click(object sender, EventArgs e)
-        {
-            this.Controls.OfType<TextBox>().ToList().ForEach(o => o.Text = "");
-            tbClaveReceta.Clear();
-            tbDescripcion.Clear();
-            tbPesoLitro.Clear();
-            tbCostoElaboracion.Clear();
-            tbMargenConPrecio.Clear();
-            tbPrecio.Clear();
         }
 
         private void btValidar_Click(object sender, EventArgs e)

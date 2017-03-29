@@ -75,14 +75,14 @@ namespace Respuesta
 
             //public static CocinaDetalle cocinadetalle { get; set; }
 
-        public string Clave { get; set; }
+            public string Clave { get; set; }
             public string Receta { get; set; }
             public string TipoProducto { get; set; }
             public string CantidadInventario { get; set; }
             public string Categoria { get; set; }
             public string Estado { get; set; }
             public string Since { get; set; }
-            public DateTime UltimaElaboracion { get; set; }
+            public string UltimaElaboracion { get; set; }
             public string Medida { get; set; }
             public string Consumopordia { get; set; }
             //public string Total { get; set; }

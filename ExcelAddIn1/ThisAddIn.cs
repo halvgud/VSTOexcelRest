@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Drawing;
 using System.IO;
 using System.Linq;
+using System.Runtime.InteropServices;
 using System.Windows.Forms;
 using Herramienta.Config;
 using Excel = Microsoft.Office.Interop.Excel;
@@ -58,27 +59,27 @@ namespace ExcelAddIn1
             if (_sheet1.Name == "ReporterCocina" && target.Column == 1)
             {
                 cancel = true;
-                MessageBox.Show(target.Row.ToString());
+                //MessageBox.Show(target.Row.ToString());
                 var excel = target.EntireRow.Value2;
-                MessageBox.Show(excel[1,1].ToString());
+                //MessageBox.Show(excel[1,1].ToString());
                 Reporte.RespuestaCocina rrc = new Reporte.RespuestaCocina
                 {
                     // SEGUIR EL LUNES
 
                     Clave = excel[1, 1],
                     Receta = excel[1, 2],
-                    ////Categoria = excel[1, 3],
+                    //Categoria = excel[1, 3].ToString(),
                     ////Estado =excel[1, 4],
-                    //UltimaElaboracion = DateTime.Now,
+                    Since = excel[1, 7].ToString(),
+                    UltimaElaboracion = excel[1, 8].ToString(),
                     //Medida = excel[1, 7].ToString(),
                     //Consumopordia = excel[1, 8].ToString(),
-                    //////Total = "",
-                    ////Nombre = "",
-                    //Costo = excel[1, 11],
-                    //Venta = excel[1, 12],
+
+                    Costo = (Convert.ToDouble(excel[1, 11])).ToString(),
+                    Venta = (Convert.ToDouble(excel[1, 12])).ToString(),
                     Margen = (Convert.ToDouble(excel[1, 13])/100).ToString(),
                     //Qty = ""/*excel[1, 14]*/,
-                    //Sale = "",
+                    //Sale = excel[1,7].ToString(),
                     //Profit = "",
                     //Qtycongelado = "",
                     //Preciocongelado = "",
@@ -96,6 +97,15 @@ namespace ExcelAddIn1
                 {
                     Reporte.RespuestaCocina.CocinaDetalle lista = Opcion.JsonaClaseGenerica<Reporte.RespuestaCocina.CocinaDetalle>(jsonResult);
                     var excelazo = InicializarExcelConTemplate("DetalleReceta");
+                    excelazo.Range["A1:N2"].Interior.Color = ColorTranslator.ToOle(Color.Peru);
+                    excelazo.Range["A4:A7"].Interior.Color = ColorTranslator.ToOle(Color.Peru);
+                    excelazo.Range["F4:N4"].Interior.Color = ColorTranslator.ToOle(Color.Peru);
+                    excelazo.Range["F6:N6"].Interior.Color = ColorTranslator.ToOle(Color.Peru);
+                    excelazo.Range["F9:N9"].Interior.Color = ColorTranslator.ToOle(Color.Peru);
+                    excelazo.Range["B7:D7"].Interior.Color = ColorTranslator.ToOle(Color.Peru);
+                    excelazo.Range["C21"].Interior.Color = ColorTranslator.ToOle(Color.Peru);
+
+
 
                     ///*Local.Receta.IdReceta = receta.RecI*/d;*/
                     //var oReportWs = InicializarExcelConTemplate("Receta");
@@ -112,6 +122,8 @@ namespace ExcelAddIn1
                     ((excelazo.Range["M5"])).Value2 = rrc.Costo;
                     ((excelazo.Range["N5"])).Value2 = rrc.Venta;
                     ((excelazo.Range["L5"])).Value2 = lista.SobrantesPendiente;
+                    ((excelazo.Range["F5"])).Value2 = rrc.Since;
+
                     //((excelazo.Range["L10"])).Value2 = lista.Foto;
                     //((excelazo.Range["L10"])).Value2 = lista.Foto;
 
@@ -287,7 +299,7 @@ namespace ExcelAddIn1
             var oReportWs = InicializarExcelConTemplate("ReporterCocina");
             if (oReportWs == null) return;
             var rowcount = rrg.Count + 2;
-            _reporte.Range["A3:U"+rowcount].Value2 = InicializarLista(rrg);
+            _reporte.Range["A3:X" + rowcount].Value2 = InicializarLista(rrg);
             _reporte.Range["A3:X" + rowcount].Borders[Excel.XlBordersIndex.xlEdgeBottom].LineStyle = Excel.XlLineStyle.xlContinuous;
             _reporte.Range["A3:X" + rowcount].Borders[Excel.XlBordersIndex.xlEdgeLeft].LineStyle = Excel.XlLineStyle.xlContinuous;
             _reporte.Range["A3:X" + rowcount].Borders[Excel.XlBordersIndex.xlEdgeRight].LineStyle = Excel.XlLineStyle.xlContinuous;
@@ -303,6 +315,8 @@ namespace ExcelAddIn1
             _reporte.Range["P3:P" + rowcount].Interior.Color = ColorTranslator.ToOle(Color.Pink);
             
             _reporte.Range["B3:B" + rowcount].Columns.AutoFit();
+            _reporte.Range["E3:E" + rowcount].Columns.AutoFit();
+            _reporte.Range["G3:G" + rowcount].Columns.AutoFit();
 
 
             Application.Cells.Locked = false;

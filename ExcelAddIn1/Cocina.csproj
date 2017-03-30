@@ -217,6 +217,12 @@
     <Compile Include="MensajeDeEspera.Designer.cs">
       <DependentUpon>MensajeDeEspera.cs</DependentUpon>
     </Compile>
+    <Compile Include="MenuSemanal.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="MenuSemanal.Designer.cs">
+      <DependentUpon>MenuSemanal.cs</DependentUpon>
+    </Compile>
     <Compile Include="Properties\AssemblyInfo.cs">
       <SubType>Code</SubType>
     </Compile>
@@ -237,6 +243,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="MensajeDeEspera.resx">
       <DependentUpon>MensajeDeEspera.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="MenuSemanal.resx">
+      <DependentUpon>MenuSemanal.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>

@@ -42,12 +42,12 @@ namespace ExcelAddIn1
         }
         private void tbClaveReceta_TextChanged(object sender, EventArgs e)
         {
-            btGuardar.Enabled = ValidarCampos();
+            btGuardarBE.Enabled = ValidarCampos();
             tsmGuardar.Enabled = ValidarCampos();
         }
         private void tbDescripcion_TextChanged(object sender, EventArgs e)
         {
-            btGuardar.Enabled = ValidarCampos();
+            btGuardarBE.Enabled = ValidarCampos();
         }
         private void AgregarReceta_Load(object sender, EventArgs e)
         {
@@ -82,7 +82,7 @@ namespace ExcelAddIn1
                 MargenSugerido = tbMargenSugerido,
                 PrecioSugerido = tbPrecioSugerido
             });
-            btGuardar.Enabled = ValidarCampos();
+            btGuardarBE.Enabled = ValidarCampos();
             tsmGuardar.Enabled = ValidarCampos();
         }
         private void tbMargenConPrecio_TextChanged(object sender, EventArgs e)
@@ -95,7 +95,7 @@ namespace ExcelAddIn1
                 MargenConPrecio = tbMargenConPrecio,
                 CostoElaboracion = tbCostoElaboracion
             });
-            btGuardar.Enabled = ValidarCampos();
+            btGuardarBE.Enabled = ValidarCampos();
             tsmGuardar.Enabled = ValidarCampos();
         }
         private void tbMargenConPrecioBE_TextChanged(object sender, EventArgs e)
@@ -124,7 +124,7 @@ namespace ExcelAddIn1
                 CostoElaboracion = tbCostoElaboracion,
                 Precio = tbPrecio
             });
-            btGuardar.Enabled = ValidarCampos();
+            btGuardarBE.Enabled = ValidarCampos();
             tsmGuardar.Enabled = ValidarCampos();
         }
         private void tbPrecioBE_TextChanged(object sender, EventArgs e)
@@ -294,7 +294,7 @@ namespace ExcelAddIn1
                     MessageBox.Show(this,@"La Clave ingresada ya existe");
                     claveReceta.Text = "";
                     claveReceta.Focus();
-                    btGuardar.Enabled = true;
+                    btGuardarBE.Enabled = true;
                 }));
                 return false;
             }
@@ -303,7 +303,7 @@ namespace ExcelAddIn1
 
         private void Guardar(Inputs inputs)
         {
-            btGuardar.Enabled = false;
+            btGuardarBE.Enabled = false;
             Local.Receta.clave = (inputs.ClaveReceta.Text);
             if (ValidarCampos())
             {
@@ -512,19 +512,11 @@ namespace ExcelAddIn1
         }
         private void tbCodigo_KeyPress(object sender, KeyPressEventArgs e)
         {
-          //  e.Handled = Opcion.ValidarCaracter(e);
 
             if (e.KeyChar == 13 &&ValidarBusquedaVacia())
             {
                 btBuscar_Click(sender,new EventArgs());
             }
-        }
-
- 
-
-        private void tbClaveReceta_KeyPress(object sender, KeyPressEventArgs e)
-        {
-            e.Handled = Opcion.ValidarCaracter(e);
         }
 
         private void btValidar_Click(object sender, EventArgs e)
@@ -535,15 +527,28 @@ namespace ExcelAddIn1
                 if (!ValidarClave(tbClaveReceta, jsonResult)) return;
             });
         }
-
-        private void tbCodigoBE_KeyPress(object sender, KeyPressEventArgs e)
+        private bool ValidarBusquedaVacia1()
         {
-            //  e.Handled = Opcion.ValidarCaracter(e);
-
-            if (e.KeyChar == 13 && ValidarBusquedaVacia())
+            return  btBuscarBE.Text. Trim().Length > 0;
+        }
+        private void tbBuscarReceta_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (e.KeyChar == 13 && ValidarBusquedaVacia1())
             {
-                btBuscar_Click(sender, new EventArgs());
+                btBuscarClave_Click(sender, new EventArgs());
             }
+
+        }
+
+        private void btBorrarSelecBE_Click(object sender, EventArgs e)
+        {
+            Opcion.BorrarSeleccion(dgvIngredientesBusqueda);
+        }
+
+        private void btBorrarListaBE_Click(object sender, EventArgs e)
+        {
+            Opcion.BorrarDataGridView(dgvIngredientesBusqueda);
+            ValidarBusquedaVacia1();
         }
     }
 }

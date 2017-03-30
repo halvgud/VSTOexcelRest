@@ -30,8 +30,10 @@
         {
             this.panel1 = new System.Windows.Forms.Panel();
             this.btAyuda = new System.Windows.Forms.Button();
-            this.btGuardar = new System.Windows.Forms.Button();
+            this.btGuardarBE = new System.Windows.Forms.Button();
             this.tabPage2 = new System.Windows.Forms.TabPage();
+            this.rtbElaboracionBE = new System.Windows.Forms.RichTextBox();
+            this.label25 = new System.Windows.Forms.Label();
             this.btBuscarBE = new System.Windows.Forms.Button();
             this.tbCodigoBE = new System.Windows.Forms.TextBox();
             this.label24 = new System.Windows.Forms.Label();
@@ -55,13 +57,15 @@
             this.label19 = new System.Windows.Forms.Label();
             this.label20 = new System.Windows.Forms.Label();
             this.label21 = new System.Windows.Forms.Label();
-            this.button2 = new System.Windows.Forms.Button();
-            this.button3 = new System.Windows.Forms.Button();
+            this.btBorrarSelecBE = new System.Windows.Forms.Button();
+            this.btBorrarListaBE = new System.Windows.Forms.Button();
             this.label22 = new System.Windows.Forms.Label();
             this.btBuscarClave = new System.Windows.Forms.Button();
             this.tbBuscarReceta = new System.Windows.Forms.TextBox();
             this.label3 = new System.Windows.Forms.Label();
             this.tabPage1 = new System.Windows.Forms.TabPage();
+            this.rtbElaboracion = new System.Windows.Forms.RichTextBox();
+            this.label26 = new System.Windows.Forms.Label();
             this.btValidar = new System.Windows.Forms.Button();
             this.chDiario = new System.Windows.Forms.CheckBox();
             this.dgvIngredientes = new System.Windows.Forms.DataGridView();
@@ -107,9 +111,9 @@
             // panel1
             // 
             this.panel1.Controls.Add(this.btAyuda);
-            this.panel1.Controls.Add(this.btGuardar);
+            this.panel1.Controls.Add(this.btGuardarBE);
             this.panel1.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.panel1.Location = new System.Drawing.Point(0, 426);
+            this.panel1.Location = new System.Drawing.Point(0, 527);
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(669, 48);
             this.panel1.TabIndex = 3;
@@ -125,21 +129,23 @@
             this.btAyuda.Text = "Ayuda";
             this.btAyuda.UseVisualStyleBackColor = true;
             // 
-            // btGuardar
+            // btGuardarBE
             // 
-            this.btGuardar.Enabled = false;
-            this.btGuardar.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(255)))), ((int)(((byte)(128)))));
-            this.btGuardar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btGuardar.Location = new System.Drawing.Point(11, 6);
-            this.btGuardar.Name = "btGuardar";
-            this.btGuardar.Size = new System.Drawing.Size(109, 23);
-            this.btGuardar.TabIndex = 10;
-            this.btGuardar.Text = "Guardar";
-            this.btGuardar.UseVisualStyleBackColor = true;
-            this.btGuardar.Click += new System.EventHandler(this.btGuardar_Click);
+            this.btGuardarBE.Enabled = false;
+            this.btGuardarBE.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(255)))), ((int)(((byte)(128)))));
+            this.btGuardarBE.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btGuardarBE.Location = new System.Drawing.Point(11, 6);
+            this.btGuardarBE.Name = "btGuardarBE";
+            this.btGuardarBE.Size = new System.Drawing.Size(109, 23);
+            this.btGuardarBE.TabIndex = 10;
+            this.btGuardarBE.Text = "Guardar";
+            this.btGuardarBE.UseVisualStyleBackColor = true;
+            this.btGuardarBE.Click += new System.EventHandler(this.btGuardar_Click);
             // 
             // tabPage2
             // 
+            this.tabPage2.Controls.Add(this.rtbElaboracionBE);
+            this.tabPage2.Controls.Add(this.label25);
             this.tabPage2.Controls.Add(this.btBuscarBE);
             this.tabPage2.Controls.Add(this.tbCodigoBE);
             this.tabPage2.Controls.Add(this.label24);
@@ -163,8 +169,8 @@
             this.tabPage2.Controls.Add(this.label19);
             this.tabPage2.Controls.Add(this.label20);
             this.tabPage2.Controls.Add(this.label21);
-            this.tabPage2.Controls.Add(this.button2);
-            this.tabPage2.Controls.Add(this.button3);
+            this.tabPage2.Controls.Add(this.btBorrarSelecBE);
+            this.tabPage2.Controls.Add(this.btBorrarListaBE);
             this.tabPage2.Controls.Add(this.label22);
             this.tabPage2.Controls.Add(this.btBuscarClave);
             this.tabPage2.Controls.Add(this.tbBuscarReceta);
@@ -172,10 +178,28 @@
             this.tabPage2.Location = new System.Drawing.Point(4, 22);
             this.tabPage2.Name = "tabPage2";
             this.tabPage2.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage2.Size = new System.Drawing.Size(661, 400);
+            this.tabPage2.Size = new System.Drawing.Size(661, 501);
             this.tabPage2.TabIndex = 1;
             this.tabPage2.Text = "Buscar y Editar";
             this.tabPage2.UseVisualStyleBackColor = true;
+            // 
+            // rtbElaboracionBE
+            // 
+            this.rtbElaboracionBE.BackColor = System.Drawing.SystemColors.ScrollBar;
+            this.rtbElaboracionBE.Location = new System.Drawing.Point(4, 397);
+            this.rtbElaboracionBE.Name = "rtbElaboracionBE";
+            this.rtbElaboracionBE.Size = new System.Drawing.Size(628, 96);
+            this.rtbElaboracionBE.TabIndex = 56;
+            this.rtbElaboracionBE.Text = "";
+            // 
+            // label25
+            // 
+            this.label25.AutoSize = true;
+            this.label25.Location = new System.Drawing.Point(3, 381);
+            this.label25.Name = "label25";
+            this.label25.Size = new System.Drawing.Size(111, 13);
+            this.label25.TabIndex = 55;
+            this.label25.Text = "Modo de Elaboración:";
             // 
             // btBuscarBE
             // 
@@ -195,7 +219,6 @@
             this.tbCodigoBE.Name = "tbCodigoBE";
             this.tbCodigoBE.Size = new System.Drawing.Size(187, 20);
             this.tbCodigoBE.TabIndex = 52;
-            this.tbCodigoBE.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.tbCodigoBE_KeyPress);
             // 
             // label24
             // 
@@ -210,7 +233,7 @@
             // 
             this.chDiarioBE.AutoSize = true;
             this.chDiarioBE.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.chDiarioBE.Location = new System.Drawing.Point(218, 359);
+            this.chDiarioBE.Location = new System.Drawing.Point(218, 356);
             this.chDiarioBE.Name = "chDiarioBE";
             this.chDiarioBE.Size = new System.Drawing.Size(50, 17);
             this.chDiarioBE.TabIndex = 51;
@@ -381,23 +404,25 @@
             this.label21.TabIndex = 38;
             this.label21.Text = "Costo Estimado :";
             // 
-            // button2
+            // btBorrarSelecBE
             // 
-            this.button2.Location = new System.Drawing.Point(10, 355);
-            this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(109, 23);
-            this.button2.TabIndex = 35;
-            this.button2.Text = "Borrar selección";
-            this.button2.UseVisualStyleBackColor = true;
+            this.btBorrarSelecBE.Location = new System.Drawing.Point(10, 352);
+            this.btBorrarSelecBE.Name = "btBorrarSelecBE";
+            this.btBorrarSelecBE.Size = new System.Drawing.Size(109, 23);
+            this.btBorrarSelecBE.TabIndex = 35;
+            this.btBorrarSelecBE.Text = "Borrar Seleccion";
+            this.btBorrarSelecBE.UseVisualStyleBackColor = true;
+            this.btBorrarSelecBE.Click += new System.EventHandler(this.btBorrarSelecBE_Click);
             // 
-            // button3
+            // btBorrarListaBE
             // 
-            this.button3.Location = new System.Drawing.Point(125, 355);
-            this.button3.Name = "button3";
-            this.button3.Size = new System.Drawing.Size(72, 23);
-            this.button3.TabIndex = 37;
-            this.button3.Text = "Borrar lista";
-            this.button3.UseVisualStyleBackColor = true;
+            this.btBorrarListaBE.Location = new System.Drawing.Point(125, 352);
+            this.btBorrarListaBE.Name = "btBorrarListaBE";
+            this.btBorrarListaBE.Size = new System.Drawing.Size(72, 23);
+            this.btBorrarListaBE.TabIndex = 37;
+            this.btBorrarListaBE.Text = "Borrar lista";
+            this.btBorrarListaBE.UseVisualStyleBackColor = true;
+            this.btBorrarListaBE.Click += new System.EventHandler(this.btBorrarListaBE_Click);
             // 
             // label22
             // 
@@ -437,6 +462,8 @@
             // 
             // tabPage1
             // 
+            this.tabPage1.Controls.Add(this.rtbElaboracion);
+            this.tabPage1.Controls.Add(this.label26);
             this.tabPage1.Controls.Add(this.btValidar);
             this.tabPage1.Controls.Add(this.chDiario);
             this.tabPage1.Controls.Add(this.dgvIngredientes);
@@ -469,10 +496,28 @@
             this.tabPage1.Location = new System.Drawing.Point(4, 22);
             this.tabPage1.Name = "tabPage1";
             this.tabPage1.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage1.Size = new System.Drawing.Size(661, 400);
+            this.tabPage1.Size = new System.Drawing.Size(661, 501);
             this.tabPage1.TabIndex = 0;
             this.tabPage1.Text = "Agregar";
             this.tabPage1.UseVisualStyleBackColor = true;
+            // 
+            // rtbElaboracion
+            // 
+            this.rtbElaboracion.BackColor = System.Drawing.SystemColors.MenuBar;
+            this.rtbElaboracion.Location = new System.Drawing.Point(7, 399);
+            this.rtbElaboracion.Name = "rtbElaboracion";
+            this.rtbElaboracion.Size = new System.Drawing.Size(628, 96);
+            this.rtbElaboracion.TabIndex = 58;
+            this.rtbElaboracion.Text = "";
+            // 
+            // label26
+            // 
+            this.label26.AutoSize = true;
+            this.label26.Location = new System.Drawing.Point(6, 383);
+            this.label26.Name = "label26";
+            this.label26.Size = new System.Drawing.Size(111, 13);
+            this.label26.TabIndex = 57;
+            this.label26.Text = "Modo de Elaboración:";
             // 
             // btValidar
             // 
@@ -752,7 +797,7 @@
             this.tabControl1.Location = new System.Drawing.Point(0, 0);
             this.tabControl1.Name = "tabControl1";
             this.tabControl1.SelectedIndex = 0;
-            this.tabControl1.Size = new System.Drawing.Size(669, 426);
+            this.tabControl1.Size = new System.Drawing.Size(669, 527);
             this.tabControl1.TabIndex = 2;
             // 
             // menuStrip1
@@ -787,7 +832,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(669, 474);
+            this.ClientSize = new System.Drawing.Size(669, 575);
             this.Controls.Add(this.tabControl1);
             this.Controls.Add(this.panel1);
             this.Controls.Add(this.menuStrip1);
@@ -817,7 +862,7 @@
         #endregion
         private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.Button btAyuda;
-        private System.Windows.Forms.Button btGuardar;
+        private System.Windows.Forms.Button btGuardarBE;
         private System.Windows.Forms.TabPage tabPage2;
         private System.Windows.Forms.DataGridView dgvIngredientesBusqueda;
         private System.Windows.Forms.ComboBox cbTipoBE;
@@ -836,8 +881,8 @@
         private System.Windows.Forms.Label label19;
         private System.Windows.Forms.Label label20;
         private System.Windows.Forms.Label label21;
-        private System.Windows.Forms.Button button2;
-        private System.Windows.Forms.Button button3;
+        private System.Windows.Forms.Button btBorrarSelecBE;
+        private System.Windows.Forms.Button btBorrarListaBE;
         private System.Windows.Forms.Label label22;
         private System.Windows.Forms.Button btBuscarClave;
         private System.Windows.Forms.TextBox tbBuscarReceta;
@@ -882,5 +927,9 @@
         private System.Windows.Forms.Label label24;
         private System.Windows.Forms.Button btBuscarBE;
         private System.Windows.Forms.Button btValidar;
+        private System.Windows.Forms.Label label25;
+        private System.Windows.Forms.RichTextBox rtbElaboracionBE;
+        private System.Windows.Forms.RichTextBox rtbElaboracion;
+        private System.Windows.Forms.Label label26;
     }
 }

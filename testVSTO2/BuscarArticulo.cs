@@ -39,23 +39,24 @@ namespace testVSTO2
 
         private void BuscarArticulo_Load(object sender, EventArgs e)
         {
-           this.ActiveControl = tbCantidad;
-            tbCantidad.Focus();
-           
-          
+            this.ActiveControl = tbCantidad;
+            this.tbCantidad.Focus();
+            this.tbCantidad.Select();
+
         }
 
         private void BuscarArticulo_Activated(object sender, EventArgs e)
         {
-           this.ActiveControl = tbCantidad;
-            tbCantidad.Focus();
+            this.ActiveControl = tbCantidad;
+            this.tbCantidad.Focus();
+            this.tbCantidad.Select();
         }
 
         private void BuscarArticulo_Shown(object sender, EventArgs e)
         {
             this.ActiveControl =tbCantidad ;
-            tbCantidad.Focus();
-            tbCantidad.Select();
+            this.tbCantidad.Focus();
+            this.tbCantidad.Select();
         }
         private bool ValidarBusquedaVacia()
         {

@@ -5,6 +5,7 @@ using System.Linq;
 using System.Reflection;
 using System.Runtime.InteropServices;
 using System.Text;
+using Microsoft.Office.Interop.Excel;
 using Office = Microsoft.Office.Core;
 
 // TODO:  Siga estos pasos para habilitar el elemento (XML) de la cinta de opciones:
@@ -46,6 +47,12 @@ namespace ExcelAddIn1
         {
             ThisAddIn.Recetario.Visible = false;
             ThisAddIn.ReporteReceta.Visible = true;
+        }
+
+        public void AbrirMenuSemanal(Office.IRibbonControl control)
+        {
+           var ms = new MenuSemanal();
+            ms.Show();
         }
 
         public void CrearReceta(Office.IRibbonControl control)

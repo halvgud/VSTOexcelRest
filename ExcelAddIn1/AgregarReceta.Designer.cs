@@ -32,7 +32,7 @@
             this.btAyuda = new System.Windows.Forms.Button();
             this.btGuardarBE = new System.Windows.Forms.Button();
             this.tabPage2 = new System.Windows.Forms.TabPage();
-            this.rtbElaboracionBE = new System.Windows.Forms.RichTextBox();
+            this.rtbModoElaboracionBE = new System.Windows.Forms.RichTextBox();
             this.label25 = new System.Windows.Forms.Label();
             this.btBuscarBE = new System.Windows.Forms.Button();
             this.tbCodigoBE = new System.Windows.Forms.TextBox();
@@ -64,7 +64,7 @@
             this.tbBuscarReceta = new System.Windows.Forms.TextBox();
             this.label3 = new System.Windows.Forms.Label();
             this.tabPage1 = new System.Windows.Forms.TabPage();
-            this.rtbElaboracion = new System.Windows.Forms.RichTextBox();
+            this.rtbModoElaboracion = new System.Windows.Forms.RichTextBox();
             this.label26 = new System.Windows.Forms.Label();
             this.btValidar = new System.Windows.Forms.Button();
             this.chDiario = new System.Windows.Forms.CheckBox();
@@ -140,11 +140,11 @@
             this.btGuardarBE.TabIndex = 10;
             this.btGuardarBE.Text = "Guardar";
             this.btGuardarBE.UseVisualStyleBackColor = true;
-            this.btGuardarBE.Click += new System.EventHandler(this.btGuardar_Click);
+            this.btGuardarBE.Click += new System.EventHandler(this.btGuardarBE_Click);
             // 
             // tabPage2
             // 
-            this.tabPage2.Controls.Add(this.rtbElaboracionBE);
+            this.tabPage2.Controls.Add(this.rtbModoElaboracionBE);
             this.tabPage2.Controls.Add(this.label25);
             this.tabPage2.Controls.Add(this.btBuscarBE);
             this.tabPage2.Controls.Add(this.tbCodigoBE);
@@ -183,14 +183,14 @@
             this.tabPage2.Text = "Buscar y Editar";
             this.tabPage2.UseVisualStyleBackColor = true;
             // 
-            // rtbElaboracionBE
+            // rtbModoElaboracionBE
             // 
-            this.rtbElaboracionBE.BackColor = System.Drawing.SystemColors.ScrollBar;
-            this.rtbElaboracionBE.Location = new System.Drawing.Point(4, 397);
-            this.rtbElaboracionBE.Name = "rtbElaboracionBE";
-            this.rtbElaboracionBE.Size = new System.Drawing.Size(628, 96);
-            this.rtbElaboracionBE.TabIndex = 56;
-            this.rtbElaboracionBE.Text = "";
+            this.rtbModoElaboracionBE.BackColor = System.Drawing.SystemColors.ScrollBar;
+            this.rtbModoElaboracionBE.Location = new System.Drawing.Point(4, 397);
+            this.rtbModoElaboracionBE.Name = "rtbModoElaboracionBE";
+            this.rtbModoElaboracionBE.Size = new System.Drawing.Size(628, 96);
+            this.rtbModoElaboracionBE.TabIndex = 56;
+            this.rtbModoElaboracionBE.Text = "";
             // 
             // label25
             // 
@@ -219,6 +219,8 @@
             this.tbCodigoBE.Name = "tbCodigoBE";
             this.tbCodigoBE.Size = new System.Drawing.Size(187, 20);
             this.tbCodigoBE.TabIndex = 52;
+            this.tbCodigoBE.TextChanged += new System.EventHandler(this.tbCodigoBE_TextChanged);
+            this.tbCodigoBE.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.tbCodigoBE_KeyPress);
             // 
             // label24
             // 
@@ -264,6 +266,7 @@
             this.dgvIngredientesBusqueda.Size = new System.Drawing.Size(537, 281);
             this.dgvIngredientesBusqueda.TabIndex = 36;
             this.dgvIngredientesBusqueda.TabStop = false;
+            this.dgvIngredientesBusqueda.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvIngredientesBusqueda_CellContentClick);
             // 
             // cbTipoBE
             // 
@@ -462,7 +465,7 @@
             // 
             // tabPage1
             // 
-            this.tabPage1.Controls.Add(this.rtbElaboracion);
+            this.tabPage1.Controls.Add(this.rtbModoElaboracion);
             this.tabPage1.Controls.Add(this.label26);
             this.tabPage1.Controls.Add(this.btValidar);
             this.tabPage1.Controls.Add(this.chDiario);
@@ -501,14 +504,15 @@
             this.tabPage1.Text = "Agregar";
             this.tabPage1.UseVisualStyleBackColor = true;
             // 
-            // rtbElaboracion
+            // rtbModoElaboracion
             // 
-            this.rtbElaboracion.BackColor = System.Drawing.SystemColors.MenuBar;
-            this.rtbElaboracion.Location = new System.Drawing.Point(7, 399);
-            this.rtbElaboracion.Name = "rtbElaboracion";
-            this.rtbElaboracion.Size = new System.Drawing.Size(628, 96);
-            this.rtbElaboracion.TabIndex = 58;
-            this.rtbElaboracion.Text = "";
+            this.rtbModoElaboracion.BackColor = System.Drawing.SystemColors.MenuBar;
+            this.rtbModoElaboracion.Location = new System.Drawing.Point(7, 399);
+            this.rtbModoElaboracion.Name = "rtbModoElaboracion";
+            this.rtbModoElaboracion.Size = new System.Drawing.Size(628, 96);
+            this.rtbModoElaboracion.TabIndex = 58;
+            this.rtbModoElaboracion.Text = "";
+            this.rtbModoElaboracion.TextChanged += new System.EventHandler(this.rtbModoElaboracion_TextChanged);
             // 
             // label26
             // 
@@ -928,8 +932,8 @@
         private System.Windows.Forms.Button btBuscarBE;
         private System.Windows.Forms.Button btValidar;
         private System.Windows.Forms.Label label25;
-        private System.Windows.Forms.RichTextBox rtbElaboracionBE;
-        private System.Windows.Forms.RichTextBox rtbElaboracion;
+        private System.Windows.Forms.RichTextBox rtbModoElaboracionBE;
+        private System.Windows.Forms.RichTextBox rtbModoElaboracion;
         private System.Windows.Forms.Label label26;
     }
 }

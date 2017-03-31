@@ -47,6 +47,14 @@ namespace ExcelAddIn1
             ThisAddIn.Recetario.Visible = false;
             ThisAddIn.ReporteReceta.Visible = true;
         }
+        public void DetalleMenu(Office.IRibbonControl control)
+        {
+            ThisAddIn.DetalleMenu.Visible = true;
+            ThisAddIn.ReporteReceta.Visible = false;
+            ThisAddIn.Recetario.Visible = false;
+            
+
+        }
 
         public void CrearReceta(Office.IRibbonControl control)
         {

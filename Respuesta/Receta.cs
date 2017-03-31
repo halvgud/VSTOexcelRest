@@ -18,6 +18,8 @@ namespace Respuesta
         public int Diario { get; set; }
         public double Cantidad { get; set; }
         public List<Detalle> Ingredientes { get; set; }
+        public  string ModoElaboracion { get; set; }
+
 
         public Basica CopiadoSencillo()
         {

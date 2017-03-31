@@ -22,8 +22,10 @@ namespace ExcelAddIn1
         }
         private SideBarReporteReceta _reporteReceta;
         private SideBarRecetario _recetario;
+        private DetalleMenu _detallemenu;
         public static Microsoft.Office.Tools.CustomTaskPane Recetario;
         public static Microsoft.Office.Tools.CustomTaskPane ReporteReceta;
+        public static Microsoft.Office.Tools.CustomTaskPane DetalleMenu;
         private Excel.Worksheet _reporte;
 
         public NamedRange ClickRange { get; }
@@ -32,19 +34,23 @@ namespace ExcelAddIn1
         {
             _reportes = new List<Reportes> {
             new Reportes { Nombre = "ReporteCocina"},
-            new Reportes { Nombre= "Recetario" }
+            new Reportes { Nombre= "Recetario" },
+            new Reportes {Nombre="DetalleMenu" }
             };
             _reporteReceta = new SideBarReporteReceta();
             _recetario = new SideBarRecetario();
+            _detallemenu = new DetalleMenu();
 
-            ReporteReceta = CustomTaskPanes.Add(_reporteReceta, "ReporteCocina");
+            ReporteReceta = CustomTaskPanes.Add(_reporteReceta, "Reporte Cocina");
             ReporteReceta.Visible = false;
             ReporteReceta.Width = 280;
             Recetario = CustomTaskPanes.Add(_recetario, "Recetario");
             Recetario.Visible = false;
             Recetario.Width = 280;
-            Application.WorkbookActivate +=
-   Application_ActiveWorkbookChanges;
+            DetalleMenu = CustomTaskPanes.Add(_detallemenu, "Detalle Menu");
+            DetalleMenu.Visible = false;
+            DetalleMenu.Width = 280;
+            Application.WorkbookActivate += Application_ActiveWorkbookChanges;
             Application.WorkbookDeactivate += Application_ActiveWorkbookChanges;
             Globals.ThisAddIn.Application.SheetSelectionChange += activeSheet_SelectionChange;
             this.Application.SheetBeforeDoubleClick += Application_SheetBeforeDoubleClick;

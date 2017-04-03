@@ -41,15 +41,15 @@ namespace ExcelAddIn1
         {
             DateTime inicio = Dtpikerinicio.Value;
             DateTime final = Dtpikerfinal.Value;
-            int numerodias = ((DateTime.Now - inicio).Days);
+            int numerodias = ((DateTime.Now - final).Days);
             DateTime dd = DateTime.Now;
             string fecha = dd.ToString("yyyy-M-d");
             lbDiaSemana.Items.Add(fecha);
             string[] dias = fecha.Split('-');
-            for (int i = 0; i <= numerodias; i++)
-            {
+            //for (int i = 0; i <= numerodias; i++)
+            //{
 
-            }
+            //}
 
             //int prueba = (final - inicio);
             ////Convert.ToString() ;
@@ -62,6 +62,11 @@ namespace ExcelAddIn1
             DateTime dateValue = new DateTime(2017, 3, 30);
             lbDiaSemana.Items.Add(dateValue.ToString("dddd"));
             lbDiaSemana.Items.Add(numerodias);
+        }
+
+        private void lbDiaSemana_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
         }
     }
 }

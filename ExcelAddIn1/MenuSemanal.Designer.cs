@@ -94,6 +94,7 @@
             this.lbDiaSemana.Name = "lbDiaSemana";
             this.lbDiaSemana.Size = new System.Drawing.Size(120, 173);
             this.lbDiaSemana.TabIndex = 4;
+            this.lbDiaSemana.SelectedIndexChanged += new System.EventHandler(this.lbDiaSemana_SelectedIndexChanged);
             // 
             // panel1
             // 

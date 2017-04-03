@@ -8,7 +8,7 @@
 <!--
           <button id ="btMenuSemanal" label="Menu Semanal" imageMso="CalendarHorizontal" size="large" onAction="AbrirMenuSemanal" getEnabled="BuscarPermiso"/>
 -->
-          <button id ="btMenuSemanal" label="Menu Semanal" imageMso="CalendarHorizontal" size="large" onAction="AbrirRecetario" getEnabled="BuscarPermiso"/>
+          <button id ="btMenuSemanal" label="Menu Semanal" imageMso="CalendarHorizontal" size="large" onAction="AbrirMenuSemanal" getEnabled="BuscarPermiso"/>
           <button id ="btVerMenusoSemanal" label="Ver Menu Semanal" imageMso="MoveActionsMenu" size="large" onAction="DetalleMenu" getEnabled="BuscarPermiso"/>
 
           <button id ="btReceta" label="Recetario" imageMso="BuildingBlocksCreateTableOfAuthorities" size="large" onAction="CrearReceta" getEnabled="BuscarPermiso"/>

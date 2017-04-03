@@ -30,6 +30,7 @@ namespace ExcelAddIn1
             public MaskedTextBox PrecioSugerido;
             public MaskedTextBox Precio;
             public CheckBox Diario;
+            public RichTextBox ModoElaboracion;
         }
         public AgregarReceta()
         {
@@ -53,6 +54,10 @@ namespace ExcelAddIn1
         {
             ActiveControl = tbCodigo;
             tbCodigo.Focus();
+        }
+        private void rtbModoElaboracion_TextChanged(object sender, EventArgs e)
+        {
+            btGuardarBE.Enabled = ValidarCampos();
         }
         private void btBuscar_Click(object sender, EventArgs e)
         {
@@ -97,6 +102,7 @@ namespace ExcelAddIn1
             });
             btGuardarBE.Enabled = ValidarCampos();
             tsmGuardar.Enabled = ValidarCampos();
+
         }
         private void tbMargenConPrecioBE_TextChanged(object sender, EventArgs e)
         {
@@ -144,7 +150,8 @@ namespace ExcelAddIn1
         {
             return (tbClaveReceta.Text != string.Empty && tbDescripcion.Text != string.Empty
                     && tbPrecio.Text != string.Empty && tbMargenConPrecio.Text != string.Empty &&
-                                 tbPesoLitro.Text != string.Empty && tbCostoEstimado.Text != string.Empty);
+                                 tbPesoLitro.Text != string.Empty && tbCostoEstimado.Text != string.Empty 
+                                 && rtbModoElaboracion.Text != string.Empty);
         }
         
         private static void ActualizarInputs(Inputs inputs)
@@ -324,7 +331,9 @@ namespace ExcelAddIn1
                             PesoLitro = Convert.ToDouble(inputs.PesoLitro.Text),
                             Precio = double.Parse(inputs.Precio.Text),
                             RecId = 0,
-                            Diario = Convert.ToInt32(inputs.Diario.Checked)
+                            Diario = Convert.ToInt32(inputs.Diario.Checked),
+                            ModoElaboracion = inputs.ModoElaboracion.Text,
+
                         };
                         Data.Receta.CReceta = receta;
                         Opcion.EjecucionAsync(Data.Receta.Insertar, resultado =>
@@ -372,7 +381,7 @@ namespace ExcelAddIn1
                 inputs.MargenConPrecio.Text = "";
                 inputs.Ingredientes.DataSource = null;
                 inputs.Ingredientes.Update();
-               
+                inputs.ModoElaboracion.Text = "";
             }));
         }
         private void btGuardar_Click(object sender, EventArgs e)
@@ -389,7 +398,9 @@ namespace ExcelAddIn1
                     MargenConPrecio = tbMargenConPrecio,
                     MargenSugerido = tbMargenSugerido,
                     PesoLitro = tbPesoLitro,
-                    Precio = tbPrecio
+                    Precio = tbPrecio,
+                    ModoElaboracion = rtbModoElaboracion,
+                    
                 });
             else
             {
@@ -404,7 +415,8 @@ namespace ExcelAddIn1
                     MargenConPrecio = tbMargenConPrecioBE,
                     MargenSugerido = tbMargenSugeridoBE,
                     PesoLitro = tbPesoLitro,
-                    Precio = tbPrecio
+                    Precio = tbPrecio,
+                    ModoElaboracion = rtbModoElaboracionBE
                 }); 
             }
            
@@ -527,18 +539,6 @@ namespace ExcelAddIn1
                 if (!ValidarClave(tbClaveReceta, jsonResult)) return;
             });
         }
-        private bool ValidarBusquedaVacia1()
-        {
-            return  btBuscarBE.Text. Trim().Length > 0;
-        }
-        private void tbBuscarReceta_KeyPress(object sender, KeyPressEventArgs e)
-        {
-            if (e.KeyChar == 13 && ValidarBusquedaVacia1())
-            {
-                btBuscarClave_Click(sender, new EventArgs());
-            }
-
-        }
 
         private void btBorrarSelecBE_Click(object sender, EventArgs e)
         {
@@ -549,6 +549,55 @@ namespace ExcelAddIn1
         {
             Opcion.BorrarDataGridView(dgvIngredientesBusqueda);
             ValidarBusquedaVacia1();
+        }
+        private bool ValidarBusquedaVacia1()
+        {
+            return tbCodigoBE.Text.Trim().Length > 0;
+        }
+        private void tbBuscarReceta_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (e.KeyChar == 13 && ValidarBusquedaVacia1())
+            {
+                btBuscarClave_Click(sender, new EventArgs());
+            }
+
+        }
+        private void tbCodigoBE_TextChanged(object sender, EventArgs e)
+        {
+            btBuscarBE.Enabled = ValidarBusquedaVacia1();
+
+        }
+        private void tbCodigoBE_KeyPress(object sender, KeyPressEventArgs e)
+        {
+
+            if (e.KeyChar == 13 && ValidarBusquedaVacia1())
+            {
+                btBuscarBE_Click(sender, new EventArgs());
+            }
+        }
+
+        private void btGuardarBE_Click(object sender, EventArgs e)
+        {
+            if (tabControl1.SelectedTab == tabControl1.TabPages[0])
+                Guardar(new Inputs
+                {
+                    ClaveReceta = tbClaveReceta,
+                    CostoElaboracion = tbCostoElaboracionBE,
+                    CostoEstimado = tbCostoEstimadoBE,
+                    Descripcion = tbDescripcionBE,
+                    Diario = chDiarioBE,
+                    Ingredientes = dgvIngredientesBusqueda,
+                    MargenConPrecio = tbMargenConPrecioBE,
+                    MargenSugerido = tbMargenSugeridoBE,
+                    PesoLitro = tbPesoLitro,
+                    Precio = tbPrecio,
+                    ModoElaboracion = rtbModoElaboracionBE
+                });
+            }
+
+        private void dgvIngredientesBusqueda_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+
         }
     }
 }

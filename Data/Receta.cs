@@ -82,7 +82,32 @@ namespace Data
             }
             
         }
+        //public static void Ëliminar(Action<IRestResponse> callback)
+        //{
+        //    try
+        //    {
+        //        var rest = new Rest(Local.Api.UrlApi, Local.Receta.Eliminar, Method.POST);
+        //        rest.Peticion.AddHeader(Constantes.Http.ObtenerTipoDeContenido, Constantes.Http.TipoDeContenido.Json);
+        //        rest.Peticion.AddJsonBody(CReceta);
+        //        rest.Cliente.ExecuteAsync(rest.Peticion, response =>
+        //        {
+        //            switch (response.StatusCode)
+        //            {
+        //                case HttpStatusCode.OK:
+        //                    CReceta.RecId = Convert.ToInt32(JObject.Parse(response.Content).Property("RecId").Value);
+        //                    callback(response);
+        //                    break;
+        //                default:
+        //                    throw new Exception(@"error al buscar articulo");
+        //            }
+        //        });
+        //    }
+        //    catch (Exception e)
+        //    {
+        //        Opcion.Log(Log.Interno.Categoria, "EXCEPCION: " + e.Message);
+        //    }
 
+        //}
         public class Detalle
         {
             public static List<Respuesta.Receta.Detalle> CRecetaDetalle = new List<Respuesta.Receta.Detalle>();

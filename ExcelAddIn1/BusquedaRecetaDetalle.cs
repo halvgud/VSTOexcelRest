@@ -31,10 +31,11 @@ namespace ExcelAddIn1
             var addIn = Globals.ThisAddIn;
             addIn.Agregar(_clave[dataGridView1.CurrentCell.RowIndex], double.Parse(tbCantidad.Text));
             Close();*/
-            _clave[dataGridView1.CurrentCell.RowIndex].Cantidad = double.Parse(tbCantidad.Text);
+_clave[dataGridView1.CurrentCell.RowIndex].Cantidad = double.Parse(tbCantidad.Text);
             _callback(_clave[dataGridView1.CurrentCell.RowIndex]);
             Close();
         }
+
 
         private void tbCantidad_KeyPress(object sender, KeyPressEventArgs e)
         {

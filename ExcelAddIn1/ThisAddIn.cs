@@ -33,9 +33,9 @@ namespace ExcelAddIn1
         private void ThisAddIn_Startup(object sender, EventArgs e)
         {
             _reportes = new List<Reportes> {
-            new Reportes { Nombre = "ReporteCocina"},
-            new Reportes { Nombre= "Recetario" },
-            new Reportes {Nombre="DetalleMenu" }
+            new Reportes {Nombre = "ReporteCocina"},
+            new Reportes {Nombre= "Recetario"},
+            new Reportes {Nombre="DetalleMenu"}
             };
             _reporteReceta = new SideBarReporteReceta();
             _recetario = new SideBarRecetario();

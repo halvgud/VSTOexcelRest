@@ -47,17 +47,18 @@
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(339, 9);
+            this.label1.Location = new System.Drawing.Point(351, 9);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(67, 13);
             this.label1.TabIndex = 2;
             this.label1.Text = "Cantidad en ";
+            this.label1.Visible = false;
             // 
             // btAceptar
             // 
             this.btAceptar.Location = new System.Drawing.Point(343, 53);
             this.btAceptar.Name = "btAceptar";
-            this.btAceptar.Size = new System.Drawing.Size(75, 23);
+            this.btAceptar.Size = new System.Drawing.Size(95, 28);
             this.btAceptar.TabIndex = 3;
             this.btAceptar.Text = "Aceptar";
             this.btAceptar.UseVisualStyleBackColor = true;

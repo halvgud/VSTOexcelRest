@@ -29,8 +29,8 @@
         private void InitializeComponent()
         {
             this.panel1 = new System.Windows.Forms.Panel();
-            this.btAyuda = new System.Windows.Forms.Button();
-            this.btGuardarBE = new System.Windows.Forms.Button();
+            this.btAyudar = new System.Windows.Forms.Button();
+            this.btGuardar = new System.Windows.Forms.Button();
             this.tabPage2 = new System.Windows.Forms.TabPage();
             this.rtbModoElaboracionBE = new System.Windows.Forms.RichTextBox();
             this.label25 = new System.Windows.Forms.Label();
@@ -110,37 +110,32 @@
             // 
             // panel1
             // 
-            this.panel1.Controls.Add(this.btAyuda);
-            this.panel1.Controls.Add(this.btGuardarBE);
+            this.panel1.Controls.Add(this.btAyudar);
+            this.panel1.Controls.Add(this.btGuardar);
             this.panel1.Dock = System.Windows.Forms.DockStyle.Bottom;
             this.panel1.Location = new System.Drawing.Point(0, 527);
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(669, 48);
             this.panel1.TabIndex = 3;
             // 
-            // btAyuda
+            // btAyudar
             // 
-            this.btAyuda.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btAyuda.Location = new System.Drawing.Point(126, 6);
-            this.btAyuda.Name = "btAyuda";
-            this.btAyuda.Size = new System.Drawing.Size(75, 23);
-            this.btAyuda.TabIndex = 11;
-            this.btAyuda.TabStop = false;
-            this.btAyuda.Text = "Ayuda";
-            this.btAyuda.UseVisualStyleBackColor = true;
+            this.btAyudar.Location = new System.Drawing.Point(95, 13);
+            this.btAyudar.Name = "btAyudar";
+            this.btAyudar.Size = new System.Drawing.Size(75, 23);
+            this.btAyudar.TabIndex = 60;
+            this.btAyudar.Text = "Ayuda";
+            this.btAyudar.UseVisualStyleBackColor = true;
             // 
-            // btGuardarBE
+            // btGuardar
             // 
-            this.btGuardarBE.Enabled = false;
-            this.btGuardarBE.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(255)))), ((int)(((byte)(128)))));
-            this.btGuardarBE.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btGuardarBE.Location = new System.Drawing.Point(11, 6);
-            this.btGuardarBE.Name = "btGuardarBE";
-            this.btGuardarBE.Size = new System.Drawing.Size(109, 23);
-            this.btGuardarBE.TabIndex = 10;
-            this.btGuardarBE.Text = "Guardar";
-            this.btGuardarBE.UseVisualStyleBackColor = true;
-            this.btGuardarBE.Click += new System.EventHandler(this.btGuardarBE_Click);
+            this.btGuardar.Location = new System.Drawing.Point(14, 13);
+            this.btGuardar.Name = "btGuardar";
+            this.btGuardar.Size = new System.Drawing.Size(75, 23);
+            this.btGuardar.TabIndex = 59;
+            this.btGuardar.Text = "Guardar";
+            this.btGuardar.UseVisualStyleBackColor = true;
+            this.btGuardar.Click += new System.EventHandler(this.btGuardar_Click);
             // 
             // tabPage2
             // 
@@ -266,7 +261,6 @@
             this.dgvIngredientesBusqueda.Size = new System.Drawing.Size(537, 281);
             this.dgvIngredientesBusqueda.TabIndex = 36;
             this.dgvIngredientesBusqueda.TabStop = false;
-            this.dgvIngredientesBusqueda.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvIngredientesBusqueda_CellContentClick);
             // 
             // cbTipoBE
             // 
@@ -561,7 +555,7 @@
             this.cbTipoReceta.Name = "cbTipoReceta";
             this.cbTipoReceta.Size = new System.Drawing.Size(100, 21);
             this.cbTipoReceta.TabIndex = 27;
-            this.cbTipoReceta.SelectedIndexChanged += new System.EventHandler(this.cbTipoReceta_SelectedIndexChanged);
+            this.cbTipoReceta.SelectedIndexChanged += new System.EventHandler(this.cbTipoReceta_SelectedIndexChanged_1);
             // 
             // tbPesoLitro
             // 
@@ -830,7 +824,6 @@
             this.tsmGuardar.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.G)));
             this.tsmGuardar.Size = new System.Drawing.Size(158, 22);
             this.tsmGuardar.Text = "Guardar";
-            this.tsmGuardar.Click += new System.EventHandler(this.btGuardar_Click);
             // 
             // AgregarReceta
             // 
@@ -865,8 +858,6 @@
 
         #endregion
         private System.Windows.Forms.Panel panel1;
-        private System.Windows.Forms.Button btAyuda;
-        private System.Windows.Forms.Button btGuardarBE;
         private System.Windows.Forms.TabPage tabPage2;
         private System.Windows.Forms.DataGridView dgvIngredientesBusqueda;
         private System.Windows.Forms.ComboBox cbTipoBE;
@@ -935,5 +926,7 @@
         private System.Windows.Forms.RichTextBox rtbModoElaboracionBE;
         private System.Windows.Forms.RichTextBox rtbModoElaboracion;
         private System.Windows.Forms.Label label26;
+        private System.Windows.Forms.Button btAyudar;
+        private System.Windows.Forms.Button btGuardar;
     }
 }

@@ -205,6 +205,12 @@
     <Compile Include="BusquedaRecetaDetalle.Designer.cs">
       <DependentUpon>BusquedaRecetaDetalle.cs</DependentUpon>
     </Compile>
+    <Compile Include="Congelados.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Congelados.Designer.cs">
+      <DependentUpon>Congelados.cs</DependentUpon>
+    </Compile>
     <Compile Include="EditarOrden.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -237,6 +243,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="BusquedaRecetaDetalle.resx">
       <DependentUpon>BusquedaRecetaDetalle.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Congelados.resx">
+      <DependentUpon>Congelados.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="EditarOrden.resx">
       <DependentUpon>EditarOrden.cs</DependentUpon>
@@ -331,7 +340,7 @@
     </ManifestKeyFile>
   </PropertyGroup>
   <PropertyGroup>
-    <ManifestCertificateThumbprint>16177F870156AF09A5855F0A0017711B171E101C</ManifestCertificateThumbprint>
+    <ManifestCertificateThumbprint>B6F5AA1C1914613CB330CB32E57C5312209C3291</ManifestCertificateThumbprint>
   </PropertyGroup>
   <!-- Include the build rules for a C# project. -->
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

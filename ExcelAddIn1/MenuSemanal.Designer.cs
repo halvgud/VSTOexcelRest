@@ -34,19 +34,19 @@
             this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.lbDiaSemana = new System.Windows.Forms.ListBox();
-            this.panel1 = new System.Windows.Forms.Panel();
-            this.label4 = new System.Windows.Forms.Label();
-            this.comboBox4 = new System.Windows.Forms.ComboBox();
-            this.Btrecetasemanal = new System.Windows.Forms.Button();
-            this.label6 = new System.Windows.Forms.Label();
-            this.textBox1 = new System.Windows.Forms.TextBox();
-            this.label3 = new System.Windows.Forms.Label();
             this.Cbguarnicion = new System.Windows.Forms.ComboBox();
-            this.dataGridView1 = new System.Windows.Forms.DataGridView();
-            this.Column1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.label3 = new System.Windows.Forms.Label();
+            this.textBox1 = new System.Windows.Forms.TextBox();
+            this.label6 = new System.Windows.Forms.Label();
+            this.Btrecetasemanal = new System.Windows.Forms.Button();
+            this.comboBox4 = new System.Windows.Forms.ComboBox();
+            this.label4 = new System.Windows.Forms.Label();
+            this.panel1 = new System.Windows.Forms.Panel();
             this.Column4 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dataGridView1 = new System.Windows.Forms.DataGridView();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.SuspendLayout();
@@ -96,30 +96,50 @@
             this.lbDiaSemana.TabIndex = 4;
             this.lbDiaSemana.SelectedIndexChanged += new System.EventHandler(this.lbDiaSemana_SelectedIndexChanged);
             // 
-            // panel1
+            // Cbguarnicion
             // 
-            this.panel1.BackColor = System.Drawing.SystemColors.ButtonShadow;
-            this.panel1.Controls.Add(this.label4);
-            this.panel1.Controls.Add(this.comboBox4);
-            this.panel1.Controls.Add(this.Btrecetasemanal);
-            this.panel1.Controls.Add(this.label6);
-            this.panel1.Controls.Add(this.textBox1);
-            this.panel1.Controls.Add(this.label3);
-            this.panel1.Controls.Add(this.Cbguarnicion);
-            this.panel1.Location = new System.Drawing.Point(175, 91);
-            this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(576, 171);
-            this.panel1.TabIndex = 5;
+            this.Cbguarnicion.FormattingEnabled = true;
+            this.Cbguarnicion.Location = new System.Drawing.Point(250, 45);
+            this.Cbguarnicion.Name = "Cbguarnicion";
+            this.Cbguarnicion.Size = new System.Drawing.Size(211, 21);
+            this.Cbguarnicion.TabIndex = 0;
             // 
-            // label4
+            // label3
             // 
-            this.label4.AutoSize = true;
-            this.label4.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label4.Location = new System.Drawing.Point(35, 23);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(48, 19);
-            this.label4.TabIndex = 19;
-            this.label4.Text = "Tipo :";
+            this.label3.AutoSize = true;
+            this.label3.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label3.Location = new System.Drawing.Point(256, 23);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(64, 19);
+            this.label3.TabIndex = 6;
+            this.label3.Text = "Platillo :";
+            // 
+            // textBox1
+            // 
+            this.textBox1.Location = new System.Drawing.Point(484, 45);
+            this.textBox1.Name = "textBox1";
+            this.textBox1.Size = new System.Drawing.Size(73, 20);
+            this.textBox1.TabIndex = 10;
+            // 
+            // label6
+            // 
+            this.label6.AutoSize = true;
+            this.label6.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label6.Location = new System.Drawing.Point(482, 23);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(78, 19);
+            this.label6.TabIndex = 13;
+            this.label6.Text = "Cantidad :";
+            // 
+            // Btrecetasemanal
+            // 
+            this.Btrecetasemanal.Location = new System.Drawing.Point(466, 95);
+            this.Btrecetasemanal.Name = "Btrecetasemanal";
+            this.Btrecetasemanal.Size = new System.Drawing.Size(91, 43);
+            this.Btrecetasemanal.TabIndex = 17;
+            this.Btrecetasemanal.Text = "Generar";
+            this.Btrecetasemanal.UseVisualStyleBackColor = true;
+            this.Btrecetasemanal.Click += new System.EventHandler(this.Btrecetasemanal_Click);
             // 
             // comboBox4
             // 
@@ -136,50 +156,50 @@
             this.comboBox4.Size = new System.Drawing.Size(211, 21);
             this.comboBox4.TabIndex = 18;
             // 
-            // Btrecetasemanal
+            // label4
             // 
-            this.Btrecetasemanal.Location = new System.Drawing.Point(466, 95);
-            this.Btrecetasemanal.Name = "Btrecetasemanal";
-            this.Btrecetasemanal.Size = new System.Drawing.Size(91, 43);
-            this.Btrecetasemanal.TabIndex = 17;
-            this.Btrecetasemanal.Text = "Generar";
-            this.Btrecetasemanal.UseVisualStyleBackColor = true;
-            this.Btrecetasemanal.Click += new System.EventHandler(this.Btrecetasemanal_Click);
+            this.label4.AutoSize = true;
+            this.label4.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label4.Location = new System.Drawing.Point(35, 23);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(48, 19);
+            this.label4.TabIndex = 19;
+            this.label4.Text = "Tipo :";
             // 
-            // label6
+            // panel1
             // 
-            this.label6.AutoSize = true;
-            this.label6.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label6.Location = new System.Drawing.Point(482, 23);
-            this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(78, 19);
-            this.label6.TabIndex = 13;
-            this.label6.Text = "Cantidad :";
+            this.panel1.BackColor = System.Drawing.SystemColors.ButtonShadow;
+            this.panel1.Controls.Add(this.label4);
+            this.panel1.Controls.Add(this.comboBox4);
+            this.panel1.Controls.Add(this.Btrecetasemanal);
+            this.panel1.Controls.Add(this.label6);
+            this.panel1.Controls.Add(this.textBox1);
+            this.panel1.Controls.Add(this.label3);
+            this.panel1.Controls.Add(this.Cbguarnicion);
+            this.panel1.Location = new System.Drawing.Point(175, 91);
+            this.panel1.Name = "panel1";
+            this.panel1.Size = new System.Drawing.Size(576, 171);
+            this.panel1.TabIndex = 5;
             // 
-            // textBox1
+            // Column4
             // 
-            this.textBox1.Location = new System.Drawing.Point(484, 45);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(73, 20);
-            this.textBox1.TabIndex = 10;
+            this.Column4.HeaderText = "Cantidad";
+            this.Column4.Name = "Column4";
             // 
-            // label3
+            // Column3
             // 
-            this.label3.AutoSize = true;
-            this.label3.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label3.Location = new System.Drawing.Point(256, 23);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(64, 19);
-            this.label3.TabIndex = 6;
-            this.label3.Text = "Platillo :";
+            this.Column3.HeaderText = "Platillo";
+            this.Column3.Name = "Column3";
             // 
-            // Cbguarnicion
+            // Column2
             // 
-            this.Cbguarnicion.FormattingEnabled = true;
-            this.Cbguarnicion.Location = new System.Drawing.Point(250, 45);
-            this.Cbguarnicion.Name = "Cbguarnicion";
-            this.Cbguarnicion.Size = new System.Drawing.Size(211, 21);
-            this.Cbguarnicion.TabIndex = 0;
+            this.Column2.HeaderText = "Tipo Platillo";
+            this.Column2.Name = "Column2";
+            // 
+            // Column1
+            // 
+            this.Column1.HeaderText = "Dia";
+            this.Column1.Name = "Column1";
             // 
             // dataGridView1
             // 
@@ -193,26 +213,6 @@
             this.dataGridView1.Name = "dataGridView1";
             this.dataGridView1.Size = new System.Drawing.Size(726, 182);
             this.dataGridView1.TabIndex = 6;
-            // 
-            // Column1
-            // 
-            this.Column1.HeaderText = "Dia";
-            this.Column1.Name = "Column1";
-            // 
-            // Column2
-            // 
-            this.Column2.HeaderText = "Tipo Platillo";
-            this.Column2.Name = "Column2";
-            // 
-            // Column3
-            // 
-            this.Column3.HeaderText = "Platillo";
-            this.Column3.Name = "Column3";
-            // 
-            // Column4
-            // 
-            this.Column4.HeaderText = "Cantidad";
-            this.Column4.Name = "Column4";
             // 
             // MenuSemanal
             // 
@@ -244,18 +244,18 @@
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.ListBox lbDiaSemana;
-        private System.Windows.Forms.Panel panel1;
-        private System.Windows.Forms.ComboBox comboBox4;
-        private System.Windows.Forms.Button Btrecetasemanal;
-        private System.Windows.Forms.Label label6;
-        private System.Windows.Forms.TextBox textBox1;
-        private System.Windows.Forms.Label label3;
         private System.Windows.Forms.ComboBox Cbguarnicion;
+        private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.TextBox textBox1;
+        private System.Windows.Forms.Label label6;
+        private System.Windows.Forms.Button Btrecetasemanal;
+        private System.Windows.Forms.ComboBox comboBox4;
         private System.Windows.Forms.Label label4;
-        private System.Windows.Forms.DataGridView dataGridView1;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Column1;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Column2;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Column3;
+        private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column4;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Column3;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Column2;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Column1;
+        private System.Windows.Forms.DataGridView dataGridView1;
     }
 }

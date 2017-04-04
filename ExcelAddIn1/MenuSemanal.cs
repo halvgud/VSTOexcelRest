@@ -16,15 +16,7 @@ namespace ExcelAddIn1
         public MenuSemanal()
         {
             InitializeComponent();
-
-           
-
-          
-
             
-          
-
-          
         }
 
         private void Btrecetasemanal_Click(object sender, EventArgs e)
@@ -39,13 +31,19 @@ namespace ExcelAddIn1
 
         private void Dtpikerfinal_ValueChanged(object sender, EventArgs e)
         {
+           
             DateTime inicio = Dtpikerinicio.Value;
             DateTime final = Dtpikerfinal.Value;
-            int numerodias = ((DateTime.Now - final).Days);
+            
+            int numerodias = ((final - inicio).Days);
             DateTime dd = DateTime.Now;
             string fecha = dd.ToString("yyyy-M-d");
             lbDiaSemana.Items.Add(fecha);
-            string[] dias = fecha.Split('-');
+            lbDiaSemana.Items.Add(Dtpikerfinal.Value.Day).ToString("dddd");
+
+
+
+      
             //for (int i = 0; i <= numerodias; i++)
             //{
 
@@ -59,9 +57,13 @@ namespace ExcelAddIn1
 
 
 
-            DateTime dateValue = new DateTime(2017, 3, 30);
-            lbDiaSemana.Items.Add(dateValue.ToString("dddd"));
-            lbDiaSemana.Items.Add(numerodias);
+            //DateTime dateValue = new DateTime(2017,4 , 3);
+            //lbDiaSemana.Items.Add(dateValue.ToString("dddd"));
+            //lbDiaSemana.Items.Add(numerodias);
+
+            //string[] dias = fecha.Split('-');
+            //int calis = fecha[1];
+            //lbDiaSemana.Items.Add(calis).ToString();
         }
 
         private void lbDiaSemana_SelectedIndexChanged(object sender, EventArgs e)

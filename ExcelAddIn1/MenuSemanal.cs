@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using RestSharp.Extensions;
 
 namespace ExcelAddIn1
 {
@@ -15,6 +16,18 @@ namespace ExcelAddIn1
         public MenuSemanal()
         {
             InitializeComponent();
+            
+        }
+
+       
+        private void Dtpikerinicio_ValueChanged(object sender, EventArgs e)
+        {
+           
+        }
+
+        private void tableLayoutPanel1_Paint(object sender, PaintEventArgs e)
+        {
+
         }
     }
 }

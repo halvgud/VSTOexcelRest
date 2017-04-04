@@ -32,8 +32,8 @@
     <IsWebBootstrapper>False</IsWebBootstrapper>
     <TargetFrameworkProfile />
     <BootstrapperEnabled>true</BootstrapperEnabled>
-    <PublishUrl>\\mercattoserver\ftp\VSTO\</PublishUrl>
-    <InstallUrl>\\mercattoserver\ftp\vsto\install\</InstallUrl>
+    <PublishUrl>\\mercattoserver\ftp\INSTALADORES\</PublishUrl>
+    <InstallUrl>\\mercattoserver\ftp\INSTALADORES\</InstallUrl>
     <TargetCulture>es</TargetCulture>
     <ApplicationVersion>1.0.0.29</ApplicationVersion>
     <AutoIncrementApplicationRevision>true</AutoIncrementApplicationRevision>

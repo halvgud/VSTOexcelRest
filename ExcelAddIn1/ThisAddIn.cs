@@ -35,7 +35,7 @@ namespace ExcelAddIn1
             _reportes = new List<Reportes> {
             new Reportes {Nombre = "ReporteCocina"},
             new Reportes {Nombre= "Recetario"},
-            new Reportes {Nombre="DetalleMenu"}
+            //new Reportes {Nombre="DetalleMenu"}
             };
             _reporteReceta = new SideBarReporteReceta();
             _recetario = new SideBarRecetario();

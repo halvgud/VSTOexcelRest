@@ -68,6 +68,12 @@ namespace ExcelAddIn1
             var ar = new AgregarReceta();
             ar.Show();
         }
+
+        public void CapturaCongelado(Office.IRibbonControl control)
+        {
+            var cc = new Congelados();
+            cc.Show();
+        }
         public bool BuscarPermiso(Office.IRibbonControl control)
         {
             return true;

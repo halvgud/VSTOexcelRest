@@ -123,7 +123,7 @@ namespace Data
             }
         }
 
-        public static void listaplatillos(Action<IRestResponse> callback)
+        public static void Listaplatillos(Action<IRestResponse> callback)
         {
             try
             {

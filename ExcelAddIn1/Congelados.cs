@@ -17,15 +17,46 @@ namespace ExcelAddIn1
 {
     public partial class Congelados : Form
     {
+        private static Congelados _alreadyOpened;
+        public Congelados(Func<string[]> arreglo)
+        {
+            if (_alreadyOpened != null && !_alreadyOpened.IsDisposed)
+            {
+                _alreadyOpened.Focus();            // Bring the old one to top
+                Shown += (s, e) => Close();  // and destroy the new one.
+                return;
+            }
+            _alreadyOpened = this;
+            InitializeComponent();
+            var allowedTypes = new AutoCompleteStringCollection();
+            allowedTypes.AddRange(arreglo());
+            txtbuscarcongelado.AutoCompleteCustomSource = allowedTypes;
+            txtbuscarcongelado.AutoCompleteMode = AutoCompleteMode.Suggest;
+            txtbuscarcongelado.AutoCompleteSource = AutoCompleteSource.CustomSource;
+
+            txtbuscarcongeladoeditar.AutoCompleteCustomSource = allowedTypes;
+            txtbuscarcongeladoeditar.AutoCompleteMode = AutoCompleteMode.Suggest;
+            txtbuscarcongeladoeditar.AutoCompleteSource = AutoCompleteSource.CustomSource;
+
+            
+        }
+        //public Congelados()
+        //{
+        //}
+
         public Congelados()
         {
-            InitializeComponent();
+            if (_alreadyOpened != null && !_alreadyOpened.IsDisposed)
+            {
+                _alreadyOpened.Focus();            // Bring the old one to top
+                Shown += (s, e) => Close();  // and destroy the new one.
+
+            }
         }
 
-       
         private void txtbuscarcongelado_TextChanged(object sender, EventArgs e)
         {
-<<<<<<< HEAD
+
 
         }
 
@@ -77,7 +108,7 @@ namespace ExcelAddIn1
             //});
 
 
-=======
+
             //    Local.Receta.clave = tbBuscarReceta.Text == string.Empty ? "%" : tbBuscarReceta.Text;
             //    Opcion.EjecucionAsync(Data.Receta.Lista, jsonResult =>
             //    {
@@ -121,7 +152,7 @@ namespace ExcelAddIn1
 
             //        }));
             ////    });
->>>>>>> origin/master
+
         }
     }
 }

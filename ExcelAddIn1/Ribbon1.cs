@@ -5,8 +5,11 @@ using System.Linq;
 using System.Reflection;
 using System.Runtime.InteropServices;
 using System.Text;
+using System.Windows.Forms;
 using Microsoft.Office.Interop.Excel;
 using Office = Microsoft.Office.Core;
+using Herramienta;
+using Respuesta;
 
 // TODO:  Siga estos pasos para habilitar el elemento (XML) de la cinta de opciones:
 
@@ -71,9 +74,35 @@ namespace ExcelAddIn1
 
         public void CapturaCongelado(Office.IRibbonControl control)
         {
-            var cc = new Congelados();
-            cc.Show();
+            // seguir mañana
+            var cc1 = new Congelados();
+            cc1.Show();
+
+            Opcion.EjecucionAsync(Data.Reporte.listaplatillos, y =>
+            {
+
+
+                var cc = new Congelados(() =>
+                {
+                    var d = Opcion.JsonaListaGenerica<CbGenerico>(y).Select(x => x.Nombre).ToArray();
+                    return d;
+                });
+                cc1.BeginInvoke((MethodInvoker)(() =>
+                {
+                    if (!cc.Visible)
+                    {
+                        cc.Show();
+                    }
+                    cc1.Hide();
+                }));
+            });
         }
+        //public void SetearPermiso(bool isEnabled, string id)
+        //{
+        //    _listaBools[id] = isEnabled;
+        //    _ribbon.Invalidate();
+        //}
+
         public bool BuscarPermiso(Office.IRibbonControl control)
         {
             return true;

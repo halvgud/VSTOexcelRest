@@ -127,7 +127,7 @@ namespace Data
         {
             try
             {
-                var rest = new Rest(Local.Api.UrlApi, Herramienta.Config.Cocina.platillos.listado, Method.GET);
+                var rest = new Rest(Local.Api.UrlApi, Herramienta.Config.Cocina.Platillos.Listado, Method.GET);
                 rest.Peticion.AddHeader(Constantes.Http.ObtenerTipoDeContenido, Constantes.Http.TipoDeContenido.Json);
                 rest.Cliente.ExecuteAsync(rest.Peticion, response =>
                 {

@@ -37,13 +37,7 @@ namespace ExcelAddIn1
             txtbuscarcongeladoeditar.AutoCompleteCustomSource = allowedTypes;
             txtbuscarcongeladoeditar.AutoCompleteMode = AutoCompleteMode.Suggest;
             txtbuscarcongeladoeditar.AutoCompleteSource = AutoCompleteSource.CustomSource;
-
-            
         }
-        //public Congelados()
-        //{
-        //}
-
         public Congelados()
         {
             if (_alreadyOpened != null && !_alreadyOpened.IsDisposed)
@@ -154,5 +148,17 @@ namespace ExcelAddIn1
             ////    });
 
         }
+
+
+        private bool ValidarVacia()
+        {
+            return txtbuscarcongelado.Text.Trim().Length > 0;
+        }
+
+        private void txtbuscarcongelado_KeyPress(object sender, KeyPressEventArgs e)
+        {
+
+        }
+    
     }
 }

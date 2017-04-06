@@ -165,6 +165,7 @@
             this.cbTipoReceta.Name = "cbTipoReceta";
             this.cbTipoReceta.Size = new System.Drawing.Size(169, 21);
             this.cbTipoReceta.TabIndex = 43;
+            this.cbTipoReceta.SelectedIndexChanged += new System.EventHandler(this.cbTipoReceta_SelectedIndexChanged);
             // 
             // label8
             // 

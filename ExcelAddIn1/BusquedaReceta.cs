@@ -81,5 +81,10 @@ namespace ExcelAddIn1
                 return;
             }
         }
+
+        private void cbTipoReceta_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
+        }
     }
 }

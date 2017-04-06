@@ -38,14 +38,14 @@
             this.tabPage2 = new System.Windows.Forms.TabPage();
             this.btguardareditar = new System.Windows.Forms.Button();
             this.dataGridView2 = new System.Windows.Forms.DataGridView();
-            this.txtbuscarcongeladoeditar = new System.Windows.Forms.TextBox();
-            this.label2 = new System.Windows.Forms.Label();
-            this.btbuscareditar = new System.Windows.Forms.Button();
             this.ColumnClave = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.ColumnDescripcion = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.ColumnExistencia = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.ColumnEstado = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Columnfecha = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.txtbuscarcongeladoeditar = new System.Windows.Forms.TextBox();
+            this.label2 = new System.Windows.Forms.Label();
+            this.btbuscareditar = new System.Windows.Forms.Button();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvcongelados)).BeginInit();
@@ -111,6 +111,7 @@
             this.txtbuscarcongelado.TabIndex = 0;
             this.txtbuscarcongelado.TextChanged += new System.EventHandler(this.txtbuscarcongelado_TextChanged);
             this.txtbuscarcongelado.Enter += new System.EventHandler(this.txtbuscarcongelado_Enter);
+            this.txtbuscarcongelado.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtbuscarcongelado_KeyPress);
             // 
             // tabPage2
             // 
@@ -150,31 +151,6 @@
             this.dataGridView2.Size = new System.Drawing.Size(577, 141);
             this.dataGridView2.TabIndex = 3;
             // 
-            // txtbuscarcongeladoeditar
-            // 
-            this.txtbuscarcongeladoeditar.Location = new System.Drawing.Point(21, 32);
-            this.txtbuscarcongeladoeditar.Name = "txtbuscarcongeladoeditar";
-            this.txtbuscarcongeladoeditar.Size = new System.Drawing.Size(248, 20);
-            this.txtbuscarcongeladoeditar.TabIndex = 2;
-            // 
-            // label2
-            // 
-            this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(18, 16);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(101, 13);
-            this.label2.TabIndex = 1;
-            this.label2.Text = "Clave/Descripcion :";
-            // 
-            // btbuscareditar
-            // 
-            this.btbuscareditar.Location = new System.Drawing.Point(287, 30);
-            this.btbuscareditar.Name = "btbuscareditar";
-            this.btbuscareditar.Size = new System.Drawing.Size(75, 23);
-            this.btbuscareditar.TabIndex = 0;
-            this.btbuscareditar.Text = "Buscar";
-            this.btbuscareditar.UseVisualStyleBackColor = true;
-            // 
             // ColumnClave
             // 
             this.ColumnClave.HeaderText = "Clave";
@@ -199,6 +175,31 @@
             // 
             this.Columnfecha.HeaderText = "Fecha Modificación";
             this.Columnfecha.Name = "Columnfecha";
+            // 
+            // txtbuscarcongeladoeditar
+            // 
+            this.txtbuscarcongeladoeditar.Location = new System.Drawing.Point(21, 32);
+            this.txtbuscarcongeladoeditar.Name = "txtbuscarcongeladoeditar";
+            this.txtbuscarcongeladoeditar.Size = new System.Drawing.Size(248, 20);
+            this.txtbuscarcongeladoeditar.TabIndex = 2;
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Location = new System.Drawing.Point(18, 16);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(101, 13);
+            this.label2.TabIndex = 1;
+            this.label2.Text = "Clave/Descripcion :";
+            // 
+            // btbuscareditar
+            // 
+            this.btbuscareditar.Location = new System.Drawing.Point(287, 30);
+            this.btbuscareditar.Name = "btbuscareditar";
+            this.btbuscareditar.Size = new System.Drawing.Size(75, 23);
+            this.btbuscareditar.TabIndex = 0;
+            this.btbuscareditar.Text = "Buscar";
+            this.btbuscareditar.UseVisualStyleBackColor = true;
             // 
             // Congelados
             // 

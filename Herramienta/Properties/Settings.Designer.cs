@@ -310,5 +310,14 @@ namespace Herramienta.Properties {
                 return ((string)(this["prueba"]));
             }
         }
+        
+        [global::System.Configuration.ApplicationScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("reporte/seleccionarplatillo")]
+        public string listaplatillos {
+            get {
+                return ((string)(this["listaplatillos"]));
+            }
+        }
     }
 }

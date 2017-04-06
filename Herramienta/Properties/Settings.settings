@@ -98,5 +98,8 @@
     <Setting Name="prueba" Type="System.String" Scope="Application">
       <Value Profile="(Default)">prueba/seleccionar</Value>
     </Setting>
+    <Setting Name="listaplatillos" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">reporte/seleccionarplatillo</Value>
+    </Setting>
   </Settings>
 </SettingsFile>

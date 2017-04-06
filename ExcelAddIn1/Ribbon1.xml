@@ -9,6 +9,7 @@
           <button id ="btVerMenuSemanal" label="Ver Menu Semanal" imageMso="MoveActionsMenu" size="large" onAction="DetalleMenu" getEnabled="BuscarPermiso"/>
           <button id ="btReceta" label="Recetario" imageMso="BuildingBlocksCreateTableOfAuthorities" size="large" onAction="CrearReceta" getEnabled="BuscarPermiso"/>
           <button id ="btOrden" label="Orden de Trabajo" imageMso="CalendarToolImport" size="large" onAction="CrearOrdenTrabajo" getEnabled="BuscarPermiso"/>
+          <button id="btCongelados" label="Congelados" imageMso="ObjectFormatDialog" size="large" onAction="CapturaCongelado" getEnabled="BuscarPermiso"/>
         </group>
       </tab>
     </tabs>

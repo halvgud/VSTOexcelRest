@@ -123,11 +123,11 @@ namespace Data
             }
         }
 
-        public static void listaplatillos(Action<IRestResponse> callback)
+        public static void Listaplatillos(Action<IRestResponse> callback)
         {
             try
             {
-                var rest = new Rest(Local.Api.UrlApi, Herramienta.Config.Cocina.platillos.listado, Method.GET);
+                var rest = new Rest(Local.Api.UrlApi, Herramienta.Config.Cocina.Platillos.Listado, Method.GET);
                 rest.Peticion.AddHeader(Constantes.Http.ObtenerTipoDeContenido, Constantes.Http.TipoDeContenido.Json);
                 rest.Cliente.ExecuteAsync(rest.Peticion, response =>
                 {

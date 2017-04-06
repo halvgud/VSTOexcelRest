@@ -46,6 +46,7 @@
             this.ColumnExistencia = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.ColumnEstado = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Columnfecha = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.button1 = new System.Windows.Forms.Button();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvcongelados)).BeginInit();
@@ -114,6 +115,7 @@
             // 
             // tabPage2
             // 
+            this.tabPage2.Controls.Add(this.button1);
             this.tabPage2.Controls.Add(this.btguardareditar);
             this.tabPage2.Controls.Add(this.dataGridView2);
             this.tabPage2.Controls.Add(this.txtbuscarcongeladoeditar);
@@ -129,7 +131,7 @@
             // 
             // btguardareditar
             // 
-            this.btguardareditar.Location = new System.Drawing.Point(223, 251);
+            this.btguardareditar.Location = new System.Drawing.Point(21, 239);
             this.btguardareditar.Name = "btguardareditar";
             this.btguardareditar.Size = new System.Drawing.Size(75, 23);
             this.btguardareditar.TabIndex = 4;
@@ -200,6 +202,15 @@
             this.Columnfecha.HeaderText = "Fecha Modificación";
             this.Columnfecha.Name = "Columnfecha";
             // 
+            // button1
+            // 
+            this.button1.Location = new System.Drawing.Point(127, 239);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(119, 23);
+            this.button1.TabIndex = 5;
+            this.button1.Text = "Borrar Selección";
+            this.button1.UseVisualStyleBackColor = true;
+            // 
             // Congelados
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -239,5 +250,6 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn ColumnExistencia;
         private System.Windows.Forms.DataGridViewTextBoxColumn ColumnEstado;
         private System.Windows.Forms.DataGridViewTextBoxColumn Columnfecha;
+        private System.Windows.Forms.Button button1;
     }
 }

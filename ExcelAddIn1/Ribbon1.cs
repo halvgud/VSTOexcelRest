@@ -78,7 +78,7 @@ namespace ExcelAddIn1
             var cc1 = new Congelados();
             cc1.Show();
 
-            Opcion.EjecucionAsync(Data.Reporte.listaplatillos, y =>
+            Opcion.EjecucionAsync(Data.Reporte.Listaplatillos, y =>
             {
 
 

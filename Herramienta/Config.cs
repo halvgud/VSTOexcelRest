@@ -27,9 +27,9 @@
                 public static string Calis { get; set; } = Properties.Settings.Default.prueba;
             }
 
-            public class platillos
+            public class Platillos
             {
-                public static string listado { get; set; } = Properties.Settings.Default.listaplatillos;
+                public static string Listado { get; set; } = Properties.Settings.Default.listaplatillos;
             }
 
            

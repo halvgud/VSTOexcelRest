@@ -29,14 +29,7 @@
         private void InitializeComponent()
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MenuSemanal));
-            this.Dtpikerinicio = new System.Windows.Forms.DateTimePicker();
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
-            this.FechaDomingo = new System.Windows.Forms.Label();
-            this.FechaViernes = new System.Windows.Forms.Label();
-            this.FechaSabado = new System.Windows.Forms.Label();
-            this.FechaJueves = new System.Windows.Forms.Label();
-            this.FechaMiercoles = new System.Windows.Forms.Label();
-            this.FechaMartes = new System.Windows.Forms.Label();
             this.dvgViernes = new System.Windows.Forms.DataGridView();
             this.TipoViernes = new System.Windows.Forms.DataGridViewComboBoxColumn();
             this.PlatilloViernes = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -77,13 +70,6 @@
             this.UnidadMedidaDomingo = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.PrecioDomingo = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.GananciaDomingo = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.LabelLunes = new System.Windows.Forms.Label();
-            this.LabelMartes = new System.Windows.Forms.Label();
-            this.LabelJueves = new System.Windows.Forms.Label();
-            this.LabelViernes = new System.Windows.Forms.Label();
-            this.LabelDomingo = new System.Windows.Forms.Label();
-            this.LabelMiercoles = new System.Windows.Forms.Label();
-            this.LabelSabado = new System.Windows.Forms.Label();
             this.dvgLunes = new System.Windows.Forms.DataGridView();
             this.TipoLunes = new System.Windows.Forms.DataGridViewComboBoxColumn();
             this.PlatilloLunes = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -101,8 +87,22 @@
             this.PrecioSabado = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.GananciaSabado = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.FechaLunes = new System.Windows.Forms.Label();
+            this.LabelLunes = new System.Windows.Forms.Label();
+            this.FechaMartes = new System.Windows.Forms.Label();
+            this.LabelMartes = new System.Windows.Forms.Label();
+            this.FechaMiercoles = new System.Windows.Forms.Label();
+            this.LabelMiercoles = new System.Windows.Forms.Label();
+            this.FechaJueves = new System.Windows.Forms.Label();
+            this.LabelJueves = new System.Windows.Forms.Label();
+            this.FechaViernes = new System.Windows.Forms.Label();
+            this.LabelViernes = new System.Windows.Forms.Label();
+            this.FechaSabado = new System.Windows.Forms.Label();
+            this.LabelSabado = new System.Windows.Forms.Label();
+            this.FechaDomingo = new System.Windows.Forms.Label();
+            this.LabelDomingo = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
             this.panel1 = new System.Windows.Forms.Panel();
+            this.dtpsegundon = new System.Windows.Forms.DateTimePicker();
             this.tableLayoutPanel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dvgViernes)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dvgJueves)).BeginInit();
@@ -113,14 +113,6 @@
             ((System.ComponentModel.ISupportInitialize)(this.dvgSabado)).BeginInit();
             this.panel1.SuspendLayout();
             this.SuspendLayout();
-            // 
-            // Dtpikerinicio
-            // 
-            this.Dtpikerinicio.Location = new System.Drawing.Point(621, 21);
-            this.Dtpikerinicio.Name = "Dtpikerinicio";
-            this.Dtpikerinicio.Size = new System.Drawing.Size(200, 20);
-            this.Dtpikerinicio.TabIndex = 0;
-            this.Dtpikerinicio.ValueChanged += new System.EventHandler(this.Dtpikerinicio_ValueChanged);
             // 
             // tableLayoutPanel1
             // 
@@ -165,66 +157,6 @@
             this.tableLayoutPanel1.Size = new System.Drawing.Size(1362, 641);
             this.tableLayoutPanel1.TabIndex = 3;
             this.tableLayoutPanel1.Paint += new System.Windows.Forms.PaintEventHandler(this.tableLayoutPanel1_Paint);
-            // 
-            // FechaDomingo
-            // 
-            this.FechaDomingo.AutoSize = true;
-            this.FechaDomingo.Font = new System.Drawing.Font("Modern No. 20", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.FechaDomingo.Location = new System.Drawing.Point(457, 446);
-            this.FechaDomingo.Name = "FechaDomingo";
-            this.FechaDomingo.Size = new System.Drawing.Size(13, 18);
-            this.FechaDomingo.TabIndex = 5;
-            this.FechaDomingo.Text = ".";
-            // 
-            // FechaViernes
-            // 
-            this.FechaViernes.AutoSize = true;
-            this.FechaViernes.Font = new System.Drawing.Font("Modern No. 20", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.FechaViernes.Location = new System.Drawing.Point(457, 233);
-            this.FechaViernes.Name = "FechaViernes";
-            this.FechaViernes.Size = new System.Drawing.Size(13, 18);
-            this.FechaViernes.TabIndex = 5;
-            this.FechaViernes.Text = ".";
-            // 
-            // FechaSabado
-            // 
-            this.FechaSabado.AutoSize = true;
-            this.FechaSabado.Font = new System.Drawing.Font("Modern No. 20", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.FechaSabado.Location = new System.Drawing.Point(911, 233);
-            this.FechaSabado.Name = "FechaSabado";
-            this.FechaSabado.Size = new System.Drawing.Size(13, 18);
-            this.FechaSabado.TabIndex = 5;
-            this.FechaSabado.Text = ".";
-            // 
-            // FechaJueves
-            // 
-            this.FechaJueves.AutoSize = true;
-            this.FechaJueves.Font = new System.Drawing.Font("Modern No. 20", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.FechaJueves.Location = new System.Drawing.Point(3, 233);
-            this.FechaJueves.Name = "FechaJueves";
-            this.FechaJueves.Size = new System.Drawing.Size(13, 18);
-            this.FechaJueves.TabIndex = 15;
-            this.FechaJueves.Text = ".";
-            // 
-            // FechaMiercoles
-            // 
-            this.FechaMiercoles.AutoSize = true;
-            this.FechaMiercoles.Font = new System.Drawing.Font("Modern No. 20", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.FechaMiercoles.Location = new System.Drawing.Point(911, 20);
-            this.FechaMiercoles.Name = "FechaMiercoles";
-            this.FechaMiercoles.Size = new System.Drawing.Size(13, 18);
-            this.FechaMiercoles.TabIndex = 5;
-            this.FechaMiercoles.Text = ".";
-            // 
-            // FechaMartes
-            // 
-            this.FechaMartes.AutoSize = true;
-            this.FechaMartes.Font = new System.Drawing.Font("Modern No. 20", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.FechaMartes.Location = new System.Drawing.Point(457, 20);
-            this.FechaMartes.Name = "FechaMartes";
-            this.FechaMartes.Size = new System.Drawing.Size(13, 18);
-            this.FechaMartes.TabIndex = 4;
-            this.FechaMartes.Text = ".";
             // 
             // dvgViernes
             // 
@@ -494,76 +426,6 @@
             this.GananciaDomingo.HeaderText = "Ganacia";
             this.GananciaDomingo.Name = "GananciaDomingo";
             // 
-            // LabelLunes
-            // 
-            this.LabelLunes.AutoSize = true;
-            this.LabelLunes.Font = new System.Drawing.Font("Modern No. 20", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.LabelLunes.Location = new System.Drawing.Point(3, 0);
-            this.LabelLunes.Name = "LabelLunes";
-            this.LabelLunes.Size = new System.Drawing.Size(64, 18);
-            this.LabelLunes.TabIndex = 8;
-            this.LabelLunes.Text = "Lunes :";
-            // 
-            // LabelMartes
-            // 
-            this.LabelMartes.AutoSize = true;
-            this.LabelMartes.Font = new System.Drawing.Font("Modern No. 20", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.LabelMartes.Location = new System.Drawing.Point(457, 0);
-            this.LabelMartes.Name = "LabelMartes";
-            this.LabelMartes.Size = new System.Drawing.Size(69, 18);
-            this.LabelMartes.TabIndex = 9;
-            this.LabelMartes.Text = "Martes :";
-            // 
-            // LabelJueves
-            // 
-            this.LabelJueves.AutoSize = true;
-            this.LabelJueves.Font = new System.Drawing.Font("Modern No. 20", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.LabelJueves.Location = new System.Drawing.Point(3, 213);
-            this.LabelJueves.Name = "LabelJueves";
-            this.LabelJueves.Size = new System.Drawing.Size(65, 18);
-            this.LabelJueves.TabIndex = 11;
-            this.LabelJueves.Text = "Jueves :";
-            // 
-            // LabelViernes
-            // 
-            this.LabelViernes.AutoSize = true;
-            this.LabelViernes.Font = new System.Drawing.Font("Modern No. 20", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.LabelViernes.Location = new System.Drawing.Point(457, 213);
-            this.LabelViernes.Name = "LabelViernes";
-            this.LabelViernes.Size = new System.Drawing.Size(75, 18);
-            this.LabelViernes.TabIndex = 12;
-            this.LabelViernes.Text = "Viernes :";
-            // 
-            // LabelDomingo
-            // 
-            this.LabelDomingo.AutoSize = true;
-            this.LabelDomingo.Font = new System.Drawing.Font("Modern No. 20", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.LabelDomingo.Location = new System.Drawing.Point(457, 426);
-            this.LabelDomingo.Name = "LabelDomingo";
-            this.LabelDomingo.Size = new System.Drawing.Size(85, 18);
-            this.LabelDomingo.TabIndex = 14;
-            this.LabelDomingo.Text = "Domingo :";
-            // 
-            // LabelMiercoles
-            // 
-            this.LabelMiercoles.AutoSize = true;
-            this.LabelMiercoles.Font = new System.Drawing.Font("Modern No. 20", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.LabelMiercoles.Location = new System.Drawing.Point(911, 0);
-            this.LabelMiercoles.Name = "LabelMiercoles";
-            this.LabelMiercoles.Size = new System.Drawing.Size(89, 18);
-            this.LabelMiercoles.TabIndex = 10;
-            this.LabelMiercoles.Text = "Miercoles :";
-            // 
-            // LabelSabado
-            // 
-            this.LabelSabado.AutoSize = true;
-            this.LabelSabado.Font = new System.Drawing.Font("Modern No. 20", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.LabelSabado.Location = new System.Drawing.Point(911, 213);
-            this.LabelSabado.Name = "LabelSabado";
-            this.LabelSabado.Size = new System.Drawing.Size(70, 18);
-            this.LabelSabado.TabIndex = 13;
-            this.LabelSabado.Text = "Sabado :";
-            // 
             // dvgLunes
             // 
             this.dvgLunes.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
@@ -686,6 +548,136 @@
             this.FechaLunes.Text = ".";
             this.FechaLunes.TextAlign = System.Drawing.ContentAlignment.TopCenter;
             // 
+            // LabelLunes
+            // 
+            this.LabelLunes.AutoSize = true;
+            this.LabelLunes.Font = new System.Drawing.Font("Modern No. 20", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.LabelLunes.Location = new System.Drawing.Point(3, 0);
+            this.LabelLunes.Name = "LabelLunes";
+            this.LabelLunes.Size = new System.Drawing.Size(64, 18);
+            this.LabelLunes.TabIndex = 8;
+            this.LabelLunes.Text = "Lunes :";
+            // 
+            // FechaMartes
+            // 
+            this.FechaMartes.AutoSize = true;
+            this.FechaMartes.Font = new System.Drawing.Font("Modern No. 20", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.FechaMartes.Location = new System.Drawing.Point(457, 20);
+            this.FechaMartes.Name = "FechaMartes";
+            this.FechaMartes.Size = new System.Drawing.Size(13, 18);
+            this.FechaMartes.TabIndex = 4;
+            this.FechaMartes.Text = ".";
+            // 
+            // LabelMartes
+            // 
+            this.LabelMartes.AutoSize = true;
+            this.LabelMartes.Font = new System.Drawing.Font("Modern No. 20", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.LabelMartes.Location = new System.Drawing.Point(457, 0);
+            this.LabelMartes.Name = "LabelMartes";
+            this.LabelMartes.Size = new System.Drawing.Size(69, 18);
+            this.LabelMartes.TabIndex = 9;
+            this.LabelMartes.Text = "Martes :";
+            // 
+            // FechaMiercoles
+            // 
+            this.FechaMiercoles.AutoSize = true;
+            this.FechaMiercoles.Font = new System.Drawing.Font("Modern No. 20", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.FechaMiercoles.Location = new System.Drawing.Point(911, 20);
+            this.FechaMiercoles.Name = "FechaMiercoles";
+            this.FechaMiercoles.Size = new System.Drawing.Size(13, 18);
+            this.FechaMiercoles.TabIndex = 5;
+            this.FechaMiercoles.Text = ".";
+            // 
+            // LabelMiercoles
+            // 
+            this.LabelMiercoles.AutoSize = true;
+            this.LabelMiercoles.Font = new System.Drawing.Font("Modern No. 20", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.LabelMiercoles.Location = new System.Drawing.Point(911, 0);
+            this.LabelMiercoles.Name = "LabelMiercoles";
+            this.LabelMiercoles.Size = new System.Drawing.Size(89, 18);
+            this.LabelMiercoles.TabIndex = 10;
+            this.LabelMiercoles.Text = "Miercoles :";
+            // 
+            // FechaJueves
+            // 
+            this.FechaJueves.AutoSize = true;
+            this.FechaJueves.Font = new System.Drawing.Font("Modern No. 20", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.FechaJueves.Location = new System.Drawing.Point(3, 233);
+            this.FechaJueves.Name = "FechaJueves";
+            this.FechaJueves.Size = new System.Drawing.Size(13, 18);
+            this.FechaJueves.TabIndex = 15;
+            this.FechaJueves.Text = ".";
+            // 
+            // LabelJueves
+            // 
+            this.LabelJueves.AutoSize = true;
+            this.LabelJueves.Font = new System.Drawing.Font("Modern No. 20", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.LabelJueves.Location = new System.Drawing.Point(3, 213);
+            this.LabelJueves.Name = "LabelJueves";
+            this.LabelJueves.Size = new System.Drawing.Size(65, 18);
+            this.LabelJueves.TabIndex = 11;
+            this.LabelJueves.Text = "Jueves :";
+            // 
+            // FechaViernes
+            // 
+            this.FechaViernes.AutoSize = true;
+            this.FechaViernes.Font = new System.Drawing.Font("Modern No. 20", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.FechaViernes.Location = new System.Drawing.Point(457, 233);
+            this.FechaViernes.Name = "FechaViernes";
+            this.FechaViernes.Size = new System.Drawing.Size(13, 18);
+            this.FechaViernes.TabIndex = 5;
+            this.FechaViernes.Text = ".";
+            // 
+            // LabelViernes
+            // 
+            this.LabelViernes.AutoSize = true;
+            this.LabelViernes.Font = new System.Drawing.Font("Modern No. 20", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.LabelViernes.Location = new System.Drawing.Point(457, 213);
+            this.LabelViernes.Name = "LabelViernes";
+            this.LabelViernes.Size = new System.Drawing.Size(75, 18);
+            this.LabelViernes.TabIndex = 12;
+            this.LabelViernes.Text = "Viernes :";
+            // 
+            // FechaSabado
+            // 
+            this.FechaSabado.AutoSize = true;
+            this.FechaSabado.Font = new System.Drawing.Font("Modern No. 20", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.FechaSabado.Location = new System.Drawing.Point(911, 233);
+            this.FechaSabado.Name = "FechaSabado";
+            this.FechaSabado.Size = new System.Drawing.Size(13, 18);
+            this.FechaSabado.TabIndex = 5;
+            this.FechaSabado.Text = ".";
+            // 
+            // LabelSabado
+            // 
+            this.LabelSabado.AutoSize = true;
+            this.LabelSabado.Font = new System.Drawing.Font("Modern No. 20", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.LabelSabado.Location = new System.Drawing.Point(911, 213);
+            this.LabelSabado.Name = "LabelSabado";
+            this.LabelSabado.Size = new System.Drawing.Size(70, 18);
+            this.LabelSabado.TabIndex = 13;
+            this.LabelSabado.Text = "Sabado :";
+            // 
+            // FechaDomingo
+            // 
+            this.FechaDomingo.AutoSize = true;
+            this.FechaDomingo.Font = new System.Drawing.Font("Modern No. 20", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.FechaDomingo.Location = new System.Drawing.Point(457, 446);
+            this.FechaDomingo.Name = "FechaDomingo";
+            this.FechaDomingo.Size = new System.Drawing.Size(13, 18);
+            this.FechaDomingo.TabIndex = 5;
+            this.FechaDomingo.Text = ".";
+            // 
+            // LabelDomingo
+            // 
+            this.LabelDomingo.AutoSize = true;
+            this.LabelDomingo.Font = new System.Drawing.Font("Modern No. 20", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.LabelDomingo.Location = new System.Drawing.Point(457, 426);
+            this.LabelDomingo.Name = "LabelDomingo";
+            this.LabelDomingo.Size = new System.Drawing.Size(85, 18);
+            this.LabelDomingo.TabIndex = 14;
+            this.LabelDomingo.Text = "Domingo :";
+            // 
             // label1
             // 
             this.label1.AutoSize = true;
@@ -698,13 +690,21 @@
             // 
             // panel1
             // 
+            this.panel1.Controls.Add(this.dtpsegundon);
             this.panel1.Controls.Add(this.label1);
-            this.panel1.Controls.Add(this.Dtpikerinicio);
             this.panel1.Dock = System.Windows.Forms.DockStyle.Top;
             this.panel1.Location = new System.Drawing.Point(0, 0);
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(1362, 100);
             this.panel1.TabIndex = 4;
+            // 
+            // dtpsegundon
+            // 
+            this.dtpsegundon.Location = new System.Drawing.Point(621, 23);
+            this.dtpsegundon.Name = "dtpsegundon";
+            this.dtpsegundon.Size = new System.Drawing.Size(200, 20);
+            this.dtpsegundon.TabIndex = 3;
+            this.dtpsegundon.ValueChanged += new System.EventHandler(this.dtpsegundon_ValueChanged);
             // 
             // MenuSemanal
             // 
@@ -734,8 +734,6 @@
         }
 
         #endregion
-
-        private System.Windows.Forms.DateTimePicker Dtpikerinicio;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel1;
         private System.Windows.Forms.DataGridView dvgSabado;
         private System.Windows.Forms.DataGridView dvgViernes;
@@ -809,5 +807,6 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn UnidadMedidaSabado;
         private System.Windows.Forms.DataGridViewTextBoxColumn PrecioSabado;
         private System.Windows.Forms.DataGridViewTextBoxColumn GananciaSabado;
+        private System.Windows.Forms.DateTimePicker dtpsegundon;
     }
 }

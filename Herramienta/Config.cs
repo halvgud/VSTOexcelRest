@@ -32,6 +32,12 @@
                 public static string Listado { get; set; } = Properties.Settings.Default.listaplatillos;
             }
 
+            public class buscarcongelados
+            {
+                public static string bcongelados { get; set; } = Properties.Settings.Default.buscarcongelados;
+                public static string descripcion { get; set; }
+            }
+
            
 
             public static class Concepto
@@ -137,6 +143,7 @@
                 public static string TagPorNombre { get; set; } = Properties.Settings.Default.ReporteTagNombre;
                 public static string UltimosRegistros { get; set; } =Properties.Settings.Default.ReporteUltimosRegistros;
                 public static string ActualizarUltimoRegistro { get; set; } =Properties.Settings.Default.ReporteActualizarUltimoRegistro;
+                
             }
 
             public static class Formulario

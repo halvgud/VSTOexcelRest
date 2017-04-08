@@ -1,4 +1,6 @@
 ﻿
+using System;
+
 namespace Respuesta
 {
     public class Articulo
@@ -25,7 +27,11 @@ namespace Respuesta
             public string Descripcion { get; set; }
             public double PrecioCompra { get; set; }
             public double Cantidad { get; set; }
+            public int status { get; set; }
+            public DateTime fecha { get; set; }
         }
+
+   
 
         public class Guardar
         {

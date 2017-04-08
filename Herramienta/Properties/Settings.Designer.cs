@@ -319,5 +319,17 @@ namespace Herramienta.Properties {
                 return ((string)(this["listaplatillos"]));
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("reporte/Sacarcongelado")]
+        public string buscarcongelados {
+            get {
+                return ((string)(this["buscarcongelados"]));
+            }
+            set {
+                this["buscarcongelados"] = value;
+            }
+        }
     }
 }

@@ -43,53 +43,7 @@ namespace ExcelAddIn1
             }));
         }
 
-        private void Dtpikerinicio_ValueChanged(object sender, EventArgs e)
-        {
-            DateTime date = new DateTime(Convert.ToInt16(Dtpikerinicio.Value.ToString("yyyy")), Convert.ToInt16(Dtpikerinicio.Value.ToString("MM")), Convert.ToInt16(Dtpikerinicio.Value.ToString("dd")));
-            string l = "Monday";
-            string m = "Tuesday";
-            string M = "Wednesday";
-            string j = "Thursday";
-            string v = "Friday";
-            string s = "Saturday";
-            string d = "Sunday";
-           
-        //lunes
-            if (l == date.DayOfWeek.ToString())
-            {
-                FechaLunes.Text =Convert.ToString(Dtpikerinicio.Value.ToShortDateString());
-            }
-            //martes
-            if (m == date.DayOfWeek.ToString())
-            {
-                FechaMartes.Text = Convert.ToString(Dtpikerinicio.Value.ToShortDateString());
-            }
-            //miercoles
-            if (M == date.DayOfWeek.ToString())
-            {
-                FechaMiercoles.Text = Convert.ToString(Dtpikerinicio.Value.ToShortDateString());
-            }
-            //jueves
-            if (j == date.DayOfWeek.ToString())
-            {
-                FechaJueves.Text = Convert.ToString(Dtpikerinicio.Value.ToShortDateString());
-            }
-            //viernes
-            if (v == date.DayOfWeek.ToString())
-            {
-                FechaViernes.Text = Convert.ToString(Dtpikerinicio.Value.ToShortDateString());
-            }
-            //sabado
-            if (s == date.DayOfWeek.ToString())
-            {
-                FechaSabado.Text = Convert.ToString(Dtpikerinicio.Value.ToShortDateString());
-                //domingo
-            if (d == date.DayOfWeek.ToString())
-            {
-                FechaDomingo.Text = Convert.ToString(Dtpikerinicio.Value.ToShortDateString());
-                }
-            }
-            }
+
 
 
         private void tableLayoutPanel1_Paint(object sender, PaintEventArgs e)
@@ -115,6 +69,16 @@ namespace ExcelAddIn1
             dvgViernes.AutoGenerateColumns = false;
             dvgSabado.AutoGenerateColumns = false;
             dvgDomingo.AutoGenerateColumns = false;
+        }
+
+        private void Dtpikerinicio_ValueChanged(object sender, EventArgs e)
+        {
+            MessageBox.Show("algo anda mal");
+        }
+
+        private void dtpsegundon_ValueChanged(object sender, EventArgs e)
+        {
+            MessageBox.Show("aver si sale");
         }
 
         //private void BuscarMenuSemanal(Action<Inputs> actualizarInputs, Inputs parametros)

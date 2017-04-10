@@ -85,11 +85,11 @@ namespace testVSTO2
                     var sPath = Path.GetTempFileName(); // archivo temporal
                     File.WriteAllBytes(sPath, Properties.Resources.FICHA_RECETA);//se copia el template
                     var oTemplate = Application.Workbooks.Add(sPath); //path del template temporal  
-                    var worksheet = oTemplate.Worksheets[nombreHoja] as Excel.Worksheet;//nombre del template
+                    var worksheet = oTemplate.Worksheets[nombreHoja] as Excel.Worksheet;//descripcion del template
                     worksheet?.Copy(After: ows);oTemplate.Close(false, missing, missing);
                     File.Delete(sPath);
                 }
-                _reporte = awa.Worksheets[nombreHoja] as Excel.Worksheet;//nombre de la hoja actual   
+                _reporte = awa.Worksheets[nombreHoja] as Excel.Worksheet;//descripcion de la hoja actual   
                 _reporte?.Activate();
                 }
             catch (Exception e)
@@ -306,7 +306,7 @@ namespace testVSTO2
                 oReportWs.Range["C" + inicioTabla].Value2 = (t.Cantidad)*receta.Cantidad;
                 //cantidad total
                 oReportWs.Range["D" + inicioTabla].Value2 = t.Unidad; //tipo de unidad
-                oReportWs.Range["E" + inicioTabla].Value2 = t.Descripcion; //nombre
+                oReportWs.Range["E" + inicioTabla].Value2 = t.Descripcion; //descripcion
                 oReportWs.Range["F" + inicioTabla].Value2 = t.PrecioVenta; //valor unitario
                 oReportWs.Range["G" + inicioTabla].Value2 = (t.PrecioVenta)*
                                                             ((t.Cantidad)*receta.Cantidad); //

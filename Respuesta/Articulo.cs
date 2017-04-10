@@ -1,5 +1,6 @@
 ﻿
 using System;
+using System.Collections.Generic;
 
 namespace Respuesta
 {
@@ -31,7 +32,20 @@ namespace Respuesta
             public DateTime fecha { get; set; }
         }
 
-   
+
+        public class Congelados
+        {
+
+            public string clave { get; set; }
+            public string descripcion { get; set; }
+            public double cantidad { get; set; }
+            public int status { get; set; }
+            public DateTime fechaEntrada { get; set; }
+            public List<Congelados> ListaCongelados { get; set; }
+        }
+
+
+
 
         public class Guardar
         {

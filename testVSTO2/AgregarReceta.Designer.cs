@@ -203,7 +203,7 @@
             this.label24.Name = "label24";
             this.label24.Size = new System.Drawing.Size(165, 13);
             this.label24.TabIndex = 53;
-            this.label24.Text = "Codigo o nombre de ingredientes:";
+            this.label24.Text = "Codigo o descripcion de ingredientes:";
             // 
             // chDiarioBE
             // 
@@ -737,7 +737,7 @@
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(197, 13);
             this.label1.TabIndex = 0;
-            this.label1.Text = "Codigo o nombre de ingredientes:";
+            this.label1.Text = "Codigo o descripcion de ingredientes:";
             // 
             // tabControl1
             // 

@@ -180,7 +180,7 @@ namespace testVSTO2
                     DataSource = Opcion.JsonaListaGenerica<CbGenerico>(json)
                 };
                 tipoReceta.DataSource = bindingSource1;
-                tipoReceta.DisplayMember = "nombre";
+                tipoReceta.DisplayMember = "descripcion";
                 tipoReceta.ValueMember = "id";
                 tipoReceta.Tag = json;
             }));

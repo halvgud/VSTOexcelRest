@@ -10,9 +10,9 @@ using System.Windows.Forms;
 
 namespace ExcelAddIn1
 {
-    public partial class cccongelados : Form
+    public partial class BuscarCongelados : Form
     {
-        public cccongelados()
+        public BuscarCongelados()
         {
             InitializeComponent();
         }

@@ -197,6 +197,12 @@
     <Compile Include="BuscarArticulo.Designer.cs">
       <DependentUpon>BuscarArticulo.cs</DependentUpon>
     </Compile>
+    <Compile Include="BuscarCongelados.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="BuscarCongelados.Designer.cs">
+      <DependentUpon>BuscarCongelados.cs</DependentUpon>
+    </Compile>
     <Compile Include="BusquedaReceta.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -208,12 +214,6 @@
     </Compile>
     <Compile Include="BusquedaRecetaDetalle.Designer.cs">
       <DependentUpon>BusquedaRecetaDetalle.cs</DependentUpon>
-    </Compile>
-    <Compile Include="cccongelados.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="cccongelados.Designer.cs">
-      <DependentUpon>cccongelados.cs</DependentUpon>
     </Compile>
     <Compile Include="Congelados.cs">
       <SubType>Form</SubType>
@@ -248,14 +248,14 @@
     <EmbeddedResource Include="BuscarArticulo.resx">
       <DependentUpon>BuscarArticulo.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="BuscarCongelados.resx">
+      <DependentUpon>BuscarCongelados.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="BusquedaReceta.resx">
       <DependentUpon>BusquedaReceta.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="BusquedaRecetaDetalle.resx">
       <DependentUpon>BusquedaRecetaDetalle.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="cccongelados.resx">
-      <DependentUpon>cccongelados.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Congelados.resx">
       <DependentUpon>Congelados.cs</DependentUpon>

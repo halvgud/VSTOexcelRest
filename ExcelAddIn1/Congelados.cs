@@ -62,6 +62,15 @@ namespace ExcelAddIn1
 
 
         }
+        // PROBAR EN RATO MAS
+        //public BuscarCongelados1(List<Articulo> listaArticulo, Action<List<Articulo>> callback)
+        //{
+        //    _listaArticulo = listaArticulo;
+        //    _callback = callback;
+        //    InitializeComponent();
+        //    dgvListaArticulos.DataSource = _listaArticulo.Select(x => new { x.clave, x.descripcion, x.precioCompra }).ToArray();
+        //    dgvListaArticulos.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
+        //}
 
         private void txtbuscarcongelado_Enter(object sender, EventArgs e)
         {
@@ -196,48 +205,51 @@ namespace ExcelAddIn1
              aqui en lugar de lo que tienes abajo vas a poner esto*/
 
             Cocina.buscarcongelados.descripcion = txtbuscarcongeladoeditar.Text == string.Empty ? "%" : txtbuscarcongeladoeditar.Text;
-          
-                Opcion.EjecucionAsync(Data.ReporteCocina.Buscarcongelados, jsonResult => 
+
+            /*Opcion.EjecucionAsync(Data.ReporteCocina.Buscarcongelados, jsonResult =>
+            {
+                BeginInvoke((MethodInvoker)(() =>
                 {
-                    BeginInvoke((MethodInvoker)(() => 
-                    {
-                        var brd = new BuscarArticulo(Opcion.JsonaListaGenerica<Articulo>(jsonResult), listaArticulo =>
-                          {
-                              BeginInvoke((MethodInvoker)(() =>
-                             {
-                                 dgvcongeladobuscaryeditar.DataSource = Receta.Congelados2.ToList();
-                                 //_listaArticuloBasica1 = parametros.Ingredientes.DataSource as List<Articulo.Basica>;
-                                 //_listaArticuloBasica2 = (listaArticulo.Select(x => x.CopiadoSencillo()).ToList());
-                                 //if (_listaArticuloBasica1 != null)
-                                 //{
-                                 //    _listaArticuloBasica2.AddRange(_listaArticuloBasica1);
-                                 //}
-                                 //parametros.Ingredientes.DataSource = _listaArticuloBasica2
-                                 //        .GroupBy(p => p.ArtId)
-                                 //        .Select(g => new Articulo.Basica
-                                 //        {
-                                 //            ArtId = g.Key,
-                                 //            Clave = g.First().Clave,
-                                 //            Descripcion = g.First().Descripcion,
-                                 //            PrecioCompra = g.First().PrecioCompra,
-                                 //            Cantidad = g.Sum(i => i.Cantidad)
-                                 //        }).ToList();
-                                 //for (var x = 0; x == 3; x++)
-                                 //{
-                                 //    parametros.Ingredientes.Columns[x].ReadOnly = true;
-                                 //    parametros.Ingredientes.Columns[x].DefaultCellStyle.BackColor = Color.LightGray;
-                                 //}
-                                 //parametros.Ingredientes.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
-                                 //parametros.ClaveReceta.Text = "";
-                                 //parametros.ClaveReceta.Focus();
-                                 //actualizarInputs(parametros);
-                             }));
-                          });
-                        brd.Show();
-                    }));
-                });
+                    var brd = new BuscarCongelados(Opcion.JsonaListaGenerica<Receta.Congelados>(jsonResult), listaArticulo =>
+                      {
+                          BeginInvoke((MethodInvoker)(() =>
+                         {
+                             dgvcongeladobuscaryeditar.DataSource = Receta.Congelados2.ToList();
+                             //_listaArticuloBasica1 = parametros.Ingredientes.DataSource as List<Articulo.Basica>;
+                             //_listaArticuloBasica2 = (listaArticulo.Select(x => x.CopiadoSencillo()).ToList());
+                             //if (_listaArticuloBasica1 != null)
+                             //{
+                             //    _listaArticuloBasica2.AddRange(_listaArticuloBasica1);
+                             //}
+                             //parametros.Ingredientes.DataSource = _listaArticuloBasica2
+                             //        .GroupBy(p => p.ArtId)
+                             //        .Select(g => new Articulo.Basica
+                             //        {
+                             //            ArtId = g.Key,
+                             //            Clave = g.First().Clave,
+                             //            Descripcion = g.First().Descripcion,
+                             //            PrecioCompra = g.First().PrecioCompra,
+                             //            Cantidad = g.Sum(i => i.Cantidad)
+                             //        }).ToList();
+                             //for (var x = 0; x == 3; x++)
+                             //{
+                             //    parametros.Ingredientes.Columns[x].ReadOnly = true;
+                             //    parametros.Ingredientes.Columns[x].DefaultCellStyle.BackColor = Color.LightGray;
+                             //}
+                             //parametros.Ingredientes.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
+                             //parametros.ClaveReceta.Text = "";
+                             //parametros.ClaveReceta.Focus();
+                             //actualizarInputs(parametros);
+                         }));
+                      });
+                    brd.Show();
+                }));
+            });*/
+
+
+
             /*luego lo simplificamos...
-                 
+
                  */
 
             //Cocina.buscarcongelados.descripcion = txtbuscarcongeladoeditar.Text == string.Empty ? "%" : txtbuscarcongeladoeditar.Text;  /* asigna la clave a la variable estatica*/

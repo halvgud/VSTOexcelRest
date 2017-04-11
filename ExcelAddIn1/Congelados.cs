@@ -141,7 +141,7 @@ namespace ExcelAddIn1
                 {
                     BeginInvoke((MethodInvoker)(() => 
                     {
-                        var brd = new BuscarArticulo(Opcion.JsonaListaGenerica<Articulo.Congelados>(jsonResult), listaArticulo =>
+                        var brd = new BuscarArticulo(Opcion.JsonaListaGenerica<Articulo>(jsonResult), listaArticulo =>
                           {
                               BeginInvoke((MethodInvoker)(() =>
                              {

@@ -319,5 +319,14 @@ namespace Herramienta.Properties {
                 return ((string)(this["listaplatillos"]));
             }
         }
+        
+        [global::System.Configuration.ApplicationScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("receta/seleccionarmenu")]
+        public string menu {
+            get {
+                return ((string)(this["menu"]));
+            }
+        }
     }
 }

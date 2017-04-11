@@ -42,8 +42,7 @@ namespace ExcelAddIn1
             });
         }
         private void tbClaveReceta_TextChanged(object sender, EventArgs e)
-        {
-            btGuardar.Enabled = ValidarCampos();
+        {  btGuardar.Enabled = ValidarCampos();
             tsmGuardar.Enabled = ValidarCampos();
         }
         private void tbDescripcion_TextChanged(object sender, EventArgs e)
@@ -293,13 +292,13 @@ namespace ExcelAddIn1
             ValidarBusquedaVacia();
         }
 
-        private bool ValidarClave(TextBox claveReceta,IRestResponse jsonResult)
+       private bool ValidarClave(TextBox claveReceta, IRestResponse jsonResult)
         {
             if (jsonResult.StatusCode == HttpStatusCode.OK)
             {
                 BeginInvoke((MethodInvoker)(() =>
                 {
-                    MessageBox.Show(this,@"La Clave ingresada ya existe");
+                    MessageBox.Show(this, @"La Clave ingresada ya existe");
                     claveReceta.Text = "";
                     claveReceta.Focus();
                     btGuardar.Enabled = true;
@@ -308,7 +307,6 @@ namespace ExcelAddIn1
             }
             return true;
         }
-
         private void Guardar(Inputs inputs)
         {
             btGuardar.Enabled =false;
@@ -429,12 +427,13 @@ namespace ExcelAddIn1
         /****************************************************************************/
         private void btBuscarClave_Click(object sender, EventArgs e)
         {
-            Local.Receta.clave = tbBuscarReceta.Text == string.Empty?"%":tbBuscarReceta.Text;
-            Opcion.EjecucionAsync(Data.Receta.Lista, jsonResult =>
+            Local.Receta.clave = tbBuscarReceta.Text == string.Empty ? "%" : tbBuscarReceta.Text;
+Opcion.EjecucionAsync(Data.Receta.Lista, jsonResult =>
             {
                 BeginInvoke((MethodInvoker)(() =>
                 {
-                    switch (jsonResult.StatusCode){
+                    switch (jsonResult.StatusCode)
+                    {
                         case HttpStatusCode.OK:
                             var brd =
                              new BusquedaRecetaDetalle(Opcion.JsonaListaGenerica<Receta>(jsonResult),

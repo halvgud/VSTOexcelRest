@@ -5,17 +5,25 @@ using System.Threading;
 using Respuesta;
 using RestSharp;
 using Herramienta;
+using System.Collections.Generic;
+using System.Linq;
+
+
 
 
 namespace ExcelAddIn1
 {
     public partial class MenuSemanal : Form
     {
+        private List<Receta> _listaRecetas;
         public MenuSemanal()
         {
-            Thread.CurrentThread.CurrentCulture = new CultureInfo("es-ES");
 
             InitializeComponent();
+            _listaRecetas = new List<Receta>();
+
+
+
             Opcion.EjecucionAsync(Data.Receta.Tipo.Lista, x =>
             {
                 LlenarTipo(x, TipoLunes);
@@ -26,10 +34,51 @@ namespace ExcelAddIn1
                 LlenarTipo(x, TipoSabado);
                 LlenarTipo(x, TipoDomingo);
             });
+           
         }
+
+        private void PopulateManualCombo()
+        {
+
+            comboBox1.Items.Add("All");
+            comboBox1.Items.Add("Lunes");
+            comboBox1.Items.Add("Martes");
+            comboBox1.Items.Add("Miercoles");
+            comboBox1.Items.Add("Jueves");
+            comboBox1.Items.Add("Viernes");
+            comboBox1.Items.Add("Sabado");
+            comboBox1.Items.Add("Domingo");
+
+          
+            //if ( comboBox1.CheckBoxItems[0].Checked == true)
+            //{
+
+            //    comboBox1.CheckBoxItems[1].Checked = true;
+            //    comboBox1.CheckBoxItems[2].Checked = true;
+            //    comboBox1.CheckBoxItems[3].Checked = true;
+            //    comboBox1.CheckBoxItems[4].Checked = true;
+            //    comboBox1.CheckBoxItems[5].Checked = true;
+            //    comboBox1.CheckBoxItems[6].Checked = true;
+            //    comboBox1.CheckBoxItems[7].Checked = true;
+            //}
+            //else
+            //{
+            //    comboBox1.CheckBoxItems[1].Checked = false;
+            //    comboBox1.CheckBoxItems[2].Checked = false;
+            //    comboBox1.CheckBoxItems[3].Checked = false;
+            //    comboBox1.CheckBoxItems[4].Checked = false;
+            //    comboBox1.CheckBoxItems[5].Checked = false;
+            //    comboBox1.CheckBoxItems[6].Checked = false;
+            //    comboBox1.CheckBoxItems[7].Checked = false;
+
+            //}
+
+        }
+
 
         public void LlenarTipo(IRestResponse json, DataGridViewComboBoxColumn tipoColumn)
         {
+      
             BeginInvoke((MethodInvoker)(() =>
             {
                 var bindingSource1 = new BindingSource
@@ -87,80 +136,63 @@ namespace ExcelAddIn1
             if (d == date.DayOfWeek.ToString())
             {
                 FechaDomingo.Text = Convert.ToString(Dtpikerinicio.Value.ToShortDateString());
-                }
             }
             }
-
-
-        private void tableLayoutPanel1_Paint(object sender, PaintEventArgs e)
-        {
- 
+            
         }
-
 
         private void MenuSemanal_Load(object sender, EventArgs e)
         {
-            dvgLunes.AutoResizeColumns();
-            dvgMartes.AutoResizeColumns();
-            dvgMiercoles.AutoResizeColumns();
-            dvgJueves.AutoResizeColumns();
-            dvgViernes.AutoResizeColumns();
-            dvgSabado.AutoResizeColumns();
-            dvgDomingo.AutoResizeColumns();
-
-            dvgLunes.AutoGenerateColumns = false;
-            dvgMartes.AutoGenerateColumns = false;
-            dvgMiercoles.AutoGenerateColumns = false;
-            dvgJueves.AutoGenerateColumns = false;
-            dvgViernes.AutoGenerateColumns = false;
-            dvgSabado.AutoGenerateColumns = false;
-            dvgDomingo.AutoGenerateColumns = false;
+            PopulateManualCombo();
         }
 
-        //private void BuscarMenuSemanal(Action<Inputs> actualizarInputs, Inputs parametros)
-        //{
-        //    Local.Articulo.IdArticulo = parametros.ClaveReceta.Text.Trim();
-        //    Opcion.EjecucionAsync(x =>
-        //    {
-        //        Data.Articulo.Lista(x, this);
-        //    }, jsonResult =>
-        //    {
-        //        BeginInvoke((MethodInvoker)(() =>
-        //        {
-        //            var brd = new BuscarArticulo(Opcion.JsonaListaGenerica<Articulo>(jsonResult), listaArticulo =>
-        //            {
-        //                BeginInvoke((MethodInvoker)(() =>
-        //                {
-        //                    _listaArticuloBasica1 = parametros.Ingredientes.DataSource as List<Articulo.Basica>;
-        //                    _listaArticuloBasica2 = (listaArticulo.Select(x => x.CopiadoSencillo()).ToList());
-        //                    if (_listaArticuloBasica1 != null)
-        //                    {
-        //                        _listaArticuloBasica2.AddRange(_listaArticuloBasica1);
-        //                    }
-        //                    parametros.Ingredientes.DataSource = _listaArticuloBasica2
-        //                            .GroupBy(p => p.ArtId)
-        //                            .Select(g => new Articulo.Basica
-        //                            {
-        //                                ArtId = g.Key,
-        //                                Clave = g.First().Clave,
-        //                                Descripcion = g.First().Descripcion,
-        //                                PrecioCompra = g.First().PrecioCompra,
-        //                                Cantidad = g.Sum(i => i.Cantidad)
-        //                            }).ToList();
-        //                    for (var x = 0; x == 3; x++)
-        //                    {
-        //                        parametros.Ingredientes.Columns[x].ReadOnly = true;
-        //                        parametros.Ingredientes.Columns[x].DefaultCellStyle.BackColor = Color.LightGray;
-        //                    }
-        //                    parametros.Ingredientes.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
-        //                    parametros.ClaveReceta.Text = "";
-        //                    parametros.ClaveReceta.Focus();
-        //                    actualizarInputs(parametros);
-        //                }));
-        //            });
-        //            brd.Show();
-        //        }));
-        //    });
-        //}
+        private void comboBox1_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (comboBox1.CheckBoxItems[0].Checked == false)
+            {
+
+                comboBox1.CheckBoxItems[1].Checked = false;
+                comboBox1.CheckBoxItems[2].Checked = false;
+                comboBox1.CheckBoxItems[3].Checked = false;
+                comboBox1.CheckBoxItems[4].Checked = false;
+                comboBox1.CheckBoxItems[5].Checked = false;
+                comboBox1.CheckBoxItems[6].Checked = false;
+                comboBox1.CheckBoxItems[7].Checked = false;
+                comboBox1.Items.Remove(comboBox1.SelectedItem);
+            }
+            else
+                {
+                comboBox1.CheckBoxItems[1].Checked = true;
+                comboBox1.CheckBoxItems[2].Checked = true;
+                comboBox1.CheckBoxItems[3].Checked = true;
+                comboBox1.CheckBoxItems[4].Checked = true;
+                comboBox1.CheckBoxItems[5].Checked = true;
+                comboBox1.CheckBoxItems[6].Checked = true;
+                comboBox1.CheckBoxItems[7].Checked = true;
+            }
+        }
+
+       
+
+        private void comboBox1_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (comboBox1.CheckBoxItems[0].Checked == false)
+            {
+                comboBox1.CheckBoxItems[1].Checked = false;
+                comboBox1.CheckBoxItems[2].Checked = false;
+                comboBox1.CheckBoxItems[3].Checked = false;
+                comboBox1.CheckBoxItems[4].Checked = false;
+                comboBox1.CheckBoxItems[5].Checked = false;
+                comboBox1.CheckBoxItems[6].Checked = false;
+                comboBox1.CheckBoxItems[7].Checked = false;
+                comboBox1.Items.Remove(comboBox1.SelectedItem);
+                comboBox1.Items.Clear();
+            }
+        
+
+
+
+        }
     }
+
 }

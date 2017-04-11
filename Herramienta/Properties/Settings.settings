@@ -101,5 +101,8 @@
     <Setting Name="listaplatillos" Type="System.String" Scope="Application">
       <Value Profile="(Default)">reporte/seleccionarplatillo</Value>
     </Setting>
+    <Setting Name="menu" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">receta/seleccionarmenu</Value>
+    </Setting>
   </Settings>
 </SettingsFile>

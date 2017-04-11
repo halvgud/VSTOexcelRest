@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Drawing;
-using System.Drawing.Text;
 using System.Linq;
 using System.Net;
 using System.Windows.Forms;
@@ -127,9 +126,15 @@ namespace ExcelAddIn1
             else
             {
                 dgvListaReceta.Columns[3].ReadOnly = false;
-                dgvListaReceta.Columns[3].DefaultCellStyle.BackColor = Color.White;
+                dgvListaReceta.Columns[3].DefaultCellStyle.BackColor = Color.Beige;
                 return true;
             }
         }
+
+        private void tabPage1_Click(object sender, EventArgs e)
+        {
+
+        }
+
     }
 }

@@ -30,6 +30,7 @@
             public class Platillos
             {
                 public static string Listado { get; set; } = Properties.Settings.Default.listaplatillos;
+                public static string clave { get; set; }
             }
 
            

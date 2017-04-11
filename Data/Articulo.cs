@@ -27,7 +27,7 @@ namespace Data
                             f1.BeginInvoke((MethodInvoker)(() =>
                             {
                                 MessageBox.Show(f1, Opcion.JsonaString(response.Content));
-                            }));
+}));
                             callback = x =>
                             {
                                 

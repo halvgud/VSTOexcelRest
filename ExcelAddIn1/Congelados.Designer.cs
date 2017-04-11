@@ -210,6 +210,7 @@
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "Congelados";
             this.Text = "Congelados";
+            this.Load += new System.EventHandler(this.Congelados_Load);
             this.tabControl1.ResumeLayout(false);
             this.tabPage1.ResumeLayout(false);
             this.tabPage1.PerformLayout();

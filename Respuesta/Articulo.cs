@@ -1,6 +1,15 @@
 ﻿
 namespace Respuesta
 {
+
+    public class CongeladoInventario
+    {
+        public  int EstadoInventario { get; set; }
+        public int ArtIdInventario { get; set; }
+        public string DescripcionInventario { get; set; }
+        public double FechaInventario { get; set; }
+
+    }
     public class Articulo
     {
         public int art_id { get; set; }

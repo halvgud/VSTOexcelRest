@@ -17,6 +17,15 @@ namespace ExcelAddIn1
 {
     public partial class Congelados : Form
     {
+        private List<Articulo.Basica> _listaArticuloBasica1;
+        public class Inputs
+        {
+            public TextBox Nombre;
+            public DataGridView ListaCongelados;
+        }
+
+
+
         private static Congelados _alreadyOpened;
         public Congelados(Func<string[]> arreglo)
         {
@@ -56,7 +65,6 @@ namespace ExcelAddIn1
 
         private void txtbuscarcongelado_Enter(object sender, EventArgs e)
         {
-
             //Local.Receta.clave = txtbuscarcongelado.Text == string.Empty ? "%" : txtbuscarcongelado.Text;
             //Opcion.EjecucionAsync(Data.Receta.Lista, jsonResult =>
             //{
@@ -157,8 +165,52 @@ namespace ExcelAddIn1
 
         private void txtbuscarcongelado_KeyPress(object sender, KeyPressEventArgs e)
         {
-
+            ValidarVacia();
         }
-    
+
+        private void Congelados_Load(object sender, EventArgs e)
+        {
+            ActiveControl = txtbuscarcongelado;
+            txtbuscarcongelado.Focus();
+        }
+
+        //private void BuscarCongelado(Action<Inputs> actualizarInputs, Inputs parametros)
+        //{
+        //    Cocina.Platillos.Listado = parametros.Nombre.Text.Trim();
+        //    Opcion.EjecucionAsync(x =>
+        //    {
+        //        Data.Articulo.Lista(x, this);
+        //    }, jsonResult =>
+        //    {
+        //                BeginInvoke((MethodInvoker) (() =>
+        //                {
+        //                    _listaArticuloBasica1 = parametros.ListaCongelados.DataSource as List<Articulo.Basica>;
+        //                    if (_listaArticuloBasica1 != null)
+        //                    {
+        //                        _listaArticuloBasica1.AddRange(_listaArticuloBasica1);
+
+        //                        parametros.ListaCongelados.DataSource = _listaArticuloBasica1
+        //                            .GroupBy(p => p.ArtId)
+        //                            .Select(g => new Articulo.Basica
+        //                            {
+        //                                ArtId = g.Key,
+        //                                Clave = g.First().Clave,
+        //                                Descripcion = g.First().Descripcion,
+        //                                PrecioCompra = g.First().PrecioCompra,
+        //                                Cantidad = g.Sum(i => i.Cantidad)
+        //                            }).ToList();
+        //                        for (var x = 0; x == 3; x++)
+        //                        {
+        //                            parametros.ListaCongelados.Columns[x].ReadOnly = true;
+        //                            parametros.ListaCongelados.Columns[x].DefaultCellStyle.BackColor = Color.LightGray;
+        //                        }
+        //                        parametros.ListaCongelados.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
+        //                        parametros.Nombre.Text = "";
+        //                        parametros.Nombre.Focus();
+        //                        actualizarInputs(parametros);
+        //                    }
+        //                }));
+        //            });
+        //    }
     }
 }

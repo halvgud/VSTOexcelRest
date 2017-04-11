@@ -46,5 +46,17 @@ namespace Respuesta
             public string Unidad { get; set; }
             public double PrecioTotal { get; set; }
        }
+
+        public class MenuDia
+        {
+            public string Tipo { get; set; }
+            public string Platillo { get; set; }
+            public  int Fecha { get; set; }
+            public  int Cantidad { get; set; }
+            public string Unidad { get; set; }
+            public  int Precio { get; set; }
+            public  int Ganancia { get; set; }
+
+        }
     }
 }

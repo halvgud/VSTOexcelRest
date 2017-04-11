@@ -38,19 +38,9 @@
             this.tabPage2 = new System.Windows.Forms.TabPage();
             this.btguardareditar = new System.Windows.Forms.Button();
             this.dgvcongeladobuscaryeditar = new System.Windows.Forms.DataGridView();
-            this.ColumnClave = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.ColumnDescripcion = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.ColumnExistencia = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.ColumnEstado = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Columnfecha = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.txtbuscarcongeladoeditar = new System.Windows.Forms.TextBox();
             this.label2 = new System.Windows.Forms.Label();
             this.btbuscareditar = new System.Windows.Forms.Button();
-            this.ColumnDato = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.ColumnNOMBRE = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.ColumnStatus = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.ColumnCantidad = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.ColumFecha = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvcongelados)).BeginInit();
@@ -94,13 +84,7 @@
             // dgvcongelados
             // 
             this.dgvcongelados.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dgvcongelados.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.ColumnDato,
-            this.ColumnNOMBRE,
-            this.ColumnStatus,
-            this.ColumnCantidad,
-            this.ColumFecha});
-            this.dgvcongelados.Location = new System.Drawing.Point(29, 81);
+            this.dgvcongelados.Location = new System.Drawing.Point(29, 79);
             this.dgvcongelados.Name = "dgvcongelados";
             this.dgvcongelados.Size = new System.Drawing.Size(562, 161);
             this.dgvcongelados.TabIndex = 2;
@@ -151,41 +135,10 @@
             // dgvcongeladobuscaryeditar
             // 
             this.dgvcongeladobuscaryeditar.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dgvcongeladobuscaryeditar.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.ColumnClave,
-            this.ColumnDescripcion,
-            this.ColumnExistencia,
-            this.ColumnEstado,
-            this.Columnfecha});
             this.dgvcongeladobuscaryeditar.Location = new System.Drawing.Point(21, 71);
             this.dgvcongeladobuscaryeditar.Name = "dgvcongeladobuscaryeditar";
             this.dgvcongeladobuscaryeditar.Size = new System.Drawing.Size(577, 141);
             this.dgvcongeladobuscaryeditar.TabIndex = 3;
-            // 
-            // ColumnClave
-            // 
-            this.ColumnClave.HeaderText = "Clave";
-            this.ColumnClave.Name = "ColumnClave";
-            // 
-            // ColumnDescripcion
-            // 
-            this.ColumnDescripcion.HeaderText = "Nombre";
-            this.ColumnDescripcion.Name = "ColumnDescripcion";
-            // 
-            // ColumnExistencia
-            // 
-            this.ColumnExistencia.HeaderText = "Cantidad";
-            this.ColumnExistencia.Name = "ColumnExistencia";
-            // 
-            // ColumnEstado
-            // 
-            this.ColumnEstado.HeaderText = "Status";
-            this.ColumnEstado.Name = "ColumnEstado";
-            // 
-            // Columnfecha
-            // 
-            this.Columnfecha.HeaderText = "Fecha Modificación";
-            this.Columnfecha.Name = "Columnfecha";
             // 
             // txtbuscarcongeladoeditar
             // 
@@ -212,31 +165,6 @@
             this.btbuscareditar.Text = "Buscar";
             this.btbuscareditar.UseVisualStyleBackColor = true;
             this.btbuscareditar.Click += new System.EventHandler(this.btbuscareditar_Click);
-            // 
-            // ColumnDato
-            // 
-            this.ColumnDato.HeaderText = "Clave";
-            this.ColumnDato.Name = "ColumnDato";
-            // 
-            // ColumnNOMBRE
-            // 
-            this.ColumnNOMBRE.HeaderText = "Nombre";
-            this.ColumnNOMBRE.Name = "ColumnNOMBRE";
-            // 
-            // ColumnStatus
-            // 
-            this.ColumnStatus.HeaderText = "Estado";
-            this.ColumnStatus.Name = "ColumnStatus";
-            // 
-            // ColumnCantidad
-            // 
-            this.ColumnCantidad.HeaderText = "Cantidad";
-            this.ColumnCantidad.Name = "ColumnCantidad";
-            // 
-            // ColumFecha
-            // 
-            this.ColumFecha.HeaderText = "Fecha";
-            this.ColumFecha.Name = "ColumFecha";
             // 
             // Congelados
             // 
@@ -273,15 +201,5 @@
         private System.Windows.Forms.TextBox txtbuscarcongeladoeditar;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Button btbuscareditar;
-        private System.Windows.Forms.DataGridViewTextBoxColumn ColumnClave;
-        private System.Windows.Forms.DataGridViewTextBoxColumn ColumnDescripcion;
-        private System.Windows.Forms.DataGridViewTextBoxColumn ColumnExistencia;
-        private System.Windows.Forms.DataGridViewTextBoxColumn ColumnEstado;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Columnfecha;
-        private System.Windows.Forms.DataGridViewTextBoxColumn ColumnDato;
-        private System.Windows.Forms.DataGridViewTextBoxColumn ColumnNOMBRE;
-        private System.Windows.Forms.DataGridViewTextBoxColumn ColumnStatus;
-        private System.Windows.Forms.DataGridViewTextBoxColumn ColumnCantidad;
-        private System.Windows.Forms.DataGridViewTextBoxColumn ColumFecha;
     }
 }

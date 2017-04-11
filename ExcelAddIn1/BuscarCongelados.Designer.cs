@@ -36,30 +36,32 @@
             // btaceptarbcongelados
             // 
             this.btaceptarbcongelados.Font = new System.Drawing.Font("Modern No. 20", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btaceptarbcongelados.Location = new System.Drawing.Point(349, 22);
+            this.btaceptarbcongelados.Location = new System.Drawing.Point(390, 23);
             this.btaceptarbcongelados.Name = "btaceptarbcongelados";
             this.btaceptarbcongelados.Size = new System.Drawing.Size(75, 36);
             this.btaceptarbcongelados.TabIndex = 0;
             this.btaceptarbcongelados.Text = "Aceptar";
             this.btaceptarbcongelados.UseVisualStyleBackColor = true;
+            this.btaceptarbcongelados.Click += new System.EventHandler(this.btaceptarbcongelados_Click);
             // 
             // dgvbuscar_congelados
             // 
             this.dgvbuscar_congelados.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgvbuscar_congelados.Location = new System.Drawing.Point(12, 12);
             this.dgvbuscar_congelados.Name = "dgvbuscar_congelados";
-            this.dgvbuscar_congelados.Size = new System.Drawing.Size(306, 186);
+            this.dgvbuscar_congelados.Size = new System.Drawing.Size(372, 186);
             this.dgvbuscar_congelados.TabIndex = 1;
             // 
             // BuscarCongelados
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(449, 219);
+            this.ClientSize = new System.Drawing.Size(477, 219);
             this.Controls.Add(this.dgvbuscar_congelados);
             this.Controls.Add(this.btaceptarbcongelados);
             this.Name = "BuscarCongelados";
             this.Text = "BuscarCongelados";
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.BuscarCongelados_FormClosing);
             ((System.ComponentModel.ISupportInitialize)(this.dgvbuscar_congelados)).EndInit();
             this.ResumeLayout(false);
 

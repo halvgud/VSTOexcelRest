@@ -248,46 +248,46 @@ namespace ExcelAddIn1
 
 
 
-            /*luego lo simplificamos...
+            /*luego lo simplificamos...*/
 
-                 */
+                 
 
-            //Cocina.buscarcongelados.descripcion = txtbuscarcongeladoeditar.Text == string.Empty ? "%" : txtbuscarcongeladoeditar.Text;  /* asigna la clave a la variable estatica*/
-            //Opcion.EjecucionAsync(Data.ReporteCocina.Buscarcongelados, jsonResult => /* se ejecuta Data.Receta.Lista, el resultado se guarda en jsonResult*/
-            //{
-            //    BeginInvoke((MethodInvoker)(() =>  
-            //    {
-            //        switch (jsonResult.StatusCode) 
-            //        {
-            //            case HttpStatusCode.OK: 
-            //                var brd = /*aqui que ondas */
-            //                 new BuscarArticulo(Opcion.JsonaListaGenerica<Receta.Congelados>(jsonResult), /*esta parte no le entiendo*/
-            //                     resultado =>
-            //                     {
-            //                         BeginInvoke((MethodInvoker)(() => /*se manda llamar de nuevo a la interfaz*/
-            //                         {
-            //                             dgvcongelados.DataSource = resultado.ListaCongelados /*ni estas*/
-            //                              .ToList();
-            //                             //tbPrecioBE.Text = resultado.Precio.ToString(CultureInfo.InvariantCulture); /*se asignan los valores a los textbox,*/
-            //                             //tbDescripcionBE.Text = resultado.Descripcion;
-            //                             //tbPesoLitroBE.Text = resultado.PesoLitro.ToString(CultureInfo.InvariantCulture);
-            //                             //tbMargenConPrecioBE.Text = resultado.Margen.ToString(CultureInfo.InvariantCulture);
-            //                             //chDiarioBE.Checked = (resultado.Diario == 1);
-            //                             //tbCodigoBE.Enabled = true; tbCostoElaboracionBE.Text =
-            //                             //     resultado.CostoElaboracion.ToString(CultureInfo.InvariantCulture);
-            //                             //btBuscarBE.Enabled = true;
-            //                         }));
-            //                     }, true);
-            //                brd.Show(); /*se muestra*/
-            //                break;
-            //            default:
-            //                MessageBox.Show(this, @"No se encontraron recetas con los parametros de busqueda ingresados");
-            //                Console.WriteLine(jsonResult.Content);
-            //                break;
-            //        }
+            Cocina.buscarcongelados.descripcion = txtbuscarcongeladoeditar.Text == string.Empty ? "%" : txtbuscarcongeladoeditar.Text;  /* asigna la clave a la variable estatica*/
+            Opcion.EjecucionAsync(Data.ReporteCocina.Buscarcongelados, jsonResult => /* se ejecuta Data.Receta.Lista, el resultado se guarda en jsonResult*/
+            {
+                BeginInvoke((MethodInvoker)(() =>
+                {
+                    switch (jsonResult.StatusCode)
+                    {
+                        case HttpStatusCode.OK:
+                            var brd = /*aqui que ondas */
+                             new BuscarCongelados(Opcion.JsonaListaGenerica<Receta.Congelados>(jsonResult), /*esta parte no le entiendo*/
+                                 resultado =>
+                                 {
+                                     BeginInvoke((MethodInvoker)(() => /*se manda llamar de nuevo a la interfaz*/
+                                     {
+                                         dgvcongeladobuscaryeditar.DataSource = resultado /*ni estas*/
+                                          .ToList();
+                                         //tbPrecioBE.Text = resultado.Precio.ToString(CultureInfo.InvariantCulture); /*se asignan los valores a los textbox,*/
+                                         //tbDescripcionBE.Text = resultado.Descripcion;
+                                         //tbPesoLitroBE.Text = resultado.PesoLitro.ToString(CultureInfo.InvariantCulture);
+                                         //tbMargenConPrecioBE.Text = resultado.Margen.ToString(CultureInfo.InvariantCulture);
+                                         //chDiarioBE.Checked = (resultado.Diario == 1);
+                                         //tbCodigoBE.Enabled = true; tbCostoElaboracionBE.Text =
+                                         //     resultado.CostoElaboracion.ToString(CultureInfo.InvariantCulture);
+                                         //btBuscarBE.Enabled = true;
+                                     }));
+                                 });
+                            brd.Show(); /*se muestra*/
+                            break;
+                        default:
+                            MessageBox.Show(this, @"No se encontraron recetas con los parametros de busqueda ingresados");
+                            Console.WriteLine(jsonResult.Content);
+                            break;
+                    }
 
-            //    }));
-            //});
+                }));
+            });
         }
 
     }

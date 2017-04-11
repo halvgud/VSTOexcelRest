@@ -75,7 +75,7 @@
       <Value Profile="(Default)">reporte/tag</Value>
     </Setting>
     <Setting Name="ReporteTagNombre" Type="System.String" Scope="Application">
-      <Value Profile="(Default)">reporte/tag/nombre</Value>
+      <Value Profile="(Default)">reporte/tag/descripcion</Value>
     </Setting>
     <Setting Name="ReporteUltimosRegistros" Type="System.String" Scope="Application">
       <Value Profile="(Default)">reporte/registros</Value>

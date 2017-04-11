@@ -241,7 +241,7 @@ namespace testVSTO2.Properties {
         
         [global::System.Configuration.ApplicationScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("reporte/tag/nombre")]
+        [global::System.Configuration.DefaultSettingValueAttribute("reporte/tag/descripcion")]
         public string ReporteTagNombre {
             get {
                 return ((string)(this["ReporteTagNombre"]));

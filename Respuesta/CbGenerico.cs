@@ -6,10 +6,10 @@
         public string Nombre { get; set; }
         public string Margen { get; set; }
 
-       /* public ComboBox(string id, string nombre)
+       /* public ComboBox(string id, string descripcion)
         {
             this.id = id;
-            this.nombre = nombre;
+            this.descripcion = descripcion;
         }*/
     }
 }

@@ -1,5 +1,6 @@
 ﻿
 using System;
+using System.Collections.Generic;
 
 namespace Respuesta
 {
@@ -40,7 +41,11 @@ namespace Respuesta
             public DateTime fecha { get; set; }
         }
 
-   
+
+
+
+
+
 
         public class Guardar
         {

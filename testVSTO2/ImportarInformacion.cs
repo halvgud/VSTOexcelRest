@@ -26,7 +26,7 @@ namespace testVSTO2
                         DataSource = Opcion.JsonaListaGenerica<Respuesta.CbGenerico>(json)
                     };
                     cbDepartamento.DataSource = bindingSource1;
-                    cbDepartamento.DisplayMember = "nombre";
+                    cbDepartamento.DisplayMember = "descripcion";
                     cbDepartamento.ValueMember = "id";
                 }
             )
@@ -53,7 +53,7 @@ namespace testVSTO2
                         };
                         
                         cbCategoria.DataSource = bindingSource1;
-                        cbCategoria.DisplayMember = "nombre";
+                        cbCategoria.DisplayMember = "descripcion";
                         cbCategoria.ValueMember = "id";
                     }));
                 });

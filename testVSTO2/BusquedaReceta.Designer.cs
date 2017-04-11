@@ -331,7 +331,7 @@
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(143, 13);
             this.label2.TabIndex = 50;
-            this.label2.Text = "Clave o nombre de la receta:";
+            this.label2.Text = "Clave o descripcion de la receta:";
             // 
             // tbCantidad
             // 

@@ -67,10 +67,11 @@ namespace Respuesta
         {
             
             public string clave { get; set; }
-            public string nombre { get; set; }
+            public string descripcion { get; set; }
             public double cantidad { get; set; }
             public int status { get; set; }
-            public DateTime fecha { get; set; }
+            public DateTime fechaEntrada { get; set; }
+            public List<Congelados> ListaCongelados { get; set; }
         }
 
         public class Congelados2 

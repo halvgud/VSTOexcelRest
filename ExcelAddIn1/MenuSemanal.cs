@@ -92,6 +92,7 @@ namespace ExcelAddIn1
             }));
         }
 
+<<<<<<< HEAD
         private void Dtpikerinicio_ValueChanged(object sender, EventArgs e)
         {
             DateTime date = new DateTime(Convert.ToInt16(Dtpikerinicio.Value.ToString("yyyy")), Convert.ToInt16(Dtpikerinicio.Value.ToString("MM")), Convert.ToInt16(Dtpikerinicio.Value.ToString("dd")));
@@ -140,6 +141,9 @@ namespace ExcelAddIn1
             }
             
         }
+=======
+
+>>>>>>> origin/master
 
         private void MenuSemanal_Load(object sender, EventArgs e)
         {
@@ -190,9 +194,67 @@ namespace ExcelAddIn1
             }
         
 
+<<<<<<< HEAD
 
 
         }
+=======
+        private void Dtpikerinicio_ValueChanged(object sender, EventArgs e)
+        {
+            MessageBox.Show("algo anda mal");
+        }
+
+        private void dtpsegundon_ValueChanged(object sender, EventArgs e)
+        {
+            MessageBox.Show("aver si sale");
+        }
+
+        //private void BuscarMenuSemanal(Action<Inputs> actualizarInputs, Inputs parametros)
+        //{
+        //    Local.Articulo.IdArticulo = parametros.ClaveReceta.Text.Trim();
+        //    Opcion.EjecucionAsync(x =>
+        //    {
+        //        Data.Articulo.Lista(x, this);
+        //    }, jsonResult =>
+        //    {
+        //        BeginInvoke((MethodInvoker)(() =>
+        //        {
+        //            var brd = new BuscarArticulo(Opcion.JsonaListaGenerica<Articulo>(jsonResult), listaArticulo =>
+        //            {
+        //                BeginInvoke((MethodInvoker)(() =>
+        //                {
+        //                    _listaArticuloBasica1 = parametros.Ingredientes.DataSource as List<Articulo.Basica>;
+        //                    _listaArticuloBasica2 = (listaArticulo.Select(x => x.CopiadoSencillo()).ToList());
+        //                    if (_listaArticuloBasica1 != null)
+        //                    {
+        //                        _listaArticuloBasica2.AddRange(_listaArticuloBasica1);
+        //                    }
+        //                    parametros.Ingredientes.DataSource = _listaArticuloBasica2
+        //                            .GroupBy(p => p.ArtId)
+        //                            .Select(g => new Articulo.Basica
+        //                            {
+        //                                ArtId = g.Key,
+        //                                Clave = g.First().Clave,
+        //                                Descripcion = g.First().Descripcion,
+        //                                PrecioCompra = g.First().PrecioCompra,
+        //                                Cantidad = g.Sum(i => i.Cantidad)
+        //                            }).ToList();
+        //                    for (var x = 0; x == 3; x++)
+        //                    {
+        //                        parametros.Ingredientes.Columns[x].ReadOnly = true;
+        //                        parametros.Ingredientes.Columns[x].DefaultCellStyle.BackColor = Color.LightGray;
+        //                    }
+        //                    parametros.Ingredientes.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
+        //                    parametros.ClaveReceta.Text = "";
+        //                    parametros.ClaveReceta.Focus();
+        //                    actualizarInputs(parametros);
+        //                }));
+        //            });
+        //            brd.Show();
+        //        }));
+        //    });
+        //}
+>>>>>>> origin/master
     }
 
 }

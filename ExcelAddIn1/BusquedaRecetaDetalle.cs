@@ -11,10 +11,14 @@ namespace ExcelAddIn1
     public partial class BusquedaRecetaDetalle : Form
     {
         private readonly List<Receta> _clave;
+        private readonly List<Receta.Congelados> _claveCongelados;
         private readonly Action<Receta> _callback;
+        private readonly Action<Receta.Congelados> _callbackCongelados;
+        private readonly bool _banderaCongelados ;
         public BusquedaRecetaDetalle(List<Receta> clave, Action<Receta> callback,bool mostrarCantidad)
         {
-                _clave = clave;_callback = callback;
+                _clave = clave;
+            _callback = callback;
                 InitializeComponent();
                 if (!mostrarCantidad)
                 {
@@ -24,15 +28,26 @@ namespace ExcelAddIn1
                 dataGridView1.DataSource = _clave.Select(x=>new {clave = x.Clave,descripcion = x.Descripcion,precio = x.Precio}).ToArray();
                 dataGridView1.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
         }
-
+        
         private void btAceptar_Click(object sender, EventArgs e)
         {
             /*
             var addIn = Globals.ThisAddIn;
             addIn.Agregar(_clave[dataGridView1.CurrentCell.RowIndex], double.Parse(tbCantidad.Text));
             Close();*/
-_clave[dataGridView1.CurrentCell.RowIndex].Cantidad = double.Parse(tbCantidad.Text);
-            _callback(_clave[dataGridView1.CurrentCell.RowIndex]);
+            //if (_banderaCongelados)
+            //{
+            //    _claveCongelados[dataGridView1.CurrentCell.RowIndex].cantidad = double.Parse(tbCantidad.Text);
+            //    _callback(_claveCongelados[dataGridView1.CurrentCell.RowIndex]);
+            //}
+            //else
+            //{
+                _clave[dataGridView1.CurrentCell.RowIndex].Cantidad = double.Parse(tbCantidad.Text);
+           // _clave[dataGridView1.CurrentCell.RowIndex].Ingredientes=
+                _callback(_clave[dataGridView1.CurrentCell.RowIndex]);
+            //}
+
+            
             Close();
         }
 

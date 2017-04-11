@@ -65,22 +65,28 @@ namespace ExcelAddIn1
 
         private void txtbuscarcongelado_Enter(object sender, EventArgs e)
         {
+<<<<<<< HEAD
             //Local.Receta.clave = txtbuscarcongelado.Text == string.Empty ? "%" : txtbuscarcongelado.Text;
             //Opcion.EjecucionAsync(Data.Receta.Lista, jsonResult =>
+=======
+
+            //Local.Receta.clave = txtbuscarcongelado.Text == string.Empty ? "%" : txtbuscarcongelado.Text;  /* asigna la clave a la variable estatica*/
+            //Opcion.EjecucionAsync(Data.Receta.Lista, jsonResult => /* se ejecuta Data.Receta.Lista, el resultado se guarda en jsonResult*/
+>>>>>>> origin/master
             //{
-            //    BeginInvoke((MethodInvoker)(() =>
+            //    BeginInvoke((MethodInvoker)(() =>  /*se manda llamar al hilo de la UI*/
             //    {
-            //        switch (jsonResult.StatusCode)
+            //        switch (jsonResult.StatusCode) /*se determina cual fue el resultado*/
             //        {
-            //            case HttpStatusCode.OK:
-            //                var brd =
-            //                 new BusquedaRecetaDetalle(Opcion.JsonaListaGenerica<Receta>(jsonResult),
-            //                     resultado =>
+            //            case HttpStatusCode.OK: /*si el resultado es oK*/
+            //                var brd = /*se crea el constructor que recibe por parametro una Lista del tipo "Receta" */
+            //                 new BusquedaRecetaDetalle(Opcion.JsonaListaGenerica<Receta>(jsonResult), /*Que es la parte de Opcion.jsonaListaGenerica<Receta>*/
+            //                     resultado => /*tiene un callback el constructor, se le declara como resultado=>*/
             //                     {
-            //                         BeginInvoke((MethodInvoker)(() =>
+            //                         BeginInvoke((MethodInvoker)(() => /*se manda llamar de nuevo a la interfaz*/
             //                         {
-            //                             dgvIngredientesBusqueda.DataSource = resultado.Ingredientes
-            //                             .Select(x => new Articulo.Basica
+            //                             dgvcongelados.DataSource = resultado.Ingredientes /*para actualizar el datagridview*/
+            //                             .Select(x => new Articulo.Basica  /*de la tabla se seleccionan ciertos valores */
             //                             {
             //                                 ArtId = x.ArtId,
             //                                 Clave = x.Clave,
@@ -88,7 +94,7 @@ namespace ExcelAddIn1
             //                                 PrecioCompra = x.PrecioCompra,
             //                                 Cantidad = x.Cantidad
             //                             }).ToList();
-            //                             tbPrecioBE.Text = resultado.Precio.ToString(CultureInfo.InvariantCulture);
+            //                             tbPrecioBE.Text = resultado.Precio.ToString(CultureInfo.InvariantCulture); /*se asignan los valores a los textbox,*/
             //                             tbDescripcionBE.Text = resultado.Descripcion;
             //                             tbPesoLitroBE.Text = resultado.PesoLitro.ToString(CultureInfo.InvariantCulture);
             //                             tbMargenConPrecioBE.Text = resultado.Margen.ToString(CultureInfo.InvariantCulture);
@@ -98,7 +104,7 @@ namespace ExcelAddIn1
             //                             btBuscarBE.Enabled = true;
             //                         }));
             //                     }, false);
-            //                brd.Show();
+            //                brd.Show(); /*se muestra*/
             //                break;
             //            default:
             //                MessageBox.Show(this, @"No se encontraron recetas con los parametros de busqueda ingresados");
@@ -108,52 +114,6 @@ namespace ExcelAddIn1
 
             //    }));
             //});
-
-
-
-            //    Local.Receta.clave = tbBuscarReceta.Text == string.Empty ? "%" : tbBuscarReceta.Text;
-            //    Opcion.EjecucionAsync(Data.Receta.Lista, jsonResult =>
-            //    {
-            //        BeginInvoke((MethodInvoker)(() =>
-            //        {
-            //            switch (jsonResult.StatusCode)
-            //            {
-            //                case HttpStatusCode.OK:
-            //                    var brd =
-            //                     new BusquedaRecetaDetalle(Opcion.JsonaListaGenerica<Receta>(jsonResult),
-            //                         resultado =>
-            //                         {
-            //                             BeginInvoke((MethodInvoker)(() =>
-            //                             {
-            //                                 dgvIngredientesBusqueda.DataSource = resultado.Ingredientes
-            //                                 .Select(x => new Articulo.Basica
-            //                                 {
-            //                                     ArtId = x.ArtId,
-            //                                     Clave = x.Clave,
-            //                                     Descripcion = x.Descripcion,
-            //                                     PrecioCompra = x.PrecioCompra,
-            //                                     Cantidad = x.Cantidad
-            //                                 }).ToList();
-            //                                 tbPrecioBE.Text = resultado.Precio.ToString(CultureInfo.InvariantCulture);
-            //                                 tbDescripcionBE.Text = resultado.Descripcion;
-            //                                 tbPesoLitroBE.Text = resultado.PesoLitro.ToString(CultureInfo.InvariantCulture);
-            //                                 tbMargenConPrecioBE.Text = resultado.Margen.ToString(CultureInfo.InvariantCulture);
-            //                                 chDiarioBE.Checked = (resultado.Diario == 1);
-            //                                 tbCodigoBE.Enabled = true; tbCostoElaboracionBE.Text =
-            //                                      resultado.CostoElaboracion.ToString(CultureInfo.InvariantCulture);
-            //                                 btBuscarBE.Enabled = true;
-            //                             }));
-            //                         }, false);
-            //                    brd.Show();
-            //                    break;
-            //                default:
-            //                    MessageBox.Show(this, @"No se encontraron recetas con los parametros de busqueda ingresados");
-            //                    Console.WriteLine(jsonResult.Content);
-            //                    break;
-            //            }
-
-            //        }));
-            ////    });
 
         }
 
@@ -174,6 +134,7 @@ namespace ExcelAddIn1
             txtbuscarcongelado.Focus();
         }
 
+<<<<<<< HEAD
         //private void BuscarCongelado(Action<Inputs> actualizarInputs, Inputs parametros)
         //{
         //    Cocina.Platillos.Listado = parametros.Nombre.Text.Trim();
@@ -212,5 +173,51 @@ namespace ExcelAddIn1
         //                }));
         //            });
         //    }
+=======
+        private void btbuscareditar_Click(object sender, EventArgs e)
+        {
+            Cocina.buscarcongelados.descripcion = txtbuscarcongelado.Text == string.Empty ? "%" : txtbuscarcongelado.Text;  /* asigna la clave a la variable estatica*/
+            Opcion.EjecucionAsync(Data.ReporteCocina.Buscarcongelados, jsonResult => /* se ejecuta Data.Receta.Lista, el resultado se guarda en jsonResult*/
+            {
+                BeginInvoke((MethodInvoker)(() =>  
+                {
+                    switch (jsonResult.StatusCode) 
+                    {
+                        case HttpStatusCode.OK: 
+                            var brd = /*aqui que ondas */
+                             new BusquedaRecetaDetalle(Opcion.JsonaListaGenerica<Receta>(jsonResult), /*esta parte no le entiendo*/
+                                 resultado =>
+                                 {
+                                     BeginInvoke((MethodInvoker)(() => /*se manda llamar de nuevo a la interfaz*/
+                                     {
+                                         dgvcongelados.DataSource = resultado.Ingredientes /*ni estas*/
+                                          .Select(x => new Articulo.Basica  /*de la tabla se seleccionan ciertos valores */
+                                          {
+                                             Clave=x.Clave,
+                                             Descripcion=x.Descripcion
+                                            
+                                          }).ToList();
+                                         //tbPrecioBE.Text = resultado.Precio.ToString(CultureInfo.InvariantCulture); /*se asignan los valores a los textbox,*/
+                                         //tbDescripcionBE.Text = resultado.Descripcion;
+                                         //tbPesoLitroBE.Text = resultado.PesoLitro.ToString(CultureInfo.InvariantCulture);
+                                         //tbMargenConPrecioBE.Text = resultado.Margen.ToString(CultureInfo.InvariantCulture);
+                                         //chDiarioBE.Checked = (resultado.Diario == 1);
+                                         //tbCodigoBE.Enabled = true; tbCostoElaboracionBE.Text =
+                                         //     resultado.CostoElaboracion.ToString(CultureInfo.InvariantCulture);
+                                         //btBuscarBE.Enabled = true;
+                                     }));
+                                 }, true);
+                            brd.Show(); /*se muestra*/
+                            break;
+                        default:
+                            MessageBox.Show(this, @"No se encontraron recetas con los parametros de busqueda ingresados");
+                            Console.WriteLine(jsonResult.Content);
+                            break;
+                    }
+
+                }));
+            });
+        }
+>>>>>>> origin/master
     }
 }

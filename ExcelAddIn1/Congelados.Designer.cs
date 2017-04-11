@@ -37,7 +37,7 @@
             this.txtbuscarcongelado = new System.Windows.Forms.TextBox();
             this.tabPage2 = new System.Windows.Forms.TabPage();
             this.btguardareditar = new System.Windows.Forms.Button();
-            this.dataGridView2 = new System.Windows.Forms.DataGridView();
+            this.dgvcongeladobuscaryeditar = new System.Windows.Forms.DataGridView();
             this.ColumnClave = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.ColumnDescripcion = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.ColumnExistencia = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -46,11 +46,16 @@
             this.txtbuscarcongeladoeditar = new System.Windows.Forms.TextBox();
             this.label2 = new System.Windows.Forms.Label();
             this.btbuscareditar = new System.Windows.Forms.Button();
+            this.ColumnDato = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.ColumnNOMBRE = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.ColumnStatus = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.ColumnCantidad = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.ColumFecha = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvcongelados)).BeginInit();
             this.tabPage2.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView2)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvcongeladobuscaryeditar)).BeginInit();
             this.SuspendLayout();
             // 
             // tabControl1
@@ -89,6 +94,12 @@
             // dgvcongelados
             // 
             this.dgvcongelados.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dgvcongelados.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.ColumnDato,
+            this.ColumnNOMBRE,
+            this.ColumnStatus,
+            this.ColumnCantidad,
+            this.ColumFecha});
             this.dgvcongelados.Location = new System.Drawing.Point(29, 81);
             this.dgvcongelados.Name = "dgvcongelados";
             this.dgvcongelados.Size = new System.Drawing.Size(562, 161);
@@ -116,7 +127,7 @@
             // tabPage2
             // 
             this.tabPage2.Controls.Add(this.btguardareditar);
-            this.tabPage2.Controls.Add(this.dataGridView2);
+            this.tabPage2.Controls.Add(this.dgvcongeladobuscaryeditar);
             this.tabPage2.Controls.Add(this.txtbuscarcongeladoeditar);
             this.tabPage2.Controls.Add(this.label2);
             this.tabPage2.Controls.Add(this.btbuscareditar);
@@ -137,19 +148,19 @@
             this.btguardareditar.Text = "Guardar";
             this.btguardareditar.UseVisualStyleBackColor = true;
             // 
-            // dataGridView2
+            // dgvcongeladobuscaryeditar
             // 
-            this.dataGridView2.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView2.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.dgvcongeladobuscaryeditar.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dgvcongeladobuscaryeditar.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.ColumnClave,
             this.ColumnDescripcion,
             this.ColumnExistencia,
             this.ColumnEstado,
             this.Columnfecha});
-            this.dataGridView2.Location = new System.Drawing.Point(21, 71);
-            this.dataGridView2.Name = "dataGridView2";
-            this.dataGridView2.Size = new System.Drawing.Size(577, 141);
-            this.dataGridView2.TabIndex = 3;
+            this.dgvcongeladobuscaryeditar.Location = new System.Drawing.Point(21, 71);
+            this.dgvcongeladobuscaryeditar.Name = "dgvcongeladobuscaryeditar";
+            this.dgvcongeladobuscaryeditar.Size = new System.Drawing.Size(577, 141);
+            this.dgvcongeladobuscaryeditar.TabIndex = 3;
             // 
             // ColumnClave
             // 
@@ -200,6 +211,32 @@
             this.btbuscareditar.TabIndex = 0;
             this.btbuscareditar.Text = "Buscar";
             this.btbuscareditar.UseVisualStyleBackColor = true;
+            this.btbuscareditar.Click += new System.EventHandler(this.btbuscareditar_Click);
+            // 
+            // ColumnDato
+            // 
+            this.ColumnDato.HeaderText = "Clave";
+            this.ColumnDato.Name = "ColumnDato";
+            // 
+            // ColumnNOMBRE
+            // 
+            this.ColumnNOMBRE.HeaderText = "Nombre";
+            this.ColumnNOMBRE.Name = "ColumnNOMBRE";
+            // 
+            // ColumnStatus
+            // 
+            this.ColumnStatus.HeaderText = "Estado";
+            this.ColumnStatus.Name = "ColumnStatus";
+            // 
+            // ColumnCantidad
+            // 
+            this.ColumnCantidad.HeaderText = "Cantidad";
+            this.ColumnCantidad.Name = "ColumnCantidad";
+            // 
+            // ColumFecha
+            // 
+            this.ColumFecha.HeaderText = "Fecha";
+            this.ColumFecha.Name = "ColumFecha";
             // 
             // Congelados
             // 
@@ -217,7 +254,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.dgvcongelados)).EndInit();
             this.tabPage2.ResumeLayout(false);
             this.tabPage2.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView2)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvcongeladobuscaryeditar)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -232,7 +269,7 @@
         private System.Windows.Forms.Button btguardaragregar;
         private System.Windows.Forms.DataGridView dgvcongelados;
         private System.Windows.Forms.Button btguardareditar;
-        private System.Windows.Forms.DataGridView dataGridView2;
+        private System.Windows.Forms.DataGridView dgvcongeladobuscaryeditar;
         private System.Windows.Forms.TextBox txtbuscarcongeladoeditar;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Button btbuscareditar;
@@ -241,5 +278,10 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn ColumnExistencia;
         private System.Windows.Forms.DataGridViewTextBoxColumn ColumnEstado;
         private System.Windows.Forms.DataGridViewTextBoxColumn Columnfecha;
+        private System.Windows.Forms.DataGridViewTextBoxColumn ColumnDato;
+        private System.Windows.Forms.DataGridViewTextBoxColumn ColumnNOMBRE;
+        private System.Windows.Forms.DataGridViewTextBoxColumn ColumnStatus;
+        private System.Windows.Forms.DataGridViewTextBoxColumn ColumnCantidad;
+        private System.Windows.Forms.DataGridViewTextBoxColumn ColumFecha;
     }
 }

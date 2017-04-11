@@ -33,10 +33,15 @@
             PresentationControls.CheckBoxProperties checkBoxProperties1 = new PresentationControls.CheckBoxProperties();
             PresentationControls.CheckBoxProperties checkBoxProperties2 = new PresentationControls.CheckBoxProperties();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MenuSemanal));
+<<<<<<< HEAD
             this.cmbManual = new PresentationControls.CheckBoxComboBox();
             this.Dtpikerinicio = new System.Windows.Forms.DateTimePicker();
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
             this.dgvViernes = new System.Windows.Forms.DataGridView();
+=======
+            this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
+            this.dvgViernes = new System.Windows.Forms.DataGridView();
+>>>>>>> origin/master
             this.TipoViernes = new System.Windows.Forms.DataGridViewComboBoxColumn();
             this.PlatilloViernes = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.UltimaElaboracionViernes = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -76,7 +81,11 @@
             this.UnidadMedidaDomingo = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.PrecioDomingo = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.GananciaDomingo = new System.Windows.Forms.DataGridViewTextBoxColumn();
+<<<<<<< HEAD
             this.dgvLunes = new System.Windows.Forms.DataGridView();
+=======
+            this.dvgLunes = new System.Windows.Forms.DataGridView();
+>>>>>>> origin/master
             this.TipoLunes = new System.Windows.Forms.DataGridViewComboBoxColumn();
             this.PlatilloLunes = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.UlimaElaboracionLunes = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -108,10 +117,14 @@
             this.LabelDomingo = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
             this.panel1 = new System.Windows.Forms.Panel();
+<<<<<<< HEAD
             this.label4 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.comboBox1 = new PresentationControls.CheckBoxComboBox();
+=======
+            this.dtpsegundon = new System.Windows.Forms.DateTimePicker();
+>>>>>>> origin/master
             this.tableLayoutPanel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvViernes)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgvJueves)).BeginInit();
@@ -123,6 +136,7 @@
             this.panel1.SuspendLayout();
             this.SuspendLayout();
             // 
+<<<<<<< HEAD
             // cmbManual
             // 
             checkBoxProperties1.ForeColor = System.Drawing.SystemColors.ControlText;
@@ -143,6 +157,8 @@
             this.Dtpikerinicio.TabIndex = 0;
             this.Dtpikerinicio.ValueChanged += new System.EventHandler(this.Dtpikerinicio_ValueChanged);
             // 
+=======
+>>>>>>> origin/master
             // tableLayoutPanel1
             // 
             this.tableLayoutPanel1.ColumnCount = 3;
@@ -186,10 +202,17 @@
             this.tableLayoutPanel1.Size = new System.Drawing.Size(1354, 633);
             this.tableLayoutPanel1.TabIndex = 3;
             // 
+<<<<<<< HEAD
             // dgvViernes
             // 
             this.dgvViernes.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgvViernes.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+=======
+            // dvgViernes
+            // 
+            this.dvgViernes.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dvgViernes.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+>>>>>>> origin/master
             this.TipoViernes,
             this.PlatilloViernes,
             this.UltimaElaboracionViernes,
@@ -454,10 +477,17 @@
             this.GananciaDomingo.HeaderText = "Ganacia";
             this.GananciaDomingo.Name = "GananciaDomingo";
             // 
+<<<<<<< HEAD
             // dgvLunes
             // 
             this.dgvLunes.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgvLunes.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+=======
+            // dvgLunes
+            // 
+            this.dvgLunes.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dvgLunes.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+>>>>>>> origin/master
             this.TipoLunes,
             this.PlatilloLunes,
             this.UlimaElaboracionLunes,
@@ -590,7 +620,11 @@
             // 
             this.FechaMartes.AutoSize = true;
             this.FechaMartes.Font = new System.Drawing.Font("Modern No. 20", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+<<<<<<< HEAD
             this.FechaMartes.Location = new System.Drawing.Point(454, 20);
+=======
+            this.FechaMartes.Location = new System.Drawing.Point(457, 20);
+>>>>>>> origin/master
             this.FechaMartes.Name = "FechaMartes";
             this.FechaMartes.Size = new System.Drawing.Size(13, 18);
             this.FechaMartes.TabIndex = 4;
@@ -600,7 +634,11 @@
             // 
             this.LabelMartes.AutoSize = true;
             this.LabelMartes.Font = new System.Drawing.Font("Modern No. 20", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+<<<<<<< HEAD
             this.LabelMartes.Location = new System.Drawing.Point(454, 0);
+=======
+            this.LabelMartes.Location = new System.Drawing.Point(457, 0);
+>>>>>>> origin/master
             this.LabelMartes.Name = "LabelMartes";
             this.LabelMartes.Size = new System.Drawing.Size(69, 18);
             this.LabelMartes.TabIndex = 9;
@@ -610,7 +648,11 @@
             // 
             this.FechaMiercoles.AutoSize = true;
             this.FechaMiercoles.Font = new System.Drawing.Font("Modern No. 20", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+<<<<<<< HEAD
             this.FechaMiercoles.Location = new System.Drawing.Point(905, 20);
+=======
+            this.FechaMiercoles.Location = new System.Drawing.Point(911, 20);
+>>>>>>> origin/master
             this.FechaMiercoles.Name = "FechaMiercoles";
             this.FechaMiercoles.Size = new System.Drawing.Size(13, 18);
             this.FechaMiercoles.TabIndex = 5;
@@ -620,7 +662,11 @@
             // 
             this.LabelMiercoles.AutoSize = true;
             this.LabelMiercoles.Font = new System.Drawing.Font("Modern No. 20", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+<<<<<<< HEAD
             this.LabelMiercoles.Location = new System.Drawing.Point(905, 0);
+=======
+            this.LabelMiercoles.Location = new System.Drawing.Point(911, 0);
+>>>>>>> origin/master
             this.LabelMiercoles.Name = "LabelMiercoles";
             this.LabelMiercoles.Size = new System.Drawing.Size(89, 18);
             this.LabelMiercoles.TabIndex = 10;
@@ -630,7 +676,11 @@
             // 
             this.FechaJueves.AutoSize = true;
             this.FechaJueves.Font = new System.Drawing.Font("Modern No. 20", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+<<<<<<< HEAD
             this.FechaJueves.Location = new System.Drawing.Point(3, 231);
+=======
+            this.FechaJueves.Location = new System.Drawing.Point(3, 233);
+>>>>>>> origin/master
             this.FechaJueves.Name = "FechaJueves";
             this.FechaJueves.Size = new System.Drawing.Size(13, 18);
             this.FechaJueves.TabIndex = 15;
@@ -640,7 +690,11 @@
             // 
             this.LabelJueves.AutoSize = true;
             this.LabelJueves.Font = new System.Drawing.Font("Modern No. 20", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+<<<<<<< HEAD
             this.LabelJueves.Location = new System.Drawing.Point(3, 211);
+=======
+            this.LabelJueves.Location = new System.Drawing.Point(3, 213);
+>>>>>>> origin/master
             this.LabelJueves.Name = "LabelJueves";
             this.LabelJueves.Size = new System.Drawing.Size(65, 18);
             this.LabelJueves.TabIndex = 11;
@@ -650,7 +704,11 @@
             // 
             this.FechaViernes.AutoSize = true;
             this.FechaViernes.Font = new System.Drawing.Font("Modern No. 20", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+<<<<<<< HEAD
             this.FechaViernes.Location = new System.Drawing.Point(454, 231);
+=======
+            this.FechaViernes.Location = new System.Drawing.Point(457, 233);
+>>>>>>> origin/master
             this.FechaViernes.Name = "FechaViernes";
             this.FechaViernes.Size = new System.Drawing.Size(13, 18);
             this.FechaViernes.TabIndex = 5;
@@ -660,7 +718,11 @@
             // 
             this.LabelViernes.AutoSize = true;
             this.LabelViernes.Font = new System.Drawing.Font("Modern No. 20", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+<<<<<<< HEAD
             this.LabelViernes.Location = new System.Drawing.Point(454, 211);
+=======
+            this.LabelViernes.Location = new System.Drawing.Point(457, 213);
+>>>>>>> origin/master
             this.LabelViernes.Name = "LabelViernes";
             this.LabelViernes.Size = new System.Drawing.Size(75, 18);
             this.LabelViernes.TabIndex = 12;
@@ -670,7 +732,11 @@
             // 
             this.FechaSabado.AutoSize = true;
             this.FechaSabado.Font = new System.Drawing.Font("Modern No. 20", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+<<<<<<< HEAD
             this.FechaSabado.Location = new System.Drawing.Point(905, 231);
+=======
+            this.FechaSabado.Location = new System.Drawing.Point(911, 233);
+>>>>>>> origin/master
             this.FechaSabado.Name = "FechaSabado";
             this.FechaSabado.Size = new System.Drawing.Size(13, 18);
             this.FechaSabado.TabIndex = 5;
@@ -680,7 +746,11 @@
             // 
             this.LabelSabado.AutoSize = true;
             this.LabelSabado.Font = new System.Drawing.Font("Modern No. 20", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+<<<<<<< HEAD
             this.LabelSabado.Location = new System.Drawing.Point(905, 211);
+=======
+            this.LabelSabado.Location = new System.Drawing.Point(911, 213);
+>>>>>>> origin/master
             this.LabelSabado.Name = "LabelSabado";
             this.LabelSabado.Size = new System.Drawing.Size(70, 18);
             this.LabelSabado.TabIndex = 13;
@@ -690,7 +760,11 @@
             // 
             this.FechaDomingo.AutoSize = true;
             this.FechaDomingo.Font = new System.Drawing.Font("Modern No. 20", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+<<<<<<< HEAD
             this.FechaDomingo.Location = new System.Drawing.Point(454, 442);
+=======
+            this.FechaDomingo.Location = new System.Drawing.Point(457, 446);
+>>>>>>> origin/master
             this.FechaDomingo.Name = "FechaDomingo";
             this.FechaDomingo.Size = new System.Drawing.Size(13, 18);
             this.FechaDomingo.TabIndex = 5;
@@ -700,7 +774,11 @@
             // 
             this.LabelDomingo.AutoSize = true;
             this.LabelDomingo.Font = new System.Drawing.Font("Modern No. 20", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+<<<<<<< HEAD
             this.LabelDomingo.Location = new System.Drawing.Point(454, 422);
+=======
+            this.LabelDomingo.Location = new System.Drawing.Point(457, 426);
+>>>>>>> origin/master
             this.LabelDomingo.Name = "LabelDomingo";
             this.LabelDomingo.Size = new System.Drawing.Size(85, 18);
             this.LabelDomingo.TabIndex = 14;
@@ -718,18 +796,22 @@
             // 
             // panel1
             // 
+<<<<<<< HEAD
             this.panel1.Controls.Add(this.label4);
             this.panel1.Controls.Add(this.label3);
             this.panel1.Controls.Add(this.label2);
             this.panel1.Controls.Add(this.comboBox1);
+=======
+            this.panel1.Controls.Add(this.dtpsegundon);
+>>>>>>> origin/master
             this.panel1.Controls.Add(this.label1);
-            this.panel1.Controls.Add(this.Dtpikerinicio);
             this.panel1.Dock = System.Windows.Forms.DockStyle.Top;
             this.panel1.Location = new System.Drawing.Point(0, 0);
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(1354, 100);
             this.panel1.TabIndex = 4;
             // 
+<<<<<<< HEAD
             // label4
             // 
             this.label4.AutoSize = true;
@@ -768,6 +850,15 @@
             this.comboBox1.TabIndex = 3;
             this.comboBox1.SelectedIndexChanged += new System.EventHandler(this.comboBox1_SelectedIndexChanged);
             this.comboBox1.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.comboBox1_KeyPress);
+=======
+            // dtpsegundon
+            // 
+            this.dtpsegundon.Location = new System.Drawing.Point(621, 23);
+            this.dtpsegundon.Name = "dtpsegundon";
+            this.dtpsegundon.Size = new System.Drawing.Size(200, 20);
+            this.dtpsegundon.TabIndex = 3;
+            this.dtpsegundon.ValueChanged += new System.EventHandler(this.dtpsegundon_ValueChanged);
+>>>>>>> origin/master
             // 
             // MenuSemanal
             // 
@@ -797,8 +888,6 @@
         }
 
         #endregion
-
-        private System.Windows.Forms.DateTimePicker Dtpikerinicio;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel1;
         private System.Windows.Forms.DataGridView dgvSabado;
         private System.Windows.Forms.DataGridView dgvViernes;
@@ -872,10 +961,14 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn UnidadMedidaSabado;
         private System.Windows.Forms.DataGridViewTextBoxColumn PrecioSabado;
         private System.Windows.Forms.DataGridViewTextBoxColumn GananciaSabado;
+<<<<<<< HEAD
         private PresentationControls.CheckBoxComboBox cmbManual;
         private PresentationControls.CheckBoxComboBox comboBox1;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label label2;
+=======
+        private System.Windows.Forms.DateTimePicker dtpsegundon;
+>>>>>>> origin/master
     }
 }

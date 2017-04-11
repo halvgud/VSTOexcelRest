@@ -198,6 +198,9 @@ namespace Data
             }
         }
 
+        
+
+
         public static void ActualizarUltimoRegistro(Action<IRestResponse> callback,Respuesta.Reporte.General repGeneral)
         {
             try

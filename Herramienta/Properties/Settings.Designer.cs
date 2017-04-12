@@ -319,12 +319,17 @@ namespace Herramienta.Properties {
                 return ((string)(this["listaplatillos"]));
             }
         }
+<<<<<<< HEAD
+=======
+        
+>>>>>>> origin/master
         [global::System.Configuration.ApplicationScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.DefaultSettingValueAttribute("receta/seleccionarmenu")]
         public string menu {
             get {
                 return ((string)(this["menu"]));
+<<<<<<< HEAD
                 }
          }
             [global::System.Configuration.ApplicationScopedSettingAttribute()]
@@ -341,6 +346,20 @@ namespace Herramienta.Properties {
             
             }
         } 
+=======
+            }
+        }
+        
+        [global::System.Configuration.ApplicationScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("reporte/Sacarcongelado")]
+        public string buscarcongelados {
+            get {
+                return ((string)(this["buscarcongelados"]));
+            }
+        }
+    }
+>>>>>>> origin/master
 }
 
 

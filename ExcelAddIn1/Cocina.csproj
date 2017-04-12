@@ -133,7 +133,7 @@
     <Reference Include="Accessibility" />
     <Reference Include="CheckBoxComboBox, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>bin\Debug\CheckBoxComboBox.dll</HintPath>
+      <HintPath>..\Data\bin\Debug\CheckBoxComboBox.dll</HintPath>
     </Reference>
     <Reference Include="RestSharp, Version=105.2.3.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>

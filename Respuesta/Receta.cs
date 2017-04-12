@@ -18,7 +18,7 @@ namespace Respuesta
         public int Diario { get; set; }
         public double Cantidad { get; set; }
         public List<Detalle> Ingredientes { get; set; }
-        public List<Congelados> ListaCongelados { get; set; }
+        //public List<Congelados> ListaCongelados { get; set; }
         public  string ModoElaboracion { get; set; }
         public  List<Semana> ListaSemana { get; set; } 
         public Basica CopiadoSencillo()
@@ -50,6 +50,7 @@ namespace Respuesta
             public double PrecioTotal { get; set; }
        }
 
+<<<<<<< HEAD
         public class Semana
         {
             public static DateTime Lunes { get; set; }
@@ -80,3 +81,32 @@ namespace Respuesta
             public List<Congelados> ListaCongelados { get; set; }
         }
  }}
+=======
+
+       public class MenuDia
+       {
+           public string Tipo { get; set; }
+           public string Platillo { get; set; }
+           public int Fecha { get; set; }
+           public int Cantidad { get; set; }
+           public string Unidad { get; set; }
+           public int Precio { get; set; }
+           public int Ganancia { get; set; }
+       }
+
+
+       public class Congelados
+           {
+
+               public string clave { get; set; }
+               public string descripcion { get; set; }
+               public double cantidad { get; set; }
+               public int status { get; set; }
+               public DateTime fechaEntrada { get; set; }
+               public List<Congelados> ListaCongelados { get; set; }
+           }
+
+       }
+    
+}
+>>>>>>> origin/master

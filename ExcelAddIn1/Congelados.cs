@@ -74,14 +74,14 @@ namespace ExcelAddIn1
 
         private void txtbuscarcongelado_Enter(object sender, EventArgs e)
         {
-<<<<<<< HEAD
+
             //Local.Receta.clave = txtbuscarcongelado.Text == string.Empty ? "%" : txtbuscarcongelado.Text;
             //Opcion.EjecucionAsync(Data.Receta.Lista, jsonResult =>
-=======
+
 
             //Local.Receta.clave = txtbuscarcongelado.Text == string.Empty ? "%" : txtbuscarcongelado.Text;  /* asigna la clave a la variable estatica*/
             //Opcion.EjecucionAsync(Data.Receta.Lista, jsonResult => /* se ejecuta Data.Receta.Lista, el resultado se guarda en jsonResult*/
->>>>>>> origin/master
+
             //{
             //    BeginInvoke((MethodInvoker)(() =>  /*se manda llamar al hilo de la UI*/
             //    {
@@ -143,7 +143,7 @@ namespace ExcelAddIn1
             txtbuscarcongelado.Focus();
         }
 
-<<<<<<< HEAD
+
         //private void BuscarCongelado(Action<Inputs> actualizarInputs, Inputs parametros)
         //{
         //    Cocina.Platillos.Listado = parametros.Nombre.Text.Trim();
@@ -182,7 +182,7 @@ namespace ExcelAddIn1
         //                }));
         //            });
         //    }
-=======
+
         private void btbuscareditar_Click(object sender, EventArgs e)
         {
 
@@ -289,6 +289,5 @@ namespace ExcelAddIn1
             //    }));
             //});
         }
->>>>>>> origin/master
     }
 }

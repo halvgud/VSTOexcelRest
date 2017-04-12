@@ -98,16 +98,15 @@
     <Setting Name="prueba" Type="System.String" Scope="Application">
       <Value Profile="(Default)">prueba/seleccionar</Value>
     </Setting>
-    <Setting Name="listaplatillos" Type="System.String" Scope="Application">
+   <Setting Name="listaplatillos" Type="System.String" Scope="Application">
       <Value Profile="(Default)">reporte/seleccionarplatillo</Value>
     </Setting>
-<<<<<<< HEAD
+
     <Setting Name="menu" Type="System.String" Scope="Application">
       <Value Profile="(Default)">receta/seleccionarmenu</Value>
-=======
+      </Setting>
     <Setting Name="buscarcongelados" Type="System.String" Scope="User">
       <Value Profile="(Default)">reporte/Sacarcongelado</Value>
->>>>>>> origin/master
     </Setting>
   </Settings>
 </SettingsFile>

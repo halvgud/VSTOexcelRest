@@ -547,16 +547,8 @@ Opcion.EjecucionAsync(Data.Receta.Lista, jsonResult =>
         {
             return tbCodigoBE.Text.Trim().Length > 0;
         }
-        private void tbBuscarReceta_KeyPress(object sender, KeyPressEventArgs e)
-        {
-            if (e.KeyChar == 13 && ValidarBusquedaVacia1())
-            {
-                btBuscarClave_Click(sender, new EventArgs());
-            }
-
-        }
         private void tbCodigoBE_TextChanged(object sender, EventArgs e)
-        {
+{
             btBuscarBE.Enabled = ValidarBusquedaVacia1();
         }
         private void tbCodigoBE_KeyPress(object sender, KeyPressEventArgs e)
@@ -582,5 +574,14 @@ Opcion.EjecucionAsync(Data.Receta.Lista, jsonResult =>
                 PrecioSugerido = tbPrecioSugerido
             });
         }
+
+        private void tbBuscarReceta_KeyPress_1(object sender, KeyPressEventArgs e)
+        {
+            if (e.KeyChar == 13 && ValidarBusquedaVacia1())
+            {
+                btBuscarClave_Click(sender, new EventArgs());
+            }
+        }
+
     }
 }

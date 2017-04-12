@@ -269,6 +269,7 @@
             this.cbTipoBE.Name = "cbTipoBE";
             this.cbTipoBE.Size = new System.Drawing.Size(100, 21);
             this.cbTipoBE.TabIndex = 47;
+
             // 
             // tbPesoLitroBE
             // 
@@ -446,6 +447,7 @@
             this.tbBuscarReceta.Name = "tbBuscarReceta";
             this.tbBuscarReceta.Size = new System.Drawing.Size(131, 20);
             this.tbBuscarReceta.TabIndex = 5;
+            this.tbBuscarReceta.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.tbBuscarReceta_KeyPress_1);
             // 
             // label3
             // 

@@ -110,7 +110,7 @@
             this.label4 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
-            this.comboBox1 = new PresentationControls.CheckBoxComboBox();
+            this.cbDias = new PresentationControls.CheckBoxComboBox();
             this.DtpFecha = new System.Windows.Forms.DateTimePicker();
             this.tableLayoutPanel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvViernes)).BeginInit();
@@ -713,7 +713,7 @@
             this.panel1.Controls.Add(this.label4);
             this.panel1.Controls.Add(this.label3);
             this.panel1.Controls.Add(this.label2);
-            this.panel1.Controls.Add(this.comboBox1);
+            this.panel1.Controls.Add(this.cbDias);
             this.panel1.Controls.Add(this.DtpFecha);
             this.panel1.Controls.Add(this.label1);
             this.panel1.Dock = System.Windows.Forms.DockStyle.Top;
@@ -748,18 +748,17 @@
             this.label2.Size = new System.Drawing.Size(0, 13);
             this.label2.TabIndex = 4;
             // 
-            // comboBox1
+            // cbDias
             // 
             checkBoxProperties2.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.comboBox1.CheckBoxProperties = checkBoxProperties2;
-            this.comboBox1.DisplayMemberSingleItem = "";
-            this.comboBox1.FormattingEnabled = true;
-            this.comboBox1.Location = new System.Drawing.Point(620, 55);
-            this.comboBox1.Name = "comboBox1";
-            this.comboBox1.Size = new System.Drawing.Size(121, 21);
-            this.comboBox1.TabIndex = 3;
-            this.comboBox1.SelectedIndexChanged += new System.EventHandler(this.comboBox1_SelectedIndexChanged);
-            this.comboBox1.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.comboBox1_KeyPress);
+            this.cbDias.CheckBoxProperties = checkBoxProperties2;
+            this.cbDias.DisplayMemberSingleItem = "";
+            this.cbDias.FormattingEnabled = true;
+            this.cbDias.Location = new System.Drawing.Point(620, 55);
+            this.cbDias.Name = "cbDias";
+            this.cbDias.Size = new System.Drawing.Size(121, 21);
+            this.cbDias.TabIndex = 3;
+            this.cbDias.SelectedIndexChanged += new System.EventHandler(this.cbDias_SelectedIndexChanged);
             // 
             // DtpFecha
             // 
@@ -872,7 +871,7 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn GananciaSabado;
 
         private PresentationControls.CheckBoxComboBox cmbManual;
-        private PresentationControls.CheckBoxComboBox comboBox1;
+        private PresentationControls.CheckBoxComboBox cbDias;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label label2;

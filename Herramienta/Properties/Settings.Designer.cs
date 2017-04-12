@@ -319,26 +319,28 @@ namespace Herramienta.Properties {
                 return ((string)(this["listaplatillos"]));
             }
         }
-        
-<<<<<<< HEAD
         [global::System.Configuration.ApplicationScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.DefaultSettingValueAttribute("receta/seleccionarmenu")]
         public string menu {
             get {
                 return ((string)(this["menu"]));
-=======
-        [global::System.Configuration.UserScopedSettingAttribute()]
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("reporte/Sacarcongelado")]
+                }
+         }
+            [global::System.Configuration.ApplicationScopedSettingAttribute()]
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.Configuration.DefaultSettingValueAttribute("reporte/Sacarcongelado")]
         public string buscarcongelados {
             get {
                 return ((string)(this["buscarcongelados"]));
-            }
+                }
             set {
+
                 this["buscarcongelados"] = value;
->>>>>>> origin/master
+                }
+            
             }
-        }
-    }
+        } 
 }
+
+

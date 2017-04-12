@@ -1,4 +1,6 @@
-﻿namespace Herramienta
+﻿using System;
+
+namespace Herramienta
 {
     namespace Config
     {
@@ -79,7 +81,7 @@
                     public static string Guardar { get; set; } = Properties.Settings.Default.PrecioMargenGuardar;
                 }
             }
-
+           
             public static class Receta
             {
                 public static string Lista { get; set; } = Properties.Settings.Default.RecetaLista;

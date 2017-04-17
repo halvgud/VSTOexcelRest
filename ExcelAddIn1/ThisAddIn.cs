@@ -35,10 +35,14 @@ namespace ExcelAddIn1
             _reportes = new List<Reportes> {
             new Reportes {Nombre = "ReporteCocina"},
             new Reportes {Nombre= "Recetario"},
+
+            //Comentar despues de usar
             //new Reportes {Nombre="DetalleMenu"}
             };
             _reporteReceta = new SideBarReporteReceta();
             _recetario = new SideBarRecetario();
+
+            //Comentar despues de usar
             //_detallemenu = new DetalleMenu();
 
             ReporteReceta = CustomTaskPanes.Add(_reporteReceta, "Reporte Cocina");
@@ -47,6 +51,8 @@ namespace ExcelAddIn1
             Recetario = CustomTaskPanes.Add(_recetario, "Recetario");
             Recetario.Visible = false;
             Recetario.Width = 280;
+
+            //comentar desp
             //DetalleMenu = CustomTaskPanes.Add(_detallemenu, "Detalle Menu");
             //DetalleMenu.Visible = false;
             //DetalleMenu.Width = 280;

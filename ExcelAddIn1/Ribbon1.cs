@@ -53,11 +53,16 @@ namespace ExcelAddIn1
         }
         //public void DetalleMenu(Office.IRibbonControl control)
         //{
-        //    ThisAddIn.DetalleMenu.Visible = true;
+        //    //ThisAddIn.DetalleMenu.Visible = true;
         //    ThisAddIn.ReporteReceta.Visible = false;
         //    ThisAddIn.Recetario.Visible = false;
-            
 
+
+        //}
+
+        //public void PRUEBA(Office.IRibbonControl control)
+        //{
+        //    ThisAddIn.Recetario
         //}
 
         public void AbrirMenuSemanal(Office.IRibbonControl control)

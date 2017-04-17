@@ -268,6 +268,13 @@ namespace ExcelAddIn1
                                      {
                                          dgvcongeladobuscaryeditar.DataSource = resultado /*ni estas*/
                                           .ToList();
+
+                                         dgvcongeladobuscaryeditar.Columns[0].ReadOnly = true;
+                                         dgvcongeladobuscaryeditar.Columns[1].ReadOnly = true;
+                                         dgvcongeladobuscaryeditar.Columns[2].ReadOnly = true;
+                                         dgvcongeladobuscaryeditar.Columns[3].ReadOnly = true;
+
+
                                          //tbPrecioBE.Text = resultado.Precio.ToString(CultureInfo.InvariantCulture); /*se asignan los valores a los textbox,*/
                                          //tbDescripcionBE.Text = resultado.Descripcion;
                                          //tbPesoLitroBE.Text = resultado.PesoLitro.ToString(CultureInfo.InvariantCulture);

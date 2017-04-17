@@ -125,12 +125,13 @@
             // 
             // btguardareditar
             // 
-            this.btguardareditar.Location = new System.Drawing.Point(223, 251);
+            this.btguardareditar.Location = new System.Drawing.Point(512, 233);
             this.btguardareditar.Name = "btguardareditar";
-            this.btguardareditar.Size = new System.Drawing.Size(75, 23);
+            this.btguardareditar.Size = new System.Drawing.Size(86, 28);
             this.btguardareditar.TabIndex = 4;
             this.btguardareditar.Text = "Guardar";
             this.btguardareditar.UseVisualStyleBackColor = true;
+            this.btguardareditar.Click += new System.EventHandler(this.btguardareditar_Click);
             // 
             // dgvcongeladobuscaryeditar
             // 

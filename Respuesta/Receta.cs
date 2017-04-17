@@ -50,7 +50,7 @@ namespace Respuesta
             public double PrecioTotal { get; set; }
        }
 
-<<<<<<< HEAD
+
         public class Semana
         {
             public static DateTime Lunes { get; set; }
@@ -73,15 +73,18 @@ namespace Respuesta
          }
         public class Congelados
         {
+            public int estado_id { get; set; }
             public string clave { get; set; }
             public string descripcion { get; set; }
             public double cantidad { get; set; }
-            public int status { get; set; }
+            public string status { get; set; }/*te lo cambie a string, con eso agarrara*/
+            /*aqui estas confundiendo el status de activo e inactivo con el ESTADO de Congelado y los otros que hipoteticamente pudieran crearse :P*/
             public DateTime fechaEntrada { get; set; }
             public List<Congelados> ListaCongelados { get; set; }
         }
- }}
-=======
+ }
+}
+
 
        public class MenuDia
        {
@@ -95,18 +98,9 @@ namespace Respuesta
        }
 
 
-       public class Congelados
-           {
+      
 
-               public string clave { get; set; }
-               public string descripcion { get; set; }
-               public double cantidad { get; set; }
-               public string status { get; set; }
-               public DateTime fechaEntrada { get; set; }
-               public List<Congelados> ListaCongelados { get; set; }
-           }
-
-       }
+       
     
-}
->>>>>>> origin/master
+
+

@@ -14,11 +14,11 @@ namespace ExcelAddIn1
         private readonly List<Receta.Congelados> _claveCongelados;
         private readonly Action<Receta> _callback;
         private readonly Action<Receta.Congelados> _callbackCongelados;
-<<<<<<< HEAD
+
         private readonly bool _banderaCongelados;
-=======
+
         //private readonly bool _banderaCongelados ;
->>>>>>> origin/master
+
         public BusquedaRecetaDetalle(List<Receta> clave, Action<Receta> callback,bool mostrarCantidad)
         {
                 _clave = clave;

@@ -98,5 +98,36 @@ namespace Data
             }
         }
 
+        public static void ActualizarCongelado(Action<IRestResponse> callback)
+        {
+            try
+            {
+                var rest = new Rest(Local.Api.UrlApi, Herramienta.Config.Cocina.buscarcongelados.cambioexistencia,
+                    Method.POST);
+                rest.Peticion.AddHeader(Constantes.Http.ObtenerTipoDeContenido,
+                    Constantes.Http.TipoDeContenido.Json);
+                rest.Peticion.AddJsonBody(new { existencia = Cocina.buscarcongelados.descripcion });
+                rest.Peticion.AddJsonBody(new { estado_id = Cocina.buscarcongelados.descripcion });
+                // rest.Peticion.AddJsonBody(repGeneral);
+                rest.Cliente.ExecuteAsync(rest.Peticion, response =>
+                {
+                    switch (response.StatusCode)
+                    {
+                        case HttpStatusCode.OK:
+                            callback(response);
+                            break;
+                        default:
+                            callback(null);
+                            break;
+                    }
+                });
+            }
+            catch (Exception e)
+            {
+                Opcion.Log(Log.Interno.Categoria, "EXCEPCION: " + e.Message);
+                callback(null);
+            }
+        }
+
     }
 }

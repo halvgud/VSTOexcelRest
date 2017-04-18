@@ -337,5 +337,14 @@ namespace Herramienta.Properties {
                 return ((string)(this["buscarcongelados"]));
             }
         }
+        
+        [global::System.Configuration.ApplicationScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("articulo/actualizarcongelados")]
+        public string ActualizarCongelado {
+            get {
+                return ((string)(this["ActualizarCongelado"]));
+            }
+        }
     }
 }

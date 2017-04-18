@@ -170,7 +170,11 @@ namespace Data
             catch (Exception e)
             {
                 Opcion.Log(Log.Interno.Categoria, "EXCEPCION: " + e.Message);
-                // callback("CONTINUAR");
+                // callback("CONTINUAR"    );
+
+//                {
+//                    "descripcion":"chuletas"
+//}
             }
         }
 

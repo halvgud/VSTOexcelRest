@@ -40,7 +40,7 @@ namespace Herramienta
 
         public static List<T> JsonaListaGenerica<T>(IRestResponse json)
         {
-            List<T> x=new List<T>();
+          List<T> x=new List<T>();
             try
             {
                 var desSerializer = new JsonDeserializer();

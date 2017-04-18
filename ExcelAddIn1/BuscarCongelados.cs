@@ -12,12 +12,13 @@ namespace ExcelAddIn1
     {
         private readonly List<Respuesta.Receta.Congelados> _listaCongelados;
         private readonly Action<List<Respuesta.Receta.Congelados>> _callback;
-        public BuscarCongelados(List<Respuesta.Receta.Congelados> listaCongeladoses, Action<List<Respuesta.Receta.Congelados>> callback)
+        public BuscarCongelados(List<Respuesta.Receta.Congelados> listaCongelados, Action<List<Respuesta.Receta.Congelados>> callback)
         {
-            _listaCongelados = listaCongeladoses;
+            /*checa en la conversion de jsonResult a List... me suena que por ahi esta tronando porque aqui ya no trae registros*/
+            _listaCongelados = listaCongelados;
             _callback = callback;
             InitializeComponent();
-           dgvbuscar_congelados.DataSource = _listaCongelados.Select(x => new { x.clave, x.descripcion, x.status, x.cantidad, x.fechaEntrada }).ToArray();
+           dgvbuscar_congelados.DataSource = _listaCongelados.ToArray();
            dgvbuscar_congelados.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
         }
 

@@ -107,5 +107,8 @@
     <Setting Name="buscarcongelados" Type="System.String" Scope="Application">
       <Value Profile="(Default)">reporte/Sacarcongelado</Value>
     </Setting>
+    <Setting Name="ActualizarCongelado" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">articulo/actualizarcongelados</Value>
+    </Setting>
   </Settings>
 </SettingsFile>

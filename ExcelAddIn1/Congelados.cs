@@ -185,73 +185,6 @@ namespace ExcelAddIn1
 
         private void btbuscareditar_Click(object sender, EventArgs e)
         {
-
-
-            //          public BuscarArticulo(List<Articulo> listaArticulo, Action<List<Articulo>> callback)
-            //{
-            //    _listaArticulo = listaArticulo;
-            //    _callback = callback;
-            //    InitializeComponent();
-            //    dgvListaArticulos.DataSource = _listaArticulo.Select(x => new { x.clave, x.descripcion, x.precioCompra }).ToArray();
-            //    dgvListaArticulos.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
-            //}
-            // BUSCAR ARTICULO
-            //_listaArticulo = listaArticulo;
-            //_callback = callback;
-            //InitializeComponent();
-            //dgvListaArticulos.DataSource = _listaArticulo.Select(x => new { x.clave, x.descripcion, x.precioCompra }).ToArray();
-            //dgvListaArticulos.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
-            /**
-             aqui en lugar de lo que tienes abajo vas a poner esto*/
-
-            Cocina.buscarcongelados.descripcion = txtbuscarcongeladoeditar.Text == string.Empty ? "%" : txtbuscarcongeladoeditar.Text;
-
-            /*Opcion.EjecucionAsync(Data.ReporteCocina.Buscarcongelados, jsonResult =>
-            {
-                BeginInvoke((MethodInvoker)(() =>
-                {
-                    var brd = new BuscarCongelados(Opcion.JsonaListaGenerica<Receta.Congelados>(jsonResult), listaArticulo =>
-                      {
-                          BeginInvoke((MethodInvoker)(() =>
-                         {
-                             dgvcongeladobuscaryeditar.DataSource = Receta.Congelados2.ToList();
-                             //_listaArticuloBasica1 = parametros.Ingredientes.DataSource as List<Articulo.Basica>;
-                             //_listaArticuloBasica2 = (listaArticulo.Select(x => x.CopiadoSencillo()).ToList());
-                             //if (_listaArticuloBasica1 != null)
-                             //{
-                             //    _listaArticuloBasica2.AddRange(_listaArticuloBasica1);
-                             //}
-                             //parametros.Ingredientes.DataSource = _listaArticuloBasica2
-                             //        .GroupBy(p => p.ArtId)
-                             //        .Select(g => new Articulo.Basica
-                             //        {
-                             //            ArtId = g.Key,
-                             //            Clave = g.First().Clave,
-                             //            Descripcion = g.First().Descripcion,
-                             //            PrecioCompra = g.First().PrecioCompra,
-                             //            Cantidad = g.Sum(i => i.Cantidad)
-                             //        }).ToList();
-                             //for (var x = 0; x == 3; x++)
-                             //{
-                             //    parametros.Ingredientes.Columns[x].ReadOnly = true;
-                             //    parametros.Ingredientes.Columns[x].DefaultCellStyle.BackColor = Color.LightGray;
-                             //}
-                             //parametros.Ingredientes.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
-                             //parametros.ClaveReceta.Text = "";
-                             //parametros.ClaveReceta.Focus();
-                             //actualizarInputs(parametros);
-                         }));
-                      });
-                    brd.Show();
-                }));
-            });*/
-
-
-
-            /*luego lo simplificamos...*/
-
-                 
-
             Cocina.buscarcongelados.descripcion = txtbuscarcongeladoeditar.Text == string.Empty ? "%" : txtbuscarcongeladoeditar.Text;  /* asigna la clave a la variable estatica*/
             Opcion.EjecucionAsync(Data.ReporteCocina.Buscarcongelados, jsonResult => /* se ejecuta Data.Receta.Lista, el resultado se guarda en jsonResult*/
             {
@@ -268,14 +201,6 @@ namespace ExcelAddIn1
                                      {
                                          dgvcongeladobuscaryeditar.DataSource = resultado /*ni estas*/
                                           .ToList();
-                                         //tbPrecioBE.Text = resultado.Precio.ToString(CultureInfo.InvariantCulture); /*se asignan los valores a los textbox,*/
-                                         //tbDescripcionBE.Text = resultado.Descripcion;
-                                         //tbPesoLitroBE.Text = resultado.PesoLitro.ToString(CultureInfo.InvariantCulture);
-                                         //tbMargenConPrecioBE.Text = resultado.Margen.ToString(CultureInfo.InvariantCulture);
-                                         //chDiarioBE.Checked = (resultado.Diario == 1);
-                                         //tbCodigoBE.Enabled = true; tbCostoElaboracionBE.Text =
-                                         //     resultado.CostoElaboracion.ToString(CultureInfo.InvariantCulture);
-                                         //btBuscarBE.Enabled = true;
                                      }));
                                  });
                             brd.Show(); /*se muestra*/
@@ -289,5 +214,13 @@ namespace ExcelAddIn1
                 }));
             });
         }
+<<<<<<< HEAD
+=======
+
+        private void btguardareditar_Click(object sender, EventArgs e)
+        {
+
+        }
+>>>>>>> origin/master
     }
 }

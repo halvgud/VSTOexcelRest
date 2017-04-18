@@ -41,6 +41,7 @@
             this.txtbuscarcongeladoeditar = new System.Windows.Forms.TextBox();
             this.label2 = new System.Windows.Forms.Label();
             this.btbuscareditar = new System.Windows.Forms.Button();
+            this.btreportecongelado = new System.Windows.Forms.Button();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvcongelados)).BeginInit();
@@ -52,7 +53,7 @@
             // 
             this.tabControl1.Controls.Add(this.tabPage1);
             this.tabControl1.Controls.Add(this.tabPage2);
-            this.tabControl1.Location = new System.Drawing.Point(12, 12);
+            this.tabControl1.Location = new System.Drawing.Point(12, 42);
             this.tabControl1.Name = "tabControl1";
             this.tabControl1.SelectedIndex = 0;
             this.tabControl1.Size = new System.Drawing.Size(634, 330);
@@ -125,12 +126,13 @@
             // 
             // btguardareditar
             // 
-            this.btguardareditar.Location = new System.Drawing.Point(223, 251);
+            this.btguardareditar.Location = new System.Drawing.Point(512, 233);
             this.btguardareditar.Name = "btguardareditar";
-            this.btguardareditar.Size = new System.Drawing.Size(75, 23);
+            this.btguardareditar.Size = new System.Drawing.Size(86, 28);
             this.btguardareditar.TabIndex = 4;
             this.btguardareditar.Text = "Guardar";
             this.btguardareditar.UseVisualStyleBackColor = true;
+            this.btguardareditar.Click += new System.EventHandler(this.btguardareditar_Click);
             // 
             // dgvcongeladobuscaryeditar
             // 
@@ -166,11 +168,21 @@
             this.btbuscareditar.UseVisualStyleBackColor = true;
             this.btbuscareditar.Click += new System.EventHandler(this.btbuscareditar_Click);
             // 
+            // btreportecongelado
+            // 
+            this.btreportecongelado.Location = new System.Drawing.Point(537, 12);
+            this.btreportecongelado.Name = "btreportecongelado";
+            this.btreportecongelado.Size = new System.Drawing.Size(105, 46);
+            this.btreportecongelado.TabIndex = 4;
+            this.btreportecongelado.Text = "Reporte";
+            this.btreportecongelado.UseVisualStyleBackColor = true;
+            // 
             // Congelados
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(673, 354);
+            this.ClientSize = new System.Drawing.Size(658, 396);
+            this.Controls.Add(this.btreportecongelado);
             this.Controls.Add(this.tabControl1);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "Congelados";
@@ -201,5 +213,6 @@
         private System.Windows.Forms.TextBox txtbuscarcongeladoeditar;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Button btbuscareditar;
+        private System.Windows.Forms.Button btreportecongelado;
     }
 }

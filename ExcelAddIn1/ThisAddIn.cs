@@ -136,27 +136,7 @@ namespace ExcelAddIn1
                     ((excelazo.Range["L5"])).Value2 = lista.SobrantesPendiente;
                     ((excelazo.Range["F5"])).Value2 = rrc.Since;
 
-                    //((excelazo.Range["L10"])).Value2 = lista.Foto;
-                    //((excelazo.Range["L10"])).Value2 = lista.Foto;
 
-
-
-                    //oReportWs.Range["TABLA1"].CopyFromRecordset(ListToDataTable(rrd));
-                    //int inicioTabla = 5;
-                    //foreach (Receta.Detalle t in receta.Ingredientes)
-                    //{
-                    //    oReportWs.Range["A" + inicioTabla].Value2 = t.Clave; //Clave
-                    //    oReportWs.Range["B" + inicioTabla].Value2 = t.Cantidad;
-                    //    //cantidad unitaria por medida
-                    //    oReportWs.Range["C" + inicioTabla].Value2 = (t.Cantidad) * receta.Cantidad;
-                    //    //cantidad total
-                    //    oReportWs.Range["D" + inicioTabla].Value2 = t.Unidad; //tipo de unidad
-                    //    oReportWs.Range["E" + inicioTabla].Value2 = t.Descripcion; //nombre
-                    //    oReportWs.Range["F" + inicioTabla].Value2 = t.PrecioVenta; //valor unitario
-                    //    oReportWs.Range["G" + inicioTabla].Value2 = (t.PrecioVenta) *
-                    //                                                ((t.Cantidad) * receta.Cantidad); //
-                    //    inicioTabla++;
-                    //}
 
 
                 } );
@@ -334,6 +314,60 @@ namespace ExcelAddIn1
             Application.Cells.Locked = false;
             Application.ScreenUpdating = true;
            
+
+        }
+
+
+        //template Congelados
+        public void ReporteCongelados(IRestResponse restResponse)
+        {
+            Application.ScreenUpdating = false;
+            var rrgc = Opcion.JsonaListaGenerica<Reporte.General.InventarioCongelados>(restResponse);
+            var oReportWs = InicializarExcelConTemplate("Congelados");
+            if (oReportWs == null) return;
+            var rowcount = rrgc.Count + 2;
+            _reporte.Range["A7:X" + rowcount].Value2 = InicializarLista(rrgc);
+            //_reporte.Range["A3:X" + rowcount].Borders[Excel.XlBordersIndex.xlEdgeBottom].LineStyle = Excel.XlLineStyle.xlContinuous;
+            //_reporte.Range["A3:X" + rowcount].Borders[Excel.XlBordersIndex.xlEdgeLeft].LineStyle = Excel.XlLineStyle.xlContinuous;
+            //_reporte.Range["A3:X" + rowcount].Borders[Excel.XlBordersIndex.xlEdgeRight].LineStyle = Excel.XlLineStyle.xlContinuous;
+            //_reporte.Range["A3:X" + rowcount].Borders[Excel.XlBordersIndex.xlEdgeTop].LineStyle = Excel.XlLineStyle.xlContinuous;
+            //_reporte.Range["A3:X" + rowcount].Borders[Excel.XlBordersIndex.xlEdgeBottom].LineStyle = Excel.XlLineStyle.xlContinuous;
+            //_reporte.Range["A3:X" + rowcount].Borders.Color = Color.Black;
+            //_reporte.Range["A3:X" + rowcount].Font.Size = 8;
+            //_reporte.Range["A2:X2"].Interior.Color = ColorTranslator.ToOle(Color.Orange);
+            //_reporte.Range["Q1:X1"].Interior.Color = ColorTranslator.ToOle(Color.Orange);
+            //_reporte.Range["K3:K" + rowcount].Interior.Color = ColorTranslator.ToOle(Color.Yellow);
+            //_reporte.Range["L3:L" + rowcount].Interior.Color = ColorTranslator.ToOle(Color.Green);
+            //_reporte.Range["O3:P" + rowcount].Interior.Color = ColorTranslator.ToOle(Color.Pink);
+            //_reporte.Range["P3:P" + rowcount].Interior.Color = ColorTranslator.ToOle(Color.Pink);
+
+            _reporte.Range["B3:B" + rowcount].Columns.AutoFit();
+            _reporte.Range["E3:E" + rowcount].Columns.AutoFit();
+            _reporte.Range["G3:G" + rowcount].Columns.AutoFit();
+
+
+            Application.Cells.Locked = false;
+            Application.ScreenUpdating = true;
+
+
+        }
+
+        private static object[,] InicializarLista(IReadOnlyList<Reporte.General.InventarioCongelados> rrgc)
+        {
+            var lista = new object[rrgc.Count, 24];
+            for (var x = 0; x < rrgc.Count; x++)
+            {
+                lista[x, 0] = rrgc[x].estado_Id;
+                lista[x, 1] = rrgc[x].clave;
+                lista[x, 2] = rrgc[x].descripcion;
+                lista[x, 3] = rrgc[x].cantidad;
+                lista[x, 4] = rrgc[x].estado;
+                lista[x, 5] = rrgc[x].fechEntrada;
+
+            }
+            return lista;
+
+
 
         }
 

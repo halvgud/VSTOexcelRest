@@ -107,6 +107,7 @@
             this.txtbuscarcongelado.TabIndex = 0;
             this.txtbuscarcongelado.TextChanged += new System.EventHandler(this.txtbuscarcongelado_TextChanged);
             this.txtbuscarcongelado.Enter += new System.EventHandler(this.txtbuscarcongelado_Enter);
+            this.txtbuscarcongelado.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtbuscarcongelado_KeyDown);
             this.txtbuscarcongelado.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtbuscarcongelado_KeyPress);
             // 
             // tabPage2
@@ -176,6 +177,7 @@
             this.btreportecongelado.TabIndex = 4;
             this.btreportecongelado.Text = "Reporte";
             this.btreportecongelado.UseVisualStyleBackColor = true;
+            this.btreportecongelado.Click += new System.EventHandler(this.btreportecongelado_Click);
             // 
             // Congelados
             // 

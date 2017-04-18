@@ -49,9 +49,7 @@ namespace Respuesta
             public string Unidad { get; set; }
             public double PrecioTotal { get; set; }
        }
-<<<<<<< HEAD
-       
-=======
+
 
 
         public class Semana
@@ -64,7 +62,7 @@ namespace Respuesta
             public static DateTime Sabado { get; set; }
             public static DateTime Domingo { get; set; }
         }
->>>>>>> origin/master
+
         public class MenuSemana
         {
             public string Tipo { get; set; }
@@ -86,23 +84,14 @@ namespace Respuesta
             public DateTime fechaEntrada { get; set; }
             public List<Congelados> ListaCongelados { get; set; }
         }
-<<<<<<< HEAD
 
-        public class Semana
-        {
-            public static DateTime Lunes { get; set; }
-            public static DateTime Martes { get; set; }
-            public static DateTime Miercoles { get; set; }
-            public static DateTime Jueves { get; set; }
-            public static DateTime Viernes { get; set; }
-            public static DateTime Sabado { get; set; }
-            public static DateTime Domingo { get; set; }
-        }
+
+       
     }
-=======
+
  }
->>>>>>> origin/master
-}
+
+
 
 
        public class MenuDia
@@ -117,7 +106,7 @@ namespace Respuesta
        }
 
 
-<<<<<<< HEAD
+
 
 
        public class Congelados
@@ -131,11 +120,5 @@ namespace Respuesta
                public List<Congelados> ListaCongelados { get; set; }
            }
 
-=======
-      
 
-       
-    
-
->>>>>>> origin/master
 

@@ -214,13 +214,29 @@ namespace ExcelAddIn1
                 }));
             });
         }
-<<<<<<< HEAD
-=======
+
 
         private void btguardareditar_Click(object sender, EventArgs e)
         {
 
         }
->>>>>>> origin/master
+
+        private void btreportecongelado_Click(object sender, EventArgs e)
+        {
+            var addIn = Globals.ThisAddIn;
+
+            Opcion.EjecucionAsync(Data.Reporte.RepCongelados, y =>
+            {
+                BeginInvoke((MethodInvoker)(() =>
+                {
+                    addIn.ReporteCongelados(y);
+                }));
+            });
+        }
+
+        private void txtbuscarcongelado_KeyDown(object sender, KeyEventArgs e)
+        {
+         
+        }
     }
 }

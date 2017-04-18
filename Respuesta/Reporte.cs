@@ -45,6 +45,19 @@ namespace Respuesta
                 public string cantidadPedir { get; set; }
             }
 
+
+            public class InventarioCongelados
+            {
+                public int estado_Id { get; set; }
+                public string clave { get; set; }
+                public string descripcion { get; set; }
+                public Double cantidad { get; set; }
+                public string estado { get; set; }
+                public DateTime fechEntrada { get; set; }
+
+            }
+
+
             public class Posicion
             {
                 public static int clave { get; } = 0;
@@ -92,7 +105,7 @@ namespace Respuesta
             //public string Nombre { get; set; }
             public string Costo { get; set; }
             public string Venta { get; set; }
-            public string Margen { get; set; }
+            public Double Margen { get; set; }
             public string Qty { get; set; }
             public string Sale { get; set; }
             public string Profit { get; set; }
@@ -127,6 +140,8 @@ namespace Respuesta
                 public double RecetaPara { get; set; }
                 
             }
+
+
 
 
         }

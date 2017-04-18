@@ -6,7 +6,9 @@ using Respuesta;
 using RestSharp;
 using Herramienta;
 using System.Collections.Generic;
+using System.Drawing;
 using System.Linq;
+using Herramienta.Config;
 using PresentationControls;
 using Receta = Respuesta.Receta;
 
@@ -15,13 +17,19 @@ namespace ExcelAddIn1
 {
     public partial class MenuSemanal : Form
     {
+        //private readonly List<Receta.Semana> _listasemana;
+        //private readonly Action<List<Receta.Semana>> _callback;
+        ////private readonly Action<List<Respuesta.Receta.Semana>> _callback;
+        //private List<Receta.Semana> _listaSemanas;
         public class Inputs
         {
-          
-            
+            public CheckBoxComboBox DiasSemana;
+
         }
-            private List<Receta> _listaRecetas;
-            public MenuSemanal()
+        private List<Receta> _listaRecetas;
+        //private List<Receta.Basica> _listaArticuloBasica1;
+        //private List<Receta.Basica> _listaArticuloBasica2;
+        public MenuSemanal()
         {
 
             InitializeComponent();
@@ -114,11 +122,11 @@ namespace ExcelAddIn1
             if (sa == date.DayOfWeek.ToString())
             {
                 FechaSabado.Text = Convert.ToString(DtpFecha.Value.ToShortDateString());
-                //domingo
-                if (dom == date.DayOfWeek.ToString())
-                {
-                    FechaDomingo.Text = Convert.ToString(DtpFecha.Value.ToShortDateString());
-                }
+            //domingo
+            if (dom == date.DayOfWeek.ToString())
+            { 
+                FechaDomingo.Text = Convert.ToString(DtpFecha.Value.ToShortDateString());
+            }
             }
 
         }
@@ -148,16 +156,33 @@ namespace ExcelAddIn1
             return;  
         }
 
-        //private void LlamarDiasDeLaSemana(List<Receta.Semana>  )
-        //{
-        //    DateTime date = new DateTime(Convert.ToInt16(DtpFecha.Value.ToString("yyyy")), Convert.ToInt16(DtpFecha.Value.ToString("MM")), Convert.ToInt16(DtpFecha.Value.ToString("dd")));
-        //    List<Receta.Semana> dias = new List<Receta.Semana>(
+        private void LlamarDiasDeLaSemana(Receta.Semana dias)
+        {
+            //var dias = new DateTime(Convert.ToInt16(DtpFecha.Value.ToString("yyyy")), Convert.ToInt16(DtpFecha.Value.ToString("MM")), Convert.ToInt16(DtpFecha.Value.ToString("dd")));
+            //var p = new Receta.Semana();
 
-        //        lunes
-                
-        //        );
+            //DType method = new DType(p.ElMetodoAsincrono);
 
-        //    }
+            //IAsyncResult a = method.BeginInvoke("www.devjoker.com", (res) =>
+            //{
+            //    string data = method.EndInvoke(res);
+            //    Console.WriteLine("Esto es lo que tiene data {0}", data);
+            //}
+            //, null);
+
+            //Console.WriteLine("Después de la llamada asíncrona, Hilo principal");
+
+            //Console.ReadLine();
+
+            ////btAgregarSemana.Enabled = false;
+            ////Cocina.Diasema.Dia = (inputs.DiasSemana.Text);
+            ////if (Validarllenado())
+            ////{
+            ////    Opcion.EjecucionAsync(Data.ReporteCocina.SeleccionarMenuSemana, jsonResult =>
 
         }
+
+    }
+
+
     }

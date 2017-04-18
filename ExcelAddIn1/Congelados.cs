@@ -289,9 +289,5 @@ namespace ExcelAddIn1
                 }));
             });
         }
-<<<<<<< HEAD
-=======
-
->>>>>>> origin/master
     }
 }

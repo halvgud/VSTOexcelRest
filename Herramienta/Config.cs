@@ -24,6 +24,7 @@ namespace Herramienta
                 public static string ReporteCocina { get; set; } = Properties.Settings.Default.ReporteReceta;
             }
 
+
             public class Prueba
             {
                 public static string Calis { get; set; } = Properties.Settings.Default.prueba;
@@ -41,6 +42,11 @@ namespace Herramienta
                 public static string descripcion { get; set; }
             }
 
+            public class Diasema
+            {
+                public static string Diasemana { get; set; } = Properties.Settings.Default.menu;
+                public static  string Dia { get; set; }
+            }
            
 
             public static class Concepto

@@ -112,6 +112,7 @@
             this.label2 = new System.Windows.Forms.Label();
             this.cbDias = new PresentationControls.CheckBoxComboBox();
             this.DtpFecha = new System.Windows.Forms.DateTimePicker();
+            this.btAgregarSemana = new System.Windows.Forms.Button();
             this.tableLayoutPanel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvViernes)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgvJueves)).BeginInit();
@@ -710,6 +711,7 @@
             // 
             // panel1
             // 
+            this.panel1.Controls.Add(this.btAgregarSemana);
             this.panel1.Controls.Add(this.label4);
             this.panel1.Controls.Add(this.label3);
             this.panel1.Controls.Add(this.label2);
@@ -767,6 +769,15 @@
             this.DtpFecha.Size = new System.Drawing.Size(200, 20);
             this.DtpFecha.TabIndex = 7;
             this.DtpFecha.ValueChanged += new System.EventHandler(this.DtpFecha_ValueChanged);
+            // 
+            // btAgregarSemana
+            // 
+            this.btAgregarSemana.Location = new System.Drawing.Point(756, 55);
+            this.btAgregarSemana.Name = "btAgregarSemana";
+            this.btAgregarSemana.Size = new System.Drawing.Size(143, 23);
+            this.btAgregarSemana.TabIndex = 8;
+            this.btAgregarSemana.Text = "Agregar Semana Actual";
+            this.btAgregarSemana.UseVisualStyleBackColor = true;
             // 
             // MenuSemanal
             // 
@@ -877,6 +888,6 @@
         private System.Windows.Forms.Label label2;
 
         private System.Windows.Forms.DateTimePicker DtpFecha;
-
+        private System.Windows.Forms.Button btAgregarSemana;
     }
 }

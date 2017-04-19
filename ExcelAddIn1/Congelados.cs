@@ -12,11 +12,13 @@ using System.Windows.Forms;
 using Herramienta;
 using Herramienta.Config;
 using Respuesta;
+using System.Windows.Forms;
 
 namespace ExcelAddIn1
 {
     public partial class Congelados : Form
     {
+        public char KeyChar { get; set; }
         private List<Articulo.Basica> _listaArticuloBasica1;
         public class Inputs
         {
@@ -62,67 +64,12 @@ namespace ExcelAddIn1
 
 
         }
-        // PROBAR EN RATO MAS
-        //public BuscarCongelados1(List<Articulo> listaArticulo, Action<List<Articulo>> callback)
-        //{
-        //    _listaArticulo = listaArticulo;
-        //    _callback = callback;
-        //    InitializeComponent();
-        //    dgvListaArticulos.DataSource = _listaArticulo.Select(x => new { x.clave, x.descripcion, x.precioCompra }).ToArray();
-        //    dgvListaArticulos.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
-        //}
+       
 
         private void txtbuscarcongelado_Enter(object sender, EventArgs e)
         {
 
-            //Local.Receta.clave = txtbuscarcongelado.Text == string.Empty ? "%" : txtbuscarcongelado.Text;
-            //Opcion.EjecucionAsync(Data.Receta.Lista, jsonResult =>
-
-
-            //Local.Receta.clave = txtbuscarcongelado.Text == string.Empty ? "%" : txtbuscarcongelado.Text;  /* asigna la clave a la variable estatica*/
-            //Opcion.EjecucionAsync(Data.Receta.Lista, jsonResult => /* se ejecuta Data.Receta.Lista, el resultado se guarda en jsonResult*/
-
-            //{
-            //    BeginInvoke((MethodInvoker)(() =>  /*se manda llamar al hilo de la UI*/
-            //    {
-            //        switch (jsonResult.StatusCode) /*se determina cual fue el resultado*/
-            //        {
-            //            case HttpStatusCode.OK: /*si el resultado es oK*/
-            //                var brd = /*se crea el constructor que recibe por parametro una Lista del tipo "Receta" */
-            //                 new BusquedaRecetaDetalle(Opcion.JsonaListaGenerica<Receta>(jsonResult), /*Que es la parte de Opcion.jsonaListaGenerica<Receta>*/
-            //                     resultado => /*tiene un callback el constructor, se le declara como resultado=>*/
-            //                     {
-            //                         BeginInvoke((MethodInvoker)(() => /*se manda llamar de nuevo a la interfaz*/
-            //                         {
-            //                             dgvcongelados.DataSource = resultado.Ingredientes /*para actualizar el datagridview*/
-            //                             .Select(x => new Articulo.Basica  /*de la tabla se seleccionan ciertos valores */
-            //                             {pero directamente
-            //                                 ArtId = x.ArtId,
-            //                                 Clave = x.Clave,
-            //                                 Descripcion = x.Descripcion,
-            //                                 PrecioCompra = x.PrecioCompra,
-            //                                 Cantidad = x.Cantidad
-            //                             }).ToList();
-            //                             tbPrecioBE.Text = resultado.Precio.ToString(CultureInfo.InvariantCulture); /*se asignan los valores a los textbox,*/
-            //                             tbDescripcionBE.Text = resultado.Descripcion;
-            //                             tbPesoLitroBE.Text = resultado.PesoLitro.ToString(CultureInfo.InvariantCulture);
-            //                             tbMargenConPrecioBE.Text = resultado.Margen.ToString(CultureInfo.InvariantCulture);
-            //                             chDiarioBE.Checked = (resultado.Diario == 1);
-            //                             tbCodigoBE.Enabled = true; tbCostoElaboracionBE.Text =
-            //                                  resultado.CostoElaboracion.ToString(CultureInfo.InvariantCulture);
-            //                             btBuscarBE.Enabled = true;
-            //                         }));
-            //                     }, false);
-            //                brd.Show(); /*se muestra*/
-            //                break;
-            //            default:
-            //                MessageBox.Show(this, @"No se encontraron recetas con los parametros de busqueda ingresados");
-            //                Console.WriteLine(jsonResult.Content);
-            //                break;
-            //        }
-
-            //    }));
-            //});
+            
 
         }
 
@@ -135,7 +82,15 @@ namespace ExcelAddIn1
         private void txtbuscarcongelado_KeyPress(object sender, KeyPressEventArgs e)
         {
             ValidarVacia();
-        }
+      
+
+            if (e.KeyChar == (char)Keys.Enter)
+            {
+              
+
+            }
+
+    }
 
         private void Congelados_Load(object sender, EventArgs e)
         {
@@ -236,7 +191,38 @@ namespace ExcelAddIn1
 
         private void txtbuscarcongelado_KeyDown(object sender, KeyEventArgs e)
         {
-         
+            if (e.KeyCode == Keys.Enter)
+            {
+                
+                //Cocina.buscarcongelados.descripcion = (txtbuscarcongelado.Text);
+                //Opcion.EjecucionAsync(Data.Reporte.Listaplatillos, jsonResult =>
+                //{
+                //    if (!ValidarDescripcion(txtbuscarcongelado, jsonResult)) return;
+                //});
+                Agregar_Congelados frm = new Agregar_Congelados();
+                frm.Show();
+            }
+
         }
+
+        //private bool ValidarDescripcion(TextBox claveReceta, IRestResponse jsonResult)
+        //{
+        //    if (jsonResult.StatusCode == HttpStatusCode.OK)
+        //    {
+        //        BeginInvoke((MethodInvoker)(() =>
+        //        {
+        //            MessageBox.Show(this, @"La Clave ingresada ya existe");
+        //            //claveReceta.Text = "";
+        //            //claveReceta.Focus();
+        //            //btGuardar.Enabled = true;
+        //        }));
+        //        return false;
+        //    }
+        //    return true;
+        //}
+    }
+
+    internal class Controls
+    {
     }
 }

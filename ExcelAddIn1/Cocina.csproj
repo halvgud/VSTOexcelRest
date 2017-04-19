@@ -191,6 +191,12 @@
     <Compile Include="AgregarReceta.Designer.cs">
       <DependentUpon>AgregarReceta.cs</DependentUpon>
     </Compile>
+    <Compile Include="Agregar_Congelados.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Agregar_Congelados.Designer.cs">
+      <DependentUpon>Agregar_Congelados.cs</DependentUpon>
+    </Compile>
     <Compile Include="BuscarArticulo.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -244,6 +250,9 @@
     </Compile>
     <EmbeddedResource Include="AgregarReceta.resx">
       <DependentUpon>AgregarReceta.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Agregar_Congelados.resx">
+      <DependentUpon>Agregar_Congelados.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="BuscarArticulo.resx">
       <DependentUpon>BuscarArticulo.cs</DependentUpon>

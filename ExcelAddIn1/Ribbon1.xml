@@ -10,6 +10,7 @@
           <button id ="btReceta" label="Recetario" imageMso="BuildingBlocksCreateTableOfAuthorities" size="large" onAction="CrearReceta" getEnabled="BuscarPermiso"/>
           <button id ="btOrden" label="Orden de Trabajo" imageMso="CalendarToolImport" size="large" onAction="CrearOrdenTrabajo" getEnabled="BuscarPermiso"/>
           <button id="btCongelados" label="Congelados" imageMso="ObjectFormatDialog" size="large" onAction="CapturaCongelado" getEnabled="BuscarPermiso"/>
+        <button id="btReporteCongelados" label="Reporte de Congelados" imageMso="AccessibilityReports" size="large" onAction="ReporteCongelados" getEnabled="BuscarPermiso"/>
         </group>
       </tab>
     </tabs>

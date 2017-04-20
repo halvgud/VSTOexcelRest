@@ -85,6 +85,15 @@ namespace Respuesta
             public List<Congelados> ListaCongelados { get; set; }
         }
 
+        public class Agregarcongelados/* y esta clase para que es? para que hay mande los datos que se van a agregar  ..... te refieres a la de congelados si mmmmm y que los datos los puedas cambiar en el data */
+        {
+             public int id { get; set; }
+            public string clave { get; set; }
+            public string nombre { get; set; }
+            public  List<Agregarcongelados> ListaAgregarcongeladoses { get; set; } 
+
+        }
+
 
        
     }

@@ -25,6 +25,7 @@ namespace ExcelAddIn1
         private void btGenerarReceta_Click(object sender, EventArgs e)
         {
             var addIn = Globals.ThisAddIn;
+            //probando teamviwer celular esta chido
 
             Opcion.EjecucionAsync(Data.ReporteCocina.VersionExtendida, y =>
             {

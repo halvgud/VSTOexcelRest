@@ -261,7 +261,9 @@ namespace ExcelAddIn1
             var rrgc = Opcion.JsonaListaGenerica<Reporte.General.InventarioCongelados>(restResponse);
             var oReportWs = InicializarExcelConTemplate("Congelados");
             if (oReportWs == null) return;
-            var rowcount = rrgc.Count + 2;
+            var rowcount = rrgc.Count + 6;//olle pero cuando aumente que ondas con esta paarte tener que poner una variable que se aumente sola un count
+            /*nop, no puedes meter por ejemplo el rrgc.Count+7 dentro de la linea de abajo porque no lo agarra... lo tienes que meter en una viarable ya fijona*/
+            /**/
             _reporte.Range["A7:F" + rowcount].Value2 = InicializarLista(rrgc);
             //_reporte.Range["A3:X" + rowcount].Borders[Excel.XlBordersIndex.xlEdgeBottom].LineStyle = Excel.XlLineStyle.xlContinuous;
             //_reporte.Range["A3:X" + rowcount].Borders[Excel.XlBordersIndex.xlEdgeLeft].LineStyle = Excel.XlLineStyle.xlContinuous;

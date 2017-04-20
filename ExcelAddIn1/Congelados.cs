@@ -20,6 +20,7 @@ namespace ExcelAddIn1
     {
         public char KeyChar { get; set; }
         private List<Articulo.Basica> _listaArticuloBasica1;
+        private List<Respuesta.CbGenerico> _listaplatillo; 
         public class Inputs
         {
             public TextBox Nombre;
@@ -191,9 +192,10 @@ namespace ExcelAddIn1
 
         private void txtbuscarcongelado_KeyDown(object sender, KeyEventArgs e)
         {
+            //var d = Opcion.JsonaListaGenerica<CbGenerico>(json).Select(x => x.Nombre).ToArray();
             if (e.KeyCode == Keys.Enter)
             {
-                
+           
                 //Cocina.buscarcongelados.descripcion = (txtbuscarcongelado.Text);
                 //Opcion.EjecucionAsync(Data.Reporte.Listaplatillos, jsonResult =>
                 //{

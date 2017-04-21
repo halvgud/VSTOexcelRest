@@ -17,7 +17,7 @@ namespace ExcelAddIn1
 {
     public partial class Congelados : Form
     {
-        private List<Articulo.Basica> _listaArticuloBasica1;
+        //private List<Articulo.Basica> _listaArticuloBasica1;
         public class Inputs
         {
             public TextBox Nombre;
@@ -214,13 +214,16 @@ namespace ExcelAddIn1
                 }));
             });
         }
-<<<<<<< HEAD
-=======
+
 
         private void btguardareditar_Click(object sender, EventArgs e)
         {
 
         }
->>>>>>> origin/master
+
+        private void txtbuscarcongeladoeditar_TextChanged(object sender, EventArgs e)
+        {
+
+        }
     }
 }

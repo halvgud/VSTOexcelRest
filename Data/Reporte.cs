@@ -147,6 +147,30 @@ namespace Data
             }
         }
 
+        public static void MenuDiasPasados(Action<IRestResponse> callback)
+        {
+            try
+            {
+                var rest = new Rest(Local.Api.UrlApi, Herramienta.Config.Cocina.Platillos.Listado, Method.GET);
+                rest.Peticion.AddHeader(Constantes.Http.ObtenerTipoDeContenido, Constantes.Http.TipoDeContenido.Json);
+                rest.Cliente.ExecuteAsync(rest.Peticion, response =>
+                {
+                    switch (response.StatusCode)
+                    {
+                        case HttpStatusCode.OK:
+                            callback(response);
+                            break;
+                        default:
+                            throw new Exception(@"Error al cargar el indice de platillos");
+                    }
+                });
+            }
+            catch (Exception e)
+            {
+                Opcion.Log(Log.Interno.Departamento, "EXCEPCION: " + e.Message);
+            }
+        }
+
         public static void TagPorNombre(Action<IRestResponse> callback,Respuesta.Reporte.General repGeneral)
         {
             try

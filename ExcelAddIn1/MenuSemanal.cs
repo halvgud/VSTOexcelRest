@@ -1,16 +1,15 @@
 ﻿using System;
 using System.Windows.Forms;
-using System.Globalization;
-using System.Threading;
 using Respuesta;
 using RestSharp;
 using Herramienta;
 using System.Collections.Generic;
-using System.Drawing;
 using System.Linq;
 using Herramienta.Config;
 using PresentationControls;
 using Receta = Respuesta.Receta;
+using System.Drawing;
+using System.Net;
 
 
 
@@ -18,25 +17,38 @@ namespace ExcelAddIn1
 {
     public partial class MenuSemanal : Form
     {
-        //private readonly List<Receta.Semana> _listasemana;
-        //private readonly Action<List<Receta.Semana>> _callback;
-        ////private readonly Action<List<Respuesta.Receta.Semana>> _callback;
-        //private List<Receta.Semana> _listaSemanas;
+        //private readonly List<Respuesta.Receta.MenuSemana> _listaMenuSemanas;
+        //private readonly Action<List<Respuesta.Receta.MenuSemana>> _callback;
+        //private List<Receta> _listaRecetas;
+
         public class Inputs
         {
             public CheckBoxComboBox DiasSemana;
 
         }
-        private List<Receta> _listaRecetas;
+  
         private List<Receta.Semana> _semanas; 
-        //private List<Receta.Basica> _listaArticuloBasica1;
-        //private List<Receta.Basica> _listaArticuloBasica2;
-        public MenuSemanal()
+        public MenuSemanal(/*List<Respuesta.Receta.MenuSemana> listaMenuSemanas, Action<List<Respuesta.Receta.MenuSemana>> callback*/)
         {
-
+            //_listaMenuSemanas = listaMenuSemanas;
+            //_callback = callback;
             InitializeComponent();
+            //dgvLunes.DataSource = _listaMenuSemanas.ToArray();
+            //dgvLunes.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
+            //dgvMartes.DataSource = _listaMenuSemanas.ToArray();
+            //dgvMartes.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
+            //dgvMiercoles.DataSource = _listaMenuSemanas.ToArray();
+            //dgvMiercoles.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
+            //dgvJueves.DataSource = _listaMenuSemanas.ToArray();
+            //dgvJueves.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
+            //dgvViernes.DataSource = _listaMenuSemanas.ToArray();
+            //dgvViernes.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
+            //dgvSabado.DataSource = _listaMenuSemanas.ToArray();
+            //dgvSabado.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
+            //dgvDomingo.DataSource = _listaMenuSemanas.ToArray();
+            //dgvDomingo.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
             _semanas = new List<Receta.Semana>();
-            _listaRecetas = new List<Receta>();
+         
 
             Opcion.EjecucionAsync(Data.Receta.Tipo.Lista, x =>
             {
@@ -62,7 +74,32 @@ namespace ExcelAddIn1
             cbDias.Items.Add("Domingo");
         }
 
-
+        //public void VerSemana()
+        //{
+        //    Cocina.DiasSemana.DiaLunes = (DtpFecha.Text);
+        //    Opcion.EjecucionAsync(Data.Receta.Lista, jsonResult =>
+        //    {
+        //        BeginInvoke((MethodInvoker)(() =>
+        //        {
+        //            switch (jsonResult.StatusCode)
+        //            {
+        //                case HttpStatusCode.OK:
+        //                    _listaRecetas = Opcion.JsonaListaGenerica<Receta>(jsonResult);
+        //                    dgvLunes.DataSource = _listaRecetas.Select(x => new { x.Clave, x.Descripcion, x.Precio }).ToArray();
+        //                    dgvLunes.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
+        //                    for (var x = 0; x < 3; x++)
+        //                    {
+        //                        dgvLunes.Columns[x].ReadOnly = true;
+        //                        dgvLunes.Columns[x].DefaultCellStyle.BackColor = Color.LightGray;
+        //                    }
+        //                    break;
+        //                default:
+        //                    MessageBox.Show(this, @"No se encontraron recetas con los parametros de busqueda ingresados");
+        //                    break;
+        //            }
+        //        }));
+        //    });
+        //}
         public void LlenarTipo(IRestResponse json, DataGridViewComboBoxColumn tipoColumn)
         {
       
@@ -83,11 +120,12 @@ namespace ExcelAddIn1
         {
             PopulateManualCombo();
             var i = Weekday(DateTime.Now, DayOfWeek.Monday);
-            //DtpFecha.Value = DateTime.Today.AddDays(-(int)DateTime.Today.DayOfWeek + 1);
+            //DtpFecha.Value = DateTime.Today.AddDays(-(int)DateTime.Today.DayOfWeek + 1);     
         }
         private void DtpFecha_ValueChanged(object sender, EventArgs e)
         {
-        
+            //DateTime dt = DateTime.Now.StartOfWeek(DayOfWeek.Monday);
+ 
             var date = new DateTime(Convert.ToInt16(DtpFecha.Value.ToString("yyyy")), Convert.ToInt16(DtpFecha.Value.ToString("MM")), Convert.ToInt16(DtpFecha.Value.ToString("dd")));
             //string[] days = {"Monday", "Tuesday","Wednesday", "Thursday", "Friday", "Saturday", "Sunday"};
             var lu = "Monday";
@@ -97,8 +135,6 @@ namespace ExcelAddIn1
             var vi = "Friday";
             var sa = "Saturday";
             var dom = "Sunday";
-            string[] arreglo = (Convert.ToString(DtpFecha.Value.ToShortDateString())).Split('/');
-            int calis = Convert.ToInt16(arreglo[0]);
 
             //lunes
             if (lu == date.DayOfWeek.ToString())
@@ -267,7 +303,7 @@ namespace ExcelAddIn1
 
         private void cbDias_SelectedIndexChanged(object sender, EventArgs e)
         {
-            if (cbDias.CheckBoxItems[0].Checked == true)
+            if (cbDias.CheckBoxItems[0].Checked)
             {
                 cbDias.CheckBoxItems[1].Checked = true;
                 cbDias.CheckBoxItems[2].Checked = true;
@@ -277,7 +313,7 @@ namespace ExcelAddIn1
                 cbDias.CheckBoxItems[6].Checked = true;
                 cbDias.CheckBoxItems[7].Checked = true;
             }
-            else 
+            else
             {
                 cbDias.CheckBoxItems[1].Checked = false;
                 cbDias.CheckBoxItems[2].Checked = false;
@@ -285,9 +321,9 @@ namespace ExcelAddIn1
                 cbDias.CheckBoxItems[4].Checked = false;
                 cbDias.CheckBoxItems[5].Checked = false;
                 cbDias.CheckBoxItems[6].Checked = false;
-                cbDias.CheckBoxItems[7].Checked = false;
+                cbDias.CheckBoxItems[7].Checked = false;  
             }
-            return;  
+            return;
         }
 
         private void LlamarDiasDeLaSemana(List<Receta.Semana> receta)
@@ -317,19 +353,84 @@ namespace ExcelAddIn1
             return diff;
         }
 
-        //public DateTime StartOfWeek(this DateTime dt, DayOfWeek startOfWeek)
+        //public static class DateTimeExtensions
         //{
-        //    int diff = dt.DayOfWeek - startOfWeek;
-        //    if (diff < 0)
+        //    public static DateTime StartOfWeek( DateTime dt, DayOfWeek startOfWeek)
         //    {
-        //        diff += 7;
+        //        int diff = dt.DayOfWeek - startOfWeek;
+        //        if (diff < 0)
+        //        {
+        //            diff += 7;
+        //        }
+        //        return dt.AddDays(-1 * diff).Date;
         //    }
-        //    return dt.AddDays(-1 * diff).Date;
         //}
 
         private void btAgregarSemana_Click(object sender, EventArgs e)
         {
-          
+
+            //Cocina.DiasSemana.Fecha = DtpFecha.Text == string.Empty ? "%" : DtpFecha.Text;  /* asigna la clave a la variable estatica*/
+            //Opcion.EjecucionAsync(Data.ReporteCocina.Buscarcongelados, jsonResult => /* se ejecuta Data.Receta.Lista, el resultado se guarda en jsonResult*/
+            //{
+            //    BeginInvoke((MethodInvoker)(() =>
+            //    {
+            //        switch (jsonResult.StatusCode)
+            //        {
+            //            case HttpStatusCode.OK:
+            //                var brd = /*aqui que ondas */
+            //                 new MenuSemanal(Opcion.JsonaListaGenerica<Receta.MenuSemana>(jsonResult), /*esta parte no le entiendo*/
+            //                     resultado =>
+            //                     {
+            //                         BeginInvoke((MethodInvoker)(() => /*se manda llamar de nuevo a la interfaz*/
+            //                         {
+            //                             dgvLunes.DataSource = resultado;
+            //                             dgvMartes.DataSource = resultado;
+            //                             dgvMiercoles.DataSource = resultado;
+            //                             dgvJueves.DataSource = resultado;
+            //                             dgvViernes.DataSource = resultado;
+            //                             dgvSabado.DataSource = resultado;
+            //                             dgvDomingo.DataSource = resultado
+            //                            /*ni estas*/
+            //                              .ToList();
+            //                         }));
+            //                     });
+            //                brd.Show(); /*se muestra*/
+            //                break;
+            //            default:
+            //                MessageBox.Show(this, @"No se encontraron recetas con los parametros de busqueda ingresados");
+            //                Console.WriteLine(jsonResult.Content);
+            //                break;
+            //        }
+
+            //    }));
+            //});
+
+
+
+            //Cocina.DiasSemana.DiaLunes = (DtpFecha.Text);
+            //Opcion.EjecucionAsync(Data.Receta.Lista, jsonResult =>
+            //{
+            //    BeginInvoke((MethodInvoker)(() =>
+            //    {
+            //        switch (jsonResult.StatusCode)
+            //        {
+            //            case HttpStatusCode.OK:
+            //                _listaRecetas = Opcion.JsonaListaGenerica<Receta>(jsonResult);
+            //                dgvLunes.DataSource = _listaRecetas.Select(x => new { x.Clave, x.Descripcion, x.Precio }).ToArray();
+            //                dgvLunes.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
+            //                for (var x = 0; x < 3; x++)
+            //                {
+            //                    dgvLunes.Columns[x].ReadOnly = true;
+            //                    dgvLunes.Columns[x].DefaultCellStyle.BackColor = Color.LightGray;
+            //                }
+            //                break;
+            //            default:
+            //                MessageBox.Show(this, @"No se encontraron recetas con los parametros de busqueda ingresados");
+            //                break;
+            //        }
+            //    }));
+            //});
+
         }
     }
     }

@@ -15,7 +15,7 @@ namespace ExcelAddIn1
         private readonly Action<Receta> _callback;
         private readonly Action<Receta.Congelados> _callbackCongelados;
 
-        private readonly bool _banderaCongelados;
+        //private readonly bool _banderaCongelados;
 
         //private readonly bool _banderaCongelados ;
 

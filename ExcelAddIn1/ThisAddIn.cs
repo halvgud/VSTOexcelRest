@@ -71,39 +71,21 @@ namespace ExcelAddIn1
             if (_sheet1.Name == "ReporterCocina" && target.Column == 1)
             {
                 cancel = true;
-                //MessageBox.Show(target.Row.ToString());
+      
                 var excel = target.EntireRow.Value2;
-                //MessageBox.Show(excel[1,1].ToString());
+                
                 Reporte.RespuestaCocina rrc = new Reporte.RespuestaCocina
                 {
                     // SEGUIR EL LUNES
 
                     Clave = excel[1, 1],
                     Receta = excel[1, 2],
-                    //Categoria = excel[1, 3].ToString(),
-                    ////Estado =excel[1, 4],
                     Since = excel[1, 7].ToString(),
                     UltimaElaboracion = excel[1, 8].ToString(),
-                    //Medida = excel[1, 7].ToString(),
-                    //Consumopordia = excel[1, 8].ToString(),
-
-                    Costo = (Convert.ToDouble(excel[1, 11])).ToString(),
+                   Costo = (Convert.ToDouble(excel[1, 11])).ToString(),
                     Venta = (Convert.ToDouble(excel[1, 12])).ToString(),
                     Margen = (Convert.ToDouble(excel[1, 13])/100).ToString(),
-                    //Qty = ""/*excel[1, 14]*/,
-                    //Sale = excel[1,7].ToString(),
-                    //Profit = "",
-                    //Qtycongelado = "",
-                    //Preciocongelado = "",
-                    //Qtymermas = "",
-                    //Porcentajemerma = "",
-                    //Qtyempleado = "",
-                    //Porcentajeempleado = "",
-                    //Qtyperdidas = "",
-                    //Porcentajeperdida = ""
-
-
-                };
+                  };
                 rrc.Clave = "";
                 Opcion.EjecucionAsync(Data.ReporteCocina.VersionDetallada, jsonResult =>
                 {
@@ -117,10 +99,6 @@ namespace ExcelAddIn1
                     excelazo.Range["B7:D7"].Interior.Color = ColorTranslator.ToOle(Color.Peru);
                     excelazo.Range["C21"].Interior.Color = ColorTranslator.ToOle(Color.Peru);
 
-
-
-                    ///*Local.Receta.IdReceta = receta.RecI*/d;*/
-                    //var oReportWs = InicializarExcelConTemplate("Receta");
                     if (excelazo == null) return;
                     ((excelazo.Range["A1"])).Value2 = rrc.Receta;
                     ((excelazo.Range["M7"])).Value2 =rrc.Margen ;
@@ -136,39 +114,11 @@ namespace ExcelAddIn1
                     ((excelazo.Range["L5"])).Value2 = lista.SobrantesPendiente;
                     ((excelazo.Range["F5"])).Value2 = rrc.Since;
 
-                    //((excelazo.Range["L10"])).Value2 = lista.Foto;
-                    //((excelazo.Range["L10"])).Value2 = lista.Foto;
 
-
-
-                    //oReportWs.Range["TABLA1"].CopyFromRecordset(ListToDataTable(rrd));
-                    //int inicioTabla = 5;
-                    //foreach (Receta.Detalle t in receta.Ingredientes)
-                    //{
-                    //    oReportWs.Range["A" + inicioTabla].Value2 = t.Clave; //Clave
-                    //    oReportWs.Range["B" + inicioTabla].Value2 = t.Cantidad;
-                    //    //cantidad unitaria por medida
-                    //    oReportWs.Range["C" + inicioTabla].Value2 = (t.Cantidad) * receta.Cantidad;
-                    //    //cantidad total
-                    //    oReportWs.Range["D" + inicioTabla].Value2 = t.Unidad; //tipo de unidad
-                    //    oReportWs.Range["E" + inicioTabla].Value2 = t.Descripcion; //nombre
-                    //    oReportWs.Range["F" + inicioTabla].Value2 = t.PrecioVenta; //valor unitario
-                    //    oReportWs.Range["G" + inicioTabla].Value2 = (t.PrecioVenta) *
-                    //                                                ((t.Cantidad) * receta.Cantidad); //
-                    //    inicioTabla++;
-                    //}
 
 
                 } );
-
-
-
-
-
-                        
-                //MessageBox.Show("mejorando");
-
-            }
+                }
 
         }
 
@@ -178,41 +128,7 @@ namespace ExcelAddIn1
 
         void activeSheet_SelectionChange(object sh, Excel.Range target)
         {
- 
-            //else
-            //{
-            //    var oReportWs = InicializarExcelConTemplate("DetalleReceta");
-            //}
 
-
-            //ejecucion asincrona donde el primer parametro es la informacion sacada de la base de datos 
-
-            //segundo parametro con el resultado 
-            //((oReportWs.Range["A1"])).Value2 = target.Value2;
-
-
-
-            //Microsoft.Office.Interop.Excel.Range excelCell = (Microsoft.Office.Interop.Excel.Range)target;
-            //_reporte.Hyperlinks.Add(excelCell, "http://www.microsoft.com/", Type.Missing, target.Value2, target.Value2);
-
-            //_sheet1 = (Excel.Worksheet)sh;
-            //if (target.Row != 1 && (_reportes.FirstOrDefault(x => x.Nombre == _sheet1.Name) != null))
-            //{
-            //    try
-            //    {
-            //        _sheet1.Unprotect();
-            //        Globals.ThisAddIn.Application.Cells.Locked = false;
-            //        _sheet1.Protect(AllowSorting: true, AllowFiltering: true);
-            //    }
-            //    catch (Exception e)
-            //    {
-            //        Console.WriteLine(e.Message);
-            //    }
-            //}
-            //else
-            //{
-            //    _sheet1.Unprotect();
-            //}
         }
         void Application_ActiveWorkbookChanges(Excel.Workbook wb)
         {
@@ -334,6 +250,61 @@ namespace ExcelAddIn1
             Application.Cells.Locked = false;
             Application.ScreenUpdating = true;
            
+
+        }
+
+
+        //template Congelados
+        public void ReporteCongelados(IRestResponse restResponse)
+        {
+            Application.ScreenUpdating = false;
+            var rrgc = Opcion.JsonaListaGenerica<Reporte.General.InventarioCongelados>(restResponse);
+            var oReportWs = InicializarExcelConTemplate("Congelados");
+            if (oReportWs == null) return;
+            var rowcount = rrgc.Count + 6;//olle pero cuando aumente que ondas con esta paarte tener que poner una variable que se aumente sola un count
+            /*nop, no puedes meter por ejemplo el rrgc.Count+7 dentro de la linea de abajo porque no lo agarra... lo tienes que meter en una viarable ya fijona*/
+            /**/
+            _reporte.Range["A7:F" + rowcount].Value2 = InicializarLista(rrgc);
+            //_reporte.Range["A3:X" + rowcount].Borders[Excel.XlBordersIndex.xlEdgeBottom].LineStyle = Excel.XlLineStyle.xlContinuous;
+            //_reporte.Range["A3:X" + rowcount].Borders[Excel.XlBordersIndex.xlEdgeLeft].LineStyle = Excel.XlLineStyle.xlContinuous;
+            //_reporte.Range["A3:X" + rowcount].Borders[Excel.XlBordersIndex.xlEdgeRight].LineStyle = Excel.XlLineStyle.xlContinuous;
+            //_reporte.Range["A3:X" + rowcount].Borders[Excel.XlBordersIndex.xlEdgeTop].LineStyle = Excel.XlLineStyle.xlContinuous;
+            //_reporte.Range["A3:X" + rowcount].Borders[Excel.XlBordersIndex.xlEdgeBottom].LineStyle = Excel.XlLineStyle.xlContinuous;
+            //_reporte.Range["A3:X" + rowcount].Borders.Color = Color.Black;
+            //_reporte.Range["A3:X" + rowcount].Font.Size = 8;
+            //_reporte.Range["A2:X2"].Interior.Color = ColorTranslator.ToOle(Color.Orange);
+            //_reporte.Range["Q1:X1"].Interior.Color = ColorTranslator.ToOle(Color.Orange);
+            //_reporte.Range["K3:K" + rowcount].Interior.Color = ColorTranslator.ToOle(Color.Yellow);
+            //_reporte.Range["L3:L" + rowcount].Interior.Color = ColorTranslator.ToOle(Color.Green);
+            //_reporte.Range["O3:P" + rowcount].Interior.Color = ColorTranslator.ToOle(Color.Pink);
+            //_reporte.Range["P3:P" + rowcount].Interior.Color = ColorTranslator.ToOle(Color.Pink);
+
+            _reporte.Range["B3:B" + rowcount].Columns.AutoFit();
+            _reporte.Range["E3:E" + rowcount].Columns.AutoFit();
+            _reporte.Range["G3:G" + rowcount].Columns.AutoFit();
+
+
+            Application.Cells.Locked = false;
+            Application.ScreenUpdating = true;
+
+
+        }
+
+        private static object[,] InicializarLista(IReadOnlyList<Reporte.General.InventarioCongelados> rrgc)
+        {
+            var lista = new object[rrgc.Count, 7];
+            for (var x = 0; x < rrgc.Count; x++)
+            {
+                lista[x, 0] = rrgc[x].id;
+                lista[x, 1] = rrgc[x].clave;
+                lista[x, 2] = rrgc[x].descripcion;
+                lista[x, 3] = rrgc[x].existencia;
+                lista[x, 4] = rrgc[x].estado;
+                lista[x, 5] = rrgc[x].fechaEntrada;
+            }
+            return lista;
+
+
 
         }
 

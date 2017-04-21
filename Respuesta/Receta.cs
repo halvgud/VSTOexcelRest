@@ -50,7 +50,12 @@ namespace Respuesta
             public int IdUnidad { get; set; }
             public string Unidad { get; set; }
             public double PrecioTotal { get; set; }
+<<<<<<< HEAD
         }
+=======
+       }
+
+>>>>>>> origin/master
 
 
         public class Semana
@@ -86,10 +91,47 @@ namespace Respuesta
             public DateTime fechaEntrada { get; set; }
             public List<Congelados> ListaCongelados { get; set; }
         }
+<<<<<<< HEAD
+    }
+=======
+
+        public class Agregarcongelados/* y esta clase para que es? para que hay mande los datos que se van a agregar  ..... te refieres a la de congelados si mmmmm y que los datos los puedas cambiar en el data */
+        {
+             public int id { get; set; }
+            public string clave { get; set; }
+            public string nombre { get; set; }
+            public  List<Agregarcongelados> ListaAgregarcongeladoses { get; set; } 
+
+        }
+
+
+       
     }
 
+ }
 
 
+
+
+       public class MenuDia
+       {
+           public string Tipo { get; set; }
+           public string Platillo { get; set; }
+           public int Fecha { get; set; }
+           public int Cantidad { get; set; }
+           public string Unidad { get; set; }
+           public int Precio { get; set; }
+           public int Ganancia { get; set; }
+       }
+
+
+
+
+>>>>>>> origin/master
+
+
+
+<<<<<<< HEAD
     public class Congelados
     {
 
@@ -100,5 +142,8 @@ namespace Respuesta
         public DateTime fechaEntrada { get; set; }
         public List<Congelados> ListaCongelados { get; set; }
     }
+=======
+
+>>>>>>> origin/master
 
 }

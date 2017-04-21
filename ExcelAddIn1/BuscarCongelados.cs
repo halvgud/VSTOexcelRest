@@ -18,22 +18,31 @@ namespace ExcelAddIn1
             _listaCongelados = listaCongelados;
             _callback = callback;
             InitializeComponent();
-           dgvbuscar_congelados.DataSource = _listaCongelados.ToArray();
+           dgvbuscar_congelados.DataSource = _listaCongelados.Select(x => new {x.estado_id, x.clave, x.descripcion, x.cantidad, x.status, x.fechaEntrada}) .ToArray();
            dgvbuscar_congelados.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
         }
 
         private void btaceptarbcongelados_Click(object sender, EventArgs e)
         {
             /*aqui es donde guardas la lista para mandarla al otro databridview ?*/
-
+            if (lbdescripcion.Visible == true || lbclave.Visible == true || lbcantidad.Visible == true ||
+                txtcantidad.Visible == true || lbtclave.Visible == true || lbtdescripcion.Visible == true)
+            {
+                _callback(new List<Respuesta.Receta.Congelados> { _listaCongelados[dgvbuscar_congelados.CurrentCell.RowIndex] });
+                Close();
+            }
             //_listaCongelados[dgvbuscar_congelados.CurrentCell.RowIndex].cantidad = double.Parse(tbCantidad.Text);
-            _callback(new List<Respuesta.Receta.Congelados> { _listaCongelados[dgvbuscar_congelados.CurrentCell.RowIndex] });
-            Close();
+           
         }
 
         private void BuscarCongelados_FormClosing(object sender, FormClosingEventArgs e)
         {
            
+        }
+
+        private void BuscarCongelados_Load(object sender, EventArgs e)
+        {
+            lbfechaagregar.Text = DateTime.Now.ToShortDateString();
         }
     }
 }

@@ -13,11 +13,18 @@ using Herramienta;
 using Herramienta.Config;
 using Respuesta;
 
+
 namespace ExcelAddIn1
 {
     public partial class Congelados : Form
     {
+<<<<<<< HEAD
         //private List<Articulo.Basica> _listaArticuloBasica1;
+=======
+        public char KeyChar { get; set; }
+        private List<Articulo.Basica> _listaArticuloBasica1;
+        private List<Respuesta.CbGenerico> _listaplatillo; 
+>>>>>>> origin/master
         public class Inputs
         {
             public TextBox Nombre;
@@ -57,84 +64,10 @@ namespace ExcelAddIn1
             }
         }
 
-        private void txtbuscarcongelado_TextChanged(object sender, EventArgs e)
-        {
-
-
-        }
-        // PROBAR EN RATO MAS
-        //public BuscarCongelados1(List<Articulo> listaArticulo, Action<List<Articulo>> callback)
-        //{
-        //    _listaArticulo = listaArticulo;
-        //    _callback = callback;
-        //    InitializeComponent();
-        //    dgvListaArticulos.DataSource = _listaArticulo.Select(x => new { x.clave, x.descripcion, x.precioCompra }).ToArray();
-        //    dgvListaArticulos.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
-        //}
-
-        private void txtbuscarcongelado_Enter(object sender, EventArgs e)
-        {
-
-            //Local.Receta.clave = txtbuscarcongelado.Text == string.Empty ? "%" : txtbuscarcongelado.Text;
-            //Opcion.EjecucionAsync(Data.Receta.Lista, jsonResult =>
-
-
-            //Local.Receta.clave = txtbuscarcongelado.Text == string.Empty ? "%" : txtbuscarcongelado.Text;  /* asigna la clave a la variable estatica*/
-            //Opcion.EjecucionAsync(Data.Receta.Lista, jsonResult => /* se ejecuta Data.Receta.Lista, el resultado se guarda en jsonResult*/
-
-            //{
-            //    BeginInvoke((MethodInvoker)(() =>  /*se manda llamar al hilo de la UI*/
-            //    {
-            //        switch (jsonResult.StatusCode) /*se determina cual fue el resultado*/
-            //        {
-            //            case HttpStatusCode.OK: /*si el resultado es oK*/
-            //                var brd = /*se crea el constructor que recibe por parametro una Lista del tipo "Receta" */
-            //                 new BusquedaRecetaDetalle(Opcion.JsonaListaGenerica<Receta>(jsonResult), /*Que es la parte de Opcion.jsonaListaGenerica<Receta>*/
-            //                     resultado => /*tiene un callback el constructor, se le declara como resultado=>*/
-            //                     {
-            //                         BeginInvoke((MethodInvoker)(() => /*se manda llamar de nuevo a la interfaz*/
-            //                         {
-            //                             dgvcongelados.DataSource = resultado.Ingredientes /*para actualizar el datagridview*/
-            //                             .Select(x => new Articulo.Basica  /*de la tabla se seleccionan ciertos valores */
-            //                             {pero directamente
-            //                                 ArtId = x.ArtId,
-            //                                 Clave = x.Clave,
-            //                                 Descripcion = x.Descripcion,
-            //                                 PrecioCompra = x.PrecioCompra,
-            //                                 Cantidad = x.Cantidad
-            //                             }).ToList();
-            //                             tbPrecioBE.Text = resultado.Precio.ToString(CultureInfo.InvariantCulture); /*se asignan los valores a los textbox,*/
-            //                             tbDescripcionBE.Text = resultado.Descripcion;
-            //                             tbPesoLitroBE.Text = resultado.PesoLitro.ToString(CultureInfo.InvariantCulture);
-            //                             tbMargenConPrecioBE.Text = resultado.Margen.ToString(CultureInfo.InvariantCulture);
-            //                             chDiarioBE.Checked = (resultado.Diario == 1);
-            //                             tbCodigoBE.Enabled = true; tbCostoElaboracionBE.Text =
-            //                                  resultado.CostoElaboracion.ToString(CultureInfo.InvariantCulture);
-            //                             btBuscarBE.Enabled = true;
-            //                         }));
-            //                     }, false);
-            //                brd.Show(); /*se muestra*/
-            //                break;
-            //            default:
-            //                MessageBox.Show(this, @"No se encontraron recetas con los parametros de busqueda ingresados");
-            //                Console.WriteLine(jsonResult.Content);
-            //                break;
-            //        }
-
-            //    }));
-            //});
-
-        }
-
-
+        
         private bool ValidarVacia()
         {
             return txtbuscarcongelado.Text.Trim().Length > 0;
-        }
-
-        private void txtbuscarcongelado_KeyPress(object sender, KeyPressEventArgs e)
-        {
-            ValidarVacia();
         }
 
         private void Congelados_Load(object sender, EventArgs e)
@@ -142,47 +75,7 @@ namespace ExcelAddIn1
             ActiveControl = txtbuscarcongelado;
             txtbuscarcongelado.Focus();
         }
-
-
-        //private void BuscarCongelado(Action<Inputs> actualizarInputs, Inputs parametros)
-        //{
-        //    Cocina.Platillos.Listado = parametros.Nombre.Text.Trim();
-        //    Opcion.EjecucionAsync(x =>
-        //    {
-        //        Data.Articulo.Lista(x, this);
-        //    }, jsonResult =>
-        //    {
-        //                BeginInvoke((MethodInvoker) (() =>
-        //                {
-        //                    _listaArticuloBasica1 = parametros.ListaCongelados.DataSource as List<Articulo.Basica>;
-        //                    if (_listaArticuloBasica1 != null)
-        //                    {
-        //                        _listaArticuloBasica1.AddRange(_listaArticuloBasica1);
-
-        //                        parametros.ListaCongelados.DataSource = _listaArticuloBasica1
-        //                            .GroupBy(p => p.ArtId)
-        //                            .Select(g => new Articulo.Basica
-        //                            {
-        //                                ArtId = g.Key,
-        //                                Clave = g.First().Clave,
-        //                                Descripcion = g.First().Descripcion,
-        //                                PrecioCompra = g.First().PrecioCompra,
-        //                                Cantidad = g.Sum(i => i.Cantidad)
-        //                            }).ToList();
-        //                        for (var x = 0; x == 3; x++)
-        //                        {
-        //                            parametros.ListaCongelados.Columns[x].ReadOnly = true;
-        //                            parametros.ListaCongelados.Columns[x].DefaultCellStyle.BackColor = Color.LightGray;
-        //                        }
-        //                        parametros.ListaCongelados.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
-        //                        parametros.Nombre.Text = "";
-        //                        parametros.Nombre.Focus();
-        //                        actualizarInputs(parametros);
-        //                    }
-        //                }));
-        //            });
-        //    }
-
+        
         private void btbuscareditar_Click(object sender, EventArgs e)
         {
             Cocina.buscarcongelados.descripcion = txtbuscarcongeladoeditar.Text == string.Empty ? "%" : txtbuscarcongeladoeditar.Text;  /* asigna la clave a la variable estatica*/
@@ -199,10 +92,16 @@ namespace ExcelAddIn1
                                  {
                                      BeginInvoke((MethodInvoker)(() => /*se manda llamar de nuevo a la interfaz*/
                                      {
-                                         dgvcongeladobuscaryeditar.DataSource = resultado /*ni estas*/
+                                         dgvcongeladobuscaryeditar.DataSource = resultado.Select(g => new {g.estado_id, g.clave, g.descripcion, g.cantidad, g.status, g.fechaEntrada}) /*ni estas*/
                                           .ToList();
                                      }));
                                  });
+                            if (tpagregar.Visible == true)
+                            {
+                                brd.lbcantidad.Visible = true;
+                                brd.lbdescripcion.Visible = true;
+             
+                            }
                             brd.Show(); /*se muestra*/
                             break;
                         default:
@@ -221,9 +120,73 @@ namespace ExcelAddIn1
 
         }
 
+<<<<<<< HEAD
         private void txtbuscarcongeladoeditar_TextChanged(object sender, EventArgs e)
         {
 
         }
+=======
+       
+
+        private void txtbuscarcongelado_KeyDown(object sender, KeyEventArgs e)
+        {
+           if (e.KeyCode == Keys.Enter)
+            {
+
+                Cocina.buscarcongelados.descripcion = txtbuscarcongelado.Text == string.Empty ? "%" : txtbuscarcongelado.Text;  /* asigna la clave a la variable estatica*/
+                Opcion.EjecucionAsync(Data.ReporteCocina.Buscarcongelados, jsonResult => /* se ejecuta Data.Receta.Lista, el resultado se guarda en jsonResult*/
+                {
+                    BeginInvoke((MethodInvoker)(() =>
+                    {
+                        switch (jsonResult.StatusCode)
+                        {
+                            case HttpStatusCode.OK:
+                                var brd = /*aqui que ondas */
+                                 new BuscarCongelados(Opcion.JsonaListaGenerica<Respuesta.Receta.Congelados>(jsonResult), /*esta parte no le entiendo*/
+                                     resultado =>
+                                     {
+                                         BeginInvoke((MethodInvoker)(() => /*se manda llamar de nuevo a la interfaz*/
+                                         {
+                                             dgvcongeladobuscaryeditar.DataSource = resultado /*ni estas*/
+                                              .ToList();
+                                         }));
+                                     });
+                                if (tpagregar.Visible == true)
+                                {
+                                    brd.lbcantidad.Visible = true;
+                                    brd.lbdescripcion.Visible = true;
+                                    brd.lbtclave.Visible = true;
+                                    brd.lbtdescripcion.Visible = true;
+                                    brd.txtcantidad.Visible = true;
+                                }
+                                brd.Show(); /*se muestra*/
+                                break;
+                            default:
+                                MessageBox.Show(this, @"No se encontro el producto en la busqueda ");
+                                Console.WriteLine(jsonResult.Content);
+                                break;
+                        }
+
+                    }));
+                });
+
+
+                //Agregar_Congelados frm = new Agregar_Congelados();
+                //frm.lbdescripcion.Text = txtbuscarcongelado.Text;
+                //frm.Show();
+
+
+
+
+            }
+
+        }
+
+      
+    }
+
+    internal class Controls
+    {
+>>>>>>> origin/master
     }
 }

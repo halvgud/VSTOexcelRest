@@ -24,6 +24,10 @@ namespace Herramienta
                 public static string ReporteCocina { get; set; } = Properties.Settings.Default.ReporteReceta;
             }
 
+<<<<<<< HEAD
+=======
+
+>>>>>>> origin/master
 
             public class Prueba
             {
@@ -43,6 +47,10 @@ namespace Herramienta
                 public static string cambioexistencia { get; set; } = Properties.Settings.Default.ActualizarCongelado;
                 public static string existencia { get; set; }
                 public static string estado_id { get; set; }
+
+                public static string sacarclave { get; set; }
+
+                public static string repcongelados { get; set; } = Properties.Settings.Default.ReporteCongelado;
             }
 
             public class DiasSemana

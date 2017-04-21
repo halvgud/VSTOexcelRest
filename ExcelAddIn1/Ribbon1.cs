@@ -77,6 +77,17 @@ namespace ExcelAddIn1
             ar.Show();
         }
 
+        public void ReporteCongelados(Office.IRibbonControl control)
+        {
+            var addIn = Globals.ThisAddIn;
+
+            Opcion.EjecucionAsync(Data.Reporte.RepCongelados, y =>
+            {
+                addIn.ReporteCongelados(y);
+            });
+           
+        }
+
         public void CapturaCongelado(Office.IRibbonControl control)
         {
             // seguir mañana
@@ -102,11 +113,7 @@ namespace ExcelAddIn1
                 }));
             });
         }
-        //public void SetearPermiso(bool isEnabled, string id)
-        //{
-        //    _listaBools[id] = isEnabled;
-        //    _ribbon.Invalidate();
-        //}
+
 
         public bool BuscarPermiso(Office.IRibbonControl control)
         {

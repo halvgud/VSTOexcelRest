@@ -346,5 +346,14 @@ namespace Herramienta.Properties {
                 return ((string)(this["ActualizarCongelado"]));
             }
         }
+        
+        [global::System.Configuration.ApplicationScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("reporte/ReporteCongeladosFinal")]
+        public string ReporteCongelado {
+            get {
+                return ((string)(this["ReporteCongelado"]));
+            }
+        }
     }
 }

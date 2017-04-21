@@ -45,6 +45,19 @@ namespace Respuesta
                 public string cantidadPedir { get; set; }
             }
 
+
+            public class InventarioCongelados
+            {
+                public string id { get; set; }
+                public string clave { get; set; }
+                public string descripcion { get; set; }
+                public Double existencia { get; set; }
+                public string estado { get; set; }
+                public string fechaEntrada { get; set; }
+
+            }
+
+
             public class Posicion
             {
                 public static int clave { get; } = 0;
@@ -81,19 +94,19 @@ namespace Respuesta
             public string Clave { get; set; }
             public string Receta { get; set; }
             public string TipoProducto { get; set; }
-            public string CantidadInventario { get; set; }
+            public int CantidadInventario { get; set; }
             public string Categoria { get; set; }
             public string Estado { get; set; }
             public string Since { get; set; }
-            public string UltimaElaboracion { get; set; }
+            public DateTime UltimaElaboracion { get; set; }
             public string Medida { get; set; }
             public string Consumopordia { get; set; }
             //public string Total { get; set; }
             //public string Nombre { get; set; }
-            public string Costo { get; set; }
-            public string Venta { get; set; }
-            public string Margen { get; set; }
-            public string Qty { get; set; }
+            public Double Costo { get; set; }
+            public Double Venta { get; set; }
+            public Double Margen { get; set; }
+            public int Qty { get; set; }
             public string Sale { get; set; }
             public string Profit { get; set; }
             public string Qtycongelado { get; set; }
@@ -127,6 +140,8 @@ namespace Respuesta
                 public double RecetaPara { get; set; }
                 
             }
+
+
 
 
         }

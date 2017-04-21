@@ -24,10 +24,7 @@ namespace Herramienta
                 public static string ReporteCocina { get; set; } = Properties.Settings.Default.ReporteReceta;
             }
 
-<<<<<<< HEAD
-=======
 
->>>>>>> origin/master
 
             public class Prueba
             {

@@ -107,12 +107,12 @@
             this.LabelDomingo = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
             this.panel1 = new System.Windows.Forms.Panel();
+            this.btAgregarSemana = new System.Windows.Forms.Button();
             this.label4 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.cbDias = new PresentationControls.CheckBoxComboBox();
             this.DtpFecha = new System.Windows.Forms.DateTimePicker();
-            this.btAgregarSemana = new System.Windows.Forms.Button();
             this.tableLayoutPanel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvViernes)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgvJueves)).BeginInit();
@@ -724,6 +724,16 @@
             this.panel1.Size = new System.Drawing.Size(1354, 100);
             this.panel1.TabIndex = 4;
             // 
+            // btAgregarSemana
+            // 
+            this.btAgregarSemana.Location = new System.Drawing.Point(756, 55);
+            this.btAgregarSemana.Name = "btAgregarSemana";
+            this.btAgregarSemana.Size = new System.Drawing.Size(143, 23);
+            this.btAgregarSemana.TabIndex = 8;
+            this.btAgregarSemana.Text = "Agregar Semana Actual";
+            this.btAgregarSemana.UseVisualStyleBackColor = true;
+            this.btAgregarSemana.Click += new System.EventHandler(this.btAgregarSemana_Click);
+            // 
             // label4
             // 
             this.label4.AutoSize = true;
@@ -769,15 +779,6 @@
             this.DtpFecha.Size = new System.Drawing.Size(200, 20);
             this.DtpFecha.TabIndex = 7;
             this.DtpFecha.ValueChanged += new System.EventHandler(this.DtpFecha_ValueChanged);
-            // 
-            // btAgregarSemana
-            // 
-            this.btAgregarSemana.Location = new System.Drawing.Point(756, 55);
-            this.btAgregarSemana.Name = "btAgregarSemana";
-            this.btAgregarSemana.Size = new System.Drawing.Size(143, 23);
-            this.btAgregarSemana.TabIndex = 8;
-            this.btAgregarSemana.Text = "Agregar Semana Actual";
-            this.btAgregarSemana.UseVisualStyleBackColor = true;
             // 
             // MenuSemanal
             // 

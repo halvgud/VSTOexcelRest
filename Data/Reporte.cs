@@ -147,11 +147,19 @@ namespace Data
             }
         }
 
+
+        //public static void MenuDiasPasados(Action<IRestResponse> callback)
+        //{
+        //    try
+        //    {
+        //        var rest = new Rest(Local.Api.UrlApi, Herramienta.Config.Cocina.Platillos.Listado, Method.GET);
+
         public static void RepCongelados(Action<IRestResponse> callback)
         {
             try
             {
                 var rest = new Rest(Local.Api.UrlApi, Herramienta.Config.Cocina.buscarcongelados.repcongelados, Method.GET);
+
                 rest.Peticion.AddHeader(Constantes.Http.ObtenerTipoDeContenido, Constantes.Http.TipoDeContenido.Json);
                 rest.Cliente.ExecuteAsync(rest.Peticion, response =>
                 {
@@ -255,4 +263,5 @@ namespace Data
             
         }
     }
+
 }

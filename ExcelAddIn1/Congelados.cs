@@ -19,11 +19,19 @@ namespace ExcelAddIn1
 {
     public partial class Congelados : Form
     {
+
+        //private List<Articulo.Basica> _listaArticuloBasica1;
+
         public char KeyChar { get; set; }
         private List<Articulo.Basica> _listaArticuloBasica1;
+<<<<<<< HEAD
         private List<Respuesta.CbGenerico> _listaplatillo;
 
         public Boolean validacion;
+=======
+        private List<Respuesta.CbGenerico> _listaplatillo; 
+
+>>>>>>> origin/master
         public class Inputs
         {
             public TextBox Nombre;
@@ -120,6 +128,12 @@ namespace ExcelAddIn1
 
         }
 
+
+        private void txtbuscarcongeladoeditar_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
        
 
         private void txtbuscarcongelado_KeyDown(object sender, KeyEventArgs e)
@@ -194,5 +208,6 @@ namespace ExcelAddIn1
 
     internal class Controls
     {
+
     }
 }

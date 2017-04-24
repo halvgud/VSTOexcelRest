@@ -68,15 +68,15 @@ namespace Data
             }
         }
 
-        public static void SeleccionarMenuSemana(Action<IRestResponse> callback)
+        public static void MostrarDias(Action<IRestResponse> callback)
         {
             try
             {
-                var rest = new Rest(Local.Api.UrlApi, Herramienta.Config.Cocina.Diasema.Diasemana,
+                var rest = new Rest(Local.Api.UrlApi, Herramienta.Config.Cocina.DiasSemana.Diasemana,
                     Method.POST);
                 rest.Peticion.AddHeader(Constantes.Http.ObtenerTipoDeContenido,
                     Constantes.Http.TipoDeContenido.Json);
-                rest.Peticion.AddJsonBody(new { dia = Cocina.Diasema.Dia });
+                rest.Peticion.AddJsonBody(new { Tipo = Cocina.DiasSemana.Tipo});
                 // rest.Peticion.AddJsonBody(repGeneral);
                 rest.Cliente.ExecuteAsync(rest.Peticion, response =>
                 {

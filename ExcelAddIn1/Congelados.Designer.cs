@@ -145,6 +145,7 @@
             this.txtbuscarcongeladoeditar.Name = "txtbuscarcongeladoeditar";
             this.txtbuscarcongeladoeditar.Size = new System.Drawing.Size(248, 20);
             this.txtbuscarcongeladoeditar.TabIndex = 2;
+            this.txtbuscarcongeladoeditar.TextChanged += new System.EventHandler(this.txtbuscarcongeladoeditar_TextChanged);
             // 
             // label2
             // 

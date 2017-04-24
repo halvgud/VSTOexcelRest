@@ -322,7 +322,7 @@ namespace Herramienta.Properties {
         
         [global::System.Configuration.ApplicationScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("receta/seleccionarmenu")]
+        [global::System.Configuration.DefaultSettingValueAttribute("receta/MostrarMenu")]
         public string menu {
             get {
                 return ((string)(this["menu"]));

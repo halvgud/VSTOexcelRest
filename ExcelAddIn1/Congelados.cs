@@ -156,7 +156,7 @@ namespace ExcelAddIn1
 
 
                                         }));
-                                    },
+                                    },//aaa eso era jeje ya lo demas me encargo yo que es q mande al data de agregar y con el boton gia
                                     lista.Select(
                                         x =>
                                             new

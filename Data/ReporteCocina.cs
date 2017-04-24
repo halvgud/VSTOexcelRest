@@ -159,6 +159,39 @@ namespace Data
             }
         }
 
+        public static void agregarcongelados(Action<IRestResponse> callback)
+        {
+            try
+            {
+                var rest = new Rest(Local.Api.UrlApi, Herramienta.Config.Cocina.agregarcongelados.agregar,
+                    Method.POST);
+                rest.Peticion.AddHeader(Constantes.Http.ObtenerTipoDeContenido,
+                    Constantes.Http.TipoDeContenido.Json);
+                rest.Peticion.AddJsonBody(new { art_id = Cocina.agregarcongelados.art_id,
+                                                clave=Cocina.agregarcongelados.clave,
+                                                descripcion=Cocina.agregarcongelados.descripcion,
+                                                cantidad=Cocina.agregarcongelados.agregarcantidad});
+                // rest.Peticion.AddJsonBody(repGeneral);
+                rest.Cliente.ExecuteAsync(rest.Peticion, response =>
+                {
+                    switch (response.StatusCode)
+                    {
+                        case HttpStatusCode.OK:
+                            callback(response);
+                            break;
+                        default:
+                            callback(null);
+                            break;
+                    }
+                });
+            }
+            catch (Exception e)
+            {
+                Opcion.Log(Log.Interno.Categoria, "EXCEPCION: " + e.Message);
+                callback(null);
+            }
+        }
+
         public static void ActualizarCongelado(Action<IRestResponse> callback)
         {
             try

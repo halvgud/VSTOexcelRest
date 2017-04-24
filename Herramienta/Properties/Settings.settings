@@ -116,5 +116,8 @@
     <Setting Name="Agrega_BuscarCongelado" Type="System.String" Scope="Application">
       <Value Profile="(Default)">reporte/BuscarArticuloCongelar</Value>
     </Setting>
+    <Setting Name="AgregarCongelado1" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">receta/AgregarCongelado</Value>
+    </Setting>
   </Settings>
 </SettingsFile>

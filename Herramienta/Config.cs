@@ -50,6 +50,16 @@ namespace Herramienta
                 public static string repcongelados { get; set; } = Properties.Settings.Default.ReporteCongelado;
             }
 
+            public class agregarcongelados
+            {
+                public static int art_id { get; set;}
+                public static string clave { get; set; }
+                public static string descripcion { get; set; }
+                public static double cantidad { get; set; }
+                public static string agregar { get; set; } = Properties.Settings.Default.AgregarCongelado1;
+                public static string agregarcantidad { get; set; } 
+            }
+
             public class DiasSemana
             {
                 public static string Diasemana { get; set; } = Properties.Settings.Default.menu;

@@ -364,5 +364,14 @@ namespace Herramienta.Properties {
                 return ((string)(this["Agrega_BuscarCongelado"]));
             }
         }
+        
+        [global::System.Configuration.ApplicationScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("receta/AgregarCongelado")]
+        public string AgregarCongelado1 {
+            get {
+                return ((string)(this["AgregarCongelado1"]));
+            }
+        }
     }
 }

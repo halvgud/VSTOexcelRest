@@ -24,14 +24,14 @@ namespace ExcelAddIn1
 
         public char KeyChar { get; set; }
         private List<Articulo.Basica> _listaArticuloBasica1;
-<<<<<<< HEAD
+
         private List<Respuesta.CbGenerico> _listaplatillo;
 
         public Boolean validacion;
-=======
-        private List<Respuesta.CbGenerico> _listaplatillo; 
 
->>>>>>> origin/master
+        //private List<Respuesta.CbGenerico> _listaplatillo; 
+
+
         public class Inputs
         {
             public TextBox Nombre;
@@ -103,13 +103,8 @@ namespace ExcelAddIn1
                                          dgvcongeladobuscaryeditar.DataSource = resultado.Select(g => new {g.estado_id, g.clave, g.descripcion, g.cantidad, g.status, g.fechaEntrada}) /*ni estas*/
                                           .ToList();
                                      }));
-                                 },lista.ToArray());
-                            if (tpagregar.Visible == true)
-                            {
-                                brd.lbcantidad.Visible = true;
-                                brd.lbdescripcion.Visible = true;
-             
-                            }
+                                 },lista.ToArray(),0);
+
                             brd.Show(); /*se muestra*/
                             break;
                         default:
@@ -163,8 +158,8 @@ namespace ExcelAddIn1
                                     {
                                         BeginInvoke((MethodInvoker) (() => /*se manda llamar de nuevo a la interfaz*/
                                         {
-                                            dgvcongeladobuscaryeditar.DataSource =
-                                                resultado.Select(x => new {x.art_id, x.clave, x.descripcion})
+                                            dgvcongelados.DataSource =
+                                                resultado.Select(x => new {x.art_id, x.clave, x.descripcion, x.cantidad})
                                                     /*ni estas*/
                                                     .ToList();
 
@@ -175,10 +170,11 @@ namespace ExcelAddIn1
                                         x =>
                                             new
                                             {
-                                                x.estado_id,
+                                                x.art_id,
                                                 x.clave,
                                                 x.descripcion
-                                            }).ToArray());
+                                            }).ToArray(),1);
+                                
                     
                                 brd.Show(); /*se muestra*/
                                 break;
@@ -203,7 +199,16 @@ namespace ExcelAddIn1
 
         }
 
-      
+        private void btguardaragregar_Click(object sender, EventArgs e)
+        {
+            Cocina.agregarcongelados.art_id = int.Parse(dgvcongelados.CurrentRow.Cells[0].Value.ToString());
+
+            Cocina.agregarcongelados.clave = dgvcongelados.CurrentRow.Cells[1].Value.ToString() == string.Empty ? "%" : dgvcongelados.CurrentRow.Cells[1].Value.ToString();
+            Cocina.agregarcongelados.descripcion = dgvcongelados.CurrentRow.Cells[2].Value.ToString() == string.Empty ? "%" : dgvcongelados.CurrentRow.Cells[2].Value.ToString();  /* asigna la clave a la variable estatica*/
+
+            Cocina.agregarcongelados.cantidad = double.Parse(dgvcongelados.CurrentRow.Cells[3].Value.ToString());
+
+        }
     }
 
     internal class Controls

@@ -80,6 +80,7 @@
             this.btguardaragregar.TabIndex = 3;
             this.btguardaragregar.Text = "Guardar";
             this.btguardaragregar.UseVisualStyleBackColor = true;
+            this.btguardaragregar.Click += new System.EventHandler(this.btguardaragregar_Click);
             // 
             // dgvcongelados
             // 
@@ -100,7 +101,7 @@
             // 
             // txtbuscarcongelado
             // 
-            this.txtbuscarcongelado.Location = new System.Drawing.Point(29, 28);
+            this.txtbuscarcongelado.Location = new System.Drawing.Point(29, 53);
             this.txtbuscarcongelado.Name = "txtbuscarcongelado";
             this.txtbuscarcongelado.Size = new System.Drawing.Size(562, 20);
             this.txtbuscarcongelado.TabIndex = 0;

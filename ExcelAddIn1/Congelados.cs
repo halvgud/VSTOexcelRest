@@ -6,6 +6,7 @@ using System.Drawing;
 using System.Globalization;
 using System.Linq;
 using System.Net;
+using System.Security.Cryptography.X509Certificates;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
@@ -20,7 +21,9 @@ namespace ExcelAddIn1
     {
         public char KeyChar { get; set; }
         private List<Articulo.Basica> _listaArticuloBasica1;
-        private List<Respuesta.CbGenerico> _listaplatillo; 
+        private List<Respuesta.CbGenerico> _listaplatillo;
+
+        public Boolean validacion;
         public class Inputs
         {
             public TextBox Nombre;
@@ -82,8 +85,9 @@ namespace ExcelAddIn1
                     switch (jsonResult.StatusCode)
                     {
                         case HttpStatusCode.OK:
+                            var lista = Opcion.JsonaListaGenerica<Receta.Congelados>(jsonResult);
                             var brd = /*aqui que ondas */
-                             new BuscarCongelados(Opcion.JsonaListaGenerica<Receta.Congelados>(jsonResult), /*esta parte no le entiendo*/
+                             new BuscarCongelados(lista, /*esta parte no le entiendo*/
                                  resultado =>
                                  {
                                      BeginInvoke((MethodInvoker)(() => /*se manda llamar de nuevo a la interfaz*/
@@ -91,7 +95,7 @@ namespace ExcelAddIn1
                                          dgvcongeladobuscaryeditar.DataSource = resultado.Select(g => new {g.estado_id, g.clave, g.descripcion, g.cantidad, g.status, g.fechaEntrada}) /*ni estas*/
                                           .ToList();
                                      }));
-                                 });
+                                 },lista.ToArray());
                             if (tpagregar.Visible == true)
                             {
                                 brd.lbcantidad.Visible = true;
@@ -120,35 +124,48 @@ namespace ExcelAddIn1
 
         private void txtbuscarcongelado_KeyDown(object sender, KeyEventArgs e)
         {
+           
+           
            if (e.KeyCode == Keys.Enter)
             {
 
-                Cocina.buscarcongelados.descripcion = txtbuscarcongelado.Text == string.Empty ? "%" : txtbuscarcongelado.Text;  /* asigna la clave a la variable estatica*/
-                Opcion.EjecucionAsync(Data.ReporteCocina.Buscarcongelados, jsonResult => /* se ejecuta Data.Receta.Lista, el resultado se guarda en jsonResult*/
+                if (tabControl1.SelectedTab == tabControl1.TabPages[0])
+                {
+                    
+                }
+                    Cocina.buscarcongelados.descripcion = txtbuscarcongelado.Text == string.Empty ? "%" : txtbuscarcongelado.Text;  /* asigna la clave a la variable estatica*/
+                Opcion.EjecucionAsync(Data.ReporteCocina.agregar_congeladobuscar, jsonResult => /* se ejecuta Data.Receta.Lista, el resultado se guarda en jsonResult*/
                 {
                     BeginInvoke((MethodInvoker)(() =>
                     {
                         switch (jsonResult.StatusCode)
                         {
                             case HttpStatusCode.OK:
-                                var brd = /*aqui que ondas */
-                                 new BuscarCongelados(Opcion.JsonaListaGenerica<Respuesta.Receta.Congelados>(jsonResult), /*esta parte no le entiendo*/
-                                     resultado =>
-                                     {
-                                         BeginInvoke((MethodInvoker)(() => /*se manda llamar de nuevo a la interfaz*/
-                                         {
-                                             dgvcongeladobuscaryeditar.DataSource = resultado /*ni estas*/
-                                              .ToList();
-                                         }));
-                                     });
-                                if (tpagregar.Visible == true)
-                                {
-                                    brd.lbcantidad.Visible = true;
-                                    brd.lbdescripcion.Visible = true;
-                                    brd.lbtclave.Visible = true;
-                                    brd.lbtdescripcion.Visible = true;
-                                    brd.txtcantidad.Visible = true;
-                                }
+
+                                var lista = Opcion.JsonaListaGenerica<Respuesta.Receta.Congelados>(jsonResult);
+
+                                var brd = new BuscarCongelados(lista, /*esta parte no le entiendo*/
+                                    resultado =>
+                                    {
+                                        BeginInvoke((MethodInvoker) (() => /*se manda llamar de nuevo a la interfaz*/
+                                        {
+                                            dgvcongeladobuscaryeditar.DataSource =
+                                                resultado.Select(x => new {x.art_id, x.clave, x.descripcion})
+                                                    /*ni estas*/
+                                                    .ToList();
+
+
+                                        }));
+                                    },
+                                    lista.Select(
+                                        x =>
+                                            new
+                                            {
+                                                x.estado_id,
+                                                x.clave,
+                                                x.descripcion
+                                            }).ToArray());
+                    
                                 brd.Show(); /*se muestra*/
                                 break;
                             default:

@@ -98,6 +98,37 @@ namespace Data
             }
         }
 
+
+        public static void agregar_congeladobuscar(Action<IRestResponse> callback)
+        {//es q lo escribi mal jeje
+            try
+            {
+                var rest = new Rest(Local.Api.UrlApi, Herramienta.Config.Cocina.buscarcongelados.sacarclave,
+                    Method.POST);
+                rest.Peticion.AddHeader(Constantes.Http.ObtenerTipoDeContenido,
+                    Constantes.Http.TipoDeContenido.Json);
+                rest.Peticion.AddJsonBody(new { descripcion = Cocina.buscarcongelados.descripcion });
+                // rest.Peticion.AddJsonBody(repGeneral);
+                rest.Cliente.ExecuteAsync(rest.Peticion, response =>
+                {
+                    switch (response.StatusCode)
+                    {
+                        case HttpStatusCode.OK:
+                            callback(response);
+                            break;
+                        default:
+                            callback(null);
+                            break;
+                    }
+                });
+            }
+            catch (Exception e)
+            {
+                Opcion.Log(Log.Interno.Categoria, "EXCEPCION: " + e.Message);
+                callback(null);
+            }
+        }
+
         public static void Buscarcongelados(Action<IRestResponse> callback)
         {
             try

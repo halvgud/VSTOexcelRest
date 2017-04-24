@@ -134,14 +134,14 @@
             // dgvcongeladobuscaryeditar
             // 
             this.dgvcongeladobuscaryeditar.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dgvcongeladobuscaryeditar.Location = new System.Drawing.Point(21, 71);
+            this.dgvcongeladobuscaryeditar.Location = new System.Drawing.Point(21, 86);
             this.dgvcongeladobuscaryeditar.Name = "dgvcongeladobuscaryeditar";
             this.dgvcongeladobuscaryeditar.Size = new System.Drawing.Size(577, 141);
             this.dgvcongeladobuscaryeditar.TabIndex = 3;
             // 
             // txtbuscarcongeladoeditar
             // 
-            this.txtbuscarcongeladoeditar.Location = new System.Drawing.Point(21, 32);
+            this.txtbuscarcongeladoeditar.Location = new System.Drawing.Point(21, 49);
             this.txtbuscarcongeladoeditar.Name = "txtbuscarcongeladoeditar";
             this.txtbuscarcongeladoeditar.Size = new System.Drawing.Size(248, 20);
             this.txtbuscarcongeladoeditar.TabIndex = 2;
@@ -157,7 +157,7 @@
             // 
             // btbuscareditar
             // 
-            this.btbuscareditar.Location = new System.Drawing.Point(287, 30);
+            this.btbuscareditar.Location = new System.Drawing.Point(287, 47);
             this.btbuscareditar.Name = "btbuscareditar";
             this.btbuscareditar.Size = new System.Drawing.Size(75, 23);
             this.btbuscareditar.TabIndex = 0;
@@ -187,10 +187,6 @@
         }
 
         #endregion
-
-        private System.Windows.Forms.TabControl tabControl1;
-        private System.Windows.Forms.TabPage tpagregar;
-        private System.Windows.Forms.TabPage tpbuscaryeditar;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.TextBox txtbuscarcongelado;
         private System.Windows.Forms.Button btguardaragregar;
@@ -200,5 +196,8 @@
         private System.Windows.Forms.TextBox txtbuscarcongeladoeditar;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Button btbuscareditar;
+        public System.Windows.Forms.TabPage tpagregar;
+        public System.Windows.Forms.TabPage tpbuscaryeditar;
+        public System.Windows.Forms.TabControl tabControl1;
     }
 }

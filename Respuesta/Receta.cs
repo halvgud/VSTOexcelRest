@@ -75,6 +75,7 @@ namespace Respuesta
          }
         public class Congelados
         {
+            public int art_id { get; set; }
             public int estado_id { get; set; }
             public string clave { get; set; }
             public string descripcion { get; set; }

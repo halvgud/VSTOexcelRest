@@ -355,5 +355,14 @@ namespace Herramienta.Properties {
                 return ((string)(this["ReporteCongelado"]));
             }
         }
+        
+        [global::System.Configuration.ApplicationScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("reporte/BuscarArticuloCongelar")]
+        public string Agrega_BuscarCongelado {
+            get {
+                return ((string)(this["Agrega_BuscarCongelado"]));
+            }
+        }
     }
 }

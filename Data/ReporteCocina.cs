@@ -159,7 +159,7 @@ namespace Data
             }
         }
 
-        public static void agregarcongelados(Action<IRestResponse> callback)
+        public static void AgregarCongelados(Respuesta.Receta.Congelados recetaCongelados)
         {
             try
             {
@@ -167,20 +167,17 @@ namespace Data
                     Method.POST);
                 rest.Peticion.AddHeader(Constantes.Http.ObtenerTipoDeContenido,
                     Constantes.Http.TipoDeContenido.Json);
-                rest.Peticion.AddJsonBody(new { art_id = Cocina.agregarcongelados.art_id,
-                                                clave=Cocina.agregarcongelados.clave,
-                                                descripcion=Cocina.agregarcongelados.descripcion,
-                                                cantidad=Cocina.agregarcongelados.agregarcantidad});
+                rest.Peticion.AddJsonBody(recetaCongelados);
                 // rest.Peticion.AddJsonBody(repGeneral);
                 rest.Cliente.ExecuteAsync(rest.Peticion, response =>
                 {
                     switch (response.StatusCode)
                     {
-                        case HttpStatusCode.OK:
-                            callback(response);
+                        case HttpStatusCode.OK: //ell callback es para cuando quieres hacer una accion al terminar tu query
+                      //      callback(response);
                             break;
                         default:
-                            callback(null);
+                      //      callback(null);
                             break;
                     }
                 });
@@ -188,11 +185,11 @@ namespace Data
             catch (Exception e)
             {
                 Opcion.Log(Log.Interno.Categoria, "EXCEPCION: " + e.Message);
-                callback(null);
+                //callback(null);
             }
         }
 
-        public static void ActualizarCongelado(Action<IRestResponse> callback)
+        public static void ActualizarCongelado(Respuesta.Receta.Congelados recetaCongelados)
         {
             try
             {
@@ -200,18 +197,18 @@ namespace Data
                     Method.POST);
                 rest.Peticion.AddHeader(Constantes.Http.ObtenerTipoDeContenido,
                     Constantes.Http.TipoDeContenido.Json);
-                rest.Peticion.AddJsonBody(new { existencia = Cocina.buscarcongelados.descripcion });
-                rest.Peticion.AddJsonBody(new { estado_id = Cocina.buscarcongelados.descripcion });
+                rest.Peticion.AddJsonBody(recetaCongelados);
+                //rest.Peticion.AddJsonBody(new { estado_id = Cocina.buscarcongelados.descripcion });
                 // rest.Peticion.AddJsonBody(repGeneral);
                 rest.Cliente.ExecuteAsync(rest.Peticion, response =>
                 {
                     switch (response.StatusCode)
                     {
                         case HttpStatusCode.OK:
-                            callback(response);
+                           // callback(response);
                             break;
                         default:
-                            callback(null);
+                           // callback(null);
                             break;
                     }
                 });
@@ -219,7 +216,7 @@ namespace Data
             catch (Exception e)
             {
                 Opcion.Log(Log.Interno.Categoria, "EXCEPCION: " + e.Message);
-                callback(null);
+                //callback(null);
             }
         }
 

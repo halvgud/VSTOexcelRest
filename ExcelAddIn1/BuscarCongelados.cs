@@ -28,6 +28,11 @@ namespace ExcelAddIn1
                 lbtdescripcion.Visible = true;
                 lbcantidad.Visible = true;
             }
+            else
+            {
+                lbcantidad.Visible = true;
+                txtcantidad.Visible = true;
+            }
 
             
             //var cg = new Congelados();

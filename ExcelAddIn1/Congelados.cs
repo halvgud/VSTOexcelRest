@@ -27,6 +27,7 @@ namespace ExcelAddIn1
 
         private List<Respuesta.CbGenerico> _listaplatillo;
 
+        private List<Respuesta.Agregarcongelados> _listaagregarcongelados;
         public Boolean validacion;
 
         //private List<Respuesta.CbGenerico> _listaplatillo; 
@@ -120,6 +121,17 @@ namespace ExcelAddIn1
 
         private void btguardareditar_Click(object sender, EventArgs e)
         {
+            var congelados = new Receta.Congelados
+            {
+                estado_id = Convert.ToInt16(dgvcongeladobuscaryeditar.CurrentRow.Cells[0].Value),
+                cantidad = double.Parse(dgvcongeladobuscaryeditar.CurrentRow.Cells[3].Value.ToString())
+            };
+
+            Data.ReporteCocina.ActualizarCongelado(congelados);
+            
+            dgvcongeladobuscaryeditar.DataSource = null;
+            dgvcongeladobuscaryeditar.Rows.Clear();
+        
 
         }
 
@@ -201,12 +213,31 @@ namespace ExcelAddIn1
 
         private void btguardaragregar_Click(object sender, EventArgs e)
         {
-            Cocina.agregarcongelados.art_id = int.Parse(dgvcongelados.CurrentRow.Cells[0].Value.ToString());
 
-            Cocina.agregarcongelados.clave = dgvcongelados.CurrentRow.Cells[1].Value.ToString() == string.Empty ? "%" : dgvcongelados.CurrentRow.Cells[1].Value.ToString();
-            Cocina.agregarcongelados.descripcion = dgvcongelados.CurrentRow.Cells[2].Value.ToString() == string.Empty ? "%" : dgvcongelados.CurrentRow.Cells[2].Value.ToString();  /* asigna la clave a la variable estatica*/
+            var congelados = new Receta.Congelados
+            {
+                art_id = Convert.ToInt16(dgvcongelados.CurrentRow.Cells[0].Value),
+                clave =
+                    dgvcongelados.CurrentRow.Cells[1].Value.ToString() == string.Empty
+                        ? "%"
+                        : dgvcongelados.CurrentRow.Cells[1].Value.ToString(),
+                descripcion =
+                    dgvcongelados.CurrentRow.Cells[2].Value.ToString() == string.Empty
+                        ? "%"
+                        : dgvcongelados.CurrentRow.Cells[2].Value.ToString(),
+                cantidad = double.Parse(dgvcongelados.CurrentRow.Cells[3].Value.ToString())
+            };
 
-            Cocina.agregarcongelados.cantidad = double.Parse(dgvcongelados.CurrentRow.Cells[3].Value.ToString());
+            Data.ReporteCocina.AgregarCongelados(congelados);
+            //dgvcongelados.Rows.Clear();
+
+            //Cocina.AgregarCongelados.art_id = int.Parse(dgvcongelados.CurrentRow.Cells[0].Value.ToString());
+
+            //Cocina.AgregarCongelados.clave = dgvcongelados.CurrentRow.Cells[1].Value.ToString() == string.Empty ? "%" : dgvcongelados.CurrentRow.Cells[1].Value.ToString();
+            //Cocina.AgregarCongelados.descripcion = dgvcongelados.CurrentRow.Cells[2].Value.ToString() == string.Empty ? "%" : dgvcongelados.CurrentRow.Cells[2].Value.ToString();  /* asigna la clave a la variable estatica*/
+
+            //Cocina.AgregarCongelados.cantidad = double.Parse(dgvcongelados.CurrentRow.Cells[3].Value.ToString());
+
 
         }
     }

@@ -131,7 +131,7 @@ namespace Data
                 rest.Peticion.AddHeader(Constantes.Http.ObtenerTipoDeContenido, Constantes.Http.TipoDeContenido.Json);
                 rest.Cliente.ExecuteAsync(rest.Peticion, response =>
                 {
-                    switch (response.StatusCode)
+                        switch (response.StatusCode)
                     {
                         case HttpStatusCode.OK:
                             callback(response);
@@ -260,7 +260,9 @@ namespace Data
             {
                 Opcion.Log(Log.Interno.Departamento, "EXCEPCION: " + e.Message);
             }
-            
+            /*olle saves que desde que agregue lo del mensaje de espera me empezo a pasar eso 
+             donde esta el msj de espera
+             ?*/
         }
     }
 

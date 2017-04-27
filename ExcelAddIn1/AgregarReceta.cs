@@ -313,8 +313,7 @@ namespace ExcelAddIn1
             Local.Receta.clave = (inputs.ClaveReceta.Text);
             if (ValidarCampos())
             {
-                Opcion.EjecucionAsync
-                    (Data.Receta.Lista, jsonResult =>
+                Opcion.EjecucionAsync(Data.Receta.Lista, jsonResult =>
                 {
                     if (!ValidarClave(inputs.ClaveReceta, jsonResult)) return;
                     var mde = new MensajeDeEspera();
@@ -376,7 +375,7 @@ namespace ExcelAddIn1
             {
                 mde?.Close();
                 MessageBox.Show(this, @"Se a guardado con éxito  Clave :" + inputs.ClaveReceta.Text);
-                 inputs.ClaveReceta.Text = "";
+                inputs.ClaveReceta.Text = "";
                 inputs.Precio.Text = "";
                 inputs.PesoLitro.Text = "";
                 inputs.Descripcion.Text = "";

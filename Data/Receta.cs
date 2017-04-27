@@ -13,6 +13,7 @@ namespace Data
     public class Receta
     {
         public static Respuesta.Receta CReceta=new Respuesta.Receta();
+       
 
         public static void Lista(Action<IRestResponse> callback)
         {

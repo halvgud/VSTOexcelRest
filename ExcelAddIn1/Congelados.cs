@@ -54,9 +54,9 @@ namespace ExcelAddIn1
             InitializeComponent();
             var allowedTypes = new AutoCompleteStringCollection();
             allowedTypes.AddRange(arreglo());
-            txtbuscarcongelado.AutoCompleteCustomSource = allowedTypes;
-            txtbuscarcongelado.AutoCompleteMode = AutoCompleteMode.Suggest;
-            txtbuscarcongelado.AutoCompleteSource = AutoCompleteSource.CustomSource;
+            //txtbuscarcongelado.AutoCompleteCustomSource = allowedTypes;
+            //txtbuscarcongelado.AutoCompleteMode = AutoCompleteMode.Suggest;
+            //txtbuscarcongelado.AutoCompleteSource = AutoCompleteSource.CustomSource;
 
             txtbuscarcongeladoeditar.AutoCompleteCustomSource = allowedTypes;
             txtbuscarcongeladoeditar.AutoCompleteMode = AutoCompleteMode.Suggest;
@@ -121,17 +121,56 @@ namespace ExcelAddIn1
 
         private void btguardareditar_Click(object sender, EventArgs e)
         {
-            var congelados = new Receta.Congelados
+
+            int id = Convert.ToInt16(dgvcongeladobuscaryeditar.CurrentRow.Cells[0].Value);
+            double canttidad = Convert.ToDouble(dgvcongeladobuscaryeditar.CurrentRow.Cells[3].Value);
+            ///*aqui el problema es que estas creando el objeto despues de la ejecucion y es alreves
+            // deja lo formo*/
+            //;
+
+
+            mse.Show();
+            //var congeladosagregar = new Receta.Congelados
+            //{
+            //    estado_id = id,
+            //    cantidad = canttidad
+
+            //};
+            //Data.ReporteCocina.Cccongelados = congeladosagregar;
+            //Data.ReporteCocina.AgregarCongelados(y => {
+            //    BeginInvoke((MethodInvoker)(() =>
+            //    {
+            //        mse.Close();
+            //        dgvcongelados.DataSource = null;
+            //        dgvcongelados.Rows.Clear();
+            //        txtbuscarcongelado.Clear();
+
+            //    }));
+            //});
+
+            var congeladosactualizar = new Receta.Congelados
             {
                 estado_id = Convert.ToInt16(dgvcongeladobuscaryeditar.CurrentRow.Cells[0].Value),
                 cantidad = double.Parse(dgvcongeladobuscaryeditar.CurrentRow.Cells[3].Value.ToString())
             };
 
-            Data.ReporteCocina.ActualizarCongelado(congelados);
-            
-            dgvcongeladobuscaryeditar.DataSource = null;
-            dgvcongeladobuscaryeditar.Rows.Clear();
-        
+            //Data.ReporteCocina.ActualizarCongelado
+            Data.ReporteCocina.Cccongelados = congeladosactualizar;
+            Data.ReporteCocina.ActualizarCongelado(y => {
+                BeginInvoke((MethodInvoker)(() =>
+                {
+                    mse.Close();
+                    dgvcongeladobuscaryeditar.DataSource = null;
+                    dgvcongeladobuscaryeditar.Rows.Clear();
+                    txtbuscarcongeladoeditar.Clear();
+
+                }));
+            }); 
+
+            //MessageBox.Show("Datos actualizados");
+            //dgvcongeladobuscaryeditar.DataSource = null;
+            //dgvcongeladobuscaryeditar.Rows.Clear();
+
 
         }
 
@@ -154,6 +193,7 @@ namespace ExcelAddIn1
                 {
                     
                 }
+                /*ya de aqui me encargo pero primero activo el office jeje*/
                     Cocina.buscarcongelados.descripcion = txtbuscarcongelado.Text == string.Empty ? "%" : txtbuscarcongelado.Text;  /* asigna la clave a la variable estatica*/
                 Opcion.EjecucionAsync(Data.ReporteCocina.agregar_congeladobuscar, jsonResult => /* se ejecuta Data.Receta.Lista, el resultado se guarda en jsonResult*/
                 {
@@ -210,25 +250,60 @@ namespace ExcelAddIn1
             }
 
         }
-
+        MensajeDeEspera mse = new MensajeDeEspera();
         private void btguardaragregar_Click(object sender, EventArgs e)
         {
+            int id = Convert.ToInt16(dgvcongelados.CurrentRow.Cells[0].Value);
+            string Clavee = dgvcongelados.CurrentRow.Cells[1].Value.ToString();
+            string descrippcion = dgvcongelados.CurrentRow.Cells[2].Value.ToString();
+            double canttidad = Convert.ToDouble(dgvcongelados.CurrentRow.Cells[3].Value);
+            /*aqui el problema es que estas creando el objeto despues de la ejecucion y es alreves
+             deja lo formo*/;
 
-            var congelados = new Receta.Congelados
+
+            mse.Show();
+            var congeladosagregar = new Receta.Congelados
             {
-                art_id = Convert.ToInt16(dgvcongelados.CurrentRow.Cells[0].Value),
-                clave =
-                    dgvcongelados.CurrentRow.Cells[1].Value.ToString() == string.Empty
-                        ? "%"
-                        : dgvcongelados.CurrentRow.Cells[1].Value.ToString(),
-                descripcion =
-                    dgvcongelados.CurrentRow.Cells[2].Value.ToString() == string.Empty
-                        ? "%"
-                        : dgvcongelados.CurrentRow.Cells[2].Value.ToString(),
-                cantidad = double.Parse(dgvcongelados.CurrentRow.Cells[3].Value.ToString())
-            };
+                art_id = id,
+                clave = Clavee,
+                descripcion = descrippcion,
+                cantidad = canttidad
 
-            Data.ReporteCocina.AgregarCongelados(congelados);
+            };
+            Data.ReporteCocina.Cccongelados = congeladosagregar;
+            Data.ReporteCocina.AgregarCongelados(y => {
+            BeginInvoke((MethodInvoker)(() =>
+            {
+                mse.Close();
+                dgvcongelados.DataSource = null;
+                dgvcongelados.Rows.Clear();
+                txtbuscarcongelado.Clear();
+                
+            }));
+            });
+           
+           
+           
+
+
+            //var congelados = new Receta.Congelados
+            //{
+            //    art_id = Convert.ToInt16(dgvcongelados.CurrentRow.Cells[0].Value),
+            //    clave =
+            //        dgvcongelados.CurrentRow.Cells[1].Value.ToString() == string.Empty
+            //            ? "%"
+            //            : dgvcongelados.CurrentRow.Cells[1].Value.ToString(),
+            //    descripcion =
+            //        dgvcongelados.CurrentRow.Cells[2].Value.ToString() == string.Empty
+            //            ? "%"
+            //            : dgvcongelados.CurrentRow.Cells[2].Value.ToString(),
+            //    cantidad = double.Parse(dgvcongelados.CurrentRow.Cells[3].Value.ToString())
+            //};
+
+            //Data.ReporteCocina.AgregarCongelados(congelados);
+
+            // MessageBox.Show("Agregado con exito");
+            //dgvcongelados.DataSource = null;
             //dgvcongelados.Rows.Clear();
 
             //Cocina.AgregarCongelados.art_id = int.Parse(dgvcongelados.CurrentRow.Cells[0].Value.ToString());

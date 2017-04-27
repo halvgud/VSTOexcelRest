@@ -12,6 +12,7 @@ namespace Data
 {
    public class ReporteCocina
     {
+        public static Respuesta.Receta.Congelados Cccongelados;
         public static void VersionDetallada(Action<IRestResponse> callback)
         {
             try
@@ -159,7 +160,7 @@ namespace Data
             }
         }
 
-        public static void AgregarCongelados(Respuesta.Receta.Congelados recetaCongelados)
+        public static void AgregarCongelados(Action<IRestResponse> callback)
         {
             try
             {
@@ -167,17 +168,17 @@ namespace Data
                     Method.POST);
                 rest.Peticion.AddHeader(Constantes.Http.ObtenerTipoDeContenido,
                     Constantes.Http.TipoDeContenido.Json);
-                rest.Peticion.AddJsonBody(recetaCongelados);
-                // rest.Peticion.AddJsonBody(repGeneral);
+                rest.Peticion.AddJsonBody(Cccongelados);
+                //rest.Peticion.AddJsonBody(repGeneral);
                 rest.Cliente.ExecuteAsync(rest.Peticion, response =>
                 {
                     switch (response.StatusCode)
                     {
                         case HttpStatusCode.OK: //ell callback es para cuando quieres hacer una accion al terminar tu query
-                      //      callback(response);
+                            callback(response);
                             break;
                         default:
-                      //      callback(null);
+                            callback(null);
                             break;
                     }
                 });
@@ -189,7 +190,7 @@ namespace Data
             }
         }
 
-        public static void ActualizarCongelado(Respuesta.Receta.Congelados recetaCongelados)
+        public static void ActualizarCongelado(Action<IRestResponse> callback)
         {
             try
             {
@@ -197,7 +198,7 @@ namespace Data
                     Method.POST);
                 rest.Peticion.AddHeader(Constantes.Http.ObtenerTipoDeContenido,
                     Constantes.Http.TipoDeContenido.Json);
-                rest.Peticion.AddJsonBody(recetaCongelados);
+                rest.Peticion.AddJsonBody(Cccongelados);
                 //rest.Peticion.AddJsonBody(new { estado_id = Cocina.buscarcongelados.descripcion });
                 // rest.Peticion.AddJsonBody(repGeneral);
                 rest.Cliente.ExecuteAsync(rest.Peticion, response =>
@@ -205,10 +206,10 @@ namespace Data
                     switch (response.StatusCode)
                     {
                         case HttpStatusCode.OK:
-                           // callback(response);
+                            callback(response);
                             break;
                         default:
-                           // callback(null);
+                           callback(null);
                             break;
                     }
                 });

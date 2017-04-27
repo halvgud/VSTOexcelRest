@@ -95,9 +95,9 @@
             this.label1.AutoSize = true;
             this.label1.Location = new System.Drawing.Point(26, 12);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(137, 13);
+            this.label1.Size = new System.Drawing.Size(101, 13);
             this.label1.TabIndex = 1;
-            this.label1.Text = "Clave/Descripcion : prueba";
+            this.label1.Text = "Clave/Descripcion :";
             // 
             // txtbuscarcongelado
             // 
@@ -121,6 +121,7 @@
             this.tpbuscaryeditar.TabIndex = 1;
             this.tpbuscaryeditar.Text = "Buscar y Editar";
             this.tpbuscaryeditar.UseVisualStyleBackColor = true;
+            this.tpbuscaryeditar.Click += new System.EventHandler(this.tpbuscaryeditar_Click);
             // 
             // btguardareditar
             // 

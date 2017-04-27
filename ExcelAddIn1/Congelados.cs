@@ -315,6 +315,11 @@ namespace ExcelAddIn1
 
 
         }
+
+        private void tpbuscaryeditar_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 
     internal class Controls

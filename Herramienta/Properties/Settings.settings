@@ -102,7 +102,7 @@
       <Value Profile="(Default)">reporte/seleccionarplatillo</Value>
     </Setting>
     <Setting Name="menu" Type="System.String" Scope="Application">
-      <Value Profile="(Default)">receta/MostrarMenu</Value>
+      <Value Profile="(Default)">/receta/MostrarMenu</Value>
     </Setting>
     <Setting Name="buscarcongelados" Type="System.String" Scope="Application">
       <Value Profile="(Default)">reporte/Sacarcongelado</Value>

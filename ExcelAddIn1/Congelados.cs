@@ -21,17 +21,13 @@ namespace ExcelAddIn1
 
         //private List<Articulo.Basica> _listaArticuloBasica1;
 
-        public char KeyChar { get; set; }
-        private List<Articulo.Basica> _listaArticuloBasica1;
-        private List<Respuesta.CbGenerico> _listaplatillo; 
+        public char KeyChar { get; set; } 
 
         public class Inputs
         {
             public TextBox Nombre;
             public DataGridView ListaCongelados;
         }
-
-
 
         private static Congelados _alreadyOpened;
         public Congelados(Func<string[]> arreglo)

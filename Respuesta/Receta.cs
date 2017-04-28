@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.Design;
 
 
 namespace Respuesta
@@ -20,8 +21,7 @@ namespace Respuesta
         public List<Detalle> Ingredientes { get; set; }
         public List<Congelados> ListaCongelados { get; set; }
         public string ModoElaboracion { get; set; }
-        public List<Semana> ListaSemana { get; set; }
-
+      
         public Basica CopiadoSencillo()
         {
             var art = new Basica {Clave = Clave, Descripcion = Descripcion, Cantidad = Cantidad, Precio = Precio};
@@ -52,34 +52,6 @@ namespace Respuesta
             public double PrecioTotal { get; set; }
 
         }
-
-       
-
-
-
-
-        public class Semana
-        {
-            public DateTime Lunes { get; set; }
-            public DateTime Martes { get; set; }
-            public DateTime Miercoles { get; set; }
-            public DateTime Jueves { get; set; }
-            public DateTime Viernes { get; set; }
-            public DateTime Sabado { get; set; }
-            public DateTime Domingo { get; set; }
-        }
-
-        public class MenuSemana
-        {
-            public string Tipo { get; set; }
-            public string Platillo { get; set; }
-            public int Fecha { get; set; }
-            public int Cantidad { get; set; }
-            public string Unidad { get; set; }
-            public int Precio { get; set; }
-            public int Ganancia { get; set; }
-        }
-
         public class Congelados
         {
             public int estado_id { get; set; }
@@ -93,8 +65,6 @@ namespace Respuesta
         }
 
     }
-
-
         public class Agregarcongelados/* y esta clase para que es? para que hay mande los datos que se van a agregar  ..... te refieres a la de congelados si mmmmm y que los datos los puedas cambiar en el data */
         {
              public int id { get; set; }
@@ -104,33 +74,8 @@ namespace Respuesta
 
         }
 
-
-       
-    
-
-
-
-
-
-
-       public class MenuDia
-       {
-           public string Tipo { get; set; }
-           public string Platillo { get; set; }
-           public int Fecha { get; set; }
-           public int Cantidad { get; set; }
-           public string Unidad { get; set; }
-           public int Precio { get; set; }
-           public int Ganancia { get; set; }
-       }
-
-
-
-
-
     public class Congelados
     {
-
         public string clave { get; set; }
         public string descripcion { get; set; }
         public double cantidad { get; set; }

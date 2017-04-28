@@ -68,6 +68,25 @@ namespace Herramienta
                 return x;
             }
         }
+        /*Cuando hagan commit, antes de hacerlo los 2 hacen este cambio
+         a la funcion de arriba le cambian el nombre en Refactorizar (Clic derecho->refactorizar)
+         Le ponen JsonAListaGenerica
+         y a la funcion de abajo se queda como JsonaClaseGenerica*/
+        public static T JsonaClaseGenerica2<T>(IRestResponse json) where T : new()
+        {
+            T x = new T();
+            try
+            {
+                var desSerializer = new JsonDeserializer();
+                x = desSerializer.Deserialize<T>(json);
+                return x;
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e.Message);
+                return x;
+            }
+        }
 
 
         public static string JsonaString(string json)

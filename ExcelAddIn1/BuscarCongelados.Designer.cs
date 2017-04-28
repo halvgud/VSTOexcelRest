@@ -57,8 +57,11 @@
             this.dgvbuscar_congelados.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgvbuscar_congelados.Location = new System.Drawing.Point(12, 42);
             this.dgvbuscar_congelados.Name = "dgvbuscar_congelados";
+            this.dgvbuscar_congelados.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dgvbuscar_congelados.Size = new System.Drawing.Size(497, 96);
             this.dgvbuscar_congelados.TabIndex = 1;
+            this.dgvbuscar_congelados.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvbuscar_congelados_CellClick);
+            this.dgvbuscar_congelados.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvbuscar_congelados_CellContentClick);
             // 
             // label1
             // 
@@ -86,6 +89,7 @@
             this.lbclave.Size = new System.Drawing.Size(47, 13);
             this.lbclave.TabIndex = 13;
             this.lbclave.Text = "xxxxxxxx";
+            this.lbclave.Visible = false;
             // 
             // lbdescripcion
             // 
@@ -115,6 +119,7 @@
             this.lbtdescripcion.Size = new System.Drawing.Size(69, 13);
             this.lbtdescripcion.TabIndex = 10;
             this.lbtdescripcion.Text = "Descripcion :";
+            this.lbtdescripcion.Visible = false;
             // 
             // lbcantidad
             // 

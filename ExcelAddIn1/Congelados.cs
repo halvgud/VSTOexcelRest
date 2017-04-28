@@ -6,6 +6,7 @@ using System.Drawing;
 using System.Globalization;
 using System.Linq;
 using System.Net;
+using System.Security.Cryptography.X509Certificates;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
@@ -21,7 +22,20 @@ namespace ExcelAddIn1
 
         //private List<Articulo.Basica> _listaArticuloBasica1;
 
+<<<<<<< HEAD
         public char KeyChar { get; set; } 
+=======
+        public char KeyChar { get; set; }
+        private List<Articulo.Basica> _listaArticuloBasica1;
+
+        private List<Respuesta.CbGenerico> _listaplatillo;
+
+        private List<Respuesta.Agregarcongelados> _listaagregarcongelados;
+        public Boolean validacion;
+
+        //private List<Respuesta.CbGenerico> _listaplatillo; 
+
+>>>>>>> origin/master
 
         public class Inputs
         {
@@ -82,8 +96,9 @@ namespace ExcelAddIn1
                     switch (jsonResult.StatusCode)
                     {
                         case HttpStatusCode.OK:
+                            var lista = Opcion.JsonaListaGenerica<Receta.Congelados>(jsonResult);
                             var brd = /*aqui que ondas */
-                             new BuscarCongelados(Opcion.JsonaListaGenerica<Receta.Congelados>(jsonResult), /*esta parte no le entiendo*/
+                             new BuscarCongelados(lista, /*esta parte no le entiendo*/
                                  resultado =>
                                  {
                                      BeginInvoke((MethodInvoker)(() => /*se manda llamar de nuevo a la interfaz*/
@@ -91,13 +106,8 @@ namespace ExcelAddIn1
                                          dgvcongeladobuscaryeditar.DataSource = resultado.Select(g => new {g.estado_id, g.clave, g.descripcion, g.cantidad, g.status, g.fechaEntrada}) /*ni estas*/
                                           .ToList();
                                      }));
-                                 });
-                            if (tpagregar.Visible == true)
-                            {
-                                brd.lbcantidad.Visible = true;
-                                brd.lbdescripcion.Visible = true;
-             
-                            }
+                                 },lista.ToArray(),0);
+
                             brd.Show(); /*se muestra*/
                             break;
                         default:
@@ -113,6 +123,17 @@ namespace ExcelAddIn1
 
         private void btguardareditar_Click(object sender, EventArgs e)
         {
+            var congelados = new Receta.Congelados
+            {
+                estado_id = Convert.ToInt16(dgvcongeladobuscaryeditar.CurrentRow.Cells[0].Value),
+                cantidad = double.Parse(dgvcongeladobuscaryeditar.CurrentRow.Cells[3].Value.ToString())
+            };
+
+            Data.ReporteCocina.ActualizarCongelado(congelados);
+            
+            dgvcongeladobuscaryeditar.DataSource = null;
+            dgvcongeladobuscaryeditar.Rows.Clear();
+        
 
         }
 
@@ -126,35 +147,49 @@ namespace ExcelAddIn1
 
         private void txtbuscarcongelado_KeyDown(object sender, KeyEventArgs e)
         {
+           
+           
            if (e.KeyCode == Keys.Enter)
             {
 
-                Cocina.buscarcongelados.descripcion = txtbuscarcongelado.Text == string.Empty ? "%" : txtbuscarcongelado.Text;  /* asigna la clave a la variable estatica*/
-                Opcion.EjecucionAsync(Data.ReporteCocina.Buscarcongelados, jsonResult => /* se ejecuta Data.Receta.Lista, el resultado se guarda en jsonResult*/
+                if (tabControl1.SelectedTab == tabControl1.TabPages[0])
+                {
+                    
+                }
+                    Cocina.buscarcongelados.descripcion = txtbuscarcongelado.Text == string.Empty ? "%" : txtbuscarcongelado.Text;  /* asigna la clave a la variable estatica*/
+                Opcion.EjecucionAsync(Data.ReporteCocina.agregar_congeladobuscar, jsonResult => /* se ejecuta Data.Receta.Lista, el resultado se guarda en jsonResult*/
                 {
                     BeginInvoke((MethodInvoker)(() =>
                     {
                         switch (jsonResult.StatusCode)
                         {
                             case HttpStatusCode.OK:
-                                var brd = /*aqui que ondas */
-                                 new BuscarCongelados(Opcion.JsonaListaGenerica<Respuesta.Receta.Congelados>(jsonResult), /*esta parte no le entiendo*/
-                                     resultado =>
-                                     {
-                                         BeginInvoke((MethodInvoker)(() => /*se manda llamar de nuevo a la interfaz*/
-                                         {
-                                             dgvcongeladobuscaryeditar.DataSource = resultado /*ni estas*/
-                                              .ToList();
-                                         }));
-                                     });
-                                if (tpagregar.Visible == true)
-                                {
-                                    brd.lbcantidad.Visible = true;
-                                    brd.lbdescripcion.Visible = true;
-                                    brd.lbtclave.Visible = true;
-                                    brd.lbtdescripcion.Visible = true;
-                                    brd.txtcantidad.Visible = true;
-                                }
+
+                                var lista = Opcion.JsonaListaGenerica<Respuesta.Receta.Congelados>(jsonResult);
+
+                                var brd = new BuscarCongelados(lista, /*esta parte no le entiendo*/
+                                    resultado =>
+                                    {
+                                        BeginInvoke((MethodInvoker) (() => /*se manda llamar de nuevo a la interfaz*/
+                                        {
+                                            dgvcongelados.DataSource =
+                                                resultado.Select(x => new {x.art_id, x.clave, x.descripcion, x.cantidad})
+                                                    /*ni estas*/
+                                                    .ToList();
+
+
+                                        }));
+                                    },//aaa eso era jeje ya lo demas me encargo yo que es q mande al data de agregar y con el boton gia
+                                    lista.Select(
+                                        x =>
+                                            new
+                                            {
+                                                x.art_id,
+                                                x.clave,
+                                                x.descripcion
+                                            }).ToArray(),1);
+                                
+                    
                                 brd.Show(); /*se muestra*/
                                 break;
                             default:
@@ -178,7 +213,35 @@ namespace ExcelAddIn1
 
         }
 
-      
+        private void btguardaragregar_Click(object sender, EventArgs e)
+        {
+
+            var congelados = new Receta.Congelados
+            {
+                art_id = Convert.ToInt16(dgvcongelados.CurrentRow.Cells[0].Value),
+                clave =
+                    dgvcongelados.CurrentRow.Cells[1].Value.ToString() == string.Empty
+                        ? "%"
+                        : dgvcongelados.CurrentRow.Cells[1].Value.ToString(),
+                descripcion =
+                    dgvcongelados.CurrentRow.Cells[2].Value.ToString() == string.Empty
+                        ? "%"
+                        : dgvcongelados.CurrentRow.Cells[2].Value.ToString(),
+                cantidad = double.Parse(dgvcongelados.CurrentRow.Cells[3].Value.ToString())
+            };
+
+            Data.ReporteCocina.AgregarCongelados(congelados);
+            //dgvcongelados.Rows.Clear();
+
+            //Cocina.AgregarCongelados.art_id = int.Parse(dgvcongelados.CurrentRow.Cells[0].Value.ToString());
+
+            //Cocina.AgregarCongelados.clave = dgvcongelados.CurrentRow.Cells[1].Value.ToString() == string.Empty ? "%" : dgvcongelados.CurrentRow.Cells[1].Value.ToString();
+            //Cocina.AgregarCongelados.descripcion = dgvcongelados.CurrentRow.Cells[2].Value.ToString() == string.Empty ? "%" : dgvcongelados.CurrentRow.Cells[2].Value.ToString();  /* asigna la clave a la variable estatica*/
+
+            //Cocina.AgregarCongelados.cantidad = double.Parse(dgvcongelados.CurrentRow.Cells[3].Value.ToString());
+
+
+        }
     }
 
     internal class Controls

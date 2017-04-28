@@ -45,12 +45,26 @@ namespace Herramienta
                 public static string existencia { get; set; }
                 public static string estado_id { get; set; }
 
-                public static string sacarclave { get; set; }
+                public static string sacarclave { get; set; } = Properties.Settings.Default.Agrega_BuscarCongelado;
 
                 public static string repcongelados { get; set; } = Properties.Settings.Default.ReporteCongelado;
             }
 
+<<<<<<< HEAD
             public class Semana
+=======
+            public class agregarcongelados
+            {
+                public static int art_id { get; set;}
+                public static string clave { get; set; }
+                public static string descripcion { get; set; }
+                public static double cantidad { get; set; }
+                public static string agregar { get; set; } = Properties.Settings.Default.AgregarCongelado1;
+                public static string agregarcantidad { get; set; } 
+            }
+
+            public class DiasSemana
+>>>>>>> origin/master
             {
                 public static string Diasemana { get; set; } = Properties.Settings.Default.menu;
                 public static string FechaElaboracion { get; set; }

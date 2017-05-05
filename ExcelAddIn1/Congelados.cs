@@ -21,10 +21,8 @@ namespace ExcelAddIn1
     {
 
         //private List<Articulo.Basica> _listaArticuloBasica1;
-
-<<<<<<< HEAD
-        public char KeyChar { get; set; } 
-=======
+        
+        //public char KeyChar { get; set; } 
         public char KeyChar { get; set; }
         private List<Articulo.Basica> _listaArticuloBasica1;
 
@@ -35,7 +33,6 @@ namespace ExcelAddIn1
 
         //private List<Respuesta.CbGenerico> _listaplatillo; 
 
->>>>>>> origin/master
 
         public class Inputs
         {

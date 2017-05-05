@@ -83,35 +83,7 @@ namespace Data
             
         }
 
-        public static void MostrarMenus(Action<IRestResponse> callback)
-        {
-            try
-            {
-                var rest = new Rest(Local.Api.UrlApi,Cocina.Semana.Diasemana, Method.POST);
-                rest.Peticion.AddHeader(Constantes.Http.ObtenerTipoDeContenido,
-                    Constantes.Http.TipoDeContenido.Json);
-                rest.Peticion.AddJsonBody(new { Fecha = Cocina.Semana.FechaElaboracion });
-                // rest.Peticion.AddJsonBody(repGeneral);
-                rest.Cliente.ExecuteAsync(rest.Peticion, response =>
-                {
-                    switch (response.StatusCode)
-                    {
-                        case HttpStatusCode.OK:
-                            callback(response);
-                            break;
-                        default:
-                            callback(null);
-                            break;
-                    }
-                });
-            }
-            catch (Exception e)
-            {
-                Opcion.Log(Log.Interno.Categoria, "EXCEPCION: " + e.Message);
-                callback(null);
-            }
-        }
-
+       
         //public static void Ëliminar(Action<IRestResponse> callback)
         //{
         //    try

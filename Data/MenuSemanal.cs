@@ -14,7 +14,7 @@ namespace Data
         {
             try
             {
-                var rest = new Rest(Local.Api.UrlApi,Cocina.Semana.Diasemana, Method.POST);
+                var rest = new Rest(Local.Api.UrlApi,Cocina.DiasSemana.Diasemana, Method.POST);
                 rest.Peticion.AddHeader(Constantes.Http.ObtenerTipoDeContenido, Constantes.Http.TipoDeContenido.Json);
                 rest.Peticion.AddJsonBody(fechas);
                 rest.Cliente.ExecuteAsync(rest.Peticion, response =>

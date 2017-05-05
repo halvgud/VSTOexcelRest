@@ -265,13 +265,24 @@ namespace ExcelAddIn1
             /*nop, no puedes meter por ejemplo el rrgc.Count+7 dentro de la linea de abajo porque no lo agarra... lo tienes que meter en una viarable ya fijona*/
             /**/
             _reporte.Range["A7:F" + rowcount].Value2 = InicializarLista(rrgc);
-            //_reporte.Range["A3:X" + rowcount].Borders[Excel.XlBordersIndex.xlEdgeBottom].LineStyle = Excel.XlLineStyle.xlContinuous;
-            //_reporte.Range["A3:X" + rowcount].Borders[Excel.XlBordersIndex.xlEdgeLeft].LineStyle = Excel.XlLineStyle.xlContinuous;
-            //_reporte.Range["A3:X" + rowcount].Borders[Excel.XlBordersIndex.xlEdgeRight].LineStyle = Excel.XlLineStyle.xlContinuous;
-            //_reporte.Range["A3:X" + rowcount].Borders[Excel.XlBordersIndex.xlEdgeTop].LineStyle = Excel.XlLineStyle.xlContinuous;
-            //_reporte.Range["A3:X" + rowcount].Borders[Excel.XlBordersIndex.xlEdgeBottom].LineStyle = Excel.XlLineStyle.xlContinuous;
-            //_reporte.Range["A3:X" + rowcount].Borders.Color = Color.Black;
-            //_reporte.Range["A3:X" + rowcount].Font.Size = 8;
+            _reporte.Range["A7:F" + rowcount].Borders[Excel.XlBordersIndex.xlEdgeBottom].LineStyle = Excel.XlLineStyle.xlContinuous;
+            _reporte.Range["A7:F" + rowcount].Borders[Excel.XlBordersIndex.xlEdgeLeft].LineStyle = Excel.XlLineStyle.xlContinuous;
+            _reporte.Range["A7:F" + rowcount].Borders[Excel.XlBordersIndex.xlEdgeRight].LineStyle = Excel.XlLineStyle.xlContinuous;
+            _reporte.Range["A7:F" + rowcount].Borders[Excel.XlBordersIndex.xlEdgeTop].LineStyle = Excel.XlLineStyle.xlContinuous;
+            _reporte.Range["A7:F" + rowcount].Borders[Excel.XlBordersIndex.xlEdgeBottom].LineStyle = Excel.XlLineStyle.xlContinuous;
+            _reporte.Range["A7:F" + rowcount].Borders.Color = Color.Black;
+            _reporte.Range["A7:F" + rowcount].Font.Size = 8;
+
+            _reporte.Range["A7:F"+rowcount].HorizontalAlignment=Excel.XlHAlign.xlHAlignCenter;
+            _reporte.Range["B7:F" + rowcount].HorizontalAlignment = Excel.XlHAlign.xlHAlignLeft;
+            _reporte.Range["C7:F" + rowcount].HorizontalAlignment = Excel.XlHAlign.xlHAlignLeft;
+            _reporte.Range["D7:F" + rowcount].HorizontalAlignment = Excel.XlHAlign.xlHAlignCenter;
+            _reporte.Range["F7:F" + rowcount].HorizontalAlignment = Excel.XlHAlign.xlHAlignCenter;
+
+
+            _reporte.Range["E7:E" + rowcount].Interior.Color = Color.Aqua;
+
+            //_reporte.Range["A7=F" + rowcount].HorizontalAlignment = Excel.XlHAlign.xlHAlignCenter;
             //_reporte.Range["A2:X2"].Interior.Color = ColorTranslator.ToOle(Color.Orange);
             //_reporte.Range["Q1:X1"].Interior.Color = ColorTranslator.ToOle(Color.Orange);
             //_reporte.Range["K3:K" + rowcount].Interior.Color = ColorTranslator.ToOle(Color.Yellow);
@@ -279,9 +290,10 @@ namespace ExcelAddIn1
             //_reporte.Range["O3:P" + rowcount].Interior.Color = ColorTranslator.ToOle(Color.Pink);
             //_reporte.Range["P3:P" + rowcount].Interior.Color = ColorTranslator.ToOle(Color.Pink);
 
-            _reporte.Range["B3:B" + rowcount].Columns.AutoFit();
-            _reporte.Range["E3:E" + rowcount].Columns.AutoFit();
-            _reporte.Range["G3:G" + rowcount].Columns.AutoFit();
+            _reporte.Range["C7:F" + rowcount].Columns.AutoFit();
+            _reporte.Range["B7:F" + rowcount].Columns.AutoFit();
+            _reporte.Range["F6:F" + rowcount].Columns.AutoFit();
+            _reporte.Range["D6:F" + rowcount].Columns.AutoFit();
 
 
             Application.Cells.Locked = false;
@@ -296,7 +308,7 @@ namespace ExcelAddIn1
             for (var x = 0; x < rrgc.Count; x++)
             {
                 lista[x, 0] = rrgc[x].id;
-                lista[x, 1] = rrgc[x].clave;
+                lista[x, 1] = "'"+rrgc[x].clave;
                 lista[x, 2] = rrgc[x].descripcion;
                 lista[x, 3] = rrgc[x].existencia;
                 lista[x, 4] = rrgc[x].estado;

@@ -31,6 +31,8 @@
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Congelados));
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.tpagregar = new System.Windows.Forms.TabPage();
+            this.btborrarall = new System.Windows.Forms.Button();
+            this.btborrarselect = new System.Windows.Forms.Button();
             this.btguardaragregar = new System.Windows.Forms.Button();
             this.dgvcongelados = new System.Windows.Forms.DataGridView();
             this.label1 = new System.Windows.Forms.Label();
@@ -41,6 +43,7 @@
             this.txtbuscarcongeladoeditar = new System.Windows.Forms.TextBox();
             this.label2 = new System.Windows.Forms.Label();
             this.btbuscareditar = new System.Windows.Forms.Button();
+            this.btbaja = new System.Windows.Forms.Button();
             this.tabControl1.SuspendLayout();
             this.tpagregar.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvcongelados)).BeginInit();
@@ -60,6 +63,8 @@
             // 
             // tpagregar
             // 
+            this.tpagregar.Controls.Add(this.btborrarall);
+            this.tpagregar.Controls.Add(this.btborrarselect);
             this.tpagregar.Controls.Add(this.btguardaragregar);
             this.tpagregar.Controls.Add(this.dgvcongelados);
             this.tpagregar.Controls.Add(this.label1);
@@ -71,6 +76,26 @@
             this.tpagregar.TabIndex = 0;
             this.tpagregar.Text = "Agregar";
             this.tpagregar.UseVisualStyleBackColor = true;
+            // 
+            // btborrarall
+            // 
+            this.btborrarall.Location = new System.Drawing.Point(509, 259);
+            this.btborrarall.Name = "btborrarall";
+            this.btborrarall.Size = new System.Drawing.Size(69, 39);
+            this.btborrarall.TabIndex = 5;
+            this.btborrarall.Text = "Borrar Todo";
+            this.btborrarall.UseVisualStyleBackColor = true;
+            this.btborrarall.Click += new System.EventHandler(this.btborrarall_Click);
+            // 
+            // btborrarselect
+            // 
+            this.btborrarselect.Location = new System.Drawing.Point(421, 259);
+            this.btborrarselect.Name = "btborrarselect";
+            this.btborrarselect.Size = new System.Drawing.Size(69, 39);
+            this.btborrarselect.TabIndex = 4;
+            this.btborrarselect.Text = "Borrar Seleccion";
+            this.btborrarselect.UseVisualStyleBackColor = true;
+            this.btborrarselect.Click += new System.EventHandler(this.btborrarselect_Click);
             // 
             // btguardaragregar
             // 
@@ -109,6 +134,7 @@
             // 
             // tpbuscaryeditar
             // 
+            this.tpbuscaryeditar.Controls.Add(this.btbaja);
             this.tpbuscaryeditar.Controls.Add(this.btguardareditar);
             this.tpbuscaryeditar.Controls.Add(this.dgvcongeladobuscaryeditar);
             this.tpbuscaryeditar.Controls.Add(this.txtbuscarcongeladoeditar);
@@ -125,7 +151,7 @@
             // 
             // btguardareditar
             // 
-            this.btguardareditar.Location = new System.Drawing.Point(512, 233);
+            this.btguardareditar.Location = new System.Drawing.Point(499, 233);
             this.btguardareditar.Name = "btguardareditar";
             this.btguardareditar.Size = new System.Drawing.Size(86, 28);
             this.btguardareditar.TabIndex = 4;
@@ -168,6 +194,16 @@
             this.btbuscareditar.UseVisualStyleBackColor = true;
             this.btbuscareditar.Click += new System.EventHandler(this.btbuscareditar_Click);
             // 
+            // btbaja
+            // 
+            this.btbaja.Location = new System.Drawing.Point(44, 238);
+            this.btbaja.Name = "btbaja";
+            this.btbaja.Size = new System.Drawing.Size(75, 23);
+            this.btbaja.TabIndex = 5;
+            this.btbaja.Text = "Dar de Baja";
+            this.btbaja.UseVisualStyleBackColor = true;
+            this.btbaja.Click += new System.EventHandler(this.btbaja_Click);
+            // 
             // Congelados
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -202,5 +238,8 @@
         public System.Windows.Forms.TabPage tpagregar;
         public System.Windows.Forms.TabPage tpbuscaryeditar;
         public System.Windows.Forms.TabControl tabControl1;
+        private System.Windows.Forms.Button btborrarall;
+        private System.Windows.Forms.Button btborrarselect;
+        private System.Windows.Forms.Button btbaja;
     }
 }

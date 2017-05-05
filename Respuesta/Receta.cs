@@ -18,7 +18,7 @@ namespace Respuesta
         public int Diario { get; set; }
         public double Cantidad { get; set; }
         public List<Detalle> Ingredientes { get; set; }
-        public List<Congelados> ListaCongelados { get; set; }
+       
         public string ModoElaboracion { get; set; }
         public List<Semana> ListaSemana { get; set; }
 
@@ -82,15 +82,36 @@ namespace Respuesta
 
         public class Congelados
         {
-            public int art_id { get; set; }
-            public int estado_id { get; set; }
+            public string estado_id { get; set; }
+            public string art_id { get; set; }
+           // public string estado_id { get; set; }
             public string clave { get; set; }
             public string descripcion { get; set; }
             public double cantidad { get; set; }
-            public string status { get; set; } /*te lo cambie a string, con eso agarrara*/
-            /*aqui estas confundiendo el status de activo e inactivo con el ESTADO de Congelado y los otros que hipoteticamente pudieran crearse :P*/
-            public DateTime fechaEntrada { get; set; }
             public List<Congelados> ListaCongelados { get; set; }
+            //  public string status { get; set; } /*te lo cambie a string, con eso agarrara*/
+            /*aqui estas confundiendo el status de activo e inactivo con el ESTADO de Congelado y los otros que hipoteticamente pudieran crearse :P*/
+            //   public DateTime fechaEntrada { get; set; }
+
+
+            public BasicaCopia CopiadoSencilloCongelado()
+            {
+                var art = new BasicaCopia { art_id = art_id, clave = clave, descripcion = descripcion, cantidad = cantidad};
+                return art;
+            }
+
+
+        }
+
+        public class BasicaCopia
+        {
+            public string art_id { get; set; }
+            public string estado_id { get; set; }
+            public string clave{ get; set; }
+            public string descripcion { get; set; }
+            public double cantidad { get; set; }
+           // public string status { get; set; }
+           // public DateTime fechaEntrada { get; set; }
         }
 
     }

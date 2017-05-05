@@ -22,12 +22,11 @@ namespace ExcelAddIn1
 
         //private List<Articulo.Basica> _listaArticuloBasica1;
 
-        public char KeyChar { get; set; }
-        private List<Articulo.Basica> _listaArticuloBasica1;
+        private List<Receta.Congelados> _listagregarcongelado1;
 
-        private List<Respuesta.CbGenerico> _listaplatillo;
+        private List<Receta.Congelados> _listaplatillo;
 
-        private List<Respuesta.Agregarcongelados> _listaagregarcongelados;
+        private List<Receta.Congelados> _listaagregarcongelado2;
         public Boolean validacion;
 
         //private List<Respuesta.CbGenerico> _listaplatillo; 
@@ -101,7 +100,7 @@ namespace ExcelAddIn1
                                  {
                                      BeginInvoke((MethodInvoker)(() => /*se manda llamar de nuevo a la interfaz*/
                                      {
-                                         dgvcongeladobuscaryeditar.DataSource = resultado.Select(g => new {g.estado_id, g.clave, g.descripcion, g.cantidad, g.status, g.fechaEntrada}) /*ni estas*/
+                                         dgvcongeladobuscaryeditar.DataSource = resultado.Select(g => new { g.estado_id,g.clave, g.descripcion, g.cantidad}) /*ni estas*/
                                           .ToList();
                                      }));
                                  },lista.ToArray(),0);
@@ -128,7 +127,7 @@ namespace ExcelAddIn1
             // deja lo formo*/
             //;
 
-
+            MensajeDeEspera mse = new MensajeDeEspera();
             mse.Show();
             //var congeladosagregar = new Receta.Congelados
             //{
@@ -150,12 +149,13 @@ namespace ExcelAddIn1
 
             var congeladosactualizar = new Receta.Congelados
             {
-                estado_id = Convert.ToInt16(dgvcongeladobuscaryeditar.CurrentRow.Cells[0].Value),
+                //estado_id = (dgvcongeladobuscaryeditar.CurrentRow.Cells[0].Value).ToString(),
                 cantidad = double.Parse(dgvcongeladobuscaryeditar.CurrentRow.Cells[3].Value.ToString())
             };
 
             //Data.ReporteCocina.ActualizarCongelado
             Data.ReporteCocina.Cccongelados = congeladosactualizar;
+            
             Data.ReporteCocina.ActualizarCongelado(y => {
                 BeginInvoke((MethodInvoker)(() =>
                 {
@@ -203,32 +203,52 @@ namespace ExcelAddIn1
                         {
                             case HttpStatusCode.OK:
 
-                                var lista = Opcion.JsonaListaGenerica<Respuesta.Receta.Congelados>(jsonResult);
-
-                                var brd = new BuscarCongelados(lista, /*esta parte no le entiendo*/
+                                var lista = Opcion.JsonaListaGenerica<Receta.Congelados>(jsonResult);
+                                BeginInvoke((MethodInvoker)(() =>
+                                {
+                                    var brd = new BuscarCongelados(lista, /*esta parte no le entiendo*/
                                     resultado =>
                                     {
                                         BeginInvoke((MethodInvoker) (() => /*se manda llamar de nuevo a la interfaz*/
                                         {
-                                            dgvcongelados.DataSource =
-                                                resultado.Select(x => new {x.art_id, x.clave, x.descripcion, x.cantidad})
-                                                    /*ni estas*/
-                                                    .ToList();
+                                            /*razonamiento de aime*/
+                                            
+                                            _listagregarcongelado1 = dgvcongelados.DataSource as List<Receta.Congelados>;
+                                            _listaagregarcongelado2 = resultado.ToList();
+
+                                            if (_listagregarcongelado1 != null)
+                                            {
+                                                _listaagregarcongelado2.AddRange(_listagregarcongelado1);
+                                            }
+                                            dgvcongelados.DataSource = _listaagregarcongelado2
+                                                .GroupBy(p => p.art_id)
+                                                .Select(g => new Receta.Congelados
+                                                {
+                                                    art_id = g.Key,
+                                                    clave = g.First().clave,
+                                                    descripcion = g.First().descripcion,
+                                                   cantidad = g.Sum(i => i.cantidad)
+
+                                                }).ToList();
+
+
+                                            for (var x = 0; x == 4; x++)
+                                            {
+                                                dgvcongelados.Columns[x].ReadOnly = true;
+                                                dgvcongelados.Columns[x].DefaultCellStyle.BackColor = Color.LightGray;
+                                            }
+                                            dgvcongelados.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
+                                            txtbuscarcongelado.Text = "";
+
+
+                                          
 
 
                                         }));
-                                    },//aaa eso era jeje ya lo demas me encargo yo que es q mande al data de agregar y con el boton gia
-                                    lista.Select(
-                                        x =>
-                                            new
-                                            {
-                                                x.art_id,
-                                                x.clave,
-                                                x.descripcion
-                                            }).ToArray(),1);
-                                
-                    
+                                    }//aaa eso era jeje ya lo demas me encargo yo que es q mande al data de agregar y con el boton gia
+                           );
                                 brd.Show(); /*se muestra*/
+                                }));
                                 break;
                             default:
                                 MessageBox.Show(this, @"No se encontro el producto en la busqueda ");
@@ -250,37 +270,62 @@ namespace ExcelAddIn1
             }
 
         }
-        MensajeDeEspera mse = new MensajeDeEspera();
+       
         private void btguardaragregar_Click(object sender, EventArgs e)
         {
-            int id = Convert.ToInt16(dgvcongelados.CurrentRow.Cells[0].Value);
-            string Clavee = dgvcongelados.CurrentRow.Cells[1].Value.ToString();
-            string descrippcion = dgvcongelados.CurrentRow.Cells[2].Value.ToString();
-            double canttidad = Convert.ToDouble(dgvcongelados.CurrentRow.Cells[3].Value);
-            /*aqui el problema es que estas creando el objeto despues de la ejecucion y es alreves
-             deja lo formo*/;
 
 
+            //var listRecetaDetalle = new List<Receta.Congelados>();
+            //for (var i = 0; i < dgvcongelados.Rows.Count; i++)
+            //{
+            //    var cantidad = double.Parse(inputs.Ingredientes.Rows[i].Cells[4].Value.ToString());
+            //    var precioCompra = Convert.ToDouble(inputs.Ingredientes.Rows[i].Cells[3].Value);
+            //    var precioTotal = precioCompra * cantidad;
+            //    listRecetaDetalle.Add(new Receta.Congelados
+            //    {
+            //       art_id = dgvcongelados.Rows[i].Cells[0].Value.ToString(),
+            //        clave = dgvcongelados.Rows[1].Cells[1].Value.ToString(),
+            //        Descripcion = 
+            //        Cantidad = double.Parse(inputs.Ingredientes.Rows[i].Cells[4].Value.ToString()),
+            //        Clave = inputs.Ingredientes.Rows[i].Cells[1].Value.ToString(),
+            //        Descripcion = inputs.Ingredientes.Rows[i].Cells[2].Value.ToString(),
+            //        IdUnidad = 1,
+            //        PrecioCompra = Convert.ToDouble(inputs.Ingredientes.Rows[i].Cells[3].Value),
+            //        PrecioTotal = precioTotal
+            //    });
+            //}
+            //Data.Receta.Detalle.CRecetaDetalle = listRecetaDetalle;
+            //Data.Receta.Detalle.Insertar(x);
+
+            //string id = (dgvcongelados.CurrentRow.Cells[0].Value).ToString();
+            //string Clavee = dgvcongelados.CurrentRow.Cells[1].Value.ToString();
+            //string descrippcion = dgvcongelados.CurrentRow.Cells[2].Value.ToString();
+            //double canttidad = Convert.ToDouble(dgvcongelados.CurrentRow.Cells[3].Value);
+            ///*aqui el problema es que estas creando el objeto despues de la ejecucion y es alreves
+            // deja lo formo*/;
+
+            MensajeDeEspera mse = new MensajeDeEspera();
             mse.Show();
-            var congeladosagregar = new Receta.Congelados
-            {
-                art_id = id,
-                clave = Clavee,
-                descripcion = descrippcion,
-                cantidad = canttidad
+            //var congeladosagregar = new Receta.Congelados
+            //{
+            //    art_id = id,
+            //    clave = Clavee,
+            //    descripcion = descrippcion,
+            //    cantidad = canttidad
 
-            };
-            Data.ReporteCocina.Cccongelados = congeladosagregar;
+            //};
+            //Data.ReporteCocina.Cccongelados = congeladosagregar;
             Data.ReporteCocina.AgregarCongelados(y => {
             BeginInvoke((MethodInvoker)(() =>
             {
                 mse.Close();
+                
                 dgvcongelados.DataSource = null;
                 dgvcongelados.Rows.Clear();
                 txtbuscarcongelado.Clear();
                 
             }));
-            });
+            },_listaagregarcongelado2);
            
            
            
@@ -319,6 +364,35 @@ namespace ExcelAddIn1
         private void tpbuscaryeditar_Click(object sender, EventArgs e)
         {
 
+        }
+
+        private void btborrarselect_Click(object sender, EventArgs e)
+        {
+            if (dgvcongelados.CurrentCell.RowIndex == -1 || dgvcongelados.Rows.Count <= 0) return;
+            var result = dgvcongelados.DataSource as List<Respuesta.Receta.Congelados>;
+            if (result == null) return;
+            int fila = dgvcongelados.CurrentCell.RowIndex;
+            result.RemoveAt(dgvcongelados.CurrentCell.RowIndex);
+            _listaagregarcongelado2.RemoveAt(fila);
+            dgvcongelados.DataSource = null;
+            dgvcongelados.Refresh();
+            dgvcongelados.DataSource = result;
+        }
+
+        private void btborrarall_Click(object sender, EventArgs e)
+        {
+            Opcion.BorrarDataGridView(dgvcongelados);
+            _listaagregarcongelado2.Clear();
+        }
+
+        private void btbaja_Click(object sender, EventArgs e)
+        {
+         
+
+            /*aqui */
+
+
+            Data.ReporteCocina.InabilitarCongelado( Convert.ToInt32(dgvcongeladobuscaryeditar.CurrentRow.Cells[0].Value.ToString()));
         }
     }
 

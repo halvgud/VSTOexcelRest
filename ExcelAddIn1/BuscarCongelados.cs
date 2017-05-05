@@ -13,7 +13,8 @@ namespace ExcelAddIn1
         private readonly List<Respuesta.Receta.Congelados> _listaCongelados;
         private readonly Action<List<Respuesta.Receta.Congelados>> _callback;
       
-        public BuscarCongelados(List<Respuesta.Receta.Congelados> listaCongelados, Action<List<Respuesta.Receta.Congelados>> callback,Array origen,int segundo)
+        
+public BuscarCongelados(List<Respuesta.Receta.Congelados> listaCongelados, Action<List<Respuesta.Receta.Congelados>> callback,Array origen,int segundo)
         {
 
             /*checa en la conversion de jsonResult a List... me suena que por ahi esta tronando porque aqui ya no trae registros*/
@@ -46,8 +47,39 @@ namespace ExcelAddIn1
 
         }
 
+        public BuscarCongelados(List<Respuesta.Receta.Congelados> listaCongelados, Action<List<Respuesta.Receta.Congelados>> callback)
+        {
+
+            /*checa en la conversion de jsonResult a List... me suena que por ahi esta tronando porque aqui ya no trae registros*/
+            _listaCongelados = listaCongelados;
+            _callback = callback;
+            InitializeComponent();
+
+           
+                txtcantidad.Visible = true;
+                lbtclave.Visible = true;
+                lbtdescripcion.Visible = true;
+                lbcantidad.Visible = true;
+     
+
+
+            //var cg = new Congelados();
+            //if (Congelados().tabControl1.SelectedTab == Congelados().tabControl1.TabPages[0])
+            //{
+            //    txtcantidad.Visible = true;
+            //}
+
+            dgvbuscar_congelados.DataSource = _listaCongelados.Select(x => new {x.art_id, x.clave, x.descripcion, x.cantidad }).ToArray(); ;
+            dgvbuscar_congelados.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
+
+        }
         private void btaceptarbcongelados_Click(object sender, EventArgs e)
         {
+
+            /* _listaArticulo[dgvListaArticulos.CurrentCell.RowIndex].cantidad = double.Parse(tbCantidad.Text);
+            _callback(new List<Articulo> { _listaArticulo[dgvListaArticulos.CurrentCell.RowIndex] });
+            Close();*/
+
             /*aqui es donde guardas la lista para mandarla al otro databridview ?*/
 
             _listaCongelados[dgvbuscar_congelados.CurrentCell.RowIndex].cantidad = double.Parse(txtcantidad.Text);
@@ -68,7 +100,8 @@ namespace ExcelAddIn1
         private void BuscarCongelados_Load(object sender, EventArgs e)
         {
             lbfechaagregar.Text = DateTime.Now.ToShortDateString();
-            
+            txtcantidad.Text = dgvbuscar_congelados.CurrentRow.Cells[4].Value.ToString();
+
         }
 
         private void dgvbuscar_congelados_CellContentClick(object sender, DataGridViewCellEventArgs e)

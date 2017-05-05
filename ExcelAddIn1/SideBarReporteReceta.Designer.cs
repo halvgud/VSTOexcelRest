@@ -33,9 +33,9 @@
             this.label3 = new System.Windows.Forms.Label();
             this.cbConceptoReceta = new System.Windows.Forms.ComboBox();
             this.cbOrdenarReceta = new System.Windows.Forms.ComboBox();
-            this.tbProducto = new System.Windows.Forms.TextBox();
             this.btGenerarReceta = new System.Windows.Forms.Button();
             this.panel1 = new System.Windows.Forms.Panel();
+            this.cbproducto = new System.Windows.Forms.ComboBox();
             this.panel1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -85,13 +85,6 @@
             this.cbOrdenarReceta.Size = new System.Drawing.Size(121, 21);
             this.cbOrdenarReceta.TabIndex = 4;
             // 
-            // tbProducto
-            // 
-            this.tbProducto.Location = new System.Drawing.Point(98, 111);
-            this.tbProducto.Name = "tbProducto";
-            this.tbProducto.Size = new System.Drawing.Size(121, 20);
-            this.tbProducto.TabIndex = 5;
-            // 
             // btGenerarReceta
             // 
             this.btGenerarReceta.Location = new System.Drawing.Point(144, 203);
@@ -104,7 +97,7 @@
             // 
             // panel1
             // 
-            this.panel1.Controls.Add(this.tbProducto);
+            this.panel1.Controls.Add(this.cbproducto);
             this.panel1.Controls.Add(this.btGenerarReceta);
             this.panel1.Controls.Add(this.label1);
             this.panel1.Controls.Add(this.label2);
@@ -117,6 +110,15 @@
             this.panel1.Size = new System.Drawing.Size(244, 291);
             this.panel1.TabIndex = 7;
             this.panel1.Paint += new System.Windows.Forms.PaintEventHandler(this.panel1_Paint);
+            // 
+            // cbproducto
+            // 
+            this.cbproducto.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend;
+            this.cbproducto.FormattingEnabled = true;
+            this.cbproducto.Location = new System.Drawing.Point(98, 111);
+            this.cbproducto.Name = "cbproducto";
+            this.cbproducto.Size = new System.Drawing.Size(121, 21);
+            this.cbproducto.TabIndex = 7;
             // 
             // SideBarReporteReceta
             // 
@@ -140,8 +142,8 @@
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.ComboBox cbConceptoReceta;
         private System.Windows.Forms.ComboBox cbOrdenarReceta;
-        private System.Windows.Forms.TextBox tbProducto;
         private System.Windows.Forms.Button btGenerarReceta;
         private System.Windows.Forms.Panel panel1;
+        private System.Windows.Forms.ComboBox cbproducto;
     }
 }

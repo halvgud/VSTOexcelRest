@@ -43,7 +43,9 @@ namespace Herramienta
                 public static string descripcion { get; set; }
                 public static string cambioexistencia { get; set; } = Properties.Settings.Default.ActualizarCongelado;
                 public static string existencia { get; set; }
-                public static string estado_id { get; set; }
+                public static Int32 estado_id { get; set; }
+
+                public static string inabilitar { get; set; } = Properties.Settings.Default.inabilitarcongelado;
 
                 public static string sacarclave { get; set; } = Properties.Settings.Default.Agrega_BuscarCongelado;
 

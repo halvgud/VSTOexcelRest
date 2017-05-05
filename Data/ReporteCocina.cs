@@ -13,6 +13,11 @@ namespace Data
    public class ReporteCocina
     {
         public static Respuesta.Receta.Congelados Cccongelados;
+
+       //public var CongeladoVar;
+        
+     
+
         public static void VersionDetallada(Action<IRestResponse> callback)
         {
             try
@@ -160,7 +165,7 @@ namespace Data
             }
         }
 
-        public static void AgregarCongelados(Action<IRestResponse> callback)
+        public static void AgregarCongelados(Action<IRestResponse> callback, List<Respuesta.Receta.Congelados> agregarallice )
         {
             try
             {
@@ -168,7 +173,7 @@ namespace Data
                     Method.POST);
                 rest.Peticion.AddHeader(Constantes.Http.ObtenerTipoDeContenido,
                     Constantes.Http.TipoDeContenido.Json);
-                rest.Peticion.AddJsonBody(Cccongelados);
+                rest.Peticion.AddJsonBody(agregarallice);
                 //rest.Peticion.AddJsonBody(repGeneral);
                 rest.Cliente.ExecuteAsync(rest.Peticion, response =>
                 {
@@ -210,6 +215,40 @@ namespace Data
                             break;
                         default:
                            callback(null);
+                            break;
+                    }
+                });
+            }
+            catch (Exception e)
+            {
+                Opcion.Log(Log.Interno.Categoria, "EXCEPCION: " + e.Message);
+                //callback(null);
+            }
+        }
+
+        public static void InabilitarCongelado(int estado_id)
+        {
+            try
+            {
+                var rest = new Rest(Local.Api.UrlApi, Herramienta.Config.Cocina.buscarcongelados.inabilitar,
+                    Method.POST);
+                rest.Peticion.AddHeader(Constantes.Http.ObtenerTipoDeContenido,
+                    Constantes.Http.TipoDeContenido.Json);
+                rest.Peticion.AddJsonBody(new
+                {/*a que te refieres con eso*/
+                   estado_id
+                }
+            );
+                // rest.Peticion.AddJsonBody(repGeneral);
+                rest.Cliente.ExecuteAsync(rest.Peticion, response =>
+                {
+                    switch (response.StatusCode)
+                    {
+                        case HttpStatusCode.OK:
+                           // callback(response);
+                            break;
+                        default:
+                            //callback(null);
                             break;
                     }
                 });

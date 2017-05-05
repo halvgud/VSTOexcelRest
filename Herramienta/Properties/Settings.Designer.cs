@@ -373,5 +373,14 @@ namespace Herramienta.Properties {
                 return ((string)(this["AgregarCongelado1"]));
             }
         }
+        
+        [global::System.Configuration.ApplicationScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("reporte/inavilitarCongelado")]
+        public string inabilitarcongelado {
+            get {
+                return ((string)(this["inabilitarcongelado"]));
+            }
+        }
     }
 }

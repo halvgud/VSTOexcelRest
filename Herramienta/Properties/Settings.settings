@@ -119,5 +119,8 @@
     <Setting Name="AgregarCongelado1" Type="System.String" Scope="Application">
       <Value Profile="(Default)">receta/AgregarCongelado</Value>
     </Setting>
+    <Setting Name="inabilitarcongelado" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">reporte/inavilitarCongelado</Value>
+    </Setting>
   </Settings>
 </SettingsFile>

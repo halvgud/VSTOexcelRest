@@ -21,8 +21,15 @@ namespace ExcelAddIn1
     {
 
         //private List<Articulo.Basica> _listaArticuloBasica1;
+<<<<<<< HEAD
 
         private List<Receta.Congelados> _listagregarcongelado1;
+=======
+        
+        //public char KeyChar { get; set; } 
+        public char KeyChar { get; set; }
+        private List<Articulo.Basica> _listaArticuloBasica1;
+>>>>>>> a6e3d49c518fb055e85ee82b1e2ee9333da68ae2
 
         private List<Receta.Congelados> _listaplatillo;
 
@@ -37,8 +44,6 @@ namespace ExcelAddIn1
             public TextBox Nombre;
             public DataGridView ListaCongelados;
         }
-
-
 
         private static Congelados _alreadyOpened;
         public Congelados(Func<string[]> arreglo)

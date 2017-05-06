@@ -52,6 +52,7 @@ namespace Herramienta
                 public static string repcongelados { get; set; } = Properties.Settings.Default.ReporteCongelado;
             }
 
+
             public class agregarcongelados
             {
                 public static int art_id { get; set;}
@@ -63,12 +64,10 @@ namespace Herramienta
             }
 
             public class DiasSemana
+
             {
                 public static string Diasemana { get; set; } = Properties.Settings.Default.menu;
-                public static string Fecha { get; set; }
-                public static string Insertar { get; set; } = Properties.Settings.Default.RecetaInsertar;
-                public static string InsertarDetalle { get; set; } = Properties.Settings.Default.RecetaInsertarDetalle;
-                public static string Tipo { get; set; } = Properties.Settings.Default.RecetaTipo;
+                public static string FechaElaboracion { get; set; }
             }
            
 

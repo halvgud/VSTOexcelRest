@@ -3,15 +3,16 @@ using System.Collections.Generic;
 using System.Drawing;
 using System.Globalization;
 using System.Linq;
-using System.Windows.Forms;
 using Respuesta;
 using RestSharp;
 using Herramienta;
 using Herramienta.Config;
 using System.Net;
+using System.Windows.Forms;
+
 namespace ExcelAddIn1
 {
-    public partial class AgregarReceta : Form
+    public partial class AgregarReceta :Form
     {
         private List<Articulo.Basica> _listaArticuloBasica1;
         private List<Articulo.Basica> _listaArticuloBasica2;

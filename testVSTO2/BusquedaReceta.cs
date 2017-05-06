@@ -45,7 +45,8 @@ namespace testVSTO2
                             break;
                     }
                 }));
-            });}
+            });
+        }
 
         private void dgvRecetas_CellClick(object sender, DataGridViewCellEventArgs e)
         {

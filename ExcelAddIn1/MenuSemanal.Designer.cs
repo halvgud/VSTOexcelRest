@@ -36,61 +36,11 @@
             this.cmbManual = new PresentationControls.CheckBoxComboBox();
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
             this.dgvViernes = new System.Windows.Forms.DataGridView();
-            this.TipoViernes = new System.Windows.Forms.DataGridViewComboBoxColumn();
-            this.PlatilloViernes = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.UltimaElaboracionViernes = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.CantidadElaborarVienes = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.UnidadMedidaViernes = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.PrecioViernes = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.GananciaViernes = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dgvJueves = new System.Windows.Forms.DataGridView();
-            this.TipoJueves = new System.Windows.Forms.DataGridViewComboBoxColumn();
-            this.PlatilloJueves = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.UltimaElaboracionJueves = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.CantidadElaborarJueves = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.UnidadMedidaJueves = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.PrecioJueves = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.GananciaJueves = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dgvMiercoles = new System.Windows.Forms.DataGridView();
-            this.TipoMiercoles = new System.Windows.Forms.DataGridViewComboBoxColumn();
-            this.PlatilloMiercoles = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.UltimaElaboracionMiercoles = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.CantidadElaborarMiercoles = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.UnidadMedidaMiercoles = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.PrecioMiercoles = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.GananciaMiercoles = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dgvMartes = new System.Windows.Forms.DataGridView();
-            this.TipoMartes = new System.Windows.Forms.DataGridViewComboBoxColumn();
-            this.PlatilloMartes = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.UtilimaElaboracionMartes = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.CantidadelaborarMartes = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.UnidadMedidaMartes = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.PrecioMartes = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.GanaciaMartes = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dgvDomingo = new System.Windows.Forms.DataGridView();
-            this.TipoDomingo = new System.Windows.Forms.DataGridViewComboBoxColumn();
-            this.PlatilloDomingo = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.UltimaElaboracionDomingo = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.CantidadElaborarDomingo = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.UnidadMedidaDomingo = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.PrecioDomingo = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.GananciaDomingo = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dgvLunes = new System.Windows.Forms.DataGridView();
-            this.TipoLunes = new System.Windows.Forms.DataGridViewComboBoxColumn();
-            this.PlatilloLunes = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.UlimaElaboracionLunes = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.CantidadElaborarLunes = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.UnidadMedidaLunes = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.PrecioVentaLunes = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.GananciaLunes = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dgvSabado = new System.Windows.Forms.DataGridView();
-            this.TipoSabado = new System.Windows.Forms.DataGridViewComboBoxColumn();
-            this.PlatilloSabado = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.UtilimaElaboracionSabado = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.CantidadElaborarSabado = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.UnidadMedidaSabado = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.PrecioSabado = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.GananciaSabado = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.FechaLunes = new System.Windows.Forms.Label();
             this.LabelLunes = new System.Windows.Forms.Label();
             this.FechaMartes = new System.Windows.Forms.Label();
@@ -105,6 +55,7 @@
             this.LabelSabado = new System.Windows.Forms.Label();
             this.FechaDomingo = new System.Windows.Forms.Label();
             this.LabelDomingo = new System.Windows.Forms.Label();
+            this.dgvLunes = new System.Windows.Forms.DataGridView();
             this.label1 = new System.Windows.Forms.Label();
             this.panel1 = new System.Windows.Forms.Panel();
             this.btAgregarSemana = new System.Windows.Forms.Button();
@@ -119,8 +70,8 @@
             ((System.ComponentModel.ISupportInitialize)(this.dgvMiercoles)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgvMartes)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgvDomingo)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.dgvLunes)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgvSabado)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvLunes)).BeginInit();
             this.panel1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -147,7 +98,6 @@
             this.tableLayoutPanel1.Controls.Add(this.dgvMiercoles, 2, 2);
             this.tableLayoutPanel1.Controls.Add(this.dgvMartes, 1, 2);
             this.tableLayoutPanel1.Controls.Add(this.dgvDomingo, 1, 8);
-            this.tableLayoutPanel1.Controls.Add(this.dgvLunes, 0, 2);
             this.tableLayoutPanel1.Controls.Add(this.dgvSabado, 2, 5);
             this.tableLayoutPanel1.Controls.Add(this.FechaLunes, 0, 1);
             this.tableLayoutPanel1.Controls.Add(this.LabelLunes, 0, 0);
@@ -163,6 +113,7 @@
             this.tableLayoutPanel1.Controls.Add(this.LabelSabado, 2, 3);
             this.tableLayoutPanel1.Controls.Add(this.FechaDomingo, 1, 7);
             this.tableLayoutPanel1.Controls.Add(this.LabelDomingo, 1, 6);
+            this.tableLayoutPanel1.Controls.Add(this.dgvLunes, 0, 2);
             this.tableLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tableLayoutPanel1.Location = new System.Drawing.Point(0, 100);
             this.tableLayoutPanel1.Name = "tableLayoutPanel1";
@@ -181,382 +132,87 @@
             // 
             // dgvViernes
             // 
+            this.dgvViernes.AllowDrop = true;
             this.dgvViernes.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dgvViernes.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.TipoViernes,
-            this.PlatilloViernes,
-            this.UltimaElaboracionViernes,
-            this.CantidadElaborarVienes,
-            this.UnidadMedidaViernes,
-            this.PrecioViernes,
-            this.GananciaViernes});
             this.dgvViernes.Location = new System.Drawing.Point(454, 254);
             this.dgvViernes.Name = "dgvViernes";
             this.dgvViernes.Size = new System.Drawing.Size(445, 165);
             this.dgvViernes.TabIndex = 5;
-            // 
-            // TipoViernes
-            // 
-            this.TipoViernes.HeaderText = "Tipo";
-            this.TipoViernes.Name = "TipoViernes";
-            // 
-            // PlatilloViernes
-            // 
-            this.PlatilloViernes.HeaderText = "Platillo ";
-            this.PlatilloViernes.Name = "PlatilloViernes";
-            // 
-            // UltimaElaboracionViernes
-            // 
-            this.UltimaElaboracionViernes.HeaderText = "Ultima Elaboracion";
-            this.UltimaElaboracionViernes.Name = "UltimaElaboracionViernes";
-            // 
-            // CantidadElaborarVienes
-            // 
-            this.CantidadElaborarVienes.HeaderText = "Cantidad a Elaborar";
-            this.CantidadElaborarVienes.Name = "CantidadElaborarVienes";
-            // 
-            // UnidadMedidaViernes
-            // 
-            this.UnidadMedidaViernes.HeaderText = "Unidad de Medida";
-            this.UnidadMedidaViernes.Name = "UnidadMedidaViernes";
-            this.UnidadMedidaViernes.Resizable = System.Windows.Forms.DataGridViewTriState.True;
-            this.UnidadMedidaViernes.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
-            // 
-            // PrecioViernes
-            // 
-            this.PrecioViernes.HeaderText = "Precio";
-            this.PrecioViernes.Name = "PrecioViernes";
-            // 
-            // GananciaViernes
-            // 
-            this.GananciaViernes.HeaderText = "Ganancia";
-            this.GananciaViernes.Name = "GananciaViernes";
+            this.dgvViernes.DataBindingComplete += new System.Windows.Forms.DataGridViewBindingCompleteEventHandler(this.dgvViernes_DataBindingComplete);
+            this.dgvViernes.DragDrop += new System.Windows.Forms.DragEventHandler(this.dgvViernes_DragDrop);
+            this.dgvViernes.DragOver += new System.Windows.Forms.DragEventHandler(this.dgvViernes_DragOver);
+            this.dgvViernes.MouseDown += new System.Windows.Forms.MouseEventHandler(this.dgvViernes_MouseDown);
+            this.dgvViernes.MouseMove += new System.Windows.Forms.MouseEventHandler(this.dgvViernes_MouseMove);
             // 
             // dgvJueves
             // 
+            this.dgvJueves.AllowDrop = true;
             this.dgvJueves.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dgvJueves.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.TipoJueves,
-            this.PlatilloJueves,
-            this.UltimaElaboracionJueves,
-            this.CantidadElaborarJueves,
-            this.UnidadMedidaJueves,
-            this.PrecioJueves,
-            this.GananciaJueves});
             this.dgvJueves.Location = new System.Drawing.Point(3, 254);
             this.dgvJueves.Name = "dgvJueves";
             this.dgvJueves.Size = new System.Drawing.Size(445, 165);
             this.dgvJueves.TabIndex = 4;
-            // 
-            // TipoJueves
-            // 
-            this.TipoJueves.HeaderText = "Tipo";
-            this.TipoJueves.Name = "TipoJueves";
-            // 
-            // PlatilloJueves
-            // 
-            this.PlatilloJueves.HeaderText = "Platillo";
-            this.PlatilloJueves.Name = "PlatilloJueves";
-            // 
-            // UltimaElaboracionJueves
-            // 
-            this.UltimaElaboracionJueves.HeaderText = "Ultima Elaboracion";
-            this.UltimaElaboracionJueves.Name = "UltimaElaboracionJueves";
-            // 
-            // CantidadElaborarJueves
-            // 
-            this.CantidadElaborarJueves.HeaderText = "Cantidad a Elaborar";
-            this.CantidadElaborarJueves.Name = "CantidadElaborarJueves";
-            // 
-            // UnidadMedidaJueves
-            // 
-            this.UnidadMedidaJueves.HeaderText = "Unidad de Medida";
-            this.UnidadMedidaJueves.Name = "UnidadMedidaJueves";
-            this.UnidadMedidaJueves.Resizable = System.Windows.Forms.DataGridViewTriState.True;
-            this.UnidadMedidaJueves.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
-            // 
-            // PrecioJueves
-            // 
-            this.PrecioJueves.HeaderText = "Precio";
-            this.PrecioJueves.Name = "PrecioJueves";
-            // 
-            // GananciaJueves
-            // 
-            this.GananciaJueves.HeaderText = "Ganancia";
-            this.GananciaJueves.Name = "GananciaJueves";
+            this.dgvJueves.DataBindingComplete += new System.Windows.Forms.DataGridViewBindingCompleteEventHandler(this.dgvJueves_DataBindingComplete);
+            this.dgvJueves.DragDrop += new System.Windows.Forms.DragEventHandler(this.dgvJueves_DragDrop);
+            this.dgvJueves.DragOver += new System.Windows.Forms.DragEventHandler(this.dgvJueves_DragOver);
+            this.dgvJueves.MouseDown += new System.Windows.Forms.MouseEventHandler(this.dgvJueves_MouseDown);
+            this.dgvJueves.MouseMove += new System.Windows.Forms.MouseEventHandler(this.dgvJueves_MouseMove);
             // 
             // dgvMiercoles
             // 
+            this.dgvMiercoles.AllowDrop = true;
             this.dgvMiercoles.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dgvMiercoles.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.TipoMiercoles,
-            this.PlatilloMiercoles,
-            this.UltimaElaboracionMiercoles,
-            this.CantidadElaborarMiercoles,
-            this.UnidadMedidaMiercoles,
-            this.PrecioMiercoles,
-            this.GananciaMiercoles});
             this.dgvMiercoles.Location = new System.Drawing.Point(905, 43);
             this.dgvMiercoles.Name = "dgvMiercoles";
             this.dgvMiercoles.Size = new System.Drawing.Size(446, 165);
             this.dgvMiercoles.TabIndex = 3;
-            // 
-            // TipoMiercoles
-            // 
-            this.TipoMiercoles.HeaderText = "Tipo";
-            this.TipoMiercoles.Name = "TipoMiercoles";
-            // 
-            // PlatilloMiercoles
-            // 
-            this.PlatilloMiercoles.HeaderText = "Platillo";
-            this.PlatilloMiercoles.Name = "PlatilloMiercoles";
-            // 
-            // UltimaElaboracionMiercoles
-            // 
-            this.UltimaElaboracionMiercoles.HeaderText = "Ultima Elaboracion";
-            this.UltimaElaboracionMiercoles.Name = "UltimaElaboracionMiercoles";
-            this.UltimaElaboracionMiercoles.Resizable = System.Windows.Forms.DataGridViewTriState.True;
-            this.UltimaElaboracionMiercoles.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
-            // 
-            // CantidadElaborarMiercoles
-            // 
-            this.CantidadElaborarMiercoles.HeaderText = "Cantidad a Elaborar";
-            this.CantidadElaborarMiercoles.Name = "CantidadElaborarMiercoles";
-            this.CantidadElaborarMiercoles.Resizable = System.Windows.Forms.DataGridViewTriState.True;
-            this.CantidadElaborarMiercoles.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
-            // 
-            // UnidadMedidaMiercoles
-            // 
-            this.UnidadMedidaMiercoles.HeaderText = "Unidad de Medida";
-            this.UnidadMedidaMiercoles.Name = "UnidadMedidaMiercoles";
-            this.UnidadMedidaMiercoles.Resizable = System.Windows.Forms.DataGridViewTriState.True;
-            this.UnidadMedidaMiercoles.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
-            // 
-            // PrecioMiercoles
-            // 
-            this.PrecioMiercoles.HeaderText = "Precio";
-            this.PrecioMiercoles.Name = "PrecioMiercoles";
-            // 
-            // GananciaMiercoles
-            // 
-            this.GananciaMiercoles.HeaderText = "Ganancia";
-            this.GananciaMiercoles.Name = "GananciaMiercoles";
+            this.dgvMiercoles.DataBindingComplete += new System.Windows.Forms.DataGridViewBindingCompleteEventHandler(this.dgvMiercoles_DataBindingComplete);
+            this.dgvMiercoles.DragDrop += new System.Windows.Forms.DragEventHandler(this.dgvMiercoles_DragDrop);
+            this.dgvMiercoles.DragOver += new System.Windows.Forms.DragEventHandler(this.dgvMiercoles_DragOver);
+            this.dgvMiercoles.MouseDown += new System.Windows.Forms.MouseEventHandler(this.dgvMiercoles_MouseDown);
+            this.dgvMiercoles.MouseMove += new System.Windows.Forms.MouseEventHandler(this.dgvMiercoles_MouseMove);
             // 
             // dgvMartes
             // 
+            this.dgvMartes.AllowDrop = true;
             this.dgvMartes.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dgvMartes.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.TipoMartes,
-            this.PlatilloMartes,
-            this.UtilimaElaboracionMartes,
-            this.CantidadelaborarMartes,
-            this.UnidadMedidaMartes,
-            this.PrecioMartes,
-            this.GanaciaMartes});
             this.dgvMartes.Location = new System.Drawing.Point(454, 43);
             this.dgvMartes.Name = "dgvMartes";
             this.dgvMartes.Size = new System.Drawing.Size(445, 165);
             this.dgvMartes.TabIndex = 2;
-            // 
-            // TipoMartes
-            // 
-            this.TipoMartes.HeaderText = "Tipo";
-            this.TipoMartes.Name = "TipoMartes";
-            // 
-            // PlatilloMartes
-            // 
-            this.PlatilloMartes.HeaderText = "Platillo";
-            this.PlatilloMartes.Name = "PlatilloMartes";
-            // 
-            // UtilimaElaboracionMartes
-            // 
-            this.UtilimaElaboracionMartes.HeaderText = "Ultima Elaboracion";
-            this.UtilimaElaboracionMartes.Name = "UtilimaElaboracionMartes";
-            // 
-            // CantidadelaborarMartes
-            // 
-            this.CantidadelaborarMartes.HeaderText = "Cantidad a Elaborar";
-            this.CantidadelaborarMartes.Name = "CantidadelaborarMartes";
-            // 
-            // UnidadMedidaMartes
-            // 
-            this.UnidadMedidaMartes.HeaderText = "Unidad de Medida";
-            this.UnidadMedidaMartes.Name = "UnidadMedidaMartes";
-            this.UnidadMedidaMartes.Resizable = System.Windows.Forms.DataGridViewTriState.True;
-            // 
-            // PrecioMartes
-            // 
-            this.PrecioMartes.HeaderText = "Precio de Venta";
-            this.PrecioMartes.Name = "PrecioMartes";
-            // 
-            // GanaciaMartes
-            // 
-            this.GanaciaMartes.HeaderText = "Ganancia";
-            this.GanaciaMartes.Name = "GanaciaMartes";
+            this.dgvMartes.DataBindingComplete += new System.Windows.Forms.DataGridViewBindingCompleteEventHandler(this.dgvMartes_DataBindingComplete);
+            this.dgvMartes.DragDrop += new System.Windows.Forms.DragEventHandler(this.dgvMartes_DragDrop);
+            this.dgvMartes.DragOver += new System.Windows.Forms.DragEventHandler(this.dgvMartes_DragOver);
+            this.dgvMartes.MouseDown += new System.Windows.Forms.MouseEventHandler(this.dgvMartes_MouseDown);
+            this.dgvMartes.MouseMove += new System.Windows.Forms.MouseEventHandler(this.dgvMartes_MouseMove);
             // 
             // dgvDomingo
             // 
+            this.dgvDomingo.AllowDrop = true;
             this.dgvDomingo.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dgvDomingo.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.TipoDomingo,
-            this.PlatilloDomingo,
-            this.UltimaElaboracionDomingo,
-            this.CantidadElaborarDomingo,
-            this.UnidadMedidaDomingo,
-            this.PrecioDomingo,
-            this.GananciaDomingo});
             this.dgvDomingo.Location = new System.Drawing.Point(454, 465);
             this.dgvDomingo.Name = "dgvDomingo";
             this.dgvDomingo.Size = new System.Drawing.Size(445, 165);
             this.dgvDomingo.TabIndex = 7;
-            // 
-            // TipoDomingo
-            // 
-            this.TipoDomingo.HeaderText = "Tipo";
-            this.TipoDomingo.Name = "TipoDomingo";
-            // 
-            // PlatilloDomingo
-            // 
-            this.PlatilloDomingo.HeaderText = "Platillo";
-            this.PlatilloDomingo.Name = "PlatilloDomingo";
-            // 
-            // UltimaElaboracionDomingo
-            // 
-            this.UltimaElaboracionDomingo.HeaderText = "Ultima Elaboracion";
-            this.UltimaElaboracionDomingo.Name = "UltimaElaboracionDomingo";
-            // 
-            // CantidadElaborarDomingo
-            // 
-            this.CantidadElaborarDomingo.HeaderText = "Cantidad";
-            this.CantidadElaborarDomingo.Name = "CantidadElaborarDomingo";
-            // 
-            // UnidadMedidaDomingo
-            // 
-            this.UnidadMedidaDomingo.HeaderText = "Unidad de Medida";
-            this.UnidadMedidaDomingo.Name = "UnidadMedidaDomingo";
-            this.UnidadMedidaDomingo.Resizable = System.Windows.Forms.DataGridViewTriState.True;
-            this.UnidadMedidaDomingo.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
-            // 
-            // PrecioDomingo
-            // 
-            this.PrecioDomingo.HeaderText = "Precio";
-            this.PrecioDomingo.Name = "PrecioDomingo";
-            // 
-            // GananciaDomingo
-            // 
-            this.GananciaDomingo.HeaderText = "Ganacia";
-            this.GananciaDomingo.Name = "GananciaDomingo";
-            // 
-            // dgvLunes
-            // 
-            this.dgvLunes.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dgvLunes.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.TipoLunes,
-            this.PlatilloLunes,
-            this.UlimaElaboracionLunes,
-            this.CantidadElaborarLunes,
-            this.UnidadMedidaLunes,
-            this.PrecioVentaLunes,
-            this.GananciaLunes});
-            this.dgvLunes.Location = new System.Drawing.Point(3, 43);
-            this.dgvLunes.Name = "dgvLunes";
-            this.dgvLunes.Size = new System.Drawing.Size(445, 165);
-            this.dgvLunes.TabIndex = 1;
-            // 
-            // TipoLunes
-            // 
-            this.TipoLunes.HeaderText = "Tipo";
-            this.TipoLunes.Name = "TipoLunes";
-            // 
-            // PlatilloLunes
-            // 
-            this.PlatilloLunes.HeaderText = "Platillo";
-            this.PlatilloLunes.Name = "PlatilloLunes";
-            // 
-            // UlimaElaboracionLunes
-            // 
-            this.UlimaElaboracionLunes.HeaderText = " Ultima Elaboracion";
-            this.UlimaElaboracionLunes.Name = "UlimaElaboracionLunes";
-            // 
-            // CantidadElaborarLunes
-            // 
-            this.CantidadElaborarLunes.HeaderText = "Cantidad a Elaborar";
-            this.CantidadElaborarLunes.Name = "CantidadElaborarLunes";
-            // 
-            // UnidadMedidaLunes
-            // 
-            this.UnidadMedidaLunes.HeaderText = "Unidad de Medida";
-            this.UnidadMedidaLunes.Name = "UnidadMedidaLunes";
-            this.UnidadMedidaLunes.Resizable = System.Windows.Forms.DataGridViewTriState.True;
-            this.UnidadMedidaLunes.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
-            // 
-            // PrecioVentaLunes
-            // 
-            this.PrecioVentaLunes.HeaderText = "Precio de venta";
-            this.PrecioVentaLunes.Name = "PrecioVentaLunes";
-            // 
-            // GananciaLunes
-            // 
-            this.GananciaLunes.HeaderText = "Ganancia";
-            this.GananciaLunes.Name = "GananciaLunes";
+            this.dgvDomingo.DataBindingComplete += new System.Windows.Forms.DataGridViewBindingCompleteEventHandler(this.dgvDomingo_DataBindingComplete);
+            this.dgvDomingo.DragDrop += new System.Windows.Forms.DragEventHandler(this.dgvDomingo_DragDrop);
+            this.dgvDomingo.DragOver += new System.Windows.Forms.DragEventHandler(this.dgvDomingo_DragOver);
+            this.dgvDomingo.MouseDown += new System.Windows.Forms.MouseEventHandler(this.dgvDomingo_MouseDown);
+            this.dgvDomingo.MouseMove += new System.Windows.Forms.MouseEventHandler(this.dgvDomingo_MouseMove);
             // 
             // dgvSabado
             // 
+            this.dgvSabado.AllowDrop = true;
             this.dgvSabado.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dgvSabado.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.TipoSabado,
-            this.PlatilloSabado,
-            this.UtilimaElaboracionSabado,
-            this.CantidadElaborarSabado,
-            this.UnidadMedidaSabado,
-            this.PrecioSabado,
-            this.GananciaSabado});
             this.dgvSabado.Location = new System.Drawing.Point(905, 254);
             this.dgvSabado.Name = "dgvSabado";
             this.dgvSabado.Size = new System.Drawing.Size(446, 165);
             this.dgvSabado.TabIndex = 6;
-            // 
-            // TipoSabado
-            // 
-            this.TipoSabado.HeaderText = "Tipo";
-            this.TipoSabado.Name = "TipoSabado";
-            this.TipoSabado.Resizable = System.Windows.Forms.DataGridViewTriState.True;
-            // 
-            // PlatilloSabado
-            // 
-            this.PlatilloSabado.HeaderText = "Platillo";
-            this.PlatilloSabado.Name = "PlatilloSabado";
-            // 
-            // UtilimaElaboracionSabado
-            // 
-            this.UtilimaElaboracionSabado.HeaderText = "Ultima Elaboracion";
-            this.UtilimaElaboracionSabado.Name = "UtilimaElaboracionSabado";
-            // 
-            // CantidadElaborarSabado
-            // 
-            this.CantidadElaborarSabado.HeaderText = "Cantidad a Elaborar ";
-            this.CantidadElaborarSabado.Name = "CantidadElaborarSabado";
-            // 
-            // UnidadMedidaSabado
-            // 
-            this.UnidadMedidaSabado.HeaderText = "Unidad a Medida";
-            this.UnidadMedidaSabado.Name = "UnidadMedidaSabado";
-            this.UnidadMedidaSabado.Resizable = System.Windows.Forms.DataGridViewTriState.True;
-            this.UnidadMedidaSabado.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
-            // 
-            // PrecioSabado
-            // 
-            this.PrecioSabado.HeaderText = "Precio";
-            this.PrecioSabado.Name = "PrecioSabado";
-            this.PrecioSabado.Resizable = System.Windows.Forms.DataGridViewTriState.True;
-            this.PrecioSabado.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
-            // 
-            // GananciaSabado
-            // 
-            this.GananciaSabado.HeaderText = "Ganancia";
-            this.GananciaSabado.Name = "GananciaSabado";
-            this.GananciaSabado.Resizable = System.Windows.Forms.DataGridViewTriState.True;
-            this.GananciaSabado.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
+            this.dgvSabado.DataBindingComplete += new System.Windows.Forms.DataGridViewBindingCompleteEventHandler(this.dgvSabado_DataBindingComplete);
+            this.dgvSabado.DragDrop += new System.Windows.Forms.DragEventHandler(this.dgvSabado_DragDrop);
+            this.dgvSabado.DragOver += new System.Windows.Forms.DragEventHandler(this.dgvSabado_DragOver);
+            this.dgvSabado.MouseDown += new System.Windows.Forms.MouseEventHandler(this.dgvSabado_MouseDown);
+            this.dgvSabado.MouseMove += new System.Windows.Forms.MouseEventHandler(this.dgvSabado_MouseMove);
             // 
             // FechaLunes
             // 
@@ -699,6 +355,21 @@
             this.LabelDomingo.TabIndex = 14;
             this.LabelDomingo.Text = "Domingo :";
             // 
+            // dgvLunes
+            // 
+            this.dgvLunes.AllowDrop = true;
+            this.dgvLunes.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dgvLunes.EditMode = System.Windows.Forms.DataGridViewEditMode.EditOnEnter;
+            this.dgvLunes.Location = new System.Drawing.Point(3, 43);
+            this.dgvLunes.Name = "dgvLunes";
+            this.dgvLunes.Size = new System.Drawing.Size(445, 165);
+            this.dgvLunes.TabIndex = 1;
+            this.dgvLunes.DataBindingComplete += new System.Windows.Forms.DataGridViewBindingCompleteEventHandler(this.dgvLunes_DataBindingComplete);
+            this.dgvLunes.DragDrop += new System.Windows.Forms.DragEventHandler(this.dgvLunes_DragDrop);
+            this.dgvLunes.DragOver += new System.Windows.Forms.DragEventHandler(this.dgvLunes_DragOver);
+            this.dgvLunes.MouseDown += new System.Windows.Forms.MouseEventHandler(this.dgvLunes_MouseDown);
+            this.dgvLunes.MouseMove += new System.Windows.Forms.MouseEventHandler(this.dgvLunes_MouseMove);
+            // 
             // label1
             // 
             this.label1.AutoSize = true;
@@ -799,8 +470,8 @@
             ((System.ComponentModel.ISupportInitialize)(this.dgvMiercoles)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgvMartes)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgvDomingo)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.dgvLunes)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgvSabado)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvLunes)).EndInit();
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
             this.ResumeLayout(false);
@@ -811,7 +482,6 @@
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel1;
         private System.Windows.Forms.DataGridView dgvSabado;
         private System.Windows.Forms.DataGridView dgvViernes;
-        private System.Windows.Forms.DataGridView dgvJueves;
         private System.Windows.Forms.DataGridView dgvDomingo;
         private System.Windows.Forms.Label LabelSabado;
         private System.Windows.Forms.Label LabelViernes;
@@ -819,7 +489,6 @@
         private System.Windows.Forms.Label LabelMiercoles;
         private System.Windows.Forms.Label LabelMartes;
         private System.Windows.Forms.DataGridView dgvMiercoles;
-        private System.Windows.Forms.DataGridView dgvMartes;
         private System.Windows.Forms.DataGridView dgvLunes;
         private System.Windows.Forms.Label LabelLunes;
         private System.Windows.Forms.Label LabelDomingo;
@@ -832,55 +501,6 @@
         private System.Windows.Forms.Label FechaSabado;
         private System.Windows.Forms.Label FechaJueves;
         private System.Windows.Forms.Panel panel1;
-        private System.Windows.Forms.DataGridViewComboBoxColumn TipoViernes;
-        private System.Windows.Forms.DataGridViewTextBoxColumn PlatilloViernes;
-        private System.Windows.Forms.DataGridViewTextBoxColumn UltimaElaboracionViernes;
-        private System.Windows.Forms.DataGridViewTextBoxColumn CantidadElaborarVienes;
-        private System.Windows.Forms.DataGridViewTextBoxColumn UnidadMedidaViernes;
-        private System.Windows.Forms.DataGridViewTextBoxColumn PrecioViernes;
-        private System.Windows.Forms.DataGridViewTextBoxColumn GananciaViernes;
-        private System.Windows.Forms.DataGridViewComboBoxColumn TipoJueves;
-        private System.Windows.Forms.DataGridViewTextBoxColumn PlatilloJueves;
-        private System.Windows.Forms.DataGridViewTextBoxColumn UltimaElaboracionJueves;
-        private System.Windows.Forms.DataGridViewTextBoxColumn CantidadElaborarJueves;
-        private System.Windows.Forms.DataGridViewTextBoxColumn UnidadMedidaJueves;
-        private System.Windows.Forms.DataGridViewTextBoxColumn PrecioJueves;
-        private System.Windows.Forms.DataGridViewTextBoxColumn GananciaJueves;
-        private System.Windows.Forms.DataGridViewComboBoxColumn TipoMiercoles;
-        private System.Windows.Forms.DataGridViewTextBoxColumn PlatilloMiercoles;
-        private System.Windows.Forms.DataGridViewTextBoxColumn UltimaElaboracionMiercoles;
-        private System.Windows.Forms.DataGridViewTextBoxColumn CantidadElaborarMiercoles;
-        private System.Windows.Forms.DataGridViewTextBoxColumn UnidadMedidaMiercoles;
-        private System.Windows.Forms.DataGridViewTextBoxColumn PrecioMiercoles;
-        private System.Windows.Forms.DataGridViewTextBoxColumn GananciaMiercoles;
-        private System.Windows.Forms.DataGridViewComboBoxColumn TipoMartes;
-        private System.Windows.Forms.DataGridViewTextBoxColumn PlatilloMartes;
-        private System.Windows.Forms.DataGridViewTextBoxColumn UtilimaElaboracionMartes;
-        private System.Windows.Forms.DataGridViewTextBoxColumn CantidadelaborarMartes;
-        private System.Windows.Forms.DataGridViewTextBoxColumn UnidadMedidaMartes;
-        private System.Windows.Forms.DataGridViewTextBoxColumn PrecioMartes;
-        private System.Windows.Forms.DataGridViewTextBoxColumn GanaciaMartes;
-        private System.Windows.Forms.DataGridViewComboBoxColumn TipoDomingo;
-        private System.Windows.Forms.DataGridViewTextBoxColumn PlatilloDomingo;
-        private System.Windows.Forms.DataGridViewTextBoxColumn UltimaElaboracionDomingo;
-        private System.Windows.Forms.DataGridViewTextBoxColumn CantidadElaborarDomingo;
-        private System.Windows.Forms.DataGridViewTextBoxColumn UnidadMedidaDomingo;
-        private System.Windows.Forms.DataGridViewTextBoxColumn PrecioDomingo;
-        private System.Windows.Forms.DataGridViewTextBoxColumn GananciaDomingo;
-        private System.Windows.Forms.DataGridViewComboBoxColumn TipoLunes;
-        private System.Windows.Forms.DataGridViewTextBoxColumn PlatilloLunes;
-        private System.Windows.Forms.DataGridViewTextBoxColumn UlimaElaboracionLunes;
-        private System.Windows.Forms.DataGridViewTextBoxColumn CantidadElaborarLunes;
-        private System.Windows.Forms.DataGridViewTextBoxColumn UnidadMedidaLunes;
-        private System.Windows.Forms.DataGridViewTextBoxColumn PrecioVentaLunes;
-        private System.Windows.Forms.DataGridViewTextBoxColumn GananciaLunes;
-        private System.Windows.Forms.DataGridViewComboBoxColumn TipoSabado;
-        private System.Windows.Forms.DataGridViewTextBoxColumn PlatilloSabado;
-        private System.Windows.Forms.DataGridViewTextBoxColumn UtilimaElaboracionSabado;
-        private System.Windows.Forms.DataGridViewTextBoxColumn CantidadElaborarSabado;
-        private System.Windows.Forms.DataGridViewTextBoxColumn UnidadMedidaSabado;
-        private System.Windows.Forms.DataGridViewTextBoxColumn PrecioSabado;
-        private System.Windows.Forms.DataGridViewTextBoxColumn GananciaSabado;
 
         private PresentationControls.CheckBoxComboBox cmbManual;
         private PresentationControls.CheckBoxComboBox cbDias;
@@ -890,5 +510,7 @@
 
         private System.Windows.Forms.DateTimePicker DtpFecha;
         private System.Windows.Forms.Button btAgregarSemana;
+        private System.Windows.Forms.DataGridView dgvJueves;
+        private System.Windows.Forms.DataGridView dgvMartes;
     }
 }

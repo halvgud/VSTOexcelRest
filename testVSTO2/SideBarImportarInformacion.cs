@@ -44,8 +44,8 @@ namespace testVSTO2
                     DataSource = Opcion.JsonaListaGenerica<Respuesta.CbGenerico>(json)
                 };
                 cb.DataSource = bindingSource1;
-                cb.DisplayMember = "descripcion";
-                cb.ValueMember = "id";
+                cb.DisplayMember = "Nombre"; /**Le cambiaron el a Id y a Nombre en lugar de id descripcion*/
+                cb.ValueMember = "Id";
                 cb.Enabled = habilitar;
             }));
         }

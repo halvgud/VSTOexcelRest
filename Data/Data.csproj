@@ -54,6 +54,7 @@
     <Compile Include="Categoria.cs" />
     <Compile Include="Departamento.cs" />
     <Compile Include="Formulario.cs" />
+    <Compile Include="MenuSemanal.cs" />
     <Compile Include="ParametroConcepto.cs" />
     <Compile Include="ParametroReceta.cs" />
     <Compile Include="Permiso.cs" />

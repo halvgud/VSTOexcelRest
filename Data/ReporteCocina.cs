@@ -74,36 +74,8 @@ namespace Data
             }
         }
 
-        public static void MostrarDias(Action<IRestResponse> callback)
-        {
-            try
-            {
-                var rest = new Rest(Local.Api.UrlApi, Herramienta.Config.Cocina.DiasSemana.Diasemana,
-                    Method.POST);
-                rest.Peticion.AddHeader(Constantes.Http.ObtenerTipoDeContenido,
-                    Constantes.Http.TipoDeContenido.Json);
-                rest.Peticion.AddJsonBody(new { Tipo = Cocina.DiasSemana.Tipo});
-                // rest.Peticion.AddJsonBody(repGeneral);
-                rest.Cliente.ExecuteAsync(rest.Peticion, response =>
-                {
-                    switch (response.StatusCode)
-                    {
-                        case HttpStatusCode.OK:
-                            callback(response);
-                            break;
-                        default:
-                            callback(null);
-                            break;
-                    }
-                });
-            }
-            catch (Exception e)
-            {
-                Opcion.Log(Log.Interno.Categoria, "EXCEPCION: " + e.Message);
-                callback(null);
-            }
-        }
 
+       
 
         public static void agregar_congeladobuscar(Action<IRestResponse> callback)
         {//es q lo escribi mal jeje
@@ -134,6 +106,7 @@ namespace Data
                 callback(null);
             }
         }
+
 
         public static void Buscarcongelados(Action<IRestResponse> callback)
         {

@@ -34,7 +34,7 @@ namespace ExcelAddIn1
         private List<Receta.Congelados> _listaplatillo;
 
         private List<Receta.Congelados> _listaagregarcongelado2;
-  
+  //modificacion
 
         //private List<Respuesta.CbGenerico> _listaplatillo; 
 

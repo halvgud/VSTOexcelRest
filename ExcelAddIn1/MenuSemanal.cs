@@ -14,7 +14,6 @@ using System.Collections;
 
 namespace ExcelAddIn1
 {
-
     public partial class MenuSemanal : Form
     {
         #region Variables
@@ -39,28 +38,23 @@ namespace ExcelAddIn1
         {
             public CheckBoxComboBox DiasSemana;
             public DataGridView DtvMenus;
-
         }
 
         public class DragDropInfo
         {
             public MenuDia Control { get; private set; }
-
             public DragDropInfo(MenuDia control)
             {
                 this.Control = control;
             }
         }
-        private List<MenuDia> _dias;
         private List<MenuSemanal> _listasemanas;
         #endregion
         public MenuSemanal()
         {
             InitializeComponent();
             _listasemanas = new List<MenuSemanal>();
-            _dias=new List<MenuDia>();
         }
-        
 
         private void PopulateManualCombo()
         {
@@ -112,7 +106,6 @@ namespace ExcelAddIn1
             DateTime fdowDate = date.AddDays(offset);
             return fdowDate;
         }
-
         public static DateTime LastDayOfWeek(DateTime date)
         {
             DateTime ldowDate = FirstDayOfWeek(date).AddDays(6);
@@ -138,7 +131,6 @@ namespace ExcelAddIn1
                 {
                     InicializarDGV(c);
                 }
-
             }
         }
         private void DtpFecha_ValueChanged(object sender, EventArgs e)
@@ -158,7 +150,6 @@ namespace ExcelAddIn1
                 {
                     FechaIni = Convert.ToDateTime(diainicio),
                     FechaFin = Convert.ToDateTime(diafinal)
-
                 };
                 Data.MenuSemanal.CargarDias(x, times);
             }, jsonResult =>
@@ -179,7 +170,7 @@ namespace ExcelAddIn1
                             InicializarDGV(this);                       
                             break;
                         default:
-                            MessageBox.Show(this, @"No se encontraron recetas con los parametros de busqueda ingresados");
+                            MessageBox.Show(this, @"No se encontraron menus con los parametros de busqueda ingresados");
                             break;
                     }
                 }));
@@ -194,7 +185,6 @@ namespace ExcelAddIn1
             }
             return;
         }
- 
         private void MoverDatosASemanaActual(Control parent)
         {
             foreach (Control c in parent.Controls)
@@ -221,23 +211,22 @@ namespace ExcelAddIn1
                 {
                     MoverDatosASemanaActual(c);
                 }
-
             }
         }
         private void btAgregarSemana_Click(object sender, EventArgs e)
         {
             DtpFecha.Value = DateTime.Now;
 
-            //Opcion.EjecucionAsync(Data.Receta.Tipo.Lista, x =>
-            //{
-            //    CargarComboBox(x, (DataGridViewComboBoxColumn)dgvLunes.Columns[0]);
-            //    //CargarComboBox(x, (DataGridViewComboBoxColumn)dgvMartes.Columns[0]);
-            //    CargarComboBox(x, (DataGridViewComboBoxColumn)dgvMiercoles.Columns[0]);
-            //    //CargarComboBox(x, (DataGridViewComboBoxColumn)dgvJueves.Columns[0]);
-            //   // CargarComboBox(x, (DataGridViewComboBoxColumn)dgvViernes.Columns[0]);
-            //    CargarComboBox(x, (DataGridViewComboBoxColumn)dgvSabado.Columns[0]);
-            //    CargarComboBox(x, (DataGridViewComboBoxColumn)dgvDomingo.Columns[0]);
-            //});
+            Opcion.EjecucionAsync(Data.Receta.Tipo.Lista, x =>
+            {
+                //CargarComboBox(x, (DataGridViewComboBoxColumn)dgvLunes.Columns[0]);
+                //CargarComboBox(x, (DataGridViewComboBoxColumn)dgvMartes.Columns[0]);
+                //CargarComboBox(x, (DataGridViewComboBoxColumn)dgvMiercoles.Columns[0]);
+                //CargarComboBox(x, (DataGridViewComboBoxColumn)dgvJueves.Columns[0]);
+                //CargarComboBox(x, (DataGridViewComboBoxColumn)dgvViernes.Columns[0]);
+                //CargarComboBox(x, (DataGridViewComboBoxColumn)dgvSabado.Columns[0]);
+                //CargarComboBox(x, (DataGridViewComboBoxColumn)dgvDomingo.Columns[0]);
+            });
 
             MoverDatosASemanaActual(this);
 
@@ -284,7 +273,7 @@ namespace ExcelAddIn1
                     dgv.DataSource = (this[(dgv.Tag as PropiedadesDGV).NombreDia] as List<MenuDia>);
                 }
             }
-        }
+        }//ddcdcdc
         private void dgvGenerico_MouseDown(object sender,MouseEventArgs e)
         {
             DataGridView pivote = (DataGridView)sender;
@@ -309,7 +298,7 @@ namespace ExcelAddIn1
                 var c = e.Data.GetData(typeof(DragDropInfo)) as DragDropInfo;
                 (this[(pivote.Tag as PropiedadesDGV).NombreDia] as List<MenuDia>).Add(c.Control);
                 pivote.DataSource = null;
-                pivote.DataSource = Miercoles;
+                pivote.DataSource = c;
             }
         }
         private void dgvGenerico_DragOver(object sender, DragEventArgs e)

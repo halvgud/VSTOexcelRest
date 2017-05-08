@@ -137,7 +137,7 @@
     </Reference>
     <Reference Include="RestSharp, Version=105.2.3.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\Herramienta\bin\Debug\RestSharp.dll</HintPath>
+      <HintPath>bin\Debug\RestSharp.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Data" />
@@ -362,7 +362,7 @@
     </ManifestKeyFile>
   </PropertyGroup>
   <PropertyGroup>
-    <ManifestCertificateThumbprint>0B88C84ADAABD274015CFEC1FDE2A4BB51A8044B</ManifestCertificateThumbprint>
+    <ManifestCertificateThumbprint>B6F5AA1C1914613CB330CB32E57C5312209C3291</ManifestCertificateThumbprint>
   </PropertyGroup>
   <PropertyGroup>
     <RunPostBuildEvent>Always</RunPostBuildEvent>

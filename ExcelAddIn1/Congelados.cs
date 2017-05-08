@@ -21,7 +21,7 @@ namespace ExcelAddIn1
     {
 
         //private List<Articulo.Basica> _listaArticuloBasica1;
-
+        
 
         private List<Receta.Congelados> _listagregarcongelado1;
 

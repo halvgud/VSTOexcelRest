@@ -46,7 +46,7 @@ namespace ExcelAddIn1
             //_detallemenu = new DetalleMenu();
 
             ReporteReceta = CustomTaskPanes.Add(_reporteReceta, "Reporte Cocina");
-            ReporteReceta.Visible = false;
+            ReporteReceta.Visible = true;
             ReporteReceta.Width = 280;
             Recetario = CustomTaskPanes.Add(_recetario, "Recetario");
             Recetario.Visible = false;
@@ -125,7 +125,7 @@ namespace ExcelAddIn1
 
         Excel.Worksheet _sheet1;
         private List<Reportes> _reportes;
-
+         
         void activeSheet_SelectionChange(object sh, Excel.Range target)
         {
 

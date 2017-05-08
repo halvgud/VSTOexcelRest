@@ -22,6 +22,8 @@ namespace ExcelAddIn1
           
         }
 
+        //esos errores no me avian salido ahorita 
+
         private void btGenerarReceta_Click(object sender, EventArgs e)
         {
             var addIn = Globals.ThisAddIn;
@@ -41,7 +43,7 @@ namespace ExcelAddIn1
         {
 
         }
-
+        /*por eso era mantener el nombre de la carpeta, aqui le pusiste v2*/
         public void CargarComboBox(IRestResponse json, ComboBox tipoReceta)
         {
             BeginInvoke((MethodInvoker)(() =>
@@ -59,9 +61,10 @@ namespace ExcelAddIn1
 
         private void SideBarReporteReceta_Load(object sender, EventArgs e)
         {
-            Opcion.EjecucionAsync(Data.ParametroConcepto.Lista, x =>
+
+            Opcion.EjecucionAsync(Data.ParametroProducto.Lista, x =>
             {
-                CargarComboBox(x, cbConceptoReceta);
+                CargarComboBox(x, cbproducto);
 
             });
             Opcion.EjecucionAsync(Data.ParametroReceta.Lista, x =>

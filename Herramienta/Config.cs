@@ -71,9 +71,9 @@ namespace Herramienta
             }
            
 
-            public static class Concepto
+            public static class ordenarproducto
             {
-                public static string OrdenConcepto { get; set; } = Properties.Settings.Default.Concepto;
+                public static string OrdenConcepto { get; set; } = Properties.Settings.Default.ordenarproducto;
             }
         }
 

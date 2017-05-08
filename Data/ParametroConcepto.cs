@@ -10,14 +10,14 @@ using RestSharp;
 
 namespace Data
 {
-    public class ParametroConcepto
+    public class ParametroProducto
     {
         public static void Lista(Action<IRestResponse> callback)
         {
 
             try
             {
-                var rest = new Rest(Local.Api.UrlApi, Cocina.Concepto.OrdenConcepto,
+                var rest = new Rest(Local.Api.UrlApi, Cocina.ordenarproducto.OrdenConcepto,
                     Method.GET);
                 rest.Peticion.AddHeader(Constantes.Http.ObtenerTipoDeContenido,
                     Constantes.Http.TipoDeContenido.Json);
@@ -29,7 +29,7 @@ namespace Data
                             callback(response);
                             break;
                         default:
-                            throw new Exception(@"error al buscar articulo");
+                            throw new Exception(@"error al buscar producto");
                     }
                 });
             }

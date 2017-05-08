@@ -35,13 +35,7 @@
     <PublishUrl>\\mercattoserver\ftp\</PublishUrl>
     <InstallUrl>\\mercattoserver\ftp\VSTO\</InstallUrl>
     <TargetCulture>es</TargetCulture>
-
     <ApplicationVersion>1.0.0.32</ApplicationVersion>
-
-<<<<<<< HEAD
-=======
-
->>>>>>> origin/master
     <AutoIncrementApplicationRevision>true</AutoIncrementApplicationRevision>
     <UpdateEnabled>true</UpdateEnabled>
     <UpdateInterval>0</UpdateInterval>
@@ -346,10 +340,11 @@
     <SignManifests>true</SignManifests>
   </PropertyGroup>
   <PropertyGroup>
-    <ManifestKeyFile>Inventario_TemporaryKey.pfx</ManifestKeyFile>
+    <ManifestKeyFile>
+    </ManifestKeyFile>
   </PropertyGroup>
   <PropertyGroup>
-    <ManifestCertificateThumbprint>0B88C84ADAABD274015CFEC1FDE2A4BB51A8044B</ManifestCertificateThumbprint>
+    <ManifestCertificateThumbprint>B6F5AA1C1914613CB330CB32E57C5312209C3291</ManifestCertificateThumbprint>
   </PropertyGroup>
   <!-- Include the build rules for a C# project. -->
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

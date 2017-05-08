@@ -122,5 +122,8 @@
     <Setting Name="inabilitarcongelado" Type="System.String" Scope="Application">
       <Value Profile="(Default)">reporte/inavilitarCongelado</Value>
     </Setting>
+    <Setting Name="ordenarproducto" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">reporte/ordenartipoproducto</Value>
+    </Setting>
   </Settings>
 </SettingsFile>

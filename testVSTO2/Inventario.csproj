@@ -38,6 +38,10 @@
 
     <ApplicationVersion>1.0.0.32</ApplicationVersion>
 
+<<<<<<< HEAD
+=======
+
+>>>>>>> origin/master
     <AutoIncrementApplicationRevision>true</AutoIncrementApplicationRevision>
     <UpdateEnabled>true</UpdateEnabled>
     <UpdateInterval>0</UpdateInterval>

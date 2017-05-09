@@ -49,7 +49,8 @@ namespace Data
         {
             try
             {
-                var rest = new Rest(Local.Api.UrlLocal, Herramienta.Config.Cocina.ReporteRecetario.ReporteCocina,
+                /*url local?*/
+                var rest = new Rest(Local.Api.UrlApi, Herramienta.Config.Cocina.ReporteRecetario.ReporteCocina,
                     Method.GET);
                 rest.Peticion.AddHeader(Constantes.Http.ObtenerTipoDeContenido,
                     Constantes.Http.TipoDeContenido.Json);

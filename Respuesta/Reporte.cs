@@ -91,24 +91,25 @@ namespace Respuesta
 
             //public static CocinaDetalle cocinadetalle { get; set; }
 
-            public string Clave { get; set; }
-            public string Receta { get; set; }
+            public string clave { get; set; }
+            public string receta { get; set; }
             public string TipoProducto { get; set; }
-            public int CantidadInventario { get; set; }
-            public string Categoria { get; set; }
+            public double cantidadinventario { get; set; }
+            public string categoria { get; set; }
             public string Estado { get; set; }
             public string Since { get; set; }
-            public DateTime UltimaElaboracion { get; set; }
-            public string Medida { get; set; }
+            public string ultimaElaboracion { get; set; }
+            public string medida { get; set; }
             public string Consumopordia { get; set; }
             //public string Total { get; set; }
             //public string Nombre { get; set; }
             public Double Costo { get; set; }
             public Double Venta { get; set; }
             public Double Margen { get; set; }
-            public int Qty { get; set; }
+            public Double qty { get; set; }
             public string Sale { get; set; }
-            public string Profit { get; set; }
+            
+            public string ProfitSince { get; set; }
             public string Qtycongelado { get; set; }
             public string Preciocongelado { get; set; }
             public string Qtymermas { get; set; }

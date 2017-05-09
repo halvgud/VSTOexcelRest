@@ -26,7 +26,7 @@
     <OutputType>Library</OutputType>
     <NoStandardLibraries>false</NoStandardLibraries>
     <RootNamespace>ExcelAddIn1</RootNamespace>
-    <AssemblyName>ExcelAddIn1</AssemblyName>
+    <AssemblyName>ExcelAddIn2</AssemblyName>
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <DefineConstants>VSTO40</DefineConstants>
     <TargetFrameworkProfile />

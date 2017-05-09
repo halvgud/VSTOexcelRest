@@ -70,8 +70,9 @@ namespace ExcelAddIn1
             Opcion.EjecucionAsync(Data.ParametroReceta.Lista, x =>
             {
                 CargarComboBox(x, cbOrdenarReceta);
-
             });
+
+           
         }
 
         private void panel1_Paint(object sender, PaintEventArgs e)
@@ -82,6 +83,17 @@ namespace ExcelAddIn1
         private void SideBarReporteReceta_MouseClick(object sender, MouseEventArgs e)
         {
 
+        }
+
+        private void cbproducto_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            cbOrdenarReceta.Enabled = true;
+
+        }
+
+        private void cbOrdenarReceta_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            btGenerarReceta.Enabled = true;
         }
     }
 }

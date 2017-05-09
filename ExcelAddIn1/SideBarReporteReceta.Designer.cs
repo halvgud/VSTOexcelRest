@@ -65,6 +65,7 @@
             this.cbOrdenarReceta.Name = "cbOrdenarReceta";
             this.cbOrdenarReceta.Size = new System.Drawing.Size(121, 21);
             this.cbOrdenarReceta.TabIndex = 4;
+            this.cbOrdenarReceta.SelectedIndexChanged += new System.EventHandler(this.cbOrdenarReceta_SelectedIndexChanged);
             // 
             // btGenerarReceta
             // 
@@ -99,6 +100,7 @@
             this.cbproducto.Name = "cbproducto";
             this.cbproducto.Size = new System.Drawing.Size(121, 21);
             this.cbproducto.TabIndex = 7;
+            this.cbproducto.SelectedIndexChanged += new System.EventHandler(this.cbproducto_SelectedIndexChanged);
             // 
             // SideBarReporteReceta
             // 

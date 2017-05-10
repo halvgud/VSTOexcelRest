@@ -18,7 +18,7 @@ namespace Respuesta
        }
     public class MenuDia
     {
-        public string Tipo { get; set; }
+        public string TipoRecetaDGV { get; set; }
         public string Platillo { get; set; }
         public DateTime FechaElaboracion { get; set; }
         public double Cantidad { get; set; }

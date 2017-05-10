@@ -190,7 +190,6 @@
             this.dgvDomingo.Name = "dgvDomingo";
             this.dgvDomingo.Size = new System.Drawing.Size(419, 165);
             this.dgvDomingo.TabIndex = 7;
-            this.dgvDomingo.DataBindingComplete += new System.Windows.Forms.DataGridViewBindingCompleteEventHandler(this.dgvDomingo_DataBindingComplete);
             this.dgvDomingo.DragDrop += new System.Windows.Forms.DragEventHandler(this.dgvGenerico_DragDrop);
             this.dgvDomingo.DragOver += new System.Windows.Forms.DragEventHandler(this.dgvGenerico_DragOver);
             this.dgvDomingo.MouseDown += new System.Windows.Forms.MouseEventHandler(this.dgvGenerico_MouseDown);

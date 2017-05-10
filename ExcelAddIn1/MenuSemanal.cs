@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Windows.Forms;
 using Respuesta;
-using RestSharp;
+
 using Herramienta;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,8 +9,7 @@ using PresentationControls;
 using System.Drawing;
 using System.Globalization;
 using System.Net;
-using System.Reflection;
-using System.Collections;
+
 
 namespace ExcelAddIn1
 {
@@ -20,7 +19,7 @@ namespace ExcelAddIn1
         //Drop and Drag datagridview rows
         private Rectangle _dragBoxFromMouseDown;
         private int _rowIndexFromMouseDown;
-        private int _rowIndexOfItemUnderMouseToDrop;
+        //private int _rowIndexOfItemUnderMouseToDrop;
 
         public object this[string propertyName]
         {
@@ -45,15 +44,17 @@ namespace ExcelAddIn1
             public MenuDia Control { get; private set; }
             public DragDropInfo(MenuDia control)
             {
-                this.Control = control;
+                Control = control;
             }
         }
-        private List<MenuSemanal> _listasemanas;
+        private List<TipoRecetas> _tiposrecetas;
+       // private List<MenuSemanal> _listasemanas;
         #endregion
         public MenuSemanal()
         {
             InitializeComponent();
-            _listasemanas = new List<MenuSemanal>();
+           // _listasemanas = new List<MenuSemanal>();
+            _tiposrecetas = new List<TipoRecetas>();
         }
 
         private void PopulateManualCombo()
@@ -68,36 +69,49 @@ namespace ExcelAddIn1
             cbDias.Items.Add("Domingo");
         }
 
-        public void CargarComboBox(IRestResponse json, DataGridViewComboBoxColumn tipoReceta)
+        //public void CargarComboBox(IRestResponse json, DataGridViewComboBoxColumn tipoReceta)
+        //{
+        //    BeginInvoke((MethodInvoker)(() =>
+        //    {
+        //        var bindingSource1 = new BindingSource
+        //        {
+        //            DataSource = Opcion.JsonaListaGenerica<CbGenerico>(json)
+        //        };
+        //        tipoReceta.DataSource = bindingSource1;
+        //        tipoReceta.DisplayMember = "Nombre";
+        //        tipoReceta.ValueMember = "id";
+        //        tipoReceta.Tag = json;
+        //    }));
+        //}
+
+   
+        public class PropiedadesDgv
         {
-            BeginInvoke((MethodInvoker)(() =>
-            {
-                var bindingSource1 = new BindingSource
-                {
-                    DataSource = Opcion.JsonaListaGenerica<CbGenerico>(json)
-                };
-                tipoReceta.DataSource = bindingSource1;
-                tipoReceta.DisplayMember = "nombre";
-                tipoReceta.ValueMember = "id";
-                tipoReceta.Tag = json;
-            }));
-        }
-        public class PropiedadesDGV
-        {
-            public int idDia { get; set; }
+            public int IdDia { get; set; }
             public string NombreDia { get; set; }
+        }
+
+        public class TipoRecetas
+        {
+            public int IdReceta { get; set; }
+            public string TipoReceta { get; set; }
         }
 
         private void MenuSemanal_Load(object sender, EventArgs e)
         {
             PopulateManualCombo();
-            dgvLunes.Tag = new PropiedadesDGV{idDia=1, NombreDia="Lunes"};
-            dgvMartes.Tag = new PropiedadesDGV { idDia = 2, NombreDia="Martes" };
-            dgvMiercoles.Tag = new PropiedadesDGV { idDia = 3, NombreDia="Miercoles" };
-            dgvJueves.Tag = new PropiedadesDGV { idDia = 4, NombreDia="Jueves" };
-            dgvViernes.Tag = new PropiedadesDGV { idDia =5, NombreDia= "Viernes" };
-            dgvSabado.Tag = new PropiedadesDGV { idDia = 6, NombreDia= "Sabado" };
-            dgvDomingo.Tag = new PropiedadesDGV { idDia =7,NombreDia="Domingo"};
+            dgvLunes.Tag = new PropiedadesDgv{IdDia=1, NombreDia="Lunes"};
+            dgvMartes.Tag = new PropiedadesDgv { IdDia = 2, NombreDia="Martes" };
+            dgvMiercoles.Tag = new PropiedadesDgv { IdDia = 3, NombreDia="Miercoles" };
+            dgvJueves.Tag = new PropiedadesDgv { IdDia = 4, NombreDia="Jueves" };
+            dgvViernes.Tag = new PropiedadesDgv { IdDia =5, NombreDia= "Viernes" };
+            dgvSabado.Tag = new PropiedadesDgv { IdDia = 6, NombreDia= "Sabado" };
+            dgvDomingo.Tag = new PropiedadesDgv { IdDia =7,NombreDia="Domingo"};
+
+             _tiposrecetas.Add(new TipoRecetas { IdReceta = 1, TipoReceta = "Guarnicion" });
+            _tiposrecetas.Add(new TipoRecetas { IdReceta = 2, TipoReceta = "Fritangas" });
+            _tiposrecetas.Add(new TipoRecetas { IdReceta = 3, TipoReceta = "Plato Fuerte" });
+            _tiposrecetas.Add(new TipoRecetas { IdReceta = 4, TipoReceta = "Postre" });
         }
         public static DateTime FirstDayOfWeek(DateTime date)
         {
@@ -111,15 +125,27 @@ namespace ExcelAddIn1
             DateTime ldowDate = FirstDayOfWeek(date).AddDays(6);
             return ldowDate;
         }
-        private void InicializarDGV(Control parent)
+        private void InicializarDgv(Control parent)
         {
             foreach (Control c in parent.Controls)
             {
                 if (c is DataGridView)
                 {
-                    DataGridView pivote = new DataGridView();
-                    pivote = (DataGridView)c;
-                    pivote.DataSource = this[(pivote.Tag as PropiedadesDGV).NombreDia] as List<MenuDia>;
+                    var pivote = (DataGridView)c;
+                    var col = new DataGridViewComboBoxColumn
+                    {
+                        Name = "TipoRecetaDGV",
+                        DataPropertyName = "TipoRecetaDGV",
+                        HeaderText = @"TipoReceta",
+                        DataSource = _tiposrecetas,
+                        DisplayMember = "TipoReceta",
+                        ValueMember = "TipoReceta"
+                    };
+
+                    // The DataTable column name.
+                    // People.Property matching the DT column.
+                    pivote.Columns.Add(col);
+                    pivote.DataSource = this[(pivote.Tag as PropiedadesDgv)?.NombreDia] as List<MenuDia>;
                     for (var x = 0; x == 7; x++)
                     {
                         pivote.Columns[x].ReadOnly = true;
@@ -129,7 +155,7 @@ namespace ExcelAddIn1
                 }
                 else
                 {
-                    InicializarDGV(c);
+                    InicializarDgv(c);
                 }
             }
         }
@@ -167,7 +193,7 @@ namespace ExcelAddIn1
                             Viernes = Opcion.JsonaClaseGenerica2<Respuesta.MenuSemanal>(jsonResult).Viernes;
                             Sabado = Opcion.JsonaClaseGenerica2<Respuesta.MenuSemanal>(jsonResult).Sabado;
                             Domingo = Opcion.JsonaClaseGenerica2<Respuesta.MenuSemanal>(jsonResult).Domingo;
-                            InicializarDGV(this);                       
+                            InicializarDgv(this);
                             break;
                         default:
                             MessageBox.Show(this, @"No se encontraron menus con los parametros de busqueda ingresados");
@@ -179,24 +205,25 @@ namespace ExcelAddIn1
         }
         private void cbDias_SelectedIndexChanged(object sender, EventArgs e)
         {
-            for (int x = 1; x <= 7; x++)
-            {
-                cbDias.CheckBoxItems[x].Checked = cbDias.CheckBoxItems[0].Checked;
+            if (cbDias.Items.Count > 0)
+            { 
+                for (var x = 1; x <= 7; x++)
+                {
+                    cbDias.CheckBoxItems[x].Checked = cbDias.CheckBoxItems[0].Checked;
+                }
             }
-            return;
         }
-        private void MoverDatosASemanaActual(Control parent)
+        private void MoverDatosSemanaActual(Control parent)
         {
             foreach (Control c in parent.Controls)
             {
-                if (c is DataGridView)
+                var view = c as DataGridView;
+                if (view != null)
                 {
-                    DataGridView pivote = new DataGridView();
-                    pivote = (DataGridView)c;
-                    if (cbDias.CheckBoxItems[Convert.ToInt32((c.Tag as PropiedadesDGV).idDia)].Checked == true)
+                    var pivote = view;
+                    if (cbDias.CheckBoxItems[Convert.ToInt32((view.Tag as PropiedadesDgv)?.IdDia)].Checked)
                     {
                         pivote.Columns.Remove("FechaElaboracion");
-                        pivote.Columns.Remove("Tipo");
                         pivote.Enabled = true;
                         pivote.EditMode = DataGridViewEditMode.EditOnKeystroke;
                     }
@@ -209,28 +236,18 @@ namespace ExcelAddIn1
                 }
                 else
                 {
-                    MoverDatosASemanaActual(c);
+                    MoverDatosSemanaActual(c);
                 }
             }
         }
         private void btAgregarSemana_Click(object sender, EventArgs e)
         {
             DtpFecha.Value = DateTime.Now;
+            ValidarFecha(this);
 
-            Opcion.EjecucionAsync(Data.Receta.Tipo.Lista, x =>
-            {
-                //CargarComboBox(x, (DataGridViewComboBoxColumn)dgvLunes.Columns[0]);
-                //CargarComboBox(x, (DataGridViewComboBoxColumn)dgvMartes.Columns[0]);
-                //CargarComboBox(x, (DataGridViewComboBoxColumn)dgvMiercoles.Columns[0]);
-                //CargarComboBox(x, (DataGridViewComboBoxColumn)dgvJueves.Columns[0]);
-                //CargarComboBox(x, (DataGridViewComboBoxColumn)dgvViernes.Columns[0]);
-                //CargarComboBox(x, (DataGridViewComboBoxColumn)dgvSabado.Columns[0]);
-                //CargarComboBox(x, (DataGridViewComboBoxColumn)dgvDomingo.Columns[0]);
-            });
+            MoverDatosSemanaActual(this);
 
-            MoverDatosASemanaActual(this);
-
-            if (cbDias.CheckBoxItems[0].Checked==true)
+            if (cbDias.CheckBoxItems[0].Checked)
             {
                 dgvLunes.EditMode = DataGridViewEditMode.EditOnKeystroke;
                 dgvMartes.EditMode = DataGridViewEditMode.EditOnKeystroke;
@@ -240,22 +257,33 @@ namespace ExcelAddIn1
                 dgvSabado.EditMode = DataGridViewEditMode.EditOnKeystroke;
                 dgvDomingo.EditMode = DataGridViewEditMode.EditOnKeystroke;
             }
-        }
-        //creacion de la la columna combobox
-       
-        private void dgvDomingo_DataBindingComplete(object sender, DataGridViewBindingCompleteEventArgs e)
+            }
+
+  
+        private void ValidarFecha(Control parent)
         {
-            //if (dgvDomingo.Columns.Count == 7)
-            //{
-            //    DataGridViewComboBoxColumn chkSelect = new DataGridViewComboBoxColumn();
-            //    {
-            //        chkSelect.HeaderText = "TipoReceta";
-            //        chkSelect.Name = "chkSelect";
-            //        var listadgv = dgvDomingo.DataSource as List<MenuSemanal>;
-            //    }
-            //    dgvDomingo.Columns.Insert(0, chkSelect);
-            //}
-         }
+            foreach (Control c in parent.Controls)
+            {
+                var view = c as DataGridView;
+                if (view == null) continue;
+                var pivote = view;
+                pivote.DataSource = this[(pivote.Tag as PropiedadesDgv)?.NombreDia] as List<MenuDia>;
+
+                if (DtpFecha.Value.Day < DateTime.Now.Day )
+                {
+                    for (var x = 0; x == 7; x++)
+                    {
+                        pivote.Columns[x].ReadOnly = true;
+                    }
+                    pivote.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
+                    pivote.Enabled = false;
+                }
+                else
+                {
+                    ValidarFecha(c);
+                }
+            }
+        }
 
         #region FuncionesParaMoverRows
         private void dgvGenerico_MouseMove(object sender,MouseEventArgs e)
@@ -266,21 +294,36 @@ namespace ExcelAddIn1
                 {
                     var dgv = (DataGridView)sender;
                     var platillo =dgv.Rows[_rowIndexFromMouseDown].Cells["Platillo"].Value.ToString();
-                    MenuDia c =(this[(dgv.Tag as PropiedadesDGV).NombreDia] as List<MenuDia>).SingleOrDefault(x => x.Platillo.ToString() == platillo);
+                    MenuDia c =(this[(dgv.Tag as PropiedadesDgv)?.NombreDia] as List<MenuDia>)?.SingleOrDefault(x => x.Platillo.ToString() == platillo);
                     DoDragDrop(new DragDropInfo(c), DragDropEffects.All);
-                    (this[(dgv.Tag as PropiedadesDGV).NombreDia] as List<MenuDia>).Remove(c);
+                    (this[(dgv.Tag as PropiedadesDgv)?.NombreDia] as List<MenuDia>)?.Remove(c);
                     dgv.DataSource = null;
-                    dgv.DataSource = (this[(dgv.Tag as PropiedadesDGV).NombreDia] as List<MenuDia>);
+                    var col = new DataGridViewComboBoxColumn
+                    {
+                        Name = "TipoRecetaDGV",
+                        DataPropertyName = "TipoRecetaDGV",
+                        HeaderText = @"TipoReceta",
+                        DataSource = _tiposrecetas,
+                        DisplayMember = "TipoReceta",
+                        ValueMember = "TipoReceta"
+                    };
+                    // The DataTable column name.
+                    // People.Property matching the DT column.
+                    dgv.Columns.Add(col);
+                    dgv.DataSource = (this[(dgv.Tag as PropiedadesDgv)?.NombreDia] as List<MenuDia>);
+                    dgv.Columns.Remove("FechaElaboracion");
+                    dgv.Columns[0].ReadOnly = true;
+
                 }
             }
-        }//ddcdcdc
+        }
         private void dgvGenerico_MouseDown(object sender,MouseEventArgs e)
         {
             DataGridView pivote = (DataGridView)sender;
             _rowIndexFromMouseDown = pivote.HitTest(e.X, e.Y).RowIndex;
             if (_rowIndexFromMouseDown != -1)
             {
-                Size dragSize = SystemInformation.DragSize;
+                var dragSize = SystemInformation.DragSize;
                 _dragBoxFromMouseDown = new Rectangle(new Point(e.X - (dragSize.Width / 2),
                     e.Y - (dragSize.Height / 2)),
                     dragSize);
@@ -290,15 +333,27 @@ namespace ExcelAddIn1
         }
         private void dgvGenerico_DragDrop(object sender, DragEventArgs e)
         {
-            DataGridView pivote = (DataGridView)sender;
-            Point clientPoint = pivote.PointToClient(new Point(e.X, e.Y));
-            _rowIndexOfItemUnderMouseToDrop = pivote.HitTest(clientPoint.X, clientPoint.Y).RowIndex;
+            var pivote = (DataGridView)sender;
+           // var clientPoint = pivote.PointToClient(new Point(e.X, e.Y));
+           // _rowIndexOfItemUnderMouseToDrop = pivote.HitTest(clientPoint.X, clientPoint.Y).RowIndex;
             if (e.Effect == DragDropEffects.Move)
             {
-                var c = e.Data.GetData(typeof(DragDropInfo)) as DragDropInfo;
-                (this[(pivote.Tag as PropiedadesDGV).NombreDia] as List<MenuDia>).Add(c.Control);
-                pivote.DataSource = null;
-                pivote.DataSource = c;
+                var c = e.Data.GetData(typeof(DragDropInfo)) as DragDropInfo;  
+                (this[(pivote.Tag as PropiedadesDgv)?.NombreDia] as List<MenuDia>)?.Add(c?.Control);
+                pivote.DataSource = null;//esto es para el row
+                var col = new DataGridViewComboBoxColumn
+                {
+                    Name = "TipoRecetaDGV",
+                    DataPropertyName = "TipoRecetaDGV",
+                    HeaderText = @"TipoReceta",
+                    DataSource = _tiposrecetas,
+                    DisplayMember = "TipoReceta",
+                    ValueMember = "TipoReceta"
+                };
+                pivote.Columns.Add(col);
+                pivote.DataSource = (this[(pivote.Tag as PropiedadesDgv)?.NombreDia] as List<MenuDia>);
+               pivote.Columns.Remove("FechaElaboracion");
+              //  DataGridViewComboBoxCell comboCell = (DataGridViewComboBoxCell)pivote.Rows[pivote.Rows.Count-1].Cells[0];
             }
         }
         private void dgvGenerico_DragOver(object sender, DragEventArgs e)

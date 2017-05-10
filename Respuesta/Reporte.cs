@@ -100,14 +100,14 @@ namespace Respuesta
             public string Since { get; set; }
             public string ultimaElaboracion { get; set; }
             public string medida { get; set; }
-            public string Consumopordia { get; set; }
+            public string consumodia { get; set; }
             //public string Total { get; set; }
             //public string Nombre { get; set; }
             public Double Costo { get; set; }
             public Double Venta { get; set; }
             public Double Margen { get; set; }
             public Double qty { get; set; }
-            public string Sale { get; set; }
+            public string salesince { get; set; }
             
             public string ProfitSince { get; set; }
             public string Qtycongelado { get; set; }

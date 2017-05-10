@@ -51,6 +51,7 @@ namespace ExcelAddIn1
       
             ThisAddIn.Recetario.Visible = false;
             ThisAddIn.ReporteReceta.Visible = true;
+         
         }
         //public void DetalleMenu(Office.IRibbonControl control)
         //{

@@ -85,8 +85,10 @@ namespace ExcelAddIn1
                    Costo = (Convert.ToDouble(excel[1, 11])).ToString(),
                     Venta = (Convert.ToDouble(excel[1, 12])).ToString(),
                     Margen = (Convert.ToDouble(excel[1, 13])/100).ToString(),
+                    medida = excel[1,9].ToString(),
+
                   };
-                rrc.clave = "";
+                //rrc.clave = "";
                 Opcion.EjecucionAsync(Data.ReporteCocina.VersionDetallada, jsonResult =>
                 {
                     Reporte.RespuestaCocina.CocinaDetalle lista = Opcion.JsonaClaseGenerica<Reporte.RespuestaCocina.CocinaDetalle>(jsonResult);
@@ -233,10 +235,10 @@ namespace ExcelAddIn1
             _reporte.Range["A3:X" + rowcount].Borders[Excel.XlBordersIndex.xlEdgeRight].LineStyle = Excel.XlLineStyle.xlContinuous;
             _reporte.Range["A3:X" + rowcount].Borders[Excel.XlBordersIndex.xlEdgeTop].LineStyle = Excel.XlLineStyle.xlContinuous;
             _reporte.Range["A3:X" + rowcount].Borders[Excel.XlBordersIndex.xlEdgeBottom].LineStyle = Excel.XlLineStyle.xlContinuous;
-            _reporte.Range["A7:P" + rowcount].NumberFormat = "$ #,##0.00";
-            _reporte.Range["A7:O"+rowcount].NumberFormat= "$ #,##0.00";
-            _reporte.Range["A7:P" + rowcount].HorizontalAlignment= Excel.XlHAlign.xlHAlignCenter;
-            _reporte.Range["A7:O" + rowcount].HorizontalAlignment = Excel.XlHAlign.xlHAlignCenter;
+            _reporte.Range["O3:P" + rowcount].NumberFormat = "$ #,##0.00";
+            _reporte.Range["O3:O"+rowcount].NumberFormat= "$ #,##0.00";
+            _reporte.Range["A3:P" + rowcount].HorizontalAlignment= Excel.XlHAlign.xlHAlignCenter;
+            _reporte.Range["A3:O" + rowcount].HorizontalAlignment = Excel.XlHAlign.xlHAlignCenter;
             _reporte.Range["A3:X" + rowcount].Borders.Color = Color.Black;
             _reporte.Range["A3:X" + rowcount].Font.Size = 8;
             _reporte.Range["A2:X2"].Interior.Color = ColorTranslator.ToOle(Color.Orange);
@@ -339,12 +341,12 @@ namespace ExcelAddIn1
                 lista[x, 6] = rrg[x].Since;
                 lista[x, 7] = rrg[x].ultimaElaboracion;
                 lista[x, 8] = rrg[x].medida;
-                lista[x, 9] = rrg[x].Consumopordia;
+                lista[x, 9] = rrg[x].consumodia;
                 lista[x, 10] = rrg[x].Costo;
                 lista[x, 11] = rrg[x].Venta;
                 lista[x, 12] = rrg[x].Margen;
                 lista[x, 13] = rrg[x].qty;
-                lista[x, 14] = rrg[x].Sale;
+                lista[x, 14] = rrg[x].salesince;
                 lista[x, 15] = rrg[x].ProfitSince;
                 lista[x, 16] = rrg[x].Qtycongelado;
                 lista[x, 17] = rrg[x].Preciocongelado;

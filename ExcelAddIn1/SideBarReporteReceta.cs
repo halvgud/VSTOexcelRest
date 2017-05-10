@@ -61,15 +61,19 @@ namespace ExcelAddIn1
 
         private void SideBarReporteReceta_Load(object sender, EventArgs e)
         {
+            
+
 
             Opcion.EjecucionAsync(Data.ParametroProducto.Lista, x =>
             {
                 CargarComboBox(x, cbproducto);
+               
 
             });
             Opcion.EjecucionAsync(Data.ParametroReceta.Lista, x =>
             {
                 CargarComboBox(x, cbOrdenarReceta);
+                
             });
 
            

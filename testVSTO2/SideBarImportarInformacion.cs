@@ -156,5 +156,10 @@ namespace testVSTO2
         {
             ValidarComboBox(cbTipoProducto, chTipoProducto);
         }
+
+        private void cbOrderBy_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
+        }
     }
 }

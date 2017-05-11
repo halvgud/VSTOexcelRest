@@ -22,14 +22,38 @@ namespace ExcelAddIn1
           
         }
 
-        //esos errores no me avian salido ahorita 
+        //esos errores no me avian salido ahorita }
+        public List<Respuesta.CbGenerico> _ListproductoList;
+        public List<Respuesta.CbGenerico> _ListorderList; 
 
         private void btGenerarReceta_Click(object sender, EventArgs e)
         {
-            var addIn = Globals.ThisAddIn;
-            //probando teamviwer celular esta chido
+            //var datosimportar = new Respuesta.Orderbyandgroupby()
+            //{
+            //    Id = cbproducto.SelectedIndex,
+            //    Order = cbOrdenarReceta.SelectedItem.ToString()
+            //}
+            // ;
 
-            Opcion.EjecucionAsync(Data.ReporteCocina.VersionExtendida, y =>
+            var datosimportar = new Respuesta.CbGenerico()
+            {
+                Id = cbproducto.SelectedValue.ToString(),
+                Nombre = cbOrdenarReceta.SelectedValue.ToString()
+            };
+            var addIn = Globals.ThisAddIn;
+            //me marca este erros al primer opci
+
+            /*en ninguna ejecucion async se pone el parametro de clase como parametro...
+             va directo al Data, mira, recuerda que son 2 partes... una inicial y una final
+             en la inicial tu le envias, y en la final tu recibes y decides que hacer conesa info*/
+           
+
+            Opcion.EjecucionAsync(x =>
+            {
+                Data.ReporteCocina.VersionExtendida(x, datosimportar); /*de momento pude quedar con esa clase... Pero 
+                te recomendaria usar la misma clase que usas para generar tu reporte
+                en  la y de abajo es tu resultado, en este caso es un IRestResponse que se va a addIn.ReporteCocina*/
+            }, y =>
             {
                 BeginInvoke((MethodInvoker)(() =>
                 {

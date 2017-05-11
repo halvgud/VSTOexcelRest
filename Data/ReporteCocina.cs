@@ -45,16 +45,17 @@ namespace Data
                 callback(null);
             }
         }
-        public static void VersionExtendida(Action<IRestResponse> callback)
+        /*aqui tu 2do parametro no debe ser CbGenerico*/
+        public static void VersionExtendida(Action<IRestResponse> callback, Respuesta.CbGenerico filtroGenerico )
         {
             try
             {
                 /*url local?*/
                 var rest = new Rest(Local.Api.UrlApi, Herramienta.Config.Cocina.ReporteRecetario.ReporteCocina,
-                    Method.GET);
+                    Method.POST);
                 rest.Peticion.AddHeader(Constantes.Http.ObtenerTipoDeContenido,
                     Constantes.Http.TipoDeContenido.Json);
-                // rest.Peticion.AddJsonBody(repGeneral);
+                 rest.Peticion.AddJsonBody(filtroGenerico);
                 rest.Cliente.ExecuteAsync(rest.Peticion, response =>
                 {
                     switch (response.StatusCode)

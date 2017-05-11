@@ -111,6 +111,7 @@ namespace Respuesta
             
             public string ProfitSince { get; set; }
             public string Qtycongelado { get; set; }
+            public string rec_id { get; set; } 
             public string Preciocongelado { get; set; }
             public string Qtymermas { get; set; }
             public string Porcentajemerma { get; set; }

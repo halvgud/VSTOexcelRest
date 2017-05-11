@@ -89,6 +89,7 @@ namespace ExcelAddIn1
 
                   };
                 //rrc.clave = "";
+                /*algo asi... */
                 Opcion.EjecucionAsync(Data.ReporteCocina.VersionDetallada, jsonResult =>
                 {
                     Reporte.RespuestaCocina.CocinaDetalle lista = Opcion.JsonaClaseGenerica<Reporte.RespuestaCocina.CocinaDetalle>(jsonResult);
@@ -115,6 +116,8 @@ namespace ExcelAddIn1
                     ((excelazo.Range["N5"])).Value2 = rrc.Venta;
                     ((excelazo.Range["L5"])).Value2 = lista.SobrantesPendiente;
                     ((excelazo.Range["F5"])).Value2 = rrc.Since;
+
+                    ((excelazo.Range["G5"])).Value2 = rrc.rec_id;
 
 
 
@@ -236,9 +239,10 @@ namespace ExcelAddIn1
             _reporte.Range["A3:X" + rowcount].Borders[Excel.XlBordersIndex.xlEdgeTop].LineStyle = Excel.XlLineStyle.xlContinuous;
             _reporte.Range["A3:X" + rowcount].Borders[Excel.XlBordersIndex.xlEdgeBottom].LineStyle = Excel.XlLineStyle.xlContinuous;
             _reporte.Range["O3:P" + rowcount].NumberFormat = "$ #,##0.00";
-            _reporte.Range["O3:O"+rowcount].NumberFormat= "$ #,##0.00";
-            _reporte.Range["A3:P" + rowcount].HorizontalAlignment= Excel.XlHAlign.xlHAlignCenter;
-            _reporte.Range["A3:O" + rowcount].HorizontalAlignment = Excel.XlHAlign.xlHAlignCenter;
+            _reporte.Range["O3:O" + rowcount].NumberFormat= "$ #,##0.00";
+            _reporte.Range["R3:R" + rowcount].NumberFormat = "$ #,##0.00";
+            _reporte.Range["A3:X" + rowcount].HorizontalAlignment= Excel.XlHAlign.xlHAlignCenter;
+            //_reporte.Range["A3:O" + rowcount].HorizontalAlignment = Excel.XlHAlign.xlHAlignCenter;
             _reporte.Range["A3:X" + rowcount].Borders.Color = Color.Black;
             _reporte.Range["A3:X" + rowcount].Font.Size = 8;
             _reporte.Range["A2:X2"].Interior.Color = ColorTranslator.ToOle(Color.Orange);
@@ -337,7 +341,16 @@ namespace ExcelAddIn1
                 lista[x, 2] = rrg[x].TipoProducto;
                 lista[x, 3] = rrg[x].cantidadinventario;
                 lista[x, 4] = rrg[x].categoria;
-                lista[x, 5] = rrg[x].Estado;
+               
+                string dato = rrg[x].Estado;
+                if (string.IsNullOrEmpty(dato))
+                {
+                    lista[x, 5] = "N/A";
+                }
+                else
+                {
+                    lista[x, 5] = rrg[x].Estado;
+                }
                 lista[x, 6] = rrg[x].Since;
                 lista[x, 7] = rrg[x].ultimaElaboracion;
                 lista[x, 8] = rrg[x].medida;
@@ -348,8 +361,26 @@ namespace ExcelAddIn1
                 lista[x, 13] = rrg[x].qty;
                 lista[x, 14] = rrg[x].salesince;
                 lista[x, 15] = rrg[x].ProfitSince;
-                lista[x, 16] = rrg[x].Qtycongelado;
-                lista[x, 17] = rrg[x].Preciocongelado;
+                
+                var qty = rrg[x].Qtycongelado;
+                if (string.IsNullOrEmpty(qty))
+                {
+                    lista[x, 16] = "N/A";
+                }
+                else
+                {
+                    lista[x, 16] = rrg[x].Qtycongelado;
+                }
+                var pcongelado = rrg[x].Preciocongelado;
+                if (string.IsNullOrEmpty(pcongelado))
+                {
+                    lista[x, 17] = "N/A";
+                }
+                else
+                {
+                    lista[x, 17] = rrg[x].Preciocongelado;
+
+                }
                 lista[x, 18] = rrg[x].Qtymermas;
                 lista[x, 19] = rrg[x].Porcentajemerma;
                 lista[x, 20] = rrg[x].Qtyperdidas;

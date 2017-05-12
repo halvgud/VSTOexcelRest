@@ -99,6 +99,7 @@
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
             this.archivoToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.tsmGuardar = new System.Windows.Forms.ToolStripMenuItem();
+            this.btexaminar = new System.Windows.Forms.Button();
             this.panel1.SuspendLayout();
             this.tabPage2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvIngredientesBusqueda)).BeginInit();
@@ -110,6 +111,7 @@
             // 
             // panel1
             // 
+            this.panel1.Controls.Add(this.btexaminar);
             this.panel1.Controls.Add(this.btAyudar);
             this.panel1.Controls.Add(this.btGuardar);
             this.panel1.Dock = System.Windows.Forms.DockStyle.Bottom;
@@ -269,7 +271,6 @@
             this.cbTipoBE.Name = "cbTipoBE";
             this.cbTipoBE.Size = new System.Drawing.Size(100, 21);
             this.cbTipoBE.TabIndex = 47;
-
             // 
             // tbPesoLitroBE
             // 
@@ -827,6 +828,15 @@
             this.tsmGuardar.Size = new System.Drawing.Size(158, 22);
             this.tsmGuardar.Text = "Guardar";
             // 
+            // btexaminar
+            // 
+            this.btexaminar.Location = new System.Drawing.Point(557, 13);
+            this.btexaminar.Name = "btexaminar";
+            this.btexaminar.Size = new System.Drawing.Size(75, 23);
+            this.btexaminar.TabIndex = 57;
+            this.btexaminar.Text = "Examinar";
+            this.btexaminar.UseVisualStyleBackColor = true;
+            // 
             // AgregarReceta
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -930,5 +940,6 @@
         private System.Windows.Forms.Label label26;
         private System.Windows.Forms.Button btAyudar;
         private System.Windows.Forms.Button btGuardar;
+        private System.Windows.Forms.Button btexaminar;
     }
 }

@@ -67,32 +67,26 @@ namespace ExcelAddIn1
         void Application_SheetBeforeDoubleClick(object sh,
         Excel.Range target, ref bool cancel)
         {
+
+            
+
             _sheet1 = (Excel.Worksheet)Application.ActiveSheet;
             if (_sheet1.Name == "ReporterCocina" && target.Column == 1)
             {
                 cancel = true;
       
                 var excel = target.EntireRow.Value2;
-                
-                Reporte.RespuestaCocina rrc = new Reporte.RespuestaCocina
-                {
-                    // SEGUIR EL LUNES
 
-                    clave = excel[1, 1],
-                    receta = excel[1, 2],
-                    Since = excel[1, 7].ToString(),
-                    ultimaElaboracion = excel[1, 8].ToString(),
-                   Costo = (Convert.ToDouble(excel[1, 11])).ToString(),
-                    Venta = (Convert.ToDouble(excel[1, 12])).ToString(),
-                    Margen = (Convert.ToDouble(excel[1, 13])/100).ToString(),
-                    medida = excel[1,9].ToString(),
+                Cocina.DetalleCocina.Clave = excel[1,1].ToString();
 
-                  };
-                //rrc.clave = "";
-                /*algo asi... */
-                Opcion.EjecucionAsync(Data.ReporteCocina.VersionDetallada, jsonResult =>
+
+                Opcion.EjecucionAsync(x =>
                 {
-                    Reporte.RespuestaCocina.CocinaDetalle lista = Opcion.JsonaClaseGenerica<Reporte.RespuestaCocina.CocinaDetalle>(jsonResult);
+                    Data.ReporteCocina.DDetalleReceta(x, Cocina.DetalleCocina.Clave);
+                }, jsonResult =>
+                {
+                    Reporte.RespuestaCocina listCocina = Opcion.JsonaClaseGenerica<Reporte.RespuestaCocina>(jsonResult);
+                   // Reporte.RespuestaCocina.CocinaDetalle lista = Opcion.JsonaClaseGenerica<Reporte.RespuestaCocina.CocinaDetalle>(jsonResult);
                     var excelazo = InicializarExcelConTemplate("DetalleReceta");
                     excelazo.Range["A1:N2"].Interior.Color = ColorTranslator.ToOle(Color.Peru);
                     excelazo.Range["A4:A7"].Interior.Color = ColorTranslator.ToOle(Color.Peru);
@@ -101,28 +95,64 @@ namespace ExcelAddIn1
                     excelazo.Range["F9:N9"].Interior.Color = ColorTranslator.ToOle(Color.Peru);
                     excelazo.Range["B7:D7"].Interior.Color = ColorTranslator.ToOle(Color.Peru);
                     excelazo.Range["C21"].Interior.Color = ColorTranslator.ToOle(Color.Peru);
+                    //excelazo.Range["M7"].NumberFormat = "##.## %";
 
                     if (excelazo == null) return;
-                    ((excelazo.Range["A1"])).Value2 = rrc.receta;
-                    ((excelazo.Range["M7"])).Value2 =rrc.Margen ;
-                    ((excelazo.Range["K5"])).Value2 =lista.CantidadElaborada ;
-                    ((excelazo.Range["F7"])).Value2 = rrc.ultimaElaboracion;
-                    ((excelazo.Range["H7"])).Value2 = rrc.Venta;
-                    ((excelazo.Range["G7"])).Value2 = lista.Densidad;
-                    ((excelazo.Range["G5"])).Value2 = lista.NoMenus;
-                    ((excelazo.Range["H7"])).Value2 = lista.Medida;
-                    ((excelazo.Range["L10"])).Value2 = lista.Foto;
-                    ((excelazo.Range["M5"])).Value2 = rrc.Costo;
-                    ((excelazo.Range["N5"])).Value2 = rrc.Venta;
-                    ((excelazo.Range["L5"])).Value2 = lista.SobrantesPendiente;
-                    ((excelazo.Range["F5"])).Value2 = rrc.Since;
+                    ((excelazo.Range["A1"])).Value2 = listCocina.receta;
+                    ((excelazo.Range["M7"])).Value2 = listCocina.Margen;
+                    //((excelazo.Range["K5"])).Value2 =lista.CantidadElaborada ;
+                    ((excelazo.Range["F7"])).Value2 = listCocina.ultimaElaboracion;
+                    ((excelazo.Range["N5"])).Value2 = listCocina.Venta;
+                    //((excelazo.Range["G7"])).Value2 = lista.Densidad;
+                    ((excelazo.Range["G5"])).Value2 = listCocina.rec_id;
+                    ((excelazo.Range["H7"])).Value2 =listCocina.medida;
+                    //((excelazo.Range["L10"])).Value2 = lista.Foto;
+                    ((excelazo.Range["M5"])).Value2 = listCocina.Costo;
+                    //((excelazo.Range["N5"])).Value2 = rrc.Venta;
+                    //((excelazo.Range["L5"])).Value2 = lista.SobrantesPendiente;
+                    ((excelazo.Range["F5"])).Value2 = listCocina.Since;
+                    ((excelazo.Range["H5"])).Value2 = listCocina.Qtycongelado;
+                    ((excelazo.Range["B4"])).Value2 = listCocina.TipoProducto;
 
-                    ((excelazo.Range["G5"])).Value2 = rrc.rec_id;
+                }
+
+                );
+                Reporte.RespuestaCocina rrc=new Reporte.RespuestaCocina(); //? y este para que? para meterle lo que hay en reporte .respuestacocina, pero ya lo tienes en la clase
+                //de arriba, listCocina 
+                //Opcion.EjecucionAsync(Data.ReporteCocina.DDetalleReceta(x,Cocina.DetalleCocina.Clave));
+
+                //Reporte.RespuestaCocina rrc = new Reporte.RespuestaCocina
+                //{
+                //    // SEGUIR EL LUNES
+
+                //    clave = excel[1, 1],
+                //    receta = excel[1, 2],
+                //    Since = excel[1, 7].ToString(),
+                //    ultimaElaboracion = excel[1, 8].ToString(),
+                //   Costo = (Convert.ToDouble(excel[1, 11])).ToString(),
+                //    Venta = (Convert.ToDouble(excel[1, 12])).ToString(),
+                //    Margen = (Convert.ToDouble(excel[1, 13])/100).ToString(),
+                //    medida = excel[1,9].ToString(),
+
+                //  };
+                //rrc.clave = "";
+                /*algo asi... */
+                /*y esto de abajo que? es la que te digo de echo mas abajo esta, pero esta petición que hace?
+                 porque son 2? la de arriba y esta?mmmmmm entonces la puedo meter esta dentro de la otra veradd aaaaaaaaaaaaaaa 
+                 si verdad, pero porque son 2???????
+                 que hace esta versionDetallada? nada al parecer de echo esa tu a metiste hay y no supe por que
+                  yo?? cuando?  o.O entonces cual es tu duda?creo que ya la solucionaste es en esta parte de abajo esos datos no mostraba nada en detalle receta perate no te desconectes voy a intentar algo */
+                //Opcion.EjecucionAsync(Data.ReporteCocina.VersionDetallada, jsonResult =>
+                //{
+                   
+
+                   
+                //   // ((excelazo.Range["G5"])).Value2 = rrc.rec_id;
 
 
 
 
-                } );
+                //} );
                 }
 
         }

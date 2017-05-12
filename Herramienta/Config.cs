@@ -24,7 +24,13 @@ namespace Herramienta
                 public static string ReporteCocina { get; set; } = Properties.Settings.Default.ReporteReceta;
             }
 
+            public class  DetalleCocina
+            {
+               public static string CocinaDReceta { get; set; } = Properties.Settings.Default.DetalleRecetaCocina;
+               public  static string Clave { get; set; }
 
+                
+            }
 
             public class Prueba
             {

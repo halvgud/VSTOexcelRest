@@ -391,5 +391,14 @@ namespace Herramienta.Properties {
                 return ((string)(this["ordenarproducto"]));
             }
         }
+        
+        [global::System.Configuration.ApplicationScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("reporte/DetalleCocinaReceta")]
+        public string DetalleRecetaCocina {
+            get {
+                return ((string)(this["DetalleRecetaCocina"]));
+            }
+        }
     }
 }

@@ -125,5 +125,8 @@
     <Setting Name="ordenarproducto" Type="System.String" Scope="Application">
       <Value Profile="(Default)">reporte/ordenartipoproducto</Value>
     </Setting>
+    <Setting Name="DetalleRecetaCocina" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">reporte/DetalleCocinaReceta</Value>
+    </Setting>
   </Settings>
 </SettingsFile>

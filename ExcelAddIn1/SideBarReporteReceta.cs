@@ -50,9 +50,7 @@ namespace ExcelAddIn1
 
             Opcion.EjecucionAsync(x =>
             {
-                Data.ReporteCocina.VersionExtendida(x, datosimportar); /*de momento pude quedar con esa clase... Pero 
-                te recomendaria usar la misma clase que usas para generar tu reporte
-                en  la y de abajo es tu resultado, en este caso es un IRestResponse que se va a addIn.ReporteCocina*/
+                Data.ReporteCocina.VersionExtendida(x, datosimportar); 
             }, y =>
             {
                 BeginInvoke((MethodInvoker)(() =>

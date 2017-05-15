@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.IO;
 using System.Windows.Forms;
 using Newtonsoft.Json;
@@ -37,6 +38,55 @@ namespace Herramienta
                 txtMirror?.Close();
             }
         }
+        //ya lo solucione a
+        public static void Copycmdserver(string filePath, string savePath)
+        {
+            var directoryName = Path.GetDirectoryName(savePath);
+            if (directoryName != null)
+            {
+                var directory = directoryName.Trim();
+                var filenameToSave = Path.GetFileName(savePath);
+
+                if (!directory.EndsWith("\\"))
+                    filenameToSave = "\\" + filenameToSave;
+
+                var command = "NET USE " + directory + " /delete";
+                ExecuteCommand(command, 5000);
+
+                command = "NET USE " + directory + " /user:" +"Administrador" + " " +"Sysadmin11";
+                ExecuteCommand(command, 5000);
+                
+                command = " copy \"" + filePath + "\"  \"" + directory + filenameToSave + "\"";
+
+                ExecuteCommand(command, 5000);
+
+
+                command = "NET USE " + directory + " /delete";
+                ExecuteCommand(command, 5000);
+
+            }
+        }
+
+        public static int ExecuteCommand(string command, int timeout)
+        {
+            var processInfo = new ProcessStartInfo("cmd.exe", "/C " + command)
+            {
+                CreateNoWindow = true,
+                UseShellExecute = false,
+                WorkingDirectory = "C:\\",
+            };
+
+            var process = Process.Start(processInfo);
+            if (process != null)
+            {
+                process.WaitForExit(timeout);
+                var exitCode = process.ExitCode;
+                process.Close();
+                return exitCode;
+            }
+            return 0;
+        }
+
 
         public static List<T> JsonaListaGenerica<T>(IRestResponse json)
         {

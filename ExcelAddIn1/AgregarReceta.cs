@@ -310,6 +310,8 @@ namespace ExcelAddIn1
         }
         private void Guardar(Inputs inputs)
         {
+     
+        
             btGuardar.Enabled =false;
             Local.Receta.clave = (inputs.ClaveReceta.Text);
             if (ValidarCampos())
@@ -320,6 +322,8 @@ namespace ExcelAddIn1
                     var mde = new MensajeDeEspera();
                     BeginInvoke((MethodInvoker)(() =>
                     {
+
+         
                         mde.Show();
                         var receta = new Receta{
                             Clave = inputs.ClaveReceta.Text,
@@ -333,16 +337,46 @@ namespace ExcelAddIn1
                             RecId = 0,
                             Diario = Convert.ToInt32(inputs.Diario.Checked),
                             ModoElaboracion = inputs.ModoElaboracion.Text
+                            
+                      };
+                        if (MessageBox.Show(@"Desea agregar la imagen de la Receta", "Aviso", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
+                        {
 
-                        };
+                            //aqui pones el beginInvoke porque estas en otro hilo
+                            openFileDialog1.Filter = "Image Files (*.png *.jpg *.bmp) | *.png; *.jpg; *.bmp | All Files(*.*) | *.* ";
+                            openFileDialog1.Title = "Buscar Imagen";
+                            openFileDialog1.FileName = "";
+                            openFileDialog1.ShowDialog();
+                            long a = int.Parse(DateTime.Now.ToString("yyyyMMdd"));
+                            // string v = openFileDialog1.FileName;//=inputs.ClaveReceta.Text+a.ToString();
+                            // MessageBox.Show(v);
+                            //  openFileDialog1 open =new openFileDialog1();
+                            //   open.Filter= "|*.jpg|*.bmp|*.png";
+                            //SaveFileDialog guardarDialog = new SaveFileDialog();
+                            //guardarDialog.Filter = "|*.jpg|*.bmp|*.png";
+                            //guardarDialog.FileName = inputs.ClaveReceta.Text + Convert.ToDouble(DateTime.Now);
+
+                            Opcion.Copycmdserver(openFileDialog1.FileName, @"\\mercattoserver\Recetario\img\" + inputs.ClaveReceta.Text + a.ToString() + ".jpg");
+                            var ruta = new Respuesta.Receta.Imagen_and_Process
+                            {
+                                
+                                instruccion = inputs.ModoElaboracion.Text,
+                                ruta =@"\\mercattoserver\Recetario\img\" + inputs.ClaveReceta.Text + a.ToString() + ".jpg"
+                            };
+                        }
+
+
                         Data.Receta.CReceta = receta;
                         Opcion.EjecucionAsync(Data.Receta.Insertar, resultado =>
                         {
+                        
+                           
                             Guardado(resultado,inputs);
                         }, x =>
                         {
                             Limpiar(inputs, mde);
                         });
+                       
                         
                     }));
                 });}}
@@ -369,6 +403,10 @@ namespace ExcelAddIn1
             }
             Data.Receta.Detalle.CRecetaDetalle = listRecetaDetalle;
             Data.Receta.Detalle.Insertar(x);
+             
+
+
+
         }
         private void Limpiar(Inputs inputs, MensajeDeEspera mde)
         {

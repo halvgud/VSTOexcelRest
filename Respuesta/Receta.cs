@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel.Design;
+using System.Text;
 
 
 namespace Respuesta
@@ -28,6 +29,14 @@ namespace Respuesta
             return art;
         }
 
+
+
+        public class Imagen_and_Process
+        {
+            public int recid { get; set; }
+            public string instruccion { get; set; }
+            public String ruta { get; set; }
+        } 
         public class Basica
         {
             public string Clave { get; set; }

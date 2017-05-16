@@ -35,7 +35,7 @@ namespace Respuesta
         {
             public int recid { get; set; }
             public string instruccion { get; set; }
-            public String ruta { get; set; }
+            public string ruta { get; set; }
         } 
         public class Basica
         {

@@ -79,6 +79,7 @@ namespace Herramienta
             {
                 var desSerializer = new JsonDeserializer();
                 x = desSerializer.Deserialize<T>(json);
+               // x = 
                 return x;
             }
             catch (Exception e)

@@ -147,7 +147,6 @@
             this.tpbuscaryeditar.TabIndex = 1;
             this.tpbuscaryeditar.Text = "Buscar y Editar";
             this.tpbuscaryeditar.UseVisualStyleBackColor = true;
-            this.tpbuscaryeditar.Click += new System.EventHandler(this.tpbuscaryeditar_Click);
             // 
             // btguardareditar
             // 
@@ -173,7 +172,6 @@
             this.txtbuscarcongeladoeditar.Name = "txtbuscarcongeladoeditar";
             this.txtbuscarcongeladoeditar.Size = new System.Drawing.Size(248, 20);
             this.txtbuscarcongeladoeditar.TabIndex = 2;
-            this.txtbuscarcongeladoeditar.TextChanged += new System.EventHandler(this.txtbuscarcongeladoeditar_TextChanged);
             // 
             // label2
             // 

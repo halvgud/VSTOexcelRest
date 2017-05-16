@@ -29,7 +29,9 @@ namespace Herramienta
                public static string CocinaDReceta { get; set; } = Properties.Settings.Default.DetalleRecetaCocina;
                public  static string Clave { get; set; }
 
-                
+                public static string insertarinstruccion { get; set; } = Properties.Settings.Default.INSERTARRUTAEIMAGEN;
+
+
             }
 
             public class Prueba

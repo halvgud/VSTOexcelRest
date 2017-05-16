@@ -339,11 +339,14 @@ namespace ExcelAddIn1
                             ModoElaboracion = inputs.ModoElaboracion.Text
                             
                       };
-                        if (MessageBox.Show(@"Desea agregar la imagen de la Receta", "Aviso", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
+                        if (
+                            MessageBox.Show(@"Desea agregar la imagen de la Receta", "Aviso", MessageBoxButtons.YesNo,
+                                MessageBoxIcon.Question) == DialogResult.Yes)
                         {
 
                             //aqui pones el beginInvoke porque estas en otro hilo
-                            openFileDialog1.Filter = "Image Files (*.png *.jpg *.bmp) | *.png; *.jpg; *.bmp | All Files(*.*) | *.* ";
+                            openFileDialog1.Filter =
+                                "Image Files (*.png *.jpg *.bmp) | *.png; *.jpg; *.bmp | All Files(*.*) | *.* ";
                             openFileDialog1.Title = "Buscar Imagen";
                             openFileDialog1.FileName = "";
                             openFileDialog1.ShowDialog();
@@ -356,15 +359,44 @@ namespace ExcelAddIn1
                             //guardarDialog.Filter = "|*.jpg|*.bmp|*.png";
                             //guardarDialog.FileName = inputs.ClaveReceta.Text + Convert.ToDouble(DateTime.Now);
 
-                            Opcion.Copycmdserver(openFileDialog1.FileName, @"\\mercattoserver\Recetario\img\" + inputs.ClaveReceta.Text + a.ToString() + ".jpg");
+
+                            //Opcion.EjecucionAsync(Data.ReporteCocina.InsertarRutaeIMAGEN);
+                            Opcion.Copycmdserver(openFileDialog1.FileName,
+                                @"\\mercattoserver\Recetario\img\" + inputs.ClaveReceta.Text + a.ToString() + ".jpg");
+                            
+
+                           
+                            //var ruta = new Respuesta.Receta.Imagen_and_Process 
+                            //{
+                            //    recid = 0,
+                            //    instruccion = inputs.ModoElaboracion.Text,
+                            //    ruta =@"\\mercattoserver\Recetario\img\" + inputs.ClaveReceta.Text + a.ToString() + ".jpg"
+                            //};
+                            ////Opcion.JsonaListaGenerica<Respuesta.Receta.Imagen_and_Process>();
+
+                            var listainstrucciones = new List<Receta.Imagen_and_Process>();
+                            listainstrucciones.Add(new Receta.Imagen_and_Process
+                            {
+                                instruccion = inputs.ModoElaboracion.Text,
+                                recid = 0,
+                                ruta = @"\\mercattoserver\Recetario\img\" + inputs.ClaveReceta.Text + a.ToString() + ".jpg"
+                            });
+                            Data.ReporteCocina.InsertarRutaeIMAGEN(listainstrucciones);
+
+                        }
+                        else
+                        {
                             var ruta = new Respuesta.Receta.Imagen_and_Process
                             {
-                                
+                                recid = 1,
                                 instruccion = inputs.ModoElaboracion.Text,
-                                ruta =@"\\mercattoserver\Recetario\img\" + inputs.ClaveReceta.Text + a.ToString() + ".jpg"
+                                ruta = ""
+                             
                             };
                         }
 
+                       
+                       
 
                         Data.Receta.CReceta = receta;
                         Opcion.EjecucionAsync(Data.Receta.Insertar, resultado =>

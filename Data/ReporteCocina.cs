@@ -14,6 +14,8 @@ namespace Data
     {
         public static Respuesta.Receta.Congelados Cccongelados;
 
+       public static Respuesta.Receta.Imagen_and_Process ImagenAndProcess;
+
        //public var CongeladoVar;
         
      
@@ -104,6 +106,36 @@ namespace Data
             {
                 Opcion.Log(Log.Interno.Categoria, "EXCEPCION: " + e.Message);
                 callback(null);
+            }
+        }
+
+        public static void InsertarRutaeIMAGEN(List<Respuesta.Receta.Imagen_and_Process> instructivoList )
+        {
+            try
+            {
+                /*url local?*/
+                var rest = new Rest(Local.Api.UrlApi, Herramienta.Config.Cocina.DetalleCocina.insertarinstruccion,
+                    Method.POST);
+                rest.Peticion.AddHeader(Constantes.Http.ObtenerTipoDeContenido,
+                    Constantes.Http.TipoDeContenido.Json);
+                rest.Peticion.AddJsonBody(instructivoList);// la peticion debe ser un objeto
+                rest.Cliente.ExecuteAsync(rest.Peticion, response =>
+                {
+                    switch (response.StatusCode)
+                    {
+                        case HttpStatusCode.OK:
+                          // callback(response);
+                            break;
+                        default:
+                           // callback(null);
+                            break;
+                    }
+                });
+            }
+            catch (Exception e)
+            {
+                Opcion.Log(Log.Interno.Categoria, "EXCEPCION: " + e.Message);
+                //callback(null);
             }
         }
 

@@ -400,5 +400,14 @@ namespace Herramienta.Properties {
                 return ((string)(this["DetalleRecetaCocina"]));
             }
         }
+        
+        [global::System.Configuration.ApplicationScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("receta/insertarinstrucciones")]
+        public string INSERTARRUTAEIMAGEN {
+            get {
+                return ((string)(this["INSERTARRUTAEIMAGEN"]));
+            }
+        }
     }
 }

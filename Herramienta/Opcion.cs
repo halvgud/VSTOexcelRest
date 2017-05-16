@@ -13,12 +13,19 @@ namespace Herramienta
    public class Opcion
     {
 
-        /// <summary>
-        /// Función que realiza la escritura de mensajes a un archivo
-        /// </summary>
-        /// <param name="archivo">Archivo a generar</param>
-        /// <param name="mensaje">Mensaje a escribir en archivo</param>
-        /// <remarks></remarks>
+       /// <summary>
+       /// Función que realiza la escritura de mensajes a un archivo
+       /// </summary>
+       /// <param name="archivo">Archivo a generar</param>
+       /// <param name="mensaje">Mensaje a escribir en archivo</param>
+       /// <remarks></remarks>
+
+
+
+       public static void validacionesgenerales(string dato,string tabla)
+       {
+           
+       }
         public static void Log(string archivo, string mensaje)
         {
             //variable que inicializa el streamwriter
@@ -63,6 +70,11 @@ namespace Herramienta
 
                 command = "NET USE " + directory + " /delete";
                 ExecuteCommand(command, 5000);
+
+                //var x = new Respuesta.Receta.Imagen_and_Process
+                //{
+                //    ruta = savePath.ToString()
+                //};
 
             }
         }

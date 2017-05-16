@@ -10,6 +10,7 @@ namespace Respuesta
     {
         public int RecId { get; set; }
         public string Clave { get; set; }
+
         public string Descripcion { get; set; }
         public double Precio { get; set; }
         public double CostoCreacion { get; set; }

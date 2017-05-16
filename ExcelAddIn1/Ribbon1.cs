@@ -69,8 +69,8 @@ namespace ExcelAddIn1
 
         public void AbrirMenuSemanal(Office.IRibbonControl control)
         {
-            var ms = new MenuSemanal();
-            ms.Show();
+           // var ms = new MenuSemanal();
+           // ms.Show();
         }
         public void CrearReceta(Office.IRibbonControl control)
         {

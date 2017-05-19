@@ -1,9 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
 using System.Net;
-using System.Text;
-using System.Threading.Tasks;
 using Herramienta;
 using Herramienta.Config;
 using RestSharp;
@@ -13,11 +10,6 @@ namespace Data
    public class ReporteCocina
     {
         public static Respuesta.Receta.Congelados Cccongelados;
-
-       //public var CongeladoVar;
-        
-     
-
         public static void VersionDetallada(Action<IRestResponse> callback)
         {
             try
@@ -51,7 +43,7 @@ namespace Data
             try
             {
                 /*url local?*/
-                var rest = new Rest(Local.Api.UrlApi, Herramienta.Config.Cocina.ReporteRecetario.ReporteCocina,
+                var rest = new Rest(Local.Api.UrlApi, Cocina.ReporteRecetario.ReporteCocina,
                     Method.POST);
                 rest.Peticion.AddHeader(Constantes.Http.ObtenerTipoDeContenido,
                     Constantes.Http.TipoDeContenido.Json);
@@ -75,18 +67,16 @@ namespace Data
                 callback(null);
             }
         }
-
-
         public static void DDetalleReceta(Action<IRestResponse> callback, string clave)
         {
             try
             {
                 /*url local?*/
-                var rest = new Rest(Local.Api.UrlApi, Herramienta.Config.Cocina.DetalleCocina.CocinaDReceta,
+                var rest = new Rest(Local.Api.UrlApi, Cocina.DetalleCocina.CocinaDReceta,
                     Method.POST);
                 rest.Peticion.AddHeader(Constantes.Http.ObtenerTipoDeContenido,
                     Constantes.Http.TipoDeContenido.Json);
-                rest.Peticion.AddJsonBody(new { clave= clave});// la peticion debe ser un objeto
+                rest.Peticion.AddJsonBody(new {clave});// la peticion debe ser un objeto
                 rest.Cliente.ExecuteAsync(rest.Peticion, response =>
                 {
                     switch (response.StatusCode)
@@ -106,17 +96,15 @@ namespace Data
                 callback(null);
             }
         }
-
-
         public static void agregar_congeladobuscar(Action<IRestResponse> callback)
         {//es q lo escribi mal jeje
             try
             {
-                var rest = new Rest(Local.Api.UrlApi, Herramienta.Config.Cocina.buscarcongelados.sacarclave,
+                var rest = new Rest(Local.Api.UrlApi, Cocina.buscarcongelados.sacarclave,
                     Method.POST);
                 rest.Peticion.AddHeader(Constantes.Http.ObtenerTipoDeContenido,
                     Constantes.Http.TipoDeContenido.Json);
-                rest.Peticion.AddJsonBody(new { descripcion = Cocina.buscarcongelados.descripcion });
+                rest.Peticion.AddJsonBody(new {Cocina.buscarcongelados.descripcion });
                 // rest.Peticion.AddJsonBody(repGeneral);
                 rest.Cliente.ExecuteAsync(rest.Peticion, response =>
                 {
@@ -137,17 +125,15 @@ namespace Data
                 callback(null);
             }
         }
-
-
         public static void Buscarcongelados(Action<IRestResponse> callback)
         {
             try
             {
-                var rest = new Rest(Local.Api.UrlApi, Herramienta.Config.Cocina.buscarcongelados.bcongelados,
+                var rest = new Rest(Local.Api.UrlApi, Cocina.buscarcongelados.bcongelados,
                     Method.POST);
                 rest.Peticion.AddHeader(Constantes.Http.ObtenerTipoDeContenido,
                     Constantes.Http.TipoDeContenido.Json);
-                rest.Peticion.AddJsonBody(new { descripcion = Cocina.buscarcongelados.descripcion });
+                rest.Peticion.AddJsonBody(new {Cocina.buscarcongelados.descripcion });
                 // rest.Peticion.AddJsonBody(repGeneral);
                 rest.Cliente.ExecuteAsync(rest.Peticion, response =>
                 {
@@ -173,7 +159,7 @@ namespace Data
         {
             try
             {
-                var rest = new Rest(Local.Api.UrlApi, Herramienta.Config.Cocina.agregarcongelados.agregar,
+                var rest = new Rest(Local.Api.UrlApi, Cocina.agregarcongelados.agregar,
                     Method.POST);
                 rest.Peticion.AddHeader(Constantes.Http.ObtenerTipoDeContenido,
                     Constantes.Http.TipoDeContenido.Json);
@@ -203,7 +189,7 @@ namespace Data
         {
             try
             {
-                var rest = new Rest(Local.Api.UrlApi, Herramienta.Config.Cocina.buscarcongelados.cambioexistencia,
+                var rest = new Rest(Local.Api.UrlApi, Cocina.buscarcongelados.cambioexistencia,
                     Method.POST);
                 rest.Peticion.AddHeader(Constantes.Http.ObtenerTipoDeContenido,
                     Constantes.Http.TipoDeContenido.Json);
@@ -229,18 +215,17 @@ namespace Data
                 //callback(null);
             }
         }
-
-        public static void InabilitarCongelado(int estado_id)
+        public static void InabilitarCongelado(int estadoId)
         {
             try
             {
-                var rest = new Rest(Local.Api.UrlApi, Herramienta.Config.Cocina.buscarcongelados.inabilitar,
+                var rest = new Rest(Local.Api.UrlApi,Cocina.buscarcongelados.inabilitar,
                     Method.POST);
                 rest.Peticion.AddHeader(Constantes.Http.ObtenerTipoDeContenido,
                     Constantes.Http.TipoDeContenido.Json);
                 rest.Peticion.AddJsonBody(new
                 {/*a que te refieres con eso*/
-                   estado_id
+                   estado_id = estadoId
                 }
             );
                 // rest.Peticion.AddJsonBody(repGeneral);
@@ -251,9 +236,7 @@ namespace Data
                         case HttpStatusCode.OK:
                            // callback(response);
                             break;
-                        default:
-                            //callback(null);
-                            break;
+                        //callback(null);
                     }
                 });
             }

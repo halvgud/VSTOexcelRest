@@ -527,6 +527,7 @@ Opcion.EjecucionAsync(Data.Receta.Lista, jsonResult =>
             Local.Receta.clave = (tbClaveReceta.Text);
             Opcion.EjecucionAsync(Data.Receta.Lista, jsonResult =>
             {
+                // ReSharper disable once RedundantJumpStatement
                 if (!ValidarClave(tbClaveReceta, jsonResult)) return;
             });
         }

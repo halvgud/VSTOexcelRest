@@ -1,10 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel;
 using System.Linq;
-using System.Text.RegularExpressions;
 using System.Windows.Forms;
-using Respuesta;
 
 namespace ExcelAddIn1
 {
@@ -69,7 +66,7 @@ public BuscarCongelados(List<Respuesta.Receta.Congelados> listaCongelados, Actio
             //    txtcantidad.Visible = true;
             //}
 
-            dgvbuscar_congelados.DataSource = _listaCongelados.Select(x => new {x.art_id, x.clave, x.descripcion, x.cantidad }).ToArray(); ;
+            dgvbuscar_congelados.DataSource = _listaCongelados.Select(x => new {art_id = x.ArtId, x.clave, x.descripcion, x.cantidad }).ToArray();
             dgvbuscar_congelados.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
 
         }
@@ -100,10 +97,9 @@ public BuscarCongelados(List<Respuesta.Receta.Congelados> listaCongelados, Actio
         private void BuscarCongelados_Load(object sender, EventArgs e)
         {
             lbfechaagregar.Text = DateTime.Now.ToShortDateString();
-            txtcantidad.Text = dgvbuscar_congelados.CurrentRow.Cells[4].Value.ToString();
-
+            if (dgvbuscar_congelados.CurrentRow != null)
+                txtcantidad.Text = dgvbuscar_congelados.CurrentRow.Cells[4].Value.ToString();
         }
-
         private void dgvbuscar_congelados_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
             //int row = Convert.ToInt16(dgvbuscar_congelados.Rows[e.RowIndex]);
@@ -119,8 +115,11 @@ public BuscarCongelados(List<Respuesta.Receta.Congelados> listaCongelados, Actio
             txtcantidad.SelectionStart = 0;
             txtcantidad.SelectionLength = txtcantidad.Text.Length;
             txtcantidad.Focus();
-            lbdescripcion.Text = dgvbuscar_congelados.CurrentRow.Cells["descripcion"].Value.ToString();
-            lbclave.Text = dgvbuscar_congelados.CurrentRow.Cells["clave"].Value.ToString();
+            if (dgvbuscar_congelados.CurrentRow != null)
+            {
+                lbdescripcion.Text = dgvbuscar_congelados.CurrentRow.Cells["descripcion"].Value.ToString();
+                lbclave.Text = dgvbuscar_congelados.CurrentRow.Cells["clave"].Value.ToString();
+            }
             lbclave.Visible = true;
             lbdescripcion.Visible = true;
             //lbdescripcion.Text = dgvbuscar_congelados.Rows[e.RowIndex].Cells[1].Value.ToString();

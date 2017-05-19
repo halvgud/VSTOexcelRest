@@ -43,6 +43,14 @@ namespace Herramienta
                 public static string clave { get; set; }
             }
 
+            public class PlatillosMenus
+            {
+                public static string ListaPlatillos { get; set; } = Properties.Settings.Default.TiposPlatillosDiarios;
+                public static string Clave { get; set; }
+                public static string Nombre { get; set; }
+                public static string TipoPlatillo { get; set; }//guardar lo que esta en el combobox 
+            }
+
             public class buscarcongelados
             {
                 public static string bcongelados { get; set; } = Properties.Settings.Default.buscarcongelados;

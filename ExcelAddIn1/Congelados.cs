@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Data;
 using System.Drawing;
 using System.Linq;
 using System.Net;
@@ -8,7 +7,6 @@ using System.Windows.Forms;
 using Herramienta;
 using Herramienta.Config;
 using Respuesta;
-
 
 namespace ExcelAddIn1
 {
@@ -52,16 +50,11 @@ namespace ExcelAddIn1
                 Shown += (s, e) => Close();  // and destroy the new one.
             }
         }
-        private bool ValidarVacia()
-        {
-            return txtbuscarcongelado.Text.Trim().Length > 0;
-        }
         private void Congelados_Load(object sender, EventArgs e)
         {
             ActiveControl = txtbuscarcongelado;
             txtbuscarcongelado.Focus();
         }
-        
         private void btbuscareditar_Click(object sender, EventArgs e)
         {
             Cocina.buscarcongelados.descripcion = txtbuscarcongeladoeditar.Text == string.Empty ? "%" : txtbuscarcongeladoeditar.Text;  /* asigna la clave a la variable estatica*/
@@ -79,7 +72,7 @@ namespace ExcelAddIn1
                                  {
                                      BeginInvoke((MethodInvoker)(() => /*se manda llamar de nuevo a la interfaz*/
                                      {
-                                         dgvcongeladobuscaryeditar.DataSource = resultado.Select(g => new { g.estado_id,g.clave, g.descripcion, g.cantidad}) /*ni estas*/
+                                         dgvcongeladobuscaryeditar.DataSource = resultado.Select(g => new { estado_id = g.EstadoId,g.clave, g.descripcion, g.cantidad}) /*ni estas*/
                                           .ToList();
                                      }));
                                  },lista.ToArray(),0);
@@ -95,13 +88,9 @@ namespace ExcelAddIn1
                 }));
             });
         }
-
-
         private void btguardareditar_Click(object sender, EventArgs e)
         {
-            int id = Convert.ToInt16(dgvcongeladobuscaryeditar.CurrentRow.Cells[0].Value);
-            double canttidad = Convert.ToDouble(dgvcongeladobuscaryeditar.CurrentRow.Cells[3].Value);
-            ///*aqui el problema es que estas creando el objeto despues de la ejecucion y es alreves
+            //aqui el problema es que estas creando el objeto despues de la ejecucion y es alreves
             // deja lo formo*/
             //;
 
@@ -124,15 +113,18 @@ namespace ExcelAddIn1
             //    }));
             //});
 
-            var congeladosactualizar = new Receta.Congelados
+            if (dgvcongeladobuscaryeditar.CurrentRow != null)
             {
-                //estado_id = (dgvcongeladobuscaryeditar.CurrentRow.Cells[0].Value).ToString(),
-                cantidad = double.Parse(dgvcongeladobuscaryeditar.CurrentRow.Cells[3].Value.ToString())
-            };
+                var congeladosactualizar = new Receta.Congelados
+                {
+                    //estado_id = (dgvcongeladobuscaryeditar.CurrentRow.Cells[0].Value).ToString(),
+                    cantidad = double.Parse(dgvcongeladobuscaryeditar.CurrentRow.Cells[3].Value.ToString())
+                };
 
-            //Data.ReporteCocina.ActualizarCongelado
-            Data.ReporteCocina.Cccongelados = congeladosactualizar;
-            
+                //Data.ReporteCocina.ActualizarCongelado
+                Data.ReporteCocina.Cccongelados = congeladosactualizar;
+            }
+
             Data.ReporteCocina.ActualizarCongelado(y => {
                 BeginInvoke((MethodInvoker)(() =>
                 {
@@ -146,6 +138,7 @@ namespace ExcelAddIn1
         }
 
         private void txtbuscarcongelado_KeyDown(object sender, KeyEventArgs e)
+
         {       
            if (e.KeyCode == Keys.Enter)
             {
@@ -176,10 +169,10 @@ namespace ExcelAddIn1
                                                 _listaagregarcongelado2.AddRange(_listagregarcongelado1);
                                             }
                                             dgvcongelados.DataSource = _listaagregarcongelado2
-                                                .GroupBy(p => p.art_id)
+                                                .GroupBy(p => p.ArtId)
                                                 .Select(g => new Receta.Congelados
                                                 {
-                                                    art_id = g.Key,
+                                                    ArtId = g.Key,
                                                     clave = g.First().clave,
                                                     descripcion = g.First().descripcion,
                                                    cantidad = g.Sum(i => i.cantidad)
@@ -239,7 +232,7 @@ namespace ExcelAddIn1
             //string Clavee = dgvcongelados.CurrentRow.Cells[1].Value.ToString();
             //string descrippcion = dgvcongelados.CurrentRow.Cells[2].Value.ToString();
             //double canttidad = Convert.ToDouble(dgvcongelados.CurrentRow.Cells[3].Value);
-            ///*aqui el problema es que estas creando el objeto despues de la ejecucion y es alreves
+            //aqui el problema es que estas creando el objeto despues de la ejecucion y es alreves
             // deja lo formo*/;
 
             MensajeDeEspera mse = new MensajeDeEspera();
@@ -289,7 +282,7 @@ namespace ExcelAddIn1
         private void btborrarselect_Click(object sender, EventArgs e)
         {
             if (dgvcongelados.CurrentCell.RowIndex == -1 || dgvcongelados.Rows.Count <= 0) return;
-            var result = dgvcongelados.DataSource as List<Respuesta.Receta.Congelados>;
+            var result = dgvcongelados.DataSource as List<Receta.Congelados>;
             if (result == null) return;
             int fila = dgvcongelados.CurrentCell.RowIndex;
             result.RemoveAt(dgvcongelados.CurrentCell.RowIndex);
@@ -306,7 +299,8 @@ namespace ExcelAddIn1
         }
         private void btbaja_Click(object sender, EventArgs e)
         {
-            Data.ReporteCocina.InabilitarCongelado( Convert.ToInt32(dgvcongeladobuscaryeditar.CurrentRow.Cells[0].Value.ToString()));
+            if (dgvcongeladobuscaryeditar.CurrentRow != null)
+                Data.ReporteCocina.InabilitarCongelado( Convert.ToInt32(dgvcongeladobuscaryeditar.CurrentRow.Cells[0].Value.ToString()));
         }
     }
     internal class Controls

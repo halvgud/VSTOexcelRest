@@ -39,4 +39,10 @@ namespace Respuesta
         public double GananciaTotal { get; set; }
     }
 
+    public class AutoCompletePlatillo
+    {
+        public string Id { get; set; }
+        public  string Tipo { get; set; }
+        public  string Platillo { get; set; }
+    }
 }

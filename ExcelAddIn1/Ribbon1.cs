@@ -71,6 +71,26 @@ namespace ExcelAddIn1
         {
             var ms = new MenuSemanal();
             ms.Show();
+
+
+            //Opcion.EjecucionAsync(Data.MenuSemanal.ListaPlatilloRecetas, y =>
+            //{
+
+
+            //    var menu = new MenuSemanal(() =>
+            //    {
+            //        var d = Opcion.JsonaListaGenerica<Respuesta.AutoCompletePlatillo>(y).Select(x => x.Platillo).ToArray();
+            //        return d;
+            //    });
+            //    ms.BeginInvoke((MethodInvoker)(() =>
+            //    {
+            //        if (!menu.Visible)
+            //        {
+            //            menu.Show();
+            //        }
+            //        ms.Hide();
+            //    }));
+            //});
         }
         public void CrearReceta(Office.IRibbonControl control)
         {

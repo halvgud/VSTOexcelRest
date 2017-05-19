@@ -227,6 +227,7 @@
     <Compile Include="Congelados.Designer.cs">
       <DependentUpon>Congelados.cs</DependentUpon>
     </Compile>
+    <Compile Include="dataGridViewTextBoxColumn\Add.cs" />
     <Compile Include="EditarOrden.cs">
       <SubType>Form</SubType>
     </Compile>

@@ -1,7 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel.Design;
-
 
 namespace Respuesta
 {
@@ -18,8 +16,7 @@ namespace Respuesta
         public double PesoLitro { get; set; }
         public int Diario { get; set; }
         public double Cantidad { get; set; }
-        public List<Detalle> Ingredientes { get; set; }
-       
+        public List<Detalle> Ingredientes { get; set; } 
         public string ModoElaboracion { get; set; }
       
         public Basica CopiadoSencillo()
@@ -27,7 +24,6 @@ namespace Respuesta
             var art = new Basica {Clave = Clave, Descripcion = Descripcion, Cantidad = Cantidad, Precio = Precio};
             return art;
         }
-
         public class Basica
         {
             public string Clave { get; set; }
@@ -35,8 +31,6 @@ namespace Respuesta
             public double Precio { get; set; }
             public double Cantidad { get; set; }
         }
-
-
 
         public class Detalle
         {
@@ -54,9 +48,9 @@ namespace Respuesta
         }
         public class Congelados
         {
-            public string estado_id { get; set; }
-            public string art_id { get; set; }
-           // public string estado_id { get; set; }
+            public string EstadoId { get; set; }
+            public string ArtId { get; set; }
+            // public string estado_id { get; set; }
             public string clave { get; set; }
             public string descripcion { get; set; }
             public double cantidad { get; set; }
@@ -65,20 +59,17 @@ namespace Respuesta
             /*aqui estas confundiendo el status de activo e inactivo con el ESTADO de Congelado y los otros que hipoteticamente pudieran crearse :P*/
             //   public DateTime fechaEntrada { get; set; }
 
-
             public BasicaCopia CopiadoSencilloCongelado()
             {
-                var art = new BasicaCopia { art_id = art_id, clave = clave, descripcion = descripcion, cantidad = cantidad};
+                var art = new BasicaCopia { ArtId = ArtId, clave = clave, descripcion = descripcion, cantidad = cantidad};
                 return art;
             }
-
-
         }
 
         public class BasicaCopia
         {
-            public string art_id { get; set; }
-            public string estado_id { get; set; }
+            public string ArtId { get; set; }
+            public string EstadoId { get; set; }
             public string clave{ get; set; }
             public string descripcion { get; set; }
             public double cantidad { get; set; }
@@ -89,22 +80,21 @@ namespace Respuesta
     }
         public class Agregarcongelados/* y esta clase para que es? para que hay mande los datos que se van a agregar  ..... te refieres a la de congelados si mmmmm y que los datos los puedas cambiar en el data */
         {
-             public int id { get; set; }
-            public string clave { get; set; }
-            public string nombre { get; set; }
+             public int Id { get; set; }
+            public string Clave { get; set; }
+            public string Nombre { get; set; }
             public  List<Agregarcongelados> ListaAgregarcongeladoses { get; set; } 
 
         }
 
     public class Congelados
     {
-        public string clave { get; set; }
-        public string descripcion { get; set; }
-        public double cantidad { get; set; }
-        public int status { get; set; }
-        public DateTime fechaEntrada { get; set; }
+        public string Clave { get; set; }
+        public string Descripcion { get; set; }
+        public double Cantidad { get; set; }
+        public int Status { get; set; }
+        public DateTime FechaEntrada { get; set; }
         public List<Congelados> ListaCongelados { get; set; }
-
 }
 }
 

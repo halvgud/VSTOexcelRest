@@ -1,17 +1,15 @@
 ﻿using System;
 using System.Windows.Forms;
 using Respuesta;
-
 using Herramienta;
 using System.Collections.Generic;
 using System.ComponentModel;
-using System.Data;
 using System.Linq;
 using PresentationControls;
 using System.Drawing;
 using System.Globalization;
 using System.Net;
-
+using Herramienta.Config;
 
 namespace ExcelAddIn1
 {
@@ -43,36 +41,17 @@ namespace ExcelAddIn1
 
         public class DragDropInfo
         {
-            public MenuDia Control { get; private set; }
+            public MenuDia Control { get; set; }
             public DragDropInfo(MenuDia control)
             {
                 Control = control;
             }
         }
-        private List<TipoRecetas> _tiposrecetas;
-        private List<MenuSemanal> _listasemanas;
-        private static MenuSemanal _alreadyOpened;
+        private readonly List<TipoRecetas> _tiposrecetas;
         #endregion
-        public MenuSemanal(Func<string[]> arreglo)
+        public MenuSemanal()
         {
-
-            if (_alreadyOpened != null && !_alreadyOpened.IsDisposed)
-            {
-                _alreadyOpened.Focus();            // Bring the old one to top
-                Shown += (s, e) => Close();  // and destroy the new one.
-                return;
-            }
-            _alreadyOpened = this;
             InitializeComponent();
-            var allowedTypes = new AutoCompleteStringCollection();
-            allowedTypes.AddRange(arreglo());
-
-
-         //LuRows[1].AutoCompleteCustomSource = allowedTypes;
-         //   txtbuscarcongeladoeditar.AutoCompleteMode = AutoCompleteMode.Suggest;
-         //   txtbuscarcongeladoeditar.AutoCompleteSource = AutoCompleteSource.CustomSource;
-        
-        _listasemanas = new List<MenuSemanal>();
             _tiposrecetas = new List<TipoRecetas>();
         }
 
@@ -125,16 +104,17 @@ namespace ExcelAddIn1
         }
         public static DateTime LastDayOfWeek(DateTime date)
         {
-            DateTime ldowDate = FirstDayOfWeek(date).AddDays(6);
+            var ldowDate = FirstDayOfWeek(date).AddDays(6);
             return ldowDate;
         }
         private void InicializarDgv(Control parent)
         {
             foreach (Control c in parent.Controls)
             {
-                if (c is DataGridView)
+                var view = c as DataGridView;
+                if (view != null)
                 {
-                    var pivote = (DataGridView)c;
+                    var pivote = view;
                     pivote.DataSource = null;
                     pivote.Rows.Clear();
                     var col = new DataGridViewComboBoxColumn
@@ -152,12 +132,9 @@ namespace ExcelAddIn1
                     var propiedadesDgv   = pivote.Tag as PropiedadesDgv;
                     if (propiedadesDgv != null)
                         pivote.DataSource = this[propiedadesDgv.NombreDia] as BindingList<MenuDia>;
-                    for (var x = 0; x == 7; x++)
-                    {
-                        pivote.Columns[x].ReadOnly = true;
-                    }
+                   
 
-                    //if (pivote.ColumnCount == 1)
+                    //if (pivote.ColumnCount == 1 //)
                     //{
                     //    pivote.Columns.Remove("TipoRecetaDGV");
                     //}
@@ -263,6 +240,7 @@ namespace ExcelAddIn1
                         pivote.Enabled = true;
                         pivote.EditMode = DataGridViewEditMode.EditOnEnter;
                         pivote.AllowUserToAddRows = true;
+                        pivote.Columns.Remove("FechaElaboracion");
 
                     }
                     else if (cbDias.CheckBoxItems[Convert.ToInt32((view.Tag as PropiedadesDgv)?.IdDia)].Checked)
@@ -271,7 +249,8 @@ namespace ExcelAddIn1
                         pivote.Enabled = true;
                         pivote.EditMode = DataGridViewEditMode.EditOnEnter;
                         pivote.AllowUserToAddRows = true;
-        
+                        pivote.Columns.Remove("FechaElaboracion");
+
                     }
                     else
                     {
@@ -354,7 +333,6 @@ namespace ExcelAddIn1
                 pivote.Columns.Add(col);
                 pivote.DataSource = (this[(pivote.Tag as PropiedadesDgv)?.NombreDia] as BindingList<MenuDia>);
                pivote.Columns.Remove("FechaElaboracion");
-              //  DataGridViewComboBoxCell comboCell = (DataGridViewComboBoxCell)pivote.Rows[pivote.Rows.Count-1].Cells[0];
             }
         }
         private void dgvGenerico_DragOver(object sender, DragEventArgs e)
@@ -362,46 +340,47 @@ namespace ExcelAddIn1
             e.Effect = DragDropEffects.Move;
         }
         #endregion
+        private void Generico_EditingControlShowing(object sender, DataGridViewEditingControlShowingEventArgs e)
+         {
+            var dgv = (DataGridView)sender;
+            var rowIndex = dgv.CurrentCell.RowIndex;
+            var valor = Convert.ToString(dgv.Rows[rowIndex].Cells[0].Value);
+            var column = dgv.CurrentCell.ColumnIndex;
+            var headerText = dgv.Columns[column].HeaderText;
+
+            if (headerText.Equals("Platillo"))
+            {
+                TextBox autoText = e.Control as TextBox;
+            if (autoText != null)
+            {
+                autoText.AutoCompleteMode = AutoCompleteMode.Suggest;
+                autoText.AutoCompleteSource = AutoCompleteSource.CustomSource;
+                Cocina.PlatillosMenus.Nombre = valor;
+                AutoCompleteStringCollection dataCollection = new AutoCompleteStringCollection();
+                    Opcion.EjecucionAsync(Data.MenuSemanal.ListaPlatilloRecetas, y =>
+                    {
+                        var dd = Opcion.JsonaListaGenerica<AutoCompletePlatillo>(y).Select(x => x.Platillo).ToArray();
+                        BeginInvoke((MethodInvoker)(() =>
+                        {
+                            dataCollection.AddRange(dd);
+                            autoText.AutoCompleteCustomSource = dataCollection;
+                        }));
+                       
+                    });
+            }
+            }
+        }
 
         private void btGuardar_Click(object sender, EventArgs e)
         {
 
         }
-        List<int> Array = new List<int>();
-        private void BorrarFila_KeyDown(object sender, KeyEventArgs e)
-        {
-            var pivote = (DataGridView)sender;
-            int li_index;
-            if ((e.KeyCode == Keys.Delete))
-            {
-                e.Handled = true;
-                li_index = ((DataGridView)(sender)).CurrentRow.Index;
-                pivote.Rows.RemoveAt(li_index);
-            }
-        }
-
-        private void dgvLunes_EditingControlShowing(object sender, DataGridViewEditingControlShowingEventArgs e)
-        {
-            //if (dgvLunes.CurrentCell.ColumnIndex == 1)
-            //{
-            //    var prodCode = e.Control as List<MenuDia>;
-            //    if (prodCode != null)
-            //    {
-            //        prodCode.AutoCompleteMode = AutoCompleteMode.SuggestAppend;
-            //        prodCode.AutoCompleteCustomSource = ClientListDropDown();
-            //        prodCode.AutoCompleteSource = AutoCompleteSource.CustomSource;
-
-            //    }
-            //}
-            //else
-            //{
-            //    TextBox prodCode = e.Control as TextBox;
-            //    if (prodCode != null)
-            //    {
-            //        prodCode.AutoCompleteMode = AutoCompleteMode.None;
-
-              }
-            }
+    }
 }
 
-    
+
+
+
+
+
+

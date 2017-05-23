@@ -132,16 +132,19 @@ namespace ExcelAddIn1
                     var propiedadesDgv   = pivote.Tag as PropiedadesDgv;
                     if (propiedadesDgv != null)
                         pivote.DataSource = this[propiedadesDgv.NombreDia] as BindingList<MenuDia>;
-                   
+
 
                     //if (pivote.ColumnCount == 1 //)
                     //{
                     //    pivote.Columns.Remove("TipoRecetaDGV");
                     //}
-                    pivote.AllowUserToAddRows = false;
+                    pivote.DefaultCellStyle.Font = new Font("Microsoft Sans Serif", 6);
                     pivote.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
                     pivote.Enabled = false;
-                  
+                    pivote.Columns[1].Width = 110;
+                    pivote.AllowUserToAddRows = false;
+                
+
 
                 }
                 else
@@ -177,7 +180,6 @@ namespace ExcelAddIn1
                     switch (jsonResult.StatusCode)
                     {
                         case HttpStatusCode.OK:
-                          
                             Lunes = new BindingList<MenuDia>(Opcion.JsonaClaseGenerica2<Respuesta.MenuSemanal>(jsonResult).Lunes);
                             Martes =  new BindingList<MenuDia>(Opcion.JsonaClaseGenerica2<Respuesta.MenuSemanal>(jsonResult).Martes);
                             Miercoles = new BindingList<MenuDia>(Opcion.JsonaClaseGenerica2<Respuesta.MenuSemanal>(jsonResult).Miercoles);
@@ -247,7 +249,9 @@ namespace ExcelAddIn1
                     {
                         pivote.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
                         pivote.Enabled = true;
+                        
                         pivote.EditMode = DataGridViewEditMode.EditOnEnter;
+                        pivote.AllowUserToAddRows = true;
                         pivote.AllowUserToAddRows = true;
                         pivote.Columns.Remove("FechaElaboracion");
 
@@ -341,7 +345,8 @@ namespace ExcelAddIn1
         }
         #endregion
         private void Generico_EditingControlShowing(object sender, DataGridViewEditingControlShowingEventArgs e)
-         {
+
+        {
             var dgv = (DataGridView)sender;
             var rowIndex = dgv.CurrentCell.RowIndex;
             var valor = Convert.ToString(dgv.Rows[rowIndex].Cells[0].Value);
@@ -349,7 +354,7 @@ namespace ExcelAddIn1
             var headerText = dgv.Columns[column].HeaderText;
 
             if (headerText.Equals("Platillo"))
-            {
+{
                 TextBox autoText = e.Control as TextBox;
             if (autoText != null)
             {
@@ -375,8 +380,25 @@ namespace ExcelAddIn1
         {
 
         }
+        private void dgvGenerico_CellClick(object sender, DataGridViewCellEventArgs e)
+        {
+            var pivote = (DataGridView)sender;
+            if (!pivote.Rows[e.RowIndex].Cells[1].Selected) return;
+            if (pivote.Rows[e.RowIndex].Cells[0].Value != null)
+            {
+                pivote.Rows[e.RowIndex].Cells[1].ReadOnly = false;
+
+            }
+            else
+            {
+                MessageBox.Show(@"Selecciona el tipo de receta antes de llenar el platillo", "", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                pivote.Rows[e.RowIndex].Cells[1].ReadOnly = true;
+
+            }
+        }
     }
-}
+    }
+
 
 
 

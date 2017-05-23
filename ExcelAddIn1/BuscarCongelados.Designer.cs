@@ -61,7 +61,6 @@
             this.dgvbuscar_congelados.Size = new System.Drawing.Size(497, 96);
             this.dgvbuscar_congelados.TabIndex = 1;
             this.dgvbuscar_congelados.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvbuscar_congelados_CellClick);
-            this.dgvbuscar_congelados.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvbuscar_congelados_CellContentClick);
             // 
             // label1
             // 

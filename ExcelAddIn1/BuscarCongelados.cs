@@ -100,15 +100,6 @@ public BuscarCongelados(List<Respuesta.Receta.Congelados> listaCongelados, Actio
             if (dgvbuscar_congelados.CurrentRow != null)
                 txtcantidad.Text = dgvbuscar_congelados.CurrentRow.Cells[4].Value.ToString();
         }
-        private void dgvbuscar_congelados_CellContentClick(object sender, DataGridViewCellEventArgs e)
-        {
-            //int row = Convert.ToInt16(dgvbuscar_congelados.Rows[e.RowIndex]);
-            //int calis = Convert.ToInt16(dgvbuscar_congelados.Rows[e.RowIndex]);
-           
-            //string descripcion = dgvbuscar_congelados.Rows[e.RowIndex].Cells[2].Value.ToString(); 
-            //lbdescripcion.Text = descripcion;
-        }
-
         private void dgvbuscar_congelados_CellClick(object sender, DataGridViewCellEventArgs e)
         {
             txtcantidad.Text = @"1";

@@ -29,6 +29,7 @@
         private void InitializeComponent()
         {
             this.panel1 = new System.Windows.Forms.Panel();
+            this.btexaminar = new System.Windows.Forms.Button();
             this.btAyudar = new System.Windows.Forms.Button();
             this.btGuardar = new System.Windows.Forms.Button();
             this.tabPage2 = new System.Windows.Forms.TabPage();
@@ -99,7 +100,7 @@
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
             this.archivoToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.tsmGuardar = new System.Windows.Forms.ToolStripMenuItem();
-            this.btexaminar = new System.Windows.Forms.Button();
+            this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
             this.panel1.SuspendLayout();
             this.tabPage2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvIngredientesBusqueda)).BeginInit();
@@ -111,7 +112,6 @@
             // 
             // panel1
             // 
-            this.panel1.Controls.Add(this.btexaminar);
             this.panel1.Controls.Add(this.btAyudar);
             this.panel1.Controls.Add(this.btGuardar);
             this.panel1.Dock = System.Windows.Forms.DockStyle.Bottom;
@@ -119,6 +119,15 @@
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(669, 48);
             this.panel1.TabIndex = 3;
+            // 
+            // btexaminar
+            // 
+            this.btexaminar.Location = new System.Drawing.Point(561, 359);
+            this.btexaminar.Name = "btexaminar";
+            this.btexaminar.Size = new System.Drawing.Size(75, 23);
+            this.btexaminar.TabIndex = 57;
+            this.btexaminar.Text = "Examinar";
+            this.btexaminar.UseVisualStyleBackColor = true;
             // 
             // btAyudar
             // 
@@ -462,6 +471,7 @@
             // 
             // tabPage1
             // 
+            this.tabPage1.Controls.Add(this.btexaminar);
             this.tabPage1.Controls.Add(this.rtbModoElaboracion);
             this.tabPage1.Controls.Add(this.label26);
             this.tabPage1.Controls.Add(this.btValidar);
@@ -828,14 +838,10 @@
             this.tsmGuardar.Size = new System.Drawing.Size(158, 22);
             this.tsmGuardar.Text = "Guardar";
             // 
-            // btexaminar
+            // openFileDialog1
             // 
-            this.btexaminar.Location = new System.Drawing.Point(557, 13);
-            this.btexaminar.Name = "btexaminar";
-            this.btexaminar.Size = new System.Drawing.Size(75, 23);
-            this.btexaminar.TabIndex = 57;
-            this.btexaminar.Text = "Examinar";
-            this.btexaminar.UseVisualStyleBackColor = true;
+            this.openFileDialog1.FileName = "openFileDialog1";
+            this.openFileDialog1.InitialDirectory = "Image";
             // 
             // AgregarReceta
             // 
@@ -941,5 +947,6 @@
         private System.Windows.Forms.Button btAyudar;
         private System.Windows.Forms.Button btGuardar;
         private System.Windows.Forms.Button btexaminar;
+        private System.Windows.Forms.OpenFileDialog openFileDialog1;
     }
 }

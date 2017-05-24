@@ -33,9 +33,10 @@ public BuscarCongelados(List<Respuesta.Receta.Congelados> listaCongelados, Actio
             {
                 lbcantidad.Visible = true;
                 txtcantidad.Visible = true;
+                txtcantidad.Text = dgvbuscar_congelados.CurrentRow.Cells[4].Value.ToString();
             }
 
-            
+
             //var cg = new Congelados();
             //if (Congelados().tabControl1.SelectedTab == Congelados().tabControl1.TabPages[0])
             //{
@@ -100,7 +101,7 @@ public BuscarCongelados(List<Respuesta.Receta.Congelados> listaCongelados, Actio
         private void BuscarCongelados_Load(object sender, EventArgs e)
         {
             lbfechaagregar.Text = DateTime.Now.ToShortDateString();
-            txtcantidad.Text = dgvbuscar_congelados.CurrentRow.Cells[4].Value.ToString();
+            //txtcantidad.Text = dgvbuscar_congelados.CurrentRow.Cells[4].Value.ToString();
 
         }
 

@@ -78,6 +78,36 @@ namespace Data
             }
         }
 
+        public static void BuscarRecetav2(Action<IRestResponse> callback)
+        {
+            try
+            {
+                /*url local?*/
+                var rest = new Rest(Local.Api.UrlApi, Herramienta.Config.Cocina.DetalleCocina.Breceta,
+                    Method.POST);
+                rest.Peticion.AddHeader(Constantes.Http.ObtenerTipoDeContenido,
+                    Constantes.Http.TipoDeContenido.Json);
+                rest.Peticion.AddJsonBody(new { clave = Cocina.DetalleCocina.Clave});// la peticion debe ser un objeto
+                rest.Cliente.ExecuteAsync(rest.Peticion, response =>
+                {
+                    switch (response.StatusCode)
+                    {
+                        case HttpStatusCode.OK:
+                            callback(response);
+                            break;
+                        default:
+                            callback(null);
+                            break;
+                    }
+                });
+            }
+            catch (Exception e)
+            {
+                Opcion.Log(Log.Interno.Categoria, "EXCEPCION: " + e.Message);
+                callback(null);
+            }
+        }
+
 
         public static void DDetalleReceta(Action<IRestResponse> callback, string clave)
         {
@@ -109,16 +139,16 @@ namespace Data
             }
         }
 
-        public static void InsertarRutaeIMAGEN(List<Respuesta.Receta.Imagen_and_Process> instructivoList )
+        public static void InsertarRutaeImagen(Respuesta.Receta.Imagen_and_Process instructivoclass )
         {
             try
             {
                 /*url local?*/
-                var rest = new Rest(Local.Api.UrlApi, Herramienta.Config.Cocina.DetalleCocina.insertarinstruccion,
+                var rest = new Rest(Local.Api.UrlApi, Herramienta.Config.Cocina.DetalleCocina.Insertarinstruccion,
                     Method.POST);
                 rest.Peticion.AddHeader(Constantes.Http.ObtenerTipoDeContenido,
                     Constantes.Http.TipoDeContenido.Json);
-                rest.Peticion.AddJsonBody(instructivoList);// la peticion debe ser un objeto
+                rest.Peticion.AddJsonBody(instructivoclass);// la peticion debe ser un objeto
                 rest.Cliente.ExecuteAsync(rest.Peticion, response =>
                 {
                     switch (response.StatusCode)
@@ -144,11 +174,11 @@ namespace Data
         {//es q lo escribi mal jeje
             try
             {
-                var rest = new Rest(Local.Api.UrlApi, Herramienta.Config.Cocina.buscarcongelados.sacarclave,
+                var rest = new Rest(Local.Api.UrlApi, Herramienta.Config.Cocina.Buscarcongelados.Sacarclave,
                     Method.POST);
                 rest.Peticion.AddHeader(Constantes.Http.ObtenerTipoDeContenido,
                     Constantes.Http.TipoDeContenido.Json);
-                rest.Peticion.AddJsonBody(new { descripcion = Cocina.buscarcongelados.descripcion });
+                rest.Peticion.AddJsonBody(new { descripcion = Cocina.Buscarcongelados.Descripcion });
                 // rest.Peticion.AddJsonBody(repGeneral);
                 rest.Cliente.ExecuteAsync(rest.Peticion, response =>
                 {
@@ -175,11 +205,11 @@ namespace Data
         {
             try
             {
-                var rest = new Rest(Local.Api.UrlApi, Herramienta.Config.Cocina.buscarcongelados.bcongelados,
+                var rest = new Rest(Local.Api.UrlApi, Herramienta.Config.Cocina.Buscarcongelados.Bcongelados,
                     Method.POST);
                 rest.Peticion.AddHeader(Constantes.Http.ObtenerTipoDeContenido,
                     Constantes.Http.TipoDeContenido.Json);
-                rest.Peticion.AddJsonBody(new { descripcion = Cocina.buscarcongelados.descripcion });
+                rest.Peticion.AddJsonBody(new { descripcion = Cocina.Buscarcongelados.Descripcion });
                 // rest.Peticion.AddJsonBody(repGeneral);
                 rest.Cliente.ExecuteAsync(rest.Peticion, response =>
                 {
@@ -205,7 +235,7 @@ namespace Data
         {
             try
             {
-                var rest = new Rest(Local.Api.UrlApi, Herramienta.Config.Cocina.agregarcongelados.agregar,
+                var rest = new Rest(Local.Api.UrlApi, Herramienta.Config.Cocina.Agregarcongelados.Agregar,
                     Method.POST);
                 rest.Peticion.AddHeader(Constantes.Http.ObtenerTipoDeContenido,
                     Constantes.Http.TipoDeContenido.Json);
@@ -235,7 +265,7 @@ namespace Data
         {
             try
             {
-                var rest = new Rest(Local.Api.UrlApi, Herramienta.Config.Cocina.buscarcongelados.cambioexistencia,
+                var rest = new Rest(Local.Api.UrlApi, Herramienta.Config.Cocina.Buscarcongelados.Cambioexistencia,
                     Method.POST);
                 rest.Peticion.AddHeader(Constantes.Http.ObtenerTipoDeContenido,
                     Constantes.Http.TipoDeContenido.Json);
@@ -266,7 +296,7 @@ namespace Data
         {
             try
             {
-                var rest = new Rest(Local.Api.UrlApi, Herramienta.Config.Cocina.buscarcongelados.inabilitar,
+                var rest = new Rest(Local.Api.UrlApi, Herramienta.Config.Cocina.Buscarcongelados.Inabilitar,
                     Method.POST);
                 rest.Peticion.AddHeader(Constantes.Http.ObtenerTipoDeContenido,
                     Constantes.Http.TipoDeContenido.Json);

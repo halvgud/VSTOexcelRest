@@ -22,7 +22,7 @@ namespace Herramienta
 
 
 
-       public static void validacionesgenerales(string dato,string tabla)
+       public static void Validacionesgenerales(string dato,string tabla)
        {
            
        }

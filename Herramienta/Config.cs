@@ -28,8 +28,9 @@ namespace Herramienta
             {
                public static string CocinaDReceta { get; set; } = Properties.Settings.Default.DetalleRecetaCocina;
                public  static string Clave { get; set; }
+                public static string Breceta { get; set; } = Properties.Settings.Default.Buscarrecetav1;
 
-                public static string insertarinstruccion { get; set; } = Properties.Settings.Default.INSERTARRUTAEIMAGEN;
+                public static string Insertarinstruccion { get; set; } = Properties.Settings.Default.INSERTARRUTAEIMAGEN;
 
 
             }
@@ -42,33 +43,33 @@ namespace Herramienta
             public class Platillos
             {
                 public static string Listado { get; set; } = Properties.Settings.Default.listaplatillos;
-                public static string clave { get; set; }
+                public static string Clave { get; set; }
             }
 
-            public class buscarcongelados
+            public class Buscarcongelados
             {
-                public static string bcongelados { get; set; } = Properties.Settings.Default.buscarcongelados;
-                public static string descripcion { get; set; }
-                public static string cambioexistencia { get; set; } = Properties.Settings.Default.ActualizarCongelado;
-                public static string existencia { get; set; }
-                public static Int32 estado_id { get; set; }
+                public static string Bcongelados { get; set; } = Properties.Settings.Default.buscarcongelados;
+                public static string Descripcion { get; set; }
+                public static string Cambioexistencia { get; set; } = Properties.Settings.Default.ActualizarCongelado;
+                public static string Existencia { get; set; }
+                public static Int32 EstadoId { get; set; }
 
-                public static string inabilitar { get; set; } = Properties.Settings.Default.inabilitarcongelado;
+                public static string Inabilitar { get; set; } = Properties.Settings.Default.inabilitarcongelado;
 
-                public static string sacarclave { get; set; } = Properties.Settings.Default.Agrega_BuscarCongelado;
+                public static string Sacarclave { get; set; } = Properties.Settings.Default.Agrega_BuscarCongelado;
 
-                public static string repcongelados { get; set; } = Properties.Settings.Default.ReporteCongelado;
+                public static string Repcongelados { get; set; } = Properties.Settings.Default.ReporteCongelado;
             }
 
 
-            public class agregarcongelados
+            public class Agregarcongelados
             {
-                public static int art_id { get; set;}
-                public static string clave { get; set; }
-                public static string descripcion { get; set; }
-                public static double cantidad { get; set; }
-                public static string agregar { get; set; } = Properties.Settings.Default.AgregarCongelado1;
-                public static string agregarcantidad { get; set; } 
+                public static int ArtId { get; set;}
+                public static string Clave { get; set; }
+                public static string Descripcion { get; set; }
+                public static double Cantidad { get; set; }
+                public static string Agregar { get; set; } = Properties.Settings.Default.AgregarCongelado1;
+                public static string Agregarcantidad { get; set; } 
             }
 
             public class DiasSemana
@@ -79,7 +80,7 @@ namespace Herramienta
             }
            
 
-            public static class ordenarproducto
+            public static class Ordenarproducto
             {
                 public static string OrdenConcepto { get; set; } = Properties.Settings.Default.ordenarproducto;
             }
@@ -123,10 +124,12 @@ namespace Herramienta
                 public static string Lista { get; set; } = Properties.Settings.Default.RecetaLista;
                 public static string DetalleLista { get; set; } = Properties.Settings.Default.RecetaDetalleLista;
                 public static int IdReceta { get; set; }
-                public static string clave { get; set; }
+                public static string Clave { get; set; }
                 public static string Insertar { get; set; } = Properties.Settings.Default.RecetaInsertar;
                 public static string InsertarDetalle { get; set; } = Properties.Settings.Default.RecetaInsertarDetalle;
                 public static string Tipo { get; set; } = Properties.Settings.Default.RecetaTipo;
+                public static int rec_id { get; set; }
+                public static string eliminarIngre { get; set; } = Properties.Settings.Default.eliminaringredientes;
             }
             public static class Categoria
             {

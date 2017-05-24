@@ -68,7 +68,7 @@ namespace testVSTO2
         }
         private void btBuscarReceta_Click(object sender, EventArgs e)
         {
-            Local.Receta.clave = (tbBuscarReceta.Text);
+            Local.Receta.Clave = (tbBuscarReceta.Text);
             Opcion.EjecucionAsync(Data.Receta.Lista, jsonResult =>
             {
                 BeginInvoke((MethodInvoker) (() =>  

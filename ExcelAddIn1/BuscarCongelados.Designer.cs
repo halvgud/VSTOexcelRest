@@ -38,6 +38,9 @@
             this.lbtdescripcion = new System.Windows.Forms.Label();
             this.lbcantidad = new System.Windows.Forms.Label();
             this.txtcantidad = new System.Windows.Forms.TextBox();
+            this.rbmerma = new System.Windows.Forms.RadioButton();
+            this.rbempleado = new System.Windows.Forms.RadioButton();
+            this.rbutilizacion = new System.Windows.Forms.RadioButton();
             ((System.ComponentModel.ISupportInitialize)(this.dgvbuscar_congelados)).BeginInit();
             this.SuspendLayout();
             // 
@@ -139,11 +142,50 @@
             this.txtcantidad.TabIndex = 8;
             this.txtcantidad.Visible = false;
             // 
+            // rbmerma
+            // 
+            this.rbmerma.AutoSize = true;
+            this.rbmerma.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.rbmerma.Location = new System.Drawing.Point(526, 42);
+            this.rbmerma.Name = "rbmerma";
+            this.rbmerma.Size = new System.Drawing.Size(77, 23);
+            this.rbmerma.TabIndex = 14;
+            this.rbmerma.TabStop = true;
+            this.rbmerma.Text = "Merma";
+            this.rbmerma.UseVisualStyleBackColor = true;
+            // 
+            // rbempleado
+            // 
+            this.rbempleado.AutoSize = true;
+            this.rbempleado.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.rbempleado.Location = new System.Drawing.Point(526, 74);
+            this.rbempleado.Name = "rbempleado";
+            this.rbempleado.Size = new System.Drawing.Size(93, 23);
+            this.rbempleado.TabIndex = 15;
+            this.rbempleado.TabStop = true;
+            this.rbempleado.Text = "Empleado";
+            this.rbempleado.UseVisualStyleBackColor = true;
+            // 
+            // rbutilizacion
+            // 
+            this.rbutilizacion.AutoSize = true;
+            this.rbutilizacion.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.rbutilizacion.Location = new System.Drawing.Point(526, 107);
+            this.rbutilizacion.Name = "rbutilizacion";
+            this.rbutilizacion.Size = new System.Drawing.Size(96, 23);
+            this.rbutilizacion.TabIndex = 16;
+            this.rbutilizacion.TabStop = true;
+            this.rbutilizacion.Text = "Utilización";
+            this.rbutilizacion.UseVisualStyleBackColor = true;
+            // 
             // BuscarCongelados
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(533, 227);
+            this.ClientSize = new System.Drawing.Size(632, 227);
+            this.Controls.Add(this.rbutilizacion);
+            this.Controls.Add(this.rbempleado);
+            this.Controls.Add(this.rbmerma);
             this.Controls.Add(this.lbclave);
             this.Controls.Add(this.lbdescripcion);
             this.Controls.Add(this.lbtclave);
@@ -176,5 +218,8 @@
         public System.Windows.Forms.Label lbtdescripcion;
         public System.Windows.Forms.Label lbcantidad;
         public System.Windows.Forms.TextBox txtcantidad;
+        private System.Windows.Forms.RadioButton rbmerma;
+        private System.Windows.Forms.RadioButton rbempleado;
+        private System.Windows.Forms.RadioButton rbutilizacion;
     }
 }

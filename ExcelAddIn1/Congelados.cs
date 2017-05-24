@@ -64,7 +64,7 @@ namespace ExcelAddIn1
         
         private void btbuscareditar_Click(object sender, EventArgs e)
         {
-            Cocina.buscarcongelados.descripcion = txtbuscarcongeladoeditar.Text == string.Empty ? "%" : txtbuscarcongeladoeditar.Text;  /* asigna la clave a la variable estatica*/
+            Cocina.Buscarcongelados.Descripcion = txtbuscarcongeladoeditar.Text == string.Empty ? "%" : txtbuscarcongeladoeditar.Text;  /* asigna la clave a la variable estatica*/
             Opcion.EjecucionAsync(Data.ReporteCocina.Buscarcongelados, jsonResult => /* se ejecuta Data.Receta.Lista, el resultado se guarda en jsonResult*/
             {
                 BeginInvoke((MethodInvoker)(() =>
@@ -151,7 +151,7 @@ namespace ExcelAddIn1
             {
                 if (tabControl1.SelectedTab == tabControl1.TabPages[0])
                 /*ya de aqui me encargo pero primero activo el office jeje*/
-                    Cocina.buscarcongelados.descripcion = txtbuscarcongelado.Text == string.Empty ? "%" : txtbuscarcongelado.Text;  /* asigna la clave a la variable estatica*/
+                    Cocina.Buscarcongelados.Descripcion = txtbuscarcongelado.Text == string.Empty ? "%" : txtbuscarcongelado.Text;  /* asigna la clave a la variable estatica*/
                 Opcion.EjecucionAsync(Data.ReporteCocina.agregar_congeladobuscar, jsonResult => /* se ejecuta Data.Receta.Lista, el resultado se guarda en jsonResult*/
                 {
                     BeginInvoke((MethodInvoker)(() =>
@@ -214,44 +214,10 @@ namespace ExcelAddIn1
        
         private void btguardaragregar_Click(object sender, EventArgs e)
         {
-            //var listRecetaDetalle = new List<Receta.Congelados>();
-            //for (var i = 0; i < dgvcongelados.Rows.Count; i++)
-            //{
-            //    var cantidad = double.Parse(inputs.Ingredientes.Rows[i].Cells[4].Value.ToString());
-            //    var precioCompra = Convert.ToDouble(inputs.Ingredientes.Rows[i].Cells[3].Value);
-            //    var precioTotal = precioCompra * cantidad;
-            //    listRecetaDetalle.Add(new Receta.Congelados
-            //    {
-            //       art_id = dgvcongelados.Rows[i].Cells[0].Value.ToString(),
-            //        clave = dgvcongelados.Rows[1].Cells[1].Value.ToString(),
-            //        Descripcion = 
-            //        Cantidad = double.Parse(inputs.Ingredientes.Rows[i].Cells[4].Value.ToString()),
-            //        Clave = inputs.Ingredientes.Rows[i].Cells[1].Value.ToString(),
-            //        Descripcion = inputs.Ingredientes.Rows[i].Cells[2].Value.ToString(),
-            //        IdUnidad = 1,
-            //        PrecioCompra = Convert.ToDouble(inputs.Ingredientes.Rows[i].Cells[3].Value),
-            //        PrecioTotal = precioTotal
-            //    });
-            //}
-            //Data.Receta.Detalle.CRecetaDetalle = listRecetaDetalle;
-            //Data.Receta.Detalle.Insertar(x);
-            //string id = (dgvcongelados.CurrentRow.Cells[0].Value).ToString();
-            //string Clavee = dgvcongelados.CurrentRow.Cells[1].Value.ToString();
-            //string descrippcion = dgvcongelados.CurrentRow.Cells[2].Value.ToString();
-            //double canttidad = Convert.ToDouble(dgvcongelados.CurrentRow.Cells[3].Value);
-            ///*aqui el problema es que estas creando el objeto despues de la ejecucion y es alreves
-            // deja lo formo*/;
-
+            
             MensajeDeEspera mse = new MensajeDeEspera();
             mse.Show();
-            //var congeladosagregar = new Receta.Congelados
-            //{
-            //    art_id = id,
-            //    clave = Clavee,
-            //    descripcion = descrippcion,
-            //    cantidad = canttidad
-            //};
-            //Data.ReporteCocina.Cccongelados = congeladosagregar;
+           
             Data.ReporteCocina.AgregarCongelados(y => {
             BeginInvoke((MethodInvoker)(() =>
             {
@@ -307,6 +273,8 @@ namespace ExcelAddIn1
         private void btbaja_Click(object sender, EventArgs e)
         {
             Data.ReporteCocina.InabilitarCongelado( Convert.ToInt32(dgvcongeladobuscaryeditar.CurrentRow.Cells[0].Value.ToString()));
+            dgvcongeladobuscaryeditar.DataSource = null;
+            dgvcongeladobuscaryeditar.Rows.Clear();
         }
     }
     internal class Controls

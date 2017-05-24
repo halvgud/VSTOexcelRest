@@ -10,9 +10,9 @@ namespace Respuesta
     {
         public int RecId { get; set; }
         public string Clave { get; set; }
-
         public string Descripcion { get; set; }
         public double Precio { get; set; }
+        public int tipor_id { get; set; }
         public double CostoCreacion { get; set; }
         public double CostoElaboracion { get; set; }
         public double Margen { get; set; }
@@ -20,6 +20,8 @@ namespace Respuesta
         public double PesoLitro { get; set; }
         public int Diario { get; set; }
         public double Cantidad { get; set; }
+        public string rutaimagen { get; set; }
+        public string instrucciones { get; set; }
         public List<Detalle> Ingredientes { get; set; }
        
         public string ModoElaboracion { get; set; }
@@ -34,9 +36,9 @@ namespace Respuesta
 
         public class Imagen_and_Process
         {
-            public int recid { get; set; }
-            public string instruccion { get; set; }
-            public string ruta { get; set; }
+            public int rec_id { get; set; }
+            public string instrucciones { get; set; }
+            public string rutaimagen { get; set; }
         } 
         public class Basica
         {
@@ -66,16 +68,12 @@ namespace Respuesta
         {
             public string estado_id { get; set; }
             public string art_id { get; set; }
-           // public string estado_id { get; set; }
+           
             public string clave { get; set; }
             public string descripcion { get; set; }
             public double cantidad { get; set; }
             public List<Congelados> ListaCongelados { get; set; }
-            //  public string status { get; set; } /*te lo cambie a string, con eso agarrara*/
-            /*aqui estas confundiendo el status de activo e inactivo con el ESTADO de Congelado y los otros que hipoteticamente pudieran crearse :P*/
-            //   public DateTime fechaEntrada { get; set; }
-
-
+           
             public BasicaCopia CopiadoSencilloCongelado()
             {
                 var art = new BasicaCopia { art_id = art_id, clave = clave, descripcion = descripcion, cantidad = cantidad};

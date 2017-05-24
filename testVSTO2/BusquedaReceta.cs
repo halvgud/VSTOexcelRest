@@ -23,7 +23,7 @@ namespace testVSTO2
         private List<Receta> _listaRecetas;
         private void btBuscar_Click(object sender, EventArgs e)
         {
-            Local.Receta.clave = (tbCodigo.Text);
+            Local.Receta.Clave = (tbCodigo.Text);
             Opcion.EjecucionAsync(Data.Receta.Lista, jsonResult =>
             {
                 BeginInvoke((MethodInvoker)(() =>

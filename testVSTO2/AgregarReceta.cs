@@ -300,7 +300,7 @@ namespace testVSTO2
         private void Guardar(Inputs inputs)
         {
             btGuardar.Enabled = false;
-            Local.Receta.clave = (inputs.ClaveReceta.Text);
+            Local.Receta.Clave = (inputs.ClaveReceta.Text);
             if (ValidarCampos())
             {
                 Opcion.EjecucionAsync(Data.Receta.Lista, jsonResult =>
@@ -419,7 +419,7 @@ namespace testVSTO2
         /****************************************************************************/
         private void btBuscarClave_Click(object sender, EventArgs e)
         {
-            Local.Receta.clave = tbBuscarReceta.Text == string.Empty?"%":tbBuscarReceta.Text;
+            Local.Receta.Clave = tbBuscarReceta.Text == string.Empty?"%":tbBuscarReceta.Text;
             Opcion.EjecucionAsync(Data.Receta.Lista, jsonResult =>
             {
                 BeginInvoke((MethodInvoker)(() =>

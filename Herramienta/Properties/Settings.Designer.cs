@@ -409,5 +409,23 @@ namespace Herramienta.Properties {
                 return ((string)(this["INSERTARRUTAEIMAGEN"]));
             }
         }
+        
+        [global::System.Configuration.ApplicationScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("receta/BuscarReceta")]
+        public string Buscarrecetav1 {
+            get {
+                return ((string)(this["Buscarrecetav1"]));
+            }
+        }
+        
+        [global::System.Configuration.ApplicationScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("receta/eliminaringredientes")]
+        public string eliminaringredientes {
+            get {
+                return ((string)(this["eliminaringredientes"]));
+            }
+        }
     }
 }

@@ -28,11 +28,13 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             this.panel1 = new System.Windows.Forms.Panel();
             this.btAyudar = new System.Windows.Forms.Button();
             this.btGuardar = new System.Windows.Forms.Button();
             this.tabPage2 = new System.Windows.Forms.TabPage();
-            this.rtbModoElaboracionBE = new System.Windows.Forms.RichTextBox();
+            this.txtinstruccionesBE = new System.Windows.Forms.TextBox();
+            this.Pbreceta = new System.Windows.Forms.PictureBox();
             this.label25 = new System.Windows.Forms.Label();
             this.btBuscarBE = new System.Windows.Forms.Button();
             this.tbCodigoBE = new System.Windows.Forms.TextBox();
@@ -64,7 +66,7 @@
             this.tbBuscarReceta = new System.Windows.Forms.TextBox();
             this.label3 = new System.Windows.Forms.Label();
             this.tabPage1 = new System.Windows.Forms.TabPage();
-            this.rtbModoElaboracion = new System.Windows.Forms.RichTextBox();
+            this.txtinstrucciones = new System.Windows.Forms.TextBox();
             this.label26 = new System.Windows.Forms.Label();
             this.btValidar = new System.Windows.Forms.Button();
             this.chDiario = new System.Windows.Forms.CheckBox();
@@ -100,8 +102,10 @@
             this.archivoToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.tsmGuardar = new System.Windows.Forms.ToolStripMenuItem();
             this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
+            this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.panel1.SuspendLayout();
             this.tabPage2.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.Pbreceta)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgvIngredientesBusqueda)).BeginInit();
             this.tabPage1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvIngredientes)).BeginInit();
@@ -140,7 +144,8 @@
             // 
             // tabPage2
             // 
-            this.tabPage2.Controls.Add(this.rtbModoElaboracionBE);
+            this.tabPage2.Controls.Add(this.txtinstruccionesBE);
+            this.tabPage2.Controls.Add(this.Pbreceta);
             this.tabPage2.Controls.Add(this.label25);
             this.tabPage2.Controls.Add(this.btBuscarBE);
             this.tabPage2.Controls.Add(this.tbCodigoBE);
@@ -179,14 +184,24 @@
             this.tabPage2.Text = "Buscar y Editar";
             this.tabPage2.UseVisualStyleBackColor = true;
             // 
-            // rtbModoElaboracionBE
+            // txtinstruccionesBE
             // 
-            this.rtbModoElaboracionBE.BackColor = System.Drawing.SystemColors.ScrollBar;
-            this.rtbModoElaboracionBE.Location = new System.Drawing.Point(4, 397);
-            this.rtbModoElaboracionBE.Name = "rtbModoElaboracionBE";
-            this.rtbModoElaboracionBE.Size = new System.Drawing.Size(628, 96);
-            this.rtbModoElaboracionBE.TabIndex = 56;
-            this.rtbModoElaboracionBE.Text = "";
+            this.txtinstruccionesBE.AcceptsReturn = true;
+            this.txtinstruccionesBE.Location = new System.Drawing.Point(10, 407);
+            this.txtinstruccionesBE.Multiline = true;
+            this.txtinstruccionesBE.Name = "txtinstruccionesBE";
+            this.txtinstruccionesBE.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
+            this.txtinstruccionesBE.Size = new System.Drawing.Size(460, 85);
+            this.txtinstruccionesBE.TabIndex = 61;
+            // 
+            // Pbreceta
+            // 
+            this.Pbreceta.Location = new System.Drawing.Point(511, 356);
+            this.Pbreceta.Name = "Pbreceta";
+            this.Pbreceta.Size = new System.Drawing.Size(142, 136);
+            this.Pbreceta.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.Pbreceta.TabIndex = 60;
+            this.Pbreceta.TabStop = false;
             // 
             // label25
             // 
@@ -284,6 +299,7 @@
             this.tbMargenConPrecioBE.Name = "tbMargenConPrecioBE";
             this.tbMargenConPrecioBE.Size = new System.Drawing.Size(100, 20);
             this.tbMargenConPrecioBE.TabIndex = 33;
+            this.tbMargenConPrecioBE.MaskInputRejected += new System.Windows.Forms.MaskInputRejectedEventHandler(this.tbMargenConPrecioBE_MaskInputRejected);
             this.tbMargenConPrecioBE.TextChanged += new System.EventHandler(this.tbMargenConPrecioBE_TextChanged);
             // 
             // tbPrecioBE
@@ -311,6 +327,7 @@
             this.tbPrecioSugeridoBE.Size = new System.Drawing.Size(100, 20);
             this.tbPrecioSugeridoBE.TabIndex = 42;
             this.tbPrecioSugeridoBE.TabStop = false;
+            this.tbPrecioSugeridoBE.Visible = false;
             // 
             // tbMargenSugeridoBE
             // 
@@ -320,6 +337,7 @@
             this.tbMargenSugeridoBE.Size = new System.Drawing.Size(100, 20);
             this.tbMargenSugeridoBE.TabIndex = 31;
             this.tbMargenSugeridoBE.TabStop = false;
+            this.tbMargenSugeridoBE.Visible = false;
             // 
             // tbCostoEstimadoBE
             // 
@@ -380,18 +398,20 @@
             this.label19.AutoSize = true;
             this.label19.Location = new System.Drawing.Point(550, 283);
             this.label19.Name = "label19";
-            this.label19.Size = new System.Drawing.Size(86, 13);
+            this.label19.Size = new System.Drawing.Size(43, 13);
             this.label19.TabIndex = 41;
-            this.label19.Text = "Precio sugerido :";
+            this.label19.Text = "Precio :";
+            this.label19.Visible = false;
             // 
             // label20
             // 
             this.label20.AutoSize = true;
             this.label20.Location = new System.Drawing.Point(550, 212);
             this.label20.Name = "label20";
-            this.label20.Size = new System.Drawing.Size(92, 13);
+            this.label20.Size = new System.Drawing.Size(49, 13);
             this.label20.TabIndex = 39;
-            this.label20.Text = "Margen sugerido :";
+            this.label20.Text = "Margen :";
+            this.label20.Visible = false;
             // 
             // label21
             // 
@@ -461,7 +481,7 @@
             // 
             // tabPage1
             // 
-            this.tabPage1.Controls.Add(this.rtbModoElaboracion);
+            this.tabPage1.Controls.Add(this.txtinstrucciones);
             this.tabPage1.Controls.Add(this.label26);
             this.tabPage1.Controls.Add(this.btValidar);
             this.tabPage1.Controls.Add(this.chDiario);
@@ -500,15 +520,14 @@
             this.tabPage1.Text = "Agregar";
             this.tabPage1.UseVisualStyleBackColor = true;
             // 
-            // rtbModoElaboracion
+            // txtinstrucciones
             // 
-            this.rtbModoElaboracion.BackColor = System.Drawing.SystemColors.MenuBar;
-            this.rtbModoElaboracion.Location = new System.Drawing.Point(7, 399);
-            this.rtbModoElaboracion.Name = "rtbModoElaboracion";
-            this.rtbModoElaboracion.Size = new System.Drawing.Size(628, 96);
-            this.rtbModoElaboracion.TabIndex = 58;
-            this.rtbModoElaboracion.Text = "";
-            this.rtbModoElaboracion.TextChanged += new System.EventHandler(this.rtbModoElaboracion_TextChanged);
+            this.txtinstrucciones.AcceptsReturn = true;
+            this.txtinstrucciones.Location = new System.Drawing.Point(10, 399);
+            this.txtinstrucciones.Multiline = true;
+            this.txtinstrucciones.Name = "txtinstrucciones";
+            this.txtinstrucciones.Size = new System.Drawing.Size(639, 96);
+            this.txtinstrucciones.TabIndex = 58;
             // 
             // label26
             // 
@@ -549,6 +568,7 @@
             this.dgvIngredientes.Size = new System.Drawing.Size(537, 281);
             this.dgvIngredientes.TabIndex = 8;
             this.dgvIngredientes.TabStop = false;
+            this.dgvIngredientes.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvIngredientes_CellContentClick);
             // 
             // cbTipoReceta
             // 
@@ -610,7 +630,6 @@
             // 
             this.tbMargenSugerido.Location = new System.Drawing.Point(553, 225);
             this.tbMargenSugerido.Name = "tbMargenSugerido";
-            this.tbMargenSugerido.ReadOnly = true;
             this.tbMargenSugerido.Size = new System.Drawing.Size(100, 20);
             this.tbMargenSugerido.TabIndex = 4;
             this.tbMargenSugerido.TabStop = false;
@@ -619,10 +638,10 @@
             // 
             this.tbCostoEstimado.Location = new System.Drawing.Point(553, 155);
             this.tbCostoEstimado.Name = "tbCostoEstimado";
-            this.tbCostoEstimado.ReadOnly = true;
             this.tbCostoEstimado.Size = new System.Drawing.Size(100, 20);
             this.tbCostoEstimado.TabIndex = 11;
             this.tbCostoEstimado.TabStop = false;
+            this.tbCostoEstimado.MaskInputRejected += new System.Windows.Forms.MaskInputRejectedEventHandler(this.tbCostoEstimado_MaskInputRejected);
             // 
             // label13
             // 
@@ -832,6 +851,11 @@
             this.openFileDialog1.FileName = "openFileDialog1";
             this.openFileDialog1.InitialDirectory = "Image";
             // 
+            // contextMenuStrip1
+            // 
+            this.contextMenuStrip1.Name = "contextMenuStrip1";
+            this.contextMenuStrip1.Size = new System.Drawing.Size(61, 4);
+            // 
             // AgregarReceta
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -851,6 +875,7 @@
             this.panel1.ResumeLayout(false);
             this.tabPage2.ResumeLayout(false);
             this.tabPage2.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.Pbreceta)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgvIngredientesBusqueda)).EndInit();
             this.tabPage1.ResumeLayout(false);
             this.tabPage1.PerformLayout();
@@ -930,11 +955,13 @@
         private System.Windows.Forms.Button btBuscarBE;
         private System.Windows.Forms.Button btValidar;
         private System.Windows.Forms.Label label25;
-        private System.Windows.Forms.RichTextBox rtbModoElaboracionBE;
-        private System.Windows.Forms.RichTextBox rtbModoElaboracion;
         private System.Windows.Forms.Label label26;
         private System.Windows.Forms.Button btAyudar;
         private System.Windows.Forms.Button btGuardar;
         private System.Windows.Forms.OpenFileDialog openFileDialog1;
+        private System.Windows.Forms.PictureBox Pbreceta;
+        private System.Windows.Forms.TextBox txtinstruccionesBE;
+        private System.Windows.Forms.ContextMenuStrip contextMenuStrip1;
+        private System.Windows.Forms.TextBox txtinstrucciones;
     }
 }

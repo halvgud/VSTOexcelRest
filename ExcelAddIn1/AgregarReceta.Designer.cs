@@ -33,13 +33,13 @@
             this.btAyudar = new System.Windows.Forms.Button();
             this.btGuardar = new System.Windows.Forms.Button();
             this.tabPage2 = new System.Windows.Forms.TabPage();
+            this.chDiarioBE = new System.Windows.Forms.CheckBox();
             this.txtinstruccionesBE = new System.Windows.Forms.TextBox();
             this.Pbreceta = new System.Windows.Forms.PictureBox();
             this.label25 = new System.Windows.Forms.Label();
             this.btBuscarBE = new System.Windows.Forms.Button();
             this.tbCodigoBE = new System.Windows.Forms.TextBox();
             this.label24 = new System.Windows.Forms.Label();
-            this.chDiarioBE = new System.Windows.Forms.CheckBox();
             this.tbDescripcionBE = new System.Windows.Forms.TextBox();
             this.label23 = new System.Windows.Forms.Label();
             this.dgvIngredientesBusqueda = new System.Windows.Forms.DataGridView();
@@ -144,13 +144,13 @@
             // 
             // tabPage2
             // 
+            this.tabPage2.Controls.Add(this.chDiarioBE);
             this.tabPage2.Controls.Add(this.txtinstruccionesBE);
             this.tabPage2.Controls.Add(this.Pbreceta);
             this.tabPage2.Controls.Add(this.label25);
             this.tabPage2.Controls.Add(this.btBuscarBE);
             this.tabPage2.Controls.Add(this.tbCodigoBE);
             this.tabPage2.Controls.Add(this.label24);
-            this.tabPage2.Controls.Add(this.chDiarioBE);
             this.tabPage2.Controls.Add(this.tbDescripcionBE);
             this.tabPage2.Controls.Add(this.label23);
             this.tabPage2.Controls.Add(this.dgvIngredientesBusqueda);
@@ -183,6 +183,16 @@
             this.tabPage2.TabIndex = 1;
             this.tabPage2.Text = "Buscar y Editar";
             this.tabPage2.UseVisualStyleBackColor = true;
+            // 
+            // chDiarioBE
+            // 
+            this.chDiarioBE.AutoSize = true;
+            this.chDiarioBE.Location = new System.Drawing.Point(246, 358);
+            this.chDiarioBE.Name = "chDiarioBE";
+            this.chDiarioBE.Size = new System.Drawing.Size(53, 17);
+            this.chDiarioBE.TabIndex = 62;
+            this.chDiarioBE.Text = "Diario";
+            this.chDiarioBE.UseVisualStyleBackColor = true;
             // 
             // txtinstruccionesBE
             // 
@@ -242,23 +252,13 @@
             this.label24.TabIndex = 53;
             this.label24.Text = "Codigo o nombre de ingredientes:";
             // 
-            // chDiarioBE
-            // 
-            this.chDiarioBE.AutoSize = true;
-            this.chDiarioBE.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.chDiarioBE.Location = new System.Drawing.Point(218, 356);
-            this.chDiarioBE.Name = "chDiarioBE";
-            this.chDiarioBE.Size = new System.Drawing.Size(50, 17);
-            this.chDiarioBE.TabIndex = 51;
-            this.chDiarioBE.Text = "Diario";
-            this.chDiarioBE.UseVisualStyleBackColor = true;
-            // 
             // tbDescripcionBE
             // 
             this.tbDescripcionBE.Location = new System.Drawing.Point(484, 24);
             this.tbDescripcionBE.Name = "tbDescripcionBE";
             this.tbDescripcionBE.Size = new System.Drawing.Size(169, 20);
             this.tbDescripcionBE.TabIndex = 49;
+            this.tbDescripcionBE.TextChanged += new System.EventHandler(this.tbDescripcionBE_TextChanged);
             // 
             // label23
             // 
@@ -277,6 +277,7 @@
             this.dgvIngredientesBusqueda.Size = new System.Drawing.Size(537, 281);
             this.dgvIngredientesBusqueda.TabIndex = 36;
             this.dgvIngredientesBusqueda.TabStop = false;
+            this.dgvIngredientesBusqueda.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvIngredientesBusqueda_CellContentClick);
             // 
             // cbTipoBE
             // 
@@ -327,7 +328,6 @@
             this.tbPrecioSugeridoBE.Size = new System.Drawing.Size(100, 20);
             this.tbPrecioSugeridoBE.TabIndex = 42;
             this.tbPrecioSugeridoBE.TabStop = false;
-            this.tbPrecioSugeridoBE.Visible = false;
             // 
             // tbMargenSugeridoBE
             // 
@@ -337,7 +337,6 @@
             this.tbMargenSugeridoBE.Size = new System.Drawing.Size(100, 20);
             this.tbMargenSugeridoBE.TabIndex = 31;
             this.tbMargenSugeridoBE.TabStop = false;
-            this.tbMargenSugeridoBE.Visible = false;
             // 
             // tbCostoEstimadoBE
             // 
@@ -949,7 +948,7 @@
         private System.Windows.Forms.ToolStripMenuItem tsmGuardar;
         private System.Windows.Forms.TextBox tbDescripcionBE;
         private System.Windows.Forms.Label label23;
-        private System.Windows.Forms.CheckBox chDiarioBE;
+        
         private System.Windows.Forms.TextBox tbCodigoBE;
         private System.Windows.Forms.Label label24;
         private System.Windows.Forms.Button btBuscarBE;
@@ -963,5 +962,6 @@
         private System.Windows.Forms.TextBox txtinstruccionesBE;
         private System.Windows.Forms.ContextMenuStrip contextMenuStrip1;
         private System.Windows.Forms.TextBox txtinstrucciones;
+        private System.Windows.Forms.CheckBox chDiarioBE;
     }
 }

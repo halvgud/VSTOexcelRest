@@ -12,7 +12,7 @@ namespace Respuesta
         public string Clave { get; set; }
         public string Descripcion { get; set; }
         public double Precio { get; set; }
-        public int tipor_id { get; set; }
+        public int TiporId { get; set; }
         public double CostoCreacion { get; set; }
         public double CostoElaboracion { get; set; }
         public double Margen { get; set; }
@@ -20,8 +20,8 @@ namespace Respuesta
         public double PesoLitro { get; set; }
         public int Diario { get; set; }
         public double Cantidad { get; set; }
-        public string rutaimagen { get; set; }
-        public string instrucciones { get; set; }
+        public string Rutaimagen { get; set; }
+        public string Instrucciones { get; set; }
         public List<Detalle> Ingredientes { get; set; }
        
         public string ModoElaboracion { get; set; }
@@ -32,13 +32,27 @@ namespace Respuesta
             return art;
         }
 
-
-
-        public class Imagen_and_Process
+        public class ActualizaPresupuesto
         {
-            public int rec_id { get; set; }
-            public string instrucciones { get; set; }
-            public string rutaimagen { get; set; }
+            public int RecId { get; set; }
+            public string Clave { get; set; }
+            public string Descripcion { get; set; }
+            public double Precio { get; set; }
+            public int TiporId { get; set; }
+            public double CostoCreacion { get; set; }
+            public double CostoElaboracion { get; set; }
+            public double Margen { get; set; }
+           // public DateTime FechaModificacion { get; set; }
+            public double PesoLitro { get; set; }
+            public int Diario { get; set; }
+           // public double Cantidad { get; set; }
+        }
+
+        public class ImagenAndProcess
+        {
+            public int RecId { get; set; }
+            public string Instrucciones { get; set; }
+            public string RutaImagen { get; set; }
         } 
         public class Basica
         {
@@ -62,21 +76,22 @@ namespace Respuesta
             public int IdUnidad { get; set; }
             public string Unidad { get; set; }
             public double PrecioTotal { get; set; }
+            public int TiporId { get; set; }
 
         }
         public class Congelados
         {
-            public string estado_id { get; set; }
-            public string art_id { get; set; }
+            public string EstadoId { get; set; }
+            public string ArtId { get; set; }
            
-            public string clave { get; set; }
-            public string descripcion { get; set; }
-            public double cantidad { get; set; }
+            public string Clave { get; set; }
+            public string Descripcion { get; set; }
+            public double Cantidad { get; set; }
             public List<Congelados> ListaCongelados { get; set; }
            
             public BasicaCopia CopiadoSencilloCongelado()
             {
-                var art = new BasicaCopia { art_id = art_id, clave = clave, descripcion = descripcion, cantidad = cantidad};
+                var art = new BasicaCopia { ArtId = ArtId, Clave = Clave, Descripcion = Descripcion, Cantidad = Cantidad};
                 return art;
             }
 
@@ -85,11 +100,11 @@ namespace Respuesta
 
         public class BasicaCopia
         {
-            public string art_id { get; set; }
-            public string estado_id { get; set; }
-            public string clave{ get; set; }
-            public string descripcion { get; set; }
-            public double cantidad { get; set; }
+            public string ArtId { get; set; }
+            public string EstadoId { get; set; }
+            public string Clave{ get; set; }
+            public string Descripcion { get; set; }
+            public double Cantidad { get; set; }
            // public string status { get; set; }
            // public DateTime fechaEntrada { get; set; }
         }
@@ -97,20 +112,20 @@ namespace Respuesta
     }
         public class Agregarcongelados/* y esta clase para que es? para que hay mande los datos que se van a agregar  ..... te refieres a la de congelados si mmmmm y que los datos los puedas cambiar en el data */
         {
-             public int id { get; set; }
-            public string clave { get; set; }
-            public string nombre { get; set; }
+             public int Id { get; set; }
+            public string Clave { get; set; }
+            public string Nombre { get; set; }
             public  List<Agregarcongelados> ListaAgregarcongeladoses { get; set; } 
 
         }
 
     public class Congelados
     {
-        public string clave { get; set; }
-        public string descripcion { get; set; }
-        public double cantidad { get; set; }
-        public int status { get; set; }
-        public DateTime fechaEntrada { get; set; }
+        public string Clave { get; set; }
+        public string Descripcion { get; set; }
+        public double Cantidad { get; set; }
+        public int Status { get; set; }
+        public DateTime FechaEntrada { get; set; }
         public List<Congelados> ListaCongelados { get; set; }
 
 }

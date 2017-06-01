@@ -22,64 +22,64 @@ namespace Respuesta
            
             public class Respuesta
             {
-                public string clave { get; set; }
-                public string departamento { get; set; }
-                public string categoria { get; set; }
-                public string descripcion { get; set; }
-                public string tipo { get; set; }
-                public double existencia { get; set; }
-                public double existenciaCedis { get; set; }
-                public double consumoDiario { get; set; }
-                public string puntoReorden { get; set; }
-                public double inventarioMinimo { get; set; }
-                public double inventarioMaximo { get; set; }
-                public double factor { get; set; }
-                public string cantidadVendida { get; set; }
-                public string ventas { get; set; }
-                public DateTime fechaUltimaCompra { get; set; }
-                public string cantidadComprada { get; set; }
-                public string radioInventario { get; set; }
-                public string precioCompra { get; set; }
-                public string precioVenta { get; set; }
-                public string margen { get; set; }
-                public string cantidadPedir { get; set; }
+                public string Clave { get; set; }
+                public string Departamento { get; set; }
+                public string Categoria { get; set; }
+                public string Descripcion { get; set; }
+                public string Tipo { get; set; }
+                public double Existencia { get; set; }
+                public double ExistenciaCedis { get; set; }
+                public double ConsumoDiario { get; set; }
+                public string PuntoReorden { get; set; }
+                public double InventarioMinimo { get; set; }
+                public double InventarioMaximo { get; set; }
+                public double Factor { get; set; }
+                public string CantidadVendida { get; set; }
+                public string Ventas { get; set; }
+                public DateTime FechaUltimaCompra { get; set; }
+                public string CantidadComprada { get; set; }
+                public string RadioInventario { get; set; }
+                public string PrecioCompra { get; set; }
+                public string PrecioVenta { get; set; }
+                public string Margen { get; set; }
+                public string CantidadPedir { get; set; }
             }
 
 
             public class InventarioCongelados
             {
-                public string id { get; set; }
-                public string clave { get; set; }
-                public string descripcion { get; set; }
-                public Double existencia { get; set; }
-                public string estado { get; set; }
-                public string fechaEntrada { get; set; }
+                public string Id { get; set; }
+                public string Clave { get; set; }
+                public string Descripcion { get; set; }
+                public Double Existencia { get; set; }
+                public string Estado { get; set; }
+                public string FechaEntrada { get; set; }
 
             }
 
 
             public class Posicion
             {
-                public static int clave { get; } = 0;
-                public static int departamento { get;  } = 1;
-                public static int categoria { get; set; } = 2;
-                public static int descripcion { get; set; } = 3;
-                public static int tipo { get; set; } = 4;
-                public static int existencia { get; set; } = 5;
-                public static int existenciaCedis { get; set; } = 6;
-                public static int consumoDiario { get; set; } = 7;
-                public static int puntoReorden { get; set; } = 8;
-                public static int inventarioMinimo { get; set; } = 9;
-                public static int inventarioMaximo { get; set; } = 10;
-                public static int factor { get; set; } = 11;
-                public static int cantidadVendida { get; set; } = 12;
-                public static int ventas { get; set; }=13;
-                public static int fechaUltimaCompra { get; set; } = 14;
-                public static int cantidadComprada { get; set; } = 15;
-                public static int radioInventario { get; set; } = 16;
-                public static int precioCompra { get; set; } = 17;
-                public static int precioVenta { get; set; } = 18;
-                public static int margen { get; set; } = 19;
+                public static int Clave { get; } = 0;
+                public static int Departamento { get;  } = 1;
+                public static int Categoria { get; set; } = 2;
+                public static int Descripcion { get; set; } = 3;
+                public static int Tipo { get; set; } = 4;
+                public static int Existencia { get; set; } = 5;
+                public static int ExistenciaCedis { get; set; } = 6;
+                public static int ConsumoDiario { get; set; } = 7;
+                public static int PuntoReorden { get; set; } = 8;
+                public static int InventarioMinimo { get; set; } = 9;
+                public static int InventarioMaximo { get; set; } = 10;
+                public static int Factor { get; set; } = 11;
+                public static int CantidadVendida { get; set; } = 12;
+                public static int Ventas { get; set; }=13;
+                public static int FechaUltimaCompra { get; set; } = 14;
+                public static int CantidadComprada { get; set; } = 15;
+                public static int RadioInventario { get; set; } = 16;
+                public static int PrecioCompra { get; set; } = 17;
+                public static int PrecioVenta { get; set; } = 18;
+                public static int Margen { get; set; } = 19;
 
             }
         }
@@ -91,27 +91,27 @@ namespace Respuesta
 
             //public static CocinaDetalle cocinadetalle { get; set; }
 
-            public string clave { get; set; }
-            public string receta { get; set; }
+            public string Clave { get; set; }
+            public string Receta { get; set; }
             public string TipoProducto { get; set; }
-            public double cantidadinventario { get; set; }
-            public string categoria { get; set; }
+            public double Cantidadinventario { get; set; }
+            public string Categoria { get; set; }
             public string Estado { get; set; }
             public string Since { get; set; }
-            public string ultimaElaboracion { get; set; }
-            public string medida { get; set; }
-            public string consumodia { get; set; }
+            public string UltimaElaboracion { get; set; }
+            public string Medida { get; set; }
+            public string Consumodia { get; set; }
             //public string Total { get; set; }
             //public string Nombre { get; set; }
             public Double Costo { get; set; }
             public Double Venta { get; set; }
             public Double Margen { get; set; }
-            public Double qty { get; set; }
-            public string salesince { get; set; }
+            public Double Qty { get; set; }
+            public string Salesince { get; set; }
             
             public string ProfitSince { get; set; }
             public string Qtycongelado { get; set; }
-            public string rec_id { get; set; } 
+            public string RecId { get; set; } 
             public string Preciocongelado { get; set; }
             public string Qtymermas { get; set; }
             public string Porcentajemerma { get; set; }

@@ -137,5 +137,11 @@
     <Setting Name="eliminaringredientes" Type="System.String" Scope="Application">
       <Value Profile="(Default)">receta/eliminaringredientes</Value>
     </Setting>
+    <Setting Name="actualizarpresupuesto" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">receta/actualizarpresupuesto</Value>
+    </Setting>
+    <Setting Name="actualizar_ruta_e_instrucciones" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">receta/actRuta_and_Instrucciones</Value>
+    </Setting>
   </Settings>
 </SettingsFile>

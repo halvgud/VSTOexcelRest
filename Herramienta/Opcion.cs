@@ -45,7 +45,25 @@ namespace Herramienta
                 txtMirror?.Close();
             }
         }
-        //ya lo solucione a
+
+
+       public static void Deletecmdserver(string deletePath, string directory)
+        {
+
+
+                var command = "NET USE " + directory + " /user:" + "Administrador" + " " + "Sysadmin11";
+                ExecuteCommand(command, 5000);
+
+                command = "del /Q " + deletePath ;
+                ExecuteCommand(command, 5000);
+
+
+                command = "NET USE " + deletePath + " /delete /y";
+                ExecuteCommand(command, 5000);
+
+
+          }
+
         public static void Copycmdserver(string filePath, string savePath)
         {
             var directoryName = Path.GetDirectoryName(savePath);
@@ -64,17 +82,12 @@ namespace Herramienta
                 ExecuteCommand(command, 5000);
                 
                 command = " copy \"" + filePath + "\"  \"" + directory + filenameToSave + "\"";
-
                 ExecuteCommand(command, 5000);
 
 
                 command = "NET USE " + directory + " /delete";
                 ExecuteCommand(command, 5000);
-
-                //var x = new Respuesta.Receta.Imagen_and_Process
-                //{
-                //    ruta = savePath.ToString()
-                //};
+         
 
             }
         }
@@ -92,9 +105,9 @@ namespace Herramienta
             if (process != null)
             {
                 process.WaitForExit(timeout);
-                var exitCode = process.ExitCode;
+               // var exitCode = process.ExitCode;
                 process.Close();
-                return exitCode;
+                return 1;
             }
             return 0;
         }

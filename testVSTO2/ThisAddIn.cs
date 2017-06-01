@@ -176,26 +176,26 @@ namespace testVSTO2
             var lista = new object[rrg.Count, 20];
             for (var x = 0; x < rrg.Count; x++)
             {
-                lista[x, Reporte.General.Posicion.clave]                = rrg[x].clave+"";
-                lista[x, Reporte.General.Posicion.departamento]         = rrg[x].departamento;
-                lista[x, Reporte.General.Posicion.categoria]            = rrg[x].categoria;
-                lista[x, Reporte.General.Posicion.descripcion]          = rrg[x].descripcion;
-                lista[x, Reporte.General.Posicion.tipo]                 = rrg[x].tipo;
-                lista[x, Reporte.General.Posicion.existencia]           = rrg[x].existencia;
-                lista[x, Reporte.General.Posicion.existenciaCedis]      = rrg[x].existenciaCedis;
-                lista[x, Reporte.General.Posicion.consumoDiario]        = rrg[x].consumoDiario;
-                lista[x, Reporte.General.Posicion.puntoReorden]         = rrg[x].puntoReorden;
-                lista[x, Reporte.General.Posicion.inventarioMinimo]     = rrg[x].inventarioMinimo;
-                lista[x, Reporte.General.Posicion.inventarioMaximo]     = rrg[x].inventarioMaximo;
-                lista[x, Reporte.General.Posicion.factor]               = rrg[x].factor;
-                lista[x, Reporte.General.Posicion.cantidadVendida]      = rrg[x].cantidadVendida;
-                lista[x, Reporte.General.Posicion.ventas]               = rrg[x].ventas;
-                lista[x, Reporte.General.Posicion.fechaUltimaCompra]    = rrg[x].fechaUltimaCompra.ToString(CultureInfo.InvariantCulture);
-                lista[x, Reporte.General.Posicion.cantidadComprada]     = rrg[x].cantidadComprada;
-                lista[x, Reporte.General.Posicion.radioInventario]      = rrg[x].radioInventario;
-                lista[x, Reporte.General.Posicion.precioCompra]         = rrg[x].precioCompra;
-                lista[x, Reporte.General.Posicion.precioVenta]          = rrg[x].precioVenta;
-                lista[x, Reporte.General.Posicion.margen]               = double.Parse(rrg[x].margen) / 100;
+                lista[x, Reporte.General.Posicion.Clave]                = rrg[x].Clave+"";
+                lista[x, Reporte.General.Posicion.Departamento]         = rrg[x].Departamento;
+                lista[x, Reporte.General.Posicion.Categoria]            = rrg[x].Categoria;
+                lista[x, Reporte.General.Posicion.Descripcion]          = rrg[x].Descripcion;
+                lista[x, Reporte.General.Posicion.Tipo]                 = rrg[x].Tipo;
+                lista[x, Reporte.General.Posicion.Existencia]           = rrg[x].Existencia;
+                lista[x, Reporte.General.Posicion.ExistenciaCedis]      = rrg[x].ExistenciaCedis;
+                lista[x, Reporte.General.Posicion.ConsumoDiario]        = rrg[x].ConsumoDiario;
+                lista[x, Reporte.General.Posicion.PuntoReorden]         = rrg[x].PuntoReorden;
+                lista[x, Reporte.General.Posicion.InventarioMinimo]     = rrg[x].InventarioMinimo;
+                lista[x, Reporte.General.Posicion.InventarioMaximo]     = rrg[x].InventarioMaximo;
+                lista[x, Reporte.General.Posicion.Factor]               = rrg[x].Factor;
+                lista[x, Reporte.General.Posicion.CantidadVendida]      = rrg[x].CantidadVendida;
+                lista[x, Reporte.General.Posicion.Ventas]               = rrg[x].Ventas;
+                lista[x, Reporte.General.Posicion.FechaUltimaCompra]    = rrg[x].FechaUltimaCompra.ToString(CultureInfo.InvariantCulture);
+                lista[x, Reporte.General.Posicion.CantidadComprada]     = rrg[x].CantidadComprada;
+                lista[x, Reporte.General.Posicion.RadioInventario]      = rrg[x].RadioInventario;
+                lista[x, Reporte.General.Posicion.PrecioCompra]         = rrg[x].PrecioCompra;
+                lista[x, Reporte.General.Posicion.PrecioVenta]          = rrg[x].PrecioVenta;
+                lista[x, Reporte.General.Posicion.Margen]               = double.Parse(rrg[x].Margen) / 100;
             }
             return lista;
         }
@@ -235,14 +235,14 @@ namespace testVSTO2
                     var lista = new object[rrg.Count, 10];
                     for (var x = 0; x < rrg.Count; x++)
                     {
-                        lista[x, 0] = rrg[x].descripcion;
-                        lista[x, 1] = rrg[x].tipo;
-                        lista[x, 2] = rrg[x].existencia;
-                        lista[x, 3] = rrg[x].consumoDiario;
-                        lista[x, 5] = rrg[x].inventarioMinimo;
-                        lista[x, 6] = rrg[x].inventarioMaximo;
-                        lista[x, 7] = rrg[x].factor;
-                        lista[x, 8] = rrg[x].radioInventario;
+                        lista[x, 0] = rrg[x].Descripcion;
+                        lista[x, 1] = rrg[x].Tipo;
+                        lista[x, 2] = rrg[x].Existencia;
+                        lista[x, 3] = rrg[x].ConsumoDiario;
+                        lista[x, 5] = rrg[x].InventarioMinimo;
+                        lista[x, 6] = rrg[x].InventarioMaximo;
+                        lista[x, 7] = rrg[x].Factor;
+                        lista[x, 8] = rrg[x].RadioInventario;
                     }
                     if (_reporte.AutoFilter != null)
                     {

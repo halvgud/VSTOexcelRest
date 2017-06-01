@@ -47,7 +47,7 @@
             // btaceptarbcongelados
             // 
             this.btaceptarbcongelados.Font = new System.Drawing.Font("Modern No. 20", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btaceptarbcongelados.Location = new System.Drawing.Point(12, 161);
+            this.btaceptarbcongelados.Location = new System.Drawing.Point(44, 165);
             this.btaceptarbcongelados.Name = "btaceptarbcongelados";
             this.btaceptarbcongelados.Size = new System.Drawing.Size(75, 36);
             this.btaceptarbcongelados.TabIndex = 0;
@@ -87,7 +87,7 @@
             // lbclave
             // 
             this.lbclave.AutoSize = true;
-            this.lbclave.Location = new System.Drawing.Point(200, 187);
+            this.lbclave.Location = new System.Drawing.Point(242, 178);
             this.lbclave.Name = "lbclave";
             this.lbclave.Size = new System.Drawing.Size(47, 13);
             this.lbclave.TabIndex = 13;
@@ -97,7 +97,7 @@
             // lbdescripcion
             // 
             this.lbdescripcion.AutoSize = true;
-            this.lbdescripcion.Location = new System.Drawing.Point(200, 161);
+            this.lbdescripcion.Location = new System.Drawing.Point(242, 152);
             this.lbdescripcion.Name = "lbdescripcion";
             this.lbdescripcion.Size = new System.Drawing.Size(42, 13);
             this.lbdescripcion.TabIndex = 12;
@@ -107,7 +107,7 @@
             // lbtclave
             // 
             this.lbtclave.AutoSize = true;
-            this.lbtclave.Location = new System.Drawing.Point(154, 187);
+            this.lbtclave.Location = new System.Drawing.Point(196, 178);
             this.lbtclave.Name = "lbtclave";
             this.lbtclave.Size = new System.Drawing.Size(40, 13);
             this.lbtclave.TabIndex = 11;
@@ -117,7 +117,7 @@
             // lbtdescripcion
             // 
             this.lbtdescripcion.AutoSize = true;
-            this.lbtdescripcion.Location = new System.Drawing.Point(125, 161);
+            this.lbtdescripcion.Location = new System.Drawing.Point(167, 152);
             this.lbtdescripcion.Name = "lbtdescripcion";
             this.lbtdescripcion.Size = new System.Drawing.Size(69, 13);
             this.lbtdescripcion.TabIndex = 10;
@@ -127,7 +127,7 @@
             // lbcantidad
             // 
             this.lbcantidad.AutoSize = true;
-            this.lbcantidad.Location = new System.Drawing.Point(303, 187);
+            this.lbcantidad.Location = new System.Drawing.Point(162, 203);
             this.lbcantidad.Name = "lbcantidad";
             this.lbcantidad.Size = new System.Drawing.Size(55, 13);
             this.lbcantidad.TabIndex = 9;
@@ -136,7 +136,7 @@
             // 
             // txtcantidad
             // 
-            this.txtcantidad.Location = new System.Drawing.Point(364, 184);
+            this.txtcantidad.Location = new System.Drawing.Point(223, 200);
             this.txtcantidad.Name = "txtcantidad";
             this.txtcantidad.Size = new System.Drawing.Size(66, 20);
             this.txtcantidad.TabIndex = 8;
@@ -146,7 +146,7 @@
             // 
             this.rbmerma.AutoSize = true;
             this.rbmerma.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.rbmerma.Location = new System.Drawing.Point(526, 42);
+            this.rbmerma.Location = new System.Drawing.Point(371, 142);
             this.rbmerma.Name = "rbmerma";
             this.rbmerma.Size = new System.Drawing.Size(77, 23);
             this.rbmerma.TabIndex = 14;
@@ -158,7 +158,7 @@
             // 
             this.rbempleado.AutoSize = true;
             this.rbempleado.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.rbempleado.Location = new System.Drawing.Point(526, 74);
+            this.rbempleado.Location = new System.Drawing.Point(371, 174);
             this.rbempleado.Name = "rbempleado";
             this.rbempleado.Size = new System.Drawing.Size(93, 23);
             this.rbempleado.TabIndex = 15;
@@ -170,7 +170,7 @@
             // 
             this.rbutilizacion.AutoSize = true;
             this.rbutilizacion.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.rbutilizacion.Location = new System.Drawing.Point(526, 107);
+            this.rbutilizacion.Location = new System.Drawing.Point(371, 207);
             this.rbutilizacion.Name = "rbutilizacion";
             this.rbutilizacion.Size = new System.Drawing.Size(96, 23);
             this.rbutilizacion.TabIndex = 16;
@@ -182,7 +182,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(632, 227);
+            this.ClientSize = new System.Drawing.Size(521, 242);
             this.Controls.Add(this.rbutilizacion);
             this.Controls.Add(this.rbempleado);
             this.Controls.Add(this.rbmerma);

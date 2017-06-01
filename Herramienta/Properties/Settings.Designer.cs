@@ -427,5 +427,23 @@ namespace Herramienta.Properties {
                 return ((string)(this["eliminaringredientes"]));
             }
         }
+        
+        [global::System.Configuration.ApplicationScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("receta/actualizarpresupuesto")]
+        public string actualizarpresupuesto {
+            get {
+                return ((string)(this["actualizarpresupuesto"]));
+            }
+        }
+        
+        [global::System.Configuration.ApplicationScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("receta/actRuta_and_Instrucciones")]
+        public string actualizar_ruta_e_instrucciones {
+            get {
+                return ((string)(this["actualizar_ruta_e_instrucciones"]));
+            }
+        }
     }
 }

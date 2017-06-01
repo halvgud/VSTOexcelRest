@@ -32,7 +32,7 @@ namespace testVSTO2
                     {
                         case HttpStatusCode.OK:
                             _listaRecetas = Opcion.JsonaListaGenerica<Receta>(jsonResult);
-                            dgvRecetas.DataSource = _listaRecetas.Select(x => new { x.Clave, x.Descripcion, x.Precio }).ToArray();
+                            dgvRecetas.DataSource = _listaRecetas.Select(x => new { clave = x.Clave, descripcion = x.Descripcion, precio = x.Precio }).ToArray();
                             dgvRecetas.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
                             for (var x = 0; x < 3; x++)
                             {

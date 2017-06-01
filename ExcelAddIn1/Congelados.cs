@@ -79,7 +79,7 @@ namespace ExcelAddIn1
                                  {
                                      BeginInvoke((MethodInvoker)(() => /*se manda llamar de nuevo a la interfaz*/
                                      {
-                                         dgvcongeladobuscaryeditar.DataSource = resultado.Select(g => new { g.estado_id,g.clave, g.descripcion, g.cantidad}) /*ni estas*/
+                                         dgvcongeladobuscaryeditar.DataSource = resultado.Select(g => new { estado_id = g.EstadoId,clave = g.Clave, descripcion = g.Descripcion, cantidad = g.Cantidad}) /*ni estas*/
                                           .ToList();
                                      }));
                                  },lista.ToArray(),0);
@@ -127,7 +127,7 @@ namespace ExcelAddIn1
             var congeladosactualizar = new Receta.Congelados
             {
                 //estado_id = (dgvcongeladobuscaryeditar.CurrentRow.Cells[0].Value).ToString(),
-                cantidad = double.Parse(dgvcongeladobuscaryeditar.CurrentRow.Cells[3].Value.ToString())
+                Cantidad = double.Parse(dgvcongeladobuscaryeditar.CurrentRow.Cells[3].Value.ToString())
             };
 
             //Data.ReporteCocina.ActualizarCongelado
@@ -176,13 +176,13 @@ namespace ExcelAddIn1
                                                 _listaagregarcongelado2.AddRange(_listagregarcongelado1);
                                             }
                                             dgvcongelados.DataSource = _listaagregarcongelado2
-                                                .GroupBy(p => p.art_id)
+                                                .GroupBy(p => p.ArtId)
                                                 .Select(g => new Receta.Congelados
                                                 {
-                                                    art_id = g.Key,
-                                                    clave = g.First().clave,
-                                                    descripcion = g.First().descripcion,
-                                                   cantidad = g.Sum(i => i.cantidad)
+                                                    ArtId = g.Key,
+                                                    Clave = g.First().Clave,
+                                                    Descripcion = g.First().Descripcion,
+                                                   Cantidad = g.Sum(i => i.Cantidad)
 
                                                 }).ToList();
                                             for (var x = 0; x == 4; x++)

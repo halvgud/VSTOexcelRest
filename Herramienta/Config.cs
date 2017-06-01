@@ -128,8 +128,14 @@ namespace Herramienta
                 public static string Insertar { get; set; } = Properties.Settings.Default.RecetaInsertar;
                 public static string InsertarDetalle { get; set; } = Properties.Settings.Default.RecetaInsertarDetalle;
                 public static string Tipo { get; set; } = Properties.Settings.Default.RecetaTipo;
-                public static int rec_id { get; set; }
-                public static string eliminarIngre { get; set; } = Properties.Settings.Default.eliminaringredientes;
+                public static int RecId { get; set; }
+                public  static  string Ruta { get; set; }
+                public static string Ingredientes { get; set; }
+
+                public static string ActualizarPresupuesto { get; set; } = Properties.Settings.Default.actualizarpresupuesto;
+                public static string EliminarIngre { get; set; } = Properties.Settings.Default.eliminaringredientes;
+
+                public static string Actualizarrutaeimagen { get; set; } = Properties.Settings.Default.actualizar_ruta_e_instrucciones;
             }
             public static class Categoria
             {

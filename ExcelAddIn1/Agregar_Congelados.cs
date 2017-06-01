@@ -14,12 +14,12 @@ using Respuesta;
 
 namespace ExcelAddIn1
 {
-    public partial class Agregar_Congelados : Form
+    public partial class AgregarCongelados : Form
     {
 
         private readonly List<Respuesta.Receta.Congelados> _listaCongelados;
         private readonly Action<List<Respuesta.Receta.Congelados>> _callback;
-        public Agregar_Congelados(List<Respuesta.Receta.Congelados> listaCongelados, Action<List<Respuesta.Receta.Congelados>> callback)
+        public AgregarCongelados(List<Respuesta.Receta.Congelados> listaCongelados, Action<List<Respuesta.Receta.Congelados>> callback)
         {
             /*checa en la conversion de jsonResult a List... me suena que por ahi esta tronando porque aqui ya no trae registros*/
             _listaCongelados = listaCongelados;

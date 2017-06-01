@@ -109,11 +109,11 @@ namespace Data
                 });
             }
 
-            public static void Actualizar()
+            public static void ActualizarIngredientes(List<Respuesta.Receta.Detalle> actualiza  )
             { 
                 var rest = new Rest(Local.Api.UrlApi, Local.Receta.InsertarDetalle, Method.POST);
                 rest.Peticion.AddHeader(Constantes.Http.ObtenerTipoDeContenido, Constantes.Http.TipoDeContenido.Json);
-                rest.Peticion.AddJsonBody(ARecetaDetalle);
+                rest.Peticion.AddJsonBody(actualiza);
                 rest.Cliente.ExecuteAsync(rest.Peticion, response =>
                 {
                     switch (response.StatusCode)
@@ -127,23 +127,72 @@ namespace Data
                 });
             }
 
-            public static void Eliminar(Action<IRestResponse> callback)
+            public static void ActualizarPresupuesto(Respuesta.Receta.ActualizaPresupuesto actualiza)
             {
-                var rest = new Rest(Local.Api.UrlApi, Local.Receta.eliminarIngre, Method.POST);
+                var rest = new Rest(Local.Api.UrlApi, Local.Receta.ActualizarPresupuesto, Method.POST);
                 rest.Peticion.AddHeader(Constantes.Http.ObtenerTipoDeContenido, Constantes.Http.TipoDeContenido.Json);
-                rest.Peticion.AddJsonBody(new {rec_id=Local.Receta.rec_id});
+                rest.Peticion.AddJsonBody(actualiza);
                 rest.Cliente.ExecuteAsync(rest.Peticion, response =>
                 {
                     switch (response.StatusCode)
                     {
                         case HttpStatusCode.OK:
-                            callback(response);
+                            // callback(response);
+                            break;
+                        default:
+                            throw new Exception(@"Los datos no se pudieron actualizar");
+                    }
+                });
+            }
+
+            public static void Eliminar()
+            {
+                var rest = new Rest(Local.Api.UrlApi, Local.Receta.EliminarIngre, Method.POST);
+                rest.Peticion.AddHeader(Constantes.Http.ObtenerTipoDeContenido, Constantes.Http.TipoDeContenido.Json);
+                rest.Peticion.AddJsonBody(new {RecId=Local.Receta.RecId});
+                rest.Cliente.ExecuteAsync(rest.Peticion, response =>
+                {
+                    switch (response.StatusCode)
+                    {
+                        case HttpStatusCode.OK:
+                            //callback(response);
                             break;
                         default:
                             throw new Exception(@"No se realizo la actualizacion");
                     }
                 });
             }
+
+            public static void Eliminarrutaeimagen()
+            {
+                try
+                {
+                    /*url local?*/
+                    var rest = new Rest(Local.Api.UrlApi, Herramienta.Config.Local.Receta.Actualizarrutaeimagen,
+                        Method.POST);
+                    rest.Peticion.AddHeader(Constantes.Http.ObtenerTipoDeContenido,
+                        Constantes.Http.TipoDeContenido.Json);
+                    rest.Peticion.AddJsonBody(new { RecId = Local.Receta.RecId });// la peticion debe ser un objeto
+                    rest.Cliente.ExecuteAsync(rest.Peticion, response =>
+                    {
+                        switch (response.StatusCode)
+                        {
+                            case HttpStatusCode.OK:
+                                // callback(response);
+                                break;
+                            default:
+                                // callback(null);
+                                break;
+                        }
+                    });
+                }
+                catch (Exception e)
+                {
+                    Opcion.Log(Log.Interno.Categoria, "EXCEPCION: " + e.Message);
+                    //callback(null);
+                }
+            }
+
         }
 
         public class Tipo

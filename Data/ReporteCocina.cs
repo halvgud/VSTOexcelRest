@@ -14,7 +14,7 @@ namespace Data
     {
         public static Respuesta.Receta.Congelados Cccongelados;
 
-       public static Respuesta.Receta.Imagen_and_Process ImagenAndProcess;
+       public static Respuesta.Receta.ImagenAndProcess ImagenAndProcess;
 
        //public var CongeladoVar;
         
@@ -139,7 +139,7 @@ namespace Data
             }
         }
 
-        public static void InsertarRutaeImagen(Respuesta.Receta.Imagen_and_Process instructivoclass )
+        public static void InsertarRutaeImagen(Respuesta.Receta.ImagenAndProcess instructivoclass )
         {
             try
             {
@@ -292,7 +292,7 @@ namespace Data
             }
         }
 
-        public static void InabilitarCongelado(int estado_id)
+        public static void InabilitarCongelado(int estadoId)
         {
             try
             {
@@ -302,7 +302,7 @@ namespace Data
                     Constantes.Http.TipoDeContenido.Json);
                 rest.Peticion.AddJsonBody(new
                 {/*a que te refieres con eso*/
-                   estado_id
+                   estado_id = estadoId
                 }
             );
                 // rest.Peticion.AddJsonBody(repGeneral);

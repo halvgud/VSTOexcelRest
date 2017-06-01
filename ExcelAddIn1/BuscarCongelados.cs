@@ -70,7 +70,7 @@ public BuscarCongelados(List<Respuesta.Receta.Congelados> listaCongelados, Actio
             //    txtcantidad.Visible = true;
             //}
 
-            dgvbuscar_congelados.DataSource = _listaCongelados.Select(x => new {x.art_id, x.clave, x.descripcion, x.cantidad }).ToArray(); ;
+            dgvbuscar_congelados.DataSource = _listaCongelados.Select(x => new {art_id = x.ArtId, clave = x.Clave, descripcion = x.Descripcion, cantidad = x.Cantidad }).ToArray(); ;
             dgvbuscar_congelados.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
 
         }
@@ -83,7 +83,7 @@ public BuscarCongelados(List<Respuesta.Receta.Congelados> listaCongelados, Actio
 
             /*aqui es donde guardas la lista para mandarla al otro databridview ?*/
 
-            _listaCongelados[dgvbuscar_congelados.CurrentCell.RowIndex].cantidad = double.Parse(txtcantidad.Text);
+            _listaCongelados[dgvbuscar_congelados.CurrentCell.RowIndex].Cantidad = double.Parse(txtcantidad.Text);
                 _callback(new List<Respuesta.Receta.Congelados> { _listaCongelados[dgvbuscar_congelados.CurrentCell.RowIndex]});
                 Close();
 

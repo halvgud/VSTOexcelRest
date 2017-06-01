@@ -23,8 +23,8 @@ namespace ExcelAddIn1
         }
 
         //esos errores no me avian salido ahorita }
-        public List<Respuesta.CbGenerico> _ListproductoList;
-        public List<Respuesta.CbGenerico> _ListorderList; 
+        public List<Respuesta.CbGenerico> ListproductoList;
+        public List<Respuesta.CbGenerico> ListorderList; 
 
         private void btGenerarReceta_Click(object sender, EventArgs e)
         {

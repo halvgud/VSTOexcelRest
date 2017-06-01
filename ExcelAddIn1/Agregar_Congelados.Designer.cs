@@ -1,6 +1,6 @@
 ﻿namespace ExcelAddIn1
 {
-    partial class Agregar_Congelados
+    partial class AgregarCongelados
     {
         /// <summary>
         /// Required designer variable.
@@ -79,7 +79,7 @@
             this.Controls.Add(this.button1);
             this.Controls.Add(this.lbfechaagregar);
             this.Controls.Add(this.label1);
-            this.Name = "Agregar_Congelados";
+            this.Name = "AgregarCongelados";
             this.Text = "Agregar_Congelados";
             ((System.ComponentModel.ISupportInitialize)(this.dtgagregarcongelados)).EndInit();
             this.ResumeLayout(false);

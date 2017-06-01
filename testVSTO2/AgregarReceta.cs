@@ -15,6 +15,8 @@ namespace testVSTO2
     {
         private List<Articulo.Basica> _listaArticuloBasica1;
         private List<Articulo.Basica> _listaArticuloBasica2;
+
+      
         public class Inputs
         {
 

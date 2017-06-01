@@ -367,16 +367,16 @@ namespace ExcelAddIn1
         {
 
         }
-        List<int> Array = new List<int>();
+        List<int> _array = new List<int>();
         private void BorrarFila_KeyDown(object sender, KeyEventArgs e)
         {
             var pivote = (DataGridView)sender;
-            int li_index;
+            int liIndex;
             if ((e.KeyCode == Keys.Delete))
             {
                 e.Handled = true;
-                li_index = ((DataGridView)(sender)).CurrentRow.Index;
-                pivote.Rows.RemoveAt(li_index);
+                liIndex = ((DataGridView)(sender)).CurrentRow.Index;
+                pivote.Rows.RemoveAt(liIndex);
             }
         }
 

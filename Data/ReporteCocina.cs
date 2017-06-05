@@ -100,11 +100,11 @@ namespace Data
         {//es q lo escribi mal jeje
             try
             {
-                var rest = new Rest(Local.Api.UrlApi, Cocina.buscarcongelados.sacarclave,
+                var rest = new Rest(Local.Api.UrlApi, Cocina.Buscarcongelados.sacarclave,
                     Method.POST);
                 rest.Peticion.AddHeader(Constantes.Http.ObtenerTipoDeContenido,
                     Constantes.Http.TipoDeContenido.Json);
-                rest.Peticion.AddJsonBody(new {Cocina.buscarcongelados.descripcion });
+                rest.Peticion.AddJsonBody(new {Cocina.Buscarcongelados.descripcion });
                 // rest.Peticion.AddJsonBody(repGeneral);
                 rest.Cliente.ExecuteAsync(rest.Peticion, response =>
                 {
@@ -129,11 +129,11 @@ namespace Data
         {
             try
             {
-                var rest = new Rest(Local.Api.UrlApi, Cocina.buscarcongelados.bcongelados,
+                var rest = new Rest(Local.Api.UrlApi, Cocina.Buscarcongelados.bcongelados,
                     Method.POST);
                 rest.Peticion.AddHeader(Constantes.Http.ObtenerTipoDeContenido,
                     Constantes.Http.TipoDeContenido.Json);
-                rest.Peticion.AddJsonBody(new {Cocina.buscarcongelados.descripcion });
+                rest.Peticion.AddJsonBody(new {Cocina.Buscarcongelados.descripcion });
                 // rest.Peticion.AddJsonBody(repGeneral);
                 rest.Cliente.ExecuteAsync(rest.Peticion, response =>
                 {
@@ -189,7 +189,7 @@ namespace Data
         {
             try
             {
-                var rest = new Rest(Local.Api.UrlApi, Cocina.buscarcongelados.cambioexistencia,
+                var rest = new Rest(Local.Api.UrlApi, Cocina.Buscarcongelados.cambioexistencia,
                     Method.POST);
                 rest.Peticion.AddHeader(Constantes.Http.ObtenerTipoDeContenido,
                     Constantes.Http.TipoDeContenido.Json);
@@ -219,7 +219,7 @@ namespace Data
         {
             try
             {
-                var rest = new Rest(Local.Api.UrlApi,Cocina.buscarcongelados.inabilitar,
+                var rest = new Rest(Local.Api.UrlApi,Cocina.Buscarcongelados.inabilitar,
                     Method.POST);
                 rest.Peticion.AddHeader(Constantes.Http.ObtenerTipoDeContenido,
                     Constantes.Http.TipoDeContenido.Json);

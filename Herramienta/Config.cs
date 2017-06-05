@@ -46,12 +46,14 @@ namespace Herramienta
             public class PlatillosMenus
             {
                 public static string ListaPlatillos { get; set; } = Properties.Settings.Default.TiposPlatillosDiarios;
+                public static string SacarRecId { get; set; } = Properties.Settings.Default.RecIdporClave;
+                public static string SacarTipoId { get; set; } = Properties.Settings.Default.TipoIdporNombre;
                 public static string Clave { get; set; }
                 public static string Nombre { get; set; }
-                public static string TipoPlatillo { get; set; }//guardar lo que esta en el combobox 
+                public static int TipoId { get; set; }
             }
 
-            public class buscarcongelados
+            public class Buscarcongelados
             {
                 public static string bcongelados { get; set; } = Properties.Settings.Default.buscarcongelados;
                 public static string descripcion { get; set; }
@@ -82,6 +84,7 @@ namespace Herramienta
             {
                 public static string Diasemana { get; set; } = Properties.Settings.Default.menu;
                 public static string FechaElaboracion { get; set; }
+                public static string GuardarRecetas { get; set; } = Properties.Settings.Default.InsertarMenuDiarios;
             }
            
 

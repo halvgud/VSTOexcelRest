@@ -409,5 +409,35 @@ namespace Herramienta.Properties {
                 return ((string)(this["TiposPlatillosDiarios"]));
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("/receta/InsertarMenu")]
+        public string InsertarMenuDiarios {
+            get {
+                return ((string)(this["InsertarMenuDiarios"]));
+            }
+            set {
+                this["InsertarMenuDiarios"] = value;
+            }
+        }
+        
+        [global::System.Configuration.ApplicationScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("/receta/SeleccionarRecId")]
+        public string RecIdporClave {
+            get {
+                return ((string)(this["RecIdporClave"]));
+            }
+        }
+        
+        [global::System.Configuration.ApplicationScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("/receta/SeleccionarTiporId")]
+        public string TipoIdporNombre {
+            get {
+                return ((string)(this["TipoIdporNombre"]));
+            }
+        }
     }
 }

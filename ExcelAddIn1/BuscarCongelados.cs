@@ -97,8 +97,8 @@ public BuscarCongelados(List<Respuesta.Receta.Congelados> listaCongelados, Actio
         private void BuscarCongelados_Load(object sender, EventArgs e)
         {
             lbfechaagregar.Text = DateTime.Now.ToShortDateString();
-            if (dgvbuscar_congelados.CurrentRow != null)
-                txtcantidad.Text = dgvbuscar_congelados.CurrentRow.Cells[4].Value.ToString();
+            if (dgvbuscar_congelados.CurrentRow != null) ;
+            //txtcantidad.Text = dgvbuscar_congelados.CurrentRow.Cells[4].Value.ToString();
         }
         private void dgvbuscar_congelados_CellClick(object sender, DataGridViewCellEventArgs e)
         {

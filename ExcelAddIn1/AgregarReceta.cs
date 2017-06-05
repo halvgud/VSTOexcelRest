@@ -339,12 +339,12 @@ namespace ExcelAddIn1
                             ModoElaboracion = inputs.ModoElaboracion.Text
                             
                       };
-                        if (MessageBox.Show(@"Desea agregar la imagen de la Receta", "Aviso", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
+                        if (MessageBox.Show(@"Desea agregar la imagen de la Receta", @"Aviso", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
                         {
 
                             //aqui pones el beginInvoke porque estas en otro hilo
-                            openFileDialog1.Filter = "Image Files (*.png *.jpg *.bmp) | *.png; *.jpg; *.bmp | All Files(*.*) | *.* ";
-                            openFileDialog1.Title = "Buscar Imagen";
+                            openFileDialog1.Filter = @"Image Files (*.png *.jpg *.bmp) | *.png; *.jpg; *.bmp | All Files(*.*) | *.* ";
+                            openFileDialog1.Title = @"Buscar Imagen";
                             openFileDialog1.FileName = "";
                             openFileDialog1.ShowDialog();
                             long a = int.Parse(DateTime.Now.ToString("yyyyMMdd"));
@@ -357,11 +357,11 @@ namespace ExcelAddIn1
                             //guardarDialog.FileName = inputs.ClaveReceta.Text + Convert.ToDouble(DateTime.Now);
 
                             Opcion.Copycmdserver(openFileDialog1.FileName, @"\\mercattoserver\Recetario\img\" + inputs.ClaveReceta.Text + a.ToString() + ".jpg");
-                            var ruta = new Respuesta.Receta.Imagen_and_Process
+                            var ruta = new Receta.Imagen_and_Process
                             {
                                 
                                 instruccion = inputs.ModoElaboracion.Text,
-                                ruta =@"\\mercattoserver\Recetario\img\" + inputs.ClaveReceta.Text + a.ToString() + ".jpg"
+                                ruta = @"\\mercattoserver\Recetario\img\" + inputs.ClaveReceta.Text + a.ToString() + ".jpg"
                             };
                         }
 
@@ -370,7 +370,7 @@ namespace ExcelAddIn1
                         Opcion.EjecucionAsync(Data.Receta.Insertar, resultado =>
                         {
                         
-                           
+                     
                             Guardado(resultado,inputs);
                         }, x =>
                         {
@@ -381,7 +381,7 @@ namespace ExcelAddIn1
                     }));
                 });}}
 
-        private void Guardado(Action<IRestResponse> x, Inputs inputs)
+        private static void Guardado(Action<IRestResponse> x, Inputs inputs)
         {
             var listRecetaDetalle = new List<Receta.Detalle>();
             for (var i = 0; i < inputs.Ingredientes.Rows.Count; i++)

@@ -57,7 +57,7 @@ namespace ExcelAddIn1
         }
         private void btbuscareditar_Click(object sender, EventArgs e)
         {
-            Cocina.buscarcongelados.descripcion = txtbuscarcongeladoeditar.Text == string.Empty ? "%" : txtbuscarcongeladoeditar.Text;  /* asigna la clave a la variable estatica*/
+            Cocina.Buscarcongelados.descripcion = txtbuscarcongeladoeditar.Text == string.Empty ? "%" : txtbuscarcongeladoeditar.Text;  /* asigna la clave a la variable estatica*/
             Opcion.EjecucionAsync(Data.ReporteCocina.Buscarcongelados, jsonResult => /* se ejecuta Data.Receta.Lista, el resultado se guarda en jsonResult*/
             {
                 BeginInvoke((MethodInvoker)(() =>
@@ -144,7 +144,7 @@ namespace ExcelAddIn1
             {
                 if (tabControl1.SelectedTab == tabControl1.TabPages[0])
                 /*ya de aqui me encargo pero primero activo el office jeje*/
-                    Cocina.buscarcongelados.descripcion = txtbuscarcongelado.Text == string.Empty ? "%" : txtbuscarcongelado.Text;  /* asigna la clave a la variable estatica*/
+                    Cocina.Buscarcongelados.descripcion = txtbuscarcongelado.Text == string.Empty ? "%" : txtbuscarcongelado.Text;  /* asigna la clave a la variable estatica*/
                 Opcion.EjecucionAsync(Data.ReporteCocina.agregar_congeladobuscar, jsonResult => /* se ejecuta Data.Receta.Lista, el resultado se guarda en jsonResult*/
                 {
                     BeginInvoke((MethodInvoker)(() =>

@@ -624,6 +624,7 @@
             this.tbPrecioSugerido.Size = new System.Drawing.Size(100, 20);
             this.tbPrecioSugerido.TabIndex = 14;
             this.tbPrecioSugerido.TabStop = false;
+            this.tbPrecioSugerido.Visible = false;
             // 
             // tbMargenSugerido
             // 
@@ -632,6 +633,7 @@
             this.tbMargenSugerido.Size = new System.Drawing.Size(100, 20);
             this.tbMargenSugerido.TabIndex = 4;
             this.tbMargenSugerido.TabStop = false;
+            this.tbMargenSugerido.Visible = false;
             // 
             // tbCostoEstimado
             // 

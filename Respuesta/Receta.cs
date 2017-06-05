@@ -81,7 +81,8 @@ namespace Respuesta
         }
         public class Congelados
         {
-            public string EstadoId { get; set; }
+           public string EstadoId { get; set; } /*Te sale en la primer columna, porque esta aqui, tienes que hacer un select..... PERO EL ESTADO ID ES AUTO INCREMENTAL, y pCaraR qEue olo quieren aquiCRE_O QUE SI ES AUTO INCREMENTAL 
+            POR QUE DE ESTE MISMO AGO LA BUSQUEDA ENTRE CONGELADOS , cual es tu duda entonces? si en el select no esta POR QUE NO ESTA GUARDANDO COMO ES DEVIDO MIRA */
             public string ArtId { get; set; }
            
             public string Clave { get; set; }

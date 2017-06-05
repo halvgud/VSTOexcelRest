@@ -33,7 +33,7 @@ public BuscarCongelados(List<Respuesta.Receta.Congelados> listaCongelados, Actio
             {
                 lbcantidad.Visible = true;
                 txtcantidad.Visible = true;
-                txtcantidad.Text = dgvbuscar_congelados.CurrentRow.Cells[4].Value.ToString();
+                //txtcantidad.Text = dgvbuscar_congelados.CurrentRow.Cells[4].Value.ToString();
             }
 
 

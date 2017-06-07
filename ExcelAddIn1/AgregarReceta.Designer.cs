@@ -33,6 +33,8 @@
             this.btAyudar = new System.Windows.Forms.Button();
             this.btGuardar = new System.Windows.Forms.Button();
             this.tabPage2 = new System.Windows.Forms.TabPage();
+            this.lbcantidadBE = new System.Windows.Forms.Label();
+            this.tbcantidadBEE = new System.Windows.Forms.MaskedTextBox();
             this.chDiarioBE = new System.Windows.Forms.CheckBox();
             this.txtinstruccionesBE = new System.Windows.Forms.TextBox();
             this.Pbreceta = new System.Windows.Forms.PictureBox();
@@ -66,6 +68,8 @@
             this.tbBuscarReceta = new System.Windows.Forms.TextBox();
             this.label3 = new System.Windows.Forms.Label();
             this.tabPage1 = new System.Windows.Forms.TabPage();
+            this.lbcantidad = new System.Windows.Forms.Label();
+            this.tbcantidad = new System.Windows.Forms.MaskedTextBox();
             this.txtinstrucciones = new System.Windows.Forms.TextBox();
             this.label26 = new System.Windows.Forms.Label();
             this.btValidar = new System.Windows.Forms.Button();
@@ -144,6 +148,8 @@
             // 
             // tabPage2
             // 
+            this.tabPage2.Controls.Add(this.lbcantidadBE);
+            this.tabPage2.Controls.Add(this.tbcantidadBEE);
             this.tabPage2.Controls.Add(this.chDiarioBE);
             this.tabPage2.Controls.Add(this.txtinstruccionesBE);
             this.tabPage2.Controls.Add(this.Pbreceta);
@@ -184,15 +190,34 @@
             this.tabPage2.Text = "Buscar y Editar";
             this.tabPage2.UseVisualStyleBackColor = true;
             // 
+            // lbcantidadBE
+            // 
+            this.lbcantidadBE.AutoSize = true;
+            this.lbcantidadBE.Location = new System.Drawing.Point(267, 360);
+            this.lbcantidadBE.Name = "lbcantidadBE";
+            this.lbcantidadBE.Size = new System.Drawing.Size(55, 13);
+            this.lbcantidadBE.TabIndex = 64;
+            this.lbcantidadBE.Text = "Cantidad :";
+            this.lbcantidadBE.Visible = false;
+            // 
+            // tbcantidadBEE
+            // 
+            this.tbcantidadBEE.Location = new System.Drawing.Point(328, 354);
+            this.tbcantidadBEE.Name = "tbcantidadBEE";
+            this.tbcantidadBEE.Size = new System.Drawing.Size(43, 20);
+            this.tbcantidadBEE.TabIndex = 63;
+            this.tbcantidadBEE.Visible = false;
+            // 
             // chDiarioBE
             // 
             this.chDiarioBE.AutoSize = true;
-            this.chDiarioBE.Location = new System.Drawing.Point(246, 358);
+            this.chDiarioBE.Location = new System.Drawing.Point(210, 355);
             this.chDiarioBE.Name = "chDiarioBE";
             this.chDiarioBE.Size = new System.Drawing.Size(53, 17);
             this.chDiarioBE.TabIndex = 62;
             this.chDiarioBE.Text = "Diario";
             this.chDiarioBE.UseVisualStyleBackColor = true;
+            this.chDiarioBE.CheckedChanged += new System.EventHandler(this.chDiarioBE_CheckedChanged);
             // 
             // txtinstruccionesBE
             // 
@@ -201,14 +226,14 @@
             this.txtinstruccionesBE.Multiline = true;
             this.txtinstruccionesBE.Name = "txtinstruccionesBE";
             this.txtinstruccionesBE.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
-            this.txtinstruccionesBE.Size = new System.Drawing.Size(460, 85);
+            this.txtinstruccionesBE.Size = new System.Drawing.Size(489, 85);
             this.txtinstruccionesBE.TabIndex = 61;
             // 
             // Pbreceta
             // 
-            this.Pbreceta.Location = new System.Drawing.Point(511, 356);
+            this.Pbreceta.Location = new System.Drawing.Point(514, 356);
             this.Pbreceta.Name = "Pbreceta";
-            this.Pbreceta.Size = new System.Drawing.Size(142, 136);
+            this.Pbreceta.Size = new System.Drawing.Size(139, 136);
             this.Pbreceta.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.Pbreceta.TabIndex = 60;
             this.Pbreceta.TabStop = false;
@@ -480,6 +505,8 @@
             // 
             // tabPage1
             // 
+            this.tabPage1.Controls.Add(this.lbcantidad);
+            this.tabPage1.Controls.Add(this.tbcantidad);
             this.tabPage1.Controls.Add(this.txtinstrucciones);
             this.tabPage1.Controls.Add(this.label26);
             this.tabPage1.Controls.Add(this.btValidar);
@@ -519,6 +546,24 @@
             this.tabPage1.Text = "Agregar";
             this.tabPage1.UseVisualStyleBackColor = true;
             // 
+            // lbcantidad
+            // 
+            this.lbcantidad.AutoSize = true;
+            this.lbcantidad.Location = new System.Drawing.Point(282, 361);
+            this.lbcantidad.Name = "lbcantidad";
+            this.lbcantidad.Size = new System.Drawing.Size(55, 13);
+            this.lbcantidad.TabIndex = 60;
+            this.lbcantidad.Text = "Cantidad :";
+            this.lbcantidad.Visible = false;
+            // 
+            // tbcantidad
+            // 
+            this.tbcantidad.Location = new System.Drawing.Point(343, 357);
+            this.tbcantidad.Name = "tbcantidad";
+            this.tbcantidad.Size = new System.Drawing.Size(57, 20);
+            this.tbcantidad.TabIndex = 59;
+            this.tbcantidad.Visible = false;
+            // 
             // txtinstrucciones
             // 
             this.txtinstrucciones.AcceptsReturn = true;
@@ -557,6 +602,7 @@
             this.chDiario.TabIndex = 29;
             this.chDiario.Text = "Diario";
             this.chDiario.UseVisualStyleBackColor = true;
+            this.chDiario.CheckedChanged += new System.EventHandler(this.chDiario_CheckedChanged);
             // 
             // dgvIngredientes
             // 
@@ -624,7 +670,6 @@
             this.tbPrecioSugerido.Size = new System.Drawing.Size(100, 20);
             this.tbPrecioSugerido.TabIndex = 14;
             this.tbPrecioSugerido.TabStop = false;
-            this.tbPrecioSugerido.Visible = false;
             // 
             // tbMargenSugerido
             // 
@@ -633,7 +678,6 @@
             this.tbMargenSugerido.Size = new System.Drawing.Size(100, 20);
             this.tbMargenSugerido.TabIndex = 4;
             this.tbMargenSugerido.TabStop = false;
-            this.tbMargenSugerido.Visible = false;
             // 
             // tbCostoEstimado
             // 
@@ -965,5 +1009,9 @@
         private System.Windows.Forms.ContextMenuStrip contextMenuStrip1;
         private System.Windows.Forms.TextBox txtinstrucciones;
         private System.Windows.Forms.CheckBox chDiarioBE;
+        private System.Windows.Forms.Label lbcantidad;
+        private System.Windows.Forms.MaskedTextBox tbcantidad;
+        private System.Windows.Forms.Label lbcantidadBE;
+        private System.Windows.Forms.MaskedTextBox tbcantidadBEE;
     }
 }

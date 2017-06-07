@@ -20,6 +20,8 @@ namespace Respuesta
         public double PesoLitro { get; set; }
         public int Diario { get; set; }
         public double Cantidad { get; set; }
+        public double Dcantidad { get; set; }
+        public int Unidad { get; set; }
         public string Rutaimagen { get; set; }
         public string Instrucciones { get; set; }
         public List<Detalle> Ingredientes { get; set; }
@@ -77,6 +79,9 @@ namespace Respuesta
             public string Unidad { get; set; }
             public double PrecioTotal { get; set; }
             public int TiporId { get; set; }
+            public double Dcantidad { get; set; }
+            public int Dunidad { get; set; }
+            public int Diario { get; set; }
 
         }
         public class Congelados

@@ -322,7 +322,7 @@ namespace testVSTO2
                             PesoLitro = Convert.ToDouble(inputs.PesoLitro.Text),
                             Precio = double.Parse(inputs.Precio.Text),
                             RecId = 0,
-                            Diario = Convert.ToInt32(inputs.Diario.Checked)
+                            Diario = inputs.Diario.Checked?1:0
                         };
                         Data.Receta.CReceta = receta;
                         Opcion.EjecucionAsync(Data.Receta.Insertar, resultado =>

@@ -16,6 +16,7 @@ namespace ExcelAddIn1
 {
     public partial class AgregarReceta :Form
     {
+        private readonly List<unidades> _unidadesList;
         private List<Articulo.Basica> _listaArticuloBasica1;
         private List<Articulo.Basica> _listaArticuloBasica2;
         //private List<Receta> _listadetalleact;
@@ -37,13 +38,23 @@ namespace ExcelAddIn1
             public CheckBox Diario;
             public TextBox ModoElaboracion;
             public ComboBox TipoReceta;
+            public MaskedTextBox Cantidad;
         }
 
-        private bool banderaejecucion;
-       
+
+
+        public class unidades
+        {
+        
+            public string unidad { get; set; }
+        }
+
+       public int validar = 0;
         public AgregarReceta()
         {
             InitializeComponent();
+            _unidadesList=new List<unidades>();
+           
             
             Opcion.EjecucionAsync(Data.Receta.Tipo.Lista, x =>
             {
@@ -62,9 +73,26 @@ namespace ExcelAddIn1
         }
         private void AgregarReceta_Load(object sender, EventArgs e)
         {
+            //_unidadesList.Add(new unidades { unidad = "PZA" });
+            //_unidadesList.Add(new unidades { unidad = "CAJA" });
+            //_unidadesList.Add(new unidades { unidad = "m" });
+            //_unidadesList.Add(new unidades { unidad = "KG" });
+            //_unidadesList.Add(new unidades { unidad = "LT" });
+            //_unidadesList.Add(new unidades { unidad = "NA" });
+            //_unidadesList.Add(new unidades { unidad = "20" });
+            //_unidadesList.Add(new unidades { unidad = "GR" });
+            //_unidadesList.Add(new unidades { unidad = "Pqt" });
+
+            
+
             ActiveControl = tbCodigo;
             tbCodigo.Focus();
             btGuardar.Enabled = ValidarCampos();
+
+
+
+            //cbunidad.DataSource = _unidadesList;
+            //cbunidad.DataSource = _unidadesList;
         }
         private void rtbModoElaboracion_TextChanged(object sender, EventArgs e)
         {
@@ -380,10 +408,12 @@ namespace ExcelAddIn1
         }
         private void Guardar(Inputs inputs)
         {
-           
+   
+                
         
             btGuardar.Enabled =false;
             Local.Receta.Clave = (inputs.ClaveReceta.Text);
+            
             if (ValidarCampos())
             {
                 Opcion.EjecucionAsync(Data.Receta.Lista, jsonResult =>
@@ -392,21 +422,28 @@ namespace ExcelAddIn1
                     var mde = new MensajeDeEspera();
                     BeginInvoke((MethodInvoker)(() =>
                     {
-                                 
+                        
+                        if (chDiario.Checked==false)
+                        {
+                            tbcantidad.Text = "0";
+                            
+                        }
                         mde.Show();
                         var receta = new Receta{
                             Clave = inputs.ClaveReceta.Text,
                             CostoCreacion = double.Parse(inputs.CostoEstimado.Text),
                             CostoElaboracion = double.Parse(inputs.CostoElaboracion.Text),
                             Descripcion = inputs.Descripcion.Text,
-                            FechaModificacion = DateTime.Now,
+                            //FechaModificacion = DateTime.Now,
                             Margen = double.Parse(inputs.MargenConPrecio.Text),
                             PesoLitro = Convert.ToDouble(inputs.PesoLitro.Text),
                             Precio = double.Parse(inputs.Precio.Text),
                             RecId = 0,
-                            Diario = Convert.ToInt32(inputs.Diario.Checked),
+                            Diario = validar/*inputs.Diario.Checked?1:0*/,
                             ModoElaboracion = inputs.ModoElaboracion.Text,
-                            TiporId=cbTipoReceta.SelectedIndex+1
+                            TiporId=cbTipoReceta.SelectedIndex+1,
+                        
+                             Dcantidad = Convert.ToDouble(tbcantidad.Text) 
                            
                             
                       };
@@ -589,7 +626,9 @@ namespace ExcelAddIn1
                     MargenSugerido = tbMargenSugerido,
                     PesoLitro = tbPesoLitro,
                     Precio = tbPrecio,
-                    ModoElaboracion = txtinstrucciones
+                    ModoElaboracion = txtinstrucciones,
+                    Cantidad = tbcantidad
+                    
 
                 });
             else 
@@ -791,9 +830,10 @@ namespace ExcelAddIn1
                                          tbBuscarReceta.Text = resultado.Clave;
                                          cbTipoBE.SelectedIndex= resultado.TiporId - 1;
                                          tbCostoEstimadoBE.Text = resultado.CostoCreacion.ToString();                                     
-                                         //chDiarioBE.Checked = (resultado.Diario == 1);
+                                         chDiarioBE.Checked = (resultado.Diario == 1);
                                          tbCodigoBE.Enabled = true;
-                                         
+                                         tbcantidadBEE.Text = resultado.Dcantidad.ToString();
+                                    
                                          string datos = resultado.Instrucciones;
                                          txtinstruccionesBE.Text = datos;
                                          string calis = resultado.Rutaimagen.ToString();
@@ -971,6 +1011,49 @@ namespace ExcelAddIn1
         private void tbDescripcionBE_TextChanged(object sender, EventArgs e)
         {
             btGuardar.Enabled = ValidarCampos();
+        }
+
+        private void chDiario_CheckedChanged(object sender, EventArgs e)
+        {
+            if (chDiario.Checked == true)
+            {
+                lbcantidad.Visible = true;
+                
+                tbcantidad.Visible = true;
+
+                validar = 1;
+               
+                
+            }
+            else
+            {
+                lbcantidad.Visible = false;
+               
+                tbcantidad.Visible = false;
+               
+            }
+        }
+
+        private void chDiarioBE_CheckedChanged(object sender, EventArgs e)
+        {
+            if (chDiarioBE.Checked == true)
+            {
+                
+                lbcantidadBE.Visible = true;
+                tbcantidadBEE.Visible = true;
+                
+
+                
+                
+            }
+            else
+            {
+                lbcantidadBE.Visible = false;
+               
+                tbcantidadBEE.Visible = false;
+                
+            }
+
         }
     }
 }

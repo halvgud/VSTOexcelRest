@@ -480,18 +480,9 @@ namespace ExcelAddIn1
                 GuardarMenuSemanal(this);
             }
         }
-<<<<<<< HEAD
-        List<int> _array = new List<int>();
-        private void BorrarFila_KeyDown(object sender, KeyEventArgs e)
-        {
-            var pivote = (DataGridView)sender;
-            int liIndex;
-            if ((e.KeyCode == Keys.Delete))
-            {
-                e.Handled = true;
-                liIndex = ((DataGridView)(sender)).CurrentRow.Index;
-                pivote.Rows.RemoveAt(liIndex);
-=======
+
+ 
+
         private void dgvGenerico_CellClick(object sender, DataGridViewCellEventArgs e)
         {
             var pivote = (DataGridView)sender;
@@ -499,7 +490,7 @@ namespace ExcelAddIn1
             if (pivote.Rows[e.RowIndex].Cells[0].Value != null)
             {
                 pivote.Rows[e.RowIndex].Cells[1].ReadOnly = false;
->>>>>>> origin/master
+
             }
             else
             {

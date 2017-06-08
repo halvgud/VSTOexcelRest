@@ -46,8 +46,7 @@ namespace Herramienta
                 public static string Clave { get; set; }
             }
 
-<<<<<<< HEAD
-=======
+
             public class PlatillosMenus
             {
                 public static string ListaPlatillos { get; set; } = Properties.Settings.Default.TiposPlatillosDiarios;
@@ -58,7 +57,7 @@ namespace Herramienta
                 public static int TipoId { get; set; }
             }
 
->>>>>>> origin/master
+
             public class Buscarcongelados
             {
                 public static string Bcongelados { get; set; } = Properties.Settings.Default.buscarcongelados;

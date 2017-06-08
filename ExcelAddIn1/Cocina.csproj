@@ -227,16 +227,13 @@
     <Compile Include="Congelados.Designer.cs">
       <DependentUpon>Congelados.cs</DependentUpon>
     </Compile>
-<<<<<<< HEAD
     <Compile Include="Diario.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Diario.Designer.cs">
       <DependentUpon>Diario.cs</DependentUpon>
     </Compile>
-=======
     <Compile Include="dataGridViewTextBoxColumn\Add.cs" />
->>>>>>> origin/master
     <Compile Include="EditarOrden.cs">
       <SubType>Form</SubType>
     </Compile>

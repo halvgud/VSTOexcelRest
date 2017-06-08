@@ -69,10 +69,8 @@ namespace ExcelAddIn1
 
         public void AbrirMenuSemanal(Office.IRibbonControl control)
         {
-<<<<<<< HEAD
            // var ms = new MenuSemanal();
            // ms.Show();
-=======
             var ms = new MenuSemanal();
             ms.Show();
 
@@ -95,7 +93,6 @@ namespace ExcelAddIn1
             //        ms.Hide();
             //    }));
             //});
->>>>>>> origin/master
         }
         public void CrearReceta(Office.IRibbonControl control)
         {

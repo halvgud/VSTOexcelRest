@@ -447,11 +447,7 @@ namespace ExcelAddIn1
                            
                             
                       };
-<<<<<<< HEAD
-                       
-                       
-                       
-=======
+
                         if (MessageBox.Show(@"Desea agregar la imagen de la Receta", @"Aviso", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
                         {
 
@@ -470,15 +466,13 @@ namespace ExcelAddIn1
                             //guardarDialog.FileName = inputs.ClaveReceta.Text + Convert.ToDouble(DateTime.Now);
 
                             Opcion.Copycmdserver(openFileDialog1.FileName, @"\\mercattoserver\Recetario\img\" + inputs.ClaveReceta.Text + a.ToString() + ".jpg");
-                            var ruta = new Receta.Imagen_and_Process
+                            var ruta = new Receta.ImagenAndProcess
                             {
                                 
-                                instruccion = inputs.ModoElaboracion.Text,
-                                ruta = @"\\mercattoserver\Recetario\img\" + inputs.ClaveReceta.Text + a.ToString() + ".jpg"
+                                Instrucciones = inputs.ModoElaboracion.Text,
+                                RutaImagen = @"\\mercattoserver\Recetario\img\" + inputs.ClaveReceta.Text + a.ToString() + ".jpg"
                             };
                         }
-
->>>>>>> origin/master
 
                         Data.Receta.CReceta = receta;
                    // Data.Receta.Detalle.Actualizar();
@@ -495,13 +489,10 @@ namespace ExcelAddIn1
                         
                     }));
                 });}}
-<<<<<<< HEAD
         /*Aqui es donde guarda lo del detalle verdad*/
-        private void Guardado(Action<IRestResponse> x, Inputs inputs)
-=======
+      
 
-        private static void Guardado(Action<IRestResponse> x, Inputs inputs)
->>>>>>> origin/master
+        private void Guardado(Action<IRestResponse> x, Inputs inputs)
         {
             var listRecetaDetalle = new List<Receta.Detalle>();
             BeginInvoke((MethodInvoker) (() => {

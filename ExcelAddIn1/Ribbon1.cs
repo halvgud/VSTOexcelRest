@@ -69,8 +69,33 @@ namespace ExcelAddIn1
 
         public void AbrirMenuSemanal(Office.IRibbonControl control)
         {
+<<<<<<< HEAD
            // var ms = new MenuSemanal();
            // ms.Show();
+=======
+            var ms = new MenuSemanal();
+            ms.Show();
+
+
+            //Opcion.EjecucionAsync(Data.MenuSemanal.ListaPlatilloRecetas, y =>
+            //{
+
+
+            //    var menu = new MenuSemanal(() =>
+            //    {
+            //        var d = Opcion.JsonaListaGenerica<Respuesta.AutoCompletePlatillo>(y).Select(x => x.Platillo).ToArray();
+            //        return d;
+            //    });
+            //    ms.BeginInvoke((MethodInvoker)(() =>
+            //    {
+            //        if (!menu.Visible)
+            //        {
+            //            menu.Show();
+            //        }
+            //        ms.Hide();
+            //    }));
+            //});
+>>>>>>> origin/master
         }
         public void CrearReceta(Office.IRibbonControl control)
         {

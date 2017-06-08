@@ -11,11 +11,11 @@ namespace Respuesta
         public List<MenuDia> Jueves { get; set; }
         public List<MenuDia> Viernes { get; set; }
         public List<MenuDia> Sabado { get; set; }
-        public List<MenuDia> Domingo { get; set; }
-
+        public List<MenuDia> Domingo { get; set; } 
+        public List<AutoCompletePlatillo> IdList { get; set; }
         public MenuSemanal()
         {
-            var claseDia = new MenuDia { TipoRecetaDgv = "", Platillo = "", FechaElaboracion = new DateTime(), Cantidad = 0, Unidad = "", PrecioCompra = 0, GananciaTotal = 0 };
+            var claseDia = new MenuDia { TipoRecetaDgv = "", Platillo = "", FechaElaboracion = new DateTime(), Cantidad = 0, Unidad = "", PrecioCompra = 0, GananciaTotal = 0, Congelado = 0};
             Lunes = new List<MenuDia> {claseDia};
             Martes = new List<MenuDia> {claseDia};
             Miercoles = new List<MenuDia> {claseDia};
@@ -23,10 +23,7 @@ namespace Respuesta
             Viernes = new List<MenuDia> {claseDia};
             Sabado = new List<MenuDia> {claseDia};
             Domingo = new List<MenuDia> {claseDia};
-
-
         }
-
     }
     public class MenuDia
     {
@@ -37,6 +34,36 @@ namespace Respuesta
         public string Unidad { get; set; }
         public double PrecioCompra { get; set; }
         public double GananciaTotal { get; set; }
+        public double Congelado { get; set; }
     }
 
+    public class AutoCompletePlatillo
+    {
+        public int RecId { get; set; }
+        public  int TipoId { get; set; }
+        public  string Platillo { get; set; }
+        public string Clave { get; set; }
+        public List<AutoCompletePlatillo> ListaPlatillos{ get; set; }
+    }
+
+    public class InsertarMenu
+    {
+        public int RecId { get; set; }
+        public string Fecha { get; set; }
+        public double Cantidad { get; set; }
+        public  double PrecioFinal { get; set; }
+        public  int TipoId { get; set; }
+ 
+    }
+
+    public class ListasInsertarMenus
+    {
+        public List<InsertarMenu> LunesMenus { get; set; }
+        public List<InsertarMenu> MartesMenus { get; set; }
+        public  List<InsertarMenu> MiercolesMenus { get; set; }
+        public List<InsertarMenu> JuevesMenus { get; set; }
+        public List<InsertarMenu>ViernesMenus { get; set; } 
+        public List<InsertarMenu>SabadoMenus { get; set; } 
+        public  List<InsertarMenu> DomingoMenus { get; set; } 
+    }
 }

@@ -141,6 +141,8 @@
             this.dgvViernes.Name = "dgvViernes";
             this.dgvViernes.Size = new System.Drawing.Size(419, 165);
             this.dgvViernes.TabIndex = 5;
+            this.dgvViernes.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvGenerico_CellClick);
+            this.dgvViernes.EditingControlShowing += new System.Windows.Forms.DataGridViewEditingControlShowingEventHandler(this.Generico_EditingControlShowing);
             this.dgvViernes.DragDrop += new System.Windows.Forms.DragEventHandler(this.dgvGenerico_DragDrop);
             this.dgvViernes.DragOver += new System.Windows.Forms.DragEventHandler(this.dgvGenerico_DragOver);
             this.dgvViernes.MouseDown += new System.Windows.Forms.MouseEventHandler(this.dgvGenerico_MouseDown);
@@ -155,6 +157,8 @@
             this.dgvJueves.Name = "dgvJueves";
             this.dgvJueves.Size = new System.Drawing.Size(419, 165);
             this.dgvJueves.TabIndex = 4;
+            this.dgvJueves.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvGenerico_CellClick);
+            this.dgvJueves.EditingControlShowing += new System.Windows.Forms.DataGridViewEditingControlShowingEventHandler(this.Generico_EditingControlShowing);
             this.dgvJueves.DragDrop += new System.Windows.Forms.DragEventHandler(this.dgvGenerico_DragDrop);
             this.dgvJueves.DragOver += new System.Windows.Forms.DragEventHandler(this.dgvGenerico_DragOver);
             this.dgvJueves.MouseDown += new System.Windows.Forms.MouseEventHandler(this.dgvGenerico_MouseDown);
@@ -164,14 +168,16 @@
             // 
             this.dgvMiercoles.AllowDrop = true;
             this.dgvMiercoles.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dgvMiercoles.Dock = System.Windows.Forms.DockStyle.Fill;
             this.dgvMiercoles.EditMode = System.Windows.Forms.DataGridViewEditMode.EditOnEnter;
             this.dgvMiercoles.Location = new System.Drawing.Point(853, 43);
             this.dgvMiercoles.Name = "dgvMiercoles";
             this.dgvMiercoles.Size = new System.Drawing.Size(420, 165);
             this.dgvMiercoles.TabIndex = 3;
+            this.dgvMiercoles.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvGenerico_CellClick);
+            this.dgvMiercoles.EditingControlShowing += new System.Windows.Forms.DataGridViewEditingControlShowingEventHandler(this.Generico_EditingControlShowing);
             this.dgvMiercoles.DragDrop += new System.Windows.Forms.DragEventHandler(this.dgvGenerico_DragDrop);
             this.dgvMiercoles.DragOver += new System.Windows.Forms.DragEventHandler(this.dgvGenerico_DragOver);
-            this.dgvMiercoles.KeyDown += new System.Windows.Forms.KeyEventHandler(this.BorrarFila_KeyDown);
             this.dgvMiercoles.MouseDown += new System.Windows.Forms.MouseEventHandler(this.dgvGenerico_MouseDown);
             this.dgvMiercoles.MouseMove += new System.Windows.Forms.MouseEventHandler(this.dgvGenerico_MouseMove);
             // 
@@ -179,11 +185,14 @@
             // 
             this.dgvMartes.AllowDrop = true;
             this.dgvMartes.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dgvMartes.Dock = System.Windows.Forms.DockStyle.Fill;
             this.dgvMartes.EditMode = System.Windows.Forms.DataGridViewEditMode.EditOnEnter;
             this.dgvMartes.Location = new System.Drawing.Point(428, 43);
             this.dgvMartes.Name = "dgvMartes";
             this.dgvMartes.Size = new System.Drawing.Size(419, 165);
             this.dgvMartes.TabIndex = 2;
+            this.dgvMartes.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvGenerico_CellClick);
+            this.dgvMartes.EditingControlShowing += new System.Windows.Forms.DataGridViewEditingControlShowingEventHandler(this.Generico_EditingControlShowing);
             this.dgvMartes.DragDrop += new System.Windows.Forms.DragEventHandler(this.dgvGenerico_DragDrop);
             this.dgvMartes.DragOver += new System.Windows.Forms.DragEventHandler(this.dgvGenerico_DragOver);
             this.dgvMartes.MouseDown += new System.Windows.Forms.MouseEventHandler(this.dgvGenerico_MouseDown);
@@ -192,10 +201,10 @@
             // FechaLunes
             // 
             this.FechaLunes.AutoSize = true;
-            this.FechaLunes.Font = new System.Drawing.Font("Modern No. 20", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.FechaLunes.Font = new System.Drawing.Font("Modern No. 20", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.FechaLunes.Location = new System.Drawing.Point(3, 20);
             this.FechaLunes.Name = "FechaLunes";
-            this.FechaLunes.Size = new System.Drawing.Size(13, 18);
+            this.FechaLunes.Size = new System.Drawing.Size(11, 15);
             this.FechaLunes.TabIndex = 4;
             this.FechaLunes.Text = ".";
             this.FechaLunes.TextAlign = System.Drawing.ContentAlignment.TopCenter;
@@ -203,130 +212,130 @@
             // LabelLunes
             // 
             this.LabelLunes.AutoSize = true;
-            this.LabelLunes.Font = new System.Drawing.Font("Modern No. 20", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.LabelLunes.Font = new System.Drawing.Font("Modern No. 20", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.LabelLunes.Location = new System.Drawing.Point(3, 0);
             this.LabelLunes.Name = "LabelLunes";
-            this.LabelLunes.Size = new System.Drawing.Size(64, 18);
+            this.LabelLunes.Size = new System.Drawing.Size(54, 15);
             this.LabelLunes.TabIndex = 8;
             this.LabelLunes.Text = "Lunes :";
             // 
             // FechaMartes
             // 
             this.FechaMartes.AutoSize = true;
-            this.FechaMartes.Font = new System.Drawing.Font("Modern No. 20", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.FechaMartes.Font = new System.Drawing.Font("Modern No. 20", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.FechaMartes.Location = new System.Drawing.Point(428, 20);
             this.FechaMartes.Name = "FechaMartes";
-            this.FechaMartes.Size = new System.Drawing.Size(13, 18);
+            this.FechaMartes.Size = new System.Drawing.Size(11, 15);
             this.FechaMartes.TabIndex = 4;
             this.FechaMartes.Text = ".";
             // 
             // LabelMartes
             // 
             this.LabelMartes.AutoSize = true;
-            this.LabelMartes.Font = new System.Drawing.Font("Modern No. 20", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.LabelMartes.Font = new System.Drawing.Font("Modern No. 20", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.LabelMartes.Location = new System.Drawing.Point(428, 0);
             this.LabelMartes.Name = "LabelMartes";
-            this.LabelMartes.Size = new System.Drawing.Size(69, 18);
+            this.LabelMartes.Size = new System.Drawing.Size(58, 15);
             this.LabelMartes.TabIndex = 9;
             this.LabelMartes.Text = "Martes :";
             // 
             // FechaMiercoles
             // 
             this.FechaMiercoles.AutoSize = true;
-            this.FechaMiercoles.Font = new System.Drawing.Font("Modern No. 20", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.FechaMiercoles.Font = new System.Drawing.Font("Modern No. 20", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.FechaMiercoles.Location = new System.Drawing.Point(853, 20);
             this.FechaMiercoles.Name = "FechaMiercoles";
-            this.FechaMiercoles.Size = new System.Drawing.Size(13, 18);
+            this.FechaMiercoles.Size = new System.Drawing.Size(11, 15);
             this.FechaMiercoles.TabIndex = 5;
             this.FechaMiercoles.Text = ".";
             // 
             // LabelMiercoles
             // 
             this.LabelMiercoles.AutoSize = true;
-            this.LabelMiercoles.Font = new System.Drawing.Font("Modern No. 20", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.LabelMiercoles.Font = new System.Drawing.Font("Modern No. 20", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.LabelMiercoles.Location = new System.Drawing.Point(853, 0);
             this.LabelMiercoles.Name = "LabelMiercoles";
-            this.LabelMiercoles.Size = new System.Drawing.Size(89, 18);
+            this.LabelMiercoles.Size = new System.Drawing.Size(75, 15);
             this.LabelMiercoles.TabIndex = 10;
             this.LabelMiercoles.Text = "Miercoles :";
             // 
             // FechaJueves
             // 
             this.FechaJueves.AutoSize = true;
-            this.FechaJueves.Font = new System.Drawing.Font("Modern No. 20", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.FechaJueves.Font = new System.Drawing.Font("Modern No. 20", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.FechaJueves.Location = new System.Drawing.Point(3, 231);
             this.FechaJueves.Name = "FechaJueves";
-            this.FechaJueves.Size = new System.Drawing.Size(13, 18);
+            this.FechaJueves.Size = new System.Drawing.Size(11, 15);
             this.FechaJueves.TabIndex = 15;
             this.FechaJueves.Text = ".";
             // 
             // LabelJueves
             // 
             this.LabelJueves.AutoSize = true;
-            this.LabelJueves.Font = new System.Drawing.Font("Modern No. 20", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.LabelJueves.Font = new System.Drawing.Font("Modern No. 20", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.LabelJueves.Location = new System.Drawing.Point(3, 211);
             this.LabelJueves.Name = "LabelJueves";
-            this.LabelJueves.Size = new System.Drawing.Size(65, 18);
+            this.LabelJueves.Size = new System.Drawing.Size(56, 15);
             this.LabelJueves.TabIndex = 11;
             this.LabelJueves.Text = "Jueves :";
             // 
             // FechaViernes
             // 
             this.FechaViernes.AutoSize = true;
-            this.FechaViernes.Font = new System.Drawing.Font("Modern No. 20", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.FechaViernes.Font = new System.Drawing.Font("Modern No. 20", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.FechaViernes.Location = new System.Drawing.Point(428, 231);
             this.FechaViernes.Name = "FechaViernes";
-            this.FechaViernes.Size = new System.Drawing.Size(13, 18);
+            this.FechaViernes.Size = new System.Drawing.Size(11, 15);
             this.FechaViernes.TabIndex = 5;
             this.FechaViernes.Text = ".";
             // 
             // LabelViernes
             // 
             this.LabelViernes.AutoSize = true;
-            this.LabelViernes.Font = new System.Drawing.Font("Modern No. 20", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.LabelViernes.Font = new System.Drawing.Font("Modern No. 20", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.LabelViernes.Location = new System.Drawing.Point(428, 211);
             this.LabelViernes.Name = "LabelViernes";
-            this.LabelViernes.Size = new System.Drawing.Size(75, 18);
+            this.LabelViernes.Size = new System.Drawing.Size(63, 15);
             this.LabelViernes.TabIndex = 12;
             this.LabelViernes.Text = "Viernes :";
             // 
             // FechaSabado
             // 
             this.FechaSabado.AutoSize = true;
-            this.FechaSabado.Font = new System.Drawing.Font("Modern No. 20", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.FechaSabado.Font = new System.Drawing.Font("Modern No. 20", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.FechaSabado.Location = new System.Drawing.Point(853, 231);
             this.FechaSabado.Name = "FechaSabado";
-            this.FechaSabado.Size = new System.Drawing.Size(13, 18);
+            this.FechaSabado.Size = new System.Drawing.Size(11, 15);
             this.FechaSabado.TabIndex = 5;
             this.FechaSabado.Text = ".";
             // 
             // LabelSabado
             // 
             this.LabelSabado.AutoSize = true;
-            this.LabelSabado.Font = new System.Drawing.Font("Modern No. 20", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.LabelSabado.Font = new System.Drawing.Font("Modern No. 20", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.LabelSabado.Location = new System.Drawing.Point(853, 211);
             this.LabelSabado.Name = "LabelSabado";
-            this.LabelSabado.Size = new System.Drawing.Size(70, 18);
+            this.LabelSabado.Size = new System.Drawing.Size(59, 15);
             this.LabelSabado.TabIndex = 13;
             this.LabelSabado.Text = "Sabado :";
             // 
             // FechaDomingo
             // 
             this.FechaDomingo.AutoSize = true;
-            this.FechaDomingo.Font = new System.Drawing.Font("Modern No. 20", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.FechaDomingo.Font = new System.Drawing.Font("Modern No. 20", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.FechaDomingo.Location = new System.Drawing.Point(428, 442);
             this.FechaDomingo.Name = "FechaDomingo";
-            this.FechaDomingo.Size = new System.Drawing.Size(13, 18);
+            this.FechaDomingo.Size = new System.Drawing.Size(11, 15);
             this.FechaDomingo.TabIndex = 5;
             this.FechaDomingo.Text = ".";
             // 
             // LabelDomingo
             // 
             this.LabelDomingo.AutoSize = true;
-            this.LabelDomingo.Font = new System.Drawing.Font("Modern No. 20", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.LabelDomingo.Font = new System.Drawing.Font("Modern No. 20", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.LabelDomingo.Location = new System.Drawing.Point(428, 422);
             this.LabelDomingo.Name = "LabelDomingo";
-            this.LabelDomingo.Size = new System.Drawing.Size(85, 18);
+            this.LabelDomingo.Size = new System.Drawing.Size(71, 15);
             this.LabelDomingo.TabIndex = 14;
             this.LabelDomingo.Text = "Domingo :";
             // 
@@ -334,14 +343,16 @@
             // 
             this.dgvLunes.AllowDrop = true;
             this.dgvLunes.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dgvLunes.Dock = System.Windows.Forms.DockStyle.Fill;
             this.dgvLunes.EditMode = System.Windows.Forms.DataGridViewEditMode.EditOnEnter;
             this.dgvLunes.Location = new System.Drawing.Point(3, 43);
             this.dgvLunes.Name = "dgvLunes";
             this.dgvLunes.Size = new System.Drawing.Size(419, 165);
             this.dgvLunes.TabIndex = 1;
-            this.dgvLunes.EditingControlShowing += new System.Windows.Forms.DataGridViewEditingControlShowingEventHandler(this.dgvLunes_EditingControlShowing);
+            this.dgvLunes.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvGenerico_CellClick);
+            this.dgvLunes.EditingControlShowing += new System.Windows.Forms.DataGridViewEditingControlShowingEventHandler(this.Generico_EditingControlShowing);
             this.dgvLunes.DragOver += new System.Windows.Forms.DragEventHandler(this.dgvGenerico_DragOver);
-            this.dgvLunes.KeyDown += new System.Windows.Forms.KeyEventHandler(this.BorrarFila_KeyDown);
+            this.dgvLunes.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.dgvGenerico_KeyPress);
             this.dgvLunes.MouseDown += new System.Windows.Forms.MouseEventHandler(this.dgvGenerico_MouseDown);
             this.dgvLunes.MouseMove += new System.Windows.Forms.MouseEventHandler(this.dgvGenerico_MouseMove);
             // 
@@ -355,6 +366,8 @@
             this.dgvSabado.Name = "dgvSabado";
             this.dgvSabado.Size = new System.Drawing.Size(420, 165);
             this.dgvSabado.TabIndex = 6;
+            this.dgvSabado.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvGenerico_CellClick);
+            this.dgvSabado.EditingControlShowing += new System.Windows.Forms.DataGridViewEditingControlShowingEventHandler(this.Generico_EditingControlShowing);
             this.dgvSabado.DragDrop += new System.Windows.Forms.DragEventHandler(this.dgvGenerico_DragDrop);
             this.dgvSabado.DragOver += new System.Windows.Forms.DragEventHandler(this.dgvGenerico_DragOver);
             this.dgvSabado.MouseDown += new System.Windows.Forms.MouseEventHandler(this.dgvGenerico_MouseDown);
@@ -370,6 +383,8 @@
             this.dgvDomingo.Name = "dgvDomingo";
             this.dgvDomingo.Size = new System.Drawing.Size(419, 165);
             this.dgvDomingo.TabIndex = 16;
+            this.dgvDomingo.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvGenerico_CellClick);
+            this.dgvDomingo.EditingControlShowing += new System.Windows.Forms.DataGridViewEditingControlShowingEventHandler(this.Generico_EditingControlShowing);
             this.dgvDomingo.DragOver += new System.Windows.Forms.DragEventHandler(this.dgvGenerico_DragOver);
             this.dgvDomingo.MouseDown += new System.Windows.Forms.MouseEventHandler(this.dgvGenerico_MouseDown);
             this.dgvDomingo.MouseMove += new System.Windows.Forms.MouseEventHandler(this.dgvGenerico_MouseMove);

@@ -447,16 +447,45 @@ namespace ExcelAddIn1
                            
                             
                       };
+<<<<<<< HEAD
                        
                        
                        
+=======
+                        if (MessageBox.Show(@"Desea agregar la imagen de la Receta", @"Aviso", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
+                        {
+
+                            //aqui pones el beginInvoke porque estas en otro hilo
+                            openFileDialog1.Filter = @"Image Files (*.png *.jpg *.bmp) | *.png; *.jpg; *.bmp | All Files(*.*) | *.* ";
+                            openFileDialog1.Title = @"Buscar Imagen";
+                            openFileDialog1.FileName = "";
+                            openFileDialog1.ShowDialog();
+                            long a = int.Parse(DateTime.Now.ToString("yyyyMMdd"));
+                            // string v = openFileDialog1.FileName;//=inputs.ClaveReceta.Text+a.ToString();
+                            // MessageBox.Show(v);
+                            //  openFileDialog1 open =new openFileDialog1();
+                            //   open.Filter= "|*.jpg|*.bmp|*.png";
+                            //SaveFileDialog guardarDialog = new SaveFileDialog();
+                            //guardarDialog.Filter = "|*.jpg|*.bmp|*.png";
+                            //guardarDialog.FileName = inputs.ClaveReceta.Text + Convert.ToDouble(DateTime.Now);
+
+                            Opcion.Copycmdserver(openFileDialog1.FileName, @"\\mercattoserver\Recetario\img\" + inputs.ClaveReceta.Text + a.ToString() + ".jpg");
+                            var ruta = new Receta.Imagen_and_Process
+                            {
+                                
+                                instruccion = inputs.ModoElaboracion.Text,
+                                ruta = @"\\mercattoserver\Recetario\img\" + inputs.ClaveReceta.Text + a.ToString() + ".jpg"
+                            };
+                        }
+
+>>>>>>> origin/master
 
                         Data.Receta.CReceta = receta;
                    // Data.Receta.Detalle.Actualizar();
                         Opcion.EjecucionAsync(Data.Receta.Insertar, resultado =>
                         {
                         
-                           
+                     
                             Guardado(resultado,inputs);
                         }, x =>
                         {
@@ -466,8 +495,13 @@ namespace ExcelAddIn1
                         
                     }));
                 });}}
+<<<<<<< HEAD
         /*Aqui es donde guarda lo del detalle verdad*/
         private void Guardado(Action<IRestResponse> x, Inputs inputs)
+=======
+
+        private static void Guardado(Action<IRestResponse> x, Inputs inputs)
+>>>>>>> origin/master
         {
             var listRecetaDetalle = new List<Receta.Detalle>();
             BeginInvoke((MethodInvoker) (() => {
@@ -922,6 +956,7 @@ namespace ExcelAddIn1
             Local.Receta.Clave = (tbClaveReceta.Text);
             Opcion.EjecucionAsync(Data.Receta.Lista, jsonResult =>
             {
+                // ReSharper disable once RedundantJumpStatement
                 if (!ValidarClave(tbClaveReceta, jsonResult)) return;
             });
         }

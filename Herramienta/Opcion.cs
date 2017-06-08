@@ -3,7 +3,9 @@ using System.Collections.Generic;
 using System.Diagnostics;
 using System.IO;
 using System.Windows.Forms;
+using Herramienta.Config;
 using Newtonsoft.Json;
+using Respuesta;
 using RestSharp;
 using RestSharp.Deserializers;
 
@@ -242,5 +244,13 @@ namespace Herramienta
                 }
             }
         }
+
+        public static void EjecucionAsyncAction(Action<Action<IRestResponse>> accionInicial, Action<IRestResponse> accionFinal, Action<IRestResponse> p)
+        {
+            accionInicial(accionFinal);
+            //throw new NotImplementedException();
+        }
+
+ 
     }
 }

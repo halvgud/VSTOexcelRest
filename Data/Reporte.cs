@@ -151,7 +151,11 @@ namespace Data
         {
             try
             {
+<<<<<<< HEAD
                 var rest = new Rest(Local.Api.UrlApi, Herramienta.Config.Cocina.Buscarcongelados.Repcongelados, Method.GET);
+=======
+                var rest = new Rest(Local.Api.UrlApi, Herramienta.Config.Cocina.Buscarcongelados.repcongelados, Method.GET);
+>>>>>>> origin/master
 
                 rest.Peticion.AddHeader(Constantes.Http.ObtenerTipoDeContenido, Constantes.Http.TipoDeContenido.Json);
                 rest.Cliente.ExecuteAsync(rest.Peticion, response =>

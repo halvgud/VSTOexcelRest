@@ -15,7 +15,7 @@ namespace Respuesta
         public List<AutoCompletePlatillo> IdList { get; set; }
         public MenuSemanal()
         {
-            var claseDia = new MenuDia { TipoRecetaDgv = "", Platillo = "", FechaElaboracion = new DateTime(), Cantidad = 0, Unidad = "", PrecioCompra = 0, GananciaTotal = 0, Congelado = 0};
+            var claseDia = new MenuDia { TipoRecetaDgv = "", Platillo = "", FechaElaboracion = new DateTime(), Cantidad = 0, UnidadDgv = "", PrecioCompra = 0, GananciaTotal = 0};
             Lunes = new List<MenuDia> {claseDia};
             Martes = new List<MenuDia> {claseDia};
             Miercoles = new List<MenuDia> {claseDia};
@@ -31,10 +31,9 @@ namespace Respuesta
         public string Platillo { get; set; }
         public DateTime FechaElaboracion { get; set; }
         public double Cantidad { get; set; }
-        public string Unidad { get; set; }
+        public string UnidadDgv { get; set; }
         public double PrecioCompra { get; set; }
         public double GananciaTotal { get; set; }
-        public double Congelado { get; set; }
     }
 
     public class AutoCompletePlatillo
@@ -43,6 +42,7 @@ namespace Respuesta
         public  int TipoId { get; set; }
         public  string Platillo { get; set; }
         public string Clave { get; set; }
+        public  double Congelado { get; set; }
         public List<AutoCompletePlatillo> ListaPlatillos{ get; set; }
     }
 
@@ -53,17 +53,6 @@ namespace Respuesta
         public double Cantidad { get; set; }
         public  double PrecioFinal { get; set; }
         public  int TipoId { get; set; }
- 
     }
 
-    public class ListasInsertarMenus
-    {
-        public List<InsertarMenu> LunesMenus { get; set; }
-        public List<InsertarMenu> MartesMenus { get; set; }
-        public  List<InsertarMenu> MiercolesMenus { get; set; }
-        public List<InsertarMenu> JuevesMenus { get; set; }
-        public List<InsertarMenu>ViernesMenus { get; set; } 
-        public List<InsertarMenu>SabadoMenus { get; set; } 
-        public  List<InsertarMenu> DomingoMenus { get; set; } 
-    }
 }

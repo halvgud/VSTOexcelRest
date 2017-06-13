@@ -322,7 +322,7 @@ namespace Herramienta.Properties {
         
         [global::System.Configuration.ApplicationScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("/receta/MostrarMenu")]
+        [global::System.Configuration.DefaultSettingValueAttribute("receta/MostrarMenu")]
         public string menu {
             get {
                 return ((string)(this["menu"]));
@@ -403,28 +403,25 @@ namespace Herramienta.Properties {
         
         [global::System.Configuration.ApplicationScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("/receta/SeleccionarPlatilloMenu")]
+        [global::System.Configuration.DefaultSettingValueAttribute("receta/SeleccionarPlatilloMenu")]
         public string TiposPlatillosDiarios {
             get {
                 return ((string)(this["TiposPlatillosDiarios"]));
             }
         }
         
-        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Configuration.ApplicationScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("/receta/InsertarMenu")]
+        [global::System.Configuration.DefaultSettingValueAttribute("receta/InsertarMenu")]
         public string InsertarMenuDiarios {
             get {
                 return ((string)(this["InsertarMenuDiarios"]));
-            }
-            set {
-                this["InsertarMenuDiarios"] = value;
             }
         }
         
         [global::System.Configuration.ApplicationScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("/receta/SeleccionarRecId")]
+        [global::System.Configuration.DefaultSettingValueAttribute("receta/SeleccionarRecId")]
         public string RecIdporClave {
             get {
                 return ((string)(this["RecIdporClave"]));
@@ -433,10 +430,28 @@ namespace Herramienta.Properties {
         
         [global::System.Configuration.ApplicationScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("/receta/SeleccionarTiporId")]
+        [global::System.Configuration.DefaultSettingValueAttribute("receta/SeleccionarTiporId")]
         public string TipoIdporNombre {
             get {
                 return ((string)(this["TipoIdporNombre"]));
+            }
+        }
+        
+        [global::System.Configuration.ApplicationScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("receta/PlatilloCongelado")]
+        public string ExistenciaCongeladoMenu {
+            get {
+                return ((string)(this["ExistenciaCongeladoMenu"]));
+            }
+        }
+        
+        [global::System.Configuration.ApplicationScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("/receta/IngredientesPlatillos")]
+        public string ListaIngredientesMenu {
+            get {
+                return ((string)(this["ListaIngredientesMenu"]));
             }
         }
     }

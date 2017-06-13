@@ -42,7 +42,7 @@ namespace ExcelAddIn1
                 tbCantidad.Visible = false;
                 tbCantidad.Text = @"1";
             }
-            dataGridView1.DataSource = _claveCongelados.Select(x => new { clave = x.clave, descripcion = x.descripcion, cantidad = x.cantidad }).ToArray();
+            dataGridView1.DataSource = _claveCongelados.Select(x => new { clave = x.Clave, descripcion = x.Descripcion, cantidad = x.Cantidad }).ToArray();
             dataGridView1.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
         }
         private void btAceptar_Click(object sender, EventArgs e)
@@ -57,7 +57,7 @@ namespace ExcelAddIn1
                 _callback(_clave[dataGridView1.CurrentCell.RowIndex]);
             }else
             {
-                _claveCongelados[dataGridView1.CurrentCell.RowIndex].cantidad = double.Parse(tbCantidad.Text);
+                _claveCongelados[dataGridView1.CurrentCell.RowIndex].Cantidad = double.Parse(tbCantidad.Text);
                 _callbackCongelados(_claveCongelados[dataGridView1.CurrentCell.RowIndex]);
             }
             //if (_banderaCongelados)

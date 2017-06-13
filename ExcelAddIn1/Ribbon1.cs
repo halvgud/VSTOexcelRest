@@ -69,6 +69,10 @@ namespace ExcelAddIn1
 
         public void AbrirMenuSemanal(Office.IRibbonControl control)
         {
+<<<<<<< HEAD
+           // var ms = new MenuSemanal();
+           // ms.Show();
+=======
             var ms = new MenuSemanal();
             ms.Show();
 
@@ -91,6 +95,7 @@ namespace ExcelAddIn1
             //        ms.Hide();
             //    }));
             //});
+>>>>>>> origin/master
         }
         public void CrearReceta(Office.IRibbonControl control)
         {
@@ -144,7 +149,7 @@ namespace ExcelAddIn1
 
         #region Miembros de IRibbonExtensibility
 
-        public string GetCustomUI(string ribbonID)
+        public string GetCustomUI(string ribbonId)
         {
             return GetResourceText("ExcelAddIn1.Ribbon1.xml");
         }
@@ -154,9 +159,9 @@ namespace ExcelAddIn1
         #region Devoluciones de llamada de la cinta de opciones
         //Cree aquí métodos de devolución de llamada. Para obtener más información sobre los métodos de devolución de llamada, visite http://go.microsoft.com/fwlink/?LinkID=271226.
 
-        public void Ribbon_Load(Office.IRibbonUI ribbonUI)
+        public void Ribbon_Load(Office.IRibbonUI ribbonUi)
         {
-            this._ribbon = ribbonUI;
+            this._ribbon = ribbonUi;
         }
 
         #endregion

@@ -13,7 +13,7 @@ namespace Data
 
             try
             {
-                var rest = new Rest(Local.Api.UrlApi, Cocina.ordenarproducto.OrdenConcepto,
+                var rest = new Rest(Local.Api.UrlApi, Cocina.Ordenarproducto.OrdenConcepto,
                     Method.GET);
                 rest.Peticion.AddHeader(Constantes.Http.ObtenerTipoDeContenido,
                     Constantes.Http.TipoDeContenido.Json);

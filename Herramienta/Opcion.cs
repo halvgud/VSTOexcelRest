@@ -15,12 +15,19 @@ namespace Herramienta
    public class Opcion
     {
 
-        /// <summary>
-        /// Función que realiza la escritura de mensajes a un archivo
-        /// </summary>
-        /// <param name="archivo">Archivo a generar</param>
-        /// <param name="mensaje">Mensaje a escribir en archivo</param>
-        /// <remarks></remarks>
+       /// <summary>
+       /// Función que realiza la escritura de mensajes a un archivo
+       /// </summary>
+       /// <param name="archivo">Archivo a generar</param>
+       /// <param name="mensaje">Mensaje a escribir en archivo</param>
+       /// <remarks></remarks>
+
+
+
+       public static void Validacionesgenerales(string dato,string tabla)
+       {
+           
+       }
         public static void Log(string archivo, string mensaje)
         {
             //variable que inicializa el streamwriter
@@ -40,7 +47,25 @@ namespace Herramienta
                 txtMirror?.Close();
             }
         }
-        //ya lo solucione a
+
+
+       public static void Deletecmdserver(string deletePath, string directory)
+        {
+
+
+                var command = "NET USE " + directory + " /user:" + "Administrador" + " " + "Sysadmin11";
+                ExecuteCommand(command, 5000);
+
+                command = "del /Q " + deletePath ;
+                ExecuteCommand(command, 5000);
+
+
+                command = "NET USE " + deletePath + " /delete /y";
+                ExecuteCommand(command, 5000);
+
+
+          }
+
         public static void Copycmdserver(string filePath, string savePath)
         {
             var directoryName = Path.GetDirectoryName(savePath);
@@ -59,12 +84,12 @@ namespace Herramienta
                 ExecuteCommand(command, 5000);
                 
                 command = " copy \"" + filePath + "\"  \"" + directory + filenameToSave + "\"";
-
                 ExecuteCommand(command, 5000);
 
 
                 command = "NET USE " + directory + " /delete";
                 ExecuteCommand(command, 5000);
+         
 
             }
         }
@@ -82,9 +107,9 @@ namespace Herramienta
             if (process != null)
             {
                 process.WaitForExit(timeout);
-                var exitCode = process.ExitCode;
+               // var exitCode = process.ExitCode;
                 process.Close();
-                return exitCode;
+                return 1;
             }
             return 0;
         }

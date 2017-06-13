@@ -18,13 +18,13 @@ namespace testVSTO2
             _listaArticulo = listaArticulo;
             _callback = callback;
             InitializeComponent();
-            dgvListaArticulos.DataSource = _listaArticulo.Select(x => new { x.clave, x.descripcion, x.precioCompra }).ToArray();
+            dgvListaArticulos.DataSource = _listaArticulo.Select(x => new { clave = x.Clave, descripcion = x.Descripcion, precioCompra = x.PrecioCompra }).ToArray();
             dgvListaArticulos.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
         
         }
         private void btAceptar_Click(object sender, EventArgs e)
         {
-            _listaArticulo[dgvListaArticulos.CurrentCell.RowIndex].cantidad = double.Parse(tbCantidad.Text);
+            _listaArticulo[dgvListaArticulos.CurrentCell.RowIndex].Cantidad = double.Parse(tbCantidad.Text);
             _callback(new List<Articulo> { _listaArticulo[dgvListaArticulos.CurrentCell.RowIndex] });
             Close();
         }

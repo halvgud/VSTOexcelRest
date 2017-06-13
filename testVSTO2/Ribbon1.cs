@@ -140,9 +140,9 @@ namespace testVSTO2
                     {
                         lista.Add(new Articulo.Guardar.PrecioMargen
                         {
-                            clave = value[x, Reporte.General.Posicion.clave+1].ToString(),
-                            precio1 = value[x, Reporte.General.Posicion.precioVenta+1].ToString(),
-                            margen1 = value[x, Reporte.General.Posicion.margen+1].ToString()
+                            Clave = value[x, Reporte.General.Posicion.Clave+1].ToString(),
+                            Precio1 = value[x, Reporte.General.Posicion.PrecioVenta+1].ToString(),
+                            Margen1 = value[x, Reporte.General.Posicion.Margen+1].ToString()
                         });
                     }
                     if (!cancelar)
@@ -204,9 +204,9 @@ namespace testVSTO2
                     {
                         lista.Add(new Articulo.Guardar.MaximosMinimos
                         {
-                            clave = value[x, Reporte.General.Posicion.clave+1].ToString(),
-                            invMin = value[x, Reporte.General.Posicion.inventarioMinimo+1].ToString(),
-                            invMax = value[x, Reporte.General.Posicion.inventarioMaximo+1].ToString()
+                            Clave = value[x, Reporte.General.Posicion.Clave+1].ToString(),
+                            InvMin = value[x, Reporte.General.Posicion.InventarioMinimo+1].ToString(),
+                            InvMax = value[x, Reporte.General.Posicion.InventarioMaximo+1].ToString()
                         });
                     }
                     if (!cancelar)
@@ -268,8 +268,8 @@ namespace testVSTO2
                     {
                         lista.Add(new Articulo.Guardar.Tipo 
                         {
-                            clave = value[x, Reporte.General.Posicion.clave+1].ToString(),
-                            tipo = value[x, Reporte.General.Posicion.tipo+1].ToString()});
+                            Clave = value[x, Reporte.General.Posicion.Clave+1].ToString(),
+                            tipo = value[x, Reporte.General.Posicion.Tipo+1].ToString()});
                     }
                     if (!cancelar)
                     {

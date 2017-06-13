@@ -38,12 +38,12 @@
             this.label1 = new System.Windows.Forms.Label();
             this.txtbuscarcongelado = new System.Windows.Forms.TextBox();
             this.tpbuscaryeditar = new System.Windows.Forms.TabPage();
+            this.btbaja = new System.Windows.Forms.Button();
             this.btguardareditar = new System.Windows.Forms.Button();
             this.dgvcongeladobuscaryeditar = new System.Windows.Forms.DataGridView();
             this.txtbuscarcongeladoeditar = new System.Windows.Forms.TextBox();
             this.label2 = new System.Windows.Forms.Label();
             this.btbuscareditar = new System.Windows.Forms.Button();
-            this.btbaja = new System.Windows.Forms.Button();
             this.tabControl1.SuspendLayout();
             this.tpagregar.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvcongelados)).BeginInit();
@@ -148,6 +148,16 @@
             this.tpbuscaryeditar.Text = "Buscar y Editar";
             this.tpbuscaryeditar.UseVisualStyleBackColor = true;
             // 
+            // btbaja
+            // 
+            this.btbaja.Location = new System.Drawing.Point(44, 238);
+            this.btbaja.Name = "btbaja";
+            this.btbaja.Size = new System.Drawing.Size(75, 23);
+            this.btbaja.TabIndex = 5;
+            this.btbaja.Text = "Dar de Baja";
+            this.btbaja.UseVisualStyleBackColor = true;
+            this.btbaja.Click += new System.EventHandler(this.btbaja_Click);
+            // 
             // btguardareditar
             // 
             this.btguardareditar.Location = new System.Drawing.Point(499, 233);
@@ -191,16 +201,6 @@
             this.btbuscareditar.Text = "Buscar";
             this.btbuscareditar.UseVisualStyleBackColor = true;
             this.btbuscareditar.Click += new System.EventHandler(this.btbuscareditar_Click);
-            // 
-            // btbaja
-            // 
-            this.btbaja.Location = new System.Drawing.Point(44, 238);
-            this.btbaja.Name = "btbaja";
-            this.btbaja.Size = new System.Drawing.Size(75, 23);
-            this.btbaja.TabIndex = 5;
-            this.btbaja.Text = "Dar de Baja";
-            this.btbaja.UseVisualStyleBackColor = true;
-            this.btbaja.Click += new System.EventHandler(this.btbaja_Click);
             // 
             // Congelados
             // 

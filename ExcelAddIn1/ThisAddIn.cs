@@ -98,14 +98,14 @@ namespace ExcelAddIn1
                     //excelazo.Range["M7"].NumberFormat = "##.## %";
 
                     if (excelazo == null) return;
-                    ((excelazo.Range["A1"])).Value2 = listCocina.receta;
+                    ((excelazo.Range["A1"])).Value2 = listCocina.Receta;
                     ((excelazo.Range["M7"])).Value2 = listCocina.Margen;
                     //((excelazo.Range["K5"])).Value2 =lista.CantidadElaborada ;
-                    ((excelazo.Range["F7"])).Value2 = listCocina.ultimaElaboracion;
+                    ((excelazo.Range["F7"])).Value2 = listCocina.UltimaElaboracion;
                     ((excelazo.Range["N5"])).Value2 = listCocina.Venta;
                     //((excelazo.Range["G7"])).Value2 = lista.Densidad;
-                    ((excelazo.Range["G5"])).Value2 = listCocina.rec_id;
-                    ((excelazo.Range["H7"])).Value2 =listCocina.medida;
+                    ((excelazo.Range["G5"])).Value2 = listCocina.RecId;
+                    ((excelazo.Range["H7"])).Value2 =listCocina.Medida;
                     //((excelazo.Range["L10"])).Value2 = lista.Foto;
                     ((excelazo.Range["M5"])).Value2 = listCocina.Costo;
                     //((excelazo.Range["N5"])).Value2 = rrc.Venta;
@@ -348,12 +348,12 @@ namespace ExcelAddIn1
             var lista = new object[rrgc.Count, 7];
             for (var x = 0; x < rrgc.Count; x++)
             {
-                lista[x, 0] = rrgc[x].id;
-                lista[x, 1] = "'"+rrgc[x].clave;
-                lista[x, 2] = rrgc[x].descripcion;
-                lista[x, 3] = rrgc[x].existencia;
-                lista[x, 4] = rrgc[x].estado;
-                lista[x, 5] = rrgc[x].fechaEntrada;
+                lista[x, 0] = rrgc[x].Id;
+                lista[x, 1] = "'"+rrgc[x].Clave;
+                lista[x, 2] = rrgc[x].Descripcion;
+                lista[x, 3] = rrgc[x].Existencia;
+                lista[x, 4] = rrgc[x].Estado;
+                lista[x, 5] = rrgc[x].FechaEntrada;
             }
             return lista;
 
@@ -366,11 +366,11 @@ namespace ExcelAddIn1
             var lista = new object[rrg.Count, 24];
             for (var x = 0; x < rrg.Count; x++)
             {
-                lista[x, 0] = "'"+rrg[x].clave;
-                lista[x, 1] = rrg[x].receta.ToString();
+                lista[x, 0] = "'"+rrg[x].Clave;
+                lista[x, 1] = rrg[x].Receta.ToString();
                 lista[x, 2] = rrg[x].TipoProducto;
-                lista[x, 3] = rrg[x].cantidadinventario;
-                lista[x, 4] = rrg[x].categoria;
+                lista[x, 3] = rrg[x].Cantidadinventario;
+                lista[x, 4] = rrg[x].Categoria;
                
                 string dato = rrg[x].Estado;
                 if (string.IsNullOrEmpty(dato))
@@ -382,14 +382,14 @@ namespace ExcelAddIn1
                     lista[x, 5] = rrg[x].Estado;
                 }
                 lista[x, 6] = rrg[x].Since;
-                lista[x, 7] = rrg[x].ultimaElaboracion;
-                lista[x, 8] = rrg[x].medida;
-                lista[x, 9] = rrg[x].consumodia;
+                lista[x, 7] = rrg[x].UltimaElaboracion;
+                lista[x, 8] = rrg[x].Medida;
+                lista[x, 9] = rrg[x].Consumodia;
                 lista[x, 10] = rrg[x].Costo;
                 lista[x, 11] = rrg[x].Venta;
                 lista[x, 12] = rrg[x].Margen;
-                lista[x, 13] = rrg[x].qty;
-                lista[x, 14] = rrg[x].salesince;
+                lista[x, 13] = rrg[x].Qty;
+                lista[x, 14] = rrg[x].Salesince;
                 lista[x, 15] = rrg[x].ProfitSince;
                 
                 var qty = rrg[x].Qtycongelado;

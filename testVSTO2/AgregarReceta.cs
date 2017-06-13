@@ -15,6 +15,8 @@ namespace testVSTO2
     {
         private List<Articulo.Basica> _listaArticuloBasica1;
         private List<Articulo.Basica> _listaArticuloBasica2;
+
+      
         public class Inputs
         {
 
@@ -300,7 +302,7 @@ namespace testVSTO2
         private void Guardar(Inputs inputs)
         {
             btGuardar.Enabled = false;
-            Local.Receta.clave = (inputs.ClaveReceta.Text);
+            Local.Receta.Clave = (inputs.ClaveReceta.Text);
             if (ValidarCampos())
             {
                 Opcion.EjecucionAsync(Data.Receta.Lista, jsonResult =>
@@ -320,7 +322,7 @@ namespace testVSTO2
                             PesoLitro = Convert.ToDouble(inputs.PesoLitro.Text),
                             Precio = double.Parse(inputs.Precio.Text),
                             RecId = 0,
-                            Diario = Convert.ToInt32(inputs.Diario.Checked)
+                            Diario = inputs.Diario.Checked?1:0
                         };
                         Data.Receta.CReceta = receta;
                         Opcion.EjecucionAsync(Data.Receta.Insertar, resultado =>
@@ -419,7 +421,7 @@ namespace testVSTO2
         /****************************************************************************/
         private void btBuscarClave_Click(object sender, EventArgs e)
         {
-            Local.Receta.clave = tbBuscarReceta.Text == string.Empty?"%":tbBuscarReceta.Text;
+            Local.Receta.Clave = tbBuscarReceta.Text == string.Empty?"%":tbBuscarReceta.Text;
             Opcion.EjecucionAsync(Data.Receta.Lista, jsonResult =>
             {
                 BeginInvoke((MethodInvoker)(() =>

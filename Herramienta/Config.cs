@@ -52,9 +52,11 @@ namespace Herramienta
                 public static string ListaPlatillos { get; set; } = Properties.Settings.Default.TiposPlatillosDiarios;
                 public static string SacarRecId { get; set; } = Properties.Settings.Default.RecIdporClave;
                 public static string SacarTipoId { get; set; } = Properties.Settings.Default.TipoIdporNombre;
+                public static string ExistenciaCongelado { get; set; }=Properties.Settings.Default.ExistenciaCongeladoMenu;
+                public static string IngredientesMenu { get; set; } = Properties.Settings.Default.ListaIngredientesMenu;
                 public static string Clave { get; set; }
                 public static string Nombre { get; set; }
-                public static int TipoId { get; set; }
+                public static string RecId { get; set; }
             }
 
 

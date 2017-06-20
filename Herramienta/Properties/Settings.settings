@@ -102,7 +102,7 @@
       <Value Profile="(Default)">reporte/seleccionarplatillo</Value>
     </Setting>
     <Setting Name="menu" Type="System.String" Scope="Application">
-      <Value Profile="(Default)">/receta/MostrarMenu</Value>
+      <Value Profile="(Default)">receta/MostrarMenu</Value>
     </Setting>
     <Setting Name="buscarcongelados" Type="System.String" Scope="Application">
       <Value Profile="(Default)">reporte/Sacarcongelado</Value>
@@ -144,19 +144,33 @@
       <Value Profile="(Default)">receta/actRuta_and_Instrucciones</Value>
     </Setting>
     <Setting Name="TiposPlatillosDiarios" Type="System.String" Scope="Application">
-      <Value Profile="(Default)">/receta/SeleccionarPlatilloMenu</Value>
+      <Value Profile="(Default)">receta/SeleccionarPlatilloMenu</Value>
     </Setting>
-    <Setting Name="InsertarMenuDiarios" Type="System.String" Scope="User">
-      <Value Profile="(Default)">/receta/InsertarMenu</Value>
+    <Setting Name="InsertarMenuDiarios" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">receta/InsertarMenu</Value>
     </Setting>
     <Setting Name="RecIdporClave" Type="System.String" Scope="Application">
-      <Value Profile="(Default)">/receta/SeleccionarRecId</Value>
+      <Value Profile="(Default)">receta/SeleccionarRecId</Value>
     </Setting>
     <Setting Name="TipoIdporNombre" Type="System.String" Scope="Application">
+<<<<<<< HEAD
+      <Value Profile="(Default)">receta/SeleccionarTiporId</Value>
+    </Setting>
+    <Setting Name="ExistenciaCongeladoMenu" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">receta/PlatilloCongelado</Value>
+    </Setting>
+    <Setting Name="ListaIngredientesMenu" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">/receta/IngredientesPlatillos</Value>
+=======
       <Value Profile="(Default)">/receta/SeleccionarTiporId</Value>
+<<<<<<< HEAD
     </Setting>
     <Setting Name="DiaAntes" Type="System.String" Scope="Application">
       <Value Profile="(Default)">/receta/Diario</Value>
+=======
+>>>>>>> origin/master
+>>>>>>> origin/master
+>>>>>>> origin/master
     </Setting>
   </Settings>
 </SettingsFile>

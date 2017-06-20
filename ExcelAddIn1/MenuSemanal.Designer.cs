@@ -142,9 +142,12 @@
             this.dgvViernes.Size = new System.Drawing.Size(416, 165);
             this.dgvViernes.TabIndex = 5;
             this.dgvViernes.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvGenerico_CellClick);
+            this.dgvViernes.CellValueChanged += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvGenerico_CellValueChanged);
+            this.dgvViernes.CurrentCellDirtyStateChanged += new System.EventHandler(this.dgvGenerico_CurrentCellDirtyStateChanged);
             this.dgvViernes.EditingControlShowing += new System.Windows.Forms.DataGridViewEditingControlShowingEventHandler(this.Generico_EditingControlShowing);
             this.dgvViernes.DragDrop += new System.Windows.Forms.DragEventHandler(this.dgvGenerico_DragDrop);
             this.dgvViernes.DragOver += new System.Windows.Forms.DragEventHandler(this.dgvGenerico_DragOver);
+            this.dgvViernes.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.dgvGenerico_KeyPress);
             this.dgvViernes.MouseDown += new System.Windows.Forms.MouseEventHandler(this.dgvGenerico_MouseDown);
             this.dgvViernes.MouseMove += new System.Windows.Forms.MouseEventHandler(this.dgvGenerico_MouseMove);
             // 
@@ -158,9 +161,12 @@
             this.dgvJueves.Size = new System.Drawing.Size(416, 165);
             this.dgvJueves.TabIndex = 4;
             this.dgvJueves.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvGenerico_CellClick);
+            this.dgvJueves.CellValueChanged += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvGenerico_CellValueChanged);
+            this.dgvJueves.CurrentCellDirtyStateChanged += new System.EventHandler(this.dgvGenerico_CurrentCellDirtyStateChanged);
             this.dgvJueves.EditingControlShowing += new System.Windows.Forms.DataGridViewEditingControlShowingEventHandler(this.Generico_EditingControlShowing);
             this.dgvJueves.DragDrop += new System.Windows.Forms.DragEventHandler(this.dgvGenerico_DragDrop);
             this.dgvJueves.DragOver += new System.Windows.Forms.DragEventHandler(this.dgvGenerico_DragOver);
+            this.dgvJueves.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.dgvGenerico_KeyPress);
             this.dgvJueves.MouseDown += new System.Windows.Forms.MouseEventHandler(this.dgvGenerico_MouseDown);
             this.dgvJueves.MouseMove += new System.Windows.Forms.MouseEventHandler(this.dgvGenerico_MouseMove);
             // 
@@ -175,9 +181,12 @@
             this.dgvMiercoles.Size = new System.Drawing.Size(418, 165);
             this.dgvMiercoles.TabIndex = 3;
             this.dgvMiercoles.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvGenerico_CellClick);
+            this.dgvMiercoles.CellValueChanged += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvGenerico_CellValueChanged);
+            this.dgvMiercoles.CurrentCellDirtyStateChanged += new System.EventHandler(this.dgvGenerico_CurrentCellDirtyStateChanged);
             this.dgvMiercoles.EditingControlShowing += new System.Windows.Forms.DataGridViewEditingControlShowingEventHandler(this.Generico_EditingControlShowing);
             this.dgvMiercoles.DragDrop += new System.Windows.Forms.DragEventHandler(this.dgvGenerico_DragDrop);
             this.dgvMiercoles.DragOver += new System.Windows.Forms.DragEventHandler(this.dgvGenerico_DragOver);
+            this.dgvMiercoles.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.dgvGenerico_KeyPress);
             this.dgvMiercoles.MouseDown += new System.Windows.Forms.MouseEventHandler(this.dgvGenerico_MouseDown);
             this.dgvMiercoles.MouseMove += new System.Windows.Forms.MouseEventHandler(this.dgvGenerico_MouseMove);
             // 
@@ -192,9 +201,12 @@
             this.dgvMartes.Size = new System.Drawing.Size(416, 165);
             this.dgvMartes.TabIndex = 2;
             this.dgvMartes.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvGenerico_CellClick);
+            this.dgvMartes.CellValueChanged += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvGenerico_CellValueChanged);
+            this.dgvMartes.CurrentCellDirtyStateChanged += new System.EventHandler(this.dgvGenerico_CurrentCellDirtyStateChanged);
             this.dgvMartes.EditingControlShowing += new System.Windows.Forms.DataGridViewEditingControlShowingEventHandler(this.Generico_EditingControlShowing);
             this.dgvMartes.DragDrop += new System.Windows.Forms.DragEventHandler(this.dgvGenerico_DragDrop);
             this.dgvMartes.DragOver += new System.Windows.Forms.DragEventHandler(this.dgvGenerico_DragOver);
+            this.dgvMartes.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.dgvGenerico_KeyPress);
             this.dgvMartes.MouseDown += new System.Windows.Forms.MouseEventHandler(this.dgvGenerico_MouseDown);
             this.dgvMartes.MouseMove += new System.Windows.Forms.MouseEventHandler(this.dgvGenerico_MouseMove);
             // 
@@ -350,7 +362,10 @@
             this.dgvLunes.Size = new System.Drawing.Size(416, 165);
             this.dgvLunes.TabIndex = 1;
             this.dgvLunes.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvGenerico_CellClick);
+            this.dgvLunes.CellValueChanged += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvGenerico_CellValueChanged);
+            this.dgvLunes.CurrentCellDirtyStateChanged += new System.EventHandler(this.dgvGenerico_CurrentCellDirtyStateChanged);
             this.dgvLunes.EditingControlShowing += new System.Windows.Forms.DataGridViewEditingControlShowingEventHandler(this.Generico_EditingControlShowing);
+            this.dgvLunes.DragDrop += new System.Windows.Forms.DragEventHandler(this.dgvGenerico_DragDrop);
             this.dgvLunes.DragOver += new System.Windows.Forms.DragEventHandler(this.dgvGenerico_DragOver);
             this.dgvLunes.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.dgvGenerico_KeyPress);
             this.dgvLunes.MouseDown += new System.Windows.Forms.MouseEventHandler(this.dgvGenerico_MouseDown);
@@ -367,9 +382,12 @@
             this.dgvSabado.Size = new System.Drawing.Size(418, 165);
             this.dgvSabado.TabIndex = 6;
             this.dgvSabado.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvGenerico_CellClick);
+            this.dgvSabado.CellValueChanged += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvGenerico_CellValueChanged);
+            this.dgvSabado.CurrentCellDirtyStateChanged += new System.EventHandler(this.dgvGenerico_CurrentCellDirtyStateChanged);
             this.dgvSabado.EditingControlShowing += new System.Windows.Forms.DataGridViewEditingControlShowingEventHandler(this.Generico_EditingControlShowing);
             this.dgvSabado.DragDrop += new System.Windows.Forms.DragEventHandler(this.dgvGenerico_DragDrop);
             this.dgvSabado.DragOver += new System.Windows.Forms.DragEventHandler(this.dgvGenerico_DragOver);
+            this.dgvSabado.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.dgvGenerico_KeyPress);
             this.dgvSabado.MouseDown += new System.Windows.Forms.MouseEventHandler(this.dgvGenerico_MouseDown);
             this.dgvSabado.MouseMove += new System.Windows.Forms.MouseEventHandler(this.dgvGenerico_MouseMove);
             // 
@@ -384,8 +402,12 @@
             this.dgvDomingo.Size = new System.Drawing.Size(416, 165);
             this.dgvDomingo.TabIndex = 16;
             this.dgvDomingo.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvGenerico_CellClick);
+            this.dgvDomingo.CellValueChanged += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvGenerico_CellValueChanged);
+            this.dgvDomingo.CurrentCellDirtyStateChanged += new System.EventHandler(this.dgvGenerico_CurrentCellDirtyStateChanged);
             this.dgvDomingo.EditingControlShowing += new System.Windows.Forms.DataGridViewEditingControlShowingEventHandler(this.Generico_EditingControlShowing);
+            this.dgvDomingo.DragDrop += new System.Windows.Forms.DragEventHandler(this.dgvGenerico_DragDrop);
             this.dgvDomingo.DragOver += new System.Windows.Forms.DragEventHandler(this.dgvGenerico_DragOver);
+            this.dgvDomingo.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.dgvGenerico_KeyPress);
             this.dgvDomingo.MouseDown += new System.Windows.Forms.MouseEventHandler(this.dgvGenerico_MouseDown);
             this.dgvDomingo.MouseMove += new System.Windows.Forms.MouseEventHandler(this.dgvGenerico_MouseMove);
             // 

@@ -105,6 +105,40 @@ namespace Data
                 callback(null);
             }
         }
+        public static void ExistenciaCongelado(Action<IRestResponse> callback)
+        {
+            try
+            {
+                var rest = new Rest(Local.Api.UrlApi, Cocina.PlatillosMenus.ExistenciaCongelado,
+                    Method.POST);
+                rest.Peticion.AddHeader(Constantes.Http.ObtenerTipoDeContenido,
+                    Constantes.Http.TipoDeContenido.Json);
+                rest.Peticion.AddJsonBody(new { Cocina.PlatillosMenus.Clave });
+                callback(rest.Cliente.Execute(rest.Peticion));
+            }
+            catch (Exception e)
+            {
+                Opcion.Log(Log.Interno.Categoria, "EXCEPCION: " + e.Message);
+                callback(null);
+            }
+        }
+        public static void IngredientesMenu(Action<IRestResponse> callback)
+        {
+            try
+            {
+                var rest = new Rest(Local.Api.UrlApi, Cocina.PlatillosMenus.IngredientesMenu,
+                    Method.POST);
+                rest.Peticion.AddHeader(Constantes.Http.ObtenerTipoDeContenido,
+                    Constantes.Http.TipoDeContenido.Json);
+                rest.Peticion.AddJsonBody(new { Cocina.PlatillosMenus.RecId });
+                callback(rest.Cliente.Execute(rest.Peticion));
+            }
+            catch (Exception e)
+            {
+                Opcion.Log(Log.Interno.Categoria, "EXCEPCION: " + e.Message);
+                callback(null);
+            }
+        }
         public static List<Respuesta.InsertarMenu> CInsertarMenus= new List<Respuesta.InsertarMenu>();
         public static void InsertarMenus(Action<IRestResponse> callback, Respuesta.InsertarMenu lista)
         {

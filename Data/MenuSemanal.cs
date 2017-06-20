@@ -153,5 +153,23 @@ var rest = new Rest(Local.Api.UrlApi, Cocina.DiasSemana.GuardarRecetas, Method.P
             }
         }
 
+        public static void Verificacion(Action<IRestResponse> callback)
+        {
+            try
+            {
+                var rest = new Rest(Local.Api.UrlApi, Cocina.PlatillosMenus.SacarRecId,
+                    Method.POST);
+                rest.Peticion.AddHeader(Constantes.Http.ObtenerTipoDeContenido,
+                    Constantes.Http.TipoDeContenido.Json);
+                rest.Peticion.AddJsonBody(new { Cocina.PlatillosMenus.Clave });
+                callback(rest.Cliente.Execute(rest.Peticion));
+            }
+            catch (Exception e)
+            {
+                Opcion.Log(Log.Interno.Categoria, "EXCEPCION: " + e.Message);
+                callback(null);
+            }
+        }
+
     }
 }

@@ -76,7 +76,7 @@ namespace Herramienta
 
             public class Agregarcongelados
             {
-                public static int ArtId { get; set;}
+                public static StringComparer ArtId { get; set;}
                 public static string Clave { get; set; }
                 public static string Descripcion { get; set; }
                 public static double Cantidad { get; set; }

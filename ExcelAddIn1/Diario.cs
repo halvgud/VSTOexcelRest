@@ -249,6 +249,9 @@ namespace ExcelAddIn1
                 });
             }
             Data.MenuSemanal.AgregarDiario(listEstado);
+            Local.Receta.Clave = dgDiario.CurrentRow.Cells[1].Value.ToString();
+
+
             //Opcion.EjecucionAsync(Data.MenuSemanal.AgregarDiario,jsonResult=>
             //BeginInvoke((MethodInvoker)(() =>
             //{

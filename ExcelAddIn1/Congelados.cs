@@ -74,7 +74,7 @@ namespace ExcelAddIn1
                                      BeginInvoke((MethodInvoker)(() => /*se manda llamar de nuevo a la interfaz*/
                                      {
 
-                                         dgvcongeladobuscaryeditar.DataSource = resultado.Select(g => new { estado_id = g.EstadoId,clave = g.Clave, descripcion = g.Descripcion, cantidad = g.Cantidad}) /*ni estas*/
+                                         dgvcongeladobuscaryeditar.DataSource = resultado.Select(g => new { estado_id = g.EstadoId,clave = g.Clave, descripcion = g.Platillo, cantidad = g.Cantidad}) /*ni estas*/
 
                                           .ToList();
                                      }));
@@ -179,7 +179,7 @@ namespace ExcelAddIn1
                                                 {
                                                     ArtId = g.Key,
                                                     Clave = g.First().Clave,
-                                                    Descripcion = g.First().Descripcion,
+                                                    Platillo = g.First().Platillo,
                                                    Cantidad = g.Sum(i => i.Cantidad)
                                                  
                                                 }).ToList();

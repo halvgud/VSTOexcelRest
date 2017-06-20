@@ -68,7 +68,7 @@ public BuscarCongelados(List<Respuesta.Receta.Congelados> listaCongelados, Actio
             //}
 
 
-            dgvbuscar_congelados.DataSource = _listaCongelados.Select(x => new {art_id = x.ArtId, clave = x.Clave, descripcion = x.Descripcion, cantidad = x.Cantidad }).ToArray(); ;
+            dgvbuscar_congelados.DataSource = _listaCongelados.Select(x => new {art_id = x.ArtId, clave = x.Clave, descripcion = x.Platillo, cantidad = x.Cantidad }).ToArray(); ;
             dgvbuscar_congelados.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
 
         }

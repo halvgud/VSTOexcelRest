@@ -298,6 +298,9 @@
       <DependentUpon>Resources.resx</DependentUpon>
       <DesignTime>True</DesignTime>
     </Compile>
+    <EmbeddedResource Include="Reportes.resx">
+      <DependentUpon>Reportes.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="SideBarRecetario.resx">
       <DependentUpon>SideBarRecetario.cs</DependentUpon>
     </EmbeddedResource>
@@ -318,6 +321,12 @@
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
     <Compile Include="ReporteRecetaCocina.cs" />
+    <Compile Include="Reportes.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Reportes.Designer.cs">
+      <DependentUpon>Reportes.cs</DependentUpon>
+    </Compile>
     <Compile Include="Ribbon1.cs" />
     <Compile Include="SideBarRecetario.cs">
       <SubType>UserControl</SubType>

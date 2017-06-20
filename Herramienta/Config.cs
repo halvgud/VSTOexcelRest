@@ -149,6 +149,12 @@ namespace Herramienta
                 public static string EliminarIngre { get; set; } = Properties.Settings.Default.eliminaringredientes;
 
                 public static string Actualizarrutaeimagen { get; set; } = Properties.Settings.Default.actualizar_ruta_e_instrucciones;
+                
+            }
+            public class ReporteAnterior
+            {
+                public static string DatosAnteriores { get; set; } = Properties.Settings.Default.DiaAntes;
+                public static string Fecha { get; set; }
             }
             public static class Categoria
             {

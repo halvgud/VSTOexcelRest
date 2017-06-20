@@ -443,7 +443,7 @@ namespace ExcelAddIn1
                             ModoElaboracion = inputs.ModoElaboracion.Text,
                             TiporId=cbTipoReceta.SelectedIndex+1,
                         
-                             Dcantidad = Convert.ToDouble(tbcantidad.Text) 
+                             Cantidadd = Convert.ToDouble(tbcantidad.Text) 
                            
                             
                       };
@@ -632,9 +632,7 @@ namespace ExcelAddIn1
         }
          private void btGuardar_Click(object sender, EventArgs e)
          {
-
-            
-
+             
             Pbreceta.InitialImage = null;
             Pbreceta.Image = null;
 
@@ -686,7 +684,8 @@ namespace ExcelAddIn1
                         PesoLitro = Convert.ToDouble(tbPesoLitroBE.Text),/*peso x litros debe ser double tambien*/
                         //FechaModificacion = DateTime.Now,
                         Precio = Convert.ToDouble(tbPrecioBE.Text),
-                        Diario = checadodiario
+                        Diario = checadodiario,
+                        Cantidadd = Convert.ToDouble(tbcantidadBEE.Text) 
                     };
 
                     Data.Receta.Detalle.ActualizarPresupuesto(objeto);
@@ -857,7 +856,7 @@ namespace ExcelAddIn1
                                          tbCostoEstimadoBE.Text = resultado.CostoCreacion.ToString();                                     
                                          chDiarioBE.Checked = (resultado.Diario == 1);
                                          tbCodigoBE.Enabled = true;
-                                         tbcantidadBEE.Text = resultado.Dcantidad.ToString();
+                                         tbcantidadBEE.Text = resultado.Cantidadd.ToString();
                                     
                                          string datos = resultado.Instrucciones;
                                          txtinstruccionesBE.Text = datos;
@@ -1079,6 +1078,11 @@ namespace ExcelAddIn1
                 tbcantidadBEE.Visible = false;
                 
             }
+
+        }
+
+        private void tbBuscarReceta_TextChanged(object sender, EventArgs e)
+        {
 
         }
     }

@@ -323,6 +323,8 @@ namespace ExcelAddIn1
 
             _reporte.Range["E7:E" + rowcount].Interior.Color = Color.Aqua;
 
+            
+
             //_reporte.Range["A7=F" + rowcount].HorizontalAlignment = Excel.XlHAlign.xlHAlignCenter;
             //_reporte.Range["A2:X2"].Interior.Color = ColorTranslator.ToOle(Color.Orange);
             //_reporte.Range["Q1:X1"].Interior.Color = ColorTranslator.ToOle(Color.Orange);
@@ -354,10 +356,16 @@ namespace ExcelAddIn1
                 lista[x, 3] = rrgc[x].Existencia;
                 lista[x, 4] = rrgc[x].Estado;
                 lista[x, 5] = rrgc[x].FechaEntrada;
+
+                //if (lista[4, 4].ToString() == "MERMA")
+                //{
+                    
+                //}
+
             }
             return lista;
 
-
+            
 
         }
 

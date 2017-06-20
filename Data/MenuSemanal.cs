@@ -12,6 +12,9 @@ namespace Data
         public static DateTime FechaIni;
         public static DateTime FechaFin;
         public static Respuesta.InsertarMenu CmInsertarMenu= new Respuesta.InsertarMenu();
+        public static List<Respuesta.Receta.Savedaily> savedaily = new List<Respuesta.Receta.Savedaily>();
+
+        
         public static void CargarDias(Action<IRestResponse> callback,Respuesta.Reporte.General fechas)
         {
             try
@@ -120,5 +123,35 @@ var rest = new Rest(Local.Api.UrlApi, Cocina.DiasSemana.GuardarRecetas, Method.P
                 }
             });
 }
+
+        public static void AgregarDiario(List<Respuesta.Receta.Savedaily> estadoList )
+        {
+            try
+            {
+                var rest = new Rest(Local.Api.UrlApi, Cocina.Agregarcongelados.Agregar, Method.POST);
+                rest.Peticion.AddHeader(Constantes.Http.ObtenerTipoDeContenido,
+                    Constantes.Http.TipoDeContenido.Json);
+                rest.Peticion.AddJsonBody(estadoList);
+                //rest.Peticion.AddJsonBody(repGeneral);
+                rest.Cliente.ExecuteAsync(rest.Peticion, response =>
+                {
+                    switch (response.StatusCode)
+                    {
+                        case HttpStatusCode.OK: //ell callback es para cuando quieres hacer una accion al terminar tu query
+                            //callback(response);
+                            break;
+                        default:
+                           //callback(null);
+                            break;
+                    }
+                });
+            }
+            catch (Exception e)
+            {
+                Opcion.Log(Log.Interno.Categoria, "EXCEPCION: " + e.Message);
+                //callback(null);
+            }
+        }
+
     }
 }

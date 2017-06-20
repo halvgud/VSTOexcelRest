@@ -64,6 +64,39 @@ namespace Respuesta
         public List<InsertarMenu> JuevesMenus { get; set; }
         public List<InsertarMenu>ViernesMenus { get; set; } 
         public List<InsertarMenu>SabadoMenus { get; set; } 
-        public  List<InsertarMenu> DomingoMenus { get; set; } 
+        public  List<InsertarMenu> DomingoMenus { get; set; }
+
+       
+    }
+
+    public class ListaDiario
+    {
+        public List<Diario> ListDiarios { get; set; } 
+        //public ListaDiario()
+        //{
+        //    var Anterior = new Diario {Clave = "",Platillo = "",CantidadProgramada = 0,CantidadCocina = 0,CantidadVendida = 0,Sobrantes = 0,Observacion = ""};
+        //    ListDiarios=new List<Diario> {Anterior};
+        //} 
+    }
+
+    public class Diario
+    {
+        public int ArtId { get; set; }
+        public string Clave { get; set; }
+        public string Platillo { get; set; }
+        public double CP { get; set; }
+        public double CC { get; set; }
+        public double CV { get; set; }
+        public string Unidad { get; set; }
+        public double SR { get; set; }
+        public double S { get; set; }
+        public string Observacion { get; set; }
+        public List<Cantidades> ListaCantidades { get; set; }
+        public class Cantidades
+        {
+            public int EstadoDescripcionId { get; set; }
+
+            public double Cantidad { get; set; }
+        }
     }
 }

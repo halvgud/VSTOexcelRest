@@ -11,6 +11,7 @@ namespace Data
     {
         public static Respuesta.Receta.Congelados Cccongelados;
 
+      
 
        public static Respuesta.Receta.ImagenAndProcess ImagenAndProcess;
 
@@ -87,7 +88,7 @@ namespace Data
                     Method.POST);
                 rest.Peticion.AddHeader(Constantes.Http.ObtenerTipoDeContenido,
                     Constantes.Http.TipoDeContenido.Json);
-                rest.Peticion.AddJsonBody(new { clave = Cocina.DetalleCocina.Clave});// la peticion debe ser un objeto
+                rest.Peticion.AddJsonBody(new { Clave = Cocina.DetalleCocina.Clave});// la peticion debe ser un objeto
                 rest.Cliente.ExecuteAsync(rest.Peticion, response =>
                 {
                     switch (response.StatusCode)

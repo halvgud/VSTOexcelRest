@@ -20,14 +20,14 @@ namespace Respuesta
         public double PesoLitro { get; set; }
         public int Diario { get; set; }
         public double Cantidad { get; set; }
-        public double Dcantidad { get; set; }
+        public double Cantidadd { get; set; }
         public int Unidad { get; set; }
         public string Rutaimagen { get; set; }
         public string Instrucciones { get; set; }
         public List<Detalle> Ingredientes { get; set; }
-       
-         public string ModoElaboracion { get; set; }
-      
+
+        public string ModoElaboracion { get; set; }
+
         public Basica CopiadoSencillo()
         {
             var art = new Basica {Clave = Clave, Descripcion = Descripcion, Cantidad = Cantidad, Precio = Precio};
@@ -45,10 +45,16 @@ namespace Respuesta
             public double CostoCreacion { get; set; }
             public double CostoElaboracion { get; set; }
             public double Margen { get; set; }
-           // public DateTime FechaModificacion { get; set; }
+            // public DateTime FechaModificacion { get; set; }
             public double PesoLitro { get; set; }
             public int Diario { get; set; }
-           // public double Cantidad { get; set; }
+            public double Cantidadd { get; set; }
+        }
+
+        public class Diaanterior
+        {
+            public string Fecha1 { get; set; }
+            public string Fecha2 { get; set; }
         }
 
         public class ImagenAndProcess
@@ -56,7 +62,8 @@ namespace Respuesta
             public int RecId { get; set; }
             public string Instrucciones { get; set; }
             public string RutaImagen { get; set; }
-        } 
+        }
+
         public class Basica
         {
             public string Clave { get; set; }
@@ -84,33 +91,45 @@ namespace Respuesta
 
         }
 
+        public class Savedaily
+        {
+            public int EstadoId { get; set; }
+           
+            public string ArtId { get; set; }
+
+            public string Clave { get; set; }
+
+            public string Platillo { get; set; }
+            public double Cantidad { get; set; }
+        }
+
         public class Congelados
         {
 
-            public string EstadoId { get; set; }
+            public int EstadoId { get; set; }
             /*Te sale en la primer columna, porque esta aqui, tienes que hacer un select..... PERO EL ESTADO ID ES AUTO INCREMENTAL, y pCaraR qEue olo quieren aquiCRE_O QUE SI ES AUTO INCREMENTAL 
             POR QUE DE ESTE MISMO AGO LA BUSQUEDA ENTRE CONGELADOS , cual es tu duda entonces? si en el select no esta POR QUE NO ESTA GUARDANDO COMO ES DEVIDO MIRA */
             public string ArtId { get; set; }
 
             public string Clave { get; set; }
-            public string Descripcion { get; set; }
+            public string Platillo { get; set; }
             public double Cantidad { get; set; }
             public List<Congelados> ListaCongelados { get; set; }
 
             public BasicaCopia CopiadoSencilloCongelado()
             {
-                var art = new BasicaCopia {ArtId = ArtId, Clave = Clave, Descripcion = Descripcion, Cantidad = Cantidad};
+                var art = new BasicaCopia {ArtId = ArtId, Clave = Clave, Descripcion = Platillo, Cantidad = Cantidad};
                 return art;
-                //public string EstadoId { get; set; }
+                //    public string EstadoId { get; set; }
                 //public string ArtId { get; set; }
                 //// public string estado_id { get; set; }
                 //public string clave { get; set; }
                 //public string descripcion { get; set; }
                 //public double cantidad { get; set; }
                 //public List<Congelados> ListaCongelados { get; set; }
-                ////  public string status { get; set; } /*te lo cambie a string, con eso agarrara*/
-                ///*aqui estas confundiendo el status de activo e inactivo con el ESTADO de Congelado y los otros que hipoteticamente pudieran crearse :P*/
-                ////   public DateTime fechaEntrada { get; set; }
+                //  public string status { get; set; } /*te lo cambie a string, con eso agarrara*/
+                /*aqui estas confundiendo el status de activo e inactivo con el ESTADO de Congelado y los otros que hipoteticamente pudieran crearse :P*/
+                //   public DateTime fechaEntrada { get; set; }
 
                 //public BasicaCopia CopiadoSencilloCongelado()
                 //{
@@ -126,18 +145,33 @@ namespace Respuesta
             public string ArtId { get; set; }
             public string EstadoId { get; set; }
 
-            public string Clave{ get; set; }
+            public string Clave { get; set; }
             public string Descripcion { get; set; }
             public double Cantidad { get; set; }
-            public string clave{ get; set; }
+            public string clave { get; set; }
             public string descripcion { get; set; }
             public double cantidad { get; set; }
-           // public string status { get; set; }
-           // public DateTime fechaEntrada { get; set; }
+            // public string status { get; set; }
+            // public DateTime fechaEntrada { get; set; }
+        }
+
+        public class Congelados2
+        {
+
+            public int EstadoId { get; set; }
+            /*Te sale en la primer columna, porque esta aqui, tienes que hacer un select..... PERO EL ESTADO ID ES AUTO INCREMENTAL, y pCaraR qEue olo quieren aquiCRE_O QUE SI ES AUTO INCREMENTAL 
+            POR QUE DE ESTE MISMO AGO LA BUSQUEDA ENTRE CONGELADOS , cual es tu duda entonces? si en el select no esta POR QUE NO ESTA GUARDANDO COMO ES DEVIDO MIRA */
+            public string ArtId { get; set; }
+
+            public string Clave { get; set; }
+            public string Platillo { get; set; }
+            public double Cantidad { get; set; }
+           
         }
 
     }
-        public class Agregarcongelados/* y esta clase para que es? para que hay mande los datos que se van a agregar  ..... te refieres a la de congelados si mmmmm y que los datos los puedas cambiar en el data */
+
+    public class Agregarcongelados/* y esta clase para que es? para que hay mande los datos que se van a agregar  ..... te refieres a la de congelados si mmmmm y que los datos los puedas cambiar en el data */
         {
              public int Id { get; set; }
             public string Clave { get; set; }

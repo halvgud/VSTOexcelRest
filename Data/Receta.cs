@@ -5,16 +5,11 @@ using System.Net;
 using Herramienta;
 using Herramienta.Config;
 using RestSharp;
-
-
-
 namespace Data
 {
     public class Receta
     {
         public static Respuesta.Receta CReceta=new Respuesta.Receta();
-       
-
         public static void Lista(Action<IRestResponse> callback)
         {
             try
@@ -80,18 +75,14 @@ namespace Data
             catch (Exception e)
             {
                 Opcion.Log(Log.Interno.Categoria, "EXCEPCION: " + e.Message);
-            }
-            
+            }   
         }
-
-       
-       
         public class Detalle
         {
             public static List<Respuesta.Receta.Detalle> CRecetaDetalle = new List<Respuesta.Receta.Detalle>();
-            public static  List<Respuesta.Receta.Detalle> ARecetaDetalle=new List<Respuesta.Receta.Detalle>(); 
+            public static  List<Respuesta.Receta.Detalle> ARecetaDetalle=new List<Respuesta.Receta.Detalle>();
 
-            public static void Insertar(Action<IRestResponse> callback)
+            public static void InsertarDetalle(Action<IRestResponse> callback)
             {
                 var rest = new Rest(Local.Api.UrlApi, Local.Receta.InsertarDetalle, Method.POST);
                 rest.Peticion.AddHeader(Constantes.Http.ObtenerTipoDeContenido, Constantes.Http.TipoDeContenido.Json);
@@ -108,7 +99,6 @@ namespace Data
                     }
                 });
             }
-
             public static void ActualizarIngredientes(List<Respuesta.Receta.Detalle> actualiza  )
             { 
                 var rest = new Rest(Local.Api.UrlApi, Local.Receta.InsertarDetalle, Method.POST);
@@ -119,14 +109,12 @@ namespace Data
                     switch (response.StatusCode)
                     {
                         case HttpStatusCode.OK:
-                           // callback(response);
                             break;
                         default:
                             throw new Exception(@"Los datos no se pudieron actualizar");
                     }
                 });
             }
-
             public static void ActualizarPresupuesto(Respuesta.Receta.ActualizaPresupuesto actualiza)
             {
                 var rest = new Rest(Local.Api.UrlApi, Local.Receta.ActualizarPresupuesto, Method.POST);
@@ -137,51 +125,42 @@ namespace Data
                     switch (response.StatusCode)
                     {
                         case HttpStatusCode.OK:
-                            // callback(response);
                             break;
                         default:
-                            throw new Exception(@"Los datos no se pudieron actualizar");
+               throw new Exception(@"Los datos no se pudieron actualizar");
                     }
                 });
             }
-
             public static void Eliminar()
             {
                 var rest = new Rest(Local.Api.UrlApi, Local.Receta.EliminarIngre, Method.POST);
                 rest.Peticion.AddHeader(Constantes.Http.ObtenerTipoDeContenido, Constantes.Http.TipoDeContenido.Json);
-                rest.Peticion.AddJsonBody(new {RecId=Local.Receta.RecId});
+                rest.Peticion.AddJsonBody(new {Local.Receta.RecId});
                 rest.Cliente.ExecuteAsync(rest.Peticion, response =>
                 {
                     switch (response.StatusCode)
                     {
                         case HttpStatusCode.OK:
-                            //callback(response);
                             break;
                         default:
                             throw new Exception(@"No se realizo la actualizacion");
                     }
                 });
             }
-
             public static void Eliminarrutaeimagen()
             {
                 try
                 {
-                    /*url local?*/
-                    var rest = new Rest(Local.Api.UrlApi, Herramienta.Config.Local.Receta.Actualizarrutaeimagen,
+                    var rest = new Rest(Local.Api.UrlApi, Local.Receta.Actualizarrutaeimagen,
                         Method.POST);
                     rest.Peticion.AddHeader(Constantes.Http.ObtenerTipoDeContenido,
                         Constantes.Http.TipoDeContenido.Json);
-                    rest.Peticion.AddJsonBody(new { RecId = Local.Receta.RecId });// la peticion debe ser un objeto
+                    rest.Peticion.AddJsonBody(new {Local.Receta.RecId });
                     rest.Cliente.ExecuteAsync(rest.Peticion, response =>
                     {
                         switch (response.StatusCode)
                         {
                             case HttpStatusCode.OK:
-                                // callback(response);
-                                break;
-                            default:
-                                // callback(null);
                                 break;
                         }
                     });
@@ -189,19 +168,45 @@ namespace Data
                 catch (Exception e)
                 {
                     Opcion.Log(Log.Interno.Categoria, "EXCEPCION: " + e.Message);
-                    //callback(null);
                 }
             }
-
         }
-
         public class Tipo
         {
-            public static void Lista(Action<IRestResponse> callback)
+            public static void ListaTipo(Action<IRestResponse> callback)
             {
                 try
                 {
                     var rest = new Rest(Local.Api.UrlApi, Local.Receta.Tipo,
+                        Method.GET);
+                    rest.Peticion.AddHeader(Constantes.Http.ObtenerTipoDeContenido,
+                        Constantes.Http.TipoDeContenido.Json);
+                    rest.Cliente.ExecuteAsync(rest.Peticion, response =>
+                    {
+                        switch (response.StatusCode)
+                        {
+                            case HttpStatusCode.OK:
+                                callback(response);
+                                break;
+                            default:
+                                throw new Exception(@"error al buscar articulo");
+                        }
+                    });
+                }
+                catch (Exception e)
+                {
+                    Opcion.Log(Log.Interno.Categoria, "EXCEPCION: " + e.Message);
+                    // callback("CONTINUAR");
+                }
+            }
+        }
+        public class Unidad
+        {
+            public static void TipoUnidades(Action<IRestResponse> callback)
+            {
+                try
+                {
+                    var rest = new Rest(Local.Api.UrlApi, Local.Receta.TipoUnidad,
                         Method.GET);
                     rest.Peticion.AddHeader(Constantes.Http.ObtenerTipoDeContenido,
                         Constantes.Http.TipoDeContenido.Json);

@@ -69,14 +69,10 @@ namespace ExcelAddIn1
 
         public void AbrirMenuSemanal(Office.IRibbonControl control)
         {
-<<<<<<< HEAD
            // var ms = new MenuSemanal();
            // ms.Show();
-=======
             var ms = new MenuSemanal();
             ms.Show();
-
-
             //Opcion.EjecucionAsync(Data.MenuSemanal.ListaPlatilloRecetas, y =>
             //{
 
@@ -95,7 +91,6 @@ namespace ExcelAddIn1
             //        ms.Hide();
             //    }));
             //});
->>>>>>> origin/master
         }
         public void CrearReceta(Office.IRibbonControl control)
         {

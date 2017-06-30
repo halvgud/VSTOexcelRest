@@ -45,27 +45,27 @@ namespace Herramienta
                 public static string Listado { get; set; } = Properties.Settings.Default.listaplatillos;
                 public static string Clave { get; set; }
             }
-
-<<<<<<< HEAD
-=======
             public class PlatillosMenus
             {
                 public static string ListaPlatillos { get; set; } = Properties.Settings.Default.TiposPlatillosDiarios;
-                public static string SacarRecId { get; set; } = Properties.Settings.Default.RecIdporClave;
+                public static string EditarMenuSemanalActual { get; set; } = Properties.Settings.Default.EditarMenuSemanal;
+                public static string CompararCantidadElaborar { get; set; } = Properties.Settings.Default.EditarMenuSemanal;
+                public static string SacarMsReceta { get; set; } = Properties.Settings.Default.RecetaporClave;
                 public static string SacarTipoId { get; set; } = Properties.Settings.Default.TipoIdporNombre;
                 public static string ExistenciaCongelado { get; set; }=Properties.Settings.Default.ExistenciaCongeladoMenu;
+                public static string UsarCongelado { get; set; } = Properties.Settings.Default.SacarCongelado;
                 public static string IngredientesMenu { get; set; } = Properties.Settings.Default.ListaIngredientesMenu;
                 public static string Clave { get; set; }
                 public static string Nombre { get; set; }
                 public static string RecId { get; set; }
+                public static string CantidadElaboracion { get; set; }
             }
 
->>>>>>> origin/master
             public class Buscarcongelados
             {
                 public static string Bcongelados { get; set; } = Properties.Settings.Default.buscarcongelados;
                 public static string Descripcion { get; set; }
-                public static string Cambioexistencia { get; set; } = Properties.Settings.Default.ActualizarCongelado;
+                public static string UtilizarCongelados { get; set; } = Properties.Settings.Default.SacarCongelado;
                 public static string Existencia { get; set; }
                 public static Int32 EstadoId { get; set; }
 
@@ -91,8 +91,8 @@ namespace Herramienta
 
             {
                 public static string Diasemana { get; set; } = Properties.Settings.Default.menu;
-                public static string FechaElaboracion { get; set; }
-                public static string GuardarRecetas { get; set; } = Properties.Settings.Default.InsertarMenuDiarios;
+                public static string EditarMenuSemanalActual { get; set; } = Properties.Settings.Default.EditarMenuSemanal;
+                public static string GuardarRecetas { get; set; } = Properties.Settings.Default.InsertarMenuDia;
             }
            
 
@@ -144,6 +144,7 @@ namespace Herramienta
                 public static string Insertar { get; set; } = Properties.Settings.Default.RecetaInsertar;
                 public static string InsertarDetalle { get; set; } = Properties.Settings.Default.RecetaInsertarDetalle;
                 public static string Tipo { get; set; } = Properties.Settings.Default.RecetaTipo;
+                public static string TipoUnidad { get; set; } = Properties.Settings.Default.TipoUnidades;
                 public static int RecId { get; set; }
                 public  static  string Ruta { get; set; }
                 public static string Ingredientes { get; set; }

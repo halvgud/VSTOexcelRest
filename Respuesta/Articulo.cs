@@ -37,16 +37,9 @@ namespace Respuesta
             public string Descripcion { get; set; }
             public double PrecioCompra { get; set; }
             public double Cantidad { get; set; }
-            public int Status { get; set; }
-            public DateTime Fecha { get; set; }
+            //public int Status { get; set; }
+            //public DateTime Fecha { get; set; }
         }
-
-
-
-
-
-
-
         public class Guardar
         {
             public class Tipo
@@ -54,14 +47,12 @@ namespace Respuesta
                 public string Clave { get; set; }
                 public string tipo { get; set; }
             }
-
             public class MaximosMinimos
             {
                 public string Clave { get; set; }
                 public string InvMax { get; set; }
                 public string InvMin { get; set; }
             }
-
             public class PrecioMargen
             {
                 public string Clave { get; set; }

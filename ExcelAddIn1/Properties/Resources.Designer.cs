@@ -61,6 +61,15 @@ namespace ExcelAddIn1.Properties {
         }
         
         /// <summary>
+        ///   Busca una cadena traducida similar a 0.
+        /// </summary>
+        internal static string AgregarReceta_Guardar__0 {
+            get {
+                return ResourceManager.GetString("AgregarReceta_Guardar__0", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Busca un recurso adaptado de tipo System.Byte[].
         /// </summary>
         internal static byte[] FICHA_RECETA {

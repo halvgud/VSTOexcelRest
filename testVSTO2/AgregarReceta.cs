@@ -9,6 +9,9 @@ using RestSharp;
 using Herramienta;
 using Herramienta.Config;
 using System.Net;
+using TextBox = System.Windows.Forms.TextBox;
+
+
 namespace testVSTO2
 {
     public partial class AgregarReceta : Form
@@ -36,7 +39,7 @@ namespace testVSTO2
         public AgregarReceta()
         {
             InitializeComponent();
-            Opcion.EjecucionAsync(Data.Receta.Tipo.Lista, x =>
+            Opcion.EjecucionAsync(Data.Receta.Tipo.ListaTipo, x =>
             {
                 CargarComboBox(x, cbTipoReceta);
                 CargarComboBox(x, cbTipoBE);
@@ -355,7 +358,7 @@ namespace testVSTO2
                 });
             }
             Data.Receta.Detalle.CRecetaDetalle = listRecetaDetalle;
-            Data.Receta.Detalle.Insertar(x);
+            Data.Receta.Detalle.InsertarDetalle(x);
         }
         private void Limpiar(Inputs inputs, MensajeDeEspera mde)
         {

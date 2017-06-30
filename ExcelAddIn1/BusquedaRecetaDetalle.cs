@@ -15,10 +15,6 @@ namespace ExcelAddIn1
         private readonly Action<Receta> _callback;
         private readonly Action<Receta.Congelados> _callbackCongelados;
 
-        //private readonly bool _banderaCongelados;
-
-        //private readonly bool _banderaCongelados ;
-
         public BusquedaRecetaDetalle(List<Receta> clave, Action<Receta> callback,bool mostrarCantidad)
         {
                 _clave = clave;
@@ -53,7 +49,7 @@ namespace ExcelAddIn1
             Close();*/
             if (_callback != null)
             {
-                _clave[dataGridView1.CurrentCell.RowIndex].Cantidad = double.Parse(tbCantidad.Text);
+                _clave[dataGridView1.CurrentCell.RowIndex].CantidadDiario = double.Parse(tbCantidad.Text);
                 _callback(_clave[dataGridView1.CurrentCell.RowIndex]);
             }else
             {

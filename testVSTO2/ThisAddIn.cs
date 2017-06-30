@@ -290,8 +290,8 @@ namespace testVSTO2
             if (oReportWs == null) return;
             ((oReportWs.Range["NOMBRE"])).Value2 = receta.Descripcion;
             ((oReportWs.Range["PESO_LITRO"])).Value2 = receta.PesoLitro;
-            ((oReportWs.Range["LITROS_A_ELABORAR"])).Value2 = receta.Cantidad;
-            ((oReportWs.Range["CANTIDAD_A_ELABORAR"])).Value2 = receta.Cantidad*receta.PesoLitro;
+            ((oReportWs.Range["LITROS_A_ELABORAR"])).Value2 = receta.CantidadDiario;
+            ((oReportWs.Range["CANTIDAD_A_ELABORAR"])).Value2 = receta.CantidadDiario*receta.PesoLitro;
             ((oReportWs.Range["CODIGO"])).Value2 = receta.Clave;
             ((oReportWs.Range["MARGEN_ANTERIOR"])).Value2 = receta.Margen;
             ((oReportWs.Range["PRECIO_VENTA"])).Value2 = receta.Precio;
@@ -303,13 +303,13 @@ namespace testVSTO2
                 oReportWs.Range["A" + inicioTabla].Value2 = t.Clave; //Clave
                 oReportWs.Range["B" + inicioTabla].Value2 = t.Cantidad;
                 //cantidad unitaria por medida
-                oReportWs.Range["C" + inicioTabla].Value2 = (t.Cantidad)*receta.Cantidad;
+                oReportWs.Range["C" + inicioTabla].Value2 = (t.Cantidad)*receta.CantidadDiario;
                 //cantidad total
                 oReportWs.Range["D" + inicioTabla].Value2 = t.Unidad; //tipo de unidad
                 oReportWs.Range["E" + inicioTabla].Value2 = t.Descripcion; //descripcion
                 oReportWs.Range["F" + inicioTabla].Value2 = t.PrecioVenta; //valor unitario
                 oReportWs.Range["G" + inicioTabla].Value2 = (t.PrecioVenta)*
-                                                            ((t.Cantidad)*receta.Cantidad); //
+                                                            ((t.Cantidad)*receta.CantidadDiario); //
                 inicioTabla++;
             }
         }

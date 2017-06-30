@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using System.Drawing;
 using System.IO;
 using System.Linq;
-using System.Runtime.InteropServices;
 using System.Windows.Forms;
 using Herramienta.Config;
 using Excel = Microsoft.Office.Interop.Excel;
@@ -175,10 +174,10 @@ namespace ExcelAddIn1
             Local.Receta.IdReceta = receta.RecId;
             var oReportWs = InicializarExcelConTemplate("Receta");
             if (oReportWs == null) return;
-            ((oReportWs.Range["NOMBRE"])).Value2 = receta.Descripcion;
+           
             ((oReportWs.Range["PESO_LITRO"])).Value2 = receta.PesoLitro;
-            ((oReportWs.Range["LITROS_A_ELABORAR"])).Value2 = receta.Cantidad;
-            ((oReportWs.Range["CANTIDAD_A_ELABORAR"])).Value2 = receta.Cantidad * receta.PesoLitro;
+            ((oReportWs.Range["LITROS_A_ELABORAR"])).Value2 = receta.CantidadDiario;
+            ((oReportWs.Range["CANTIDAD_A_ELABORAR"])).Value2 = receta.CantidadDiario * receta.PesoLitro;
             ((oReportWs.Range["CODIGO"])).Value2 = receta.Clave;
             ((oReportWs.Range["MARGEN_ANTERIOR"])).Value2 = receta.Margen;
             ((oReportWs.Range["PRECIO_VENTA"])).Value2 = receta.Precio;
@@ -190,13 +189,13 @@ namespace ExcelAddIn1
                 oReportWs.Range["A" + inicioTabla].Value2 = t.Clave; //Clave
                 oReportWs.Range["B" + inicioTabla].Value2 = t.Cantidad;
                 //cantidad unitaria por medida
-                oReportWs.Range["C" + inicioTabla].Value2 = (t.Cantidad) * receta.Cantidad;
+                oReportWs.Range["C" + inicioTabla].Value2 = (t.Cantidad) * receta.CantidadDiario;
                 //cantidad total
                 oReportWs.Range["D" + inicioTabla].Value2 = t.Unidad; //tipo de unidad
                 oReportWs.Range["E" + inicioTabla].Value2 = t.Descripcion; //nombre
                 oReportWs.Range["F" + inicioTabla].Value2 = t.PrecioVenta; //valor unitario
                 oReportWs.Range["G" + inicioTabla].Value2 = (t.PrecioVenta) *
-                                                            ((t.Cantidad) * receta.Cantidad); //
+                                                            ((t.Cantidad) * receta.CantidadDiario); //
                 inicioTabla++;
             }
         }
@@ -254,6 +253,20 @@ namespace ExcelAddIn1
 
         #endregion
 
+        public void IngredientesMenu(List<IngredientesReceta> listaArticuloBasica2)
+        {
+            Application.ScreenUpdating = false;
+            var rri= listaArticuloBasica2;
+            var oReportWs = InicializarExcelConTemplate("IngredientesMenuDia");
+            if (oReportWs == null) return;
+            var rowcount = rri.Count+6;
+            _reporte.Range["A6:E" + rowcount].Value2 = InicializarListaIngredientes(rri);
+            _reporte.Range["A6:A" + rowcount].HorizontalAlignment = Excel.XlHAlign.xlHAlignLeft;
+            _reporte.Range["B6:B" + rowcount].HorizontalAlignment = Excel.XlHAlign.xlHAlignLeft;
+            _reporte.Range["C6:E" + rowcount].HorizontalAlignment = Excel.XlHAlign.xlHAlignCenter;
+            Application.Cells.Locked = false;
+            Application.ScreenUpdating = true;
+        }
         //template recetario
         public void ReporteCocina(IRestResponse restResponse)
         {
@@ -340,14 +353,41 @@ namespace ExcelAddIn1
             _reporte.Range["B7:F" + rowcount].Columns.AutoFit();
             _reporte.Range["F6:F" + rowcount].Columns.AutoFit();
             _reporte.Range["D6:F" + rowcount].Columns.AutoFit();
-
-
             Application.Cells.Locked = false;
             Application.ScreenUpdating = true;
-
-
         }
+        private static object[,] InicializarListaIngredientes(IReadOnlyCollection<IngredientesReceta> rrgi)
+        {
+            var result = rrgi
+            .GroupBy(p =>p.Fecha)
+            .Select(g => g.ToList())
+            .ToList();
+            var lista = new object[rrgi.Count+ result.Count+1, 5];
+            var j = 0;
+           
+            foreach (var y1 in result)
+            {
 
+                foreach (var x in y1)
+                {
+                    lista[j, 0] = "'" + x.Clave;
+                    lista[j, 1] = x.Descripcion;
+                    lista[j, 2] =x.Cantidad;
+                    lista[j, 3] = x.Unidad;
+                    lista[j, 4] = x.Fecha;
+                    j++;
+                }
+                lista[j, 0] = "";
+                lista[j, 1] = "";
+                lista[j, 2] = "";
+                lista[j, 3] = "";
+                lista[j, 4] = "";
+                j++;
+
+            }
+          
+            return lista;
+        }
         private static object[,] InicializarLista(IReadOnlyList<Reporte.General.InventarioCongelados> rrgc)
         {
             var lista = new object[rrgc.Count, 7];
@@ -367,9 +407,12 @@ namespace ExcelAddIn1
 
             }
             return lista;
+<<<<<<< HEAD
+=======
 
             
 
+>>>>>>> origin/master
         }
 
         private static object[,] InicializarLista(IReadOnlyList<Reporte.RespuestaCocina> rrg)
@@ -492,11 +535,8 @@ namespace ExcelAddIn1
             }
             return lista;
 
-  
 
         }
-
-
 
     }
 }

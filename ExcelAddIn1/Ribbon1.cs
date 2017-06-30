@@ -78,8 +78,6 @@ namespace ExcelAddIn1
            // ms.Show();
             var ms = new MenuSemanal();
             ms.Show();
-
-
             //Opcion.EjecucionAsync(Data.MenuSemanal.ListaPlatilloRecetas, y =>
             //{
 

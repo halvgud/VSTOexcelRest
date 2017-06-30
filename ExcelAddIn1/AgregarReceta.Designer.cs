@@ -33,8 +33,11 @@
             this.btAyudar = new System.Windows.Forms.Button();
             this.btGuardar = new System.Windows.Forms.Button();
             this.tabPage2 = new System.Windows.Forms.TabPage();
-            this.lbcantidadBE = new System.Windows.Forms.Label();
-            this.tbcantidadBEE = new System.Windows.Forms.MaskedTextBox();
+            this.tbCantidadDiarioBE = new System.Windows.Forms.MaskedTextBox();
+            this.lbCantidadDiarioBE = new System.Windows.Forms.Label();
+            this.cbUnidadElaboracionBE = new System.Windows.Forms.ComboBox();
+            this.lbCantidadElaboracionBE = new System.Windows.Forms.Label();
+            this.tbCantidadElaboracionBE = new System.Windows.Forms.MaskedTextBox();
             this.chDiarioBE = new System.Windows.Forms.CheckBox();
             this.txtinstruccionesBE = new System.Windows.Forms.TextBox();
             this.Pbreceta = new System.Windows.Forms.PictureBox();
@@ -50,16 +53,12 @@
             this.tbMargenConPrecioBE = new System.Windows.Forms.MaskedTextBox();
             this.tbPrecioBE = new System.Windows.Forms.MaskedTextBox();
             this.tbCostoElaboracionBE = new System.Windows.Forms.MaskedTextBox();
-            this.tbPrecioSugeridoBE = new System.Windows.Forms.MaskedTextBox();
-            this.tbMargenSugeridoBE = new System.Windows.Forms.MaskedTextBox();
             this.tbCostoEstimadoBE = new System.Windows.Forms.MaskedTextBox();
             this.label14 = new System.Windows.Forms.Label();
             this.label15 = new System.Windows.Forms.Label();
             this.label16 = new System.Windows.Forms.Label();
             this.label17 = new System.Windows.Forms.Label();
             this.label18 = new System.Windows.Forms.Label();
-            this.label19 = new System.Windows.Forms.Label();
-            this.label20 = new System.Windows.Forms.Label();
             this.label21 = new System.Windows.Forms.Label();
             this.btBorrarSelecBE = new System.Windows.Forms.Button();
             this.btBorrarListaBE = new System.Windows.Forms.Button();
@@ -67,9 +66,17 @@
             this.btBuscarClave = new System.Windows.Forms.Button();
             this.tbBuscarReceta = new System.Windows.Forms.TextBox();
             this.label3 = new System.Windows.Forms.Label();
+            this.tbMargenSugeridoBE = new System.Windows.Forms.MaskedTextBox();
+            this.label19 = new System.Windows.Forms.Label();
+            this.tbPrecioSugeridoBE = new System.Windows.Forms.MaskedTextBox();
+            this.label20 = new System.Windows.Forms.Label();
             this.tabPage1 = new System.Windows.Forms.TabPage();
-            this.lbcantidad = new System.Windows.Forms.Label();
-            this.tbcantidad = new System.Windows.Forms.MaskedTextBox();
+            this.tbCostoEstimado = new System.Windows.Forms.MaskedTextBox();
+            this.tbCantidadDiario = new System.Windows.Forms.MaskedTextBox();
+            this.lbCantidadDiario = new System.Windows.Forms.Label();
+            this.cbUnidadElaboracion = new System.Windows.Forms.ComboBox();
+            this.lbCantidadElaboracion = new System.Windows.Forms.Label();
+            this.tbCantidadElaboracion = new System.Windows.Forms.MaskedTextBox();
             this.txtinstrucciones = new System.Windows.Forms.TextBox();
             this.label26 = new System.Windows.Forms.Label();
             this.btValidar = new System.Windows.Forms.Button();
@@ -80,9 +87,6 @@
             this.tbMargenConPrecio = new System.Windows.Forms.MaskedTextBox();
             this.tbPrecio = new System.Windows.Forms.MaskedTextBox();
             this.tbCostoElaboracion = new System.Windows.Forms.MaskedTextBox();
-            this.tbPrecioSugerido = new System.Windows.Forms.MaskedTextBox();
-            this.tbMargenSugerido = new System.Windows.Forms.MaskedTextBox();
-            this.tbCostoEstimado = new System.Windows.Forms.MaskedTextBox();
             this.label13 = new System.Windows.Forms.Label();
             this.label12 = new System.Windows.Forms.Label();
             this.tbDescripcion = new System.Windows.Forms.TextBox();
@@ -93,15 +97,17 @@
             this.label9 = new System.Windows.Forms.Label();
             this.label8 = new System.Windows.Forms.Label();
             this.label7 = new System.Windows.Forms.Label();
-            this.label6 = new System.Windows.Forms.Label();
-            this.label5 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
             this.btBorrarSeleccion = new System.Windows.Forms.Button();
             this.btBorrarLista = new System.Windows.Forms.Button();
             this.label2 = new System.Windows.Forms.Label();
             this.btBuscar = new System.Windows.Forms.Button();
             this.label1 = new System.Windows.Forms.Label();
-            this.tabControl1 = new System.Windows.Forms.TabControl();
+            this.tbPrecioSugerido = new System.Windows.Forms.MaskedTextBox();
+            this.tbMargenSugerido = new System.Windows.Forms.MaskedTextBox();
+            this.label5 = new System.Windows.Forms.Label();
+            this.label6 = new System.Windows.Forms.Label();
+            this.tabCon = new System.Windows.Forms.TabControl();
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
             this.archivoToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.tsmGuardar = new System.Windows.Forms.ToolStripMenuItem();
@@ -113,7 +119,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.dgvIngredientesBusqueda)).BeginInit();
             this.tabPage1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvIngredientes)).BeginInit();
-            this.tabControl1.SuspendLayout();
+            this.tabCon.SuspendLayout();
             this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -148,8 +154,11 @@
             // 
             // tabPage2
             // 
-            this.tabPage2.Controls.Add(this.lbcantidadBE);
-            this.tabPage2.Controls.Add(this.tbcantidadBEE);
+            this.tabPage2.Controls.Add(this.tbCantidadDiarioBE);
+            this.tabPage2.Controls.Add(this.lbCantidadDiarioBE);
+            this.tabPage2.Controls.Add(this.cbUnidadElaboracionBE);
+            this.tabPage2.Controls.Add(this.lbCantidadElaboracionBE);
+            this.tabPage2.Controls.Add(this.tbCantidadElaboracionBE);
             this.tabPage2.Controls.Add(this.chDiarioBE);
             this.tabPage2.Controls.Add(this.txtinstruccionesBE);
             this.tabPage2.Controls.Add(this.Pbreceta);
@@ -165,16 +174,12 @@
             this.tabPage2.Controls.Add(this.tbMargenConPrecioBE);
             this.tabPage2.Controls.Add(this.tbPrecioBE);
             this.tabPage2.Controls.Add(this.tbCostoElaboracionBE);
-            this.tabPage2.Controls.Add(this.tbPrecioSugeridoBE);
-            this.tabPage2.Controls.Add(this.tbMargenSugeridoBE);
             this.tabPage2.Controls.Add(this.tbCostoEstimadoBE);
             this.tabPage2.Controls.Add(this.label14);
             this.tabPage2.Controls.Add(this.label15);
             this.tabPage2.Controls.Add(this.label16);
             this.tabPage2.Controls.Add(this.label17);
             this.tabPage2.Controls.Add(this.label18);
-            this.tabPage2.Controls.Add(this.label19);
-            this.tabPage2.Controls.Add(this.label20);
             this.tabPage2.Controls.Add(this.label21);
             this.tabPage2.Controls.Add(this.btBorrarSelecBE);
             this.tabPage2.Controls.Add(this.btBorrarListaBE);
@@ -182,31 +187,61 @@
             this.tabPage2.Controls.Add(this.btBuscarClave);
             this.tabPage2.Controls.Add(this.tbBuscarReceta);
             this.tabPage2.Controls.Add(this.label3);
+            this.tabPage2.Controls.Add(this.tbMargenSugeridoBE);
+            this.tabPage2.Controls.Add(this.label19);
+            this.tabPage2.Controls.Add(this.tbPrecioSugeridoBE);
+            this.tabPage2.Controls.Add(this.label20);
             this.tabPage2.Location = new System.Drawing.Point(4, 22);
             this.tabPage2.Name = "tabPage2";
             this.tabPage2.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage2.Size = new System.Drawing.Size(661, 501);
+            this.tabPage2.Size = new System.Drawing.Size(661, 549);
             this.tabPage2.TabIndex = 1;
             this.tabPage2.Text = "Buscar y Editar";
             this.tabPage2.UseVisualStyleBackColor = true;
             // 
-            // lbcantidadBE
+            // tbCantidadDiarioBE
             // 
-            this.lbcantidadBE.AutoSize = true;
-            this.lbcantidadBE.Location = new System.Drawing.Point(267, 360);
-            this.lbcantidadBE.Name = "lbcantidadBE";
-            this.lbcantidadBE.Size = new System.Drawing.Size(55, 13);
-            this.lbcantidadBE.TabIndex = 64;
-            this.lbcantidadBE.Text = "Cantidad :";
-            this.lbcantidadBE.Visible = false;
+            this.tbCantidadDiarioBE.Location = new System.Drawing.Point(327, 352);
+            this.tbCantidadDiarioBE.Name = "tbCantidadDiarioBE";
+            this.tbCantidadDiarioBE.Size = new System.Drawing.Size(66, 20);
+            this.tbCantidadDiarioBE.TabIndex = 66;
+            this.tbCantidadDiarioBE.Visible = false;
+            this.tbCantidadDiarioBE.TextChanged += new System.EventHandler(this.tbCantidadDiarioBE_TextChanged);
             // 
-            // tbcantidadBEE
+            // lbCantidadDiarioBE
             // 
-            this.tbcantidadBEE.Location = new System.Drawing.Point(328, 354);
-            this.tbcantidadBEE.Name = "tbcantidadBEE";
-            this.tbcantidadBEE.Size = new System.Drawing.Size(43, 20);
-            this.tbcantidadBEE.TabIndex = 63;
-            this.tbcantidadBEE.Visible = false;
+            this.lbCantidadDiarioBE.AutoSize = true;
+            this.lbCantidadDiarioBE.Location = new System.Drawing.Point(269, 356);
+            this.lbCantidadDiarioBE.Name = "lbCantidadDiarioBE";
+            this.lbCantidadDiarioBE.Size = new System.Drawing.Size(52, 13);
+            this.lbCantidadDiarioBE.TabIndex = 67;
+            this.lbCantidadDiarioBE.Text = "Cantidad:";
+            this.lbCantidadDiarioBE.Visible = false;
+            // 
+            // cbUnidadElaboracionBE
+            // 
+            this.cbUnidadElaboracionBE.FormattingEnabled = true;
+            this.cbUnidadElaboracionBE.Location = new System.Drawing.Point(596, 86);
+            this.cbUnidadElaboracionBE.Name = "cbUnidadElaboracionBE";
+            this.cbUnidadElaboracionBE.Size = new System.Drawing.Size(58, 21);
+            this.cbUnidadElaboracionBE.TabIndex = 65;
+            // 
+            // lbCantidadElaboracionBE
+            // 
+            this.lbCantidadElaboracionBE.AutoSize = true;
+            this.lbCantidadElaboracionBE.Location = new System.Drawing.Point(550, 68);
+            this.lbCantidadElaboracionBE.Name = "lbCantidadElaboracionBE";
+            this.lbCantidadElaboracionBE.Size = new System.Drawing.Size(111, 13);
+            this.lbCantidadElaboracionBE.TabIndex = 64;
+            this.lbCantidadElaboracionBE.Text = "Cantidad Elaboración:";
+            // 
+            // tbCantidadElaboracionBE
+            // 
+            this.tbCantidadElaboracionBE.Location = new System.Drawing.Point(551, 87);
+            this.tbCantidadElaboracionBE.Name = "tbCantidadElaboracionBE";
+            this.tbCantidadElaboracionBE.Size = new System.Drawing.Size(43, 20);
+            this.tbCantidadElaboracionBE.TabIndex = 63;
+            this.tbCantidadElaboracionBE.TextChanged += new System.EventHandler(this.tbCantidadElaboracionBE_TextChanged);
             // 
             // chDiarioBE
             // 
@@ -228,6 +263,7 @@
             this.txtinstruccionesBE.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
             this.txtinstruccionesBE.Size = new System.Drawing.Size(489, 85);
             this.txtinstruccionesBE.TabIndex = 61;
+            this.txtinstruccionesBE.TextChanged += new System.EventHandler(this.txtinstruccionesBE_TextChanged);
             // 
             // Pbreceta
             // 
@@ -250,7 +286,7 @@
             // btBuscarBE
             // 
             this.btBuscarBE.Enabled = false;
-            this.btBuscarBE.Location = new System.Drawing.Point(201, 24);
+            this.btBuscarBE.Location = new System.Drawing.Point(199, 24);
             this.btBuscarBE.Name = "btBuscarBE";
             this.btBuscarBE.Size = new System.Drawing.Size(62, 21);
             this.btBuscarBE.TabIndex = 54;
@@ -261,7 +297,7 @@
             // tbCodigoBE
             // 
             this.tbCodigoBE.Enabled = false;
-            this.tbCodigoBE.Location = new System.Drawing.Point(10, 24);
+            this.tbCodigoBE.Location = new System.Drawing.Point(7, 24);
             this.tbCodigoBE.Name = "tbCodigoBE";
             this.tbCodigoBE.Size = new System.Drawing.Size(187, 20);
             this.tbCodigoBE.TabIndex = 52;
@@ -279,20 +315,20 @@
             // 
             // tbDescripcionBE
             // 
-            this.tbDescripcionBE.Location = new System.Drawing.Point(484, 24);
+            this.tbDescripcionBE.Location = new System.Drawing.Point(473, 24);
             this.tbDescripcionBE.Name = "tbDescripcionBE";
-            this.tbDescripcionBE.Size = new System.Drawing.Size(169, 20);
+            this.tbDescripcionBE.Size = new System.Drawing.Size(182, 20);
             this.tbDescripcionBE.TabIndex = 49;
             this.tbDescripcionBE.TextChanged += new System.EventHandler(this.tbDescripcionBE_TextChanged);
             // 
             // label23
             // 
             this.label23.AutoSize = true;
-            this.label23.Location = new System.Drawing.Point(481, 7);
+            this.label23.Location = new System.Drawing.Point(470, 7);
             this.label23.Name = "label23";
-            this.label23.Size = new System.Drawing.Size(109, 13);
+            this.label23.Size = new System.Drawing.Size(106, 13);
             this.label23.TabIndex = 50;
-            this.label23.Text = "Nombre de la receta :";
+            this.label23.Text = "Nombre de la receta:";
             // 
             // dgvIngredientesBusqueda
             // 
@@ -302,35 +338,36 @@
             this.dgvIngredientesBusqueda.Size = new System.Drawing.Size(537, 281);
             this.dgvIngredientesBusqueda.TabIndex = 36;
             this.dgvIngredientesBusqueda.TabStop = false;
-            this.dgvIngredientesBusqueda.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvIngredientesBusqueda_CellContentClick);
+            this.dgvIngredientesBusqueda.CurrentCellDirtyStateChanged += new System.EventHandler(this.dgvIngredientesBusqueda_CurrentCellDirtyStateChanged);
             // 
             // cbTipoBE
             // 
             this.cbTipoBE.FormattingEnabled = true;
-            this.cbTipoBE.Location = new System.Drawing.Point(553, 118);
+            this.cbTipoBE.Location = new System.Drawing.Point(554, 166);
             this.cbTipoBE.Name = "cbTipoBE";
             this.cbTipoBE.Size = new System.Drawing.Size(100, 21);
             this.cbTipoBE.TabIndex = 47;
             // 
             // tbPesoLitroBE
             // 
-            this.tbPesoLitroBE.Location = new System.Drawing.Point(553, 80);
+            this.tbPesoLitroBE.Location = new System.Drawing.Point(553, 127);
             this.tbPesoLitroBE.Name = "tbPesoLitroBE";
             this.tbPesoLitroBE.Size = new System.Drawing.Size(100, 20);
             this.tbPesoLitroBE.TabIndex = 30;
+            this.tbPesoLitroBE.TextChanged += new System.EventHandler(this.tbPesoLitroBE_TextChanged);
             // 
             // tbMargenConPrecioBE
             // 
-            this.tbMargenConPrecioBE.Location = new System.Drawing.Point(553, 261);
+            this.tbMargenConPrecioBE.Location = new System.Drawing.Point(553, 284);
             this.tbMargenConPrecioBE.Name = "tbMargenConPrecioBE";
             this.tbMargenConPrecioBE.Size = new System.Drawing.Size(100, 20);
             this.tbMargenConPrecioBE.TabIndex = 33;
-            this.tbMargenConPrecioBE.MaskInputRejected += new System.Windows.Forms.MaskInputRejectedEventHandler(this.tbMargenConPrecioBE_MaskInputRejected);
             this.tbMargenConPrecioBE.TextChanged += new System.EventHandler(this.tbMargenConPrecioBE_TextChanged);
+            this.tbMargenConPrecioBE.Validating += new System.ComponentModel.CancelEventHandler(this.tbMargenConPrecioBE_Validating);
             // 
             // tbPrecioBE
             // 
-            this.tbPrecioBE.Location = new System.Drawing.Point(553, 330);
+            this.tbPrecioBE.Location = new System.Drawing.Point(553, 317);
             this.tbPrecioBE.Name = "tbPrecioBE";
             this.tbPrecioBE.Size = new System.Drawing.Size(100, 20);
             this.tbPrecioBE.TabIndex = 34;
@@ -340,111 +377,74 @@
             // 
             this.tbCostoElaboracionBE.AsciiOnly = true;
             this.tbCostoElaboracionBE.BeepOnError = true;
-            this.tbCostoElaboracionBE.Location = new System.Drawing.Point(553, 190);
+            this.tbCostoElaboracionBE.Location = new System.Drawing.Point(553, 245);
             this.tbCostoElaboracionBE.Name = "tbCostoElaboracionBE";
             this.tbCostoElaboracionBE.Size = new System.Drawing.Size(100, 20);
             this.tbCostoElaboracionBE.TabIndex = 32;
-            // 
-            // tbPrecioSugeridoBE
-            // 
-            this.tbPrecioSugeridoBE.Location = new System.Drawing.Point(553, 295);
-            this.tbPrecioSugeridoBE.Name = "tbPrecioSugeridoBE";
-            this.tbPrecioSugeridoBE.ReadOnly = true;
-            this.tbPrecioSugeridoBE.Size = new System.Drawing.Size(100, 20);
-            this.tbPrecioSugeridoBE.TabIndex = 42;
-            this.tbPrecioSugeridoBE.TabStop = false;
-            // 
-            // tbMargenSugeridoBE
-            // 
-            this.tbMargenSugeridoBE.Location = new System.Drawing.Point(553, 225);
-            this.tbMargenSugeridoBE.Name = "tbMargenSugeridoBE";
-            this.tbMargenSugeridoBE.ReadOnly = true;
-            this.tbMargenSugeridoBE.Size = new System.Drawing.Size(100, 20);
-            this.tbMargenSugeridoBE.TabIndex = 31;
-            this.tbMargenSugeridoBE.TabStop = false;
+            this.tbCostoElaboracionBE.TextChanged += new System.EventHandler(this.tbCostoElaboracionBE_TextChanged);
             // 
             // tbCostoEstimadoBE
             // 
-            this.tbCostoEstimadoBE.Location = new System.Drawing.Point(553, 155);
+            this.tbCostoEstimadoBE.Location = new System.Drawing.Point(553, 206);
             this.tbCostoEstimadoBE.Name = "tbCostoEstimadoBE";
-            this.tbCostoEstimadoBE.ReadOnly = true;
             this.tbCostoEstimadoBE.Size = new System.Drawing.Size(100, 20);
             this.tbCostoEstimadoBE.TabIndex = 40;
             this.tbCostoEstimadoBE.TabStop = false;
+            this.tbCostoEstimadoBE.TextChanged += new System.EventHandler(this.tbCostoEstimadoBE_TextChanged);
             // 
             // label14
             // 
             this.label14.AutoSize = true;
-            this.label14.Location = new System.Drawing.Point(550, 105);
+            this.label14.Location = new System.Drawing.Point(550, 150);
             this.label14.Name = "label14";
-            this.label14.Size = new System.Drawing.Size(82, 13);
+            this.label14.Size = new System.Drawing.Size(79, 13);
             this.label14.TabIndex = 48;
-            this.label14.Text = "Tipo de receta :";
+            this.label14.Text = "Tipo de receta:";
             // 
             // label15
             // 
             this.label15.AutoSize = true;
-            this.label15.Location = new System.Drawing.Point(550, 68);
+            this.label15.Location = new System.Drawing.Point(550, 111);
             this.label15.Name = "label15";
-            this.label15.Size = new System.Drawing.Size(80, 13);
+            this.label15.Size = new System.Drawing.Size(77, 13);
             this.label15.TabIndex = 46;
-            this.label15.Text = "Peso de 1 litro :";
+            this.label15.Text = "Peso de 1 litro:";
             // 
             // label16
             // 
             this.label16.AutoSize = true;
-            this.label16.Location = new System.Drawing.Point(550, 248);
+            this.label16.Location = new System.Drawing.Point(551, 268);
             this.label16.Name = "label16";
-            this.label16.Size = new System.Drawing.Size(99, 13);
+            this.label16.Size = new System.Drawing.Size(43, 13);
             this.label16.TabIndex = 45;
-            this.label16.Text = "Margen con precio:";
+            this.label16.Text = "Margen";
             // 
             // label17
             // 
             this.label17.AutoSize = true;
-            this.label17.Location = new System.Drawing.Point(550, 318);
+            this.label17.Location = new System.Drawing.Point(550, 305);
             this.label17.Name = "label17";
-            this.label17.Size = new System.Drawing.Size(43, 13);
+            this.label17.Size = new System.Drawing.Size(40, 13);
             this.label17.TabIndex = 44;
-            this.label17.Text = "Precio :";
+            this.label17.Text = "Precio:";
             // 
             // label18
             // 
             this.label18.AutoSize = true;
-            this.label18.Location = new System.Drawing.Point(550, 178);
+            this.label18.Location = new System.Drawing.Point(550, 229);
             this.label18.Name = "label18";
-            this.label18.Size = new System.Drawing.Size(99, 13);
+            this.label18.Size = new System.Drawing.Size(96, 13);
             this.label18.TabIndex = 43;
-            this.label18.Text = "Costo Elaboración :";
-            // 
-            // label19
-            // 
-            this.label19.AutoSize = true;
-            this.label19.Location = new System.Drawing.Point(550, 283);
-            this.label19.Name = "label19";
-            this.label19.Size = new System.Drawing.Size(43, 13);
-            this.label19.TabIndex = 41;
-            this.label19.Text = "Precio :";
-            this.label19.Visible = false;
-            // 
-            // label20
-            // 
-            this.label20.AutoSize = true;
-            this.label20.Location = new System.Drawing.Point(550, 212);
-            this.label20.Name = "label20";
-            this.label20.Size = new System.Drawing.Size(49, 13);
-            this.label20.TabIndex = 39;
-            this.label20.Text = "Margen :";
-            this.label20.Visible = false;
+            this.label18.Text = "Costo Elaboración:";
             // 
             // label21
             // 
             this.label21.AutoSize = true;
-            this.label21.Location = new System.Drawing.Point(550, 143);
+            this.label21.Location = new System.Drawing.Point(552, 190);
             this.label21.Name = "label21";
-            this.label21.Size = new System.Drawing.Size(86, 13);
+            this.label21.Size = new System.Drawing.Size(104, 13);
             this.label21.TabIndex = 38;
-            this.label21.Text = "Costo Estimado :";
+            this.label21.Text = "Costo Materia Prima:";
             // 
             // btBorrarSelecBE
             // 
@@ -477,7 +477,7 @@
             // 
             // btBuscarClave
             // 
-            this.btBuscarClave.Location = new System.Drawing.Point(408, 24);
+            this.btBuscarClave.Location = new System.Drawing.Point(404, 24);
             this.btBuscarClave.Name = "btBuscarClave";
             this.btBuscarClave.Size = new System.Drawing.Size(62, 20);
             this.btBuscarClave.TabIndex = 6;
@@ -487,7 +487,7 @@
             // 
             // tbBuscarReceta
             // 
-            this.tbBuscarReceta.Location = new System.Drawing.Point(269, 24);
+            this.tbBuscarReceta.Location = new System.Drawing.Point(267, 24);
             this.tbBuscarReceta.Name = "tbBuscarReceta";
             this.tbBuscarReceta.Size = new System.Drawing.Size(131, 20);
             this.tbBuscarReceta.TabIndex = 5;
@@ -500,14 +500,58 @@
             this.label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label3.Location = new System.Drawing.Point(266, 7);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(119, 13);
+            this.label3.Size = new System.Drawing.Size(115, 13);
             this.label3.TabIndex = 4;
-            this.label3.Text = "Clave de la receta :";
+            this.label3.Text = "Clave de la receta:";
+            // 
+            // tbMargenSugeridoBE
+            // 
+            this.tbMargenSugeridoBE.Location = new System.Drawing.Point(366, 428);
+            this.tbMargenSugeridoBE.Name = "tbMargenSugeridoBE";
+            this.tbMargenSugeridoBE.ReadOnly = true;
+            this.tbMargenSugeridoBE.Size = new System.Drawing.Size(100, 20);
+            this.tbMargenSugeridoBE.TabIndex = 31;
+            this.tbMargenSugeridoBE.TabStop = false;
+            this.tbMargenSugeridoBE.Visible = false;
+            // 
+            // label19
+            // 
+            this.label19.AutoSize = true;
+            this.label19.Location = new System.Drawing.Point(375, 428);
+            this.label19.Name = "label19";
+            this.label19.Size = new System.Drawing.Size(43, 13);
+            this.label19.TabIndex = 41;
+            this.label19.Text = "Precio :";
+            this.label19.Visible = false;
+            // 
+            // tbPrecioSugeridoBE
+            // 
+            this.tbPrecioSugeridoBE.Location = new System.Drawing.Point(353, 454);
+            this.tbPrecioSugeridoBE.Name = "tbPrecioSugeridoBE";
+            this.tbPrecioSugeridoBE.ReadOnly = true;
+            this.tbPrecioSugeridoBE.Size = new System.Drawing.Size(100, 20);
+            this.tbPrecioSugeridoBE.TabIndex = 42;
+            this.tbPrecioSugeridoBE.TabStop = false;
+            this.tbPrecioSugeridoBE.Visible = false;
+            // 
+            // label20
+            // 
+            this.label20.AutoSize = true;
+            this.label20.Location = new System.Drawing.Point(401, 415);
+            this.label20.Name = "label20";
+            this.label20.Size = new System.Drawing.Size(49, 13);
+            this.label20.TabIndex = 39;
+            this.label20.Text = "Margen :";
+            this.label20.Visible = false;
             // 
             // tabPage1
             // 
-            this.tabPage1.Controls.Add(this.lbcantidad);
-            this.tabPage1.Controls.Add(this.tbcantidad);
+            this.tabPage1.Controls.Add(this.tbCostoEstimado);
+            this.tabPage1.Controls.Add(this.tbCantidadDiario);
+            this.tabPage1.Controls.Add(this.lbCantidadDiario);
+            this.tabPage1.Controls.Add(this.cbUnidadElaboracion);
+            this.tabPage1.Controls.Add(this.lbCantidadElaboracion);
+            this.tabPage1.Controls.Add(this.tbCantidadElaboracion);
             this.tabPage1.Controls.Add(this.txtinstrucciones);
             this.tabPage1.Controls.Add(this.label26);
             this.tabPage1.Controls.Add(this.btValidar);
@@ -518,9 +562,6 @@
             this.tabPage1.Controls.Add(this.tbMargenConPrecio);
             this.tabPage1.Controls.Add(this.tbPrecio);
             this.tabPage1.Controls.Add(this.tbCostoElaboracion);
-            this.tabPage1.Controls.Add(this.tbPrecioSugerido);
-            this.tabPage1.Controls.Add(this.tbMargenSugerido);
-            this.tabPage1.Controls.Add(this.tbCostoEstimado);
             this.tabPage1.Controls.Add(this.label13);
             this.tabPage1.Controls.Add(this.label12);
             this.tabPage1.Controls.Add(this.tbDescripcion);
@@ -531,39 +572,75 @@
             this.tabPage1.Controls.Add(this.label9);
             this.tabPage1.Controls.Add(this.label8);
             this.tabPage1.Controls.Add(this.label7);
-            this.tabPage1.Controls.Add(this.label6);
-            this.tabPage1.Controls.Add(this.label5);
             this.tabPage1.Controls.Add(this.label4);
             this.tabPage1.Controls.Add(this.btBorrarSeleccion);
             this.tabPage1.Controls.Add(this.btBorrarLista);
             this.tabPage1.Controls.Add(this.label2);
             this.tabPage1.Controls.Add(this.btBuscar);
             this.tabPage1.Controls.Add(this.label1);
+            this.tabPage1.Controls.Add(this.tbPrecioSugerido);
+            this.tabPage1.Controls.Add(this.tbMargenSugerido);
+            this.tabPage1.Controls.Add(this.label5);
+            this.tabPage1.Controls.Add(this.label6);
             this.tabPage1.Location = new System.Drawing.Point(4, 22);
             this.tabPage1.Name = "tabPage1";
             this.tabPage1.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage1.Size = new System.Drawing.Size(661, 501);
+            this.tabPage1.Size = new System.Drawing.Size(661, 549);
             this.tabPage1.TabIndex = 0;
             this.tabPage1.Text = "Agregar";
             this.tabPage1.UseVisualStyleBackColor = true;
             // 
-            // lbcantidad
+            // tbCostoEstimado
             // 
-            this.lbcantidad.AutoSize = true;
-            this.lbcantidad.Location = new System.Drawing.Point(282, 361);
-            this.lbcantidad.Name = "lbcantidad";
-            this.lbcantidad.Size = new System.Drawing.Size(55, 13);
-            this.lbcantidad.TabIndex = 60;
-            this.lbcantidad.Text = "Cantidad :";
-            this.lbcantidad.Visible = false;
+            this.tbCostoEstimado.Location = new System.Drawing.Point(551, 198);
+            this.tbCostoEstimado.Name = "tbCostoEstimado";
+            this.tbCostoEstimado.Size = new System.Drawing.Size(102, 20);
+            this.tbCostoEstimado.TabIndex = 64;
+            this.tbCostoEstimado.TextChanged += new System.EventHandler(this.tbCostoEstimado_TextChanged);
             // 
-            // tbcantidad
+            // tbCantidadDiario
             // 
-            this.tbcantidad.Location = new System.Drawing.Point(343, 357);
-            this.tbcantidad.Name = "tbcantidad";
-            this.tbcantidad.Size = new System.Drawing.Size(57, 20);
-            this.tbcantidad.TabIndex = 59;
-            this.tbcantidad.Visible = false;
+            this.tbCantidadDiario.Location = new System.Drawing.Point(331, 357);
+            this.tbCantidadDiario.Name = "tbCantidadDiario";
+            this.tbCantidadDiario.Size = new System.Drawing.Size(67, 20);
+            this.tbCantidadDiario.TabIndex = 62;
+            this.tbCantidadDiario.Visible = false;
+            this.tbCantidadDiario.TextChanged += new System.EventHandler(this.tbCantidadDiario_TextChanged);
+            // 
+            // lbCantidadDiario
+            // 
+            this.lbCantidadDiario.AutoSize = true;
+            this.lbCantidadDiario.Location = new System.Drawing.Point(274, 363);
+            this.lbCantidadDiario.Name = "lbCantidadDiario";
+            this.lbCantidadDiario.Size = new System.Drawing.Size(52, 13);
+            this.lbCantidadDiario.TabIndex = 63;
+            this.lbCantidadDiario.Text = "Cantidad:";
+            this.lbCantidadDiario.Visible = false;
+            // 
+            // cbUnidadElaboracion
+            // 
+            this.cbUnidadElaboracion.FormattingEnabled = true;
+            this.cbUnidadElaboracion.Location = new System.Drawing.Point(598, 84);
+            this.cbUnidadElaboracion.Name = "cbUnidadElaboracion";
+            this.cbUnidadElaboracion.Size = new System.Drawing.Size(55, 21);
+            this.cbUnidadElaboracion.TabIndex = 61;
+            // 
+            // lbCantidadElaboracion
+            // 
+            this.lbCantidadElaboracion.AutoSize = true;
+            this.lbCantidadElaboracion.Location = new System.Drawing.Point(549, 65);
+            this.lbCantidadElaboracion.Name = "lbCantidadElaboracion";
+            this.lbCantidadElaboracion.Size = new System.Drawing.Size(111, 13);
+            this.lbCantidadElaboracion.TabIndex = 60;
+            this.lbCantidadElaboracion.Text = "Cantidad Elaboración:";
+            // 
+            // tbCantidadElaboracion
+            // 
+            this.tbCantidadElaboracion.Location = new System.Drawing.Point(551, 85);
+            this.tbCantidadElaboracion.Name = "tbCantidadElaboracion";
+            this.tbCantidadElaboracion.Size = new System.Drawing.Size(45, 20);
+            this.tbCantidadElaboracion.TabIndex = 59;
+            this.tbCantidadElaboracion.TextChanged += new System.EventHandler(this.tbCantidadElaboracion_TextChanged);
             // 
             // txtinstrucciones
             // 
@@ -573,6 +650,7 @@
             this.txtinstrucciones.Name = "txtinstrucciones";
             this.txtinstrucciones.Size = new System.Drawing.Size(639, 96);
             this.txtinstrucciones.TabIndex = 58;
+            this.txtinstrucciones.TextChanged += new System.EventHandler(this.txtinstrucciones_TextChanged);
             // 
             // label26
             // 
@@ -585,7 +663,7 @@
             // 
             // btValidar
             // 
-            this.btValidar.Location = new System.Drawing.Point(408, 24);
+            this.btValidar.Location = new System.Drawing.Point(402, 24);
             this.btValidar.Name = "btValidar";
             this.btValidar.Size = new System.Drawing.Size(62, 20);
             this.btValidar.TabIndex = 55;
@@ -614,40 +692,41 @@
             this.dgvIngredientes.Size = new System.Drawing.Size(537, 281);
             this.dgvIngredientes.TabIndex = 8;
             this.dgvIngredientes.TabStop = false;
-            this.dgvIngredientes.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvIngredientes_CellContentClick);
+            this.dgvIngredientes.CurrentCellDirtyStateChanged += new System.EventHandler(this.dgvIngredientes_CurrentCellDirtyStateChanged);
             // 
             // cbTipoReceta
             // 
             this.cbTipoReceta.FormattingEnabled = true;
-            this.cbTipoReceta.Location = new System.Drawing.Point(553, 118);
+            this.cbTipoReceta.Location = new System.Drawing.Point(551, 158);
             this.cbTipoReceta.Name = "cbTipoReceta";
-            this.cbTipoReceta.Size = new System.Drawing.Size(100, 21);
+            this.cbTipoReceta.Size = new System.Drawing.Size(102, 21);
             this.cbTipoReceta.TabIndex = 27;
             this.cbTipoReceta.SelectedIndexChanged += new System.EventHandler(this.cbTipoReceta_SelectedIndexChanged_1);
             // 
             // tbPesoLitro
             // 
-            this.tbPesoLitro.Location = new System.Drawing.Point(553, 80);
+            this.tbPesoLitro.Location = new System.Drawing.Point(551, 120);
             this.tbPesoLitro.Name = "tbPesoLitro";
-            this.tbPesoLitro.Size = new System.Drawing.Size(100, 20);
+            this.tbPesoLitro.Size = new System.Drawing.Size(102, 20);
             this.tbPesoLitro.TabIndex = 4;
             this.tbPesoLitro.TextChanged += new System.EventHandler(this.tbPesoLitro_TextChanged);
             this.tbPesoLitro.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.tbPesoLitro_KeyPress);
             // 
             // tbMargenConPrecio
             // 
-            this.tbMargenConPrecio.Location = new System.Drawing.Point(553, 261);
+            this.tbMargenConPrecio.Location = new System.Drawing.Point(551, 269);
             this.tbMargenConPrecio.Name = "tbMargenConPrecio";
-            this.tbMargenConPrecio.Size = new System.Drawing.Size(100, 20);
+            this.tbMargenConPrecio.Size = new System.Drawing.Size(102, 20);
             this.tbMargenConPrecio.TabIndex = 6;
             this.tbMargenConPrecio.TextChanged += new System.EventHandler(this.tbMargenConPrecio_TextChanged);
             this.tbMargenConPrecio.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.tbMargenConPrecio_KeyPress);
+            this.tbMargenConPrecio.Validating += new System.ComponentModel.CancelEventHandler(this.tbMargenConPrecio_Validating);
             // 
             // tbPrecio
             // 
-            this.tbPrecio.Location = new System.Drawing.Point(553, 330);
+            this.tbPrecio.Location = new System.Drawing.Point(551, 304);
             this.tbPrecio.Name = "tbPrecio";
-            this.tbPrecio.Size = new System.Drawing.Size(100, 20);
+            this.tbPrecio.Size = new System.Drawing.Size(102, 20);
             this.tbPrecio.TabIndex = 7;
             this.tbPrecio.TextChanged += new System.EventHandler(this.tbPrecio_TextChanged);
             this.tbPrecio.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.tbPrecio_KeyPress);
@@ -656,68 +735,42 @@
             // 
             this.tbCostoElaboracion.AsciiOnly = true;
             this.tbCostoElaboracion.BeepOnError = true;
-            this.tbCostoElaboracion.Location = new System.Drawing.Point(553, 190);
+            this.tbCostoElaboracion.Location = new System.Drawing.Point(551, 230);
             this.tbCostoElaboracion.Name = "tbCostoElaboracion";
-            this.tbCostoElaboracion.Size = new System.Drawing.Size(100, 20);
+            this.tbCostoElaboracion.Size = new System.Drawing.Size(102, 20);
             this.tbCostoElaboracion.TabIndex = 5;
             this.tbCostoElaboracion.TextChanged += new System.EventHandler(this.tbCostoElaboracion_TextChanged);
             this.tbCostoElaboracion.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.tbCostoElaboracion_KeyPress);
             // 
-            // tbPrecioSugerido
-            // 
-            this.tbPrecioSugerido.Location = new System.Drawing.Point(553, 295);
-            this.tbPrecioSugerido.Name = "tbPrecioSugerido";
-            this.tbPrecioSugerido.ReadOnly = true;
-            this.tbPrecioSugerido.Size = new System.Drawing.Size(100, 20);
-            this.tbPrecioSugerido.TabIndex = 14;
-            this.tbPrecioSugerido.TabStop = false;
-            // 
-            // tbMargenSugerido
-            // 
-            this.tbMargenSugerido.Location = new System.Drawing.Point(553, 225);
-            this.tbMargenSugerido.Name = "tbMargenSugerido";
-            this.tbMargenSugerido.Size = new System.Drawing.Size(100, 20);
-            this.tbMargenSugerido.TabIndex = 4;
-            this.tbMargenSugerido.TabStop = false;
-            // 
-            // tbCostoEstimado
-            // 
-            this.tbCostoEstimado.Location = new System.Drawing.Point(553, 155);
-            this.tbCostoEstimado.Name = "tbCostoEstimado";
-            this.tbCostoEstimado.Size = new System.Drawing.Size(100, 20);
-            this.tbCostoEstimado.TabIndex = 11;
-            this.tbCostoEstimado.TabStop = false;
-            this.tbCostoEstimado.MaskInputRejected += new System.Windows.Forms.MaskInputRejectedEventHandler(this.tbCostoEstimado_MaskInputRejected);
-            // 
             // label13
             // 
             this.label13.AutoSize = true;
-            this.label13.Location = new System.Drawing.Point(550, 105);
+            this.label13.Location = new System.Drawing.Point(548, 145);
             this.label13.Name = "label13";
-            this.label13.Size = new System.Drawing.Size(82, 13);
+            this.label13.Size = new System.Drawing.Size(79, 13);
             this.label13.TabIndex = 28;
-            this.label13.Text = "Tipo de receta :";
+            this.label13.Text = "Tipo de receta:";
             // 
             // label12
             // 
             this.label12.AutoSize = true;
-            this.label12.Location = new System.Drawing.Point(550, 68);
+            this.label12.Location = new System.Drawing.Point(548, 108);
             this.label12.Name = "label12";
-            this.label12.Size = new System.Drawing.Size(80, 13);
+            this.label12.Size = new System.Drawing.Size(77, 13);
             this.label12.TabIndex = 26;
-            this.label12.Text = "Peso de 1 litro :";
+            this.label12.Text = "Peso de 1 litro:";
             // 
             // tbDescripcion
             // 
-            this.tbDescripcion.Location = new System.Drawing.Point(484, 24);
+            this.tbDescripcion.Location = new System.Drawing.Point(470, 24);
             this.tbDescripcion.Name = "tbDescripcion";
-            this.tbDescripcion.Size = new System.Drawing.Size(169, 20);
+            this.tbDescripcion.Size = new System.Drawing.Size(185, 20);
             this.tbDescripcion.TabIndex = 3;
             this.tbDescripcion.TextChanged += new System.EventHandler(this.tbDescripcion_TextChanged);
             // 
             // tbClaveReceta
             // 
-            this.tbClaveReceta.Location = new System.Drawing.Point(269, 24);
+            this.tbClaveReceta.Location = new System.Drawing.Point(267, 24);
             this.tbClaveReceta.Name = "tbClaveReceta";
             this.tbClaveReceta.Size = new System.Drawing.Size(131, 20);
             this.tbClaveReceta.TabIndex = 2;
@@ -725,7 +778,7 @@
             // 
             // tbCodigo
             // 
-            this.tbCodigo.Location = new System.Drawing.Point(10, 24);
+            this.tbCodigo.Location = new System.Drawing.Point(8, 24);
             this.tbCodigo.Name = "tbCodigo";
             this.tbCodigo.Size = new System.Drawing.Size(187, 20);
             this.tbCodigo.TabIndex = 0;
@@ -735,74 +788,56 @@
             // label11
             // 
             this.label11.AutoSize = true;
-            this.label11.Location = new System.Drawing.Point(481, 8);
+            this.label11.Location = new System.Drawing.Point(473, 8);
             this.label11.Name = "label11";
-            this.label11.Size = new System.Drawing.Size(109, 13);
+            this.label11.Size = new System.Drawing.Size(106, 13);
             this.label11.TabIndex = 25;
-            this.label11.Text = "Nombre de la receta :";
+            this.label11.Text = "Nombre de la receta:";
             // 
             // label10
             // 
             this.label10.AutoSize = true;
-            this.label10.Location = new System.Drawing.Point(550, 248);
+            this.label10.Location = new System.Drawing.Point(548, 257);
             this.label10.Name = "label10";
-            this.label10.Size = new System.Drawing.Size(99, 13);
+            this.label10.Size = new System.Drawing.Size(46, 13);
             this.label10.TabIndex = 23;
-            this.label10.Text = "Margen con precio:";
+            this.label10.Text = "Margen:";
             // 
             // label9
             // 
             this.label9.AutoSize = true;
-            this.label9.Location = new System.Drawing.Point(550, 318);
+            this.label9.Location = new System.Drawing.Point(548, 292);
             this.label9.Name = "label9";
-            this.label9.Size = new System.Drawing.Size(43, 13);
+            this.label9.Size = new System.Drawing.Size(40, 13);
             this.label9.TabIndex = 20;
-            this.label9.Text = "Precio :";
+            this.label9.Text = "Precio:";
             // 
             // label8
             // 
             this.label8.AutoSize = true;
-            this.label8.Location = new System.Drawing.Point(268, 8);
+            this.label8.Location = new System.Drawing.Point(269, 8);
             this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(99, 13);
+            this.label8.Size = new System.Drawing.Size(96, 13);
             this.label8.TabIndex = 19;
-            this.label8.Text = "Clave de la receta :";
+            this.label8.Text = "Clave de la receta:";
             // 
             // label7
             // 
             this.label7.AutoSize = true;
-            this.label7.Location = new System.Drawing.Point(550, 178);
+            this.label7.Location = new System.Drawing.Point(548, 218);
             this.label7.Name = "label7";
             this.label7.Size = new System.Drawing.Size(99, 13);
             this.label7.TabIndex = 15;
             this.label7.Text = "Costo Elaboración :";
             // 
-            // label6
-            // 
-            this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(550, 283);
-            this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(86, 13);
-            this.label6.TabIndex = 13;
-            this.label6.Text = "Precio sugerido :";
-            // 
-            // label5
-            // 
-            this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(550, 212);
-            this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(92, 13);
-            this.label5.TabIndex = 10;
-            this.label5.Text = "Margen sugerido :";
-            // 
             // label4
             // 
             this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(550, 143);
+            this.label4.Location = new System.Drawing.Point(548, 183);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(86, 13);
+            this.label4.Size = new System.Drawing.Size(104, 13);
             this.label4.TabIndex = 9;
-            this.label4.Text = "Costo Estimado :";
+            this.label4.Text = "Costo Materia Prima:";
             // 
             // btBorrarSeleccion
             // 
@@ -836,7 +871,7 @@
             // btBuscar
             // 
             this.btBuscar.Enabled = false;
-            this.btBuscar.Location = new System.Drawing.Point(201, 24);
+            this.btBuscar.Location = new System.Drawing.Point(199, 24);
             this.btBuscar.Name = "btBuscar";
             this.btBuscar.Size = new System.Drawing.Size(62, 21);
             this.btBuscar.TabIndex = 1;
@@ -854,16 +889,55 @@
             this.label1.TabIndex = 0;
             this.label1.Text = "Codigo o nombre de ingredientes:";
             // 
-            // tabControl1
+            // tbPrecioSugerido
             // 
-            this.tabControl1.Controls.Add(this.tabPage1);
-            this.tabControl1.Controls.Add(this.tabPage2);
-            this.tabControl1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tabControl1.Location = new System.Drawing.Point(0, 0);
-            this.tabControl1.Name = "tabControl1";
-            this.tabControl1.SelectedIndex = 0;
-            this.tabControl1.Size = new System.Drawing.Size(669, 527);
-            this.tabControl1.TabIndex = 2;
+            this.tbPrecioSugerido.Location = new System.Drawing.Point(391, 410);
+            this.tbPrecioSugerido.Name = "tbPrecioSugerido";
+            this.tbPrecioSugerido.ReadOnly = true;
+            this.tbPrecioSugerido.Size = new System.Drawing.Size(100, 20);
+            this.tbPrecioSugerido.TabIndex = 14;
+            this.tbPrecioSugerido.TabStop = false;
+            this.tbPrecioSugerido.Visible = false;
+            // 
+            // tbMargenSugerido
+            // 
+            this.tbMargenSugerido.Location = new System.Drawing.Point(507, 410);
+            this.tbMargenSugerido.Name = "tbMargenSugerido";
+            this.tbMargenSugerido.Size = new System.Drawing.Size(100, 20);
+            this.tbMargenSugerido.TabIndex = 4;
+            this.tbMargenSugerido.TabStop = false;
+            this.tbMargenSugerido.Visible = false;
+            // 
+            // label5
+            // 
+            this.label5.AutoSize = true;
+            this.label5.Location = new System.Drawing.Point(533, 417);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(92, 13);
+            this.label5.TabIndex = 10;
+            this.label5.Text = "Margen sugerido :";
+            this.label5.Visible = false;
+            // 
+            // label6
+            // 
+            this.label6.AutoSize = true;
+            this.label6.Location = new System.Drawing.Point(424, 410);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(86, 13);
+            this.label6.TabIndex = 13;
+            this.label6.Text = "Precio sugerido :";
+            this.label6.Visible = false;
+            // 
+            // tabCon
+            // 
+            this.tabCon.Controls.Add(this.tabPage1);
+            this.tabCon.Controls.Add(this.tabPage2);
+            this.tabCon.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.tabCon.Location = new System.Drawing.Point(0, 0);
+            this.tabCon.Name = "tabCon";
+            this.tabCon.SelectedIndex = 0;
+            this.tabCon.Size = new System.Drawing.Size(669, 575);
+            this.tabCon.TabIndex = 2;
             // 
             // menuStrip1
             // 
@@ -907,8 +981,8 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(669, 575);
-            this.Controls.Add(this.tabControl1);
             this.Controls.Add(this.panel1);
+            this.Controls.Add(this.tabCon);
             this.Controls.Add(this.menuStrip1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.HelpButton = true;
@@ -926,7 +1000,7 @@
             this.tabPage1.ResumeLayout(false);
             this.tabPage1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvIngredientes)).EndInit();
-            this.tabControl1.ResumeLayout(false);
+            this.tabCon.ResumeLayout(false);
             this.menuStrip1.ResumeLayout(false);
             this.menuStrip1.PerformLayout();
             this.ResumeLayout(false);
@@ -969,7 +1043,6 @@
         private System.Windows.Forms.MaskedTextBox tbCostoElaboracion;
         private System.Windows.Forms.MaskedTextBox tbPrecioSugerido;
         private System.Windows.Forms.MaskedTextBox tbMargenSugerido;
-        private System.Windows.Forms.MaskedTextBox tbCostoEstimado;
         private System.Windows.Forms.Label label13;
         private System.Windows.Forms.Label label12;
         private System.Windows.Forms.TextBox tbDescripcion;
@@ -988,7 +1061,7 @@
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Button btBuscar;
         private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.TabControl tabControl1;
+        private System.Windows.Forms.TabControl tabCon;
         private System.Windows.Forms.CheckBox chDiario;
         private System.Windows.Forms.MenuStrip menuStrip1;
         private System.Windows.Forms.ToolStripMenuItem archivoToolStripMenuItem;
@@ -1010,9 +1083,16 @@
         private System.Windows.Forms.ContextMenuStrip contextMenuStrip1;
         private System.Windows.Forms.TextBox txtinstrucciones;
         private System.Windows.Forms.CheckBox chDiarioBE;
-        private System.Windows.Forms.Label lbcantidad;
-        private System.Windows.Forms.MaskedTextBox tbcantidad;
-        private System.Windows.Forms.Label lbcantidadBE;
-        private System.Windows.Forms.MaskedTextBox tbcantidadBEE;
+        private System.Windows.Forms.Label lbCantidadElaboracion;
+        private System.Windows.Forms.MaskedTextBox tbCantidadElaboracion;
+        private System.Windows.Forms.Label lbCantidadElaboracionBE;
+        private System.Windows.Forms.MaskedTextBox tbCantidadElaboracionBE;
+        private System.Windows.Forms.ComboBox cbUnidadElaboracion;
+        private System.Windows.Forms.ComboBox cbUnidadElaboracionBE;
+        private System.Windows.Forms.MaskedTextBox tbCantidadDiario;
+        private System.Windows.Forms.Label lbCantidadDiario;
+        private System.Windows.Forms.MaskedTextBox tbCantidadDiarioBE;
+        private System.Windows.Forms.Label lbCantidadDiarioBE;
+        private System.Windows.Forms.MaskedTextBox tbCostoEstimado;
     }
 }

@@ -21,8 +21,6 @@ namespace ExcelAddIn1
             dgvListaArticulos.DataSource = _listaArticulo.Select(x => new { clave = x.Clave, descripcion = x.Descripcion, precioCompra = x.PrecioCompra }).ToArray();
             dgvListaArticulos.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
         }
-        
-
         private void btAceptar_Click(object sender, EventArgs e)
         {
             _listaArticulo[dgvListaArticulos.CurrentCell.RowIndex].Cantidad = double.Parse(tbCantidad.Text);
@@ -43,10 +41,6 @@ namespace ExcelAddIn1
             if (e.KeyChar == 13 && tbCantidad.Text.Trim().Length > 0)
             {
                 btAceptar_Click(sender, new EventArgs());
-            }
-            else
-            {
-                //tbCantidad_Validating(sender,new CancelEventArgs());
             }
         }
 

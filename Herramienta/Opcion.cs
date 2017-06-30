@@ -262,6 +262,9 @@ namespace Herramienta
             //throw new NotImplementedException();
         }
 
- 
+        public static object JsonaListaGenerica<T>(object jsonResult)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

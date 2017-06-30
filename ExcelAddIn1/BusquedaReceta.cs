@@ -63,7 +63,7 @@ namespace ExcelAddIn1
 
         private void btAceptar_Click(object sender, EventArgs e)
         {
-            _listaRecetas[dgvRecetas.CurrentCell.RowIndex].Cantidad = double.Parse(tbCantidad.Text);
+            _listaRecetas[dgvRecetas.CurrentCell.RowIndex].CantidadDiario = double.Parse(tbCantidad.Text);
             _callback(new List<Receta> { _listaRecetas[dgvRecetas.CurrentCell.RowIndex] });
         }
 

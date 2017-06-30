@@ -58,7 +58,11 @@ namespace ExcelAddIn1
         private void btbuscareditar_Click(object sender, EventArgs e)
         {
             Cocina.Buscarcongelados.Descripcion = txtbuscarcongeladoeditar.Text == string.Empty ? "%" : txtbuscarcongeladoeditar.Text;  /* asigna la clave a la variable estatica*/
+<<<<<<< HEAD
+
+=======
             //Cocina.Buscarcongelados.descripcion = txtbuscarcongeladoeditar.Text == string.Empty ? "%" : txtbuscarcongeladoeditar.Text;  /* asigna la clave a la variable estatica*/
+>>>>>>> origin/master
             Opcion.EjecucionAsync(Data.ReporteCocina.Buscarcongelados, jsonResult => /* se ejecuta Data.Receta.Lista, el resultado se guarda en jsonResult*/
             {
                 BeginInvoke((MethodInvoker)(() =>
@@ -73,9 +77,13 @@ namespace ExcelAddIn1
                                  {
                                      BeginInvoke((MethodInvoker)(() => /*se manda llamar de nuevo a la interfaz*/
                                      {
+<<<<<<< HEAD
+                                         dgvcongeladobuscaryeditar.DataSource = resultado.Select(g => new { estado_id = g.EstadoId,clave = g.Clave, descripcion = g.Descripcion, cantidad = g.Cantidad}) /*ni estas*/
+=======
 
                                          dgvcongeladobuscaryeditar.DataSource = resultado.Select(g => new { estado_id = g.EstadoId,clave = g.Clave, descripcion = g.Platillo, cantidad = g.Cantidad}) /*ni estas*/
 
+>>>>>>> origin/master
                                           .ToList();
                                      }));
                                  },lista.ToArray(),0);
@@ -118,9 +126,12 @@ namespace ExcelAddIn1
 
             if (dgvcongeladobuscaryeditar.CurrentRow != null)
             {
+<<<<<<< HEAD
+=======
                 //estado_id = (dgvcongeladobuscaryeditar.CurrentRow.Cells[0].Value).ToString(),
             //    Cantidad = double.Parse(dgvcongeladobuscaryeditar.CurrentRow.Cells[3].Value.ToString())
            
+>>>>>>> origin/master
                 var congeladosactualizar = new Receta.Congelados
                 {
                     //estado_id = (dgvcongeladobuscaryeditar.CurrentRow.Cells[0].Value).ToString(),
@@ -130,7 +141,11 @@ namespace ExcelAddIn1
                 //Data.ReporteCocina.ActualizarCongelado
                 Data.ReporteCocina.Cccongelados = congeladosactualizar;
             }
+<<<<<<< HEAD
+            Data.ReporteCocina.ActualizarCongelado(y => {
+=======
           Data.ReporteCocina.ActualizarCongelado(y => {
+>>>>>>> origin/master
                 BeginInvoke((MethodInvoker)(() =>
                 {
                     mse.Close();
@@ -181,7 +196,10 @@ namespace ExcelAddIn1
                                                     Clave = g.First().Clave,
                                                     Platillo = g.First().Platillo,
                                                    Cantidad = g.Sum(i => i.Cantidad)
+<<<<<<< HEAD
+=======
                                                  
+>>>>>>> origin/master
                                                 }).ToList();
                                             for (var x = 0; x == 4; x++)
                                             {
@@ -239,7 +257,10 @@ namespace ExcelAddIn1
             //double canttidad = Convert.ToDouble(dgvcongelados.CurrentRow.Cells[3].Value);
             //aqui el problema es que estas creando el objeto despues de la ejecucion y es alreves
             // deja lo formo*/;
+<<<<<<< HEAD
+=======
 
+>>>>>>> origin/master
             MensajeDeEspera mse = new MensajeDeEspera();
             mse.Show();
            
@@ -297,11 +318,23 @@ namespace ExcelAddIn1
         }
         private void btbaja_Click(object sender, EventArgs e)
         {
+<<<<<<< HEAD
+=======
             Data.ReporteCocina.InabilitarCongelado( Convert.ToInt32(dgvcongeladobuscaryeditar.CurrentRow.Cells[0].Value.ToString()));
             dgvcongeladobuscaryeditar.DataSource = null;
             dgvcongeladobuscaryeditar.Rows.Clear();
+>>>>>>> origin/master
             if (dgvcongeladobuscaryeditar.CurrentRow != null)
+            {
                 Data.ReporteCocina.InabilitarCongelado( Convert.ToInt32(dgvcongeladobuscaryeditar.CurrentRow.Cells[0].Value.ToString()));
+<<<<<<< HEAD
+                dgvcongeladobuscaryeditar.DataSource = null;
+                dgvcongeladobuscaryeditar.Rows.Clear();
+                if (dgvcongeladobuscaryeditar.CurrentRow != null)
+                    Data.ReporteCocina.InabilitarCongelado( Convert.ToInt32(dgvcongeladobuscaryeditar.CurrentRow.Cells[0].Value.ToString()));
+            }
+=======
+>>>>>>> origin/master
         }
     }
     internal class Controls

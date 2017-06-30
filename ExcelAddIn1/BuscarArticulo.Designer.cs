@@ -41,7 +41,7 @@ private System.ComponentModel.IContainer components = null;
             // btAceptar
             // 
             this.btAceptar.Enabled = false;
-            this.btAceptar.Location = new System.Drawing.Point(308, 57);
+            this.btAceptar.Location = new System.Drawing.Point(337, 57);
             this.btAceptar.Name = "btAceptar";
             this.btAceptar.Size = new System.Drawing.Size(75, 23);
             this.btAceptar.TabIndex = 7;
@@ -52,24 +52,25 @@ private System.ComponentModel.IContainer components = null;
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(304, 13);
+            this.label1.Location = new System.Drawing.Point(327, 13);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(67, 13);
+            this.label1.Size = new System.Drawing.Size(52, 13);
             this.label1.TabIndex = 6;
-            this.label1.Text = "Cantidad en ";
+            this.label1.Text = "Cantidad:";
             // 
             // dgvListaArticulos
             // 
             this.dgvListaArticulos.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgvListaArticulos.Location = new System.Drawing.Point(1, 13);
             this.dgvListaArticulos.Name = "dgvListaArticulos";
-            this.dgvListaArticulos.Size = new System.Drawing.Size(301, 171);
+            this.dgvListaArticulos.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
+            this.dgvListaArticulos.Size = new System.Drawing.Size(319, 171);
             this.dgvListaArticulos.TabIndex = 8;
             this.dgvListaArticulos.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvListaArticulos_CellClick);
             // 
             // tbCantidad
             // 
-            this.tbCantidad.Location = new System.Drawing.Point(307, 29);
+            this.tbCantidad.Location = new System.Drawing.Point(326, 29);
             this.tbCantidad.Name = "tbCantidad";
             this.tbCantidad.Size = new System.Drawing.Size(100, 20);
             this.tbCantidad.TabIndex = 10;

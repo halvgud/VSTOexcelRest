@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Drawing;
-using System.Drawing.Text;
 using System.Linq;
 using System.Net;
 using System.Windows.Forms;
@@ -33,7 +32,7 @@ namespace testVSTO2
             _listaRecetas = _listaRecetas.GroupBy(p => p.Clave).Select(g => new Receta
             {
                 Clave = g.Key,
-                Cantidad = g.Sum(i => i.Cantidad),
+                CantidadDiario = g.Sum(i => i.CantidadDiario),
                 CostoCreacion = g.First().CostoCreacion,
                 CostoElaboracion = g.First().CostoElaboracion,
                 Descripcion = g.First().Descripcion,

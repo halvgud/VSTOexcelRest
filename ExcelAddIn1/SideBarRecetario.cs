@@ -32,7 +32,7 @@ namespace ExcelAddIn1
             _listaRecetas = _listaRecetas.GroupBy(p => p.Clave).Select(g => new Receta
             {
                 Clave = g.Key,
-                Cantidad = g.Sum(i => i.Cantidad),
+                CantidadDiario = g.Sum(i => i.CantidadDiario),
                 CostoCreacion = g.First().CostoCreacion,
                 CostoElaboracion = g.First().CostoElaboracion,
                 Descripcion = g.First().Descripcion,

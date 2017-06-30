@@ -722,7 +722,7 @@ namespace ExcelAddIn1
 
                     #region actualiza Ruta de imagen e Instrucciones
                     long a = int.Parse(DateTime.Now.ToString("yyyyMMdd"));
-
+                    
                     if (MessageBox.Show(@"Desea modificar la imagen", "Aviso", MessageBoxButtons.YesNo,
                         MessageBoxIcon.Question) == DialogResult.Yes)
                     {

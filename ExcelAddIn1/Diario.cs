@@ -5,11 +5,13 @@ using System.Data;
 using System.Drawing;
 using System.Linq;
 using System.Net;
+using System.Net.Mime;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using Herramienta;
 using Herramienta.Config;
+using Microsoft.Office.Core;
 using Respuesta;
 
 namespace ExcelAddIn1
@@ -19,21 +21,25 @@ namespace ExcelAddIn1
 
         private List<Receta.Congelados2> _listaArticuloCongelado = new List<Receta.Congelados2>();
         private List<Receta.Congelados2> _listArticuloCongelado2=new List<Receta.Congelados2>();
-        public int valor = -1;
+        public int valor = 0;
+        public int INNdex;
+        public int IndeXX;
 
-        // private readonly List<unidad> _unidades;
+        private readonly List<final> _endList;
         public Diario()
         {
             InitializeComponent();
-            //_unidades = new List<unidad>();
+            _endList = new List<final>();
         }
 
-        //public class congelado
-        //{ 
-        //    public inid { get; set; }
-        //    public String unidadd { get; set; }
-        //}
-        public List<Respuesta.Diario> lista;
+        public class final
+        {
+            public int id { get; set; }
+            public String destino { get; set; }
+            
+        }
+    public List<Respuesta.Diario> lista;
+        public List<Respuesta.DiarioX2> ListaX2s; 
 
         private void groupBox1_Enter(object sender, EventArgs e)
         {
@@ -47,9 +53,12 @@ namespace ExcelAddIn1
 
         private void Diario_Load(object sender, EventArgs e)
         {
-   
+
+            #region fechas
+
             string fecha = DateTime.Now.AddDays(-1).ToString("yyyy-MM-dd 07:00:00");
             string fecha1 = DateTime.Now.AddDays(-1).ToString("yyyy-MM-dd 21:00:00");
+            string fecha1R= DateTime.Now.AddDays(-1).ToString("yyyy-MM-dd 00:00:00");
             var fechas = new Receta.Diaanterior
             {
                 Fecha1 = fecha,
@@ -57,16 +66,34 @@ namespace ExcelAddIn1
             };
             
             Data.Reporte.AntesDiaanterior = fechas;
+            Cocina.DiaAntesX2.FechaX2 = fecha1R;
+            #endregion
+
+            _endList.Add(new final {destino = "CONGELADO",  id = 1});
+            _endList.Add(new final {destino="MERMA",id=2});
+            _endList.Add(new final {destino="EMPLEADOS", id=3});
+
+            dgreventa.Tag =new final { destino = "CONGELADO", id = 1 };
+            dgreventa.Tag=new final { destino = "MERMA", id = 2 };
+            dgreventa.Tag=new final { destino = "EMPLEADOS", id = 3 };
             var col2 = new DataGridViewImageColumn
             {
                 Name = " ",
                 DataPropertyName = " ",
                 HeaderText = @" ",
-
-
+                
             };
 
-            // Local.ReporteAnterior.Fecha = fecha;
+            var col3 = new DataGridViewComboBoxColumn
+            {
+             Name = "Destino",
+             DataPropertyName = "Destino",
+             HeaderText = @"Destino",
+             DataSource = _endList,
+             DisplayMember = "destino",
+             ValueMember = "destino"     
+            };
+
             var me = new MensajeDeEspera();
             me.Show();
             Opcion.EjecucionAsync(Data.Reporte.Yesterday, jsonResult =>
@@ -74,101 +101,104 @@ namespace ExcelAddIn1
                 BeginInvoke((MethodInvoker) (() =>
                 {
                     me.Close();
-                 lista = Opcion.JsonaListaGenerica<Respuesta.Diario>(jsonResult);
-                
-            
+                    lista = Opcion.JsonaListaGenerica<Respuesta.Diario>(jsonResult);
                     dgDiario.Columns.Add(col2);
-                    dgDiario.Columns[0].Width = 10;
-
                     dgDiario.RowHeadersVisible = false;
                     dgDiario.DataSource = lista;
-                    dgDiario.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
-               
+                    dgDiario.DefaultCellStyle.Font = new Font("Segoe UI Light", 8, FontStyle.Bold);
+                    dgDiario.Columns[0].Width = 25;
+                    dgDiario.Columns[1].Width = 50;
+                    dgDiario.Columns[1].DefaultCellStyle.Alignment= DataGridViewContentAlignment.MiddleCenter; 
+                    dgDiario.Columns[2].Width = 70;
+                    dgDiario.Columns[3].Width = 150;
+                    dgDiario.Columns[4].Width = 40;
+                    dgDiario.Columns[4].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
+                    dgDiario.Columns[5].Width = 40;
+                    dgDiario.Columns[5].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
+                    dgDiario.Columns[6].Width = 40;
+                    dgDiario.Columns[6].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
+                    dgDiario.Columns[7].Width = 60;
+                    dgDiario.Columns[7].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
+                    dgDiario.Columns[8].Width = 30;
+                    dgDiario.Columns[8].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
+                    dgDiario.Columns[9].Width = 30;
+                    dgDiario.Columns[9].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
+                    dgDiario.Columns[10].Width = 200;
+                    
+
+                   
+                }));
+              });
+           
+
+            Opcion.EjecucionAsync(Data.Reporte.Before, jsonResult =>
+            {
+                BeginInvoke((MethodInvoker)(() =>
+                {
+                    me.Close();
+
+                    ListaX2s = Opcion.JsonaListaGenerica<Respuesta.DiarioX2>( jsonResult);
+                    if (ListaX2s==null)
+                    {
+                        var listavacia = new Respuesta.DiarioX2
+                        {
+                            ArtId = "",
+                            Clave = "",
+                            Platillo = "",
+                            RV = 0,
+                            SR = 0,
+                            S = 0,
+                            CR = 0,
+                            EstadoId = 0,
+                            Fecha = ""
+                        };
+                        dgreventa.DataSource = listavacia;
+
+                    }
+                    else
+                    {
+                        dgreventa.DataSource = ListaX2s;
+                        dgreventa.Columns[8].Visible = false;
+                        dgreventa.Columns.Add(col3);
+                        dgreventa.DefaultCellStyle.Font = new Font("Segoe UI Light", 8, FontStyle.Bold);
+                        dgreventa.Columns[0].Width = 50;
+                        dgreventa.Columns[0].ReadOnly = true;
+                        dgreventa.Columns[1].Width = 50;
+                        dgreventa.Columns[1].ReadOnly = true;
+                        dgreventa.Columns[2].Width = 150;
+                        dgreventa.Columns[2].ReadOnly = true;
+                        dgreventa.Columns[3].Width = 40;
+                        dgreventa.Columns[3].ReadOnly = true;
+                        dgreventa.Columns[3].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
+                        dgreventa.Columns[4].Width = 40;
+                        dgreventa.Columns[4].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
+                        dgreventa.Columns[5].Width = 40;
+                        dgreventa.Columns[5].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
+                        dgreventa.RowHeadersVisible = false;
+                        dgreventa.Columns[6].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
+                        dgreventa.Columns[6].Width = 80;
+
+                    }
+             
+                   
+
                 }));
             });
-           
-         
-        }
 
-        private void chCongelados_CheckedChanged(object sender, EventArgs e)
-        {
-            if (chCongelados.Checked == true)
-            {
-                txtcongelados.Enabled = true;
-                txtcongelados.Focus();
-                
-            }
-            else
-            {
-                txtcongelados.Enabled = false;
-                txtcongelados.Text = "";
 
-            }
-          
-        }
-
-        private void chMerma_CheckedChanged(object sender, EventArgs e)
-        {
-            if (chMerma.Checked == true)
-            {
-                txtmerma.Enabled = true;
-                txtmerma.Focus();
-              
-            }
-            else
-            {
-                txtmerma.Enabled = false;
-                txtmerma.Text = "";
-            }
-            
-        }
-
-        private void chEmpleados_CheckedChanged(object sender, EventArgs e)
-        {
-            if (chEmpleados.Checked == true)
-            {
-                txtempleados.Enabled = true;
-                txtempleados.Focus();
-               
-
-            }
-            else
-            {
-                txtempleados.Enabled = false;
-           
-                txtempleados.Text = "";
-            }
-      
-        }
-
-        private void chReventa_CheckedChanged(object sender, EventArgs e)
-        {
-           
-            
-
-            if (chReventa.Checked == true)
-            {
-                txtreventa.Enabled = true;
-                txtreventa.Focus();
-                
-            }
-            else
-            {
-                txtreventa.Enabled = false;
-                txtreventa.Text = "";
-                            
-            }
-
-           
         }
 
         private void dgDiario_CellValueChanged(object sender, DataGridViewCellEventArgs e)
         {
             #region Sobrante Real
-            double i = Convert.ToDouble(dgDiario.CurrentRow.Cells[3].Value);
-            double y = Convert.ToDouble(dgDiario.CurrentRow.Cells[4].Value);
-            dgDiario.Rows[e.RowIndex].Cells[6].Value =Math.Round(i-y, 2);
+            //double i = Convert.ToDouble(dgDiario.CurrentRow.Cells[3].Value);
+            //double y = Convert.ToDouble(dgDiario.CurrentRow.Cells[4].Value);
+            //dgDiario.Rows[e.RowIndex].Cells[5].Value =Math.Round(i-y, 2);
             #endregion
+
+
+        
+
 
 
      
@@ -213,60 +243,255 @@ namespace ExcelAddIn1
 
         private void btguardardiario_Click(object sender, EventArgs e)
         {
-            var listEstado = new List<Receta.Savedaily>();
-            if (chCongelados.Checked==true)
+            if (Convert.ToInt16(dgDiario.Rows[valor].Cells[9].Value) == 0)
             {
-                listEstado.Add(new Respuesta.Receta.Savedaily
-                {
-                    EstadoId = 1,
-                    ArtId = dgDiario.CurrentRow.Cells[1].Value.ToString(),
-                    Cantidad = Convert.ToDouble(txtcongelados.Text),
-                    Clave = dgDiario.CurrentRow.Cells[2].Value.ToString(),
-                    Platillo = dgDiario.CurrentRow.Cells[3].Value.ToString()
-                });
 
             }
-            if (chMerma.Checked == true)
+            else
             {
-                listEstado.Add(new Receta.Savedaily
+                var listEstado = new List<Receta.Savedaily>();
+                if (rbcongelado.Checked == true)
                 {
-                    EstadoId = 2,
-                    ArtId = dgDiario.CurrentRow.Cells[1].Value.ToString(),
-                    Cantidad = Convert.ToDouble(txtmerma.Text),
-                    Clave = dgDiario.CurrentRow.Cells[2].Value.ToString(),
-                    Platillo = dgDiario.CurrentRow.Cells[3].Value.ToString()
-                });
+                    listEstado.Add(new Respuesta.Receta.Savedaily
+                    {
+                        EstadoId = 1,
+                        ArtId = dgDiario.CurrentRow.Cells[1].Value.ToString(),
+                        Cantidad = Convert.ToDouble(txtcongelados.Text),
+                        Clave = dgDiario.CurrentRow.Cells[2].Value.ToString(),
+                        Platillo = dgDiario.CurrentRow.Cells[3].Value.ToString()
+                    });
+
+                }
+                if (rbmerma.Checked == true)
+                {
+                    listEstado.Add(new Receta.Savedaily
+                    {
+                        EstadoId = 2,
+                        ArtId = dgDiario.CurrentRow.Cells[1].Value.ToString(),
+                        Cantidad = Convert.ToDouble(txtmerma.Text),
+                        Clave = dgDiario.CurrentRow.Cells[2].Value.ToString(),
+                        Platillo = dgDiario.CurrentRow.Cells[3].Value.ToString()
+                    });
+                }
+                if (rbreventa.Checked == true)
+                {
+                    listEstado.Add(new Receta.Savedaily
+                    {
+                        EstadoId = 4,
+                        ArtId = dgDiario.CurrentRow.Cells[1].Value.ToString(),
+                        Cantidad = Convert.ToDouble(txtreventa.Text),
+                        Clave = dgDiario.CurrentRow.Cells[2].Value.ToString(),
+                        Platillo = dgDiario.CurrentRow.Cells[3].Value.ToString()
+                    });
+                }
+                Data.MenuSemanal.savedaily = listEstado;
+                Opcion.EjecucionAsync(Data.MenuSemanal.AgregarDiario, jsonResult =>
+                {
+                    BeginInvoke((MethodInvoker)(() =>
+                    {
+
+                        ((DataGridViewImageColumn)dgDiario.Columns[0]).ImageLayout = DataGridViewImageCellLayout.Stretch;
+                        // dgDiario.Columns[0].ima
+                        // dgDiario.CurrentRow.Cells[0].DefaultCellStyle = DataGridViewImageCell.MeasureTextPreferredSize(50, 50);
+                        dgDiario.CurrentRow.Cells[0].Value = Image.FromFile(@"\\mercattoserver\Recetario\icon\correcto.jpg");
+                    }));
+
+                }
+                );
+
             }
-            if (chReventa.Checked == true)
+
+        }
+
+        private void rbcongelado_CheckedChanged(object sender, EventArgs e)
+        {
+            txtcongelados.Enabled = true;
+            txtcongelados.Focus();
+            txtcongelados.Visible = true;
+            txtmerma.Text = "";
+            txtmerma.Visible = false;
+            txtreventa.Text = "";
+            txtreventa.Visible = false;
+            btguardardiario.Enabled = Validar();
+
+        }
+
+        private void rbmerma_CheckedChanged(object sender, EventArgs e)
+        {
+            txtmerma.Enabled = true;
+            txtmerma.Focus();
+            txtmerma.Visible = true;
+            txtcongelados.Text = "";
+            txtcongelados.Visible = false;
+            txtreventa.Text = "";
+            txtreventa.Visible = false;
+            btguardardiario.Enabled = Validar();
+        }
+
+        private void rbreventa_CheckedChanged(object sender, EventArgs e)
+        {
+            txtreventa.Enabled = true;
+            txtreventa.Focus();
+            txtreventa.Visible = true;
+            txtcongelados.Text = "";
+            txtcongelados.Visible = false;
+            txtmerma.Text = "";
+            txtmerma.Visible = false;
+            btguardardiario.Enabled = Validar();
+            
+        }
+
+        private bool Validar()
+        {
+            return (txtreventa.Focus() == true || txtcongelados.Focus() == true || txtmerma.Focus() == true);
+        }
+
+        private void dgreventa_CellValueChanged(object sender, DataGridViewCellEventArgs e)
+        {
+
+
+
+          
+            //double x = Convert.ToDouble(dgreventa.CurrentRow.Cells[3].Value);
+            //double y = Convert.ToDouble(dgreventa.CurrentRow.Cells[4].Value);
+            //dgreventa.Rows[e.RowIndex].Cells[5].Value = Math.Round(x - y, 2);
+
+            //if (Convert.ToDouble(dgreventa.CurrentRow.Cells));
+
+        }
+
+        private void btguardarRV_Click(object sender, EventArgs e)
+        {
+            int index = Convert.ToInt16(dgreventa.CurrentRow.Cells[8].Value.ToString());
+            Cocina.DiaAntesX2.EstadoId = index;
+            if (Convert.ToDouble(dgreventa.CurrentRow.Cells[6].Value) == 0)
             {
-                listEstado.Add(new Receta.Savedaily
+
+               
+                MessageBox.Show("guardado");
+                Opcion.EjecucionAsync(Data.Reporte.ActX2, jsonResult =>
                 {
-                    EstadoId = 4,
-                    ArtId = dgDiario.CurrentRow.Cells[1].Value.ToString(),
-                    Cantidad = Convert.ToDouble(txtreventa.Text),
-                    Clave = dgDiario.CurrentRow.Cells[2].Value.ToString(),
-                    Platillo = dgDiario.CurrentRow.Cells[3].Value.ToString()
+                    BeginInvoke((MethodInvoker)(() =>
+                    {
+                       Opcion.BorrarSeleccionRV(dgreventa);
+                        dgreventa.Columns["Destino"].DisplayIndex = 9;
+                        dgreventa.Columns["EstadoId"].Visible = false;
+                        
+                        //guardado sin destino
+                    }));
                 });
+
+
+
+
             }
-            Data.MenuSemanal.AgregarDiario(listEstado);
-            Local.Receta.Clave = dgDiario.CurrentRow.Cells[1].Value.ToString();
+
+            else
+            {
+                //MessageBox.Show("no guardar sin antes poner el destino");
+
+                //var xx = (dgreventa.Tag as final).id;
+                var Mfecha = new Cocina.DiaAntesX2.DestinoDif {
+                    EstadoId = Convert.ToInt16(dgreventa.Rows[INNdex].Cells[8].Value),
+                    Id = (dgreventa.Tag as final).id
+                 };
+
+                Data.MenuSemanal.Destino = Mfecha;
+                Cocina.DiaAntesX2.EstadoId = index;
+
+                Opcion.EjecucionAsync(Data.MenuSemanal.ActualizarX2Fecha, jsonResult =>
+                {
 
 
-            //Opcion.EjecucionAsync(Data.MenuSemanal.AgregarDiario,jsonResult=>
-            //BeginInvoke((MethodInvoker)(() =>
-            //{
-            //    switch (jsonResult.StatusCode)
-            //    {
-            //        case HttpStatusCode.OK:
+
+                    BeginInvoke((MethodInvoker)(() =>
+                    {
+                        Data.MenuSemanal.ActualizarX2Destino();
+                        MessageBox.Show("Dato actualizado","Aceptar",MessageBoxButtons.OK,MessageBoxIcon.Information);
+                        Opcion.BorrarSeleccionRV(dgreventa);
+                        dgreventa.Columns["Destino"].DisplayIndex = 9;
+                        dgreventa.Columns["EstadoId"].Visible = false;
+
+
+                        //guardado con destino
+                    }
+                    //
+                    ));
+                    
+                });
+                //
 
 
 
-            //            break;
 
-            //    }
-            //})));
+            }
+            
+        }
+
+        private void dgreventa_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+
+        }
+
+        private void dgreventa_CurrentCellDirtyStateChanged(object sender, EventArgs e)
+        {
+            if (Convert.ToDouble(dgreventa.Rows[INNdex].Cells[6].Value) == 0)
+            {
+
+                dgreventa.Rows[INNdex].DefaultCellStyle.BackColor = Color.Green;
+                //dgreventa.Rows[valor].Cells[8].Value=null;
+                dgreventa.Rows[INNdex].Cells[8].ReadOnly = true;
+                btguardarRV.Enabled = validacionvacio();
 
 
+
+            }
+            else
+            {
+                dgreventa.Rows[INNdex].DefaultCellStyle.BackColor = Color.Red;
+                dgreventa.Rows[INNdex].Cells[8].ReadOnly = false;
+                btguardarRV.Enabled = validacionReventa();
+            }
+
+
+        }
+
+        private void dgreventa_CellClick(object sender, DataGridViewCellEventArgs e)
+        {
+
+            INNdex = e.RowIndex;
+        }
+
+        public bool validacionReventa()
+        {
+            
+            
+            if (Convert.ToInt16(dgreventa.Rows[INNdex].Cells[6].Value) == 0)
+            {
+                dgreventa.Rows[valor].Cells["Destino"].Value = null;
+            }
+            
+            return (dgreventa.Rows[INNdex].Cells["Destino"].Selected/* || dgreventa.Rows[INNdex].Cells[8].Value != null*/);
+        }
+
+        public bool validacionvacio()
+        {
+            if (Convert.ToInt16(dgreventa.Rows[INNdex].Cells[6].Value) == 0)
+                {
+                    dgreventa.Rows[INNdex].Cells["Destino"].Value = null;
+                }
+            return (dgreventa.Rows[INNdex].Cells["Destino"].Value==null);
+        }
+
+
+  
+
+        private void dgDiario_CurrentCellDirtyStateChanged(object sender, EventArgs e)
+        {
+            if (Convert.ToInt16(dgDiario.Rows[valor].Cells[9].Value) == 0)
+            {
+                btguardardiario.Enabled = true;
+            }
         }
     }
 }

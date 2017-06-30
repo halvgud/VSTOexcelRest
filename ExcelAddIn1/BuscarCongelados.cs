@@ -99,13 +99,10 @@ public BuscarCongelados(List<Respuesta.Receta.Congelados> listaCongelados, Actio
         private void BuscarCongelados_Load(object sender, EventArgs e)
         {
             lbfechaagregar.Text = DateTime.Now.ToShortDateString();
-<<<<<<< HEAD
-=======
-<<<<<<< HEAD
+
             if (dgvbuscar_congelados.CurrentRow != null)return;
-=======
-<<<<<<< HEAD
->>>>>>> origin/master
+
+
             //txtcantidad.Text = dgvbuscar_congelados.CurrentRow.Cells[4].Value.ToString();
 
         }
@@ -119,7 +116,7 @@ public BuscarCongelados(List<Respuesta.Receta.Congelados> listaCongelados, Actio
             //lbdescripcion.Text = descripcion;
 
             if (dgvbuscar_congelados.CurrentRow != null) ;
->>>>>>> origin/master
+
             //txtcantidad.Text = dgvbuscar_congelados.CurrentRow.Cells[4].Value.ToString();
 
         }

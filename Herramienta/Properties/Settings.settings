@@ -1,4 +1,4 @@
-﻿<?xml version='1.0' encoding='utf-8'?>
+<?xml version='1.0' encoding='utf-8'?>
 <SettingsFile xmlns="http://schemas.microsoft.com/VisualStudio/2004/01/settings" CurrentProfile="(Default)" GeneratedClassNamespace="Herramienta.Properties" GeneratedClassName="Settings">
   <Profiles />
   <Settings>
@@ -153,7 +153,6 @@
       <Value Profile="(Default)">receta/SeleccionarRecId</Value>
     </Setting>
     <Setting Name="TipoIdporNombre" Type="System.String" Scope="Application">
-<<<<<<< HEAD
       <Value Profile="(Default)">receta/SeleccionarTiporId</Value>
     </Setting>
     <Setting Name="ExistenciaCongeladoMenu" Type="System.String" Scope="Application">
@@ -161,16 +160,24 @@
     </Setting>
     <Setting Name="ListaIngredientesMenu" Type="System.String" Scope="Application">
       <Value Profile="(Default)">/receta/IngredientesPlatillos</Value>
-=======
-      <Value Profile="(Default)">/receta/SeleccionarTiporId</Value>
-<<<<<<< HEAD
     </Setting>
     <Setting Name="DiaAntes" Type="System.String" Scope="Application">
       <Value Profile="(Default)">/receta/Diario</Value>
-=======
->>>>>>> origin/master
->>>>>>> origin/master
->>>>>>> origin/master
+    </Setting>
+    <Setting Name="ValidacionDiaria" Type="System.String" Scope="User">
+      <Value Profile="(Default)">/receta/validarDiario</Value>
+    </Setting>
+    <Setting Name="DiarioAntesX2" Type="System.String" Scope="User">
+      <Value Profile="(Default)">/receta/DiarioX2</Value>
+    </Setting>
+    <Setting Name="ActualizarDiarioFechaX2" Type="System.String" Scope="User">
+      <Value Profile="(Default)">receta/ActualizarDiarioX2_Fecha</Value>
+    </Setting>
+    <Setting Name="ActualizarDiarioDestinoX2" Type="System.String" Scope="User">
+      <Value Profile="(Default)">receta/ActualizarDiarioX2_Destino</Value>
+    </Setting>
+    <Setting Name="ActualizarDiarioX2" Type="System.String" Scope="User">
+      <Value Profile="(Default)">receta/ActualizarDiarioX2</Value>
     </Setting>
   </Settings>
 </SettingsFile>

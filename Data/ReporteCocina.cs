@@ -60,6 +60,7 @@ namespace Data
                  rest.Peticion.AddJsonBody(filtroGenerico);
                 rest.Cliente.ExecuteAsync(rest.Peticion, response =>
                 {
+                    /*aqui es donde no entra */
                     switch (response.StatusCode)
                     {
                         case HttpStatusCode.OK:

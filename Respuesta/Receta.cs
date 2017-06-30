@@ -57,6 +57,12 @@ namespace Respuesta
             public string Fecha2 { get; set; }
         }
 
+        public class DiaanteriorX2
+        {
+            public string Fecha1R { get; set; }
+            public string Fecha2R { get; set; }
+        }
+
         public class ImagenAndProcess
         {
             public int RecId { get; set; }

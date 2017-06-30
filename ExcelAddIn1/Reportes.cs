@@ -49,6 +49,11 @@ namespace ExcelAddIn1
             {
 
             }
+            var fechass = new SideBarReporteReceta.fechado
+            {
+                FechaFinal = dtpfinal.Text,
+                FechaInicio = dtpinicio.Text
+            };
         }
     }
 }

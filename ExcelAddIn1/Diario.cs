@@ -123,10 +123,7 @@ namespace ExcelAddIn1
                     dgDiario.Columns[9].Width = 30;
                     dgDiario.Columns[9].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
                     dgDiario.Columns[10].Width = 200;
-                    
-
-                   
-                }));
+                    }));
               });
            
 

@@ -22,6 +22,12 @@ namespace ExcelAddIn1
           
         }
 
+        public class fechado
+        {
+            public string FechaInicio { get; set; }
+            public string FechaFinal { get; set; }
+        }
+
         //esos errores no me avian salido ahorita }
         public List<Respuesta.CbGenerico> ListproductoList;
         public List<Respuesta.CbGenerico> ListorderList; 

@@ -29,9 +29,9 @@
         private void InitializeComponent()
         {
             this.cbreportes = new System.Windows.Forms.ComboBox();
-            this.button1 = new System.Windows.Forms.Button();
-            this.dateTimePicker1 = new System.Windows.Forms.DateTimePicker();
-            this.dateTimePicker2 = new System.Windows.Forms.DateTimePicker();
+            this.btgenerar = new System.Windows.Forms.Button();
+            this.dtpinicio = new System.Windows.Forms.DateTimePicker();
+            this.dtpfinal = new System.Windows.Forms.DateTimePicker();
             this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
@@ -45,31 +45,31 @@
             this.cbreportes.Size = new System.Drawing.Size(136, 21);
             this.cbreportes.TabIndex = 0;
             // 
-            // button1
+            // btgenerar
             // 
-            this.button1.Location = new System.Drawing.Point(69, 200);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(102, 38);
-            this.button1.TabIndex = 1;
-            this.button1.Text = "Generar";
-            this.button1.UseVisualStyleBackColor = true;
-            this.button1.Click += new System.EventHandler(this.button1_Click);
+            this.btgenerar.Location = new System.Drawing.Point(69, 200);
+            this.btgenerar.Name = "btgenerar";
+            this.btgenerar.Size = new System.Drawing.Size(102, 38);
+            this.btgenerar.TabIndex = 1;
+            this.btgenerar.Text = "Generar";
+            this.btgenerar.UseVisualStyleBackColor = true;
+            this.btgenerar.Click += new System.EventHandler(this.button1_Click);
             // 
-            // dateTimePicker1
+            // dtpinicio
             // 
-            this.dateTimePicker1.Format = System.Windows.Forms.DateTimePickerFormat.Short;
-            this.dateTimePicker1.Location = new System.Drawing.Point(20, 142);
-            this.dateTimePicker1.Name = "dateTimePicker1";
-            this.dateTimePicker1.Size = new System.Drawing.Size(96, 20);
-            this.dateTimePicker1.TabIndex = 2;
+            this.dtpinicio.Format = System.Windows.Forms.DateTimePickerFormat.Short;
+            this.dtpinicio.Location = new System.Drawing.Point(20, 142);
+            this.dtpinicio.Name = "dtpinicio";
+            this.dtpinicio.Size = new System.Drawing.Size(96, 20);
+            this.dtpinicio.TabIndex = 2;
             // 
-            // dateTimePicker2
+            // dtpfinal
             // 
-            this.dateTimePicker2.Format = System.Windows.Forms.DateTimePickerFormat.Short;
-            this.dateTimePicker2.Location = new System.Drawing.Point(133, 142);
-            this.dateTimePicker2.Name = "dateTimePicker2";
-            this.dateTimePicker2.Size = new System.Drawing.Size(96, 20);
-            this.dateTimePicker2.TabIndex = 3;
+            this.dtpfinal.Format = System.Windows.Forms.DateTimePickerFormat.Short;
+            this.dtpfinal.Location = new System.Drawing.Point(133, 142);
+            this.dtpfinal.Name = "dtpfinal";
+            this.dtpfinal.Size = new System.Drawing.Size(96, 20);
+            this.dtpfinal.TabIndex = 3;
             // 
             // label1
             // 
@@ -105,9 +105,9 @@
             this.Controls.Add(this.label3);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
-            this.Controls.Add(this.dateTimePicker2);
-            this.Controls.Add(this.dateTimePicker1);
-            this.Controls.Add(this.button1);
+            this.Controls.Add(this.dtpfinal);
+            this.Controls.Add(this.dtpinicio);
+            this.Controls.Add(this.btgenerar);
             this.Controls.Add(this.cbreportes);
             this.Name = "Reportes";
             this.Size = new System.Drawing.Size(249, 281);
@@ -120,9 +120,9 @@
         #endregion
 
         private System.Windows.Forms.ComboBox cbreportes;
-        private System.Windows.Forms.Button button1;
-        private System.Windows.Forms.DateTimePicker dateTimePicker1;
-        private System.Windows.Forms.DateTimePicker dateTimePicker2;
+        private System.Windows.Forms.Button btgenerar;
+        private System.Windows.Forms.DateTimePicker dtpinicio;
+        private System.Windows.Forms.DateTimePicker dtpfinal;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label3;

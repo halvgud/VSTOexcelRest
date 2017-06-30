@@ -902,6 +902,10 @@ namespace ExcelAddIn1
         {
             return tbCodigoBE.Text.Trim().Length > 0;
         }
+        private bool ValidarBusquedaVacia2()
+        {
+            return tbBuscarReceta.Text.Trim().Length > 0;
+        }
         private void tbCodigoBE_TextChanged(object sender, EventArgs e)
         {
             btBuscarBE.Enabled = ValidarBusquedaVacia1();
@@ -1110,6 +1114,11 @@ namespace ExcelAddIn1
         private void tbPesoLitroBE_TextChanged(object sender, EventArgs e)
         {
             btGuardar.Enabled = ValidarCamposBe();
+        }
+
+        private void tbBuscarReceta_TextChanged(object sender, EventArgs e)
+        {
+            btBuscarClave.Enabled = ValidarBusquedaVacia2();
         }
     }
 }

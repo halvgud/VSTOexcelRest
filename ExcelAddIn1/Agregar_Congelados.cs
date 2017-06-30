@@ -8,11 +8,6 @@ namespace ExcelAddIn1
     public partial class AgregarCongelados : Form
     {
 
-
-
-        private readonly List<Respuesta.Receta.Congelados> _listaCongelados;
-        private readonly Action<List<Respuesta.Receta.Congelados>> _callback;
-
         internal Action<List<Respuesta.Receta.Congelados>> Callback;
 
 

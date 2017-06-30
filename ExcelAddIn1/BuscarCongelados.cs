@@ -117,7 +117,7 @@ public BuscarCongelados(List<Respuesta.Receta.Congelados> listaCongelados, Actio
             //lbdescripcion.Text = descripcion;
 
 
-            if (dgvbuscar_congelados.CurrentRow != null) ;
+            if (dgvbuscar_congelados.CurrentRow != null) return;
 
             //txtcantidad.Text = dgvbuscar_congelados.CurrentRow.Cells[4].Value.ToString();
 

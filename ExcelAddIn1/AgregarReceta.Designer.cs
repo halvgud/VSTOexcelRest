@@ -477,7 +477,7 @@
             // 
             // btBuscarClave
             // 
-            this.btBuscarClave.Location = new System.Drawing.Point(404, 24);
+            this.btBuscarClave.Location = new System.Drawing.Point(405, 24);
             this.btBuscarClave.Name = "btBuscarClave";
             this.btBuscarClave.Size = new System.Drawing.Size(62, 20);
             this.btBuscarClave.TabIndex = 6;

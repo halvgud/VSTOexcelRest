@@ -24,6 +24,7 @@ namespace Herramienta
                 public static string ReporteCocina { get; set; } = Properties.Settings.Default.ReporteReceta;
             }
 
+            
             public class  DetalleCocina
             {
                public static string CocinaDReceta { get; set; } = Properties.Settings.Default.DetalleRecetaCocina;
@@ -45,11 +46,33 @@ namespace Herramienta
                 public static string Listado { get; set; } = Properties.Settings.Default.listaplatillos;
                 public static string Clave { get; set; }
             }
-<<<<<<< HEAD
-=======
 
 
->>>>>>> origin/master
+            public class Validardiario
+            {
+                public static string Valido { get; set; } = Properties.Settings.Default.ValidacionDiaria;
+                public static string ArtId { get; set; }
+            }
+
+            public class DiaAntesX2
+            {
+                public static string FechaX2 { get; set; }
+                public static string ActualizarX2 { get; set; } = Properties.Settings.Default.ActualizarDiarioX2;
+                public static int EstadoId { get; set; }
+                public static string ActualizarX2_Destino { get; set; } = Properties.Settings.Default.ActualizarDiarioDestinoX2;
+                public static string ActualizarX2_Fecha { get; set; } = Properties.Settings.Default.ActualizarDiarioFechaX2;
+                
+                public class DestinoDif
+                {
+                    public  int Id { get; set;}
+                    public  int EstadoId { get; set; }
+                }
+
+
+                public static string X2 { get; set; } = Properties.Settings.Default.DiarioAntesX2;
+            }
+
+
             public class PlatillosMenus
             {
                 public static string ListaPlatillos { get; set; } = Properties.Settings.Default.TiposPlatillosDiarios;
@@ -66,10 +89,7 @@ namespace Herramienta
                 public static string CantidadElaboracion { get; set; }
             }
 
-<<<<<<< HEAD
-=======
 
->>>>>>> origin/master
             public class Buscarcongelados
             {
                 public static string Bcongelados { get; set; } = Properties.Settings.Default.buscarcongelados;
@@ -168,7 +188,10 @@ namespace Herramienta
             {
                 public static string DatosAnteriores { get; set; } = Properties.Settings.Default.DiaAntes;
                 public static string Fecha { get; set; }
+
+               
             }
+
             public static class Categoria
             {
                 public static string Lista { get; set; } = Properties.Settings.Default.CategoriaLista;

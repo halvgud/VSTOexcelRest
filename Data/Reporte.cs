@@ -16,6 +16,7 @@ namespace Data
         public static DateTime FechaFin { get; set; }
 
         public static Respuesta.Receta.Diaanterior AntesDiaanterior;
+        public static Respuesta.Receta.DiaanteriorX2 AntesDiaanteriorX2;
 
 
         public static void General(Action<IRestResponse> callback, Respuesta.Reporte.General repGeneral)
@@ -284,7 +285,67 @@ namespace Data
                 Opcion.Log(Log.Interno.Categoria, "EXCEPCION: " + e.Message);
             }
 
+          
+
         }
+
+        public static void Before(Action<IRestResponse> callback)
+        {
+            try
+            {
+                var rest = new Rest(Local.Api.UrlApi, Cocina.DiaAntesX2.X2, Method.POST);
+                rest.Peticion.AddHeader(Constantes.Http.ObtenerTipoDeContenido, Constantes.Http.TipoDeContenido.Json);
+                rest.Peticion.AddJsonBody(new {FechaX3 =Cocina.DiaAntesX2.FechaX2});
+                rest.Cliente.ExecuteAsync(rest.Peticion, response =>
+                {
+                    switch (response.StatusCode)
+                    {
+                        case HttpStatusCode.OK:
+                            //CReceta.RecId = Convert.ToInt32(JObject.Parse(response.Content).Property("RecId").Value);
+                            callback(response);
+                            break;
+                        default:
+                            throw new Exception(@"Error al buscar la Informacion deseada");
+                    }
+                });
+            }
+            catch (Exception e)
+            {
+                Opcion.Log(Log.Interno.Categoria, "EXCEPCION: " + e.Message);
+            }
+
+        
+
+        }
+        public static void ActX2(Action<IRestResponse> callback)
+        {
+            try
+            {
+                var rest = new Rest(Local.Api.UrlApi, Cocina.DiaAntesX2.ActualizarX2, Method.POST);
+                rest.Peticion.AddHeader(Constantes.Http.ObtenerTipoDeContenido, Constantes.Http.TipoDeContenido.Json);
+                rest.Peticion.AddJsonBody(new { EstadoId = Cocina.DiaAntesX2.EstadoId});
+                rest.Cliente.ExecuteAsync(rest.Peticion, response =>
+                {
+                    switch (response.StatusCode)
+                    {
+                        case HttpStatusCode.OK:
+                            //CReceta.RecId = Convert.ToInt32(JObject.Parse(response.Content).Property("RecId").Value);
+                            callback(response);
+                            break;
+                        default:
+                            throw new Exception(@"Error al buscar la Informacion deseada");
+                    }
+                });
+            }
+            catch (Exception e)
+            {
+                Opcion.Log(Log.Interno.Categoria, "EXCEPCION: " + e.Message);
+            }
+
+
+
+        }
+
 
     }
 

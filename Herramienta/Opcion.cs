@@ -197,6 +197,17 @@ namespace Herramienta
             ingredientes.DataSource = result;
         }
 
+        public static void BorrarSeleccionRV(DataGridView datos)
+        {
+            if (datos.CurrentCell.RowIndex == -1 || datos.Rows.Count <= 0) return;
+            var result = datos.DataSource as List<Respuesta.DiarioX2>;
+            if (result == null) return;
+            result.RemoveAt(datos.CurrentCell.RowIndex);
+            datos.DataSource = null;
+            datos.Refresh();
+            datos.DataSource = result;
+        }
+
         public static void BorrarDataGridView(DataGridView dgv)
         {
             dgv.DataSource = null;

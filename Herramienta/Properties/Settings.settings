@@ -158,17 +158,56 @@
     <Setting Name="ExistenciaCongeladoMenu" Type="System.String" Scope="Application">
       <Value Profile="(Default)">receta/PlatilloCongelado</Value>
     </Setting>
+<<<<<<< HEAD
     <Setting Name="ListaIngredientesMenu" Type="System.String" Scope="Application">
       <Value Profile="(Default)">receta/IngredientesPlatillos</Value>
     </Setting>
+=======
+>>>>>>> origin/master
     <Setting Name="TipoUnidades" Type="System.String" Scope="Application">
       <Value Profile="(Default)">receta/unidad</Value>
     </Setting>
     <Setting Name="EditarMenuSemanal" Type="System.String" Scope="User">
       <Value Profile="(Default)">receta/EditarMenuActual</Value>
+<<<<<<< HEAD
     </Setting>
     <Setting Name="DiaAntes" Type="System.String" Scope="Application">
       <Value Profile="(Default)">/receta/Diario</Value>
+=======
+    </Setting>
+    <Setting Name="ListaIngredientesMenu1" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">/receta/IngredientesPlatillos</Value>
+    </Setting>
+    <Setting Name="DiaAntes" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">/receta/Diario</Value>
+    </Setting>
+    <Setting Name="ValidacionDiaria" Type="System.String" Scope="User">
+      <Value Profile="(Default)">/receta/validarDiario</Value>
+    </Setting>
+    <Setting Name="DiarioAntesX2" Type="System.String" Scope="User">
+      <Value Profile="(Default)">/receta/DiarioX2</Value>
+    </Setting>
+    <Setting Name="ActualizarDiarioFechaX2" Type="System.String" Scope="User">
+      <Value Profile="(Default)">receta/ActualizarDiarioX2_Fecha</Value>
+    </Setting>
+    <Setting Name="ActualizarDiarioDestinoX2" Type="System.String" Scope="User">
+      <Value Profile="(Default)">receta/ActualizarDiarioX2_Destino</Value>
+    </Setting>
+    <Setting Name="ActualizarDiarioX2" Type="System.String" Scope="User">
+      <Value Profile="(Default)">receta/ActualizarDiarioX2</Value>
+    </Setting>
+    <Setting Name="ActualizarCongelado" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">articulo/actualizarcongelados</Value>
+    </Setting>
+    <Setting Name="InsertarMenuDiarios" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">receta/InsertarMenu</Value>
+    </Setting>
+    <Setting Name="RecIdporClave" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">receta/SeleccionarRecId</Value>
+    </Setting>
+    <Setting Name="ListaIngredientesMenu" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">/receta/IngredientesPlatillos</Value>
+>>>>>>> origin/master
     </Setting>
   </Settings>
 </SettingsFile>

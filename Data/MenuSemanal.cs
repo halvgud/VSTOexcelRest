@@ -13,6 +13,9 @@ namespace Data
         public static DateTime FechaIni;
         public static DateTime FechaFin;
         public static Respuesta.InsertarMenu CmInsertarMenu= new Respuesta.InsertarMenu();
+
+        public static Cocina.DiaAntesX2.DestinoDif Destino = new Cocina.DiaAntesX2.DestinoDif();
+
         public static List<Respuesta.Receta.Savedaily> savedaily = new List<Respuesta.Receta.Savedaily>();
 
         
@@ -241,29 +244,27 @@ var rest = new Rest(Local.Api.UrlApi, Cocina.DiasSemana.GuardarRecetas, Method.P
                         throw new Exception(@"error al buscar articulo");
                 }
             });
-<<<<<<< HEAD
-          }
-=======
+
 }
 
-        public static void AgregarDiario(List<Respuesta.Receta.Savedaily> estadoList )
+        public static void AgregarDiario(Action<IRestResponse> callback)
         {
             try
             {
                 var rest = new Rest(Local.Api.UrlApi, Cocina.Agregarcongelados.Agregar, Method.POST);
                 rest.Peticion.AddHeader(Constantes.Http.ObtenerTipoDeContenido,
                     Constantes.Http.TipoDeContenido.Json);
-                rest.Peticion.AddJsonBody(estadoList);
+                rest.Peticion.AddJsonBody(savedaily);
                 //rest.Peticion.AddJsonBody(repGeneral);
                 rest.Cliente.ExecuteAsync(rest.Peticion, response =>
                 {
                     switch (response.StatusCode)
                     {
                         case HttpStatusCode.OK: //ell callback es para cuando quieres hacer una accion al terminar tu query
-                            //callback(response);
+                            callback(response);
                             break;
                         default:
-                           //callback(null);
+                           callback(null);
                             break;
                     }
                 });
@@ -275,24 +276,122 @@ var rest = new Rest(Local.Api.UrlApi, Cocina.DiasSemana.GuardarRecetas, Method.P
             }
         }
 
-        public static void Verificacion(Action<IRestResponse> callback)
+        public static void Verificacion(Action<IRestResponse> callback)  
         {
             try
             {
-                var rest = new Rest(Local.Api.UrlApi, Cocina.PlatillosMenus.SacarRecId,
-                    Method.POST);
+                var rest = new Rest(Local.Api.UrlApi, Cocina.Validardiario.Valido, Method.POST);
                 rest.Peticion.AddHeader(Constantes.Http.ObtenerTipoDeContenido,
                     Constantes.Http.TipoDeContenido.Json);
-                rest.Peticion.AddJsonBody(new { Cocina.PlatillosMenus.Clave });
-                callback(rest.Cliente.Execute(rest.Peticion));
+                rest.Peticion.AddJsonBody(new {ArtId=Cocina.Validardiario.ArtId});
+                //rest.Peticion.AddJsonBody(repGeneral);
+                rest.Cliente.ExecuteAsync(rest.Peticion, response =>
+                {
+                    switch (response.StatusCode)
+                    {
+                        case HttpStatusCode.OK: //ell callback es para cuando quieres hacer una accion al terminar tu query
+                            //callback(response);
+                            break;
+                        default:
+                            //callback(null);
+                            break;
+                    }
+                });
             }
             catch (Exception e)
             {
                 Opcion.Log(Log.Interno.Categoria, "EXCEPCION: " + e.Message);
-                callback(null);
+                //callback(null);
             }
         }
 
->>>>>>> origin/master
+        public static void AntesX2(Action<IRestResponse> callback)
+        {
+            try
+            {
+                var rest = new Rest(Local.Api.UrlApi, Cocina.Validardiario.Valido, Method.POST);
+                rest.Peticion.AddHeader(Constantes.Http.ObtenerTipoDeContenido,
+                    Constantes.Http.TipoDeContenido.Json);
+                rest.Peticion.AddJsonBody(new { ArtId = Cocina.Validardiario.ArtId });
+                //rest.Peticion.AddJsonBody(repGeneral);
+                rest.Cliente.ExecuteAsync(rest.Peticion, response =>
+                {
+                    switch (response.StatusCode)
+                    {
+                        case HttpStatusCode.OK: //ell callback es para cuando quieres hacer una accion al terminar tu query
+                            //callback(response);
+                            break;
+                        default:
+                            //callback(null);
+                            break;
+                    }
+                });
+            }
+            catch (Exception e)
+            {
+                Opcion.Log(Log.Interno.Categoria, "EXCEPCION: " + e.Message);
+                //callback(null);
+            }
+        }
+
+        public static void ActualizarX2Destino()
+        {
+            try
+            {
+                var rest = new Rest(Local.Api.UrlApi, Cocina.DiaAntesX2.ActualizarX2_Destino, Method.POST);
+                rest.Peticion.AddHeader(Constantes.Http.ObtenerTipoDeContenido,
+                    Constantes.Http.TipoDeContenido.Json);
+                rest.Peticion.AddJsonBody(Destino);
+                //rest.Peticion.AddJsonBody(repGeneral);
+                rest.Cliente.ExecuteAsync(rest.Peticion, response =>
+                {
+                    switch (response.StatusCode)
+                    {
+                        case HttpStatusCode.OK: //ell callback es para cuando quieres hacer una accion al terminar tu query
+                            //callback(response);
+                            break;
+                        default:
+                            //callback(null);
+                            break;
+                    }
+                });
+            }
+            catch (Exception e)
+            {
+                Opcion.Log(Log.Interno.Categoria, "EXCEPCION: " + e.Message);
+                //callback(null);
+            }
+        }
+
+        public static void ActualizarX2Fecha(Action<IRestResponse> callback)
+        {
+            try
+            {
+                var rest = new Rest(Local.Api.UrlApi, Cocina.DiaAntesX2.ActualizarX2_Fecha, Method.POST);
+                rest.Peticion.AddHeader(Constantes.Http.ObtenerTipoDeContenido,
+                    Constantes.Http.TipoDeContenido.Json);
+                rest.Peticion.AddJsonBody(new {EstadoId= Cocina.DiaAntesX2.EstadoId });
+                //rest.Peticion.AddJsonBody(repGeneral);
+                rest.Cliente.ExecuteAsync(rest.Peticion, response =>
+                {
+                    switch (response.StatusCode)
+                    {
+                        case HttpStatusCode.OK: //ell callback es para cuando quieres hacer una accion al terminar tu query
+                            callback(response);
+                            break;
+                        default:
+                            callback(null);
+                            break;
+                    }
+                });
+            }
+            catch (Exception e)
+            {
+                Opcion.Log(Log.Interno.Categoria, "EXCEPCION: " + e.Message);
+                //callback(null);
+            }
+        }
+
+
     }
 }

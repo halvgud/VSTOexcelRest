@@ -95,7 +95,7 @@ namespace Respuesta
         public  int TipoId { get; set; }
     }
 
-<<<<<<< HEAD
+
     public class IngredientesReceta
     {
        public string ArtId { get; set; }
@@ -106,8 +106,7 @@ namespace Respuesta
         public  string Fecha { get; set; }
         public  string Unidad { get; set; }
     }
-=======
-<<<<<<< HEAD
+
     public class ListasInsertarMenus
     {
         public List<InsertarMenu> LunesMenus { get; set; }
@@ -151,7 +150,23 @@ namespace Respuesta
             public double Cantidad { get; set; }
         }
     }
-=======
->>>>>>> origin/master
->>>>>>> origin/master
+
+
+    public class DiarioX2
+    {
+        public string ArtId { get; set; }
+        public string Clave { get; set; }
+        public string Platillo { get; set; }
+        public double CR { get; set; }
+        public double RV { get; set; }
+        public double SR { get; set; }
+        public double S { get; set; }
+        public string Fecha { get; set; }
+        public int EstadoId { get; set; }
+        
+
+    }
+
+
+
 }

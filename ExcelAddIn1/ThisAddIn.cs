@@ -284,6 +284,9 @@ namespace ExcelAddIn1
             _reporte.Range["O3:P" + rowcount].NumberFormat = "$ #,##0.00";
             _reporte.Range["O3:O" + rowcount].NumberFormat= "$ #,##0.00";
             _reporte.Range["R3:R" + rowcount].NumberFormat = "$ #,##0.00";
+            _reporte.Range["T3:R" + rowcount].NumberFormat = "##,##.00 %";
+            _reporte.Range["V3:V"+rowcount].NumberFormat = "##,##.00 %";
+            _reporte.Range["X3:X"+rowcount].NumberFormat = "##,##.00 %";
             _reporte.Range["A3:X" + rowcount].HorizontalAlignment= Excel.XlHAlign.xlHAlignCenter;
             //_reporte.Range["A3:O" + rowcount].HorizontalAlignment = Excel.XlHAlign.xlHAlignCenter;
             _reporte.Range["A3:X" + rowcount].Borders.Color = Color.Black;
@@ -404,12 +407,7 @@ namespace ExcelAddIn1
 
             }
             return lista;
-<<<<<<< HEAD
-=======
 
-            
-
->>>>>>> origin/master
         }
 
         private static object[,] InicializarLista(IReadOnlyList<Reporte.RespuestaCocina> rrg)
@@ -462,12 +460,73 @@ namespace ExcelAddIn1
                     lista[x, 17] = rrg[x].Preciocongelado;
 
                 }
-                lista[x, 18] = rrg[x].Qtymermas;
-                lista[x, 19] = rrg[x].Porcentajemerma;
-                lista[x, 20] = rrg[x].Qtyperdidas;
-                lista[x, 21] = rrg[x].Porcentajeperdida;
-                lista[x, 22] = rrg[x].Qtyempleado;
-                lista[x, 23] = rrg[x].Porcentajeempleado;
+                //lista[x, 18] = rrg[x].Qtymermas;
+                var merma = rrg[x].Qtymermas;
+                if (string.IsNullOrEmpty(merma))
+                {
+                    lista[x, 18] = "N/A";
+                }
+                else
+                {
+                    lista[x, 18] = rrg[x].Qtymermas;
+
+                }
+                //lista[x, 19] = rrg[x].Porcentajemerma;
+                var pormerma = rrg[x].Porcentajemerma;
+                if (string.IsNullOrEmpty(pormerma))
+                {
+                    lista[x, 19] = "N/A";
+                }
+                else
+                {
+                    lista[x, 19] = rrg[x].Porcentajemerma;
+
+                }
+              //  lista[x, 20] = rrg[x].Qtyperdidas;
+                var qtyperdida = rrg[x].Qtyperdidas;
+                if (string.IsNullOrEmpty(qtyperdida))
+                {
+                    lista[x, 20] = "N/A";
+                }
+                else
+                {
+                    lista[x, 20] = rrg[x].Qtyperdidas;
+
+                }
+                //lista[x, 21] = rrg[x].Porcentajeperdida;
+                var porperdido = rrg[x].Porcentajeperdida;
+                if (string.IsNullOrEmpty(porperdido))
+                {
+                    lista[x, 21] = "N/A";
+                }
+                else
+                {
+                    lista[x, 21] = rrg[x].Porcentajeperdida;
+
+                }
+
+                //lista[x, 22] = rrg[x].Qtyempleado;
+                var qtyemoleado = rrg[x].Qtyempleado;
+                if (string.IsNullOrEmpty(qtyemoleado))
+                {
+                    lista[x, 22] = "N/A";
+                }
+                else
+                {
+                    lista[x, 22] = rrg[x].Qtyempleado;
+
+                }
+                //lista[x, 23] = rrg[x].Porcentajeempleado;
+                var porempleado = rrg[x].Porcentajeempleado;
+                if (string.IsNullOrEmpty(porempleado))
+                {
+                    lista[x, 23] = "N/A";
+                }
+                else
+                {
+                    lista[x, 23] = rrg[x].Porcentajeempleado;
+
+                }
             }
             return lista;
 

@@ -66,6 +66,11 @@ namespace ExcelAddIn1
         //{
         //    ThisAddIn.Recetario
         //}
+        public void Diario(Office.IRibbonControl control)
+        {
+            var ms = new Diario();
+            ms.Show();
+        }
 
         public void AbrirMenuSemanal(Office.IRibbonControl control)
         {
@@ -105,7 +110,8 @@ namespace ExcelAddIn1
             Opcion.EjecucionAsync(Data.Reporte.RepCongelados, y =>
             {
                 addIn.ReporteCongelados(y);
-            });
+
+                });
            
         }
 

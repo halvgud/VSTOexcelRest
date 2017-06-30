@@ -677,6 +677,12 @@ namespace ExcelAddIn1
             btImprimirPrevia.Enabled = true;
 
         }
+<<<<<<< HEAD
+=======
+
+ 
+
+>>>>>>> origin/master
         private void dgvGenerico_CellClick(object sender, DataGridViewCellEventArgs e)
         {
             var pivote = (DataGridView)sender;
@@ -684,6 +690,10 @@ namespace ExcelAddIn1
             if (pivote.Rows[e.RowIndex].Cells[0].Value != null)
             {
                 pivote.Rows[e.RowIndex].Cells[1].ReadOnly = false;
+<<<<<<< HEAD
+=======
+
+>>>>>>> origin/master
             }
             else
             { 

@@ -86,6 +86,7 @@
             this.cmbManual.Size = new System.Drawing.Size(151, 21);
             this.cmbManual.TabIndex = 0;
             // 
+<<<<<<< HEAD
             // FechaMartes
             // 
             this.FechaMartes.AutoSize = true;
@@ -95,6 +96,129 @@
             this.FechaMartes.Size = new System.Drawing.Size(11, 15);
             this.FechaMartes.TabIndex = 4;
             this.FechaMartes.Text = ".";
+=======
+            // tableLayoutPanel1
+            // 
+            this.tableLayoutPanel1.ColumnCount = 3;
+            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 33.33333F));
+            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 33.33333F));
+            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 33.33333F));
+            this.tableLayoutPanel1.Controls.Add(this.dgvViernes, 1, 5);
+            this.tableLayoutPanel1.Controls.Add(this.dgvJueves, 0, 5);
+            this.tableLayoutPanel1.Controls.Add(this.dgvMiercoles, 2, 2);
+            this.tableLayoutPanel1.Controls.Add(this.dgvMartes, 1, 2);
+            this.tableLayoutPanel1.Controls.Add(this.FechaLunes, 0, 1);
+            this.tableLayoutPanel1.Controls.Add(this.LabelLunes, 0, 0);
+            this.tableLayoutPanel1.Controls.Add(this.FechaMartes, 1, 1);
+            this.tableLayoutPanel1.Controls.Add(this.LabelMartes, 1, 0);
+            this.tableLayoutPanel1.Controls.Add(this.FechaMiercoles, 2, 1);
+            this.tableLayoutPanel1.Controls.Add(this.LabelMiercoles, 2, 0);
+            this.tableLayoutPanel1.Controls.Add(this.FechaJueves, 0, 4);
+            this.tableLayoutPanel1.Controls.Add(this.LabelJueves, 0, 3);
+            this.tableLayoutPanel1.Controls.Add(this.FechaViernes, 1, 4);
+            this.tableLayoutPanel1.Controls.Add(this.LabelViernes, 1, 3);
+            this.tableLayoutPanel1.Controls.Add(this.FechaSabado, 2, 4);
+            this.tableLayoutPanel1.Controls.Add(this.LabelSabado, 2, 3);
+            this.tableLayoutPanel1.Controls.Add(this.FechaDomingo, 1, 7);
+            this.tableLayoutPanel1.Controls.Add(this.LabelDomingo, 1, 6);
+            this.tableLayoutPanel1.Controls.Add(this.dgvLunes, 0, 2);
+            this.tableLayoutPanel1.Controls.Add(this.dgvSabado, 2, 5);
+            this.tableLayoutPanel1.Controls.Add(this.dgvDomingo, 1, 8);
+            this.tableLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.tableLayoutPanel1.Location = new System.Drawing.Point(0, 100);
+            this.tableLayoutPanel1.Name = "tableLayoutPanel1";
+            this.tableLayoutPanel1.RowCount = 9;
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.tableLayoutPanel1.Size = new System.Drawing.Size(1268, 633);
+            this.tableLayoutPanel1.TabIndex = 3;
+            // 
+            // dgvViernes
+            // 
+            this.dgvViernes.AllowDrop = true;
+            this.dgvViernes.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dgvViernes.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.dgvViernes.EditMode = System.Windows.Forms.DataGridViewEditMode.EditOnEnter;
+            this.dgvViernes.Location = new System.Drawing.Point(425, 254);
+            this.dgvViernes.Name = "dgvViernes";
+            this.dgvViernes.Size = new System.Drawing.Size(416, 165);
+            this.dgvViernes.TabIndex = 5;
+            this.dgvViernes.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvGenerico_CellClick);
+            this.dgvViernes.CellValueChanged += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvGenerico_CellValueChanged);
+            this.dgvViernes.CurrentCellDirtyStateChanged += new System.EventHandler(this.dgvGenerico_CurrentCellDirtyStateChanged);
+            this.dgvViernes.EditingControlShowing += new System.Windows.Forms.DataGridViewEditingControlShowingEventHandler(this.Generico_EditingControlShowing);
+            this.dgvViernes.DragDrop += new System.Windows.Forms.DragEventHandler(this.dgvGenerico_DragDrop);
+            this.dgvViernes.DragOver += new System.Windows.Forms.DragEventHandler(this.dgvGenerico_DragOver);
+            this.dgvViernes.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.dgvGenerico_KeyPress);
+            this.dgvViernes.MouseDown += new System.Windows.Forms.MouseEventHandler(this.dgvGenerico_MouseDown);
+            this.dgvViernes.MouseMove += new System.Windows.Forms.MouseEventHandler(this.dgvGenerico_MouseMove);
+            // 
+            // dgvJueves
+            // 
+            this.dgvJueves.AllowDrop = true;
+            this.dgvJueves.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dgvJueves.EditMode = System.Windows.Forms.DataGridViewEditMode.EditOnEnter;
+            this.dgvJueves.Location = new System.Drawing.Point(3, 254);
+            this.dgvJueves.Name = "dgvJueves";
+            this.dgvJueves.Size = new System.Drawing.Size(416, 165);
+            this.dgvJueves.TabIndex = 4;
+            this.dgvJueves.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvGenerico_CellClick);
+            this.dgvJueves.CellValueChanged += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvGenerico_CellValueChanged);
+            this.dgvJueves.CurrentCellDirtyStateChanged += new System.EventHandler(this.dgvGenerico_CurrentCellDirtyStateChanged);
+            this.dgvJueves.EditingControlShowing += new System.Windows.Forms.DataGridViewEditingControlShowingEventHandler(this.Generico_EditingControlShowing);
+            this.dgvJueves.DragDrop += new System.Windows.Forms.DragEventHandler(this.dgvGenerico_DragDrop);
+            this.dgvJueves.DragOver += new System.Windows.Forms.DragEventHandler(this.dgvGenerico_DragOver);
+            this.dgvJueves.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.dgvGenerico_KeyPress);
+            this.dgvJueves.MouseDown += new System.Windows.Forms.MouseEventHandler(this.dgvGenerico_MouseDown);
+            this.dgvJueves.MouseMove += new System.Windows.Forms.MouseEventHandler(this.dgvGenerico_MouseMove);
+            // 
+            // dgvMiercoles
+            // 
+            this.dgvMiercoles.AllowDrop = true;
+            this.dgvMiercoles.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dgvMiercoles.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.dgvMiercoles.EditMode = System.Windows.Forms.DataGridViewEditMode.EditOnEnter;
+            this.dgvMiercoles.Location = new System.Drawing.Point(847, 43);
+            this.dgvMiercoles.Name = "dgvMiercoles";
+            this.dgvMiercoles.Size = new System.Drawing.Size(418, 165);
+            this.dgvMiercoles.TabIndex = 3;
+            this.dgvMiercoles.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvGenerico_CellClick);
+            this.dgvMiercoles.CellValueChanged += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvGenerico_CellValueChanged);
+            this.dgvMiercoles.CurrentCellDirtyStateChanged += new System.EventHandler(this.dgvGenerico_CurrentCellDirtyStateChanged);
+            this.dgvMiercoles.EditingControlShowing += new System.Windows.Forms.DataGridViewEditingControlShowingEventHandler(this.Generico_EditingControlShowing);
+            this.dgvMiercoles.DragDrop += new System.Windows.Forms.DragEventHandler(this.dgvGenerico_DragDrop);
+            this.dgvMiercoles.DragOver += new System.Windows.Forms.DragEventHandler(this.dgvGenerico_DragOver);
+            this.dgvMiercoles.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.dgvGenerico_KeyPress);
+            this.dgvMiercoles.MouseDown += new System.Windows.Forms.MouseEventHandler(this.dgvGenerico_MouseDown);
+            this.dgvMiercoles.MouseMove += new System.Windows.Forms.MouseEventHandler(this.dgvGenerico_MouseMove);
+            // 
+            // dgvMartes
+            // 
+            this.dgvMartes.AllowDrop = true;
+            this.dgvMartes.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dgvMartes.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.dgvMartes.EditMode = System.Windows.Forms.DataGridViewEditMode.EditOnEnter;
+            this.dgvMartes.Location = new System.Drawing.Point(425, 43);
+            this.dgvMartes.Name = "dgvMartes";
+            this.dgvMartes.Size = new System.Drawing.Size(416, 165);
+            this.dgvMartes.TabIndex = 2;
+            this.dgvMartes.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvGenerico_CellClick);
+            this.dgvMartes.CellValueChanged += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvGenerico_CellValueChanged);
+            this.dgvMartes.CurrentCellDirtyStateChanged += new System.EventHandler(this.dgvGenerico_CurrentCellDirtyStateChanged);
+            this.dgvMartes.EditingControlShowing += new System.Windows.Forms.DataGridViewEditingControlShowingEventHandler(this.Generico_EditingControlShowing);
+            this.dgvMartes.DragDrop += new System.Windows.Forms.DragEventHandler(this.dgvGenerico_DragDrop);
+            this.dgvMartes.DragOver += new System.Windows.Forms.DragEventHandler(this.dgvGenerico_DragOver);
+            this.dgvMartes.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.dgvGenerico_KeyPress);
+            this.dgvMartes.MouseDown += new System.Windows.Forms.MouseEventHandler(this.dgvGenerico_MouseDown);
+            this.dgvMartes.MouseMove += new System.Windows.Forms.MouseEventHandler(this.dgvGenerico_MouseMove);
+>>>>>>> origin/master
             // 
             // FechaLunes
             // 
@@ -119,6 +243,7 @@
             // 
             // dgvMartes
             // 
+<<<<<<< HEAD
             this.dgvMartes.AllowDrop = true;
             this.dgvMartes.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgvMartes.Dock = System.Windows.Forms.DockStyle.Fill;
@@ -136,9 +261,19 @@
             this.dgvMartes.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.dgvGenerico_KeyPress);
             this.dgvMartes.MouseDown += new System.Windows.Forms.MouseEventHandler(this.dgvGenerico_MouseDown);
             this.dgvMartes.MouseMove += new System.Windows.Forms.MouseEventHandler(this.dgvGenerico_MouseMove);
+=======
+            this.FechaMartes.AutoSize = true;
+            this.FechaMartes.Font = new System.Drawing.Font("Modern No. 20", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.FechaMartes.Location = new System.Drawing.Point(425, 20);
+            this.FechaMartes.Name = "FechaMartes";
+            this.FechaMartes.Size = new System.Drawing.Size(11, 15);
+            this.FechaMartes.TabIndex = 4;
+            this.FechaMartes.Text = ".";
+>>>>>>> origin/master
             // 
             // LabelMiercoles
             // 
+<<<<<<< HEAD
             this.LabelMiercoles.AutoSize = true;
             this.LabelMiercoles.Font = new System.Drawing.Font("Modern No. 20", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.LabelMiercoles.Location = new System.Drawing.Point(3, 170);
@@ -146,18 +281,45 @@
             this.LabelMiercoles.Size = new System.Drawing.Size(75, 15);
             this.LabelMiercoles.TabIndex = 10;
             this.LabelMiercoles.Text = "Miercoles :";
+=======
+            this.LabelMartes.AutoSize = true;
+            this.LabelMartes.Font = new System.Drawing.Font("Modern No. 20", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.LabelMartes.Location = new System.Drawing.Point(425, 0);
+            this.LabelMartes.Name = "LabelMartes";
+            this.LabelMartes.Size = new System.Drawing.Size(58, 15);
+            this.LabelMartes.TabIndex = 9;
+            this.LabelMartes.Text = "Martes :";
+>>>>>>> origin/master
             // 
             // FechaMiercoles
             // 
             this.FechaMiercoles.AutoSize = true;
             this.FechaMiercoles.Font = new System.Drawing.Font("Modern No. 20", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+<<<<<<< HEAD
             this.FechaMiercoles.Location = new System.Drawing.Point(3, 187);
+=======
+            this.FechaMiercoles.Location = new System.Drawing.Point(847, 20);
+>>>>>>> origin/master
             this.FechaMiercoles.Name = "FechaMiercoles";
             this.FechaMiercoles.Size = new System.Drawing.Size(11, 15);
             this.FechaMiercoles.TabIndex = 5;
             this.FechaMiercoles.Text = ".";
             // 
+<<<<<<< HEAD
             // dgvMiercoles
+=======
+            // LabelMiercoles
+            // 
+            this.LabelMiercoles.AutoSize = true;
+            this.LabelMiercoles.Font = new System.Drawing.Font("Modern No. 20", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.LabelMiercoles.Location = new System.Drawing.Point(847, 0);
+            this.LabelMiercoles.Name = "LabelMiercoles";
+            this.LabelMiercoles.Size = new System.Drawing.Size(75, 15);
+            this.LabelMiercoles.TabIndex = 10;
+            this.LabelMiercoles.Text = "Miercoles :";
+            // 
+            // FechaJueves
+>>>>>>> origin/master
             // 
             this.dgvMiercoles.AllowDrop = true;
             this.dgvMiercoles.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
@@ -189,6 +351,7 @@
             // 
             // FechaJueves
             // 
+<<<<<<< HEAD
             this.FechaJueves.AutoSize = true;
             this.FechaJueves.Font = new System.Drawing.Font("Modern No. 20", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.FechaJueves.Location = new System.Drawing.Point(640, 187);
@@ -216,12 +379,25 @@
             this.dgvJueves.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.dgvGenerico_KeyPress);
             this.dgvJueves.MouseDown += new System.Windows.Forms.MouseEventHandler(this.dgvGenerico_MouseDown);
             this.dgvJueves.MouseMove += new System.Windows.Forms.MouseEventHandler(this.dgvGenerico_MouseMove);
+=======
+            this.FechaViernes.AutoSize = true;
+            this.FechaViernes.Font = new System.Drawing.Font("Modern No. 20", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.FechaViernes.Location = new System.Drawing.Point(425, 231);
+            this.FechaViernes.Name = "FechaViernes";
+            this.FechaViernes.Size = new System.Drawing.Size(11, 15);
+            this.FechaViernes.TabIndex = 5;
+            this.FechaViernes.Text = ".";
+>>>>>>> origin/master
             // 
             // LabelViernes
             // 
             this.LabelViernes.AutoSize = true;
             this.LabelViernes.Font = new System.Drawing.Font("Modern No. 20", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+<<<<<<< HEAD
             this.LabelViernes.Location = new System.Drawing.Point(3, 340);
+=======
+            this.LabelViernes.Location = new System.Drawing.Point(425, 211);
+>>>>>>> origin/master
             this.LabelViernes.Name = "LabelViernes";
             this.LabelViernes.Size = new System.Drawing.Size(63, 15);
             this.LabelViernes.TabIndex = 12;
@@ -229,6 +405,7 @@
             // 
             // FechaViernes
             // 
+<<<<<<< HEAD
             this.FechaViernes.AutoSize = true;
             this.FechaViernes.Font = new System.Drawing.Font("Modern No. 20", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.FechaViernes.Location = new System.Drawing.Point(3, 357);
@@ -256,17 +433,31 @@
             this.dgvViernes.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.dgvGenerico_KeyPress);
             this.dgvViernes.MouseDown += new System.Windows.Forms.MouseEventHandler(this.dgvGenerico_MouseDown);
             this.dgvViernes.MouseMove += new System.Windows.Forms.MouseEventHandler(this.dgvGenerico_MouseMove);
+=======
+            this.FechaSabado.AutoSize = true;
+            this.FechaSabado.Font = new System.Drawing.Font("Modern No. 20", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.FechaSabado.Location = new System.Drawing.Point(847, 231);
+            this.FechaSabado.Name = "FechaSabado";
+            this.FechaSabado.Size = new System.Drawing.Size(11, 15);
+            this.FechaSabado.TabIndex = 5;
+            this.FechaSabado.Text = ".";
+>>>>>>> origin/master
             // 
             // LabelSabado
             // 
             this.LabelSabado.AutoSize = true;
             this.LabelSabado.Font = new System.Drawing.Font("Modern No. 20", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+<<<<<<< HEAD
             this.LabelSabado.Location = new System.Drawing.Point(640, 340);
+=======
+            this.LabelSabado.Location = new System.Drawing.Point(847, 211);
+>>>>>>> origin/master
             this.LabelSabado.Name = "LabelSabado";
             this.LabelSabado.Size = new System.Drawing.Size(59, 15);
             this.LabelSabado.TabIndex = 13;
             this.LabelSabado.Text = "Sabado :";
             // 
+<<<<<<< HEAD
             // FechaSabado
             // 
             this.FechaSabado.AutoSize = true;
@@ -276,6 +467,47 @@
             this.FechaSabado.Size = new System.Drawing.Size(11, 15);
             this.FechaSabado.TabIndex = 5;
             this.FechaSabado.Text = ".";
+=======
+            // FechaDomingo
+            // 
+            this.FechaDomingo.AutoSize = true;
+            this.FechaDomingo.Font = new System.Drawing.Font("Modern No. 20", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.FechaDomingo.Location = new System.Drawing.Point(425, 442);
+            this.FechaDomingo.Name = "FechaDomingo";
+            this.FechaDomingo.Size = new System.Drawing.Size(11, 15);
+            this.FechaDomingo.TabIndex = 5;
+            this.FechaDomingo.Text = ".";
+            // 
+            // LabelDomingo
+            // 
+            this.LabelDomingo.AutoSize = true;
+            this.LabelDomingo.Font = new System.Drawing.Font("Modern No. 20", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.LabelDomingo.Location = new System.Drawing.Point(425, 422);
+            this.LabelDomingo.Name = "LabelDomingo";
+            this.LabelDomingo.Size = new System.Drawing.Size(71, 15);
+            this.LabelDomingo.TabIndex = 14;
+            this.LabelDomingo.Text = "Domingo :";
+            // 
+            // dgvLunes
+            // 
+            this.dgvLunes.AllowDrop = true;
+            this.dgvLunes.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dgvLunes.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.dgvLunes.EditMode = System.Windows.Forms.DataGridViewEditMode.EditOnEnter;
+            this.dgvLunes.Location = new System.Drawing.Point(3, 43);
+            this.dgvLunes.Name = "dgvLunes";
+            this.dgvLunes.Size = new System.Drawing.Size(416, 165);
+            this.dgvLunes.TabIndex = 1;
+            this.dgvLunes.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvGenerico_CellClick);
+            this.dgvLunes.CellValueChanged += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvGenerico_CellValueChanged);
+            this.dgvLunes.CurrentCellDirtyStateChanged += new System.EventHandler(this.dgvGenerico_CurrentCellDirtyStateChanged);
+            this.dgvLunes.EditingControlShowing += new System.Windows.Forms.DataGridViewEditingControlShowingEventHandler(this.Generico_EditingControlShowing);
+            this.dgvLunes.DragDrop += new System.Windows.Forms.DragEventHandler(this.dgvGenerico_DragDrop);
+            this.dgvLunes.DragOver += new System.Windows.Forms.DragEventHandler(this.dgvGenerico_DragOver);
+            this.dgvLunes.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.dgvGenerico_KeyPress);
+            this.dgvLunes.MouseDown += new System.Windows.Forms.MouseEventHandler(this.dgvGenerico_MouseDown);
+            this.dgvLunes.MouseMove += new System.Windows.Forms.MouseEventHandler(this.dgvGenerico_MouseMove);
+>>>>>>> origin/master
             // 
             // dgvSabado
             // 
@@ -283,9 +515,15 @@
             this.dgvSabado.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgvSabado.Dock = System.Windows.Forms.DockStyle.Fill;
             this.dgvSabado.EditMode = System.Windows.Forms.DataGridViewEditMode.EditOnEnter;
+<<<<<<< HEAD
             this.dgvSabado.Location = new System.Drawing.Point(640, 376);
             this.dgvSabado.Name = "dgvSabado";
             this.dgvSabado.Size = new System.Drawing.Size(633, 131);
+=======
+            this.dgvSabado.Location = new System.Drawing.Point(847, 254);
+            this.dgvSabado.Name = "dgvSabado";
+            this.dgvSabado.Size = new System.Drawing.Size(418, 165);
+>>>>>>> origin/master
             this.dgvSabado.TabIndex = 6;
             this.dgvSabado.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvGenerico_CellClick);
             this.dgvSabado.CellValueChanged += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvGenerico_CellValueChanged);
@@ -333,10 +571,17 @@
             this.dgvDomingo.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgvDomingo.Dock = System.Windows.Forms.DockStyle.Fill;
             this.dgvDomingo.EditMode = System.Windows.Forms.DataGridViewEditMode.EditOnEnter;
+<<<<<<< HEAD
             this.dgvDomingo.Location = new System.Drawing.Point(3, 546);
             this.dgvDomingo.Name = "dgvDomingo";
             this.dgvDomingo.Size = new System.Drawing.Size(631, 135);
             this.dgvDomingo.TabIndex = 17;
+=======
+            this.dgvDomingo.Location = new System.Drawing.Point(425, 465);
+            this.dgvDomingo.Name = "dgvDomingo";
+            this.dgvDomingo.Size = new System.Drawing.Size(416, 165);
+            this.dgvDomingo.TabIndex = 16;
+>>>>>>> origin/master
             this.dgvDomingo.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvGenerico_CellClick);
             this.dgvDomingo.CellValueChanged += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvGenerico_CellValueChanged);
             this.dgvDomingo.CurrentCellDirtyStateChanged += new System.EventHandler(this.dgvGenerico_CurrentCellDirtyStateChanged);
@@ -349,6 +594,7 @@
             // 
             // tableLayoutPanel1
             // 
+<<<<<<< HEAD
             this.tableLayoutPanel1.ColumnCount = 2;
             this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 49.99999F));
             this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50.00001F));
@@ -391,6 +637,31 @@
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
             this.tableLayoutPanel1.Size = new System.Drawing.Size(1276, 684);
             this.tableLayoutPanel1.TabIndex = 3;
+=======
+            this.label1.AutoSize = true;
+            this.label1.Font = new System.Drawing.Font("Modern No. 20", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label1.Location = new System.Drawing.Point(564, 13);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(56, 18);
+            this.label1.TabIndex = 2;
+            this.label1.Text = "Fecha:";
+            // 
+            // panel1
+            // 
+            this.panel1.Controls.Add(this.btAgregarSemana);
+            this.panel1.Controls.Add(this.label4);
+            this.panel1.Controls.Add(this.label3);
+            this.panel1.Controls.Add(this.label2);
+            this.panel1.Controls.Add(this.cbDias);
+            this.panel1.Controls.Add(this.DtpFecha);
+            this.panel1.Controls.Add(this.label1);
+            this.panel1.Controls.Add(this.btGuardar);
+            this.panel1.Dock = System.Windows.Forms.DockStyle.Top;
+            this.panel1.Location = new System.Drawing.Point(0, 0);
+            this.panel1.Name = "panel1";
+            this.panel1.Size = new System.Drawing.Size(1268, 100);
+            this.panel1.TabIndex = 4;
+>>>>>>> origin/master
             // 
             // dgvLunes
             // 
@@ -497,9 +768,13 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+<<<<<<< HEAD
             this.ClientSize = new System.Drawing.Size(1276, 733);
             this.Controls.Add(this.button1);
             this.Controls.Add(this.btImprimirPrevia);
+=======
+            this.ClientSize = new System.Drawing.Size(1268, 733);
+>>>>>>> origin/master
             this.Controls.Add(this.tableLayoutPanel1);
             this.Controls.Add(this.btAgregarSemana);
             this.Controls.Add(this.btGuardar);

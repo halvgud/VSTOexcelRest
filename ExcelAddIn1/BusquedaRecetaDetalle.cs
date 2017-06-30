@@ -38,7 +38,7 @@ namespace ExcelAddIn1
                 tbCantidad.Visible = false;
                 tbCantidad.Text = @"1";
             }
-            dataGridView1.DataSource = _claveCongelados.Select(x => new { clave = x.Clave, descripcion = x.Descripcion, cantidad = x.Cantidad }).ToArray();
+            dataGridView1.DataSource = _claveCongelados.Select(x => new { clave = x.Clave, descripcion = x.Platillo, cantidad = x.Cantidad }).ToArray();
             dataGridView1.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
         }
         private void btAceptar_Click(object sender, EventArgs e)

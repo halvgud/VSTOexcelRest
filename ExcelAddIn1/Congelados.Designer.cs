@@ -41,9 +41,9 @@
             this.btbaja = new System.Windows.Forms.Button();
             this.btguardareditar = new System.Windows.Forms.Button();
             this.dgvcongeladobuscaryeditar = new System.Windows.Forms.DataGridView();
-            this.txtbuscarcongeladoeditar = new System.Windows.Forms.TextBox();
             this.label2 = new System.Windows.Forms.Label();
             this.btbuscareditar = new System.Windows.Forms.Button();
+            this.txtbuscarcongeladoeditar = new System.Windows.Forms.TextBox();
             this.tabControl1.SuspendLayout();
             this.tpagregar.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvcongelados)).BeginInit();
@@ -134,10 +134,10 @@
             // 
             // tpbuscaryeditar
             // 
+            this.tpbuscaryeditar.Controls.Add(this.txtbuscarcongeladoeditar);
             this.tpbuscaryeditar.Controls.Add(this.btbaja);
             this.tpbuscaryeditar.Controls.Add(this.btguardareditar);
             this.tpbuscaryeditar.Controls.Add(this.dgvcongeladobuscaryeditar);
-            this.tpbuscaryeditar.Controls.Add(this.txtbuscarcongeladoeditar);
             this.tpbuscaryeditar.Controls.Add(this.label2);
             this.tpbuscaryeditar.Controls.Add(this.btbuscareditar);
             this.tpbuscaryeditar.Location = new System.Drawing.Point(4, 22);
@@ -176,13 +176,6 @@
             this.dgvcongeladobuscaryeditar.Size = new System.Drawing.Size(577, 141);
             this.dgvcongeladobuscaryeditar.TabIndex = 3;
             // 
-            // txtbuscarcongeladoeditar
-            // 
-            this.txtbuscarcongeladoeditar.Location = new System.Drawing.Point(21, 49);
-            this.txtbuscarcongeladoeditar.Name = "txtbuscarcongeladoeditar";
-            this.txtbuscarcongeladoeditar.Size = new System.Drawing.Size(248, 20);
-            this.txtbuscarcongeladoeditar.TabIndex = 2;
-            // 
             // label2
             // 
             this.label2.AutoSize = true;
@@ -201,6 +194,13 @@
             this.btbuscareditar.Text = "Buscar";
             this.btbuscareditar.UseVisualStyleBackColor = true;
             this.btbuscareditar.Click += new System.EventHandler(this.btbuscareditar_Click);
+            // 
+            // txtbuscarcongeladoeditar
+            // 
+            this.txtbuscarcongeladoeditar.Location = new System.Drawing.Point(31, 47);
+            this.txtbuscarcongeladoeditar.Name = "txtbuscarcongeladoeditar";
+            this.txtbuscarcongeladoeditar.Size = new System.Drawing.Size(250, 20);
+            this.txtbuscarcongeladoeditar.TabIndex = 6;
             // 
             // Congelados
             // 
@@ -230,7 +230,6 @@
         private System.Windows.Forms.DataGridView dgvcongelados;
         private System.Windows.Forms.Button btguardareditar;
         private System.Windows.Forms.DataGridView dgvcongeladobuscaryeditar;
-        private System.Windows.Forms.TextBox txtbuscarcongeladoeditar;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Button btbuscareditar;
         public System.Windows.Forms.TabPage tpagregar;
@@ -239,5 +238,6 @@
         private System.Windows.Forms.Button btborrarall;
         private System.Windows.Forms.Button btborrarselect;
         private System.Windows.Forms.Button btbaja;
+        private System.Windows.Forms.TextBox txtbuscarcongeladoeditar;
     }
 }

@@ -45,6 +45,11 @@ namespace Herramienta
                 public static string Listado { get; set; } = Properties.Settings.Default.listaplatillos;
                 public static string Clave { get; set; }
             }
+<<<<<<< HEAD
+=======
+
+
+>>>>>>> origin/master
             public class PlatillosMenus
             {
                 public static string ListaPlatillos { get; set; } = Properties.Settings.Default.TiposPlatillosDiarios;
@@ -61,6 +66,10 @@ namespace Herramienta
                 public static string CantidadElaboracion { get; set; }
             }
 
+<<<<<<< HEAD
+=======
+
+>>>>>>> origin/master
             public class Buscarcongelados
             {
                 public static string Bcongelados { get; set; } = Properties.Settings.Default.buscarcongelados;
@@ -79,7 +88,7 @@ namespace Herramienta
 
             public class Agregarcongelados
             {
-                public static int ArtId { get; set;}
+                public static StringComparer ArtId { get; set;}
                 public static string Clave { get; set; }
                 public static string Descripcion { get; set; }
                 public static double Cantidad { get; set; }
@@ -153,6 +162,12 @@ namespace Herramienta
                 public static string EliminarIngre { get; set; } = Properties.Settings.Default.eliminaringredientes;
 
                 public static string Actualizarrutaeimagen { get; set; } = Properties.Settings.Default.actualizar_ruta_e_instrucciones;
+                
+            }
+            public class ReporteAnterior
+            {
+                public static string DatosAnteriores { get; set; } = Properties.Settings.Default.DiaAntes;
+                public static string Fecha { get; set; }
             }
             public static class Categoria
             {

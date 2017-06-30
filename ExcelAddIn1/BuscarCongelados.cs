@@ -66,7 +66,13 @@ public BuscarCongelados(List<Respuesta.Receta.Congelados> listaCongelados, Actio
             //{
             //    txtcantidad.Visible = true;
             //}
+<<<<<<< HEAD
             dgvbuscar_congelados.DataSource = _listaCongelados.Select(x => new {art_id = x.ArtId, clave = x.Clave, descripcion = x.Descripcion, cantidad = x.Cantidad }).ToArray(); ;
+=======
+
+
+            dgvbuscar_congelados.DataSource = _listaCongelados.Select(x => new {art_id = x.ArtId, clave = x.Clave, descripcion = x.Platillo, cantidad = x.Cantidad }).ToArray(); ;
+>>>>>>> origin/master
             dgvbuscar_congelados.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
 
         }
@@ -97,7 +103,17 @@ public BuscarCongelados(List<Respuesta.Receta.Congelados> listaCongelados, Actio
         private void BuscarCongelados_Load(object sender, EventArgs e)
         {
             lbfechaagregar.Text = DateTime.Now.ToShortDateString();
+<<<<<<< HEAD
             if (dgvbuscar_congelados.CurrentRow != null)return;
+=======
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+            if (dgvbuscar_congelados.CurrentRow != null)return;
+=======
+<<<<<<< HEAD
+>>>>>>> origin/master
+>>>>>>> origin/master
             //txtcantidad.Text = dgvbuscar_congelados.CurrentRow.Cells[4].Value.ToString();
 
         }
@@ -109,7 +125,15 @@ public BuscarCongelados(List<Respuesta.Receta.Congelados> listaCongelados, Actio
            
             //string descripcion = dgvbuscar_congelados.Rows[e.RowIndex].Cells[2].Value.ToString(); 
             //lbdescripcion.Text = descripcion;
+<<<<<<< HEAD
             //txtcantidad.Text = dgvbuscar_congelados.CurrentRow.Cells[4].Value.ToString();
+=======
+
+            if (dgvbuscar_congelados.CurrentRow != null) ;
+>>>>>>> origin/master
+            //txtcantidad.Text = dgvbuscar_congelados.CurrentRow.Cells[4].Value.ToString();
+
+>>>>>>> origin/master
         }
         private void dgvbuscar_congelados_CellClick(object sender, DataGridViewCellEventArgs e)
         {

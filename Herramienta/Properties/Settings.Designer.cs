@@ -403,6 +403,16 @@ namespace Herramienta.Properties {
         
         [global::System.Configuration.ApplicationScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+        [global::System.Configuration.DefaultSettingValueAttribute("receta/SeleccionarPlatilloMenu")]
+=======
+<<<<<<< HEAD
+>>>>>>> origin/master
+>>>>>>> origin/master
         [global::System.Configuration.DefaultSettingValueAttribute("receta/insertarinstrucciones")]
         public string INSERTARRUTAEIMAGEN {
             get {
@@ -448,7 +458,12 @@ namespace Herramienta.Properties {
         
         [global::System.Configuration.ApplicationScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+<<<<<<< HEAD
         [global::System.Configuration.DefaultSettingValueAttribute("receta/SeleccionarPlatilloMenu")]
+=======
+        [global::System.Configuration.DefaultSettingValueAttribute("/receta/SeleccionarPlatilloMenu")]
+>>>>>>> origin/master
+>>>>>>> origin/master
         public string TiposPlatillosDiarios {
             get {
                 return ((string)(this["TiposPlatillosDiarios"]));
@@ -460,25 +475,83 @@ namespace Herramienta.Properties {
         [global::System.Configuration.DefaultSettingValueAttribute("receta/InsertarMenu")]
         public string InsertarMenuDia {
             get {
+<<<<<<< HEAD
                 return ((string)(this["InsertarMenuDia"]));
+=======
+                return ((string)(this["InsertarMenuDiarios"]));
+            }
+<<<<<<< HEAD
+=======
+            set {
+                this["InsertarMenuDiarios"] = value;
+>>>>>>> origin/master
             }
         }
         
         [global::System.Configuration.ApplicationScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+<<<<<<< HEAD
         [global::System.Configuration.DefaultSettingValueAttribute("receta/SeleccionarDatosReceta")]
         public string RecetaporClave {
             get {
                 return ((string)(this["RecetaporClave"]));
+=======
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+        [global::System.Configuration.DefaultSettingValueAttribute("receta/SeleccionarRecId")]
+=======
+<<<<<<< HEAD
+        [global::System.Configuration.DefaultSettingValueAttribute("receta/actualizarpresupuesto")]
+        public string actualizarpresupuesto {
+            get {
+                return ((string)(this["actualizarpresupuesto"]));
+=======
+>>>>>>> origin/master
+        [global::System.Configuration.DefaultSettingValueAttribute("/receta/SeleccionarRecId")]
+>>>>>>> origin/master
+        public string RecIdporClave {
+            get {
+                return ((string)(this["RecIdporClave"]));
+>>>>>>> origin/master
             }
         }
         
         [global::System.Configuration.ApplicationScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+<<<<<<< HEAD
         [global::System.Configuration.DefaultSettingValueAttribute("receta/SeleccionarTiporId")]
         public string TipoIdporNombre {
             get {
                 return ((string)(this["TipoIdporNombre"]));
+=======
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+        [global::System.Configuration.DefaultSettingValueAttribute("receta/SeleccionarTiporId")]
+=======
+<<<<<<< HEAD
+        [global::System.Configuration.DefaultSettingValueAttribute("receta/actRuta_and_Instrucciones")]
+        public string actualizar_ruta_e_instrucciones {
+            get {
+                return ((string)(this["actualizar_ruta_e_instrucciones"]));
+=======
+>>>>>>> origin/master
+        [global::System.Configuration.DefaultSettingValueAttribute("/receta/SeleccionarTiporId")]
+>>>>>>> origin/master
+        public string TipoIdporNombre {
+            get {
+                return ((string)(this["TipoIdporNombre"]));
+            }
+        }
+        
+        [global::System.Configuration.ApplicationScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("/receta/Diario")]
+        public string DiaAntes {
+            get {
+                return ((string)(this["DiaAntes"]));
+>>>>>>> origin/master
             }
         }
         

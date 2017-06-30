@@ -15,7 +15,9 @@ namespace Data
         public static DateTime FechaIni { get; set; }
         public static DateTime FechaFin { get; set; }
 
-        
+        public static Respuesta.Receta.Diaanterior AntesDiaanterior;
+
+
         public static void General(Action<IRestResponse> callback, Respuesta.Reporte.General repGeneral)
         {
             try
@@ -256,6 +258,34 @@ namespace Data
              donde esta el msj de espera
              ?*/
         }
+
+        public static void Yesterday(Action<IRestResponse> callback)
+        {
+            try
+            {
+                var rest = new Rest(Local.Api.UrlApi, Local.ReporteAnterior.DatosAnteriores, Method.POST);
+                rest.Peticion.AddHeader(Constantes.Http.ObtenerTipoDeContenido, Constantes.Http.TipoDeContenido.Json);
+                rest.Peticion.AddJsonBody(AntesDiaanterior);
+                rest.Cliente.ExecuteAsync(rest.Peticion, response =>
+                {
+                    switch (response.StatusCode)
+                    {
+                        case HttpStatusCode.OK:
+                            //CReceta.RecId = Convert.ToInt32(JObject.Parse(response.Content).Property("RecId").Value);
+                            callback(response);
+                            break;
+                        default:
+                            throw new Exception(@"Error al buscar la Informacion deseada");
+                    }
+                });
+            }
+            catch (Exception e)
+            {
+                Opcion.Log(Log.Interno.Categoria, "EXCEPCION: " + e.Message);
+            }
+
+        }
+
     }
 
 }

@@ -491,6 +491,7 @@
             this.tbBuscarReceta.Name = "tbBuscarReceta";
             this.tbBuscarReceta.Size = new System.Drawing.Size(131, 20);
             this.tbBuscarReceta.TabIndex = 5;
+            this.tbBuscarReceta.TextChanged += new System.EventHandler(this.tbBuscarReceta_TextChanged);
             this.tbBuscarReceta.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.tbBuscarReceta_KeyPress_1);
             // 
             // label3

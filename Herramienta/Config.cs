@@ -46,8 +46,7 @@ namespace Herramienta
                 public static string Listado { get; set; } = Properties.Settings.Default.listaplatillos;
                 public static string Clave { get; set; }
             }
-<<<<<<< HEAD
-=======
+
 
             public class Validardiario
             {
@@ -73,7 +72,7 @@ namespace Herramienta
                 public static string X2 { get; set; } = Properties.Settings.Default.DiarioAntesX2;
             }
 
->>>>>>> origin/master
+
             public class PlatillosMenus
             {
                 public static string ListaPlatillos { get; set; } = Properties.Settings.Default.TiposPlatillosDiarios;
@@ -90,10 +89,7 @@ namespace Herramienta
                 public static string CantidadElaboracion { get; set; }
             }
 
-<<<<<<< HEAD
-=======
 
->>>>>>> origin/master
             public class Buscarcongelados
             {
                 public static string Bcongelados { get; set; } = Properties.Settings.Default.buscarcongelados;

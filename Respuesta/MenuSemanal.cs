@@ -95,10 +95,7 @@ namespace Respuesta
         public  int TipoId { get; set; }
     }
 
-<<<<<<< HEAD
 
-=======
-<<<<<<< HEAD
     public class IngredientesReceta
     {
        public string ArtId { get; set; }
@@ -109,9 +106,7 @@ namespace Respuesta
         public  string Fecha { get; set; }
         public  string Unidad { get; set; }
     }
-=======
-<<<<<<< HEAD
->>>>>>> origin/master
+
     public class ListasInsertarMenus
     {
         public List<InsertarMenu> LunesMenus { get; set; }
@@ -155,7 +150,7 @@ namespace Respuesta
             public double Cantidad { get; set; }
         }
     }
-<<<<<<< HEAD
+
 
     public class DiarioX2
     {
@@ -173,9 +168,5 @@ namespace Respuesta
     }
 
 
-=======
-=======
->>>>>>> origin/master
->>>>>>> origin/master
->>>>>>> origin/master
+
 }

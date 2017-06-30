@@ -158,21 +158,17 @@
     <Setting Name="ExistenciaCongeladoMenu" Type="System.String" Scope="Application">
       <Value Profile="(Default)">receta/PlatilloCongelado</Value>
     </Setting>
-    <Setting Name="ListaIngredientesMenu" Type="System.String" Scope="Application">
-<<<<<<< HEAD
-      <Value Profile="(Default)">receta/IngredientesPlatillos</Value>
-    </Setting>
     <Setting Name="TipoUnidades" Type="System.String" Scope="Application">
       <Value Profile="(Default)">receta/unidad</Value>
     </Setting>
     <Setting Name="EditarMenuSemanal" Type="System.String" Scope="User">
       <Value Profile="(Default)">receta/EditarMenuActual</Value>
-=======
+    </Setting>
+    <Setting Name="ListaIngredientesMenu1" Type="System.String" Scope="Application">
       <Value Profile="(Default)">/receta/IngredientesPlatillos</Value>
     </Setting>
     <Setting Name="DiaAntes" Type="System.String" Scope="Application">
       <Value Profile="(Default)">/receta/Diario</Value>
-<<<<<<< HEAD
     </Setting>
     <Setting Name="ValidacionDiaria" Type="System.String" Scope="User">
       <Value Profile="(Default)">/receta/validarDiario</Value>
@@ -188,13 +184,18 @@
     </Setting>
     <Setting Name="ActualizarDiarioX2" Type="System.String" Scope="User">
       <Value Profile="(Default)">receta/ActualizarDiarioX2</Value>
-=======
-=======
->>>>>>> origin/master
->>>>>>> origin/master
->>>>>>> origin/master
->>>>>>> origin/master
->>>>>>> origin/master
+    </Setting>
+    <Setting Name="ActualizarCongelado" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">articulo/actualizarcongelados</Value>
+    </Setting>
+    <Setting Name="InsertarMenuDiarios" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">receta/InsertarMenu</Value>
+    </Setting>
+    <Setting Name="RecIdporClave" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">receta/SeleccionarRecId</Value>
+    </Setting>
+    <Setting Name="ListaIngredientesMenu" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">/receta/IngredientesPlatillos</Value>
     </Setting>
   </Settings>
 </SettingsFile>

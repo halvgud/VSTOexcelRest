@@ -244,9 +244,7 @@ var rest = new Rest(Local.Api.UrlApi, Cocina.DiasSemana.GuardarRecetas, Method.P
                         throw new Exception(@"error al buscar articulo");
                 }
             });
-<<<<<<< HEAD
-          }
-=======
+
 }
 
         public static void AgregarDiario(Action<IRestResponse> callback)
@@ -394,6 +392,6 @@ var rest = new Rest(Local.Api.UrlApi, Cocina.DiasSemana.GuardarRecetas, Method.P
             }
         }
 
->>>>>>> origin/master
+
     }
 }

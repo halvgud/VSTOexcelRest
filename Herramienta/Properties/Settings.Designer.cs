@@ -403,19 +403,6 @@ namespace Herramienta.Properties {
         
         [global::System.Configuration.ApplicationScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-<<<<<<< HEAD
-=======
-<<<<<<< HEAD
-=======
-<<<<<<< HEAD
-=======
-<<<<<<< HEAD
-        [global::System.Configuration.DefaultSettingValueAttribute("receta/SeleccionarPlatilloMenu")]
-=======
-<<<<<<< HEAD
->>>>>>> origin/master
->>>>>>> origin/master
->>>>>>> origin/master
         [global::System.Configuration.DefaultSettingValueAttribute("receta/insertarinstrucciones")]
         public string INSERTARRUTAEIMAGEN {
             get {
@@ -461,16 +448,7 @@ namespace Herramienta.Properties {
         
         [global::System.Configuration.ApplicationScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-<<<<<<< HEAD
         [global::System.Configuration.DefaultSettingValueAttribute("receta/SeleccionarPlatilloMenu")]
-=======
-<<<<<<< HEAD
-        [global::System.Configuration.DefaultSettingValueAttribute("receta/SeleccionarPlatilloMenu")]
-=======
-        [global::System.Configuration.DefaultSettingValueAttribute("/receta/SeleccionarPlatilloMenu")]
->>>>>>> origin/master
->>>>>>> origin/master
->>>>>>> origin/master
         public string TiposPlatillosDiarios {
             get {
                 return ((string)(this["TiposPlatillosDiarios"]));
@@ -482,58 +460,21 @@ namespace Herramienta.Properties {
         [global::System.Configuration.DefaultSettingValueAttribute("receta/InsertarMenu")]
         public string InsertarMenuDia {
             get {
-<<<<<<< HEAD
                 return ((string)(this["InsertarMenuDia"]));
-=======
-                return ((string)(this["InsertarMenuDiarios"]));
             }
-<<<<<<< HEAD
-=======
-<<<<<<< HEAD
-=======
-            set {
-                this["InsertarMenuDiarios"] = value;
->>>>>>> origin/master
-            }
->>>>>>> origin/master
         }
         
         [global::System.Configuration.ApplicationScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-<<<<<<< HEAD
-=======
-<<<<<<< HEAD
         [global::System.Configuration.DefaultSettingValueAttribute("receta/SeleccionarDatosReceta")]
         public string RecetaporClave {
             get {
                 return ((string)(this["RecetaporClave"]));
-=======
-<<<<<<< HEAD
-=======
-<<<<<<< HEAD
->>>>>>> origin/master
-        [global::System.Configuration.DefaultSettingValueAttribute("receta/SeleccionarRecId")]
-        public string RecIdporClave {
-            get {
-                return ((string)(this["RecIdporClave"]));
->>>>>>> origin/master
             }
         }
         
         [global::System.Configuration.ApplicationScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-<<<<<<< HEAD
-=======
-<<<<<<< HEAD
-        [global::System.Configuration.DefaultSettingValueAttribute("receta/SeleccionarTiporId")]
-        public string TipoIdporNombre {
-            get {
-                return ((string)(this["TipoIdporNombre"]));
-=======
-<<<<<<< HEAD
-=======
-<<<<<<< HEAD
->>>>>>> origin/master
         [global::System.Configuration.DefaultSettingValueAttribute("receta/SeleccionarTiporId")]
         public string TipoIdporNombre {
             get {
@@ -552,10 +493,31 @@ namespace Herramienta.Properties {
         
         [global::System.Configuration.ApplicationScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("/receta/IngredientesPlatillos")]
-        public string ListaIngredientesMenu {
+        [global::System.Configuration.DefaultSettingValueAttribute("receta/unidad")]
+        public string TipoUnidades {
             get {
-                return ((string)(this["ListaIngredientesMenu"]));
+                return ((string)(this["TipoUnidades"]));
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("receta/EditarMenuActual")]
+        public string EditarMenuSemanal {
+            get {
+                return ((string)(this["EditarMenuSemanal"]));
+            }
+            set {
+                this["EditarMenuSemanal"] = value;
+            }
+        }
+        
+        [global::System.Configuration.ApplicationScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("/receta/IngredientesPlatillos")]
+        public string ListaIngredientesMenu1 {
+            get {
+                return ((string)(this["ListaIngredientesMenu1"]));
             }
         }
         
@@ -565,7 +527,6 @@ namespace Herramienta.Properties {
         public string DiaAntes {
             get {
                 return ((string)(this["DiaAntes"]));
->>>>>>> origin/master
             }
         }
         
@@ -583,13 +544,8 @@ namespace Herramienta.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-<<<<<<< HEAD
         [global::System.Configuration.DefaultSettingValueAttribute("/receta/DiarioX2")]
         public string DiarioAntesX2 {
-=======
-        [global::System.Configuration.DefaultSettingValueAttribute("receta/IngredientesPlatillos")]
-        public string ListaIngredientesMenu {
->>>>>>> origin/master
             get {
                 return ((string)(this["DiarioAntesX2"]));
             }
@@ -636,22 +592,37 @@ namespace Herramienta.Properties {
         
         [global::System.Configuration.ApplicationScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("receta/unidad")]
-        public string TipoUnidades {
+        [global::System.Configuration.DefaultSettingValueAttribute("articulo/actualizarcongelados")]
+        public string ActualizarCongelado {
             get {
-                return ((string)(this["TipoUnidades"]));
+                return ((string)(this["ActualizarCongelado"]));
             }
         }
         
-        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Configuration.ApplicationScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("receta/EditarMenuActual")]
-        public string EditarMenuSemanal {
+        [global::System.Configuration.DefaultSettingValueAttribute("receta/InsertarMenu")]
+        public string InsertarMenuDiarios {
             get {
-                return ((string)(this["EditarMenuSemanal"]));
+                return ((string)(this["InsertarMenuDiarios"]));
             }
-            set {
-                this["EditarMenuSemanal"] = value;
+        }
+        
+        [global::System.Configuration.ApplicationScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("receta/SeleccionarRecId")]
+        public string RecIdporClave {
+            get {
+                return ((string)(this["RecIdporClave"]));
+            }
+        }
+        
+        [global::System.Configuration.ApplicationScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("/receta/IngredientesPlatillos")]
+        public string ListaIngredientesMenu {
+            get {
+                return ((string)(this["ListaIngredientesMenu"]));
             }
         }
     }

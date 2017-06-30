@@ -19,8 +19,7 @@ namespace ExcelAddIn1
     public partial class Diario : Form
     {
 
-        private List<Receta.Congelados2> _listaArticuloCongelado = new List<Receta.Congelados2>();
-        private List<Receta.Congelados2> _listArticuloCongelado2=new List<Receta.Congelados2>();
+       // private List<Receta.Congelados2> _listArticuloCongelado2=new List<Receta.Congelados2>();
         public int valor = 0;
         public int INNdex;
         public int IndeXX;

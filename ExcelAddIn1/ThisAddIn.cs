@@ -407,12 +407,7 @@ namespace ExcelAddIn1
 
             }
             return lista;
-<<<<<<< HEAD
-=======
 
-            
-
->>>>>>> origin/master
         }
 
         private static object[,] InicializarLista(IReadOnlyList<Reporte.RespuestaCocina> rrg)

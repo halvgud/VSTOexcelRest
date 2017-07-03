@@ -1,6 +1,6 @@
 ﻿namespace ExcelAddIn1
 {
-    partial class Reportes
+    partial class SideBarReportes
     {
         /// <summary> 
         /// Variable del diseñador necesaria.

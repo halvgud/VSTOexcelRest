@@ -298,8 +298,8 @@
       <DependentUpon>Resources.resx</DependentUpon>
       <DesignTime>True</DesignTime>
     </Compile>
-    <EmbeddedResource Include="Reportes.resx">
-      <DependentUpon>Reportes.cs</DependentUpon>
+    <EmbeddedResource Include="SideBarReportes.resx">
+      <DependentUpon>SideBarReportes.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="SideBarRecetario.resx">
       <DependentUpon>SideBarRecetario.cs</DependentUpon>
@@ -321,11 +321,11 @@
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
     <Compile Include="ReporteRecetaCocina.cs" />
-    <Compile Include="Reportes.cs">
+    <Compile Include="SideBarReportes.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="Reportes.Designer.cs">
-      <DependentUpon>Reportes.cs</DependentUpon>
+    <Compile Include="SideBarReportes.Designer.cs">
+      <DependentUpon>SideBarReportes.cs</DependentUpon>
     </Compile>
     <Compile Include="Ribbon1.cs" />
     <Compile Include="SideBarRecetario.cs">
@@ -381,7 +381,7 @@
     </ManifestKeyFile>
   </PropertyGroup>
   <PropertyGroup>
-    <ManifestCertificateThumbprint>0B88C84ADAABD274015CFEC1FDE2A4BB51A8044B</ManifestCertificateThumbprint>
+    <ManifestCertificateThumbprint>B6F5AA1C1914613CB330CB32E57C5312209C3291</ManifestCertificateThumbprint>
   </PropertyGroup>
   <PropertyGroup>
     <RunPostBuildEvent>Always</RunPostBuildEvent>

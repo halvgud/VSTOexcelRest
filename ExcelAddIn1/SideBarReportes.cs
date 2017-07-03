@@ -10,11 +10,11 @@ using System.Windows.Forms;
 
 namespace ExcelAddIn1
 {
-    public partial class Reportes : UserControl
+    public partial class SideBarReportes : UserControl
     {
 
         private readonly List<reportes> Reportess;
-        public Reportes()
+        public SideBarReportes()
         {
             InitializeComponent();
             Reportess = new List<reportes>();
@@ -51,8 +51,8 @@ namespace ExcelAddIn1
             }
             var fechass = new SideBarReporteReceta.fechado
             {
-                FechaFinal = dtpfinal.Text,
-                FechaInicio = dtpinicio.Text
+                FechaFinal = dtpfinal.Value.ToShortDateString(),
+                FechaInicio = dtpinicio.Value.ToShortDateString()
             };
         }
     }

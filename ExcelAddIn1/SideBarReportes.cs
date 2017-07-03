@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using Herramienta;
 
 namespace ExcelAddIn1
 {
@@ -31,29 +32,50 @@ namespace ExcelAddIn1
             Reportess.Add(new reportes { Nombre="Reporte Inventario",Id=1});
             Reportess.Add(new reportes { Nombre = "Reporte Cocina", Id = 2 });
             Reportess.Add(new reportes { Nombre="Reporte Diario", Id=3});
-            cbreportes.Items.Add(Reportess);
-            
+           cbreportes.Items.Add(Reportess.ToList());
+
+            cbreportes.DataSource = Reportess.ToArray();
+            cbreportes.DisplayMember = "Nombre";
+            cbreportes.ValueMember = "Id";
+            //cbreportes.DataSource = Reportess;
+
         }
 
         private void button1_Click(object sender, EventArgs e)
         {
             if ((cbreportes.SelectedIndex + 1) == 1){
+                var addIn = Globals.ThisAddIn;
+
+                Opcion.EjecucionAsync(Data.Reporte.RepCongelados, y =>
+                {
+                    addIn.ReporteCongelados(y);
+
+                });
 
             }
             if ((cbreportes.SelectedIndex+1)==2) {
-                var cocina = new SideBarReporteReceta();
-                cocina.Show();
+
+                ThisAddIn.ReporteReceta.Visible = true;
+                ThisAddIn.ReportessCustomTaskPane.Visible = false;
+
+
+                SideBarReporteReceta.FechaFinal = dtpfinal.Value.ToString();
+                SideBarReporteReceta.FechaInicio = dtpinicio.Value.ToString();
+                //var fechass = new SideBarReporteReceta.fechado
+                //{
+                  //  FechaFinal = dtpfinal.Value.ToShortDateString(),
+                   // FechaInicio = dtpinicio.Value.ToShortDateString()
+                //};
+
+                
 
             }
             if ((cbreportes.SelectedIndex + 1) == 3)
             {
+              
 
             }
-            var fechass = new SideBarReporteReceta.fechado
-            {
-                FechaFinal = dtpfinal.Value.ToShortDateString(),
-                FechaInicio = dtpinicio.Value.ToShortDateString()
-            };
+
         }
     }
 }

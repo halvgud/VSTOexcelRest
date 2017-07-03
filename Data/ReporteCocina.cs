@@ -48,7 +48,7 @@ namespace Data
             }
         }
         /*aqui tu 2do parametro no debe ser CbGenerico*/
-        public static void VersionExtendida(Action<IRestResponse> callback, Respuesta.CbGenerico filtroGenerico )
+        public static void VersionExtendida(Action<IRestResponse> callback, Respuesta.Reporte.RespuestaCocina.Reportess filtroGenerico )
         {
             try
             {

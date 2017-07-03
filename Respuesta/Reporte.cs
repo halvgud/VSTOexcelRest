@@ -45,6 +45,8 @@ namespace Respuesta
                 public string CantidadPedir { get; set; }
             }
 
+           
+
 
             public class InventarioCongelados
             {
@@ -143,6 +145,13 @@ namespace Respuesta
                 
             }
 
+            public class Reportess
+            {
+                public int Id { get; set; }
+                public string Orderby { get; set; }
+                public DateTime FechaFinal { get; set; }
+                public DateTime FechaInicio { get; set; }
+            }
 
 
 

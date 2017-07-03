@@ -22,6 +22,9 @@ namespace ExcelAddIn1
           
         }
 
+
+        public static string FechaInicio { get; set; }
+        public static string FechaFinal { get; set; }
         public class fechado
         {
             public string FechaInicio { get; set; }
@@ -41,10 +44,13 @@ namespace ExcelAddIn1
             //}
             // ;
 
-            var datosimportar = new Respuesta.CbGenerico()
+            var datosimportar = new Respuesta.Reporte.RespuestaCocina.Reportess
             {
-                Id = cbproducto.SelectedValue.ToString(),
-                Nombre = cbOrdenarReceta.SelectedValue.ToString()
+                Id = Convert.ToInt16(cbproducto.SelectedValue.ToString()) ,
+                Orderby= cbOrdenarReceta.SelectedValue.ToString(),
+                FechaFinal = Convert.ToDateTime(FechaFinal.ToString()),
+                FechaInicio = Convert.ToDateTime(FechaInicio.ToString())
+                
             };
             var addIn = Globals.ThisAddIn;
             //me marca este erros al primer opci

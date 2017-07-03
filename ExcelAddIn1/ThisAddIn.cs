@@ -142,6 +142,9 @@ namespace ExcelAddIn1
                 //    medida = excel[1,9].ToString(),
 
                 //  };
+
+
+             
                 //rrc.clave = "";
                 /*algo asi... */
                 /*y esto de abajo que? es la que te digo de echo mas abajo esta, pero esta petición que hace?
@@ -325,20 +328,27 @@ namespace ExcelAddIn1
             var rrgc = Opcion.JsonaListaGenerica<Reporte.General.InventarioCongelados>(restResponse);
             var oReportWs = InicializarExcelConTemplate("Congelados");
             if (oReportWs == null) return;
-            var rowcount = rrgc.Count + 6;//olle pero cuando aumente que ondas con esta paarte tener que poner una variable que se aumente sola un count
+            var rowcount = rrgc.Count + 6;
+                //olle pero cuando aumente que ondas con esta paarte tener que poner una variable que se aumente sola un count
             /*nop, no puedes meter por ejemplo el rrgc.Count+7 dentro de la linea de abajo porque no lo agarra... lo tienes que meter en una viarable ya fijona*/
             /**/
             _reporte.Range["A7:F" + rowcount].Value2 = InicializarLista(rrgc);
-            _reporte.Range["A7:F" + rowcount].Borders[Excel.XlBordersIndex.xlEdgeBottom].LineStyle = Excel.XlLineStyle.xlContinuous;
-            _reporte.Range["A7:F" + rowcount].Borders[Excel.XlBordersIndex.xlEdgeLeft].LineStyle = Excel.XlLineStyle.xlContinuous;
-            _reporte.Range["A7:F" + rowcount].Borders[Excel.XlBordersIndex.xlEdgeRight].LineStyle = Excel.XlLineStyle.xlContinuous;
-            _reporte.Range["A7:F" + rowcount].Borders[Excel.XlBordersIndex.xlEdgeTop].LineStyle = Excel.XlLineStyle.xlContinuous;
-            _reporte.Range["A7:F" + rowcount].Borders[Excel.XlBordersIndex.xlEdgeBottom].LineStyle = Excel.XlLineStyle.xlContinuous;
-           
+            _reporte.Range["A7:F" + rowcount].Borders[Excel.XlBordersIndex.xlEdgeBottom].LineStyle =
+                Excel.XlLineStyle.xlContinuous;
+            _reporte.Range["A7:F" + rowcount].Borders[Excel.XlBordersIndex.xlEdgeLeft].LineStyle =
+                Excel.XlLineStyle.xlContinuous;
+            _reporte.Range["A7:F" + rowcount].Borders[Excel.XlBordersIndex.xlEdgeRight].LineStyle =
+                Excel.XlLineStyle.xlContinuous;
+            _reporte.Range["A7:F" + rowcount].Borders[Excel.XlBordersIndex.xlEdgeTop].LineStyle =
+                Excel.XlLineStyle.xlContinuous;
+            _reporte.Range["A7:F" + rowcount].Borders[Excel.XlBordersIndex.xlEdgeBottom].LineStyle =
+                Excel.XlLineStyle.xlContinuous;
+
             _reporte.Range["A7:F" + rowcount].Borders.Color = Color.Black;
+
             _reporte.Range["A7:F" + rowcount].Font.Size = 8;
 
-            _reporte.Range["A7:F"+rowcount].HorizontalAlignment=Excel.XlHAlign.xlHAlignCenter;
+            _reporte.Range["A7:F" + rowcount].HorizontalAlignment = Excel.XlHAlign.xlHAlignCenter;
             _reporte.Range["B7:F" + rowcount].HorizontalAlignment = Excel.XlHAlign.xlHAlignLeft;
             _reporte.Range["C7:F" + rowcount].HorizontalAlignment = Excel.XlHAlign.xlHAlignLeft;
             _reporte.Range["D7:F" + rowcount].HorizontalAlignment = Excel.XlHAlign.xlHAlignCenter;
@@ -347,7 +357,32 @@ namespace ExcelAddIn1
 
             _reporte.Range["E7:E" + rowcount].Interior.Color = Color.Aqua;
 
-            
+            _reporte.Range["E7:E"+9].Value.ToString();
+            Excel.Range rows = _reporte.Rows;
+
+            foreach (Excel.Range rowRange in rows )
+            {
+                if (rowRange.Text == "MERMA")
+                {
+                    _reporte.Range["E7:E" + rowRange].Interior.Color = Color.Red;
+                }
+            }
+
+
+           
+
+            //if (_reporte.Range["E7:E" + rowcount].Value.ToString() == "MERMA")
+            //{
+            //    _reporte.Range["E7:E" + rowcount].Interior.Color = Color.Red;
+            //}
+            //int au = rowcount;
+            //for (int i = 0; i <au; i++)
+            //{
+
+
+
+
+            //}
 
             //_reporte.Range["A7=F" + rowcount].HorizontalAlignment = Excel.XlHAlign.xlHAlignCenter;
             //_reporte.Range["A2:X2"].Interior.Color = ColorTranslator.ToOle(Color.Orange);
@@ -361,7 +396,11 @@ namespace ExcelAddIn1
             _reporte.Range["B7:F" + rowcount].Columns.AutoFit();
             _reporte.Range["F6:F" + rowcount].Columns.AutoFit();
             _reporte.Range["D6:F" + rowcount].Columns.AutoFit();
-            Application.Cells.Locked = false;
+
+      
+           
+
+        Application.Cells.Locked = false;
             Application.ScreenUpdating = true;
         }
         private static object[,] InicializarListaIngredientes(IReadOnlyCollection<IngredientesReceta> rrgi)
@@ -405,13 +444,11 @@ namespace ExcelAddIn1
                 lista[x, 1] = "'"+rrgc[x].Clave;
                 lista[x, 2] = rrgc[x].Descripcion;
                 lista[x, 3] = rrgc[x].Existencia;
+            
                 lista[x, 4] = rrgc[x].Estado;
                 lista[x, 5] = rrgc[x].FechaEntrada;
 
-                //if (lista[4, 4].ToString() == "MERMA")
-                //{
-                    
-                //}
+                
 
             }
             return lista;

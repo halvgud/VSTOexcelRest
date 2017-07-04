@@ -314,6 +314,28 @@ namespace ExcelAddIn1
             _reporte.Range["G3:G" + rowcount].Columns.AutoFit();
 
 
+            for (int i = 1; i < rowcount + 1; i++)
+            {
+                var x = _reporte.Range["F" + i].Value2;
+                string y = "F" + i;
+                if (x == "MERMA")
+                {
+                    _reporte.Range[y].Interior.Color = Color.Red;
+                }
+                if (x == "CONGELADO")
+                {
+                    _reporte.Range[y].Interior.Color = Color.Blue;
+                }
+                if (x == "RE-VENTA")
+                {
+                    _reporte.Range[y].Interior.Color = Color.Green;
+                }
+                if (x == "EMPLEADO")
+                {
+                    _reporte.Range[y].Interior.Color = Color.Yellow;
+                }
+            }
+
             Application.Cells.Locked = false;
             Application.ScreenUpdating = true;
            
@@ -356,34 +378,7 @@ namespace ExcelAddIn1
 
 
             _reporte.Range["E7:E" + rowcount].Interior.Color = Color.Aqua;
-
-            _reporte.Range["E7:E"+9].Value.ToString();
-            Excel.Range rows = _reporte.Rows;
-
-            foreach (Excel.Range rowRange in rows )
-            {
-                if (rowRange.Text == "MERMA")
-                {
-                    _reporte.Range["E7:E" + rowRange].Interior.Color = Color.Red;
-                }
-            }
-
-
-           
-
-            //if (_reporte.Range["E7:E" + rowcount].Value.ToString() == "MERMA")
-            //{
-            //    _reporte.Range["E7:E" + rowcount].Interior.Color = Color.Red;
-            //}
-            //int au = rowcount;
-            //for (int i = 0; i <au; i++)
-            //{
-
-
-
-
-            //}
-
+      
             //_reporte.Range["A7=F" + rowcount].HorizontalAlignment = Excel.XlHAlign.xlHAlignCenter;
             //_reporte.Range["A2:X2"].Interior.Color = ColorTranslator.ToOle(Color.Orange);
             //_reporte.Range["Q1:X1"].Interior.Color = ColorTranslator.ToOle(Color.Orange);
@@ -397,10 +392,32 @@ namespace ExcelAddIn1
             _reporte.Range["F6:F" + rowcount].Columns.AutoFit();
             _reporte.Range["D6:F" + rowcount].Columns.AutoFit();
 
-      
-           
+            var calis = _reporte.Range["E10"].Value2;
+            var calis2 = rowcount;
+            for (int i = 1; i < rowcount+1; i++)
+            {
+                var x = _reporte.Range["E" + i].Value2;
+                string y = "E" + i;
+                if (x=="MERMA") {
+                    _reporte.Range[y].Interior.Color = Color.Red;
+                }
+                if (x == "CONGELADO")
+                {
+                    _reporte.Range[y].Interior.Color = Color.Blue;
+                }
+                if (x == "RE-VENTA")
+                {
+                    _reporte.Range[y].Interior.Color = Color.Green;
+                }
+                if (x == "EMPLEADO")
+                {
+                    _reporte.Range[y].Interior.Color = Color.Yellow;
+                }
+            }
 
-        Application.Cells.Locked = false;
+
+
+            Application.Cells.Locked = false;
             Application.ScreenUpdating = true;
         }
         private static object[,] InicializarListaIngredientes(IReadOnlyCollection<IngredientesReceta> rrgi)

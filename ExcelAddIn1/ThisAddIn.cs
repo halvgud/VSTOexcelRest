@@ -110,9 +110,9 @@ namespace ExcelAddIn1
                     //((excelazo.Range["K5"])).Value2 =lista.CantidadElaborada ;
                     ((excelazo.Range["F7"])).Value2 = listCocina.UltimaElaboracion;
                     ((excelazo.Range["N5"])).Value2 = listCocina.Venta;
-                    //((excelazo.Range["G7"])).Value2 = lista.Densidad;
+                    //((excelazo.Range["G7"])).Value2 = lista.Densidad  ;
                     ((excelazo.Range["G5"])).Value2 = listCocina.RecId;
-                    ((excelazo.Range["H7"])).Value2 =listCocina.Medida;
+                    ((excelazo.Range["H7"])).Value2 =listCocina.medida;
                     //((excelazo.Range["L10"])).Value2 = lista.Foto;
                     ((excelazo.Range["M5"])).Value2 = listCocina.Costo;
                     //((excelazo.Range["N5"])).Value2 = rrc.Venta;
@@ -399,19 +399,19 @@ namespace ExcelAddIn1
                 var x = _reporte.Range["E" + i].Value2;
                 string y = "E" + i;
                 if (x=="MERMA") {
-                    _reporte.Range[y].Interior.Color = Color.Red;
+                    _reporte.Range[y].Interior.Color = Color.OrangeRed;
                 }
                 if (x == "CONGELADO")
                 {
-                    _reporte.Range[y].Interior.Color = Color.Blue;
+                    _reporte.Range[y].Interior.Color = Color.Aquamarine;
                 }
                 if (x == "RE-VENTA")
                 {
-                    _reporte.Range[y].Interior.Color = Color.Green;
+                    _reporte.Range[y].Interior.Color = Color.Chartreuse;
                 }
                 if (x == "EMPLEADO")
                 {
-                    _reporte.Range[y].Interior.Color = Color.Yellow;
+                    _reporte.Range[y].Interior.Color = Color.Gold;
                 }
             }
 
@@ -474,7 +474,7 @@ namespace ExcelAddIn1
 
         private static object[,] InicializarLista(IReadOnlyList<Reporte.RespuestaCocina> rrg)
         {
-            var lista = new object[rrg.Count, 24];
+            var lista = new object[rrg.Count, 25];
             for (var x = 0; x < rrg.Count; x++)
             {
                 lista[x, 0] = "'"+rrg[x].Clave;
@@ -494,76 +494,77 @@ namespace ExcelAddIn1
                 }
                 lista[x, 6] = rrg[x].Since;
                 lista[x, 7] = rrg[x].UltimaElaboracion;
-                lista[x, 8] = rrg[x].Medida;
-                lista[x, 9] = rrg[x].Consumodia;
-                lista[x, 10] = rrg[x].Costo;
-                lista[x, 11] = rrg[x].Venta;
-                lista[x, 12] = rrg[x].Margen;
-                lista[x, 13] = rrg[x].Qty;
-                lista[x, 14] = rrg[x].Salesince;
-                lista[x, 15] = rrg[x].ProfitSince;
+                lista[x, 8] = rrg[x].QtyUltimaElaboracion;
+                lista[x, 9] = rrg[x].medida;
+                lista[x, 10] = rrg[x].consumodia;
+                lista[x, 11] = rrg[x].Costo;
+                lista[x, 12] = rrg[x].Venta;
+                lista[x, 13] = rrg[x].Margen;
+                lista[x, 14] = rrg[x].Qty;
+                lista[x, 15] = rrg[x].Salesince;
+                lista[x, 16] = rrg[x].ProfitSince;
                 
                 var qty = rrg[x].Qtycongelado;
                 if (string.IsNullOrEmpty(qty))
-                {
-                    lista[x, 16] = "N/A";
-                }
-                else
-                {
-                    lista[x, 16] = rrg[x].Qtycongelado;
-                }
-                var pcongelado = rrg[x].Preciocongelado;
-                if (string.IsNullOrEmpty(pcongelado))
                 {
                     lista[x, 17] = "N/A";
                 }
                 else
                 {
-                    lista[x, 17] = rrg[x].Preciocongelado;
+                    lista[x, 17] = rrg[x].Qtycongelado;
+                }
+                var pcongelado = rrg[x].Preciocongelado;
+                if (string.IsNullOrEmpty(pcongelado))
+                {
+                    lista[x, 18] = "N/A";
+                }
+                else
+                {
+                    lista[x, 18] = rrg[x].Preciocongelado;
 
                 }
                 //lista[x, 18] = rrg[x].Qtymermas;
                 var merma = rrg[x].Qtymermas;
                 if (string.IsNullOrEmpty(merma))
                 {
-                    lista[x, 18] = "N/A";
+                    lista[x, 19] = "N/A";
                 }
                 else
                 {
-                    lista[x, 18] = rrg[x].Qtymermas;
+                    lista[x, 19] = rrg[x].Qtymermas;
 
                 }
                 //lista[x, 19] = rrg[x].Porcentajemerma;
                 var pormerma = rrg[x].Porcentajemerma;
                 if (string.IsNullOrEmpty(pormerma))
                 {
-                    lista[x, 19] = "N/A";
+                    lista[x, 20] = "N/A";
                 }
                 else
                 {
-                    lista[x, 19] = rrg[x].Porcentajemerma;
+                    lista[x, 20] = rrg[x].Porcentajemerma;
 
                 }
               //  lista[x, 20] = rrg[x].Qtyperdidas;
                 var qtyperdida = rrg[x].Qtyperdidas;
                 if (string.IsNullOrEmpty(qtyperdida))
                 {
-                    lista[x, 20] = "N/A";
+                    lista[x, 21] = "N/A";
                 }
                 else
                 {
-                    lista[x, 20] = rrg[x].Qtyperdidas;
+                    lista[x, 21] = rrg[x].Qtyperdidas;
 
                 }
                 //lista[x, 21] = rrg[x].Porcentajeperdida;
                 var porperdido = rrg[x].Porcentajeperdida;
                 if (string.IsNullOrEmpty(porperdido))
                 {
-                    lista[x, 21] = "N/A";
+                    lista[x, 22] = "N/A";
                 }
                 else
                 {
-                    lista[x, 21] = rrg[x].Porcentajeperdida;
+                    lista[x, 22] = rrg[x].Porcentajeperdida;
 
                 }
 
@@ -571,22 +572,22 @@ namespace ExcelAddIn1
                 var qtyemoleado = rrg[x].Qtyempleado;
                 if (string.IsNullOrEmpty(qtyemoleado))
                 {
-                    lista[x, 22] = "N/A";
+                    lista[x, 23] = "N/A";
                 }
                 else
                 {
-                    lista[x, 22] = rrg[x].Qtyempleado;
+                    lista[x, 23] = rrg[x].Qtyempleado;
 
                 }
                 //lista[x, 23] = rrg[x].Porcentajeempleado;
                 var porempleado = rrg[x].Porcentajeempleado;
                 if (string.IsNullOrEmpty(porempleado))
                 {
-                    lista[x, 23] = "N/A";
+                    lista[x, 24] = "N/A";
                 }
                 else
                 {
-                    lista[x, 23] = rrg[x].Porcentajeempleado;
+                    lista[x, 24] = rrg[x].Porcentajeempleado;
 
                 }
             }

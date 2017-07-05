@@ -101,8 +101,9 @@ namespace Respuesta
             public string Estado { get; set; }
             public string Since { get; set; }
             public string UltimaElaboracion { get; set; }
-            public string Medida { get; set; }
-            public string Consumodia { get; set; }
+            public  Double QtyUltimaElaboracion { get; set; }
+            public string medida { get; set; }
+            public string consumodia { get; set; }
             //public string Total { get; set; }
             //public string Nombre { get; set; }
             public Double Costo { get; set; }

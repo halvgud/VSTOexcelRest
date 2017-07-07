@@ -22,6 +22,8 @@ namespace Herramienta
             {
                 public static string Orden { get; set; } = Properties.Settings.Default.Orden;
                 public static string ReporteCocina { get; set; } = Properties.Settings.Default.ReporteReceta;
+
+                
             }
 
             
@@ -29,10 +31,17 @@ namespace Herramienta
             {
                public static string CocinaDReceta { get; set; } = Properties.Settings.Default.DetalleRecetaCocina;
                public  static string Clave { get; set; }
+                public  static string rec_id { get; set; }
                 public static string Breceta { get; set; } = Properties.Settings.Default.Buscarrecetav1;
 
                 public static string Insertarinstruccion { get; set; } = Properties.Settings.Default.INSERTARRUTAEIMAGEN;
 
+                public class ReporteDetalle
+                {
+                    public string clave { get; set; }
+                    public string FechaInicio { get; set; }
+                    public string FechaFinal { get; set; }
+                }
 
             }
 

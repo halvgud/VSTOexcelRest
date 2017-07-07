@@ -46,6 +46,7 @@ namespace ExcelAddIn1
             if ((cbreportes.SelectedIndex + 1) == 1){
                 var addIn = Globals.ThisAddIn;
 
+                
                 Opcion.EjecucionAsync(Data.Reporte.RepCongelados, y =>
                 {
                     addIn.ReporteCongelados(y);
@@ -59,8 +60,8 @@ namespace ExcelAddIn1
                 ThisAddIn.ReportessCustomTaskPane.Visible = false;
 
 
-                SideBarReporteReceta.FechaFinal = dtpfinal.Value.ToString();
-                SideBarReporteReceta.FechaInicio = dtpinicio.Value.ToString();
+                SideBarReporteReceta.FechaFinal = Convert.ToDateTime(dtpfinal.Value.ToString("yyyy/MM/dd HH:mm:ss")) ;
+                SideBarReporteReceta.FechaInicio =Convert.ToDateTime(dtpinicio.Value.ToString("yyyy/MM/dd 00:00:00"))  ;
                 //var fechass = new SideBarReporteReceta.fechado
                 //{
                   //  FechaFinal = dtpfinal.Value.ToShortDateString(),
@@ -74,6 +75,22 @@ namespace ExcelAddIn1
             {
               
 
+            }
+
+        }
+
+        private void cbreportes_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if ((cbreportes.SelectedIndex + 1) == 1)
+            {
+                chhistoria.Visible = true;
+                dtpfinal.Visible = false;
+                dtpinicio.Visible = false;
+            }
+            if ((cbreportes.SelectedIndex+1)==2)
+            {
+                dtpfinal.Visible = true;
+                dtpinicio.Visible = true;
             }
 
         }

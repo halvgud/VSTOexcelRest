@@ -8,8 +8,8 @@
           <button id ="btMenuSemanal" label="Menu Semanal" imageMso="CalendarHorizontal" size="large" onAction="AbrirMenuSemanal" getEnabled="BuscarPermiso"/>
           <!--<button id ="btVerMenuSemanal" label="Ver Menu Semanal" imageMso="MoveActionsMenu" size="large" onAction="AbrirRecetarioh" getEnabled="BuscarPermiso"/>-->
           <button id ="btReceta" label="Recetario" imageMso="BuildingBlocksCreateTableOfAuthorities" size="large" onAction="CrearReceta" getEnabled ="BuscarPermiso"/>
-          <!--<button id ="btOrden" label="Orden de Trabajo" imageMso="CalendarToolImport" size="large" onAction="CrearOrdenTrabajo" getEnabled="BuscarPermiso"/>
-          <button id="btCongelados" label="Congelados" imageMso="ObjectFormatDialog" size="large" onAction="CapturaCongelado" getEnabled="BuscarPermiso"/>-->
+          <!--<button id ="btOrden" label="Orden de Trabajo" imageMso="CalendarToolImport" size="large" onAction="CrearOrdenTrabajo" getEnabled="BuscarPermiso"/>-->
+          <button id="btCongelados" label="Congelados" imageMso="ObjectFormatDialog" size="large" onAction="CapturaCongelado" getEnabled="BuscarPermiso"/>
           <button id="btReporteCongelados" label="Reporte de Congelados" imageMso="AccessibilityReports" size="large" onAction="ReporteCongelados" getEnabled="BuscarPermiso"/>
           <button id="btDiario" label="Reporte Sobrantes" imageMso="MenuPreviewPane" size="large" onAction="Diario" getEnabled="BuscarPermiso"/>
          <button id="btReportes" label="Reportes" imageMso="MoreInkResults" size="large" onAction="Reportes" getEnabled="BuscarPermiso"/>

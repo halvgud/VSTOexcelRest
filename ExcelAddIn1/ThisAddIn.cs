@@ -15,6 +15,9 @@ namespace ExcelAddIn1
 {
     public partial class ThisAddIn
     {
+
+        public static DateTime FechaIni { get; set; }
+        public static DateTime FechaFin { get; set; }
         class Reportes
         {
             public string Nombre { get; set; }
@@ -86,13 +89,28 @@ namespace ExcelAddIn1
 
                 Cocina.DetalleCocina.Clave = excel[1,1].ToString();
 
+                var detallereceta = new Cocina.DetalleCocina.ReporteDetalle
+                {
+                   FechaFinal = FechaFin.ToString("yyyy/MM/dd HH:mm:ss"),
+                   FechaInicio = FechaIni.ToString("yyyy/MM/dd 00:00:00"),
+                   clave = excel[1,1].ToString()
+                };
+               
+
+                //Opcion.EjecucionAsync(Data.ReporteCocina.DDetalleReceta(),);
 
                 Opcion.EjecucionAsync(x =>
                 {
-                    Data.ReporteCocina.DDetalleReceta(x, Cocina.DetalleCocina.Clave);
+                    Data.ReporteCocina.DDetalleReceta(x, detallereceta);
                 }, jsonResult =>
                 {
-                    Reporte.RespuestaCocina listCocina = Opcion.JsonaClaseGenerica<Reporte.RespuestaCocina>(jsonResult);
+                    //Reporte.RespuestaCocina.Ccocinadetalle litaCcocinadetalle=
+                    //Cocina.DetalleCocina.rec_id=
+                    //List<Reporte.RespuestaCocina> listaRipsAc = new List<Reporte.RespuestaCocina>();
+                    //var list = Opcion.JsonaListaGenerica<Reporte.RespuestaCocina>(jsonResult);
+
+                    Reporte.RespuestaCocina listCocina =
+                        Opcion.JsonaListaGenerica<Reporte.RespuestaCocina>(jsonResult)[0];
                    // Reporte.RespuestaCocina.CocinaDetalle lista = Opcion.JsonaClaseGenerica<Reporte.RespuestaCocina.CocinaDetalle>(jsonResult);
                     var excelazo = InicializarExcelConTemplate("DetalleReceta");
                     excelazo.Range["A1:N2"].Interior.Color = ColorTranslator.ToOle(Color.Peru);
@@ -105,21 +123,54 @@ namespace ExcelAddIn1
                     //excelazo.Range["M7"].NumberFormat = "##.## %";
 
                     if (excelazo == null) return;
-                    ((excelazo.Range["A1"])).Value2 = listCocina.Receta;
-                    ((excelazo.Range["M7"])).Value2 = listCocina.Margen;
+                    excelazo.Range["A1"].Value2 = listCocina.Receta;
+                    excelazo.Range["M7"].Value2 = listCocina.Margen;
                     //((excelazo.Range["K5"])).Value2 =lista.CantidadElaborada ;
-                    ((excelazo.Range["F7"])).Value2 = listCocina.UltimaElaboracion;
-                    ((excelazo.Range["N5"])).Value2 = listCocina.Venta;
+                    excelazo.Range["F7"].Value2 = listCocina.UltimaElaboracion;
+                    excelazo.Range["N5"].Value2 = listCocina.Venta;
+                    //excelazo.Range["H5"].Value2 = listCocina.Sinceqty;
+                    excelazo.Range["H5"].Value2 = listCocina.Sinceqty;
                     //((excelazo.Range["G7"])).Value2 = lista.Densidad  ;
-                    ((excelazo.Range["G5"])).Value2 = listCocina.RecId;
-                    ((excelazo.Range["H7"])).Value2 =listCocina.medida;
+                    excelazo.Range["G5"].Value2 = listCocina.RecId;
+                    excelazo.Range["H7"].Value2 =listCocina.medida;
                     //((excelazo.Range["L10"])).Value2 = lista.Foto;
-                    ((excelazo.Range["M5"])).Value2 = listCocina.Costo;
-                    //((excelazo.Range["N5"])).Value2 = rrc.Venta;
+                    excelazo.Range["M5"].Value2 = listCocina.Costo;
+                    excelazo.Range["N5"].Value2 = listCocina.Venta;
                     //((excelazo.Range["L5"])).Value2 = lista.SobrantesPendiente;
-                    ((excelazo.Range["F5"])).Value2 = listCocina.Since;
-                    ((excelazo.Range["H5"])).Value2 = listCocina.Qtycongelado;
-                    ((excelazo.Range["B4"])).Value2 = listCocina.TipoProducto;
+                    excelazo.Range["F5"].Value2 = listCocina.Since;
+                    excelazo.Range["H5"].Value2 = listCocina.Qtycongelado;
+                    excelazo.Range["B4"].Value2 = listCocina.TipoProducto;
+                    excelazo.Range["F10"].Value2 = listCocina.instrucciones;
+                    int x = 8;
+                    int z = 0;
+                    for (int i = 0; i < listCocina.Ingredientes.Count; i++)
+                    {
+                        
+                        int letras = listCocina.Ingredientes[i].Nombre.Length;
+                        ((excelazo.Range["A"+x])).Value2 = listCocina.Ingredientes[i].Nombre;
+                        //excelazo.Range["A"+x].Borders[Excel.XlBordersIndex.xlEdgeBottom].LineStyle = Excel.XlLineStyle.xlContinuous;
+                        if (letras >= z)
+                        {
+                            excelazo.Range["A" + x].Columns.AutoFit();
+                        }
+                        ((excelazo.Range["B" + x])).Value2 = listCocina.Ingredientes[i].Cantidad;
+                        //excelazo.Range["B" + x].Borders[Excel.XlBordersIndex.xlEdgeBottom].LineStyle = Excel.XlLineStyle.xlContinuous;
+                        //excelazo.Range["B" + x].Columns.AutoFit();
+                        ((excelazo.Range["C" + x])).Value2 = listCocina.Ingredientes[i].Medida;
+                        //excelazo.Range["C" + x].Borders[Excel.XlBordersIndex.xlEdgeBottom].LineStyle = Excel.XlLineStyle.xlContinuous;
+                        //excelazo.Range["C" + x].Columns.AutoFit();
+                        ((excelazo.Range["D" + x])).Value2 = listCocina.Ingredientes[i].Costo;
+                        //excelazo.Range["D" + x].Borders[Excel.XlBordersIndex.xlEdgeBottom].LineStyle = Excel.XlLineStyle.xlContinuous;
+                        //excelazo.Range["D" + x].Columns.AutoFit();
+
+
+                        x++;
+                        z = letras;
+                    }
+
+                   
+
+
 
                 }
 
@@ -292,8 +343,8 @@ namespace ExcelAddIn1
             _reporte.Range["A3:X" + rowcount].Borders[Excel.XlBordersIndex.xlEdgeRight].LineStyle = Excel.XlLineStyle.xlContinuous;
             _reporte.Range["A3:X" + rowcount].Borders[Excel.XlBordersIndex.xlEdgeTop].LineStyle = Excel.XlLineStyle.xlContinuous;
             _reporte.Range["A3:X" + rowcount].Borders[Excel.XlBordersIndex.xlEdgeBottom].LineStyle = Excel.XlLineStyle.xlContinuous;
-            _reporte.Range["O3:P" + rowcount].NumberFormat = "$ #,##0.00";
-            _reporte.Range["O3:O" + rowcount].NumberFormat= "$ #,##0.00";
+            //_reporte.Range["O3:P" + rowcount].NumberFormat = "$ #,##0.00";
+            //_reporte.Range["O3:O" + rowcount].NumberFormat= "$ #,##0.00";
             _reporte.Range["R3:R" + rowcount].NumberFormat = "$ #,##0.00";
             _reporte.Range["T3:R" + rowcount].NumberFormat = "##,##.00 %";
             _reporte.Range["V3:V"+rowcount].NumberFormat = "##,##.00 %";
@@ -474,7 +525,7 @@ namespace ExcelAddIn1
 
         private static object[,] InicializarLista(IReadOnlyList<Reporte.RespuestaCocina> rrg)
         {
-            var lista = new object[rrg.Count, 25];
+            var lista = new object[rrg.Count, 26];
             for (var x = 0; x < rrg.Count; x++)
             {
                 lista[x, 0] = "'"+rrg[x].Clave;
@@ -501,70 +552,71 @@ namespace ExcelAddIn1
                 lista[x, 12] = rrg[x].Venta;
                 lista[x, 13] = rrg[x].Margen;
                 lista[x, 14] = rrg[x].Qty;
-                lista[x, 15] = rrg[x].Salesince;
-                lista[x, 16] = rrg[x].ProfitSince;
+                lista[x, 15] = rrg[x].Sinceqty;
+                lista[x, 16] = rrg[x].Salesince;
+                lista[x, 17] = rrg[x].ProfitSince;
                 
                 var qty = rrg[x].Qtycongelado;
                 if (string.IsNullOrEmpty(qty))
-                {
-                    lista[x, 17] = "N/A";
-                }
-                else
-                {
-                    lista[x, 17] = rrg[x].Qtycongelado;
-                }
-                var pcongelado = rrg[x].Preciocongelado;
-                if (string.IsNullOrEmpty(pcongelado))
                 {
                     lista[x, 18] = "N/A";
                 }
                 else
                 {
-                    lista[x, 18] = rrg[x].Preciocongelado;
+                    lista[x, 18] = rrg[x].Qtycongelado;
+                }
+                var pcongelado = rrg[x].Preciocongelado;
+                if (string.IsNullOrEmpty(pcongelado))
+                {
+                    lista[x, 19] = "N/A";
+                }
+                else
+                {
+                    lista[x, 19] = rrg[x].Preciocongelado;
 
                 }
                 //lista[x, 18] = rrg[x].Qtymermas;
                 var merma = rrg[x].Qtymermas;
                 if (string.IsNullOrEmpty(merma))
                 {
-                    lista[x, 19] = "N/A";
+                    lista[x, 20] = "N/A";
                 }
                 else
                 {
-                    lista[x, 19] = rrg[x].Qtymermas;
+                    lista[x, 20] = rrg[x].Qtymermas;
 
                 }
                 //lista[x, 19] = rrg[x].Porcentajemerma;
                 var pormerma = rrg[x].Porcentajemerma;
                 if (string.IsNullOrEmpty(pormerma))
                 {
-                    lista[x, 20] = "N/A";
+                    lista[x, 21] = "N/A";
                 }
                 else
                 {
-                    lista[x, 20] = rrg[x].Porcentajemerma;
+                    lista[x, 21] = rrg[x].Porcentajemerma;
 
                 }
               //  lista[x, 20] = rrg[x].Qtyperdidas;
                 var qtyperdida = rrg[x].Qtyperdidas;
                 if (string.IsNullOrEmpty(qtyperdida))
                 {
-                    lista[x, 21] = "N/A";
+                    lista[x, 22] = "N/A";
                 }
                 else
                 {
-                    lista[x, 21] = rrg[x].Qtyperdidas;
+                    lista[x, 22] = rrg[x].Qtyperdidas;
 
                 }
                 //lista[x, 21] = rrg[x].Porcentajeperdida;
                 var porperdido = rrg[x].Porcentajeperdida;
                 if (string.IsNullOrEmpty(porperdido))
                 {
-                    lista[x, 22] = "N/A";
+                    lista[x, 23] = "N/A";
                 }
                 else
                 {
-                    lista[x, 22] = rrg[x].Porcentajeperdida;
+                    lista[x, 23] = rrg[x].Porcentajeperdida;
 
                 }
 
@@ -572,22 +624,22 @@ namespace ExcelAddIn1
                 var qtyemoleado = rrg[x].Qtyempleado;
                 if (string.IsNullOrEmpty(qtyemoleado))
                 {
-                    lista[x, 23] = "N/A";
+                    lista[x, 24] = "N/A";
                 }
                 else
                 {
-                    lista[x, 23] = rrg[x].Qtyempleado;
+                    lista[x, 24] = rrg[x].Qtyempleado;
 
                 }
                 //lista[x, 23] = rrg[x].Porcentajeempleado;
                 var porempleado = rrg[x].Porcentajeempleado;
                 if (string.IsNullOrEmpty(porempleado))
                 {
-                    lista[x, 24] = "N/A";
+                    lista[x, 25] = "N/A";
                 }
                 else
                 {
-                    lista[x, 24] = rrg[x].Porcentajeempleado;
+                    lista[x, 25] = rrg[x].Porcentajeempleado;
 
                 }
             }

@@ -23,8 +23,8 @@ namespace ExcelAddIn1
         }
 
 
-        public static string FechaInicio { get; set; }
-        public static string FechaFinal { get; set; }
+        public static DateTime FechaInicio { get; set; }
+        public static DateTime FechaFinal { get; set; }
         public class fechado
         {
             public string FechaInicio { get; set; }
@@ -52,6 +52,9 @@ namespace ExcelAddIn1
                 FechaInicio = Convert.ToDateTime(FechaInicio.ToString())
                 
             };
+            
+            ThisAddIn.FechaIni =Convert.ToDateTime(FechaInicio.ToString("yyyy/MM/dd HH:mm:ss"));
+            ThisAddIn.FechaFin = Convert.ToDateTime(FechaFinal.ToString("yyyy/MM/dd HH:mm:ss"));
             var addIn = Globals.ThisAddIn;
             //me marca este erros al primer opci
 
@@ -67,7 +70,7 @@ namespace ExcelAddIn1
             {
                 BeginInvoke((MethodInvoker)(() =>
                 {
-                    addIn.ReporteCocina(y);
+                   addIn.ReporteCocina(y);
                 }));
             });
      

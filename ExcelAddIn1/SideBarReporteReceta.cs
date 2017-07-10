@@ -43,7 +43,8 @@ namespace ExcelAddIn1
             //    Order = cbOrdenarReceta.SelectedItem.ToString()
             //}
             // ;
-
+            var msj = new MensajeDeEspera();
+            msj.Show();
             var datosimportar = new Respuesta.Reporte.RespuestaCocina.Reportess
             {
                 Id = Convert.ToInt16(cbproducto.SelectedValue.ToString()) ,
@@ -70,7 +71,10 @@ namespace ExcelAddIn1
             {
                 BeginInvoke((MethodInvoker)(() =>
                 {
+                   msj.Close();
                    addIn.ReporteCocina(y);
+
+
                 }));
             });
      
@@ -104,13 +108,10 @@ namespace ExcelAddIn1
             Opcion.EjecucionAsync(Data.ParametroProducto.Lista, x =>
             {
                 CargarComboBox(x, cbproducto);
-               
-
             });
             Opcion.EjecucionAsync(Data.ParametroReceta.Lista, x =>
             {
                 CargarComboBox(x, cbOrdenarReceta);
-                
             });
 
            

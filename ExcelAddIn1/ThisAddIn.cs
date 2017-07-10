@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Drawing;
 using System.IO;
 using System.Linq;
+using System.Security.Policy;
 using System.Windows.Forms;
 using Herramienta.Config;
 using Excel = Microsoft.Office.Interop.Excel;
@@ -18,6 +19,7 @@ namespace ExcelAddIn1
 
         public static DateTime FechaIni { get; set; }
         public static DateTime FechaFin { get; set; }
+        public static string foto { get; set; }
         class Reportes
         {
             public string Nombre { get; set; }
@@ -36,10 +38,13 @@ namespace ExcelAddIn1
 
         private void ThisAddIn_Startup(object sender, EventArgs e)
         {
+            
             _reportes = new List<Reportes> {
             new Reportes {Nombre = "ReporteCocina"},
             new Reportes {Nombre= "Recetario"},
             new Reportes {Nombre = "Reportes"}
+
+
 
             //Comentar despues de usar
             //new Reportes {Nombre="DetalleMenu"}
@@ -48,7 +53,7 @@ namespace ExcelAddIn1
             _recetario = new SideBarRecetario();
             _reportess = new SideBarReportes();
             ;
-
+            
             //Comentar despues de usar
             //_detallemenu = new DetalleMenu();
 
@@ -61,6 +66,7 @@ namespace ExcelAddIn1
             ReportessCustomTaskPane = CustomTaskPanes.Add(_reportess, "Reportes");
             ReportessCustomTaskPane.Visible = false;
             ReportessCustomTaskPane.Width = 280;
+
 
             //comentar desp
             //DetalleMenu = CustomTaskPanes.Add(_detallemenu, "Detalle Menu");
@@ -84,6 +90,7 @@ namespace ExcelAddIn1
             if (_sheet1.Name == "ReporterCocina" && target.Column == 1)
             {
                 cancel = true;
+                
       
                 var excel = target.EntireRow.Value2;
 
@@ -102,6 +109,7 @@ namespace ExcelAddIn1
                 Opcion.EjecucionAsync(x =>
                 {
                     Data.ReporteCocina.DDetalleReceta(x, detallereceta);
+                   
                 }, jsonResult =>
                 {
                     //Reporte.RespuestaCocina.Ccocinadetalle litaCcocinadetalle=
@@ -111,6 +119,7 @@ namespace ExcelAddIn1
 
                     Reporte.RespuestaCocina listCocina =
                         Opcion.JsonaListaGenerica<Reporte.RespuestaCocina>(jsonResult)[0];
+                    foto = listCocina.rutaimagen;
                    // Reporte.RespuestaCocina.CocinaDetalle lista = Opcion.JsonaClaseGenerica<Reporte.RespuestaCocina.CocinaDetalle>(jsonResult);
                     var excelazo = InicializarExcelConTemplate("DetalleReceta");
                     excelazo.Range["A1:N2"].Interior.Color = ColorTranslator.ToOle(Color.Peru);
@@ -119,9 +128,9 @@ namespace ExcelAddIn1
                     excelazo.Range["F6:N6"].Interior.Color = ColorTranslator.ToOle(Color.Peru);
                     excelazo.Range["F9:N9"].Interior.Color = ColorTranslator.ToOle(Color.Peru);
                     excelazo.Range["B7:D7"].Interior.Color = ColorTranslator.ToOle(Color.Peru);
-                    excelazo.Range["C21"].Interior.Color = ColorTranslator.ToOle(Color.Peru);
+                    excelazo.Range["C23"].Interior.Color = ColorTranslator.ToOle(Color.Peru);
                     //excelazo.Range["M7"].NumberFormat = "##.## %";
-
+                    
                     if (excelazo == null) return;
                     excelazo.Range["A1"].Value2 = listCocina.Receta;
                     excelazo.Range["M7"].Value2 = listCocina.Margen;
@@ -142,17 +151,23 @@ namespace ExcelAddIn1
                     excelazo.Range["B4"].Value2 = listCocina.TipoProducto;
                     excelazo.Range["F10"].Value2 = listCocina.instrucciones;
                     int x = 8;
+                    #region ingredientes
                     int z = 0;
                     for (int i = 0; i < listCocina.Ingredientes.Count; i++)
                     {
                         
                         int letras = listCocina.Ingredientes[i].Nombre.Length;
                         ((excelazo.Range["A"+x])).Value2 = listCocina.Ingredientes[i].Nombre;
+                        excelazo.Range["A" + x].Rows.AutoFit();
                         //excelazo.Range["A"+x].Borders[Excel.XlBordersIndex.xlEdgeBottom].LineStyle = Excel.XlLineStyle.xlContinuous;
-                        if (letras >= z)
-                        {
-                            excelazo.Range["A" + x].Columns.AutoFit();
-                        }
+
+                        //if (letras >= z)
+                        //{
+                        //   
+                        //    //excelazo.Range["A" + x].Columns.AutoFit();
+
+
+                        //}
                         ((excelazo.Range["B" + x])).Value2 = listCocina.Ingredientes[i].Cantidad;
                         //excelazo.Range["B" + x].Borders[Excel.XlBordersIndex.xlEdgeBottom].LineStyle = Excel.XlLineStyle.xlContinuous;
                         //excelazo.Range["B" + x].Columns.AutoFit();
@@ -162,13 +177,23 @@ namespace ExcelAddIn1
                         ((excelazo.Range["D" + x])).Value2 = listCocina.Ingredientes[i].Costo;
                         //excelazo.Range["D" + x].Borders[Excel.XlBordersIndex.xlEdgeBottom].LineStyle = Excel.XlLineStyle.xlContinuous;
                         //excelazo.Range["D" + x].Columns.AutoFit();
-
-
+                        
                         x++;
                         z = letras;
                     }
+                   // var costo = ;
+                    excelazo.Range["D23"].Formula ="=SUM(D8:D22)" ;
+                    excelazo.Range["F10"].Rows.AutoFit();
+                   var w= excelazo.Range["L10"].Left+10;
+                    var q = excelazo.Range["L10"].Top+10;
 
-                   
+                    excelazo.Shapes.AddPicture(foto, Microsoft.Office.Core.MsoTriState.msoFalse, Microsoft.Office.Core.MsoTriState.msoCTrue, w, q, 180, 180);
+                    //excelazo.Range["D23"].Rows.AutoFit();
+                    #endregion
+                    
+                  
+
+
 
 
 
@@ -266,8 +291,10 @@ namespace ExcelAddIn1
         }
         public Excel.Worksheet InicializarExcelConTemplate(string nombreHoja)
         {
+            string ruta = foto;
             try
             {
+
                 _sheet1 = (Excel.Worksheet)Application.ActiveSheet;
                 _sheet1.Unprotect();
                 var found = Application.Sheets.Cast<Excel.Worksheet>().Any(sheet => sheet.Name == nombreHoja);
@@ -280,8 +307,11 @@ namespace ExcelAddIn1
                     var oTemplate = Application.Workbooks.Add(sPath); //path del template temporal  
                     var worksheet = oTemplate.Worksheets[nombreHoja] as Excel.Worksheet;//nombre del template
                     worksheet?.Copy(After: ows); oTemplate.Close(false, missing, missing);
+                    //worksheet.Shapes.AddPicture(ruta, Microsoft.Office.Core.MsoTriState.msoFalse, Microsoft.Office.Core.MsoTriState.msoCTrue, 50, 50, 300, 45);
+
                     File.Delete(sPath);
                 }
+
                 _reporte = awa.Worksheets[nombreHoja] as Excel.Worksheet;//nombre de la hoja actual   
                 _reporte?.Activate();
             }
@@ -353,13 +383,13 @@ namespace ExcelAddIn1
             //_reporte.Range["A3:O" + rowcount].HorizontalAlignment = Excel.XlHAlign.xlHAlignCenter;
             _reporte.Range["A3:X" + rowcount].Borders.Color = Color.Black;
             _reporte.Range["A3:X" + rowcount].Font.Size = 8;
-            _reporte.Range["A2:X2"].Interior.Color = ColorTranslator.ToOle(Color.Orange);
-            _reporte.Range["Q1:X1"].Interior.Color = ColorTranslator.ToOle(Color.Orange);
+            _reporte.Range["A2:Z2"].Interior.Color = ColorTranslator.ToOle(Color.Orange);
+            _reporte.Range["S1:Z1"].Interior.Color = ColorTranslator.ToOle(Color.Orange);
             _reporte.Range["K3:K"+  rowcount].Interior.Color = ColorTranslator.ToOle(Color.Yellow);
             _reporte.Range["L3:L" + rowcount].Interior.Color = ColorTranslator.ToOle(Color.Green);
             _reporte.Range["O3:P" + rowcount].Interior.Color = ColorTranslator.ToOle(Color.Pink);
             _reporte.Range["P3:P" + rowcount].Interior.Color = ColorTranslator.ToOle(Color.Pink);
-            
+            _reporte.Range["F3:F" + rowcount].Interior.Color = Color.White;
             _reporte.Range["B3:B" + rowcount].Columns.AutoFit();
             _reporte.Range["E3:E" + rowcount].Columns.AutoFit();
             _reporte.Range["G3:G" + rowcount].Columns.AutoFit();
@@ -371,15 +401,15 @@ namespace ExcelAddIn1
                 string y = "F" + i;
                 if (x == "MERMA")
                 {
-                    _reporte.Range[y].Interior.Color = Color.Red;
+                    _reporte.Range[y].Interior.Color = Color.Tomato;
                 }
                 if (x == "CONGELADO")
                 {
-                    _reporte.Range[y].Interior.Color = Color.Blue;
+                    _reporte.Range[y].Interior.Color = Color.Turquoise;
                 }
                 if (x == "RE-VENTA")
                 {
-                    _reporte.Range[y].Interior.Color = Color.Green;
+                    _reporte.Range[y].Interior.Color = Color.LawnGreen;
                 }
                 if (x == "EMPLEADO")
                 {
@@ -399,7 +429,7 @@ namespace ExcelAddIn1
         {
             Application.ScreenUpdating = false;
             var rrgc = Opcion.JsonaListaGenerica<Reporte.General.InventarioCongelados>(restResponse);
-            var oReportWs = InicializarExcelConTemplate("Congelados");
+            var oReportWs = InicializarExcelConTemplate("Destino");
             if (oReportWs == null) return;
             var rowcount = rrgc.Count + 6;
                 //olle pero cuando aumente que ondas con esta paarte tener que poner una variable que se aumente sola un count
@@ -525,7 +555,7 @@ namespace ExcelAddIn1
 
         private static object[,] InicializarLista(IReadOnlyList<Reporte.RespuestaCocina> rrg)
         {
-            var lista = new object[rrg.Count, 26];
+            var lista = new object[rrg.Count, 27];
             for (var x = 0; x < rrg.Count; x++)
             {
                 lista[x, 0] = "'"+rrg[x].Clave;

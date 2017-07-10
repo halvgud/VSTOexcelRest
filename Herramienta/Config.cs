@@ -43,6 +43,13 @@ namespace Herramienta
                     public string FechaFinal { get; set; }
                 }
 
+                public class ReporteInventarioHistorial
+                {
+                    public DateTime Fecha1 { get; set; }
+                    public DateTime Fecha2 { get; set; }
+                }
+
+                public static string ReporteCongeladoFechas = Properties.Settings.Default.RepoCongeladoFechado;
             }
 
             public class Prueba

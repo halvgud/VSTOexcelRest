@@ -33,9 +33,8 @@
             this.dtpinicio = new System.Windows.Forms.DateTimePicker();
             this.dtpfinal = new System.Windows.Forms.DateTimePicker();
             this.label1 = new System.Windows.Forms.Label();
-            this.label2 = new System.Windows.Forms.Label();
-            this.label3 = new System.Windows.Forms.Label();
-            this.chhistoria = new System.Windows.Forms.CheckBox();
+            this.lbde = new System.Windows.Forms.Label();
+            this.lbhasta = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // cbreportes
@@ -82,42 +81,30 @@
             this.label1.TabIndex = 4;
             this.label1.Text = "Reportes :";
             // 
-            // label2
+            // lbde
             // 
-            this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(46, 142);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(27, 13);
-            this.label2.TabIndex = 5;
-            this.label2.Text = "De :";
+            this.lbde.AutoSize = true;
+            this.lbde.Location = new System.Drawing.Point(46, 142);
+            this.lbde.Name = "lbde";
+            this.lbde.Size = new System.Drawing.Size(27, 13);
+            this.lbde.TabIndex = 5;
+            this.lbde.Text = "De :";
             // 
-            // label3
+            // lbhasta
             // 
-            this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(151, 142);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(41, 13);
-            this.label3.TabIndex = 6;
-            this.label3.Text = "Hasta :";
-            // 
-            // chhistoria
-            // 
-            this.chhistoria.AutoSize = true;
-            this.chhistoria.Location = new System.Drawing.Point(148, 107);
-            this.chhistoria.Name = "chhistoria";
-            this.chhistoria.Size = new System.Drawing.Size(67, 17);
-            this.chhistoria.TabIndex = 7;
-            this.chhistoria.Text = "Historico";
-            this.chhistoria.UseVisualStyleBackColor = true;
-            this.chhistoria.Visible = false;
+            this.lbhasta.AutoSize = true;
+            this.lbhasta.Location = new System.Drawing.Point(151, 142);
+            this.lbhasta.Name = "lbhasta";
+            this.lbhasta.Size = new System.Drawing.Size(41, 13);
+            this.lbhasta.TabIndex = 6;
+            this.lbhasta.Text = "Hasta :";
             // 
             // SideBarReportes
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.Controls.Add(this.chhistoria);
-            this.Controls.Add(this.label3);
-            this.Controls.Add(this.label2);
+            this.Controls.Add(this.lbhasta);
+            this.Controls.Add(this.lbde);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.dtpfinal);
             this.Controls.Add(this.dtpinicio);
@@ -138,8 +125,7 @@
         private System.Windows.Forms.DateTimePicker dtpinicio;
         private System.Windows.Forms.DateTimePicker dtpfinal;
         private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.Label label3;
-        private System.Windows.Forms.CheckBox chhistoria;
+        private System.Windows.Forms.Label lbde;
+        private System.Windows.Forms.Label lbhasta;
     }
 }

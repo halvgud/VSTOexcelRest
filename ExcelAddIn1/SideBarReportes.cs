@@ -8,6 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using Herramienta;
+using Herramienta.Config;
 
 namespace ExcelAddIn1
 {
@@ -43,33 +44,29 @@ namespace ExcelAddIn1
 
         private void button1_Click(object sender, EventArgs e)
         {
-            if ((cbreportes.SelectedIndex + 1) == 1){
+            if ((cbreportes.SelectedIndex + 1) == 1)
+            {
+                var ms = new MensajeDeEspera();
+                ms.Show();
                 var addIn = Globals.ThisAddIn;
-
                 
-                Opcion.EjecucionAsync(Data.Reporte.RepCongelados, y =>
-                {
-                    addIn.ReporteCongelados(y);
-
-                });
+                    Opcion.EjecucionAsync(Data.Reporte.RepCongelados, y =>
+                    {
+                        addIn.ReporteCongelados(y);
+                        ms.Close();
+                    });
+                
+                
+                
 
             }
             if ((cbreportes.SelectedIndex+1)==2) {
 
                 ThisAddIn.ReporteReceta.Visible = true;
                 ThisAddIn.ReportessCustomTaskPane.Visible = false;
-
-
                 SideBarReporteReceta.FechaFinal = Convert.ToDateTime(dtpfinal.Value.ToString("yyyy/MM/dd HH:mm:ss")) ;
                 SideBarReporteReceta.FechaInicio =Convert.ToDateTime(dtpinicio.Value.ToString("yyyy/MM/dd 00:00:00"))  ;
-                //var fechass = new SideBarReporteReceta.fechado
-                //{
-                  //  FechaFinal = dtpfinal.Value.ToShortDateString(),
-                   // FechaInicio = dtpinicio.Value.ToShortDateString()
-                //};
-
-                
-
+        
             }
             if ((cbreportes.SelectedIndex + 1) == 3)
             {
@@ -83,16 +80,23 @@ namespace ExcelAddIn1
         {
             if ((cbreportes.SelectedIndex + 1) == 1)
             {
-                chhistoria.Visible = true;
+                //chhistoria.Visible = true;
                 dtpfinal.Visible = false;
                 dtpinicio.Visible = false;
+                lbde.Visible = false;
+                lbhasta.Visible = false;
             }
             if ((cbreportes.SelectedIndex+1)==2)
             {
+                //chhistoria.Visible = false;
                 dtpfinal.Visible = true;
                 dtpinicio.Visible = true;
+                lbde.Visible = true;
+                lbhasta.Visible=true;
             }
 
         }
+
+
     }
 }

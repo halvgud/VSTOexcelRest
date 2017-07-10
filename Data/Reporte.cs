@@ -17,6 +17,7 @@ namespace Data
 
         public static Respuesta.Receta.Diaanterior AntesDiaanterior;
         public static Respuesta.Receta.DiaanteriorX2 AntesDiaanteriorX2;
+        public static Cocina.DetalleCocina.ReporteInventarioHistorial FechaHistorial;
 
 
         public static void General(Action<IRestResponse> callback, Respuesta.Reporte.General repGeneral)
@@ -173,6 +174,38 @@ namespace Data
                 Opcion.Log(Log.Interno.Departamento, "EXCEPCION: " + e.Message);
             }
         }
+
+        public static void RepCongeladosFechados(Action<IRestResponse> callback)
+        {
+            try
+            {
+                var rest = new Rest(Local.Api.UrlApi, Cocina.DetalleCocina.ReporteCongeladoFechas, Method.POST);
+                rest.Peticion.AddHeader(Constantes.Http.ObtenerTipoDeContenido, Constantes.Http.TipoDeContenido.Json);
+                rest.Peticion.AddJsonBody(FechaHistorial);
+                rest.Cliente.ExecuteAsync(rest.Peticion, response =>
+                {
+                    switch (response.StatusCode)
+                    {
+                        case HttpStatusCode.OK:
+                            callback(response);
+                            break;
+                        default:
+                            callback(null);
+                            break;
+                    }
+                });
+            }
+            catch (Exception e)
+            {
+                Opcion.Log(Log.Interno.Categoria, "EXCEPCION: " + e.Message);
+                // callback("CONTINUAR"    );
+
+                //                {
+                //                    "descripcion":"chuletas"
+                //}
+            }
+        }
+
 
         public static void TagPorNombre(Action<IRestResponse> callback,Respuesta.Reporte.General repGeneral)
         {

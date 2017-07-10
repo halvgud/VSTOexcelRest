@@ -514,19 +514,19 @@ namespace Herramienta.Properties {
         
         [global::System.Configuration.ApplicationScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("/receta/IngredientesPlatillos")]
-        public string ListaIngredientesMenu1 {
+        [global::System.Configuration.DefaultSettingValueAttribute("/receta/Diario")]
+        public string DiaAntes {
             get {
-                return ((string)(this["ListaIngredientesMenu1"]));
+                return ((string)(this["DiaAntes"]));
             }
         }
         
         [global::System.Configuration.ApplicationScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.DefaultSettingValueAttribute("/receta/Diario")]
-        public string DiaAntes {
+        public string DiaAntes1 {
             get {
-                return ((string)(this["DiaAntes"]));
+                return ((string)(this["DiaAntes1"]));
             }
         }
         
@@ -620,9 +620,27 @@ namespace Herramienta.Properties {
         [global::System.Configuration.ApplicationScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.DefaultSettingValueAttribute("/receta/IngredientesPlatillos")]
+        public string ListaIngredientesMenu1 {
+            get {
+                return ((string)(this["ListaIngredientesMenu1"]));
+            }
+        }
+        
+        [global::System.Configuration.ApplicationScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("/receta/IngredientesPlatillos")]
         public string ListaIngredientesMenu {
             get {
                 return ((string)(this["ListaIngredientesMenu"]));
+            }
+        }
+        
+        [global::System.Configuration.ApplicationScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("reporte/ReporteCongeladosFechado")]
+        public string RepoCongeladoFechado {
+            get {
+                return ((string)(this["RepoCongeladoFechado"]));
             }
         }
     }

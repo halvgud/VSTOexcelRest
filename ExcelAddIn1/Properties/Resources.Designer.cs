@@ -78,5 +78,15 @@ namespace ExcelAddIn1.Properties {
                 return ((byte[])(obj));
             }
         }
+        
+        /// <summary>
+        ///   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap FINAL_ {
+            get {
+                object obj = ResourceManager.GetObject("FINAL.", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
     }
 }

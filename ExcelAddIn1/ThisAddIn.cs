@@ -363,7 +363,7 @@ namespace ExcelAddIn1
         public void ReporteCocina(IRestResponse restResponse)
         {
             Application.ScreenUpdating = false;
-            var rrg = Opcion.JsonaListaGenerica<Reporte.RespuestaCocina>(restResponse);
+            var rrg = Opcion.JsonaListaGenerica<Reporte.RespuestaCocina.Ccocinadetalle>(restResponse);
             var oReportWs = InicializarExcelConTemplate("ReporterCocina");
             if (oReportWs == null) return;
             var rowcount = rrg.Count + 2;
@@ -386,9 +386,9 @@ namespace ExcelAddIn1
             _reporte.Range["A2:Z2"].Interior.Color = ColorTranslator.ToOle(Color.Orange);
             _reporte.Range["S1:Z1"].Interior.Color = ColorTranslator.ToOle(Color.Orange);
             _reporte.Range["K3:K"+  rowcount].Interior.Color = ColorTranslator.ToOle(Color.Yellow);
-            _reporte.Range["L3:L" + rowcount].Interior.Color = ColorTranslator.ToOle(Color.Green);
-            _reporte.Range["O3:P" + rowcount].Interior.Color = ColorTranslator.ToOle(Color.Pink);
-            _reporte.Range["P3:P" + rowcount].Interior.Color = ColorTranslator.ToOle(Color.Pink);
+            _reporte.Range["L3:L" + rowcount].Interior.Color = ColorTranslator.ToOle(Color.LawnGreen);
+            _reporte.Range["O3:P" + rowcount].Interior.Color = ColorTranslator.ToOle(Color.HotPink);
+            _reporte.Range["P3:P" + rowcount].Interior.Color = ColorTranslator.ToOle(Color.HotPink);
             _reporte.Range["F3:F" + rowcount].Interior.Color = Color.White;
             _reporte.Range["B3:B" + rowcount].Columns.AutoFit();
             _reporte.Range["E3:E" + rowcount].Columns.AutoFit();
@@ -553,7 +553,7 @@ namespace ExcelAddIn1
 
         }
 
-        private static object[,] InicializarLista(IReadOnlyList<Reporte.RespuestaCocina> rrg)
+        private static object[,] InicializarLista(IReadOnlyList<Reporte.RespuestaCocina.Ccocinadetalle> rrg)
         {
             var lista = new object[rrg.Count, 27];
             for (var x = 0; x < rrg.Count; x++)

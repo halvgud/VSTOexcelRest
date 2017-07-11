@@ -157,9 +157,9 @@ namespace Respuesta
                 public Double Costo { get; set; }
                 public Double Venta { get; set; }
                 public Double Margen { get; set; }
+                public Double Sinceqty { get; set; }
                 public Double Qty { get; set; }
                 public string Salesince { get; set; }
-
                 public string ProfitSince { get; set; }
                 public string Qtycongelado { get; set; }
                 public string RecId { get; set; }

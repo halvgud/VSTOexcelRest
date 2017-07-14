@@ -32,20 +32,23 @@
             this.panel1 = new System.Windows.Forms.Panel();
             this.btAyudar = new System.Windows.Forms.Button();
             this.btGuardar = new System.Windows.Forms.Button();
+            this.menuStrip1 = new System.Windows.Forms.MenuStrip();
+            this.archivoToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.tsmGuardar = new System.Windows.Forms.ToolStripMenuItem();
+            this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
+            this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.tabPage2 = new System.Windows.Forms.TabPage();
-            this.tbCantidadDiarioBE = new System.Windows.Forms.MaskedTextBox();
-            this.lbCantidadDiarioBE = new System.Windows.Forms.Label();
             this.cbUnidadElaboracionBE = new System.Windows.Forms.ComboBox();
             this.lbCantidadElaboracionBE = new System.Windows.Forms.Label();
             this.tbCantidadElaboracionBE = new System.Windows.Forms.MaskedTextBox();
-            this.chDiarioBE = new System.Windows.Forms.CheckBox();
             this.txtinstruccionesBE = new System.Windows.Forms.TextBox();
+            this.tbCodigoBE = new System.Windows.Forms.TextBox();
+            this.tbDescripcionBE = new System.Windows.Forms.TextBox();
+            this.tbBuscarReceta = new System.Windows.Forms.TextBox();
             this.Pbreceta = new System.Windows.Forms.PictureBox();
             this.label25 = new System.Windows.Forms.Label();
             this.btBuscarBE = new System.Windows.Forms.Button();
-            this.tbCodigoBE = new System.Windows.Forms.TextBox();
             this.label24 = new System.Windows.Forms.Label();
-            this.tbDescripcionBE = new System.Windows.Forms.TextBox();
             this.label23 = new System.Windows.Forms.Label();
             this.dgvIngredientesBusqueda = new System.Windows.Forms.DataGridView();
             this.cbTipoBE = new System.Windows.Forms.ComboBox();
@@ -64,23 +67,25 @@
             this.btBorrarListaBE = new System.Windows.Forms.Button();
             this.label22 = new System.Windows.Forms.Label();
             this.btBuscarClave = new System.Windows.Forms.Button();
-            this.tbBuscarReceta = new System.Windows.Forms.TextBox();
             this.label3 = new System.Windows.Forms.Label();
             this.tbMargenSugeridoBE = new System.Windows.Forms.MaskedTextBox();
             this.label19 = new System.Windows.Forms.Label();
             this.tbPrecioSugeridoBE = new System.Windows.Forms.MaskedTextBox();
             this.label20 = new System.Windows.Forms.Label();
+            this.tbCantidadDiarioBE = new System.Windows.Forms.MaskedTextBox();
+            this.lbCantidadDiarioBE = new System.Windows.Forms.Label();
+            this.chDiarioBE = new System.Windows.Forms.CheckBox();
             this.tabPage1 = new System.Windows.Forms.TabPage();
             this.tbCostoEstimado = new System.Windows.Forms.MaskedTextBox();
-            this.tbCantidadDiario = new System.Windows.Forms.MaskedTextBox();
-            this.lbCantidadDiario = new System.Windows.Forms.Label();
             this.cbUnidadElaboracion = new System.Windows.Forms.ComboBox();
             this.lbCantidadElaboracion = new System.Windows.Forms.Label();
             this.tbCantidadElaboracion = new System.Windows.Forms.MaskedTextBox();
             this.txtinstrucciones = new System.Windows.Forms.TextBox();
+            this.tbDescripcion = new System.Windows.Forms.TextBox();
+            this.tbClaveReceta = new System.Windows.Forms.TextBox();
+            this.tbCodigo = new System.Windows.Forms.TextBox();
             this.label26 = new System.Windows.Forms.Label();
             this.btValidar = new System.Windows.Forms.Button();
-            this.chDiario = new System.Windows.Forms.CheckBox();
             this.dgvIngredientes = new System.Windows.Forms.DataGridView();
             this.cbTipoReceta = new System.Windows.Forms.ComboBox();
             this.tbPesoLitro = new System.Windows.Forms.MaskedTextBox();
@@ -89,9 +94,6 @@
             this.tbCostoElaboracion = new System.Windows.Forms.MaskedTextBox();
             this.label13 = new System.Windows.Forms.Label();
             this.label12 = new System.Windows.Forms.Label();
-            this.tbDescripcion = new System.Windows.Forms.TextBox();
-            this.tbClaveReceta = new System.Windows.Forms.TextBox();
-            this.tbCodigo = new System.Windows.Forms.TextBox();
             this.label11 = new System.Windows.Forms.Label();
             this.label10 = new System.Windows.Forms.Label();
             this.label9 = new System.Windows.Forms.Label();
@@ -107,20 +109,18 @@
             this.tbMargenSugerido = new System.Windows.Forms.MaskedTextBox();
             this.label5 = new System.Windows.Forms.Label();
             this.label6 = new System.Windows.Forms.Label();
+            this.tbCantidadDiario = new System.Windows.Forms.MaskedTextBox();
+            this.chDiario = new System.Windows.Forms.CheckBox();
+            this.lbCantidadDiario = new System.Windows.Forms.Label();
             this.tabCon = new System.Windows.Forms.TabControl();
-            this.menuStrip1 = new System.Windows.Forms.MenuStrip();
-            this.archivoToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.tsmGuardar = new System.Windows.Forms.ToolStripMenuItem();
-            this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
-            this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.panel1.SuspendLayout();
+            this.menuStrip1.SuspendLayout();
             this.tabPage2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.Pbreceta)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgvIngredientesBusqueda)).BeginInit();
             this.tabPage1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvIngredientes)).BeginInit();
             this.tabCon.SuspendLayout();
-            this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
             // panel1
@@ -135,7 +135,7 @@
             // 
             // btAyudar
             // 
-            this.btAyudar.Location = new System.Drawing.Point(95, 13);
+            this.btAyudar.Location = new System.Drawing.Point(137, 13);
             this.btAyudar.Name = "btAyudar";
             this.btAyudar.Size = new System.Drawing.Size(75, 23);
             this.btAyudar.TabIndex = 60;
@@ -146,27 +146,62 @@
             // 
             this.btGuardar.Location = new System.Drawing.Point(14, 13);
             this.btGuardar.Name = "btGuardar";
-            this.btGuardar.Size = new System.Drawing.Size(75, 23);
+            this.btGuardar.Size = new System.Drawing.Size(117, 23);
             this.btGuardar.TabIndex = 59;
-            this.btGuardar.Text = "Guardar";
+            this.btGuardar.Text = "Guardar y Actualizar";
             this.btGuardar.UseVisualStyleBackColor = true;
             this.btGuardar.Click += new System.EventHandler(this.btGuardar_Click);
             // 
+            // menuStrip1
+            // 
+            this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.archivoToolStripMenuItem});
+            this.menuStrip1.Location = new System.Drawing.Point(0, 0);
+            this.menuStrip1.Name = "menuStrip1";
+            this.menuStrip1.Size = new System.Drawing.Size(669, 24);
+            this.menuStrip1.TabIndex = 4;
+            this.menuStrip1.Text = "menuStrip1";
+            this.menuStrip1.Visible = false;
+            // 
+            // archivoToolStripMenuItem
+            // 
+            this.archivoToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.tsmGuardar});
+            this.archivoToolStripMenuItem.Name = "archivoToolStripMenuItem";
+            this.archivoToolStripMenuItem.Size = new System.Drawing.Size(60, 20);
+            this.archivoToolStripMenuItem.Text = "Archivo";
+            // 
+            // tsmGuardar
+            // 
+            this.tsmGuardar.Enabled = false;
+            this.tsmGuardar.Name = "tsmGuardar";
+            this.tsmGuardar.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.G)));
+            this.tsmGuardar.Size = new System.Drawing.Size(158, 22);
+            this.tsmGuardar.Text = "Guardar";
+            // 
+            // openFileDialog1
+            // 
+            this.openFileDialog1.FileName = "openFileDialog1";
+            this.openFileDialog1.InitialDirectory = "Image";
+            // 
+            // contextMenuStrip1
+            // 
+            this.contextMenuStrip1.Name = "contextMenuStrip1";
+            this.contextMenuStrip1.Size = new System.Drawing.Size(61, 4);
+            // 
             // tabPage2
             // 
-            this.tabPage2.Controls.Add(this.tbCantidadDiarioBE);
-            this.tabPage2.Controls.Add(this.lbCantidadDiarioBE);
             this.tabPage2.Controls.Add(this.cbUnidadElaboracionBE);
             this.tabPage2.Controls.Add(this.lbCantidadElaboracionBE);
             this.tabPage2.Controls.Add(this.tbCantidadElaboracionBE);
-            this.tabPage2.Controls.Add(this.chDiarioBE);
             this.tabPage2.Controls.Add(this.txtinstruccionesBE);
+            this.tabPage2.Controls.Add(this.tbCodigoBE);
+            this.tabPage2.Controls.Add(this.tbDescripcionBE);
+            this.tabPage2.Controls.Add(this.tbBuscarReceta);
             this.tabPage2.Controls.Add(this.Pbreceta);
             this.tabPage2.Controls.Add(this.label25);
             this.tabPage2.Controls.Add(this.btBuscarBE);
-            this.tabPage2.Controls.Add(this.tbCodigoBE);
             this.tabPage2.Controls.Add(this.label24);
-            this.tabPage2.Controls.Add(this.tbDescripcionBE);
             this.tabPage2.Controls.Add(this.label23);
             this.tabPage2.Controls.Add(this.dgvIngredientesBusqueda);
             this.tabPage2.Controls.Add(this.cbTipoBE);
@@ -185,12 +220,14 @@
             this.tabPage2.Controls.Add(this.btBorrarListaBE);
             this.tabPage2.Controls.Add(this.label22);
             this.tabPage2.Controls.Add(this.btBuscarClave);
-            this.tabPage2.Controls.Add(this.tbBuscarReceta);
             this.tabPage2.Controls.Add(this.label3);
             this.tabPage2.Controls.Add(this.tbMargenSugeridoBE);
             this.tabPage2.Controls.Add(this.label19);
             this.tabPage2.Controls.Add(this.tbPrecioSugeridoBE);
             this.tabPage2.Controls.Add(this.label20);
+            this.tabPage2.Controls.Add(this.tbCantidadDiarioBE);
+            this.tabPage2.Controls.Add(this.lbCantidadDiarioBE);
+            this.tabPage2.Controls.Add(this.chDiarioBE);
             this.tabPage2.Location = new System.Drawing.Point(4, 22);
             this.tabPage2.Name = "tabPage2";
             this.tabPage2.Padding = new System.Windows.Forms.Padding(3);
@@ -198,25 +235,6 @@
             this.tabPage2.TabIndex = 1;
             this.tabPage2.Text = "Buscar y Editar";
             this.tabPage2.UseVisualStyleBackColor = true;
-            // 
-            // tbCantidadDiarioBE
-            // 
-            this.tbCantidadDiarioBE.Location = new System.Drawing.Point(327, 352);
-            this.tbCantidadDiarioBE.Name = "tbCantidadDiarioBE";
-            this.tbCantidadDiarioBE.Size = new System.Drawing.Size(66, 20);
-            this.tbCantidadDiarioBE.TabIndex = 66;
-            this.tbCantidadDiarioBE.Visible = false;
-            this.tbCantidadDiarioBE.TextChanged += new System.EventHandler(this.tbCantidadDiarioBE_TextChanged);
-            // 
-            // lbCantidadDiarioBE
-            // 
-            this.lbCantidadDiarioBE.AutoSize = true;
-            this.lbCantidadDiarioBE.Location = new System.Drawing.Point(269, 356);
-            this.lbCantidadDiarioBE.Name = "lbCantidadDiarioBE";
-            this.lbCantidadDiarioBE.Size = new System.Drawing.Size(52, 13);
-            this.lbCantidadDiarioBE.TabIndex = 67;
-            this.lbCantidadDiarioBE.Text = "Cantidad:";
-            this.lbCantidadDiarioBE.Visible = false;
             // 
             // cbUnidadElaboracionBE
             // 
@@ -243,17 +261,6 @@
             this.tbCantidadElaboracionBE.TabIndex = 63;
             this.tbCantidadElaboracionBE.TextChanged += new System.EventHandler(this.tbCantidadElaboracionBE_TextChanged);
             // 
-            // chDiarioBE
-            // 
-            this.chDiarioBE.AutoSize = true;
-            this.chDiarioBE.Location = new System.Drawing.Point(210, 355);
-            this.chDiarioBE.Name = "chDiarioBE";
-            this.chDiarioBE.Size = new System.Drawing.Size(53, 17);
-            this.chDiarioBE.TabIndex = 62;
-            this.chDiarioBE.Text = "Diario";
-            this.chDiarioBE.UseVisualStyleBackColor = true;
-            this.chDiarioBE.CheckedChanged += new System.EventHandler(this.chDiarioBE_CheckedChanged);
-            // 
             // txtinstruccionesBE
             // 
             this.txtinstruccionesBE.AcceptsReturn = true;
@@ -264,6 +271,34 @@
             this.txtinstruccionesBE.Size = new System.Drawing.Size(489, 85);
             this.txtinstruccionesBE.TabIndex = 61;
             this.txtinstruccionesBE.TextChanged += new System.EventHandler(this.txtinstruccionesBE_TextChanged);
+            // 
+            // tbCodigoBE
+            // 
+            this.tbCodigoBE.Enabled = false;
+            this.tbCodigoBE.Location = new System.Drawing.Point(173, 32);
+            this.tbCodigoBE.Name = "tbCodigoBE";
+            this.tbCodigoBE.Size = new System.Drawing.Size(131, 20);
+            this.tbCodigoBE.TabIndex = 52;
+            this.tbCodigoBE.TextChanged += new System.EventHandler(this.tbCodigoBE_TextChanged);
+            this.tbCodigoBE.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.tbCodigoBE_KeyPress);
+            // 
+            // tbDescripcionBE
+            // 
+            this.tbDescripcionBE.Location = new System.Drawing.Point(490, 6);
+            this.tbDescripcionBE.Name = "tbDescripcionBE";
+            this.tbDescripcionBE.ReadOnly = true;
+            this.tbDescripcionBE.Size = new System.Drawing.Size(168, 20);
+            this.tbDescripcionBE.TabIndex = 49;
+            this.tbDescripcionBE.TextChanged += new System.EventHandler(this.tbDescripcionBE_TextChanged);
+            // 
+            // tbBuscarReceta
+            // 
+            this.tbBuscarReceta.Location = new System.Drawing.Point(173, 7);
+            this.tbBuscarReceta.Name = "tbBuscarReceta";
+            this.tbBuscarReceta.Size = new System.Drawing.Size(131, 20);
+            this.tbBuscarReceta.TabIndex = 5;
+            this.tbBuscarReceta.TextChanged += new System.EventHandler(this.tbBuscarReceta_TextChanged);
+            this.tbBuscarReceta.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.tbBuscarReceta_KeyPress_1);
             // 
             // Pbreceta
             // 
@@ -286,7 +321,7 @@
             // btBuscarBE
             // 
             this.btBuscarBE.Enabled = false;
-            this.btBuscarBE.Location = new System.Drawing.Point(199, 24);
+            this.btBuscarBE.Location = new System.Drawing.Point(310, 30);
             this.btBuscarBE.Name = "btBuscarBE";
             this.btBuscarBE.Size = new System.Drawing.Size(62, 21);
             this.btBuscarBE.TabIndex = 54;
@@ -294,37 +329,19 @@
             this.btBuscarBE.UseVisualStyleBackColor = true;
             this.btBuscarBE.Click += new System.EventHandler(this.btBuscarBE_Click);
             // 
-            // tbCodigoBE
-            // 
-            this.tbCodigoBE.Enabled = false;
-            this.tbCodigoBE.Location = new System.Drawing.Point(7, 24);
-            this.tbCodigoBE.Name = "tbCodigoBE";
-            this.tbCodigoBE.Size = new System.Drawing.Size(187, 20);
-            this.tbCodigoBE.TabIndex = 52;
-            this.tbCodigoBE.TextChanged += new System.EventHandler(this.tbCodigoBE_TextChanged);
-            this.tbCodigoBE.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.tbCodigoBE_KeyPress);
-            // 
             // label24
             // 
             this.label24.AutoSize = true;
-            this.label24.Location = new System.Drawing.Point(4, 7);
+            this.label24.Location = new System.Drawing.Point(3, 38);
             this.label24.Name = "label24";
             this.label24.Size = new System.Drawing.Size(165, 13);
             this.label24.TabIndex = 53;
             this.label24.Text = "Codigo o nombre de ingredientes:";
             // 
-            // tbDescripcionBE
-            // 
-            this.tbDescripcionBE.Location = new System.Drawing.Point(473, 24);
-            this.tbDescripcionBE.Name = "tbDescripcionBE";
-            this.tbDescripcionBE.Size = new System.Drawing.Size(182, 20);
-            this.tbDescripcionBE.TabIndex = 49;
-            this.tbDescripcionBE.TextChanged += new System.EventHandler(this.tbDescripcionBE_TextChanged);
-            // 
             // label23
             // 
             this.label23.AutoSize = true;
-            this.label23.Location = new System.Drawing.Point(470, 7);
+            this.label23.Location = new System.Drawing.Point(378, 10);
             this.label23.Name = "label23";
             this.label23.Size = new System.Drawing.Size(106, 13);
             this.label23.TabIndex = 50;
@@ -333,12 +350,15 @@
             // dgvIngredientesBusqueda
             // 
             this.dgvIngredientesBusqueda.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dgvIngredientesBusqueda.Location = new System.Drawing.Point(10, 68);
+            this.dgvIngredientesBusqueda.Location = new System.Drawing.Point(10, 74);
             this.dgvIngredientesBusqueda.Name = "dgvIngredientesBusqueda";
-            this.dgvIngredientesBusqueda.Size = new System.Drawing.Size(537, 281);
+            this.dgvIngredientesBusqueda.Size = new System.Drawing.Size(537, 275);
             this.dgvIngredientesBusqueda.TabIndex = 36;
             this.dgvIngredientesBusqueda.TabStop = false;
+            this.dgvIngredientesBusqueda.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvIngredientesBusqueda_CellContentClick);
+            this.dgvIngredientesBusqueda.CurrentCellChanged += new System.EventHandler(this.dgvIngredientesBusqueda_CurrentCellChanged);
             this.dgvIngredientesBusqueda.CurrentCellDirtyStateChanged += new System.EventHandler(this.dgvIngredientesBusqueda_CurrentCellDirtyStateChanged);
+            this.dgvIngredientesBusqueda.DataError += new System.Windows.Forms.DataGridViewDataErrorEventHandler(this.dgvIngredientesBusqueda_DataError);
             // 
             // cbTipoBE
             // 
@@ -354,6 +374,7 @@
             this.tbPesoLitroBE.Name = "tbPesoLitroBE";
             this.tbPesoLitroBE.Size = new System.Drawing.Size(100, 20);
             this.tbPesoLitroBE.TabIndex = 30;
+            this.tbPesoLitroBE.MaskInputRejected += new System.Windows.Forms.MaskInputRejectedEventHandler(this.tbPesoLitroBE_MaskInputRejected);
             this.tbPesoLitroBE.TextChanged += new System.EventHandler(this.tbPesoLitroBE_TextChanged);
             // 
             // tbMargenConPrecioBE
@@ -385,8 +406,10 @@
             // 
             // tbCostoEstimadoBE
             // 
+            this.tbCostoEstimadoBE.BackColor = System.Drawing.SystemColors.InactiveCaption;
             this.tbCostoEstimadoBE.Location = new System.Drawing.Point(553, 206);
             this.tbCostoEstimadoBE.Name = "tbCostoEstimadoBE";
+            this.tbCostoEstimadoBE.ReadOnly = true;
             this.tbCostoEstimadoBE.Size = new System.Drawing.Size(100, 20);
             this.tbCostoEstimadoBE.TabIndex = 40;
             this.tbCostoEstimadoBE.TabStop = false;
@@ -469,7 +492,7 @@
             // label22
             // 
             this.label22.AutoSize = true;
-            this.label22.Location = new System.Drawing.Point(4, 52);
+            this.label22.Location = new System.Drawing.Point(56, 58);
             this.label22.Name = "label22";
             this.label22.Size = new System.Drawing.Size(110, 13);
             this.label22.TabIndex = 29;
@@ -477,7 +500,7 @@
             // 
             // btBuscarClave
             // 
-            this.btBuscarClave.Location = new System.Drawing.Point(405, 24);
+            this.btBuscarClave.Location = new System.Drawing.Point(310, 6);
             this.btBuscarClave.Name = "btBuscarClave";
             this.btBuscarClave.Size = new System.Drawing.Size(62, 20);
             this.btBuscarClave.TabIndex = 6;
@@ -485,20 +508,11 @@
             this.btBuscarClave.UseVisualStyleBackColor = true;
             this.btBuscarClave.Click += new System.EventHandler(this.btBuscarClave_Click);
             // 
-            // tbBuscarReceta
-            // 
-            this.tbBuscarReceta.Location = new System.Drawing.Point(267, 24);
-            this.tbBuscarReceta.Name = "tbBuscarReceta";
-            this.tbBuscarReceta.Size = new System.Drawing.Size(131, 20);
-            this.tbBuscarReceta.TabIndex = 5;
-            this.tbBuscarReceta.TextChanged += new System.EventHandler(this.tbBuscarReceta_TextChanged);
-            this.tbBuscarReceta.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.tbBuscarReceta_KeyPress_1);
-            // 
             // label3
             // 
             this.label3.AutoSize = true;
             this.label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label3.Location = new System.Drawing.Point(266, 7);
+            this.label3.Location = new System.Drawing.Point(53, 13);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(115, 13);
             this.label3.TabIndex = 4;
@@ -544,18 +558,48 @@
             this.label20.Text = "Margen :";
             this.label20.Visible = false;
             // 
+            // tbCantidadDiarioBE
+            // 
+            this.tbCantidadDiarioBE.Location = new System.Drawing.Point(332, 454);
+            this.tbCantidadDiarioBE.Name = "tbCantidadDiarioBE";
+            this.tbCantidadDiarioBE.Size = new System.Drawing.Size(66, 20);
+            this.tbCantidadDiarioBE.TabIndex = 66;
+            this.tbCantidadDiarioBE.Visible = false;
+            this.tbCantidadDiarioBE.TextChanged += new System.EventHandler(this.tbCantidadDiarioBE_TextChanged);
+            // 
+            // lbCantidadDiarioBE
+            // 
+            this.lbCantidadDiarioBE.AutoSize = true;
+            this.lbCantidadDiarioBE.Location = new System.Drawing.Point(280, 428);
+            this.lbCantidadDiarioBE.Name = "lbCantidadDiarioBE";
+            this.lbCantidadDiarioBE.Size = new System.Drawing.Size(52, 13);
+            this.lbCantidadDiarioBE.TabIndex = 67;
+            this.lbCantidadDiarioBE.Text = "Cantidad:";
+            this.lbCantidadDiarioBE.Visible = false;
+            // 
+            // chDiarioBE
+            // 
+            this.chDiarioBE.AutoSize = true;
+            this.chDiarioBE.Location = new System.Drawing.Point(154, 424);
+            this.chDiarioBE.Name = "chDiarioBE";
+            this.chDiarioBE.Size = new System.Drawing.Size(53, 17);
+            this.chDiarioBE.TabIndex = 62;
+            this.chDiarioBE.Text = "Diario";
+            this.chDiarioBE.UseVisualStyleBackColor = true;
+            this.chDiarioBE.CheckedChanged += new System.EventHandler(this.chDiarioBE_CheckedChanged);
+            // 
             // tabPage1
             // 
             this.tabPage1.Controls.Add(this.tbCostoEstimado);
-            this.tabPage1.Controls.Add(this.tbCantidadDiario);
-            this.tabPage1.Controls.Add(this.lbCantidadDiario);
             this.tabPage1.Controls.Add(this.cbUnidadElaboracion);
             this.tabPage1.Controls.Add(this.lbCantidadElaboracion);
             this.tabPage1.Controls.Add(this.tbCantidadElaboracion);
             this.tabPage1.Controls.Add(this.txtinstrucciones);
+            this.tabPage1.Controls.Add(this.tbDescripcion);
+            this.tabPage1.Controls.Add(this.tbClaveReceta);
+            this.tabPage1.Controls.Add(this.tbCodigo);
             this.tabPage1.Controls.Add(this.label26);
             this.tabPage1.Controls.Add(this.btValidar);
-            this.tabPage1.Controls.Add(this.chDiario);
             this.tabPage1.Controls.Add(this.dgvIngredientes);
             this.tabPage1.Controls.Add(this.cbTipoReceta);
             this.tabPage1.Controls.Add(this.tbPesoLitro);
@@ -564,9 +608,6 @@
             this.tabPage1.Controls.Add(this.tbCostoElaboracion);
             this.tabPage1.Controls.Add(this.label13);
             this.tabPage1.Controls.Add(this.label12);
-            this.tabPage1.Controls.Add(this.tbDescripcion);
-            this.tabPage1.Controls.Add(this.tbClaveReceta);
-            this.tabPage1.Controls.Add(this.tbCodigo);
             this.tabPage1.Controls.Add(this.label11);
             this.tabPage1.Controls.Add(this.label10);
             this.tabPage1.Controls.Add(this.label9);
@@ -582,6 +623,9 @@
             this.tabPage1.Controls.Add(this.tbMargenSugerido);
             this.tabPage1.Controls.Add(this.label5);
             this.tabPage1.Controls.Add(this.label6);
+            this.tabPage1.Controls.Add(this.tbCantidadDiario);
+            this.tabPage1.Controls.Add(this.chDiario);
+            this.tabPage1.Controls.Add(this.lbCantidadDiario);
             this.tabPage1.Location = new System.Drawing.Point(4, 22);
             this.tabPage1.Name = "tabPage1";
             this.tabPage1.Padding = new System.Windows.Forms.Padding(3);
@@ -592,30 +636,13 @@
             // 
             // tbCostoEstimado
             // 
+            this.tbCostoEstimado.BackColor = System.Drawing.SystemColors.InactiveCaption;
             this.tbCostoEstimado.Location = new System.Drawing.Point(551, 198);
             this.tbCostoEstimado.Name = "tbCostoEstimado";
+            this.tbCostoEstimado.ReadOnly = true;
             this.tbCostoEstimado.Size = new System.Drawing.Size(102, 20);
             this.tbCostoEstimado.TabIndex = 64;
             this.tbCostoEstimado.TextChanged += new System.EventHandler(this.tbCostoEstimado_TextChanged);
-            // 
-            // tbCantidadDiario
-            // 
-            this.tbCantidadDiario.Location = new System.Drawing.Point(331, 357);
-            this.tbCantidadDiario.Name = "tbCantidadDiario";
-            this.tbCantidadDiario.Size = new System.Drawing.Size(67, 20);
-            this.tbCantidadDiario.TabIndex = 62;
-            this.tbCantidadDiario.Visible = false;
-            this.tbCantidadDiario.TextChanged += new System.EventHandler(this.tbCantidadDiario_TextChanged);
-            // 
-            // lbCantidadDiario
-            // 
-            this.lbCantidadDiario.AutoSize = true;
-            this.lbCantidadDiario.Location = new System.Drawing.Point(274, 363);
-            this.lbCantidadDiario.Name = "lbCantidadDiario";
-            this.lbCantidadDiario.Size = new System.Drawing.Size(52, 13);
-            this.lbCantidadDiario.TabIndex = 63;
-            this.lbCantidadDiario.Text = "Cantidad:";
-            this.lbCantidadDiario.Visible = false;
             // 
             // cbUnidadElaboracion
             // 
@@ -652,6 +679,31 @@
             this.txtinstrucciones.TabIndex = 58;
             this.txtinstrucciones.TextChanged += new System.EventHandler(this.txtinstrucciones_TextChanged);
             // 
+            // tbDescripcion
+            // 
+            this.tbDescripcion.Location = new System.Drawing.Point(470, 24);
+            this.tbDescripcion.Name = "tbDescripcion";
+            this.tbDescripcion.Size = new System.Drawing.Size(185, 20);
+            this.tbDescripcion.TabIndex = 3;
+            this.tbDescripcion.TextChanged += new System.EventHandler(this.tbDescripcion_TextChanged);
+            // 
+            // tbClaveReceta
+            // 
+            this.tbClaveReceta.Location = new System.Drawing.Point(267, 24);
+            this.tbClaveReceta.Name = "tbClaveReceta";
+            this.tbClaveReceta.Size = new System.Drawing.Size(131, 20);
+            this.tbClaveReceta.TabIndex = 2;
+            this.tbClaveReceta.TextChanged += new System.EventHandler(this.tbClaveReceta_TextChanged);
+            // 
+            // tbCodigo
+            // 
+            this.tbCodigo.Location = new System.Drawing.Point(8, 24);
+            this.tbCodigo.Name = "tbCodigo";
+            this.tbCodigo.Size = new System.Drawing.Size(187, 20);
+            this.tbCodigo.TabIndex = 0;
+            this.tbCodigo.TextChanged += new System.EventHandler(this.tbCodigo_TextChanged);
+            this.tbCodigo.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.tbCodigo_KeyPress);
+            // 
             // label26
             // 
             this.label26.AutoSize = true;
@@ -670,18 +722,6 @@
             this.btValidar.Text = "Validar";
             this.btValidar.UseVisualStyleBackColor = true;
             this.btValidar.Click += new System.EventHandler(this.btValidar_Click);
-            // 
-            // chDiario
-            // 
-            this.chDiario.AutoSize = true;
-            this.chDiario.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.chDiario.Location = new System.Drawing.Point(218, 359);
-            this.chDiario.Name = "chDiario";
-            this.chDiario.Size = new System.Drawing.Size(50, 17);
-            this.chDiario.TabIndex = 29;
-            this.chDiario.Text = "Diario";
-            this.chDiario.UseVisualStyleBackColor = true;
-            this.chDiario.CheckedChanged += new System.EventHandler(this.chDiario_CheckedChanged);
             // 
             // dgvIngredientes
             // 
@@ -759,31 +799,6 @@
             this.label12.Size = new System.Drawing.Size(77, 13);
             this.label12.TabIndex = 26;
             this.label12.Text = "Peso de 1 litro:";
-            // 
-            // tbDescripcion
-            // 
-            this.tbDescripcion.Location = new System.Drawing.Point(470, 24);
-            this.tbDescripcion.Name = "tbDescripcion";
-            this.tbDescripcion.Size = new System.Drawing.Size(185, 20);
-            this.tbDescripcion.TabIndex = 3;
-            this.tbDescripcion.TextChanged += new System.EventHandler(this.tbDescripcion_TextChanged);
-            // 
-            // tbClaveReceta
-            // 
-            this.tbClaveReceta.Location = new System.Drawing.Point(267, 24);
-            this.tbClaveReceta.Name = "tbClaveReceta";
-            this.tbClaveReceta.Size = new System.Drawing.Size(131, 20);
-            this.tbClaveReceta.TabIndex = 2;
-            this.tbClaveReceta.TextChanged += new System.EventHandler(this.tbClaveReceta_TextChanged);
-            // 
-            // tbCodigo
-            // 
-            this.tbCodigo.Location = new System.Drawing.Point(8, 24);
-            this.tbCodigo.Name = "tbCodigo";
-            this.tbCodigo.Size = new System.Drawing.Size(187, 20);
-            this.tbCodigo.TabIndex = 0;
-            this.tbCodigo.TextChanged += new System.EventHandler(this.tbCodigo_TextChanged);
-            this.tbCodigo.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.tbCodigo_KeyPress);
             // 
             // label11
             // 
@@ -928,53 +943,49 @@
             this.label6.Text = "Precio sugerido :";
             this.label6.Visible = false;
             // 
+            // tbCantidadDiario
+            // 
+            this.tbCantidadDiario.Location = new System.Drawing.Point(331, 436);
+            this.tbCantidadDiario.Name = "tbCantidadDiario";
+            this.tbCantidadDiario.Size = new System.Drawing.Size(67, 20);
+            this.tbCantidadDiario.TabIndex = 62;
+            this.tbCantidadDiario.Visible = false;
+            this.tbCantidadDiario.TextChanged += new System.EventHandler(this.tbCantidadDiario_TextChanged);
+            // 
+            // chDiario
+            // 
+            this.chDiario.AutoSize = true;
+            this.chDiario.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.chDiario.Location = new System.Drawing.Point(211, 437);
+            this.chDiario.Name = "chDiario";
+            this.chDiario.Size = new System.Drawing.Size(50, 17);
+            this.chDiario.TabIndex = 29;
+            this.chDiario.Text = "Diario";
+            this.chDiario.UseVisualStyleBackColor = true;
+            this.chDiario.Visible = false;
+            this.chDiario.CheckedChanged += new System.EventHandler(this.chDiario_CheckedChanged);
+            // 
+            // lbCantidadDiario
+            // 
+            this.lbCantidadDiario.AutoSize = true;
+            this.lbCantidadDiario.Location = new System.Drawing.Point(284, 439);
+            this.lbCantidadDiario.Name = "lbCantidadDiario";
+            this.lbCantidadDiario.Size = new System.Drawing.Size(52, 13);
+            this.lbCantidadDiario.TabIndex = 63;
+            this.lbCantidadDiario.Text = "Cantidad:";
+            this.lbCantidadDiario.Visible = false;
+            // 
             // tabCon
             // 
-            this.tabCon.Controls.Add(this.tabPage1);
             this.tabCon.Controls.Add(this.tabPage2);
+            this.tabCon.Controls.Add(this.tabPage1);
             this.tabCon.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tabCon.Location = new System.Drawing.Point(0, 0);
             this.tabCon.Name = "tabCon";
             this.tabCon.SelectedIndex = 0;
             this.tabCon.Size = new System.Drawing.Size(669, 575);
             this.tabCon.TabIndex = 2;
-            // 
-            // menuStrip1
-            // 
-            this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.archivoToolStripMenuItem});
-            this.menuStrip1.Location = new System.Drawing.Point(0, 0);
-            this.menuStrip1.Name = "menuStrip1";
-            this.menuStrip1.Size = new System.Drawing.Size(669, 24);
-            this.menuStrip1.TabIndex = 4;
-            this.menuStrip1.Text = "menuStrip1";
-            this.menuStrip1.Visible = false;
-            // 
-            // archivoToolStripMenuItem
-            // 
-            this.archivoToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.tsmGuardar});
-            this.archivoToolStripMenuItem.Name = "archivoToolStripMenuItem";
-            this.archivoToolStripMenuItem.Size = new System.Drawing.Size(60, 20);
-            this.archivoToolStripMenuItem.Text = "Archivo";
-            // 
-            // tsmGuardar
-            // 
-            this.tsmGuardar.Enabled = false;
-            this.tsmGuardar.Name = "tsmGuardar";
-            this.tsmGuardar.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.G)));
-            this.tsmGuardar.Size = new System.Drawing.Size(158, 22);
-            this.tsmGuardar.Text = "Guardar";
-            // 
-            // openFileDialog1
-            // 
-            this.openFileDialog1.FileName = "openFileDialog1";
-            this.openFileDialog1.InitialDirectory = "Image";
-            // 
-            // contextMenuStrip1
-            // 
-            this.contextMenuStrip1.Name = "contextMenuStrip1";
-            this.contextMenuStrip1.Size = new System.Drawing.Size(61, 4);
+            this.tabCon.SelectedIndexChanged += new System.EventHandler(this.tabCon_SelectedIndexChanged);
             // 
             // AgregarReceta
             // 
@@ -993,6 +1004,8 @@
             this.Text = "Recetario";
             this.Load += new System.EventHandler(this.AgregarReceta_Load);
             this.panel1.ResumeLayout(false);
+            this.menuStrip1.ResumeLayout(false);
+            this.menuStrip1.PerformLayout();
             this.tabPage2.ResumeLayout(false);
             this.tabPage2.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.Pbreceta)).EndInit();
@@ -1001,8 +1014,6 @@
             this.tabPage1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvIngredientes)).EndInit();
             this.tabCon.ResumeLayout(false);
-            this.menuStrip1.ResumeLayout(false);
-            this.menuStrip1.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -1010,89 +1021,88 @@
 
         #endregion
         private System.Windows.Forms.Panel panel1;
+        private System.Windows.Forms.MenuStrip menuStrip1;
+        private System.Windows.Forms.ToolStripMenuItem archivoToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem tsmGuardar;
+        private System.Windows.Forms.Button btAyudar;
+        private System.Windows.Forms.Button btGuardar;
+        private System.Windows.Forms.OpenFileDialog openFileDialog1;
+        private System.Windows.Forms.ContextMenuStrip contextMenuStrip1;
         private System.Windows.Forms.TabPage tabPage2;
+        private System.Windows.Forms.ComboBox cbUnidadElaboracionBE;
+        private System.Windows.Forms.Label lbCantidadElaboracionBE;
+        private System.Windows.Forms.MaskedTextBox tbCantidadElaboracionBE;
+        private System.Windows.Forms.TextBox txtinstruccionesBE;
+        private System.Windows.Forms.TextBox tbCodigoBE;
+        private System.Windows.Forms.TextBox tbDescripcionBE;
+        private System.Windows.Forms.TextBox tbBuscarReceta;
+        private System.Windows.Forms.PictureBox Pbreceta;
+        private System.Windows.Forms.Label label25;
+        private System.Windows.Forms.Button btBuscarBE;
+        private System.Windows.Forms.Label label24;
+        private System.Windows.Forms.Label label23;
         private System.Windows.Forms.DataGridView dgvIngredientesBusqueda;
         private System.Windows.Forms.ComboBox cbTipoBE;
         private System.Windows.Forms.MaskedTextBox tbPesoLitroBE;
         private System.Windows.Forms.MaskedTextBox tbMargenConPrecioBE;
         private System.Windows.Forms.MaskedTextBox tbPrecioBE;
         private System.Windows.Forms.MaskedTextBox tbCostoElaboracionBE;
-        private System.Windows.Forms.MaskedTextBox tbPrecioSugeridoBE;
-        private System.Windows.Forms.MaskedTextBox tbMargenSugeridoBE;
         private System.Windows.Forms.MaskedTextBox tbCostoEstimadoBE;
         private System.Windows.Forms.Label label14;
         private System.Windows.Forms.Label label15;
         private System.Windows.Forms.Label label16;
         private System.Windows.Forms.Label label17;
         private System.Windows.Forms.Label label18;
-        private System.Windows.Forms.Label label19;
-        private System.Windows.Forms.Label label20;
         private System.Windows.Forms.Label label21;
         private System.Windows.Forms.Button btBorrarSelecBE;
         private System.Windows.Forms.Button btBorrarListaBE;
         private System.Windows.Forms.Label label22;
         private System.Windows.Forms.Button btBuscarClave;
-        private System.Windows.Forms.TextBox tbBuscarReceta;
         private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.MaskedTextBox tbMargenSugeridoBE;
+        private System.Windows.Forms.Label label19;
+        private System.Windows.Forms.MaskedTextBox tbPrecioSugeridoBE;
+        private System.Windows.Forms.Label label20;
+        private System.Windows.Forms.MaskedTextBox tbCantidadDiarioBE;
+        private System.Windows.Forms.Label lbCantidadDiarioBE;
+        private System.Windows.Forms.CheckBox chDiarioBE;
         private System.Windows.Forms.TabPage tabPage1;
+        private System.Windows.Forms.MaskedTextBox tbCostoEstimado;
+        private System.Windows.Forms.ComboBox cbUnidadElaboracion;
+        private System.Windows.Forms.Label lbCantidadElaboracion;
+        private System.Windows.Forms.MaskedTextBox tbCantidadElaboracion;
+        private System.Windows.Forms.TextBox txtinstrucciones;
+        private System.Windows.Forms.TextBox tbDescripcion;
+        private System.Windows.Forms.TextBox tbClaveReceta;
+        private System.Windows.Forms.TextBox tbCodigo;
+        private System.Windows.Forms.Label label26;
+        private System.Windows.Forms.Button btValidar;
         private System.Windows.Forms.DataGridView dgvIngredientes;
         private System.Windows.Forms.ComboBox cbTipoReceta;
         private System.Windows.Forms.MaskedTextBox tbPesoLitro;
         private System.Windows.Forms.MaskedTextBox tbMargenConPrecio;
         private System.Windows.Forms.MaskedTextBox tbPrecio;
         private System.Windows.Forms.MaskedTextBox tbCostoElaboracion;
-        private System.Windows.Forms.MaskedTextBox tbPrecioSugerido;
-        private System.Windows.Forms.MaskedTextBox tbMargenSugerido;
         private System.Windows.Forms.Label label13;
         private System.Windows.Forms.Label label12;
-        private System.Windows.Forms.TextBox tbDescripcion;
-        private System.Windows.Forms.TextBox tbClaveReceta;
-        private System.Windows.Forms.TextBox tbCodigo;
         private System.Windows.Forms.Label label11;
         private System.Windows.Forms.Label label10;
         private System.Windows.Forms.Label label9;
         private System.Windows.Forms.Label label8;
         private System.Windows.Forms.Label label7;
-        private System.Windows.Forms.Label label6;
-        private System.Windows.Forms.Label label5;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Button btBorrarSeleccion;
         private System.Windows.Forms.Button btBorrarLista;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Button btBuscar;
         private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.TabControl tabCon;
-        private System.Windows.Forms.CheckBox chDiario;
-        private System.Windows.Forms.MenuStrip menuStrip1;
-        private System.Windows.Forms.ToolStripMenuItem archivoToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem tsmGuardar;
-        private System.Windows.Forms.TextBox tbDescripcionBE;
-        private System.Windows.Forms.Label label23;
-        
-        private System.Windows.Forms.TextBox tbCodigoBE;
-        private System.Windows.Forms.Label label24;
-        private System.Windows.Forms.Button btBuscarBE;
-        private System.Windows.Forms.Button btValidar;
-        private System.Windows.Forms.Label label25;
-        private System.Windows.Forms.Label label26;
-        private System.Windows.Forms.Button btAyudar;
-        private System.Windows.Forms.Button btGuardar;
-        private System.Windows.Forms.OpenFileDialog openFileDialog1;
-        private System.Windows.Forms.PictureBox Pbreceta;
-        private System.Windows.Forms.TextBox txtinstruccionesBE;
-        private System.Windows.Forms.ContextMenuStrip contextMenuStrip1;
-        private System.Windows.Forms.TextBox txtinstrucciones;
-        private System.Windows.Forms.CheckBox chDiarioBE;
-        private System.Windows.Forms.Label lbCantidadElaboracion;
-        private System.Windows.Forms.MaskedTextBox tbCantidadElaboracion;
-        private System.Windows.Forms.Label lbCantidadElaboracionBE;
-        private System.Windows.Forms.MaskedTextBox tbCantidadElaboracionBE;
-        private System.Windows.Forms.ComboBox cbUnidadElaboracion;
-        private System.Windows.Forms.ComboBox cbUnidadElaboracionBE;
+        private System.Windows.Forms.MaskedTextBox tbPrecioSugerido;
+        private System.Windows.Forms.MaskedTextBox tbMargenSugerido;
+        private System.Windows.Forms.Label label5;
+        private System.Windows.Forms.Label label6;
         private System.Windows.Forms.MaskedTextBox tbCantidadDiario;
+        private System.Windows.Forms.CheckBox chDiario;
         private System.Windows.Forms.Label lbCantidadDiario;
-        private System.Windows.Forms.MaskedTextBox tbCantidadDiarioBE;
-        private System.Windows.Forms.Label lbCantidadDiarioBE;
-        private System.Windows.Forms.MaskedTextBox tbCostoEstimado;
+        private System.Windows.Forms.TabControl tabCon;
     }
 }

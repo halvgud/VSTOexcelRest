@@ -13,7 +13,7 @@ namespace Respuesta
         public List<MenuDia> Domingo { get; set; } 
         public MenuSemanal()
         {
-            var claseDia = new MenuDia { TipoRecetaDgv = "", Platillo = "", Cantidad = 0, UnidadDgv = "", PrecioCompra = 0, GananciaTotal= 0};
+            var claseDia = new MenuDia { TipoRecetaDgv = "", Platillo = "", Cantidad = 0, UnidadDgv = "", PrecioCompra = 0, GananciaTotal= 0, Congelado = 0, MenId = 0};
             Lunes = new List<MenuDia> {claseDia};
             Martes = new List<MenuDia> {claseDia};
             Miercoles = new List<MenuDia> {claseDia};
@@ -25,51 +25,20 @@ namespace Respuesta
     }
     public class MenuDia
     {
-        public string TipoRecetaDgv { get; set; }
-        public string Platillo { get; set; }
-        //public DateTime FechaElaboracion { get; set; }
-        public double Cantidad { get; set; }
-        public string UnidadDgv { get; set; }
-        public double PrecioCompra { get; set; }
-        public double GananciaTotal { get; set; }
-        public List<IngredientesReceta> Ingredientes { get; set; }
-    }
-
-
-    public class MenuSemanalActual
-    {
-        public List<MenuDiasSemana> LunesActual { get; set; }
-        public List<MenuDiasSemana> MartesActual { get; set; }
-        public List<MenuDiasSemana> MiercolesActual { get; set; }
-        public List<MenuDiasSemana> JuevesActual { get; set; }
-        public List<MenuDiasSemana> ViernesActual { get; set; }
-        public List<MenuDiasSemana> SabadoActual { get; set; }
-        public List<MenuDiasSemana> DomingoActual { get; set; }
-        public MenuSemanalActual()
-        {
-            var claseDia = new MenuDiasSemana { TipoRecetaDgv = "", Platillo = "",CantidadReceta = 0,Cantidad = 0, Unidad = "", PrecioCompra = 0, GananciaTotal = 0, Congelado = 0};
-            LunesActual = new List<MenuDiasSemana> { claseDia };
-            MartesActual = new List<MenuDiasSemana> { claseDia };
-            MiercolesActual = new List<MenuDiasSemana> { claseDia };
-            JuevesActual = new List<MenuDiasSemana> { claseDia };
-            ViernesActual = new List<MenuDiasSemana> { claseDia };
-            SabadoActual = new List<MenuDiasSemana> { claseDia };
-            DomingoActual = new List<MenuDiasSemana> { claseDia };
-        }
-    }
-    public class MenuDiasSemana
-    {
+      
         public string TipoRecetaDgv { get; set; }
         public string Platillo { get; set; }
         //public DateTime FechaElaboracion { get; set; }
         public double CantidadReceta { get; set; }
         public double Cantidad { get; set; }
-        public string Unidad { get; set; }
+        public string UnidadDgv { get; set; }
         public double PrecioCompra { get; set; }
         public double GananciaTotal { get; set; }
-        public  double Congelado { get; set; }
+        public int Congelado { get; set; }
+       public int MenId { get; set; }
         public List<IngredientesReceta> Ingredientes { get; set; }
     }
+
 
     public class PlatilloReceta
     {
@@ -82,12 +51,14 @@ namespace Respuesta
         public double CantidadElaboracion { get; set; }
         public double CostoElaboracion { get; set; }
         public double CostoCreacion { get; set; }
+        public double GanaciaTotal { get; set; }
+        public double PrecioCompra { get; set; }
         public double Precio { get; set; }
-        public List<PlatilloReceta> ListaPlatillos{ get; set; }
     }
 
     public class InsertarMenu
     {
+        public  int MenId { get; set; }
         public int RecId { get; set; }
         public string Fecha { get; set; }
         public double Cantidad { get; set; }
@@ -99,25 +70,33 @@ namespace Respuesta
     public class IngredientesReceta
     {
        public string ArtId { get; set; }
-         public string Clave { get; set; }
-        public  string Descripcion { get; set; }
+        public string Descripcion { get; set; }
+        public string Clave { get; set; }
+        public double Cantidad { get; set; }
+        public string Unidad { get; set; }
         public double PrecioCompra { get; set; }
-        public  double Cantidad { get; set; }
         public  string Fecha { get; set; }
-        public  string Unidad { get; set; }
     }
 
-    public class ListasInsertarMenus
-    {
-        public List<InsertarMenu> LunesMenus { get; set; }
-        public List<InsertarMenu> MartesMenus { get; set; }
-        public  List<InsertarMenu> MiercolesMenus { get; set; }
-        public List<InsertarMenu> JuevesMenus { get; set; }
-        public List<InsertarMenu>ViernesMenus { get; set; } 
-        public List<InsertarMenu>SabadoMenus { get; set; } 
-        public  List<InsertarMenu> DomingoMenus { get; set; }
 
-       
+
+    public class RecetasDiarias
+    {
+        public string TipoRecetaDgv { get; set; }
+        public string Platillo { get; set; }
+        public double CantidadReceta { get; set; }
+        public double Cantidad { get; set; }
+        public string UnidadDgv { get; set; }
+        public double PrecioCompra { get; set; }
+        public double GananciaTotal { get; set; }
+        public int Congelado { get; set; }
+        public int MenId { get; set; }
+
+        //public MenuDia CopiadoSencillo()
+        //{
+        //    var diario = new MenuDia { TipoRecetaDgv = TipoRecetaDgv, Platillo = Platillo,CantidadReceta =CantidadReceta, Cantidad = Cantidad, UnidadDgv = UnidadDgv,PrecioCompra = PrecioCompra,GananciaTotal = GananciaTotal, Congelado = Congelado, MenId = MenId};
+        //    return diario;
+        //}
     }
 
     public class ListaDiario

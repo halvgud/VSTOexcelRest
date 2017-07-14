@@ -76,17 +76,16 @@ namespace Herramienta
             public class PlatillosMenus
             {
                 public static string ListaPlatillos { get; set; } = Properties.Settings.Default.TiposPlatillosDiarios;
-                public static string EditarMenuSemanalActual { get; set; } = Properties.Settings.Default.EditarMenuSemanal;
-                public static string CompararCantidadElaborar { get; set; } = Properties.Settings.Default.EditarMenuSemanal;
                 public static string SacarMsReceta { get; set; } = Properties.Settings.Default.RecetaporClave;
                 public static string SacarTipoId { get; set; } = Properties.Settings.Default.TipoIdporNombre;
                 public static string ExistenciaCongelado { get; set; }=Properties.Settings.Default.ExistenciaCongeladoMenu;
                 public static string UsarCongelado { get; set; } = Properties.Settings.Default.SacarCongelado;
                 public static string IngredientesMenu { get; set; } = Properties.Settings.Default.ListaIngredientesMenu;
+                public static string RecetasDiarias { get; set; } = Properties.Settings.Default.CargarRecetasDiarias;
                 public static string Clave { get; set; }
                 public static string Nombre { get; set; }
                 public static string RecId { get; set; }
-                public static string CantidadElaboracion { get; set; }
+                public  static  string TipoId { get; set; }
             }
 
 
@@ -120,8 +119,10 @@ namespace Herramienta
 
             {
                 public static string Diasemana { get; set; } = Properties.Settings.Default.menu;
-                public static string EditarMenuSemanalActual { get; set; } = Properties.Settings.Default.EditarMenuSemanal;
+                public static string CargarMenuActual { get; set; } = Properties.Settings.Default.CargarSemanaActual;
                 public static string GuardarRecetas { get; set; } = Properties.Settings.Default.InsertarMenuDia;
+                public static string ActualizarMenuActual { get; set; } = Properties.Settings.Default.ActualizarMenuSemanal;
+                public static string MenId { get; set; }
             }
            
 

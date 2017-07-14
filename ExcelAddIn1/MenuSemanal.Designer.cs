@@ -43,7 +43,6 @@
             this.dgvMiercoles = new System.Windows.Forms.DataGridView();
             this.LabelJueves = new System.Windows.Forms.Label();
             this.FechaJueves = new System.Windows.Forms.Label();
-            this.dgvJueves = new System.Windows.Forms.DataGridView();
             this.LabelViernes = new System.Windows.Forms.Label();
             this.FechaViernes = new System.Windows.Forms.Label();
             this.dgvViernes = new System.Windows.Forms.DataGridView();
@@ -55,6 +54,7 @@
             this.LabelMartes = new System.Windows.Forms.Label();
             this.dgvDomingo = new System.Windows.Forms.DataGridView();
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
+            this.dgvJueves = new System.Windows.Forms.DataGridView();
             this.dgvLunes = new System.Windows.Forms.DataGridView();
             this.btGuardar = new System.Windows.Forms.Button();
             this.label1 = new System.Windows.Forms.Label();
@@ -63,14 +63,17 @@
             this.label4 = new System.Windows.Forms.Label();
             this.btAgregarSemana = new System.Windows.Forms.Button();
             this.btImprimirPrevia = new System.Windows.Forms.Button();
-            this.button1 = new System.Windows.Forms.Button();
+            this.btEditarSemana = new System.Windows.Forms.Button();
+            this.backgroundWorker1 = new System.ComponentModel.BackgroundWorker();
+            this.btBorrarFila = new System.Windows.Forms.Button();
+            this.btDiarios = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dgvMartes)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgvMiercoles)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.dgvJueves)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgvViernes)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgvSabado)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgvDomingo)).BeginInit();
             this.tableLayoutPanel1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvJueves)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgvLunes)).BeginInit();
             this.SuspendLayout();
             // 
@@ -130,6 +133,7 @@
             this.dgvMartes.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvGenerico_CellClick);
             this.dgvMartes.CellValueChanged += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvGenerico_CellValueChanged);
             this.dgvMartes.CurrentCellDirtyStateChanged += new System.EventHandler(this.dgvGenerico_CurrentCellDirtyStateChanged);
+            this.dgvMartes.DataError += new System.Windows.Forms.DataGridViewDataErrorEventHandler(this.dgvGenerico_DataError);
             this.dgvMartes.EditingControlShowing += new System.Windows.Forms.DataGridViewEditingControlShowingEventHandler(this.Generico_EditingControlShowing);
             this.dgvMartes.DragDrop += new System.Windows.Forms.DragEventHandler(this.dgvGenerico_DragDrop);
             this.dgvMartes.DragOver += new System.Windows.Forms.DragEventHandler(this.dgvGenerico_DragOver);
@@ -170,6 +174,7 @@
             this.dgvMiercoles.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvGenerico_CellClick);
             this.dgvMiercoles.CellValueChanged += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvGenerico_CellValueChanged);
             this.dgvMiercoles.CurrentCellDirtyStateChanged += new System.EventHandler(this.dgvGenerico_CurrentCellDirtyStateChanged);
+            this.dgvMiercoles.DataError += new System.Windows.Forms.DataGridViewDataErrorEventHandler(this.dgvGenerico_DataError);
             this.dgvMiercoles.EditingControlShowing += new System.Windows.Forms.DataGridViewEditingControlShowingEventHandler(this.Generico_EditingControlShowing);
             this.dgvMiercoles.DragDrop += new System.Windows.Forms.DragEventHandler(this.dgvGenerico_DragDrop);
             this.dgvMiercoles.DragOver += new System.Windows.Forms.DragEventHandler(this.dgvGenerico_DragOver);
@@ -196,26 +201,6 @@
             this.FechaJueves.Size = new System.Drawing.Size(11, 15);
             this.FechaJueves.TabIndex = 15;
             this.FechaJueves.Text = ".";
-            // 
-            // dgvJueves
-            // 
-            this.dgvJueves.AllowDrop = true;
-            this.dgvJueves.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dgvJueves.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.dgvJueves.EditMode = System.Windows.Forms.DataGridViewEditMode.EditOnEnter;
-            this.dgvJueves.Location = new System.Drawing.Point(640, 206);
-            this.dgvJueves.Name = "dgvJueves";
-            this.dgvJueves.Size = new System.Drawing.Size(633, 131);
-            this.dgvJueves.TabIndex = 4;
-            this.dgvJueves.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvGenerico_CellClick);
-            this.dgvJueves.CellValueChanged += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvGenerico_CellValueChanged);
-            this.dgvJueves.CurrentCellDirtyStateChanged += new System.EventHandler(this.dgvGenerico_CurrentCellDirtyStateChanged);
-            this.dgvJueves.EditingControlShowing += new System.Windows.Forms.DataGridViewEditingControlShowingEventHandler(this.Generico_EditingControlShowing);
-            this.dgvJueves.DragDrop += new System.Windows.Forms.DragEventHandler(this.dgvGenerico_DragDrop);
-            this.dgvJueves.DragOver += new System.Windows.Forms.DragEventHandler(this.dgvGenerico_DragOver);
-            this.dgvJueves.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.dgvGenerico_KeyPress);
-            this.dgvJueves.MouseDown += new System.Windows.Forms.MouseEventHandler(this.dgvGenerico_MouseDown);
-            this.dgvJueves.MouseMove += new System.Windows.Forms.MouseEventHandler(this.dgvGenerico_MouseMove);
             // 
             // LabelViernes
             // 
@@ -250,6 +235,7 @@
             this.dgvViernes.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvGenerico_CellClick);
             this.dgvViernes.CellValueChanged += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvGenerico_CellValueChanged);
             this.dgvViernes.CurrentCellDirtyStateChanged += new System.EventHandler(this.dgvGenerico_CurrentCellDirtyStateChanged);
+            this.dgvViernes.DataError += new System.Windows.Forms.DataGridViewDataErrorEventHandler(this.dgvGenerico_DataError);
             this.dgvViernes.EditingControlShowing += new System.Windows.Forms.DataGridViewEditingControlShowingEventHandler(this.Generico_EditingControlShowing);
             this.dgvViernes.DragDrop += new System.Windows.Forms.DragEventHandler(this.dgvGenerico_DragDrop);
             this.dgvViernes.DragOver += new System.Windows.Forms.DragEventHandler(this.dgvGenerico_DragOver);
@@ -290,6 +276,7 @@
             this.dgvSabado.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvGenerico_CellClick);
             this.dgvSabado.CellValueChanged += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvGenerico_CellValueChanged);
             this.dgvSabado.CurrentCellDirtyStateChanged += new System.EventHandler(this.dgvGenerico_CurrentCellDirtyStateChanged);
+            this.dgvSabado.DataError += new System.Windows.Forms.DataGridViewDataErrorEventHandler(this.dgvGenerico_DataError);
             this.dgvSabado.EditingControlShowing += new System.Windows.Forms.DataGridViewEditingControlShowingEventHandler(this.Generico_EditingControlShowing);
             this.dgvSabado.DragDrop += new System.Windows.Forms.DragEventHandler(this.dgvGenerico_DragDrop);
             this.dgvSabado.DragOver += new System.Windows.Forms.DragEventHandler(this.dgvGenerico_DragOver);
@@ -340,6 +327,7 @@
             this.dgvDomingo.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvGenerico_CellClick);
             this.dgvDomingo.CellValueChanged += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvGenerico_CellValueChanged);
             this.dgvDomingo.CurrentCellDirtyStateChanged += new System.EventHandler(this.dgvGenerico_CurrentCellDirtyStateChanged);
+            this.dgvDomingo.DataError += new System.Windows.Forms.DataGridViewDataErrorEventHandler(this.dgvGenerico_DataError);
             this.dgvDomingo.EditingControlShowing += new System.Windows.Forms.DataGridViewEditingControlShowingEventHandler(this.Generico_EditingControlShowing);
             this.dgvDomingo.DragDrop += new System.Windows.Forms.DragEventHandler(this.dgvGenerico_DragDrop);
             this.dgvDomingo.DragOver += new System.Windows.Forms.DragEventHandler(this.dgvGenerico_DragOver);
@@ -352,7 +340,6 @@
             this.tableLayoutPanel1.ColumnCount = 2;
             this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 49.99999F));
             this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50.00001F));
-            this.tableLayoutPanel1.Controls.Add(this.dgvDomingo, 0, 11);
             this.tableLayoutPanel1.Controls.Add(this.LabelMartes, 1, 0);
             this.tableLayoutPanel1.Controls.Add(this.FechaMartes, 1, 1);
             this.tableLayoutPanel1.Controls.Add(this.dgvLunes, 0, 2);
@@ -366,13 +353,14 @@
             this.tableLayoutPanel1.Controls.Add(this.dgvViernes, 0, 8);
             this.tableLayoutPanel1.Controls.Add(this.FechaViernes, 0, 7);
             this.tableLayoutPanel1.Controls.Add(this.LabelViernes, 0, 6);
-            this.tableLayoutPanel1.Controls.Add(this.dgvJueves, 1, 5);
             this.tableLayoutPanel1.Controls.Add(this.FechaJueves, 1, 4);
             this.tableLayoutPanel1.Controls.Add(this.LabelJueves, 1, 3);
             this.tableLayoutPanel1.Controls.Add(this.dgvMiercoles, 0, 5);
             this.tableLayoutPanel1.Controls.Add(this.FechaMiercoles, 0, 4);
             this.tableLayoutPanel1.Controls.Add(this.LabelMiercoles, 0, 3);
             this.tableLayoutPanel1.Controls.Add(this.dgvMartes, 1, 2);
+            this.tableLayoutPanel1.Controls.Add(this.dgvJueves, 1, 5);
+            this.tableLayoutPanel1.Controls.Add(this.dgvDomingo, 0, 11);
             this.tableLayoutPanel1.Location = new System.Drawing.Point(0, 49);
             this.tableLayoutPanel1.Name = "tableLayoutPanel1";
             this.tableLayoutPanel1.RowCount = 12;
@@ -392,6 +380,17 @@
             this.tableLayoutPanel1.Size = new System.Drawing.Size(1276, 684);
             this.tableLayoutPanel1.TabIndex = 3;
             // 
+            // dgvJueves
+            // 
+            this.dgvJueves.AllowDrop = true;
+            this.dgvJueves.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dgvJueves.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.dgvJueves.EditMode = System.Windows.Forms.DataGridViewEditMode.EditOnEnter;
+            this.dgvJueves.Location = new System.Drawing.Point(640, 206);
+            this.dgvJueves.Name = "dgvJueves";
+            this.dgvJueves.Size = new System.Drawing.Size(633, 131);
+            this.dgvJueves.TabIndex = 18;
+            // 
             // dgvLunes
             // 
             this.dgvLunes.AllowDrop = true;
@@ -405,6 +404,7 @@
             this.dgvLunes.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvGenerico_CellClick);
             this.dgvLunes.CellValueChanged += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvGenerico_CellValueChanged);
             this.dgvLunes.CurrentCellDirtyStateChanged += new System.EventHandler(this.dgvGenerico_CurrentCellDirtyStateChanged);
+            this.dgvLunes.DataError += new System.Windows.Forms.DataGridViewDataErrorEventHandler(this.dgvGenerico_DataError);
             this.dgvLunes.EditingControlShowing += new System.Windows.Forms.DataGridViewEditingControlShowingEventHandler(this.Generico_EditingControlShowing);
             this.dgvLunes.DragDrop += new System.Windows.Forms.DragEventHandler(this.dgvGenerico_DragDrop);
             this.dgvLunes.DragOver += new System.Windows.Forms.DragEventHandler(this.dgvGenerico_DragOver);
@@ -415,9 +415,9 @@
             // btGuardar
             // 
             this.btGuardar.ImageAlign = System.Drawing.ContentAlignment.BottomCenter;
-            this.btGuardar.Location = new System.Drawing.Point(1025, 3);
+            this.btGuardar.Location = new System.Drawing.Point(875, 3);
             this.btGuardar.Name = "btGuardar";
-            this.btGuardar.Size = new System.Drawing.Size(103, 23);
+            this.btGuardar.Size = new System.Drawing.Size(130, 23);
             this.btGuardar.TabIndex = 16;
             this.btGuardar.Text = "Guardar Menu";
             this.btGuardar.UseVisualStyleBackColor = true;
@@ -427,7 +427,7 @@
             // 
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Modern No. 20", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.Location = new System.Drawing.Point(261, 9);
+            this.label1.Location = new System.Drawing.Point(321, 0);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(146, 18);
             this.label1.TabIndex = 2;
@@ -435,7 +435,7 @@
             // 
             // DtpFecha
             // 
-            this.DtpFecha.Location = new System.Drawing.Point(413, 9);
+            this.DtpFecha.Location = new System.Drawing.Point(298, 23);
             this.DtpFecha.Name = "DtpFecha";
             this.DtpFecha.Size = new System.Drawing.Size(200, 20);
             this.DtpFecha.TabIndex = 7;
@@ -447,9 +447,9 @@
             this.cbDias.CheckBoxProperties = checkBoxProperties2;
             this.cbDias.DisplayMemberSingleItem = "";
             this.cbDias.FormattingEnabled = true;
-            this.cbDias.Location = new System.Drawing.Point(758, 6);
+            this.cbDias.Location = new System.Drawing.Point(526, 22);
             this.cbDias.Name = "cbDias";
-            this.cbDias.Size = new System.Drawing.Size(121, 21);
+            this.cbDias.Size = new System.Drawing.Size(200, 21);
             this.cbDias.TabIndex = 3;
             this.cbDias.SelectedIndexChanged += new System.EventHandler(this.cbDias_SelectedIndexChanged);
             // 
@@ -457,7 +457,7 @@
             // 
             this.label4.AutoSize = true;
             this.label4.Font = new System.Drawing.Font("Modern No. 20", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label4.Location = new System.Drawing.Point(628, 9);
+            this.label4.Location = new System.Drawing.Point(553, 0);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(124, 18);
             this.label4.TabIndex = 6;
@@ -465,7 +465,7 @@
             // 
             // btAgregarSemana
             // 
-            this.btAgregarSemana.Location = new System.Drawing.Point(885, 3);
+            this.btAgregarSemana.Location = new System.Drawing.Point(735, 3);
             this.btAgregarSemana.Name = "btAgregarSemana";
             this.btAgregarSemana.Size = new System.Drawing.Size(134, 24);
             this.btAgregarSemana.TabIndex = 8;
@@ -475,7 +475,7 @@
             // 
             // btImprimirPrevia
             // 
-            this.btImprimirPrevia.Location = new System.Drawing.Point(1134, 3);
+            this.btImprimirPrevia.Location = new System.Drawing.Point(875, 29);
             this.btImprimirPrevia.Name = "btImprimirPrevia";
             this.btImprimirPrevia.Size = new System.Drawing.Size(130, 23);
             this.btImprimirPrevia.TabIndex = 17;
@@ -483,22 +483,43 @@
             this.btImprimirPrevia.UseVisualStyleBackColor = true;
             this.btImprimirPrevia.Click += new System.EventHandler(this.btImprimirPrevia_Click_1);
             // 
-            // button1
+            // btEditarSemana
             // 
-            this.button1.Location = new System.Drawing.Point(885, 33);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(134, 23);
-            this.button1.TabIndex = 18;
-            this.button1.Text = "Editar SemanaActual";
-            this.button1.UseVisualStyleBackColor = true;
-            this.button1.Click += new System.EventHandler(this.button1_Click);
+            this.btEditarSemana.Location = new System.Drawing.Point(735, 30);
+            this.btEditarSemana.Name = "btEditarSemana";
+            this.btEditarSemana.Size = new System.Drawing.Size(134, 23);
+            this.btEditarSemana.TabIndex = 18;
+            this.btEditarSemana.Text = "Editar Semana Actual";
+            this.btEditarSemana.UseVisualStyleBackColor = true;
+            this.btEditarSemana.Click += new System.EventHandler(this.btEditarSemana_Click);
+            // 
+            // btBorrarFila
+            // 
+            this.btBorrarFila.Location = new System.Drawing.Point(1038, 3);
+            this.btBorrarFila.Name = "btBorrarFila";
+            this.btBorrarFila.Size = new System.Drawing.Size(131, 23);
+            this.btBorrarFila.TabIndex = 18;
+            this.btBorrarFila.Text = "Borrar Fila";
+            this.btBorrarFila.UseVisualStyleBackColor = true;
+            this.btBorrarFila.Click += new System.EventHandler(this.btBorrarFila_Click);
+            // 
+            // btDiarios
+            // 
+            this.btDiarios.Location = new System.Drawing.Point(1038, 29);
+            this.btDiarios.Name = "btDiarios";
+            this.btDiarios.Size = new System.Drawing.Size(131, 24);
+            this.btDiarios.TabIndex = 19;
+            this.btDiarios.Text = "PlatillosDiarios";
+            this.btDiarios.UseVisualStyleBackColor = true;
+            this.btDiarios.Click += new System.EventHandler(this.btDiarios_Click);
             // 
             // MenuSemanal
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1276, 733);
-            this.Controls.Add(this.button1);
+            this.Controls.Add(this.btDiarios);
+            this.Controls.Add(this.btEditarSemana);
             this.Controls.Add(this.btImprimirPrevia);
             this.Controls.Add(this.tableLayoutPanel1);
             this.Controls.Add(this.btAgregarSemana);
@@ -507,6 +528,7 @@
             this.Controls.Add(this.label1);
             this.Controls.Add(this.cbDias);
             this.Controls.Add(this.DtpFecha);
+            this.Controls.Add(this.btBorrarFila);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "MenuSemanal";
             this.Text = "MenuSemanal";
@@ -514,12 +536,12 @@
             this.Load += new System.EventHandler(this.MenuSemanal_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dgvMartes)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgvMiercoles)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.dgvJueves)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgvViernes)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgvSabado)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgvDomingo)).EndInit();
             this.tableLayoutPanel1.ResumeLayout(false);
             this.tableLayoutPanel1.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvJueves)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgvLunes)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
@@ -546,7 +568,6 @@
         private System.Windows.Forms.DataGridView dgvMiercoles;
         private System.Windows.Forms.Label LabelJueves;
         private System.Windows.Forms.Label FechaJueves;
-        private System.Windows.Forms.DataGridView dgvJueves;
         private System.Windows.Forms.Label LabelViernes;
         private System.Windows.Forms.Label FechaViernes;
         private System.Windows.Forms.DataGridView dgvViernes;
@@ -559,6 +580,10 @@
         private System.Windows.Forms.DataGridView dgvDomingo;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel1;
         private System.Windows.Forms.DataGridView dgvLunes;
-        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.Button btEditarSemana;
+        private System.ComponentModel.BackgroundWorker backgroundWorker1;
+        private System.Windows.Forms.Button btBorrarFila;
+        private System.Windows.Forms.Button btDiarios;
+        private System.Windows.Forms.DataGridView dgvJueves;
     }
 }

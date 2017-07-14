@@ -197,6 +197,17 @@ namespace Herramienta
             ingredientes.DataSource = result;
         }
 
+        public static void BorrarFila(DataGridView pivote)
+        {
+            if (pivote.CurrentCell.RowIndex == -1 || pivote.Rows.Count - 1 <= 0) return;
+            var result = pivote.DataSource as List<Respuesta.MenuDia>;
+            if (result == null) return;
+            pivote.Rows.RemoveAt(pivote.CurrentCell.RowIndex);
+            pivote.DataSource = null;
+            pivote.Refresh();
+            pivote.DataSource = result;
+        }
+
         public static void BorrarSeleccionRV(DataGridView datos)
         {
             if (datos.CurrentCell.RowIndex == -1 || datos.Rows.Count <= 0) return;

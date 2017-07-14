@@ -35,7 +35,7 @@
     <PublishUrl>\\mercattoserver\ftp\COCINA\</PublishUrl>
     <InstallUrl>\\mercattoserver\ftp\VSTO\COCINA\</InstallUrl>
     <TargetCulture>es</TargetCulture>
-    <ApplicationVersion>1.0.0.7</ApplicationVersion>
+    <ApplicationVersion>1.0.0.11</ApplicationVersion>
     <AutoIncrementApplicationRevision>true</AutoIncrementApplicationRevision>
     <UpdateEnabled>true</UpdateEnabled>
     <UpdateInterval>7</UpdateInterval>

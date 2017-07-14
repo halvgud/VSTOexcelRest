@@ -15,7 +15,7 @@ namespace Data
         {
             try
             {
-var rest = new Rest(Local.Api.UrlApi, Local.Articulo.Lista + Local.Articulo.IdArticulo,Method.GET);
+                var rest = new Rest(Local.Api.UrlApi, Local.Articulo.Lista + Local.Articulo.IdArticulo,Method.GET);
                 rest.Peticion.AddHeader(Constantes.Http.ObtenerTipoDeContenido,Constantes.Http.TipoDeContenido.Json);
                 rest.Cliente.ExecuteAsync(rest.Peticion, response =>{
                     switch (response.StatusCode)

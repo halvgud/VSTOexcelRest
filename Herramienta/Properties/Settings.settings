@@ -158,27 +158,16 @@
     <Setting Name="ExistenciaCongeladoMenu" Type="System.String" Scope="Application">
       <Value Profile="(Default)">receta/PlatilloCongelado</Value>
     </Setting>
-<<<<<<< HEAD
-    <Setting Name="ListaIngredientesMenu" Type="System.String" Scope="Application">
-      <Value Profile="(Default)">receta/IngredientesPlatillos</Value>
-    </Setting>
-=======
->>>>>>> origin/master
     <Setting Name="TipoUnidades" Type="System.String" Scope="Application">
       <Value Profile="(Default)">receta/unidad</Value>
     </Setting>
-    <Setting Name="EditarMenuSemanal" Type="System.String" Scope="User">
-      <Value Profile="(Default)">receta/EditarMenuActual</Value>
-<<<<<<< HEAD
-    </Setting>
     <Setting Name="DiaAntes" Type="System.String" Scope="Application">
       <Value Profile="(Default)">/receta/Diario</Value>
-=======
     </Setting>
     <Setting Name="ListaIngredientesMenu1" Type="System.String" Scope="Application">
       <Value Profile="(Default)">/receta/IngredientesPlatillos</Value>
     </Setting>
-    <Setting Name="DiaAntes" Type="System.String" Scope="Application">
+    <Setting Name="DiaAntes1" Type="System.String" Scope="Application">
       <Value Profile="(Default)">/receta/Diario</Value>
     </Setting>
     <Setting Name="ValidacionDiaria" Type="System.String" Scope="User">
@@ -206,8 +195,16 @@
       <Value Profile="(Default)">receta/SeleccionarRecId</Value>
     </Setting>
     <Setting Name="ListaIngredientesMenu" Type="System.String" Scope="Application">
-      <Value Profile="(Default)">/receta/IngredientesPlatillos</Value>
->>>>>>> origin/master
+      <Value Profile="(Default)">receta/IngredientesPlatillos</Value>
+    </Setting>
+    <Setting Name="ActualizarMenuSemanal" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">receta/ActualizarMenuSemanaActual</Value>
+    </Setting>
+    <Setting Name="CargarSemanaActual" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">receta/CargarMenuActual</Value>
+    </Setting>
+    <Setting Name="CargarRecetasDiarias" Type="System.String" Scope="User">
+      <Value Profile="(Default)">receta/RecetasDiarias</Value>
     </Setting>
   </Settings>
 </SettingsFile>

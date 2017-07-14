@@ -266,6 +266,40 @@ namespace ExcelAddIn1
             _reporte.Range["C6:E" + rowcount].HorizontalAlignment = Excel.XlHAlign.xlHAlignCenter;
             Application.Cells.Locked = false;
             Application.ScreenUpdating = true;
+
+            //for (int i = 5; i < rowcount + 1; i++)
+            //{
+            //    var x = _reporte.Range["E" + i].Value2;
+            //    string y = "E" + i;
+            //    if (x == "10/07/2017")
+            //    {
+            //        _reporte.Range[y].Interior.Color = Color.Red;
+            //    }
+            //    if (x == "11/07/2017")
+            //    {
+            //        _reporte.Range[y].Interior.Color = Color.Blue;
+            //    }
+            //    if (x == "12/07/2017")
+            //    {
+            //        _reporte.Range[y].Interior.Color = Color.Green;
+            //    }
+            //    if (x == "13/07/2017")
+            //    {
+            //        _reporte.Range[y].Interior.Color = Color.Yellow;
+            //    }
+            //    if (x == "14/07/2017")
+            //    {
+            //        _reporte.Range[y].Interior.Color = Color.Fuchsia;
+            //    }
+            //    if (x == "15-07-2017")
+            //    {
+            //        _reporte.Range[y].Interior.Color = Color.IndianRed;
+            //    }
+            //    if (x == "16/07/2017")
+            //    {
+            //        _reporte.Range[y].Interior.Color = Color.Purple;
+            //    }
+            //}
         }
         //template recetario
         public void ReporteCocina(IRestResponse restResponse)

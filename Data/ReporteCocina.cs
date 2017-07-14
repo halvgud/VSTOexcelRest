@@ -83,11 +83,11 @@ namespace Data
         {
             try
             {
-                var rest = new Rest(Local.Api.UrlApi, Herramienta.Config.Cocina.DetalleCocina.Breceta,
+                var rest = new Rest(Local.Api.UrlApi, Cocina.DetalleCocina.Breceta,
                     Method.POST);
                 rest.Peticion.AddHeader(Constantes.Http.ObtenerTipoDeContenido,
                     Constantes.Http.TipoDeContenido.Json);
-                rest.Peticion.AddJsonBody(new { Clave = Cocina.DetalleCocina.Clave});// la peticion debe ser un objeto
+                rest.Peticion.AddJsonBody(new {Cocina.DetalleCocina.Clave});// la peticion debe ser un objeto
                 rest.Cliente.ExecuteAsync(rest.Peticion, response =>
                 {
                     switch (response.StatusCode)
@@ -145,20 +145,16 @@ namespace Data
             try
             {
                 /*url local?*/
-                var rest = new Rest(Local.Api.UrlApi, Herramienta.Config.Cocina.DetalleCocina.Insertarinstruccion,
+                var rest = new Rest(Local.Api.UrlApi,Cocina.DetalleCocina.Insertarinstruccion,
                     Method.POST);
                 rest.Peticion.AddHeader(Constantes.Http.ObtenerTipoDeContenido,
                     Constantes.Http.TipoDeContenido.Json);
-                rest.Peticion.AddJsonBody(instructivoclass);// la peticion debe ser un objeto
+                rest.Peticion.AddJsonBody(instructivoclass);
                 rest.Cliente.ExecuteAsync(rest.Peticion, response =>
                 {
                     switch (response.StatusCode)
                     {
                         case HttpStatusCode.OK:
-                          // callback(response);
-                            break;
-                        default:
-                           // callback(null);
                             break;
                     }
                 });
@@ -166,7 +162,6 @@ namespace Data
             catch (Exception e)
             {
                 Opcion.Log(Log.Interno.Categoria, "EXCEPCION: " + e.Message);
-                //callback(null);
             }
         }
 

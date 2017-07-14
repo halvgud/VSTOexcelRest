@@ -99,7 +99,7 @@ namespace Data
                     }
                 });
             }
-            public static void ActualizarIngredientes(List<Respuesta.Receta.Detalle> actualiza  )
+            public static void ActualizarIngredientes(List<Respuesta.Receta.Detalle> actualiza)
             { 
                 var rest = new Rest(Local.Api.UrlApi, Local.Receta.InsertarDetalle, Method.POST);
                 rest.Peticion.AddHeader(Constantes.Http.ObtenerTipoDeContenido, Constantes.Http.TipoDeContenido.Json);

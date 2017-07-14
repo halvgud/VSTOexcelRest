@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Net;
 using Herramienta;
 using Herramienta.Config;
+using Respuesta;
 using RestSharp;
 
 
@@ -45,11 +46,11 @@ namespace Data
             }
         }
 
-        public static void EditarMenuSemanaActual(Action<IRestResponse> callback, Respuesta.Reporte.General fechas)
+        public static void CargarMenuSemanaActual(Action<IRestResponse> callback, Respuesta.Reporte.General fechas)
         {
             try
             {
-                var rest = new Rest(Local.Api.UrlApi, Cocina.DiasSemana.EditarMenuSemanalActual, Method.POST);
+                var rest = new Rest(Local.Api.UrlApi, Cocina.DiasSemana.CargarMenuActual, Method.POST);
                 rest.Peticion.AddHeader(Constantes.Http.ObtenerTipoDeContenido, Constantes.Http.TipoDeContenido.Json);
                 rest.Peticion.AddJsonBody(fechas);
                 rest.Cliente.ExecuteAsync(rest.Peticion, response =>
@@ -91,23 +92,6 @@ namespace Data
                             break;
                     }
                 });
-            }
-            catch (Exception e)
-            {
-                Opcion.Log(Log.Interno.Categoria, "EXCEPCION: " + e.Message);
-                callback(null);
-            }
-        }
-        public static void CompararCantidadElaborar(Action<IRestResponse> callback)
-        {
-            try
-            {
-                var rest = new Rest(Local.Api.UrlApi, Cocina.PlatillosMenus.CompararCantidadElaborar,
-                    Method.POST);
-                rest.Peticion.AddHeader(Constantes.Http.ObtenerTipoDeContenido,
-                    Constantes.Http.TipoDeContenido.Json);
-                rest.Peticion.AddJsonBody(new { Cocina.PlatillosMenus.Clave });
-                callback(rest.Cliente.Execute(rest.Peticion));
             }
             catch (Exception e)
             {
@@ -194,6 +178,23 @@ namespace Data
                 //callback(null);
             }
         }
+        public static void CargarPlatilloDiarios(Action<IRestResponse> callback)
+        {
+            try
+            {
+                var rest = new Rest(Local.Api.UrlApi, Cocina.PlatillosMenus.RecetasDiarias,
+                    Method.POST);
+                rest.Peticion.AddHeader(Constantes.Http.ObtenerTipoDeContenido,
+                    Constantes.Http.TipoDeContenido.Json);
+                rest.Peticion.AddJsonBody(new { Cocina.PlatillosMenus.TipoId});
+                callback(rest.Cliente.Execute(rest.Peticion));
+            }
+            catch (Exception e)
+            {
+                Opcion.Log(Log.Interno.Categoria, "EXCEPCION: " + e.Message);
+                callback(null);
+            }
+        }
         public static void IngredientesMenuPlatillos(Action<IRestResponse> callback)
         {
             try
@@ -227,10 +228,9 @@ namespace Data
                 // callback("CONTINUAR");
             }
         }
-        public static List<Respuesta.InsertarMenu> CInsertarMenus= new List<Respuesta.InsertarMenu>();
         public static void InsertarMenus(Action<IRestResponse> callback, Respuesta.InsertarMenu lista)
         {
-var rest = new Rest(Local.Api.UrlApi, Cocina.DiasSemana.GuardarRecetas, Method.POST);
+            var rest = new Rest(Local.Api.UrlApi, Cocina.DiasSemana.GuardarRecetas, Method.POST);
             rest.Peticion.AddHeader(Constantes.Http.ObtenerTipoDeContenido, Constantes.Http.TipoDeContenido.Json);
             rest.Peticion.AddJsonBody(lista);
             rest.Cliente.ExecuteAsync(rest.Peticion, response =>
@@ -244,8 +244,42 @@ var rest = new Rest(Local.Api.UrlApi, Cocina.DiasSemana.GuardarRecetas, Method.P
                         throw new Exception(@"error al buscar articulo");
                 }
             });
+       }
+        //public static List<Respuesta.InsertarMenu> CActualizarMenus = new List<Respuesta.InsertarMenu>();
+        //public static void ActualizarMenu(Action<IRestResponse> callback, Respuesta.InsertarMenu lista)
+        //{
+        //    var rest = new Rest(Local.Api.UrlApi, Cocina.DiasSemana.ActualizarMenuActual, Method.POST);
+        //    rest.Peticion.AddHeader(Constantes.Http.ObtenerTipoDeContenido, Constantes.Http.TipoDeContenido.Json);
+        //    rest.Peticion.AddJsonBody(lista);
+        //    rest.Cliente.ExecuteAsync(rest.Peticion, response =>
+        //    {
+        //        switch (response.StatusCode)
+        //        {
+        //            case HttpStatusCode.OK:
+        //                callback(response);
+        //                break;
+        //            default:
+        //                throw new Exception(@"error al buscar articulo");
+        //        }
+        //    });
+        //}
 
-}
+        public static void ActualizarMenuActual(Respuesta.InsertarMenu actualiza)
+        {
+            var rest = new Rest(Local.Api.UrlApi, Cocina.DiasSemana.ActualizarMenuActual, Method.POST);
+            rest.Peticion.AddHeader(Constantes.Http.ObtenerTipoDeContenido, Constantes.Http.TipoDeContenido.Json);
+            rest.Peticion.AddJsonBody(actualiza);
+            rest.Cliente.ExecuteAsync(rest.Peticion, response =>
+            {
+                switch (response.StatusCode)
+                {
+                    case HttpStatusCode.OK:
+                        break;
+                    default:
+                        throw new Exception(@"Los datos no se pudieron actualizar");
+                }
+            });
+        }
 
         public static void AgregarDiario(Action<IRestResponse> callback)
         {
@@ -391,7 +425,5 @@ var rest = new Rest(Local.Api.UrlApi, Cocina.DiasSemana.GuardarRecetas, Method.P
                 //callback(null);
             }
         }
-
-
     }
 }

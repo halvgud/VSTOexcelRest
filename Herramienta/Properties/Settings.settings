@@ -203,5 +203,8 @@
     <Setting Name="RepoCongeladoFechado" Type="System.String" Scope="Application">
       <Value Profile="(Default)">reporte/ReporteCongeladosFechado</Value>
     </Setting>
+    <Setting Name="RepActReceta" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">/reporte/ActReceta</Value>
+    </Setting>
   </Settings>
 </SettingsFile>

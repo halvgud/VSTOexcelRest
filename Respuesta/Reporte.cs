@@ -194,6 +194,28 @@ namespace Respuesta
                 public DateTime FechaInicio { get; set; }
             }
 
+            public class RepoActRec
+            {
+                public string Clave { get; set; }
+                public string Receta { get; set; }
+                public string Unidad { get; set; }
+                public double Precio { get; set; }
+                public string FechaModificacion { get; set; }
+
+                //public RepoActRec()
+                //{
+                //    var Recetas = new RepoActRec
+                //    {
+                //        Clave = "",
+                //        Receta = "",
+                //        Unidad = "",
+                //        Precio = 0,
+                //        FechaModificacion = ""
+                //    };
+                //}
+
+            }
+
 
 
         }

@@ -643,5 +643,14 @@ namespace Herramienta.Properties {
                 return ((string)(this["RepoCongeladoFechado"]));
             }
         }
+        
+        [global::System.Configuration.ApplicationScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("/reporte/ActReceta")]
+        public string RepActReceta {
+            get {
+                return ((string)(this["RepActReceta"]));
+            }
+        }
     }
 }

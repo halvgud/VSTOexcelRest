@@ -191,6 +191,12 @@
     <Compile Include="Acceso.Designer.cs">
       <DependentUpon>Acceso.cs</DependentUpon>
     </Compile>
+    <Compile Include="Actualizar Precios.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Actualizar Precios.Designer.cs">
+      <DependentUpon>Actualizar Precios.cs</DependentUpon>
+    </Compile>
     <Compile Include="AgregarReceta.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -263,6 +269,9 @@
     </Compile>
     <EmbeddedResource Include="Acceso.resx">
       <DependentUpon>Acceso.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Actualizar Precios.resx">
+      <DependentUpon>Actualizar Precios.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="AgregarReceta.resx">
       <DependentUpon>AgregarReceta.cs</DependentUpon>

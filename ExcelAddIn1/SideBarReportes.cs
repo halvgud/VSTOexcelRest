@@ -70,7 +70,9 @@ namespace ExcelAddIn1
             }
             if ((cbreportes.SelectedIndex + 1) == 3)
             {
-              
+
+                var diario = new Diario();
+                diario.Show();
 
             }
 

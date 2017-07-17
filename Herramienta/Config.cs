@@ -25,7 +25,10 @@ namespace Herramienta
 
                 
             }
-
+             public static class ActReceta
+             {
+                 public static string ReporteActualizarReceta { get; set; } = Properties.Settings.Default.RepActReceta;
+             }
             
             public class  DetalleCocina
             {

@@ -151,6 +151,31 @@ namespace Data
             }
         }
 
+        public static void Rep_Act_Receta(Action<IRestResponse> callback)
+        {
+            try
+            {
+                var rest = new Rest(Local.Api.UrlApi, Cocina.ActReceta.ReporteActualizarReceta, Method.GET);
+                rest.Peticion.AddHeader(Constantes.Http.ObtenerTipoDeContenido, Constantes.Http.TipoDeContenido.Json);
+                rest.Cliente.ExecuteAsync(rest.Peticion, response =>
+                {
+                    switch (response.StatusCode)
+                    {
+                        case HttpStatusCode.OK:
+                            callback(response);
+                            break;
+                        default:
+                            throw new Exception(@"Recetas no encontradas");
+                    }
+                });
+            }
+            catch (Exception e)
+            {
+                Opcion.Log(Log.Interno.Departamento, "EXCEPCION: " + e.Message);
+            }
+        }
+
+
         public static void RepCongelados(Action<IRestResponse> callback)
         {
             try

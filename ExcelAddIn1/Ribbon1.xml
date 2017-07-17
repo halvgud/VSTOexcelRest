@@ -13,6 +13,7 @@
           <button id="btReporteCongelados" label="Reporte de Congelados" imageMso="AccessibilityReports" size="large" onAction="ReporteCongelados" getEnabled="BuscarPermiso"/>
           <button id="btDiario" label="Reporte Sobrantes" imageMso="MenuPreviewPane" size="large" onAction="Diario" getEnabled="BuscarPermiso"/>
          <button id="btReportes" label="Reportes" imageMso="MoreInkResults" size="large" onAction="Reportes" getEnabled="BuscarPermiso"/>
+          <button id="btCalis" label="ActualizarReceta" imageMso="MoreInkResults" size="large" onAction="Calis" getEnabled="BuscarPermiso"/>
 
         </group>
       </tab>

@@ -72,6 +72,11 @@ namespace ExcelAddIn1
             ms.Show();
         }
 
+        public void Calis(Office.IRibbonControl control)
+        {
+            var c = new Actualizar_Precios();
+            c.Show();
+        }
         public void AbrirMenuSemanal(Office.IRibbonControl control)
         {
            // var ms = new MenuSemanal();

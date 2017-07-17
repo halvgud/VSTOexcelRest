@@ -209,8 +209,13 @@
     <Setting Name="RepoCongeladoFechado" Type="System.String" Scope="Application">
       <Value Profile="(Default)">reporte/ReporteCongeladosFechado</Value>
     </Setting>
+<<<<<<< HEAD
     <Setting Name="ListaIngredientesMenu1" Type="System.String" Scope="Application">
       <Value Profile="(Default)">/receta/IngredientesPlatillos</Value>
+=======
+    <Setting Name="RepActReceta" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">/reporte/ActReceta</Value>
+>>>>>>> origin/master
     </Setting>
   </Settings>
 </SettingsFile>

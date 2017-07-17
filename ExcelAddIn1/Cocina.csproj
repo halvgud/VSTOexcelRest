@@ -185,6 +185,21 @@
     can be found.
   -->
   <ItemGroup>
+<<<<<<< HEAD
+=======
+    <Compile Include="Acceso.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Acceso.Designer.cs">
+      <DependentUpon>Acceso.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Actualizar Precios.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Actualizar Precios.Designer.cs">
+      <DependentUpon>Actualizar Precios.cs</DependentUpon>
+    </Compile>
+>>>>>>> origin/master
     <Compile Include="AgregarReceta.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -255,6 +270,15 @@
     <Compile Include="Properties\AssemblyInfo.cs">
       <SubType>Code</SubType>
     </Compile>
+<<<<<<< HEAD
+=======
+    <EmbeddedResource Include="Acceso.resx">
+      <DependentUpon>Acceso.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Actualizar Precios.resx">
+      <DependentUpon>Actualizar Precios.cs</DependentUpon>
+    </EmbeddedResource>
+>>>>>>> origin/master
     <EmbeddedResource Include="AgregarReceta.resx">
       <DependentUpon>AgregarReceta.cs</DependentUpon>
     </EmbeddedResource>

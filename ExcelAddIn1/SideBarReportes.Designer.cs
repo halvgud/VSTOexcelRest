@@ -1,6 +1,6 @@
 ﻿namespace ExcelAddIn1
 {
-    partial class Reportes
+    partial class SideBarReportes
     {
         /// <summary> 
         /// Variable del diseñador necesaria.
@@ -33,8 +33,8 @@
             this.dtpinicio = new System.Windows.Forms.DateTimePicker();
             this.dtpfinal = new System.Windows.Forms.DateTimePicker();
             this.label1 = new System.Windows.Forms.Label();
-            this.label2 = new System.Windows.Forms.Label();
-            this.label3 = new System.Windows.Forms.Label();
+            this.lbde = new System.Windows.Forms.Label();
+            this.lbhasta = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // cbreportes
@@ -44,10 +44,11 @@
             this.cbreportes.Name = "cbreportes";
             this.cbreportes.Size = new System.Drawing.Size(136, 21);
             this.cbreportes.TabIndex = 0;
+            this.cbreportes.SelectedIndexChanged += new System.EventHandler(this.cbreportes_SelectedIndexChanged);
             // 
             // btgenerar
             // 
-            this.btgenerar.Location = new System.Drawing.Point(69, 200);
+            this.btgenerar.Location = new System.Drawing.Point(79, 225);
             this.btgenerar.Name = "btgenerar";
             this.btgenerar.Size = new System.Drawing.Size(102, 38);
             this.btgenerar.TabIndex = 1;
@@ -58,7 +59,7 @@
             // dtpinicio
             // 
             this.dtpinicio.Format = System.Windows.Forms.DateTimePickerFormat.Short;
-            this.dtpinicio.Location = new System.Drawing.Point(20, 142);
+            this.dtpinicio.Location = new System.Drawing.Point(30, 167);
             this.dtpinicio.Name = "dtpinicio";
             this.dtpinicio.Size = new System.Drawing.Size(96, 20);
             this.dtpinicio.TabIndex = 2;
@@ -66,7 +67,7 @@
             // dtpfinal
             // 
             this.dtpfinal.Format = System.Windows.Forms.DateTimePickerFormat.Short;
-            this.dtpfinal.Location = new System.Drawing.Point(133, 142);
+            this.dtpfinal.Location = new System.Drawing.Point(143, 167);
             this.dtpfinal.Name = "dtpfinal";
             this.dtpfinal.Size = new System.Drawing.Size(96, 20);
             this.dtpfinal.TabIndex = 3;
@@ -80,37 +81,37 @@
             this.label1.TabIndex = 4;
             this.label1.Text = "Reportes :";
             // 
-            // label2
+            // lbde
             // 
-            this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(36, 117);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(27, 13);
-            this.label2.TabIndex = 5;
-            this.label2.Text = "De :";
+            this.lbde.AutoSize = true;
+            this.lbde.Location = new System.Drawing.Point(46, 142);
+            this.lbde.Name = "lbde";
+            this.lbde.Size = new System.Drawing.Size(27, 13);
+            this.lbde.TabIndex = 5;
+            this.lbde.Text = "De :";
             // 
-            // label3
+            // lbhasta
             // 
-            this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(141, 117);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(41, 13);
-            this.label3.TabIndex = 6;
-            this.label3.Text = "Hasta :";
+            this.lbhasta.AutoSize = true;
+            this.lbhasta.Location = new System.Drawing.Point(151, 142);
+            this.lbhasta.Name = "lbhasta";
+            this.lbhasta.Size = new System.Drawing.Size(41, 13);
+            this.lbhasta.TabIndex = 6;
+            this.lbhasta.Text = "Hasta :";
             // 
-            // Reportes
+            // SideBarReportes
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.Controls.Add(this.label3);
-            this.Controls.Add(this.label2);
+            this.Controls.Add(this.lbhasta);
+            this.Controls.Add(this.lbde);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.dtpfinal);
             this.Controls.Add(this.dtpinicio);
             this.Controls.Add(this.btgenerar);
             this.Controls.Add(this.cbreportes);
-            this.Name = "Reportes";
-            this.Size = new System.Drawing.Size(249, 281);
+            this.Name = "SideBarReportes";
+            this.Size = new System.Drawing.Size(275, 297);
             this.Load += new System.EventHandler(this.Reportes_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
@@ -124,7 +125,7 @@
         private System.Windows.Forms.DateTimePicker dtpinicio;
         private System.Windows.Forms.DateTimePicker dtpfinal;
         private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.Label lbde;
+        private System.Windows.Forms.Label lbhasta;
     }
 }

@@ -500,21 +500,24 @@ namespace Herramienta.Properties {
             }
         }
         
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("receta/EditarMenuActual")]
+        public string EditarMenuSemanal {
+            get {
+                return ((string)(this["EditarMenuSemanal"]));
+            }
+            set {
+                this["EditarMenuSemanal"] = value;
+            }
+        }
+        
         [global::System.Configuration.ApplicationScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.DefaultSettingValueAttribute("/receta/Diario")]
         public string DiaAntes {
             get {
                 return ((string)(this["DiaAntes"]));
-            }
-        }
-        
-        [global::System.Configuration.ApplicationScopedSettingAttribute()]
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("/receta/IngredientesPlatillos")]
-        public string ListaIngredientesMenu1 {
-            get {
-                return ((string)(this["ListaIngredientesMenu1"]));
             }
         }
         
@@ -650,6 +653,24 @@ namespace Herramienta.Properties {
             }
             set {
                 this["CargarRecetasDiarias"] = value;
+            }
+        }
+        
+        [global::System.Configuration.ApplicationScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("reporte/ReporteCongeladosFechado")]
+        public string RepoCongeladoFechado {
+            get {
+                return ((string)(this["RepoCongeladoFechado"]));
+            }
+        }
+        
+        [global::System.Configuration.ApplicationScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("/receta/IngredientesPlatillos")]
+        public string ListaIngredientesMenu1 {
+            get {
+                return ((string)(this["ListaIngredientesMenu1"]));
             }
         }
     }

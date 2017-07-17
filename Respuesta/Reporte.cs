@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Dynamic;
+using Microsoft.Office.Interop.Excel;
 
 
 namespace Respuesta
@@ -44,6 +45,8 @@ namespace Respuesta
                 public string Margen { get; set; }
                 public string CantidadPedir { get; set; }
             }
+
+           
 
 
             public class InventarioCongelados
@@ -99,14 +102,17 @@ namespace Respuesta
             public string Estado { get; set; }
             public string Since { get; set; }
             public string UltimaElaboracion { get; set; }
-            public string Medida { get; set; }
-            public string Consumodia { get; set; }
+            public  Double QtyUltimaElaboracion { get; set; }
+            public string medida { get; set; }
+            public string consumodia { get; set; }
             //public string Total { get; set; }
             //public string Nombre { get; set; }
             public Double Costo { get; set; }
             public Double Venta { get; set; }
             public Double Margen { get; set; }
             public Double Qty { get; set; }
+            public Double Sinceqty { get; set; }
+            
             public string Salesince { get; set; }
             
             public string ProfitSince { get; set; }
@@ -119,15 +125,52 @@ namespace Respuesta
             public string Porcentajeperdida { get; set; }
             public string Qtyempleado { get; set; }
             public string Porcentajeempleado { get; set; }
+            public string rutaimagen { get; set; }
+            public string instrucciones { get; set; }
            
+            
 
             public List<IngredientesCocina> Ingredientes { get; set; }
             public class IngredientesCocina
             {
                 public string Nombre { get; set; }
                 public double Cantidad { get; set; }
-                public double Medida { get; set; }
+                public string Medida { get; set; }
                 public double Costo { get; set; }
+            }
+
+            public class Ccocinadetalle
+            {
+                public string Clave { get; set; }
+                public string Receta { get; set; }
+                public string TipoProducto { get; set; }
+                public double Cantidadinventario { get; set; }
+                public string Categoria { get; set; }
+                public string Estado { get; set; }
+                public string Since { get; set; }
+                public string UltimaElaboracion { get; set; }
+                public Double QtyUltimaElaboracion { get; set; }
+                public string medida { get; set; }
+                public string consumodia { get; set; }
+                //public string Total { get; set; }
+                //public string Nombre { get; set; }
+                public Double Costo { get; set; }
+                public Double Venta { get; set; }
+                public Double Margen { get; set; }
+                public Double Sinceqty { get; set; }
+                public Double Qty { get; set; }
+                public string Salesince { get; set; }
+                public string ProfitSince { get; set; }
+                public string Qtycongelado { get; set; }
+                public string RecId { get; set; }
+                public string Preciocongelado { get; set; }
+                public string Qtymermas { get; set; }
+                public string Porcentajemerma { get; set; }
+                public string Qtyperdidas { get; set; }
+                public string Porcentajeperdida { get; set; }
+                public string Qtyempleado { get; set; }
+                public string Porcentajeempleado { get; set; }
+
             }
 
             public  class CocinaDetalle
@@ -143,6 +186,13 @@ namespace Respuesta
                 
             }
 
+            public class Reportess
+            {
+                public int Id { get; set; }
+                public string Orderby { get; set; }
+                public DateTime FechaFinal { get; set; }
+                public DateTime FechaInicio { get; set; }
+            }
 
 
 

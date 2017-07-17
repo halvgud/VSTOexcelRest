@@ -54,8 +54,8 @@
             this.LabelMartes = new System.Windows.Forms.Label();
             this.dgvDomingo = new System.Windows.Forms.DataGridView();
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
-            this.dgvJueves = new System.Windows.Forms.DataGridView();
             this.dgvLunes = new System.Windows.Forms.DataGridView();
+            this.dgvJueves = new System.Windows.Forms.DataGridView();
             this.btGuardar = new System.Windows.Forms.Button();
             this.label1 = new System.Windows.Forms.Label();
             this.DtpFecha = new System.Windows.Forms.DateTimePicker();
@@ -73,8 +73,8 @@
             ((System.ComponentModel.ISupportInitialize)(this.dgvSabado)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgvDomingo)).BeginInit();
             this.tableLayoutPanel1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dgvJueves)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgvLunes)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvJueves)).BeginInit();
             this.SuspendLayout();
             // 
             // cmbManual
@@ -224,7 +224,6 @@
             // 
             // dgvViernes
             // 
-            this.dgvViernes.AllowDrop = true;
             this.dgvViernes.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgvViernes.Dock = System.Windows.Forms.DockStyle.Fill;
             this.dgvViernes.EditMode = System.Windows.Forms.DataGridViewEditMode.EditOnEnter;
@@ -265,7 +264,6 @@
             // 
             // dgvSabado
             // 
-            this.dgvSabado.AllowDrop = true;
             this.dgvSabado.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgvSabado.Dock = System.Windows.Forms.DockStyle.Fill;
             this.dgvSabado.EditMode = System.Windows.Forms.DataGridViewEditMode.EditOnEnter;
@@ -316,7 +314,6 @@
             // 
             // dgvDomingo
             // 
-            this.dgvDomingo.AllowDrop = true;
             this.dgvDomingo.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgvDomingo.Dock = System.Windows.Forms.DockStyle.Fill;
             this.dgvDomingo.EditMode = System.Windows.Forms.DataGridViewEditMode.EditOnEnter;
@@ -380,17 +377,6 @@
             this.tableLayoutPanel1.Size = new System.Drawing.Size(1276, 684);
             this.tableLayoutPanel1.TabIndex = 3;
             // 
-            // dgvJueves
-            // 
-            this.dgvJueves.AllowDrop = true;
-            this.dgvJueves.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dgvJueves.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.dgvJueves.EditMode = System.Windows.Forms.DataGridViewEditMode.EditOnEnter;
-            this.dgvJueves.Location = new System.Drawing.Point(640, 206);
-            this.dgvJueves.Name = "dgvJueves";
-            this.dgvJueves.Size = new System.Drawing.Size(633, 131);
-            this.dgvJueves.TabIndex = 18;
-            // 
             // dgvLunes
             // 
             this.dgvLunes.AllowDrop = true;
@@ -411,6 +397,17 @@
             this.dgvLunes.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.dgvGenerico_KeyPress);
             this.dgvLunes.MouseDown += new System.Windows.Forms.MouseEventHandler(this.dgvGenerico_MouseDown);
             this.dgvLunes.MouseMove += new System.Windows.Forms.MouseEventHandler(this.dgvGenerico_MouseMove);
+            // 
+            // dgvJueves
+            // 
+            this.dgvJueves.AllowDrop = true;
+            this.dgvJueves.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dgvJueves.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.dgvJueves.EditMode = System.Windows.Forms.DataGridViewEditMode.EditOnEnter;
+            this.dgvJueves.Location = new System.Drawing.Point(640, 206);
+            this.dgvJueves.Name = "dgvJueves";
+            this.dgvJueves.Size = new System.Drawing.Size(633, 131);
+            this.dgvJueves.TabIndex = 18;
             // 
             // btGuardar
             // 
@@ -541,8 +538,8 @@
             ((System.ComponentModel.ISupportInitialize)(this.dgvDomingo)).EndInit();
             this.tableLayoutPanel1.ResumeLayout(false);
             this.tableLayoutPanel1.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dgvJueves)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgvLunes)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvJueves)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 

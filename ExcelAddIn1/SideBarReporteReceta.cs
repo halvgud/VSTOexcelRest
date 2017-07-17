@@ -22,6 +22,9 @@ namespace ExcelAddIn1
           
         }
 
+
+        public static DateTime FechaInicio { get; set; }
+        public static DateTime FechaFinal { get; set; }
         public class fechado
         {
             public string FechaInicio { get; set; }
@@ -40,12 +43,19 @@ namespace ExcelAddIn1
             //    Order = cbOrdenarReceta.SelectedItem.ToString()
             //}
             // ;
-
-            var datosimportar = new Respuesta.CbGenerico()
+            var msj = new MensajeDeEspera();
+            msj.Show();
+            var datosimportar = new Respuesta.Reporte.RespuestaCocina.Reportess
             {
-                Id = cbproducto.SelectedValue.ToString(),
-                Nombre = cbOrdenarReceta.SelectedValue.ToString()
+                Id = Convert.ToInt16(cbproducto.SelectedValue.ToString()) ,
+                Orderby= cbOrdenarReceta.SelectedValue.ToString(),
+                FechaFinal = Convert.ToDateTime(FechaFinal.ToString()),
+                FechaInicio = Convert.ToDateTime(FechaInicio.ToString())
+                
             };
+            
+            ThisAddIn.FechaIni =Convert.ToDateTime(FechaInicio.ToString("yyyy/MM/dd HH:mm:ss"));
+            ThisAddIn.FechaFin = Convert.ToDateTime(FechaFinal.ToString("yyyy/MM/dd HH:mm:ss"));
             var addIn = Globals.ThisAddIn;
             //me marca este erros al primer opci
 
@@ -61,7 +71,10 @@ namespace ExcelAddIn1
             {
                 BeginInvoke((MethodInvoker)(() =>
                 {
-                    addIn.ReporteCocina(y);
+                   msj.Close();
+                   addIn.ReporteCocina(y);
+
+
                 }));
             });
      
@@ -95,13 +108,10 @@ namespace ExcelAddIn1
             Opcion.EjecucionAsync(Data.ParametroProducto.Lista, x =>
             {
                 CargarComboBox(x, cbproducto);
-               
-
             });
             Opcion.EjecucionAsync(Data.ParametroReceta.Lista, x =>
             {
                 CargarComboBox(x, cbOrdenarReceta);
-                
             });
 
            

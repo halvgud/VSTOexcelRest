@@ -1058,35 +1058,35 @@ namespace ExcelAddIn1
         }
         private void btBorrarFila_Click(object sender, EventArgs e)
         {
-            //  Opcion.BorrarFila(dgvViernes);
-            ////BorrarFilaDgv(this);
-            var rowIndex = dgvViernes.CurrentCell.RowIndex;
-            var cellIndex = dgvViernes.CurrentCell.ColumnIndex;
-            var rowIndex2 = dgvDomingo.CurrentCell.RowIndex;
-            var cellIndex2 = dgvDomingo.CurrentCell.ColumnIndex;
-            //var col = pivote.Columns[pivote.CurrentCell.ColumnIndex];
-            var col2 = dgvViernes.Rows[rowIndex].Cells[cellIndex].Selected;
-            var col22 = dgvDomingo.Rows[rowIndex2].Cells[cellIndex2].Selected;
-            if (col2)
-            {
-                foreach (DataGridViewCell oneCell in dgvViernes.SelectedCells)
-                {
-                    if (oneCell.Selected)
-                        dgvViernes.Rows.RemoveAt(oneCell.RowIndex);
-                }
-            }
-            // ReSharper disable once ConditionIsAlwaysTrueOrFalse
-            else if (col22)
-            {
-                foreach (DataGridViewCell oneCell in dgvDomingo.SelectedCells)
-                {
-                    if (oneCell.Selected)
-                        dgvDomingo.Rows.RemoveAt(oneCell.RowIndex);
-                }
+             Opcion.BorrarFila(dgvSabado);
+            //////BorrarFilaDgv(this);
+            //var rowIndex = dgvViernes.CurrentCell.RowIndex;
+            //var cellIndex = dgvViernes.CurrentCell.ColumnIndex;
+            //var rowIndex2 = dgvDomingo.CurrentCell.RowIndex;
+            //var cellIndex2 = dgvDomingo.CurrentCell.ColumnIndex;
+            ////var col = pivote.Columns[pivote.CurrentCell.ColumnIndex];
+            //var col2 = dgvViernes.Rows[rowIndex].Cells[cellIndex].Selected;
+            //var col22 = dgvDomingo.Rows[rowIndex2].Cells[cellIndex2].Selected;
+            //if (col2)
+            //{
+            //    foreach (DataGridViewCell oneCell in dgvViernes.SelectedCells)
+            //    {
+            //        if (oneCell.Selected)
+            //            dgvViernes.Rows.RemoveAt(oneCell.RowIndex);
+            //    }
+            //}
+            //// ReSharper disable once ConditionIsAlwaysTrueOrFalse
+            //else if (col22)
+            //{
+            //    foreach (DataGridViewCell oneCell in dgvDomingo.SelectedCells)
+            //    {
+            //        if (oneCell.Selected)
+            //            dgvDomingo.Rows.RemoveAt(oneCell.RowIndex);
+            //    }
 
-            }
+            //}
 
-            ////if (!(col22)) return;
+            //////if (!(col22)) return;
 
         }
         private void BorrarFilaDgv(Control parent)
@@ -1139,8 +1139,11 @@ namespace ExcelAddIn1
                 if (view != null)
                 {
                     var pivote = view;
-
-                    Cocina.PlatillosMenus.TipoId =Convert.ToString(5);
+                    var fecha = DateTime.Parse((pivote.Tag as PropiedadesDgv)?.LabelFecha.Text, CultureInfo.CurrentCulture);
+                    var result = DateTime.Compare(fecha, DateTime.Now);
+                    if (result > 0)
+                    {
+                        Cocina.PlatillosMenus.TipoId =Convert.ToString(5);
                     Opcion.EjecucionAsync(Data.MenuSemanal.CargarPlatilloDiarios,
                         jsonResult =>
                         {
@@ -1163,91 +1166,91 @@ namespace ExcelAddIn1
                                 }).ToList();
                         });   
             }
-                ////////////var gridViewColumn = pivote.Columns["Congelado"];
-                ////////////if (gridViewColumn != null) gridViewColumn.Visible = true;
-                ////////////pivote.Columns["CantidadReceta"].Visible = true;
-                //////////var fecha = DateTime.Parse((pivote.Tag as PropiedadesDgv)?.LabelFecha.Text, CultureInfo.CurrentCulture);
-                //////////var result = DateTime.Compare(fecha, DateTime.Now);
-                //////////if (result > 0)
-                //////////{
-                //////////    pivote.Enabled = true;
-                //////////    pivote.DefaultCellStyle.BackColor = Color.Gainsboro;
-                //////////    Cocina.PlatillosMenus.TipoId =Convert.ToString(5);
-                //////////    Data.MenuSemanal.CargarPlatilloDiarios(z=>
-                //////////            {
-                //////////        BeginInvoke((MethodInvoker)(() =>
-                //////////        {
-                //////////            var diario = Opcion.JsonaClaseGenerica<MenuDia>(z);
+                    ////////////var gridViewColumn = pivote.Columns["Congelado"];
+                    ////////////if (gridViewColumn != null) gridViewColumn.Visible = true;
+                    ////////////pivote.Columns["CantidadReceta"].Visible = true;
+                    //////////var fecha = DateTime.Parse((pivote.Tag as PropiedadesDgv)?.LabelFecha.Text, CultureInfo.CurrentCulture);
+                    //////////var result = DateTime.Compare(fecha, DateTime.Now);
+                    //////////if (result > 0)
+                    //////////{
+                    //////////    pivote.Enabled = true;
+                    //////////    pivote.DefaultCellStyle.BackColor = Color.Gainsboro;
+                    //////////    Cocina.PlatillosMenus.TipoId =Convert.ToString(5);
+                    //////////    Data.MenuSemanal.CargarPlatilloDiarios(z=>
+                    //////////            {
+                    //////////        BeginInvoke((MethodInvoker)(() =>
+                    //////////        {
+                    //////////            var diario = Opcion.JsonaClaseGenerica<MenuDia>(z);
 
-                //////////            Lunes = new BindingList<MenuDia>(Opcion.JsonaClaseGenerica2<Respuesta.MenuSemanal>(z).Lunes);
-                //////////            Martes = new BindingList<MenuDia>(Opcion.JsonaClaseGenerica2<Respuesta.MenuSemanal>(z).Martes);
-                //////////            Miercoles = new BindingList<MenuDia>(Opcion.JsonaClaseGenerica2<Respuesta.MenuSemanal>(z).Miercoles);
-                //////////            Jueves = new BindingList<MenuDia>(Opcion.JsonaClaseGenerica2<Respuesta.MenuSemanal>(z).Jueves);
-                //////////            Viernes = new BindingList<MenuDia>(Opcion.JsonaClaseGenerica2<Respuesta.MenuSemanal>(z).Viernes);
-                //////////            Sabado = new BindingList<MenuDia>(Opcion.JsonaClaseGenerica2<Respuesta.MenuSemanal>(z).Sabado);
-                //////////            Domingo = new BindingList<MenuDia>(Opcion.JsonaClaseGenerica2<Respuesta.MenuSemanal>(z).Domingo);
-                //////////        }));
-                //////////    });
+                    //////////            Lunes = new BindingList<MenuDia>(Opcion.JsonaClaseGenerica2<Respuesta.MenuSemanal>(z).Lunes);
+                    //////////            Martes = new BindingList<MenuDia>(Opcion.JsonaClaseGenerica2<Respuesta.MenuSemanal>(z).Martes);
+                    //////////            Miercoles = new BindingList<MenuDia>(Opcion.JsonaClaseGenerica2<Respuesta.MenuSemanal>(z).Miercoles);
+                    //////////            Jueves = new BindingList<MenuDia>(Opcion.JsonaClaseGenerica2<Respuesta.MenuSemanal>(z).Jueves);
+                    //////////            Viernes = new BindingList<MenuDia>(Opcion.JsonaClaseGenerica2<Respuesta.MenuSemanal>(z).Viernes);
+                    //////////            Sabado = new BindingList<MenuDia>(Opcion.JsonaClaseGenerica2<Respuesta.MenuSemanal>(z).Sabado);
+                    //////////            Domingo = new BindingList<MenuDia>(Opcion.JsonaClaseGenerica2<Respuesta.MenuSemanal>(z).Domingo);
+                    //////////        }));
+                    //////////    });
 
 
-                //////////    //var col = new DataGridViewComboBoxColumn
-                //////////    //{
-                //////////    //    Name = "TipoRecetaDgv",
-                //////////    //    DataPropertyName = "TipoRecetaDgv",
-                //////////    //    HeaderText = @"TipoReceta",
-                //////////    //    DataSource = _tiposrecetas,
-                //////////    //    DisplayMember = "TipoReceta",
-                //////////    //    ValueMember = "TipoReceta"
-                //////////    //};
-                //////////    //var col2 = new DataGridViewComboBoxColumn
-                //////////    //{
-                //////////    //    Name = "UnidadDgv",
-                //////////    //    DataPropertyName = "UnidadDgv",
-                //////////    //    HeaderText = @"Unidad",
-                //////////    //    DataSource = _tiposunidades,
-                //////////    //    DisplayMember = "Unidad",
-                //////////    //    ValueMember = "Unidad"
-                //////////    //};
-                //////////    //pivote.Columns.Add(col);
-                //////////    //pivote.Columns.Add(col2);
-                //////////    //var propiedadesDgv = pivote.Tag as PropiedadesDgv;
-                //////////    //if (propiedadesDgv != null)
-                //////////    //    pivote.DataSource = this[propiedadesDgv.NombreDia] as BindingList<MenuDia>;
+                    //////////    //var col = new DataGridViewComboBoxColumn
+                    //////////    //{
+                    //////////    //    Name = "TipoRecetaDgv",
+                    //////////    //    DataPropertyName = "TipoRecetaDgv",
+                    //////////    //    HeaderText = @"TipoReceta",
+                    //////////    //    DataSource = _tiposrecetas,
+                    //////////    //    DisplayMember = "TipoReceta",
+                    //////////    //    ValueMember = "TipoReceta"
+                    //////////    //};
+                    //////////    //var col2 = new DataGridViewComboBoxColumn
+                    //////////    //{
+                    //////////    //    Name = "UnidadDgv",
+                    //////////    //    DataPropertyName = "UnidadDgv",
+                    //////////    //    HeaderText = @"Unidad",
+                    //////////    //    DataSource = _tiposunidades,
+                    //////////    //    DisplayMember = "Unidad",
+                    //////////    //    ValueMember = "Unidad"
+                    //////////    //};
+                    //////////    //pivote.Columns.Add(col);
+                    //////////    //pivote.Columns.Add(col2);
+                    //////////    //var propiedadesDgv = pivote.Tag as PropiedadesDgv;
+                    //////////    //if (propiedadesDgv != null)
+                    //////////    //    pivote.DataSource = this[propiedadesDgv.NombreDia] as BindingList<MenuDia>;
 
-                //////////    //for (var x = 0; x < pivote.Rows.Count; x++)
-                //////////    //{
-                //////////    //    if (pivote.Rows.Count > 0 & Convert.ToString(pivote.Rows[x].Cells[1].Value) != "" && pivote.Rows[x].Cells[1].Value != null)
-                //////////    //    {
-                //////////    //        var dato = Convert.ToString(pivote.Rows[x].Cells["Platillo"].Value.ToString());
-                //////////    //        char[] separador = { '(', ')' };
-                //////////    //        var valor = Convert.ToString(dato).Split(separador);
-                //////////    //        var clave = valor[1];
-                //////////    //        Cocina.PlatillosMenus.Clave = clave;
-                //////////    //        var i1 = x;
-                //////////    //        Data.MenuSemanal.ExistenciaCongelado(y =>
-                //////////    //        {
-                //////////    //            BeginInvoke((MethodInvoker)(() =>
-                //////////    //            {
-                //////////    //                var dd = Opcion.JsonaClaseGenerica<PlatilloReceta>(y).Congelado;
-                //////////    //                pivote.Rows[i1].Cells["Congelado"].Value = dd;
-                //////////    //                pivote.Rows[i1].Cells["Congelado"].Style.BackColor = Color.Aqua;
-                //////////    //            }));
-                //////////    //        });
-                //////////    //    }
-                //////////    //}
-                //}
-                //else
-                //{
-                //    pivote.DefaultCellStyle.BackColor = Color.Yellow;
-                //}
-                //pivote.Rows.Clear();
-                //foreach (DataGridViewRow row in pivote.Rows)
-                //{
-                //    pivote.Rows[row.Index].Cells["Congelado"].Style.BackColor = Color.Aqua;
-                //}
-                //btAgregarSemana.Enabled = false;
-                //cbDias.Text = "";
-            
+                    //////////    //for (var x = 0; x < pivote.Rows.Count; x++)
+                    //////////    //{
+                    //////////    //    if (pivote.Rows.Count > 0 & Convert.ToString(pivote.Rows[x].Cells[1].Value) != "" && pivote.Rows[x].Cells[1].Value != null)
+                    //////////    //    {
+                    //////////    //        var dato = Convert.ToString(pivote.Rows[x].Cells["Platillo"].Value.ToString());
+                    //////////    //        char[] separador = { '(', ')' };
+                    //////////    //        var valor = Convert.ToString(dato).Split(separador);
+                    //////////    //        var clave = valor[1];
+                    //////////    //        Cocina.PlatillosMenus.Clave = clave;
+                    //////////    //        var i1 = x;
+                    //////////    //        Data.MenuSemanal.ExistenciaCongelado(y =>
+                    //////////    //        {
+                    //////////    //            BeginInvoke((MethodInvoker)(() =>
+                    //////////    //            {
+                    //////////    //                var dd = Opcion.JsonaClaseGenerica<PlatilloReceta>(y).Congelado;
+                    //////////    //                pivote.Rows[i1].Cells["Congelado"].Value = dd;
+                    //////////    //                pivote.Rows[i1].Cells["Congelado"].Style.BackColor = Color.Aqua;
+                    //////////    //            }));
+                    //////////    //        });
+                    //////////    //    }
+                    //////////    //}
+                    //}
+                    //else
+                    //{
+                    //    pivote.DefaultCellStyle.BackColor = Color.Yellow;
+                    //}
+                    //pivote.Rows.Clear();
+                    //foreach (DataGridViewRow row in pivote.Rows)
+                    //{
+                    //    pivote.Rows[row.Index].Cells["Congelado"].Style.BackColor = Color.Aqua;
+                    //}
+                    //btAgregarSemana.Enabled = false;
+                    //cbDias.Text = "";
+                }
                 else
                 {
                   PlatillosDiarios(c);

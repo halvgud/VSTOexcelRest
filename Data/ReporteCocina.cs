@@ -10,6 +10,8 @@ namespace Data
    public class ReporteCocina
     {
         public static Respuesta.Receta.Congelados Cccongelados;
+
+       
   
 
        public static Respuesta.Receta.ImagenAndProcess ImagenAndProcess;
@@ -48,7 +50,7 @@ namespace Data
             }
         }
         /*aqui tu 2do parametro no debe ser CbGenerico*/
-        public static void VersionExtendida(Action<IRestResponse> callback, Respuesta.CbGenerico filtroGenerico )
+        public static void VersionExtendida(Action<IRestResponse> callback, Respuesta.Reporte.RespuestaCocina.Reportess filtroGenerico )
         {
             try
             {
@@ -109,7 +111,7 @@ namespace Data
         }
 
 
-        public static void DDetalleReceta(Action<IRestResponse> callback, string clave)
+        public static void DDetalleReceta(Action<IRestResponse> callback, Cocina.DetalleCocina.ReporteDetalle clave)
         {
             try
             {
@@ -118,7 +120,7 @@ namespace Data
                     Method.POST);
                 rest.Peticion.AddHeader(Constantes.Http.ObtenerTipoDeContenido,
                     Constantes.Http.TipoDeContenido.Json);
-                rest.Peticion.AddJsonBody(new {clave});// la peticion debe ser un objeto
+                rest.Peticion.AddJsonBody(clave);// la peticion debe ser un objeto
                 rest.Cliente.ExecuteAsync(rest.Peticion, response =>
                 {
                     switch (response.StatusCode)

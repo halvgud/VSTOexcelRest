@@ -115,6 +115,12 @@ namespace ExcelAddIn1
            
         }
 
+        public void Reportes(Office.IRibbonControl control)
+        {
+            ThisAddIn.ReportessCustomTaskPane.Visible = true;
+        }
+
+
         public void CapturaCongelado(Office.IRibbonControl control)
         {
             // seguir mañana

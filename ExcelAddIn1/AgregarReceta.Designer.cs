@@ -113,6 +113,7 @@
             this.chDiario = new System.Windows.Forms.CheckBox();
             this.lbCantidadDiario = new System.Windows.Forms.Label();
             this.tabCon = new System.Windows.Forms.TabControl();
+            this.btActualizacion = new System.Windows.Forms.Button();
             this.panel1.SuspendLayout();
             this.menuStrip1.SuspendLayout();
             this.tabPage2.SuspendLayout();
@@ -125,6 +126,7 @@
             // 
             // panel1
             // 
+            this.panel1.Controls.Add(this.btActualizacion);
             this.panel1.Controls.Add(this.btAyudar);
             this.panel1.Controls.Add(this.btGuardar);
             this.panel1.Dock = System.Windows.Forms.DockStyle.Bottom;
@@ -141,6 +143,7 @@
             this.btAyudar.TabIndex = 60;
             this.btAyudar.Text = "Ayuda";
             this.btAyudar.UseVisualStyleBackColor = true;
+            this.btAyudar.Visible = false;
             // 
             // btGuardar
             // 
@@ -284,6 +287,7 @@
             // 
             // tbDescripcionBE
             // 
+            this.tbDescripcionBE.BackColor = System.Drawing.SystemColors.InactiveCaption;
             this.tbDescripcionBE.Location = new System.Drawing.Point(490, 6);
             this.tbDescripcionBE.Name = "tbDescripcionBE";
             this.tbDescripcionBE.ReadOnly = true;
@@ -374,11 +378,11 @@
             this.tbPesoLitroBE.Name = "tbPesoLitroBE";
             this.tbPesoLitroBE.Size = new System.Drawing.Size(100, 20);
             this.tbPesoLitroBE.TabIndex = 30;
-            this.tbPesoLitroBE.MaskInputRejected += new System.Windows.Forms.MaskInputRejectedEventHandler(this.tbPesoLitroBE_MaskInputRejected);
             this.tbPesoLitroBE.TextChanged += new System.EventHandler(this.tbPesoLitroBE_TextChanged);
             // 
             // tbMargenConPrecioBE
             // 
+            this.tbMargenConPrecioBE.BackColor = System.Drawing.SystemColors.InactiveCaption;
             this.tbMargenConPrecioBE.Location = new System.Drawing.Point(553, 284);
             this.tbMargenConPrecioBE.Name = "tbMargenConPrecioBE";
             this.tbMargenConPrecioBE.Size = new System.Drawing.Size(100, 20);
@@ -388,10 +392,13 @@
             // 
             // tbPrecioBE
             // 
+            this.tbPrecioBE.BackColor = System.Drawing.SystemColors.InactiveCaption;
             this.tbPrecioBE.Location = new System.Drawing.Point(553, 317);
             this.tbPrecioBE.Name = "tbPrecioBE";
+            this.tbPrecioBE.ReadOnly = true;
             this.tbPrecioBE.Size = new System.Drawing.Size(100, 20);
             this.tbPrecioBE.TabIndex = 34;
+            this.tbPrecioBE.Click += new System.EventHandler(this.tbPrecioBE_Click);
             this.tbPrecioBE.TextChanged += new System.EventHandler(this.tbPrecioBE_TextChanged);
             // 
             // tbCostoElaboracionBE
@@ -987,6 +994,17 @@
             this.tabCon.TabIndex = 2;
             this.tabCon.SelectedIndexChanged += new System.EventHandler(this.tabCon_SelectedIndexChanged);
             // 
+            // btActualizacion
+            // 
+            this.btActualizacion.BackColor = System.Drawing.SystemColors.Highlight;
+            this.btActualizacion.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btActualizacion.Location = new System.Drawing.Point(520, 7);
+            this.btActualizacion.Name = "btActualizacion";
+            this.btActualizacion.Size = new System.Drawing.Size(139, 35);
+            this.btActualizacion.TabIndex = 68;
+            this.btActualizacion.Text = "Recetas Actualizar";
+            this.btActualizacion.UseVisualStyleBackColor = false;
+            // 
             // AgregarReceta
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -1104,5 +1122,6 @@
         private System.Windows.Forms.CheckBox chDiario;
         private System.Windows.Forms.Label lbCantidadDiario;
         private System.Windows.Forms.TabControl tabCon;
+        private System.Windows.Forms.Button btActualizacion;
     }
 }

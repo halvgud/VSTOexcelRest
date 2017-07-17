@@ -161,11 +161,11 @@
     <Setting Name="TipoUnidades" Type="System.String" Scope="Application">
       <Value Profile="(Default)">receta/unidad</Value>
     </Setting>
+    <Setting Name="EditarMenuSemanal" Type="System.String" Scope="User">
+      <Value Profile="(Default)">receta/EditarMenuActual</Value>
+    </Setting>
     <Setting Name="DiaAntes" Type="System.String" Scope="Application">
       <Value Profile="(Default)">/receta/Diario</Value>
-    </Setting>
-    <Setting Name="ListaIngredientesMenu1" Type="System.String" Scope="Application">
-      <Value Profile="(Default)">/receta/IngredientesPlatillos</Value>
     </Setting>
     <Setting Name="DiaAntes1" Type="System.String" Scope="Application">
       <Value Profile="(Default)">/receta/Diario</Value>
@@ -205,6 +205,12 @@
     </Setting>
     <Setting Name="CargarRecetasDiarias" Type="System.String" Scope="User">
       <Value Profile="(Default)">receta/RecetasDiarias</Value>
+    </Setting>
+    <Setting Name="RepoCongeladoFechado" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">reporte/ReporteCongeladosFechado</Value>
+    </Setting>
+    <Setting Name="ListaIngredientesMenu1" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">/receta/IngredientesPlatillos</Value>
     </Setting>
   </Settings>
 </SettingsFile>

@@ -80,7 +80,7 @@ namespace ExcelAddIn1
                 tipoUnidad.Tag = json;
             }));
         }
-        #endregion 
+        #endregion
         private void tbClaveReceta_TextChanged(object sender, EventArgs e)
         {
             btGuardar.Enabled = ValidarCampos();
@@ -91,8 +91,9 @@ namespace ExcelAddIn1
         }
         private void AgregarReceta_Load(object sender, EventArgs e)
         {
-            ActiveControl = tbCodigo;
-            tbCodigo.Focus();
+            ActiveControl = tbBuscarReceta;
+            tbBuscarReceta.Focus();
+            tabCon.TabPages.Remove(tabPage1);
         }
         private void btBuscar_Click(object sender, EventArgs e)
         {
@@ -111,7 +112,7 @@ namespace ExcelAddIn1
                 ActualizarMargen = ActualizarMargen,
                 CantidadElaboracion = tbCantidadElaboracion,
                 UnidadElaboracion = cbUnidadElaboracion
-            });
+            });  
         }
         private void tbCostoElaboracion_KeyPress(object sender, KeyPressEventArgs e)
         {
@@ -152,7 +153,7 @@ namespace ExcelAddIn1
         }
         private void tbMargenConPrecioBE_TextChanged(object sender, EventArgs e)
         {
-            if (!Opcion.ValidarDouble(tbMargenConPrecioBE)) return;
+            //if (!Opcion.ValidarDouble(tbMargenConPrecioBE)) return;
             ActualizarPrecio(new Inputs
             {
                 Precio = tbPrecioBE,
@@ -269,16 +270,16 @@ namespace ExcelAddIn1
                 var cantidad = Convert.ToDouble(inputs.Ingredientes.Rows[i].Cells[4].Value);
                 sum += (costo * cantidad);
             }
-            if (inputs.MargenConPrecio.Text != string.Empty)
-            {
-                inputs.Precio.Text = (Math.Round(((sum) +
-                                                    (inputs.CostoElaboracion.Text != string.Empty
-                                                        ? Convert.ToDouble(inputs.CostoElaboracion.Text)
-                                                        : 0))
-                                                        /
-                                                    (1 - (Convert.ToDouble(inputs.MargenConPrecio.Text) / 100)), 2))
-                    .ToString(CultureInfo.InvariantCulture);
-            }
+            //if (inputs.MargenConPrecio.Text != string.Empty)
+            //{
+            //    inputs.Precio.Text = (Math.Round(((sum) +
+            //                                        (inputs.CostoElaboracion.Text != string.Empty
+            //                                            ? Convert.ToDouble(inputs.CostoElaboracion.Text)
+            //                                            : 0))
+            //                                            /
+            //                                        (1 - (Convert.ToDouble(inputs.MargenConPrecio.Text) / 100)), 2))
+            //        .ToString(CultureInfo.InvariantCulture);
+            //}
             ValidarBusquedaVacia();
         }
         private void ActualizarMargen(Inputs inputs)
@@ -407,14 +408,7 @@ namespace ExcelAddIn1
                     #region edicion de Presupuesto
                     MessageBox.Show(this, @"La actualizacion de la informacion afectara la base de datos de SICAR");
 
-                    if (tbPesoLitroBE.Text=="")
-                    {
-                        tbPesoLitroBE.Text = @"0";
-                    }
-                    else
-                    {
-                        tbPesoLitroBE.Text = tbPesoLitroBE.Text;
-                    }
+                    tbPesoLitroBE.Text = tbPesoLitroBE.Text=="" ? @"0" : tbPesoLitroBE.Text;
                     
 
                     //var checadodiario = chDiarioBE.Checked ? 1 : 0;
@@ -478,7 +472,7 @@ namespace ExcelAddIn1
                     #region actualiza Ruta de imagen e Instrucciones
                     long a = int.Parse(DateTime.Now.ToString("yyyyMMdd"));
 
-                    if (MessageBox.Show(@"Desea modificar la imagen", @"Aviso", MessageBoxButtons.YesNo,
+                    if (MessageBox.Show(@"Desea agregar la imagen de la receta", @"Aviso", MessageBoxButtons.YesNo,
                         MessageBoxIcon.Question) == DialogResult.Yes)
                     {
                         if (Local.Receta.Ruta==null)
@@ -1007,19 +1001,19 @@ namespace ExcelAddIn1
         }
         private void tbMargenConPrecio_Validating(object sender, System.ComponentModel.CancelEventArgs e)
         {
-            if (tbMargenConPrecio.Text == "") return;
-            if (!(Convert.ToDouble(tbMargenConPrecio.Text) < 30)) return;
-            MessageBox.Show(@"El margen no puede ser menor al 30%");
-            tbMargenConPrecio.Clear();
-            tbMargenConPrecio.Focus();
+            //if (tbMargenConPrecio.Text == "") return;
+            //if (!(Convert.ToDouble(tbMargenConPrecio.Text) < 30)) return;
+            //MessageBox.Show(@"El margen no puede ser menor al 30%");
+            //tbMargenConPrecio.Clear();
+            //tbMargenConPrecio.Focus();
         }
         private void tbMargenConPrecioBE_Validating(object sender, System.ComponentModel.CancelEventArgs e)
         {
-            if (tbMargenConPrecioBE.Text == "") return;
-            if (!(Convert.ToDouble(tbMargenConPrecioBE.Text) < 30)) return;
-            MessageBox.Show(@"El margen no puede ser menor al 30%");
-            tbMargenConPrecioBE.Clear();
-            tbMargenConPrecioBE.Focus();
+            //if (Convert.ToDouble(tbMargenConPrecioBE.Text) <= 0)
+            //{
+            //    MessageBox.Show(@"La receta no cuenta con un margen, revisar los costos");
+
+            //}
         }
         private void tbCostoEstimado_TextChanged(object sender, EventArgs e)
         {
@@ -1076,7 +1070,6 @@ namespace ExcelAddIn1
                 CantidadElaboracion = tbCantidadElaboracionBE,
                 UnidadElaboracion = cbUnidadElaboracionBE
             });
-
         }
         private void dgvIngredientesBusqueda_CurrentCellDirtyStateChanged(object sender, EventArgs e)
         {
@@ -1100,35 +1093,36 @@ namespace ExcelAddIn1
         {
             btGuardar.Enabled = ValidarCampos();
         }
-
         private void txtinstruccionesBE_TextChanged(object sender, EventArgs e)
         {
             btGuardar.Enabled = ValidarCamposBe();
         }
         private void tbCostoElaboracionBE_TextChanged(object sender, EventArgs e)
         {
+            if (!Opcion.ValidarDouble(tbCostoEstimadoBE)) return;
+            ActualizarMargen(new Inputs
+            {
+                MargenConPrecio = tbMargenConPrecioBE,
+                Ingredientes = dgvIngredientesBusqueda,
+                CostoElaboracion = tbCostoElaboracionBE,
+                Precio = tbPrecioBE,
+                CostoEstimado = tbCostoEstimadoBE,
+                ActualizarMargen = ActualizarMargen
+            });
             btGuardar.Enabled = ValidarCamposBe();
         }
         private void tbPesoLitroBE_TextChanged(object sender, EventArgs e)
         {
             btGuardar.Enabled = true;
         }
-
         private void tbBuscarReceta_TextChanged(object sender, EventArgs e)
         {
             btBuscarClave.Enabled = ValidarBusquedaVacia2();
         }
-
         private void tabCon_SelectedIndexChanged(object sender, EventArgs e)
         {
             btGuardar.Text = tabCon.SelectedTab == tabCon.TabPages[1] ? @"Guardar" : @"Guardar y Actualizar";
         }
-
-        private void tbPesoLitroBE_MaskInputRejected(object sender, MaskInputRejectedEventArgs e)
-        {
-
-        }
-
         private void dgvIngredientesBusqueda_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
             dgvIngredientesBusqueda.Rows[e.RowIndex].Cells[0].ReadOnly = true;
@@ -1154,6 +1148,10 @@ namespace ExcelAddIn1
             {
                 dgvIngredientesBusqueda.Rows[e.RowIndex].Cells["Cantidad"].Value = @"1";
             }
+        }
+        private void tbPrecioBE_Click(object sender, EventArgs e)
+        {
+            MessageBox.Show(@"Si deseas modificar el precio, realizalo desde SICAR");
         }
     }
 }

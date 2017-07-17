@@ -185,21 +185,12 @@
     can be found.
   -->
   <ItemGroup>
-<<<<<<< HEAD
-=======
-    <Compile Include="Acceso.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Acceso.Designer.cs">
-      <DependentUpon>Acceso.cs</DependentUpon>
-    </Compile>
     <Compile Include="Actualizar Precios.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Actualizar Precios.Designer.cs">
       <DependentUpon>Actualizar Precios.cs</DependentUpon>
     </Compile>
->>>>>>> origin/master
     <Compile Include="AgregarReceta.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -270,15 +261,9 @@
     <Compile Include="Properties\AssemblyInfo.cs">
       <SubType>Code</SubType>
     </Compile>
-<<<<<<< HEAD
-=======
-    <EmbeddedResource Include="Acceso.resx">
-      <DependentUpon>Acceso.cs</DependentUpon>
-    </EmbeddedResource>
     <EmbeddedResource Include="Actualizar Precios.resx">
       <DependentUpon>Actualizar Precios.cs</DependentUpon>
     </EmbeddedResource>
->>>>>>> origin/master
     <EmbeddedResource Include="AgregarReceta.resx">
       <DependentUpon>AgregarReceta.cs</DependentUpon>
     </EmbeddedResource>
@@ -406,7 +391,7 @@
     </ManifestKeyFile>
   </PropertyGroup>
   <PropertyGroup>
-    <ManifestCertificateThumbprint>0B88C84ADAABD274015CFEC1FDE2A4BB51A8044B</ManifestCertificateThumbprint>
+    <ManifestCertificateThumbprint>DA9EB162053F806985CB0A1D463B99A5EECC8285</ManifestCertificateThumbprint>
   </PropertyGroup>
   <PropertyGroup>
     <RunPostBuildEvent>Always</RunPostBuildEvent>

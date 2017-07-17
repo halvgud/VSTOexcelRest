@@ -667,17 +667,11 @@ namespace Herramienta.Properties {
         
         [global::System.Configuration.ApplicationScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-<<<<<<< HEAD
-        [global::System.Configuration.DefaultSettingValueAttribute("/receta/IngredientesPlatillos")]
-        public string ListaIngredientesMenu1 {
-            get {
-                return ((string)(this["ListaIngredientesMenu1"]));
-=======
         [global::System.Configuration.DefaultSettingValueAttribute("/reporte/ActReceta")]
         public string RepActReceta {
             get {
                 return ((string)(this["RepActReceta"]));
->>>>>>> origin/master
+
             }
         }
     }

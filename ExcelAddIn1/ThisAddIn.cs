@@ -162,6 +162,7 @@ namespace ExcelAddIn1
                         int letras = listCocina.Ingredientes[i].Nombre.Length;
                         ((excelazo.Range["A"+x])).Value2 = listCocina.Ingredientes[i].Nombre;
                         excelazo.Range["A" + x].Rows.AutoFit();
+                        
                         //excelazo.Range["A"+x].Borders[Excel.XlBordersIndex.xlEdgeBottom].LineStyle = Excel.XlLineStyle.xlContinuous;
 
                         //if (letras >= z)
@@ -178,24 +179,26 @@ namespace ExcelAddIn1
                         //excelazo.Range["C" + x].Borders[Excel.XlBordersIndex.xlEdgeBottom].LineStyle = Excel.XlLineStyle.xlContinuous;
                         //excelazo.Range["C" + x].Columns.AutoFit();
                         ((excelazo.Range["D" + x])).Value2 = listCocina.Ingredientes[i].Costo;
+                        excelazo.Range["A" + x].NumberFormat = "$ #,##0.00";
                         //excelazo.Range["D" + x].Borders[Excel.XlBordersIndex.xlEdgeBottom].LineStyle = Excel.XlLineStyle.xlContinuous;
                         //excelazo.Range["D" + x].Columns.AutoFit();
-                        
+
                         x++;
                         z = letras;
                     }
                    // var costo = ;
-                    excelazo.Range["D21"].Formula ="=SUM(D8:D20)" ;
+                    excelazo.Range["D21"].Formula ="=SUM(D8:D20)";
                     excelazo.Range["F10"].Rows.AutoFit();
                    var w= excelazo.Range["L10"].Left+10;
                     var q = excelazo.Range["L10"].Top+10;
+
                     if (foto == null)
                     {
                         foto = @"\\mercattoserver\Recetario\img\sinimagen.jpg";
                     }
                  
                     excelazo.Shapes.AddPicture(foto, Microsoft.Office.Core.MsoTriState.msoFalse, Microsoft.Office.Core.MsoTriState.msoCTrue, w, q, 180, 180);
-                    //excelazo.Range["D23"].Rows.AutoFit();
+                    excelazo.Range["D21"].Rows.AutoFit();
                     #endregion
                     
                   

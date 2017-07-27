@@ -56,6 +56,7 @@ namespace ExcelAddIn1
             
             ThisAddIn.FechaIni =Convert.ToDateTime(FechaInicio.ToString("yyyy/MM/dd HH:mm:ss"));
             ThisAddIn.FechaFin = Convert.ToDateTime(FechaFinal.ToString("yyyy/MM/dd HH:mm:ss"));
+            ThisAddIn.FechaDateTime=DateTime.Now;
             var addIn = Globals.ThisAddIn;
             //me marca este erros al primer opci
 

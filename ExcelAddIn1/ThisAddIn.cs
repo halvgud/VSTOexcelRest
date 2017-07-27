@@ -8,6 +8,7 @@ using System.Windows.Forms;
 using Herramienta.Config;
 using Excel = Microsoft.Office.Interop.Excel;
 using Herramienta;
+using Microsoft.Office.Tools;
 using Microsoft.Office.Tools.Excel;
 using Respuesta;
 using RestSharp;
@@ -19,6 +20,8 @@ namespace ExcelAddIn1
 
         public static DateTime FechaIni { get; set; }
         public static DateTime FechaFin { get; set; }
+
+        public static  DateTime FechaDateTime { get; set; }
         public static string foto { get; set; }
         class Reportes
         {
@@ -128,7 +131,7 @@ namespace ExcelAddIn1
                     excelazo.Range["F6:N6"].Interior.Color = ColorTranslator.ToOle(Color.Peru);
                     excelazo.Range["F9:N9"].Interior.Color = ColorTranslator.ToOle(Color.Peru);
                     excelazo.Range["B7:D7"].Interior.Color = ColorTranslator.ToOle(Color.Peru);
-                    excelazo.Range["C23"].Interior.Color = ColorTranslator.ToOle(Color.Peru);
+                    excelazo.Range["C21"].Interior.Color = ColorTranslator.ToOle(Color.Peru);
                     //excelazo.Range["M7"].NumberFormat = "##.## %";
                     
                     if (excelazo == null) return;
@@ -159,6 +162,7 @@ namespace ExcelAddIn1
                         int letras = listCocina.Ingredientes[i].Nombre.Length;
                         ((excelazo.Range["A"+x])).Value2 = listCocina.Ingredientes[i].Nombre;
                         excelazo.Range["A" + x].Rows.AutoFit();
+                        
                         //excelazo.Range["A"+x].Borders[Excel.XlBordersIndex.xlEdgeBottom].LineStyle = Excel.XlLineStyle.xlContinuous;
 
                         //if (letras >= z)
@@ -175,20 +179,26 @@ namespace ExcelAddIn1
                         //excelazo.Range["C" + x].Borders[Excel.XlBordersIndex.xlEdgeBottom].LineStyle = Excel.XlLineStyle.xlContinuous;
                         //excelazo.Range["C" + x].Columns.AutoFit();
                         ((excelazo.Range["D" + x])).Value2 = listCocina.Ingredientes[i].Costo;
+                        excelazo.Range["A" + x].NumberFormat = "$ #,##0.00";
                         //excelazo.Range["D" + x].Borders[Excel.XlBordersIndex.xlEdgeBottom].LineStyle = Excel.XlLineStyle.xlContinuous;
                         //excelazo.Range["D" + x].Columns.AutoFit();
-                        
+
                         x++;
                         z = letras;
                     }
                    // var costo = ;
-                    excelazo.Range["D23"].Formula ="=SUM(D8:D22)" ;
+                    excelazo.Range["D21"].Formula ="=SUM(D8:D20)";
                     excelazo.Range["F10"].Rows.AutoFit();
                    var w= excelazo.Range["L10"].Left+10;
                     var q = excelazo.Range["L10"].Top+10;
 
+                    if (foto == null)
+                    {
+                        foto = @"\\mercattoserver\Recetario\img\sinimagen.jpg";
+                    }
+                 
                     excelazo.Shapes.AddPicture(foto, Microsoft.Office.Core.MsoTriState.msoFalse, Microsoft.Office.Core.MsoTriState.msoCTrue, w, q, 180, 180);
-                    //excelazo.Range["D23"].Rows.AutoFit();
+                    excelazo.Range["D21"].Rows.AutoFit();
                     #endregion
                     
                   
@@ -410,6 +420,7 @@ namespace ExcelAddIn1
         //template recetario
         public void ReporteCocina(IRestResponse restResponse)
         {
+           
             Application.ScreenUpdating = false;
             var rrg = Opcion.JsonaListaGenerica<Reporte.RespuestaCocina.Ccocinadetalle>(restResponse);
             var oReportWs = InicializarExcelConTemplate("ReporterCocina");
@@ -421,6 +432,7 @@ namespace ExcelAddIn1
             _reporte.Range["A3:X" + rowcount].Borders[Excel.XlBordersIndex.xlEdgeRight].LineStyle = Excel.XlLineStyle.xlContinuous;
             _reporte.Range["A3:X" + rowcount].Borders[Excel.XlBordersIndex.xlEdgeTop].LineStyle = Excel.XlLineStyle.xlContinuous;
             _reporte.Range["A3:X" + rowcount].Borders[Excel.XlBordersIndex.xlEdgeBottom].LineStyle = Excel.XlLineStyle.xlContinuous;
+            _reporte.Range["B1"].Value2 = FechaDateTime;
             //_reporte.Range["O3:P" + rowcount].NumberFormat = "$ #,##0.00";
             //_reporte.Range["O3:O" + rowcount].NumberFormat= "$ #,##0.00";
             _reporte.Range["R3:R" + rowcount].NumberFormat = "$ #,##0.00";
@@ -431,8 +443,8 @@ namespace ExcelAddIn1
             //_reporte.Range["A3:O" + rowcount].HorizontalAlignment = Excel.XlHAlign.xlHAlignCenter;
             _reporte.Range["A3:X" + rowcount].Borders.Color = Color.Black;
             _reporte.Range["A3:X" + rowcount].Font.Size = 8;
-            _reporte.Range["A2:Z2"].Interior.Color = ColorTranslator.ToOle(Color.Orange);
-            _reporte.Range["S1:Z1"].Interior.Color = ColorTranslator.ToOle(Color.Orange);
+            _reporte.Range["A2:X2"].Interior.Color = ColorTranslator.ToOle(Color.Orange);
+            _reporte.Range["Q1:X1"].Interior.Color = ColorTranslator.ToOle(Color.Orange);
             _reporte.Range["K3:K"+  rowcount].Interior.Color = ColorTranslator.ToOle(Color.Yellow);
             _reporte.Range["L3:L" + rowcount].Interior.Color = ColorTranslator.ToOle(Color.LawnGreen);
             _reporte.Range["O3:P" + rowcount].Interior.Color = ColorTranslator.ToOle(Color.HotPink);

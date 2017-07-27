@@ -671,6 +671,7 @@ namespace Herramienta.Properties {
         public string RepActReceta {
             get {
                 return ((string)(this["RepActReceta"]));
+<<<<<<< HEAD
             }
         }
         
@@ -698,6 +699,9 @@ namespace Herramienta.Properties {
         public string BuscarRecetaArticulos {
             get {
                 return ((string)(this["BuscarRecetaArticulos"]));
+=======
+
+>>>>>>> origin/master
             }
         }
     }

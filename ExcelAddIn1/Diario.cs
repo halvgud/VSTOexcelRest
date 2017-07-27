@@ -358,7 +358,7 @@ namespace ExcelAddIn1
                     {
                         EstadoId = 1,
                         ArtId = dgDiario.CurrentRow.Cells[0].Value.ToString(),
-                        Cantidad = Convert.ToDouble(txtcongelados.Text),
+                       // Cantidad = //Convert.ToDouble(txtcongelados.Text),
                         Clave = dgDiario.CurrentRow.Cells[1].Value.ToString(),
                         Platillo = dgDiario.CurrentRow.Cells[2].Value.ToString(),
                         CantidadCocina = Convert.ToDouble(dgDiario.CurrentRow.Cells["CC"].Value),
@@ -372,7 +372,7 @@ namespace ExcelAddIn1
                     {
                         EstadoId = 2,
                         ArtId = dgDiario.CurrentRow.Cells[0].Value.ToString(),
-                        Cantidad = Convert.ToDouble(txtmerma.Text),
+                        //Cantidad = Convert.ToDouble(txtmerma.Text),
                         Clave = dgDiario.CurrentRow.Cells[1].Value.ToString(),
                         Platillo = dgDiario.CurrentRow.Cells[2].Value.ToString(),
                         CantidadCocina = Convert.ToDouble(dgDiario.CurrentRow.Cells["CC"].Value),
@@ -385,7 +385,7 @@ namespace ExcelAddIn1
                     {
                         EstadoId = 4,
                         ArtId = dgDiario.CurrentRow.Cells[0].Value.ToString(),
-                        Cantidad = Convert.ToDouble(txtreventa.Text),
+                       // Cantidad = Convert.ToDouble(txtreventa.Text),
                         Clave = dgDiario.CurrentRow.Cells[1].Value.ToString(),
                         Platillo = dgDiario.CurrentRow.Cells[2].Value.ToString(),
                         CantidadCocina = Convert.ToDouble(dgDiario.CurrentRow.Cells["CC"].Value),
@@ -421,46 +421,46 @@ namespace ExcelAddIn1
 
         private void rbcongelado_CheckedChanged(object sender, EventArgs e)
         {
-            txtcongelados.Enabled = true;
-            txtcongelados.Focus();
-            txtcongelados.Visible = true;
-            txtmerma.Text = "";
-            txtmerma.Visible = false;
-            txtreventa.Text = "";
-            txtreventa.Visible = false;
-            btguardardiario.Enabled = Validar();
+            //txtcongelados.Enabled = true;
+            //txtcongelados.Focus();
+            //txtcongelados.Visible = true;
+            //txtmerma.Text = "";
+            //txtmerma.Visible = false;
+            //txtreventa.Text = "";
+            //txtreventa.Visible = false;
+           // btguardardiario.Enabled = Validar();
 
         }
 
         private void rbmerma_CheckedChanged(object sender, EventArgs e)
         {
-            txtmerma.Enabled = true;
-            txtmerma.Focus();
-            txtmerma.Visible = true;
-            txtcongelados.Text = "";
-            txtcongelados.Visible = false;
-            txtreventa.Text = "";
-            txtreventa.Visible = false;
-            btguardardiario.Enabled = Validar();
+            //txtmerma.Enabled = true;
+            //txtmerma.Focus();
+            //txtmerma.Visible = true;
+            //txtcongelados.Text = "";
+            //txtcongelados.Visible = false;
+            //txtreventa.Text = "";
+            //txtreventa.Visible = false;
+           // btguardardiario.Enabled = Validar();
         }
 
         private void rbreventa_CheckedChanged(object sender, EventArgs e)
         {
-            txtreventa.Enabled = true;
-            txtreventa.Focus();
-            txtreventa.Visible = true;
-            txtcongelados.Text = "";
-            txtcongelados.Visible = false;
-            txtmerma.Text = "";
-            txtmerma.Visible = false;
-            btguardardiario.Enabled = Validar();
+            //txtreventa.Enabled = true;
+            //txtreventa.Focus();
+            //txtreventa.Visible = true;
+            //txtcongelados.Text = "";
+            //txtcongelados.Visible = false;
+            //txtmerma.Text = "";
+            //txtmerma.Visible = false;
+            //btguardardiario.Enabled = Validar();
             
         }
 
-        private bool Validar()
-        {
-            return (txtreventa.Focus() == true || txtcongelados.Focus() == true || txtmerma.Focus() == true);
-        }
+        //private bool Validar()
+        //{
+        //    //return (txtreventa.Focus() == true || txtcongelados.Focus() == true || txtmerma.Focus() == true);
+        //}
 
         private void dgreventa_CellValueChanged(object sender, DataGridViewCellEventArgs e)
         {

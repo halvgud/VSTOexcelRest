@@ -180,11 +180,7 @@ namespace Respuesta
             public string Platillo { get; set; }
             public double Cantidad { get; set; } 
         }
-<<<<<<< HEAD
-    
 
-=======
->>>>>>> 081402c04621408aae5702319c9d8fa83a6b9e2c
     }
 
     public class Agregarcongelados/* y esta clase para que es? para que hay mande los datos que se van a agregar  ..... te refieres a la de congelados si mmmmm y que los datos los puedas cambiar en el data */

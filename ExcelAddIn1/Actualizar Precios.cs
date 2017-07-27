@@ -12,12 +12,12 @@ namespace ExcelAddIn1
         {
             InitializeComponent();
         }
-<<<<<<< HEAD
+
         public List<Respuesta.Reporte.RespuestaCocina.RepoActRec> _ListaXR;
         public List<Respuesta.Receta.IngredientesRecetaPrecio> _ListIngredientesRecetaPrecios;
-=======
+
         public List<Respuesta.Reporte.RespuestaCocina.RepoActRec> ListaXr;
->>>>>>> 081402c04621408aae5702319c9d8fa83a6b9e2c
+
         private void Actualizar_Precios_Load(object sender, EventArgs e)
         {
             Opcion.EjecucionAsync(Data.Reporte.Rep_Act_Receta, jsonResult =>

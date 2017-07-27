@@ -111,6 +111,35 @@ namespace Data
         }
 
 
+        public static void BuscarRecetaArticulos(Action<IRestResponse> callback)
+        {
+            try
+            {
+                var rest = new Rest(Local.Api.UrlApi, Cocina.DetalleCocina.RecetaArticulo,
+                    Method.POST);
+                rest.Peticion.AddHeader(Constantes.Http.ObtenerTipoDeContenido,
+                    Constantes.Http.TipoDeContenido.Json);
+                rest.Peticion.AddJsonBody(new { Cocina.DetalleCocina.Clave });// la peticion debe ser un objeto
+                rest.Cliente.ExecuteAsync(rest.Peticion, response =>
+                {
+                    switch (response.StatusCode)
+                    {
+                        case HttpStatusCode.OK:
+                            callback(response);
+                            break;
+                        default:
+                            callback(null);
+                            break;
+                    }
+                });
+            }
+            catch (Exception e)
+            {
+                Opcion.Log(Log.Interno.Categoria, "EXCEPCION: " + e.Message);
+                callback(null);
+            }
+        }
+
         public static void DDetalleReceta(Action<IRestResponse> callback, Cocina.DetalleCocina.ReporteDetalle clave)
         {
             try

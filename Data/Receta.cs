@@ -9,7 +9,7 @@ namespace Data
 {
     public class Receta
     {
-        public static Respuesta.Receta CReceta=new Respuesta.Receta();
+        public static Respuesta.Receta.ActualizaPresupuesto CReceta=new Respuesta.Receta.ActualizaPresupuesto();
         public static void Lista(Action<IRestResponse> callback)
         {
             try

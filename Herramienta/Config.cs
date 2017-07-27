@@ -50,6 +50,8 @@ namespace Herramienta
                 public  static string rec_id { get; set; }
                 public static string Breceta { get; set; } = Properties.Settings.Default.Buscarrecetav1;
 
+                public static string RecetaArticulo { get; set; } = Properties.Settings.Default.BuscarRecetaArticulos;
+
                 public static string Insertarinstruccion { get; set; } = Properties.Settings.Default.INSERTARRUTAEIMAGEN;
 
                 public class ReporteDetalle
@@ -118,6 +120,10 @@ namespace Herramienta
                 public static string Nombre { get; set; }
                 public static string RecId { get; set; }
                 public  static  string TipoId { get; set; }
+                public static string MenId { get; set; }
+                public static string ListaDiarios { get; set; } = Properties.Settings.Default.DiariosLista;
+                public static string TipooId { get; set; } = "";
+                public static string EliminarPlatillo { get; set; } = Properties.Settings.Default.EliminarPlatillo;
             }
 
 

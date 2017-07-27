@@ -353,12 +353,26 @@ namespace ExcelAddIn1
         }
 
         #endregion
-
-        public void IngredientesMenu(List<IngredientesReceta> listaArticuloBasica2)
+        public void IngredientesMenuxPlatillo(List<IngredientesReceta> listaArticuloBasica2)
+        {
+            Application.ScreenUpdating = false;
+            var rri = listaArticuloBasica2;
+            var oReportWs = InicializarExcelConTemplate("IngredientesMenuDiarioxPlatillo");
+            if (oReportWs == null) return;
+            var rowcount = rri.Count + 7;
+            _reporte.Range["A7:F" + rowcount].Value2 = InicializarListaIngredientesxPlatillo(rri);
+            _reporte.Range["A7:A" + rowcount].HorizontalAlignment = Excel.XlHAlign.xlHAlignLeft;
+            _reporte.Range["B7:B" + rowcount].HorizontalAlignment = Excel.XlHAlign.xlHAlignLeft;
+            _reporte.Range["C7:C" + rowcount].HorizontalAlignment = Excel.XlHAlign.xlHAlignLeft;
+            _reporte.Range["D7:F" + rowcount].HorizontalAlignment = Excel.XlHAlign.xlHAlignCenter;
+            Application.Cells.Locked = false;
+            Application.ScreenUpdating = true;
+        }
+        public void IngredientesMenuGlobal(List<IngredientesReceta> listaArticuloBasica2)
         {
             Application.ScreenUpdating = false;
             var rri= listaArticuloBasica2;
-            var oReportWs = InicializarExcelConTemplate("IngredientesMenuDia");
+            var oReportWs = InicializarExcelConTemplate("IngredientesMenuDiario");
             if (oReportWs == null) return;
             var rowcount = rri.Count+6;
             _reporte.Range["A6:E" + rowcount].Value2 = InicializarListaIngredientes(rri);
@@ -545,6 +559,42 @@ namespace ExcelAddIn1
 
             Application.Cells.Locked = false;
             Application.ScreenUpdating = true;
+        }
+        private static object[,] InicializarListaIngredientesxPlatillo(IReadOnlyCollection<IngredientesReceta> rrgi)
+        {
+            var result = rrgi
+            .GroupBy(p => p.Fecha)
+            .Select(g => g.ToList())
+            .ToList();
+            var lista = new object[rrgi.Count + result.Count + 1, 6];
+            var j = 0;
+
+            foreach (var y1 in result)
+            {
+
+                foreach (var x in y1)
+                {
+
+                    lista[j, 0] =  x.DescripcionReceta;
+                    lista[j, 1] = "'" + x.Clave;
+                    lista[j, 2] = x.Descripcion;
+                    lista[j, 3] = x.Cantidad;
+                    lista[j, 4] = x.Unidad;
+                    lista[j, 5] = x.Fecha;
+                    j++;
+                }
+                    lista[j, 0] = "";
+                    lista[j, 1] = "";
+                    lista[j, 2] = "";
+                    lista[j, 3] = "";
+                    lista[j, 4] = "";
+                    lista[j, 5] = "";
+                    j++;
+                
+
+            }
+
+            return lista;
         }
         private static object[,] InicializarListaIngredientes(IReadOnlyCollection<IngredientesReceta> rrgi)
         {

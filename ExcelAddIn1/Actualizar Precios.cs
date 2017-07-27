@@ -1,33 +1,31 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 using Herramienta;
 using Herramienta.Config;
 
 namespace ExcelAddIn1
 {
-    public partial class Actualizar_Precios : Form
+    public partial class ActualizarPrecios : Form
     {
-        public Actualizar_Precios()
+        public ActualizarPrecios()
         {
             InitializeComponent();
         }
+<<<<<<< HEAD
         public List<Respuesta.Reporte.RespuestaCocina.RepoActRec> _ListaXR;
         public List<Respuesta.Receta.IngredientesRecetaPrecio> _ListIngredientesRecetaPrecios;
+=======
+        public List<Respuesta.Reporte.RespuestaCocina.RepoActRec> ListaXr;
+>>>>>>> 081402c04621408aae5702319c9d8fa83a6b9e2c
         private void Actualizar_Precios_Load(object sender, EventArgs e)
         {
             Opcion.EjecucionAsync(Data.Reporte.Rep_Act_Receta, jsonResult =>
             {
                 BeginInvoke((MethodInvoker) (() =>
                 {
-                    _ListaXR = Opcion.JsonaListaGenerica<Respuesta.Reporte.RespuestaCocina.RepoActRec>(jsonResult);
-                    if (_ListaXR == null)
+                    ListaXr = Opcion.JsonaListaGenerica<Respuesta.Reporte.RespuestaCocina.RepoActRec>(jsonResult);
+                    if (ListaXr == null)
                     {
                         var listavacia = new Respuesta.Reporte.RespuestaCocina.RepoActRec
                         {
@@ -43,7 +41,7 @@ namespace ExcelAddIn1
                     }
                     else
                     {
-                        dgvrecetasact.DataSource = _ListaXR;
+                        dgvrecetasact.DataSource = ListaXr;
                     }
 
                 }));

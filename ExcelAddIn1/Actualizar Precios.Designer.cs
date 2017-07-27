@@ -1,6 +1,6 @@
 ﻿namespace ExcelAddIn1
 {
-    partial class Actualizar_Precios
+    partial class ActualizarPrecios
     {
         /// <summary>
         /// Required designer variable.
@@ -84,7 +84,7 @@
             this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.dgvrecetasact);
-            this.Name = "Actualizar_Precios";
+            this.Name = "ActualizarPrecios";
             this.Text = "Actualizar_Precios";
             this.Load += new System.EventHandler(this.Actualizar_Precios_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dgvrecetasact)).EndInit();

@@ -668,33 +668,61 @@ namespace Herramienta.Properties {
         public string RepActReceta {
             get {
                 return ((string)(this["RepActReceta"]));
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> 081402c04621408aae5702319c9d8fa83a6b9e2c
             }
         }
         
         [global::System.Configuration.ApplicationScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+<<<<<<< HEAD
         [global::System.Configuration.DefaultSettingValueAttribute("/reporte/IngredienteActualizarReceta")]
         public string IngActReceta {
             get {
                 return ((string)(this["IngActReceta"]));
+=======
+        [global::System.Configuration.DefaultSettingValueAttribute("diarios/")]
+        public string DiariosLista {
+            get {
+                return ((string)(this["DiariosLista"]));
+>>>>>>> 081402c04621408aae5702319c9d8fa83a6b9e2c
             }
         }
         
         [global::System.Configuration.ApplicationScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+<<<<<<< HEAD
         [global::System.Configuration.DefaultSettingValueAttribute("/reporte/ReporteDiario")]
         public string ReporteDiarioX {
             get {
                 return ((string)(this["ReporteDiarioX"]));
+=======
+        [global::System.Configuration.DefaultSettingValueAttribute("receta/EliminarPlatillo")]
+        public string EliminarPlatillo {
+            get {
+                return ((string)(this["EliminarPlatillo"]));
+>>>>>>> 081402c04621408aae5702319c9d8fa83a6b9e2c
             }
         }
         
         [global::System.Configuration.ApplicationScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+<<<<<<< HEAD
         [global::System.Configuration.DefaultSettingValueAttribute("reporte/ActDiarioTable")]
         public string ActRecetaDiaria {
             get {
                 return ((string)(this["ActRecetaDiaria"]));
+=======
+        [global::System.Configuration.DefaultSettingValueAttribute("receta/BuscarRecetaenArticulos")]
+        public string BuscarRecetaArticulos {
+            get {
+                return ((string)(this["BuscarRecetaArticulos"]));
+=======
+
+>>>>>>> origin/master
+>>>>>>> 081402c04621408aae5702319c9d8fa83a6b9e2c
             }
         }
     }

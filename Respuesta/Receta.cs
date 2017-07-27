@@ -9,6 +9,7 @@ namespace Respuesta
         public string Clave { get; set; }
         public string Descripcion { get; set; }
         public double Precio { get; set; }
+        public double PrecioTotal { get; set; }
         public int TiporId { get; set; }
         public double CostoCreacion { get; set; }
         public double CostoElaboracion { get; set; }
@@ -16,16 +17,12 @@ namespace Respuesta
         public DateTime FechaModificacion { get; set; }
         public double PesoLitro { get; set; }
         public int Diario { get; set; }
-
         public double CantidadDiario { get; set; }
         public double CantidadElaboracion { get; set; }
         public int UnidadElaboracion { get; set; }
         public string Rutaimagen { get; set; }
         public string Instrucciones { get; set; }
         public List<Detalle> Ingredientes { get; set; }
-        
-
-
         public string ModoElaboracion { get; set; }
 
         public Basica CopiadoSencillo()
@@ -41,19 +38,33 @@ namespace Respuesta
             public string Clave { get; set; }
             public string Descripcion { get; set; }
             public double Precio { get; set; }
+            public double PrecioTotal { get; set; }
             public int TiporId { get; set; }
             public double CostoCreacion { get; set; }
             public double CostoElaboracion { get; set; }
             public double Margen { get; set; }
-
-            public DateTime FechaModificacion { get; set; }
             public double PesoLitro { get; set; }
             public int Diario { get; set; }
             public double CantidadDiario { get; set; }
             public  double CantidadElaboracion { get; set;}
             public  int UnidadElaboracion { get; set; }
+        }
 
-
+        public class InsertarReceta
+        {
+            public string Clave { get; set; }
+            public string Descripcion { get; set; }
+            public double Precio { get; set; }
+            public double PrecioTotal { get; set; }
+            public int TiporId { get; set; }
+            public double CostoCreacion { get; set; }
+            public double CostoElaboracion { get; set; }
+            public double Margen { get; set; }
+            public double PesoLitro { get; set; }
+            public int Diario { get; set; }
+            public double CantidadDiario { get; set; }
+            public double CantidadElaboracion { get; set; }
+            public int UnidadElaboracion { get; set; }
         }
         public class IngredientesRecetaPrecio
         {
@@ -67,7 +78,6 @@ namespace Respuesta
         {
             public string Fecha1 { get; set; }
             public string Fecha2 { get; set; }
-
         }
 
         public class DiaanteriorX2
@@ -108,12 +118,9 @@ namespace Respuesta
 
         public class Savedaily
         {
-            public int EstadoId { get; set; }
-           
+            public int EstadoId { get; set; }      
             public string ArtId { get; set; }
-
             public string Clave { get; set; }
-
             public string Platillo { get; set; }
             public double Cantidad { get; set; }
             public double CantidadCocina { get; set; }
@@ -122,22 +129,16 @@ namespace Respuesta
 
         public class Congelados
         {
-
           // public string EstadoId { get; set; } 
-
-
             public int EstadoId { get; set; }
             /*Te sale en la primer columna, porque esta aqui, tienes que hacer un select..... PERO EL ESTADO ID ES AUTO INCREMENTAL, y pCaraR qEue olo quieren aquiCRE_O QUE SI ES AUTO INCREMENTAL 
             POR QUE DE ESTE MISMO AGO LA BUSQUEDA ENTRE CONGELADOS , cual es tu duda entonces? si en el select no esta POR QUE NO ESTA GUARDANDO COMO ES DEVIDO MIRA */
-
             public string ArtId { get; set; }
-
             public string Clave { get; set; }
             public string Platillo { get; set; }
             public double Cantidad { get; set; }
             public List<Congelados> ListaCongelados { get; set; }
 
-         
             public BasicaCopia CopiadoSencilloCongelado()
             {
                 var art = new BasicaCopia {ArtId = ArtId, Clave = Clave, Descripcion = Platillo, Cantidad = Cantidad};
@@ -151,16 +152,14 @@ namespace Respuesta
         {
             public string ArtId { get; set; }
             public string EstadoId { get; set; }
-
             public string Clave{ get; set; }
             public string Descripcion { get; set; }
             public double Cantidad { get; set; }
         }
 
     }
-        public class Agregarcongelados {
-
-
+        public class Agregarcongelados
+        {
             public string Clave { get; set; }
             public string Descripcion { get; set; }
             public double Cantidad { get; set; }
@@ -173,29 +172,27 @@ namespace Respuesta
 
         public class Congelados2
         {
-
             public int EstadoId { get; set; }
             /*Te sale en la primer columna, porque esta aqui, tienes que hacer un select..... PERO EL ESTADO ID ES AUTO INCREMENTAL, y pCaraR qEue olo quieren aquiCRE_O QUE SI ES AUTO INCREMENTAL 
             POR QUE DE ESTE MISMO AGO LA BUSQUEDA ENTRE CONGELADOS , cual es tu duda entonces? si en el select no esta POR QUE NO ESTA GUARDANDO COMO ES DEVIDO MIRA */
             public string ArtId { get; set; }
-
             public string Clave { get; set; }
             public string Platillo { get; set; }
-            public double Cantidad { get; set; }
-           
+            public double Cantidad { get; set; } 
         }
+<<<<<<< HEAD
     
 
+=======
+>>>>>>> 081402c04621408aae5702319c9d8fa83a6b9e2c
     }
 
     public class Agregarcongelados/* y esta clase para que es? para que hay mande los datos que se van a agregar  ..... te refieres a la de congelados si mmmmm y que los datos los puedas cambiar en el data */
-
         {
-             public int Id { get; set; }
+            public int Id { get; set; }
             public string Clave { get; set; }
             public string Nombre { get; set; }
             public  List<Agregarcongelados> ListaAgregarcongeladoses { get; set; } 
-
         }
 
 

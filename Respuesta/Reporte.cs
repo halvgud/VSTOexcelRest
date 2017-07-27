@@ -112,9 +112,7 @@ namespace Respuesta
             public Double Margen { get; set; }
             public Double Qty { get; set; }
             public Double Sinceqty { get; set; }
-            
             public string Salesince { get; set; }
-            
             public string ProfitSince { get; set; }
             public string Qtycongelado { get; set; }
             public string RecId { get; set; } 
@@ -127,6 +125,11 @@ namespace Respuesta
             public string Porcentajeempleado { get; set; }
             public string rutaimagen { get; set; }
             public string instrucciones { get; set; }
+            public Double PromedioMenu { get; set; }
+            public Double PromedioSobrante { get; set; }
+            public string NomUnidad { get; set; }
+            public Double CantidadElaboracion { get; set; }
+            public Double Densidad { get; set; }
            
             
 
@@ -186,6 +189,15 @@ namespace Respuesta
                 
             }
 
+            public class Comprobacion
+            {
+                public int Art_id { get; set; }
+                public string Clave { get; set; }
+                public string Platillo { get; set; }
+                public DateTime Fecha { get; set; }
+                public Double CC { get; set; }
+            }
+
             public class Reportess
             {
                 public int Id { get; set; }
@@ -194,8 +206,28 @@ namespace Respuesta
                 public DateTime FechaInicio { get; set; }
             }
 
+            public class Repo_Diario
+            {
+                public string Clave { get; set; }
+                public string Descripcion { get; set; }
+                public Double CR { get; set; }
+                public Double CE { get; set; }
+                public Double CP { get; set; }
+                public Double Existencia { get; set; }
+                public Double VA { get; set; }
+                public Double VP { get; set; }
+            }
+
+            public class RepoActDiarioD
+            {
+                public int Art_id { get; set; }
+                public string Clave { get; set; }
+                public string Platillo { get; set; }
+                public DateTime Fecha { get; set; }
+            }
             public class RepoActRec
             {
+                public int Rec_id { get; set; }
                 public string Clave { get; set; }
                 public string Receta { get; set; }
                 public string Unidad { get; set; }

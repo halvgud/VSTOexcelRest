@@ -31,9 +31,10 @@ namespace ExcelAddIn1
         private void Reportes_Load(object sender, EventArgs e)
         {
             Reportess.Add(new reportes { Nombre="Reporte Inventario",Id=1});
-            Reportess.Add(new reportes { Nombre = "Reporte Cocina", Id = 2 });
-            Reportess.Add(new reportes { Nombre="Reporte Diario", Id=3});
-           cbreportes.Items.Add(Reportess.ToList());
+            Reportess.Add(new reportes { Nombre = "Reporte General", Id = 2 });
+            Reportess.Add(new reportes { Nombre="Reporte Destino", Id=3});
+            Reportess.Add(new reportes { Nombre = "Reporte Cocina", Id = 3 });
+            cbreportes.Items.Add(Reportess.ToList());
 
             cbreportes.DataSource = Reportess.ToArray();
             cbreportes.DisplayMember = "Nombre";

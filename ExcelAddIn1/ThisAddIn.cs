@@ -115,15 +115,12 @@ namespace ExcelAddIn1
                    
                 }, jsonResult =>
                 {
-                    //Reporte.RespuestaCocina.Ccocinadetalle litaCcocinadetalle=
-                    //Cocina.DetalleCocina.rec_id=
-                    //List<Reporte.RespuestaCocina> listaRipsAc = new List<Reporte.RespuestaCocina>();
-                    //var list = Opcion.JsonaListaGenerica<Reporte.RespuestaCocina>(jsonResult);
+                 
 
                     Reporte.RespuestaCocina listCocina =
                         Opcion.JsonaListaGenerica<Reporte.RespuestaCocina>(jsonResult)[0];
                     foto = listCocina.rutaimagen;
-                   // Reporte.RespuestaCocina.CocinaDetalle lista = Opcion.JsonaClaseGenerica<Reporte.RespuestaCocina.CocinaDetalle>(jsonResult);
+                   
                     var excelazo = InicializarExcelConTemplate("DetalleReceta");
                     excelazo.Range["A1:N2"].Interior.Color = ColorTranslator.ToOle(Color.Peru);
                     excelazo.Range["A4:A7"].Interior.Color = ColorTranslator.ToOle(Color.Peru);
@@ -135,24 +132,37 @@ namespace ExcelAddIn1
                     //excelazo.Range["M7"].NumberFormat = "##.## %";
                     
                     if (excelazo == null) return;
+                    var unidad = listCocina.NomUnidad;
                     excelazo.Range["A1"].Value2 = listCocina.Receta;
                     excelazo.Range["M7"].Value2 = listCocina.Margen;
-                    //((excelazo.Range["K5"])).Value2 =lista.CantidadElaborada ;
                     excelazo.Range["F7"].Value2 = listCocina.UltimaElaboracion;
                     excelazo.Range["N5"].Value2 = listCocina.Venta;
-                    //excelazo.Range["H5"].Value2 = listCocina.Sinceqty;
                     excelazo.Range["H5"].Value2 = listCocina.Sinceqty;
-                    //((excelazo.Range["G7"])).Value2 = lista.Densidad  ;
                     excelazo.Range["G5"].Value2 = listCocina.RecId;
                     excelazo.Range["H7"].Value2 =listCocina.medida;
-                    //((excelazo.Range["L10"])).Value2 = lista.Foto;
                     excelazo.Range["M5"].Value2 = listCocina.Costo;
                     excelazo.Range["N5"].Value2 = listCocina.Venta;
-                    //((excelazo.Range["L5"])).Value2 = lista.SobrantesPendiente;
                     excelazo.Range["F5"].Value2 = listCocina.Since;
-                    excelazo.Range["H5"].Value2 = listCocina.Qtycongelado;
+                    //dexcelazo.Range["H5"].Value2 = listCocina.Qtycongelado;
                     excelazo.Range["B4"].Value2 = listCocina.TipoProducto;
                     excelazo.Range["F10"].Value2 = listCocina.instrucciones;
+                    excelazo.Range["K5"].Value2 = listCocina.PromedioMenu;
+                    excelazo.Range["L5"].Value2 = listCocina.PromedioSobrante;
+                    excelazo.Range["G7"].Value2 = listCocina.Densidad;
+
+                    if (listCocina.NomUnidad.ToString()=="LT")
+                    {
+                        excelazo.Range["B6"].Value2 = listCocina.CantidadElaboracion;
+                        var kg = listCocina.CantidadElaboracion*listCocina.Densidad;
+                        excelazo.Range["B5"].Value2 = Math.Round(kg,2);
+                    }
+                    else
+                    {
+                        excelazo.Range["B5"].Value2 = listCocina.CantidadElaboracion;
+                        var lt = listCocina.CantidadElaboracion/listCocina.Densidad;
+                        excelazo.Range["B6"].Value2 = Math.Round(lt,2);
+                    }
+
                     int x = 8;
                     #region ingredientes
                     int z = 0;
@@ -162,31 +172,20 @@ namespace ExcelAddIn1
                         int letras = listCocina.Ingredientes[i].Nombre.Length;
                         ((excelazo.Range["A"+x])).Value2 = listCocina.Ingredientes[i].Nombre;
                         excelazo.Range["A" + x].Rows.AutoFit();
-                        
-                        //excelazo.Range["A"+x].Borders[Excel.XlBordersIndex.xlEdgeBottom].LineStyle = Excel.XlLineStyle.xlContinuous;
-
-                        //if (letras >= z)
-                        //{
-                        //   
-                        //    //excelazo.Range["A" + x].Columns.AutoFit();
+                       
 
 
-                        //}
+                    
                         ((excelazo.Range["B" + x])).Value2 = listCocina.Ingredientes[i].Cantidad;
-                        //excelazo.Range["B" + x].Borders[Excel.XlBordersIndex.xlEdgeBottom].LineStyle = Excel.XlLineStyle.xlContinuous;
-                        //excelazo.Range["B" + x].Columns.AutoFit();
                         ((excelazo.Range["C" + x])).Value2 = listCocina.Ingredientes[i].Medida;
-                        //excelazo.Range["C" + x].Borders[Excel.XlBordersIndex.xlEdgeBottom].LineStyle = Excel.XlLineStyle.xlContinuous;
-                        //excelazo.Range["C" + x].Columns.AutoFit();
+                        
                         ((excelazo.Range["D" + x])).Value2 = listCocina.Ingredientes[i].Costo;
                         excelazo.Range["A" + x].NumberFormat = "$ #,##0.00";
-                        //excelazo.Range["D" + x].Borders[Excel.XlBordersIndex.xlEdgeBottom].LineStyle = Excel.XlLineStyle.xlContinuous;
-                        //excelazo.Range["D" + x].Columns.AutoFit();
-
+                        
                         x++;
                         z = letras;
                     }
-                   // var costo = ;
+                  
                     excelazo.Range["D21"].Formula ="=SUM(D8:D20)";
                     excelazo.Range["F10"].Rows.AutoFit();
                    var w= excelazo.Range["L10"].Left+10;

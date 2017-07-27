@@ -644,15 +644,12 @@ namespace Herramienta.Properties {
             }
         }
         
-        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Configuration.ApplicationScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.DefaultSettingValueAttribute("receta/RecetasDiarias")]
         public string CargarRecetasDiarias {
             get {
                 return ((string)(this["CargarRecetasDiarias"]));
-            }
-            set {
-                this["CargarRecetasDiarias"] = value;
             }
         }
         
@@ -671,7 +668,33 @@ namespace Herramienta.Properties {
         public string RepActReceta {
             get {
                 return ((string)(this["RepActReceta"]));
-
+            }
+        }
+        
+        [global::System.Configuration.ApplicationScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("/reporte/IngredienteActualizarReceta")]
+        public string IngActReceta {
+            get {
+                return ((string)(this["IngActReceta"]));
+            }
+        }
+        
+        [global::System.Configuration.ApplicationScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("/reporte/ReporteDiario")]
+        public string ReporteDiarioX {
+            get {
+                return ((string)(this["ReporteDiarioX"]));
+            }
+        }
+        
+        [global::System.Configuration.ApplicationScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("reporte/ActDiarioTable")]
+        public string ActRecetaDiaria {
+            get {
+                return ((string)(this["ActRecetaDiaria"]));
             }
         }
     }

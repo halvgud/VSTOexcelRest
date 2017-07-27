@@ -219,6 +219,16 @@ namespace Herramienta
             datos.DataSource = result;
         }
 
+       public static void BorrarSeleccionDR(DataGridView datos)
+       {
+            if (datos.CurrentCell.RowIndex == -1 || datos.Rows.Count <= 0) return;
+            var result = datos.DataSource as List<Respuesta.Diario>;
+            if (result == null) return;
+            result.RemoveAt(datos.CurrentCell.RowIndex);
+            datos.DataSource = null;
+            datos.Refresh();
+            datos.DataSource = result;
+        }
         public static void BorrarDataGridView(DataGridView dgv)
         {
             dgv.DataSource = null;

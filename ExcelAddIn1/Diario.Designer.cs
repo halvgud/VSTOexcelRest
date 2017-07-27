@@ -31,10 +31,7 @@
             this.dgDiario = new System.Windows.Forms.DataGridView();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
-            this.guardarToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.txtreventa = new System.Windows.Forms.TextBox();
-            this.txtcongelados = new System.Windows.Forms.TextBox();
-            this.txtmerma = new System.Windows.Forms.TextBox();
+            this.reporteDiarioToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.rbreventa = new System.Windows.Forms.RadioButton();
             this.rbmerma = new System.Windows.Forms.RadioButton();
@@ -105,57 +102,27 @@
             // menuStrip1
             // 
             this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.guardarToolStripMenuItem});
+            this.reporteDiarioToolStripMenuItem});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
             this.menuStrip1.Size = new System.Drawing.Size(977, 24);
             this.menuStrip1.TabIndex = 2;
             this.menuStrip1.Text = "menuStrip1";
             // 
-            // guardarToolStripMenuItem
+            // reporteDiarioToolStripMenuItem
             // 
-            this.guardarToolStripMenuItem.Name = "guardarToolStripMenuItem";
-            this.guardarToolStripMenuItem.Size = new System.Drawing.Size(61, 20);
-            this.guardarToolStripMenuItem.Text = "Guardar";
-            // 
-            // txtreventa
-            // 
-            this.txtreventa.Enabled = false;
-            this.txtreventa.Location = new System.Drawing.Point(120, 91);
-            this.txtreventa.Name = "txtreventa";
-            this.txtreventa.Size = new System.Drawing.Size(53, 25);
-            this.txtreventa.TabIndex = 8;
-            this.txtreventa.TextChanged += new System.EventHandler(this.txtreventa_TextChanged);
-            // 
-            // txtcongelados
-            // 
-            this.txtcongelados.Enabled = false;
-            this.txtcongelados.Location = new System.Drawing.Point(120, 34);
-            this.txtcongelados.Name = "txtcongelados";
-            this.txtcongelados.Size = new System.Drawing.Size(53, 25);
-            this.txtcongelados.TabIndex = 9;
-            this.txtcongelados.TextChanged += new System.EventHandler(this.txtcongelados_TextChanged);
-            this.txtcongelados.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtcongelados_KeyPress);
-            // 
-            // txtmerma
-            // 
-            this.txtmerma.Enabled = false;
-            this.txtmerma.Location = new System.Drawing.Point(120, 62);
-            this.txtmerma.Name = "txtmerma";
-            this.txtmerma.Size = new System.Drawing.Size(53, 25);
-            this.txtmerma.TabIndex = 10;
-            this.txtmerma.TextChanged += new System.EventHandler(this.txtmerma_TextChanged);
+            this.reporteDiarioToolStripMenuItem.Name = "reporteDiarioToolStripMenuItem";
+            this.reporteDiarioToolStripMenuItem.Size = new System.Drawing.Size(94, 20);
+            this.reporteDiarioToolStripMenuItem.Text = "Reporte Diario";
+            this.reporteDiarioToolStripMenuItem.Click += new System.EventHandler(this.reporteDiarioToolStripMenuItem_Click);
             // 
             // groupBox2
             // 
             this.groupBox2.Controls.Add(this.rbreventa);
             this.groupBox2.Controls.Add(this.rbmerma);
             this.groupBox2.Controls.Add(this.rbcongelado);
-            this.groupBox2.Controls.Add(this.txtreventa);
-            this.groupBox2.Controls.Add(this.txtcongelados);
-            this.groupBox2.Controls.Add(this.txtmerma);
             this.groupBox2.Font = new System.Drawing.Font("Modern No. 20", 12F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.groupBox2.Location = new System.Drawing.Point(785, 60);
+            this.groupBox2.Location = new System.Drawing.Point(789, 37);
             this.groupBox2.Name = "groupBox2";
             this.groupBox2.Size = new System.Drawing.Size(180, 128);
             this.groupBox2.TabIndex = 12;
@@ -497,7 +464,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(977, 453);
+            this.ClientSize = new System.Drawing.Size(977, 544);
             this.Controls.Add(this.btguardarRV);
             this.Controls.Add(this.label19);
             this.Controls.Add(this.label20);
@@ -551,10 +518,6 @@
         private System.Windows.Forms.DataGridView dgDiario;
         private System.Windows.Forms.GroupBox groupBox1;
         private System.Windows.Forms.MenuStrip menuStrip1;
-        private System.Windows.Forms.ToolStripMenuItem guardarToolStripMenuItem;
-        private System.Windows.Forms.TextBox txtreventa;
-        private System.Windows.Forms.TextBox txtcongelados;
-        private System.Windows.Forms.TextBox txtmerma;
         private System.Windows.Forms.GroupBox groupBox2;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label label2;
@@ -588,5 +551,6 @@
         private System.Windows.Forms.Label label19;
         private System.Windows.Forms.Label label20;
         private System.Windows.Forms.Button btguardarRV;
+        private System.Windows.Forms.ToolStripMenuItem reporteDiarioToolStripMenuItem;
     }
 }

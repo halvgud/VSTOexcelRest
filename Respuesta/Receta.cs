@@ -55,6 +55,13 @@ namespace Respuesta
 
 
         }
+        public class IngredientesRecetaPrecio
+        {
+            public string Clave { get; set; }
+            public string Receta { get; set; }
+            public Double PrecioAnterior { get; set; }
+            public Double PrecioNuevo { get; set; }
+        }
 
         public class Diaanterior
         {
@@ -109,6 +116,8 @@ namespace Respuesta
 
             public string Platillo { get; set; }
             public double Cantidad { get; set; }
+            public double CantidadCocina { get; set; }
+            public  string Status { get; set; }
         }
 
         public class Congelados
@@ -175,6 +184,7 @@ namespace Respuesta
             public double Cantidad { get; set; }
            
         }
+    
 
     }
 

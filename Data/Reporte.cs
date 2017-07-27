@@ -1,5 +1,7 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Net;
+using System.Security.Policy;
 using Herramienta;
 using Herramienta.Config;
 using RestSharp;
@@ -15,9 +17,11 @@ namespace Data
         public static DateTime FechaIni { get; set; }
         public static DateTime FechaFin { get; set; }
 
+        
         public static Respuesta.Receta.Diaanterior AntesDiaanterior;
         public static Respuesta.Receta.DiaanteriorX2 AntesDiaanteriorX2;
         public static Cocina.DetalleCocina.ReporteInventarioHistorial FechaHistorial;
+        public static Cocina.ReporteDiarioCocina.FechasReporte FechasReporte;
 
 
         public static void General(Action<IRestResponse> callback, Respuesta.Reporte.General repGeneral)
@@ -166,6 +170,32 @@ namespace Data
                             break;
                         default:
                             throw new Exception(@"Recetas no encontradas");
+                    }
+                });
+            }
+            catch (Exception e)
+            {
+                Opcion.Log(Log.Interno.Departamento, "EXCEPCION: " + e.Message);
+            }
+        }
+
+        public static void RepDiarioAct(Action<IRestResponse> callback)
+        {
+            try
+            {
+                var rest = new Rest(Local.Api.UrlApi,Cocina.ReporteDiarioCocina.CargarRepoNew, Method.GET);
+                rest.Peticion.AddHeader(Constantes.Http.ObtenerTipoDeContenido, Constantes.Http.TipoDeContenido.Json);
+                rest.Cliente.ExecuteAsync(rest.Peticion, response =>
+                {
+                    switch (response.StatusCode)
+                    {
+                        case HttpStatusCode.OK:
+                            callback(response);
+                            break;
+                        default:
+                            callback(null);
+                            break;
+                            //throw new Exception(@"Error al cargar el indice de platillos");
                     }
                 });
             }
@@ -375,6 +405,38 @@ namespace Data
         
 
         }
+
+        public static void MostrarIngredientesReceta(Action<IRestResponse> callback)
+        {
+            try
+            {
+                var rest = new Rest(Local.Api.UrlApi, Local.Receta.IngredienteActualizar.IngredientesAct, Method.POST);
+                rest.Peticion.AddHeader(Constantes.Http.ObtenerTipoDeContenido, Constantes.Http.TipoDeContenido.Json);
+                rest.Peticion.AddJsonBody(new {Rec_id=Local.Receta.IngredienteActualizar.Rec_id});
+                rest.Cliente.ExecuteAsync(rest.Peticion, response =>
+                {
+                    switch (response.StatusCode)
+                    {
+                        case HttpStatusCode.OK:
+                            callback(response);
+                            break;
+                        default:
+                            callback(null);
+                            break;
+                    }
+                });
+            }
+            catch (Exception e)
+            {
+                Opcion.Log(Log.Interno.Categoria, "EXCEPCION: " + e.Message);
+                // callback("CONTINUAR"    );
+
+                //                {
+                //                    "descripcion":"chuletas"
+                //}
+            }
+        }
+
         public static void ActX2(Action<IRestResponse> callback)
         {
             try
@@ -382,6 +444,36 @@ namespace Data
                 var rest = new Rest(Local.Api.UrlApi, Cocina.DiaAntesX2.ActualizarX2, Method.POST);
                 rest.Peticion.AddHeader(Constantes.Http.ObtenerTipoDeContenido, Constantes.Http.TipoDeContenido.Json);
                 rest.Peticion.AddJsonBody(new { EstadoId = Cocina.DiaAntesX2.EstadoId});
+                rest.Cliente.ExecuteAsync(rest.Peticion, response =>
+                {
+                    switch (response.StatusCode)
+                    {
+                        case HttpStatusCode.OK:
+                            //CReceta.RecId = Convert.ToInt32(JObject.Parse(response.Content).Property("RecId").Value);
+                            callback(response);
+                            break;
+                        default:
+                            throw new Exception(@"Error al buscar la Informacion deseada");
+                    }
+                });
+            }
+            catch (Exception e)
+            {
+                Opcion.Log(Log.Interno.Categoria, "EXCEPCION: " + e.Message);
+            }
+
+
+
+        }
+
+
+        public static void RepoDiarioD(Action<IRestResponse> callback,Cocina.ReporteDiarioCocina.FechasReporte Fechitas  )
+        {
+            try
+            {
+                var rest = new Rest(Local.Api.UrlApi, Cocina.ReporteDiarioCocina.reporte, Method.POST);
+                rest.Peticion.AddHeader(Constantes.Http.ObtenerTipoDeContenido, Constantes.Http.TipoDeContenido.Json);
+                rest.Peticion.AddJsonBody(Fechitas);
                 rest.Cliente.ExecuteAsync(rest.Peticion, response =>
                 {
                     switch (response.StatusCode)

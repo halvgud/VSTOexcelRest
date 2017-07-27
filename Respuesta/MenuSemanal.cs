@@ -118,8 +118,9 @@ namespace Respuesta
         public double CC { get; set; }
         public double CV { get; set; }
         public string Unidad { get; set; }
-        public double SR { get; set; }
+        
         public double S { get; set; }
+        public double SR { get; set; }
         public string Observacion { get; set; }
         public List<Cantidades> ListaCantidades { get; set; }
         public class Cantidades

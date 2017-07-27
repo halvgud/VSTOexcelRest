@@ -1,8 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel;
 using System.Linq;
-using System.Text.RegularExpressions;
 using System.Windows.Forms;
 using Respuesta;
 
@@ -51,7 +49,7 @@ namespace ExcelAddIn1
 
         private bool ValidarEspacioVacio()
         {
-            double d = 1;
+            double d;
             errorProvider1.SetError(tbCantidad,
                 double.TryParse(tbCantidad.Text, out d) ? string.Empty : "Favor de ingresar solo números");
             return tbCantidad.Text.Trim().Length > 0 && double.TryParse(tbCantidad.Text, out d);

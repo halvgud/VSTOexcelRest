@@ -45,69 +45,26 @@ namespace ExcelAddIn1
             ThisAddIn.ReporteReceta.Visible = false;
              ThisAddIn.Recetario.Visible = true;
         }
-        
         public void AbrirReporteReceta(Office.IRibbonControl control)
         {
-      
             ThisAddIn.Recetario.Visible = false;
             ThisAddIn.ReporteReceta.Visible = true;
-         
         }
-        //public void DetalleMenu(Office.IRibbonControl control)
-        //{
-        //    //ThisAddIn.DetalleMenu.Visible = true;
-        //    ThisAddIn.ReporteReceta.Visible = false;
-        //    ThisAddIn.Recetario.Visible = false;
-
-
-        //}
-
-        //public void PRUEBA(Office.IRibbonControl control)
-        //{
-        //    ThisAddIn.Recetario
-        //}
         public void Diario(Office.IRibbonControl control)
         {
             var ms = new Diario();
             ms.Show();
         }
-
-        public void Calis(Office.IRibbonControl control)
-        {
-            var c = new Actualizar_Precios();
-            c.Show();
-        }
         public void AbrirMenuSemanal(Office.IRibbonControl control)
         {
-           // var ms = new MenuSemanal();
-           // ms.Show();
             var ms = new MenuSemanal();
             ms.Show();
-            //Opcion.EjecucionAsync(Data.MenuSemanal.ListaPlatilloRecetas, y =>
-            //{
-
-
-            //    var menu = new MenuSemanal(() =>
-            //    {
-            //        var d = Opcion.JsonaListaGenerica<Respuesta.AutoCompletePlatillo>(y).Select(x => x.Platillo).ToArray();
-            //        return d;
-            //    });
-            //    ms.BeginInvoke((MethodInvoker)(() =>
-            //    {
-            //        if (!menu.Visible)
-            //        {
-            //            menu.Show();
-            //        }
-            //        ms.Hide();
-            //    }));
-            //});
         }
         public void CrearReceta(Office.IRibbonControl control)
         {
             var ar = new AgregarReceta();
             ar.Show();
         }
-
         public void ReporteCongelados(Office.IRibbonControl control)
         {
             var addIn = Globals.ThisAddIn;
@@ -115,17 +72,12 @@ namespace ExcelAddIn1
             Opcion.EjecucionAsync(Data.Reporte.RepCongelados, y =>
             {
                 addIn.ReporteCongelados(y);
-
-                });
-           
+            });
         }
-
         public void Reportes(Office.IRibbonControl control)
         {
             ThisAddIn.ReportessCustomTaskPane.Visible = true;
         }
-
-
         public void CapturaCongelado(Office.IRibbonControl control)
         {
             // seguir mañana
@@ -134,8 +86,6 @@ namespace ExcelAddIn1
 
             Opcion.EjecucionAsync(Data.Reporte.Listaplatillos, y =>
             {
-
-
                 var cc = new Congelados(() =>
                 {
                     var d = Opcion.JsonaListaGenerica<CbGenerico>(y).Select(x => x.Nombre).ToArray();
@@ -151,8 +101,6 @@ namespace ExcelAddIn1
                 }));
             });
         }
-
-
         public bool BuscarPermiso(Office.IRibbonControl control)
         {
             return true;

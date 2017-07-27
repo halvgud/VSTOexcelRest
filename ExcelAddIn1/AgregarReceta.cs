@@ -29,6 +29,7 @@ namespace ExcelAddIn1
             public MaskedTextBox MargenConPrecio;
             public MaskedTextBox PrecioSugerido;
             public MaskedTextBox Precio;
+            public MaskedTextBox PrecioTotal;
             public CheckBox Diario;
             public TextBox ModoElaboracion;
             public ComboBox TipoReceta;
@@ -36,6 +37,8 @@ namespace ExcelAddIn1
             public ComboBox UnidadElaboracion;
             public MaskedTextBox CantidadDiario;
         }
+
+        public int Reccid;
         public int Validar;
         public AgregarReceta()
         {
@@ -143,7 +146,7 @@ namespace ExcelAddIn1
             if (!Opcion.ValidarDouble(tbMargenConPrecio)) return;
             ActualizarPrecio(new Inputs
             {
-                Precio = tbPrecio,
+                PrecioTotal = tbPrecioTotalBE,
                 Ingredientes = dgvIngredientes,
                 MargenConPrecio = tbMargenConPrecio,
                 CostoElaboracion = tbCostoElaboracion,
@@ -153,10 +156,11 @@ namespace ExcelAddIn1
         }
         private void tbMargenConPrecioBE_TextChanged(object sender, EventArgs e)
         {
-            //if (!Opcion.ValidarDouble(tbMargenConPrecioBE)) return;
+            if (!Opcion.ValidarDouble(tbMargenConPrecioBE)) return;
             ActualizarPrecio(new Inputs
             {
                 Precio = tbPrecioBE,
+                PrecioTotal=tbPrecioTotalBE,
                 Ingredientes = dgvIngredientesBusqueda,
                 MargenConPrecio = tbMargenConPrecioBE,
                 CostoElaboracion = tbCostoElaboracionBE
@@ -204,6 +208,7 @@ namespace ExcelAddIn1
                 MargenConPrecio = tbMargenConPrecioBE,
                 Ingredientes = dgvIngredientesBusqueda,
                 CostoElaboracion = tbCostoElaboracionBE,
+                PrecioTotal=tbPrecioTotalBE,
                 Precio = tbPrecioBE,
                 CostoEstimado = tbCostoEstimadoBE,
                 ActualizarMargen = ActualizarMargen
@@ -223,7 +228,7 @@ namespace ExcelAddIn1
         {
             return (tbBuscarReceta.Text != string.Empty && tbDescripcionBE.Text != string.Empty
                     && tbPrecioBE.Text != string.Empty && tbMargenConPrecioBE.Text != string.Empty &&
-                               /*  tbPesoLitroBE.Text != string.Empty &&*/ tbCostoEstimadoBE.Text != string.Empty
+                               tbPrecioTotalBE.Text != string.Empty && tbCostoEstimadoBE.Text != string.Empty
                                  && txtinstruccionesBE.Text != string.Empty && dgvIngredientesBusqueda.RowCount > 0 &&
                                  tbCantidadElaboracionBE.Text != string.Empty);
         }
@@ -238,9 +243,11 @@ namespace ExcelAddIn1
                 sum += (costo1 * cantidad1);
             }
             inputs.CostoEstimado.Text = sum.ToString(CultureInfo.InvariantCulture);
-            if (inputs.TipoReceta.Items.Count <= 0) return;
-            var lista = Opcion.JsonaListaGenerica<CbGenerico>((IRestResponse)inputs.TipoReceta.Tag);
-            inputs.MargenSugerido.Text = lista[inputs.TipoReceta.SelectedIndex].Margen;
+            //if (inputs.TipoReceta.Items.Count <= 0) return;
+            //var lista = Opcion.JsonaListaGenerica<CbGenerico>((IRestResponse)inputs.TipoReceta.Tag);
+            //    inputs.MargenSugerido.Text = lista[inputs.TipoReceta.SelectedIndex+1].Margen;
+     
+
 
             inputs.ActualizarMargen(new Inputs
             {
@@ -248,7 +255,7 @@ namespace ExcelAddIn1
                 MargenSugerido = inputs.MargenSugerido,
                 Ingredientes = inputs.Ingredientes,
                 CostoElaboracion = inputs.CostoElaboracion,
-                Precio = inputs.Precio,
+                PrecioTotal = inputs.PrecioTotal,
                 PrecioSugerido = inputs.PrecioSugerido,
                 CostoEstimado = inputs.CostoEstimado
             });
@@ -256,13 +263,13 @@ namespace ExcelAddIn1
                         (inputs.CostoElaboracion.Text != string.Empty
                             ? Convert.ToDouble(inputs.CostoElaboracion.Text)
                             : 0);
-            var margen = 1 - (Convert.ToDouble(inputs.MargenSugerido.Text) / 100);
-            var margenv2 = (Math.Round((costo / margen), 2)).ToString(CultureInfo.InvariantCulture);
-            inputs.PrecioSugerido.Text = margenv2;
+            //var margen = 1 - (Convert.ToDouble(inputs.MargenSugerido.Text) / 100);
+            //var margenv2 = (Math.Round((costo / margen), 2)).ToString(CultureInfo.InvariantCulture);
+            //inputs.PrecioSugerido.Text = margenv2;
         }
         private void ActualizarPrecio(Inputs inputs)
         {
-            if (inputs.Precio.Focused) return;
+            if (inputs.PrecioTotal.Focused) return;
             double sum = 0;
             for (var i = 0; i < inputs.Ingredientes.Rows.Count; ++i)
             {
@@ -270,16 +277,16 @@ namespace ExcelAddIn1
                 var cantidad = Convert.ToDouble(inputs.Ingredientes.Rows[i].Cells[4].Value);
                 sum += (costo * cantidad);
             }
-            //if (inputs.MargenConPrecio.Text != string.Empty)
-            //{
-            //    inputs.Precio.Text = (Math.Round(((sum) +
-            //                                        (inputs.CostoElaboracion.Text != string.Empty
-            //                                            ? Convert.ToDouble(inputs.CostoElaboracion.Text)
-            //                                            : 0))
-            //                                            /
-            //                                        (1 - (Convert.ToDouble(inputs.MargenConPrecio.Text) / 100)), 2))
-            //        .ToString(CultureInfo.InvariantCulture);
-            //}
+            if (inputs.MargenConPrecio.Text != string.Empty)
+            {
+                inputs.PrecioTotal.Text = (Math.Round(((sum) +
+                                                    (inputs.CostoElaboracion.Text != string.Empty
+                                                        ? Convert.ToDouble(inputs.CostoElaboracion.Text)
+                                                        : 0))
+                                                        /
+                                                    (1 - (Convert.ToDouble(inputs.MargenConPrecio.Text) / 100)), 2))
+                    .ToString(CultureInfo.InvariantCulture);
+            }
             ValidarBusquedaVacia();
         }
         private void ActualizarMargen(Inputs inputs)
@@ -295,8 +302,8 @@ namespace ExcelAddIn1
             var costo = sum + (inputs.CostoElaboracion.Text != string.Empty
                             ? Convert.ToDouble(inputs.CostoElaboracion.Text)
                             : 0);
-            if (inputs.Precio.Text == string.Empty) return;
-            var precio = Convert.ToDouble(inputs.Precio.Text);
+            if (inputs.PrecioTotal.Text == string.Empty) return;
+            var precio = Convert.ToDouble(inputs.PrecioTotal.Text);
             var margenprecio = Math.Round(((((costo / precio) - 1) * -1) * 100), 2).ToString(CultureInfo.InvariantCulture);
             inputs.MargenConPrecio.Text = margenprecio;
             ValidarBusquedaVacia();
@@ -311,7 +318,7 @@ namespace ExcelAddIn1
             {
                 BeginInvoke((MethodInvoker)(() =>
                 {
-                    var brd = new BuscarArticulo(Opcion.JsonaListaGenerica<Articulo>(jsonResult), listaArticulo =>
+                    var brd = new BuscarArticulo(Opcion.JsonaListaGenerica<Articulo>(jsonResult), listaArticulo=>
                     {
                         BeginInvoke((MethodInvoker)(() =>
                         {
@@ -381,36 +388,37 @@ namespace ExcelAddIn1
         #region Guardar a Actualizar Receta
         private void btGuardar_Click(object sender, EventArgs e)
         {
+            tabCon.TabPages.Add(tabPage1);
             Pbreceta.InitialImage = null;
             Pbreceta.Image = null;
-            if (tabCon.SelectedTab == tabCon.TabPages[1])
+            Reccid = Local.Receta.RecId;
+            if (Reccid==0)
                 Guardar(new Inputs
                 {
-                    ClaveReceta = tbClaveReceta,
-                    CostoElaboracion = tbCostoElaboracion,
-                    CostoEstimado = tbCostoEstimado,
-                    Descripcion = tbDescripcion,
+                    ClaveReceta = tbBuscarReceta,
+                    CostoElaboracion = tbCostoElaboracionBE,
+                    CostoEstimado = tbCostoEstimadoBE,
+                    Descripcion = tbDescripcionBE,
+                    TipoReceta = cbTipoBE,
                     //Diario = chDiario,
-                    Ingredientes = dgvIngredientes,
-                    MargenConPrecio = tbMargenConPrecio,
-                    MargenSugerido = tbMargenSugerido,
-                    PesoLitro = tbPesoLitro,
-                    Precio = tbPrecio,
-                    ModoElaboracion = txtinstrucciones,
-                    CantidadElaboracion = tbCantidadElaboracion,
+                    Ingredientes = dgvIngredientesBusqueda,
+                    MargenConPrecio = tbMargenConPrecioBE,
+                    //MargenSugerido = tbMargenSugeridoBE,
+                    PesoLitro = tbPesoLitroBE,
+                    Precio = tbPrecioBE,
+                    ModoElaboracion = txtinstruccionesBE,
+                    CantidadElaboracion = tbCantidadElaboracionBE,
                     //CantidadDiario = tbCantidadDiario,
-                    UnidadElaboracion = cbUnidadElaboracion
+                    UnidadElaboracion = cbUnidadElaboracionBE,
+                    PrecioTotal = tbPrecioTotalBE
                 });
             else
             {
+                tabCon.TabPages.Remove(tabPage1);
                 BeginInvoke((MethodInvoker)(() =>
                 {
                     #region edicion de Presupuesto
-                    MessageBox.Show(this, @"La actualizacion de la informacion afectara la base de datos de SICAR");
-
                     tbPesoLitroBE.Text = tbPesoLitroBE.Text=="" ? @"0" : tbPesoLitroBE.Text;
-                    
-
                     //var checadodiario = chDiarioBE.Checked ? 1 : 0;
                     //if (checadodiario != 0)
                     //{
@@ -423,17 +431,19 @@ namespace ExcelAddIn1
                     //{
                     //    tbCantidadDiarioBE.Text = @"0";
                     //}
+                    Reccid = Reccid == 0 ? 0 : Local.Receta.RecId;
                     var objeto = new Receta.ActualizaPresupuesto
                     {
                         RecId = Local.Receta.RecId,
                         Clave = tbBuscarReceta.Text,
-                        CostoElaboracion = Convert.ToDouble(tbCostoEstimadoBE.Text),
-                        CostoCreacion = Convert.ToDouble(tbCostoElaboracionBE.Text),
+                        CostoElaboracion = Convert.ToDouble(tbCostoElaboracionBE.Text),
+                        CostoCreacion = Convert.ToDouble(tbCostoEstimadoBE.Text),
                         Margen = Convert.ToDouble(tbMargenConPrecioBE.Text),
                         TiporId = cbTipoBE.SelectedIndex + 1,
                         Descripcion = tbDescripcionBE.Text,
                         PesoLitro = Convert.ToDouble(tbPesoLitroBE.Text),
                         Precio = Convert.ToDouble(tbPrecioBE.Text),
+                        PrecioTotal=Convert.ToDouble(tbPrecioTotalBE.Text),
                         //Diario = checadodiario,
                         //CantidadDiario = Convert.ToDouble(tbCantidadDiarioBE.Text),
                         CantidadElaboracion = Convert.ToDouble(tbCantidadElaboracionBE.Text),
@@ -475,7 +485,7 @@ namespace ExcelAddIn1
                     if (MessageBox.Show(@"Desea agregar la imagen de la receta", @"Aviso", MessageBoxButtons.YesNo,
                         MessageBoxIcon.Question) == DialogResult.Yes)
                     {
-                        if (Local.Receta.Ruta==null)
+                        if (Local.Receta.Ruta==null || Local.Receta.Ruta==String.Empty)
                         {
                             openFileDialog1.Filter =
                                 @"Image Files (*.png *.jpg *.bmp) | *.png; *.jpg; *.bmp | All Files(*.*) | *.* ";
@@ -519,6 +529,8 @@ namespace ExcelAddIn1
                             Data.ReporteCocina.InsertarRutaeImagen(listainstruccionesv1);
                         }
                     }
+                    //tabCon.TabPages.Remove(tabPage1);
+                    MessageBox.Show(@"Los Datos de la Receta se han actualizado correctamente");
                     Limpiarbusqueda();
                     #endregion
                 }));
@@ -528,7 +540,7 @@ namespace ExcelAddIn1
         {
             btGuardar.Enabled = false;
             Local.Receta.Clave = (inputs.ClaveReceta.Text);
-            if (ValidarCampos())
+            if (ValidarCamposBe())
             {
                 Opcion.EjecucionAsync(Data.Receta.Lista, jsonResult =>
                 {
@@ -536,33 +548,34 @@ namespace ExcelAddIn1
                     var mde = new MensajeDeEspera();
                     BeginInvoke((MethodInvoker)(() =>
                     {
-                        //var checadodiario = chDiario.Checked ? 1 : 0;
-                        //if (checadodiario != 0)
-                        //{
-                        //    cbUnidadElaboracion.Text = Convert.ToString(cbUnidadElaboracionBE.SelectedIndex + 3);
-                        //    tbCantidadElaboracion.Text = tbCantidadDiario.Text;
-                        //}
-                        //else
-                        //{
-                        //    tbCantidadDiario.Text = @"0";
-                        //}
-                        mde.Show();
-                        var receta = new Receta
+                        var checadodiario = chDiario.Checked ? 1 : 0;
+                        if (checadodiario != 0)
                         {
-                            RecId = 0,
-                            TiporId = cbTipoReceta.SelectedIndex + 1,
-                            Clave = inputs.ClaveReceta.Text,
-                            Descripcion = inputs.Descripcion.Text,
-                            CantidadElaboracion = Convert.ToDouble(tbCantidadElaboracion.Text),
-                            UnidadElaboracion = cbUnidadElaboracion.SelectedIndex + 1,
-                            Precio = double.Parse(inputs.Precio.Text),
-                            CostoCreacion = double.Parse(inputs.CostoEstimado.Text),
-                            Margen = double.Parse(inputs.MargenConPrecio.Text),
-                            PesoLitro = Convert.ToDouble(inputs.PesoLitro.Text),
-                            //Diario = Validar,
-                            //CantidadDiario = Convert.ToDouble(tbCantidadDiario.Text),
-                            CostoElaboracion = double.Parse(inputs.CostoElaboracion.Text),
-                            ModoElaboracion = inputs.ModoElaboracion.Text
+                            cbUnidadElaboracionBE.Text = Convert.ToString(cbUnidadElaboracionBE.SelectedIndex + 3);
+                            tbCantidadElaboracionBE.Text = tbCantidadDiarioBE.Text;
+                        }
+                        else
+                        {
+                            tbCantidadDiarioBE.Text = @"0";
+                        }
+                        mde.Show();
+                        var receta = new Receta.ActualizaPresupuesto
+                        {
+       
+                            RecId = Local.Receta.RecId,
+                            Clave = tbBuscarReceta.Text,
+                            CostoElaboracion = Convert.ToDouble(tbCostoElaboracionBE.Text),
+                            CostoCreacion = Convert.ToDouble(tbCostoEstimadoBE.Text),
+                            Margen = Convert.ToDouble(tbMargenConPrecioBE.Text),
+                            TiporId = cbTipoBE.SelectedIndex + 1,
+                            Descripcion = tbDescripcionBE.Text,
+                            PesoLitro = Convert.ToDouble(tbPesoLitroBE.Text),
+                            Precio = Convert.ToDouble(tbPrecioBE.Text),
+                            PrecioTotal = Convert.ToDouble(tbPrecioTotalBE.Text),
+                            //Diario = checadodiario,
+                            //CantidadDiario = Convert.ToDouble(tbCantidadDiarioBE.Text),
+                            CantidadElaboracion = Convert.ToDouble(tbCantidadElaboracionBE.Text),
+                            UnidadElaboracion = cbUnidadElaboracionBE.SelectedIndex + 1
                         };
                         Data.Receta.CReceta = receta;
                         Opcion.EjecucionAsync(Data.Receta.Insertar, resultado =>
@@ -602,7 +615,7 @@ namespace ExcelAddIn1
             #region insertar o actualizar
             BeginInvoke((MethodInvoker)(() =>
             {
-                if (tabCon.SelectedTab == tabCon.TabPages[1])
+                if (tabCon.SelectedTab == tabCon.TabPages[0])
                 {
                     Data.Receta.Detalle.CRecetaDetalle = listRecetaDetalle;
 
@@ -611,7 +624,7 @@ namespace ExcelAddIn1
 
                                       MessageBoxIcon.Question) == DialogResult.Yes)
                     {
-                        openFileDialog1.Filter = @"Image Files (*.png *.jpg *.bmp) | *.png; *.jpg; *.bmp | All Files(*.*) | *.* ";
+                        openFileDialog1.Filter = @"Image Files (*.png *.jpg *.bmp *.jpeg *.gif) | *.png; *.jpg; *.bmp; *.jpeg  | All Files(*.*) | *.* ";
                         openFileDialog1.Title = @"Buscar Imagen";
                         openFileDialog1.FileName = "";
                         openFileDialog1.ShowDialog();
@@ -661,23 +674,21 @@ namespace ExcelAddIn1
                 inputs.Precio.Text = "";
                 inputs.PesoLitro.Text = "";
                 inputs.Descripcion.Text = "";
-                //if (chDiario.Checked)
-                //{
-                //    tbCantidadDiario.Visible = false;
-                //    lbCantidadDiario.Visible = false;
-                //    tbCantidadElaboracion.Visible = true;
-                //    cbUnidadElaboracion.Visible = true;
-                //    lbCantidadElaboracion.Visible = true;
-                //    chDiario.Checked = false;
-                //}
+                inputs.TipoReceta.TabIndex = -1;
+                inputs.UnidadElaboracion.TabIndex = -1;
                 inputs.MargenConPrecio.Text = "";
+                inputs.MargenConPrecio.Text = Convert.ToString("");
                 inputs.ModoElaboracion.Text = "";
                 inputs.CostoElaboracion.Text = "";
                 inputs.CostoEstimado.Text = "";
                 inputs.CostoEstimado.Text = null;
                 inputs.CostoEstimado.Clear();
+                inputs.PrecioTotal.Text = "";
+                inputs.CostoEstimado.Text = Convert.ToString("0");
                 inputs.Ingredientes.DataSource = null;
                 inputs.Ingredientes.DataSource = "";
+                inputs.Ingredientes.Columns.Clear();
+                inputs.Ingredientes.Rows.Clear();
                 inputs.Ingredientes.Update();
                 mde?.Close();
             }));
@@ -688,32 +699,23 @@ namespace ExcelAddIn1
             tbDescripcionBE.Text = "";
             tbPesoLitroBE.Text = "";
             tbCantidadElaboracionBE.Text = "";
-            cbUnidadElaboracionBE.SelectedIndex = 0;
-            cbTipoBE.SelectedIndex = 0;
-            //if (chDiarioBE.Checked)
-            //{
-            //    tbCantidadDiarioBE.Visible = false;
-            //    lbCantidadDiarioBE.Visible = false;
-            //    tbCantidadElaboracionBE.Visible = true;
-            //    cbUnidadElaboracionBE.Visible = true;
-            //    lbCantidadElaboracionBE.Visible = true;
-            //    chDiarioBE.Checked = false;
-            //}
-
-            //tbCantidadDiarioBE.Text = "";
+            cbUnidadElaboracionBE.SelectedIndex = -1;
+            cbTipoBE.SelectedIndex = -1;
             tbCostoElaboracionBE.Text = "";
             tbMargenConPrecioBE.Text = "";
+            tbMargenConPrecioBE.Text = Convert.ToString("");
             tbMargenSugeridoBE.Text = "";
             tbPrecioSugeridoBE.Text = "";
             tbPrecioBE.Text = "";
+            tbPrecioTotalBE.Text = "";
             txtinstruccionesBE.Text = "";
             tbCostoEstimadoBE.Text = "";
             tbCostoEstimadoBE.Clear();
             tbCostoEstimadoBE.Text = null;
+            tbCostoEstimadoBE.Text = Convert.ToString("0");
             Pbreceta.ImageLocation = @"\\mercattoserver\Recetario\img\sinimagen.jpg";
             dgvIngredientesBusqueda.DataSource = null;
             dgvIngredientesBusqueda.DataSource = "";
-            dgvIngredientesBusqueda.Columns.Clear();
         }
         #endregion
         private void btBuscarClave_Click(object sender, EventArgs e)
@@ -721,6 +723,8 @@ namespace ExcelAddIn1
             Cocina.DetalleCocina.Clave = tbBuscarReceta.Text == string.Empty ? "%" : tbBuscarReceta.Text;
             Opcion.EjecucionAsync(Data.ReporteCocina.BuscarRecetav2, jsonResult =>
             {
+                if (jsonResult!=null)
+                {
                 BeginInvoke((MethodInvoker)(() =>
                 {
                     switch (jsonResult.StatusCode)
@@ -733,6 +737,7 @@ namespace ExcelAddIn1
                                      BeginInvoke((MethodInvoker)(() =>
                                      {
                                          Local.Receta.RecId = resultado.RecId;
+                                         Reccid = Local.Receta.RecId;
                                          Local.Receta.Ruta = resultado.Rutaimagen;
                                          Local.Receta.Ingredientes = resultado.Instrucciones;
                                          dgvIngredientesBusqueda.Tag = resultado.Ingredientes.Select(x => new Articulo.Basica
@@ -746,11 +751,15 @@ namespace ExcelAddIn1
                                          tbPesoLitroBE.Text = resultado.PesoLitro.ToString(CultureInfo.InvariantCulture);
                                          tbCostoElaboracionBE.Text = resultado.CostoElaboracion.ToString(CultureInfo.InvariantCulture);
                                          tbPrecioBE.Text = resultado.Precio.ToString(CultureInfo.InvariantCulture);
+                                         tbPrecioTotalBE.Text = resultado.PrecioTotal.ToString(CultureInfo.InvariantCulture);
                                          tbDescripcionBE.Text = resultado.Descripcion;
+                                         cbTipoBE.SelectedIndex = resultado.TiporId - 1;
+                                         cbUnidadElaboracionBE.SelectedIndex = resultado.UnidadElaboracion - 1;
                                          ActualizarInputs(new Inputs
                                          {
                                              ActualizarMargen = ActualizarMargen,
                                              Precio = tbPrecioBE,
+                                             PrecioTotal=tbPrecioTotalBE,
                                              MargenConPrecio = tbMargenConPrecioBE,
                                              MargenSugerido = tbMargenSugeridoBE,
                                              Ingredientes = dgvIngredientesBusqueda,
@@ -762,7 +771,7 @@ namespace ExcelAddIn1
                                              PrecioSugerido = tbPrecioSugeridoBE,
                                              ModoElaboracion = txtinstruccionesBE,
                                              //Diario = chDiarioBE,
-                                             TipoReceta = cbTipoBE,
+                                             //TipoReceta = cbTipoBE,
                                              CantidadElaboracion = tbCantidadElaboracionBE,
                                              UnidadElaboracion = cbUnidadElaboracionBE,
                                              //CantidadDiario = tbCantidadDiarioBE
@@ -799,6 +808,98 @@ namespace ExcelAddIn1
                             break;
                     }
                 }));
+            }
+            else
+                {
+                    Opcion.EjecucionAsync(Data.ReporteCocina.BuscarRecetaArticulos, t =>
+                    {
+                            BeginInvoke((MethodInvoker)(() =>
+                            {
+                                switch (t.StatusCode)
+                                {
+                                    case HttpStatusCode.OK:
+                                        var brd =
+                                         new BusquedaRecetaDetalle(Opcion.JsonaListaGenerica<Receta>(t),
+                                             resultado =>
+                                             {
+                                                 BeginInvoke((MethodInvoker)(() =>
+                                                 {
+                                                     Local.Receta.RecId = resultado.RecId;
+                                                     Reccid = Local.Receta.RecId;
+                                                     Local.Receta.Ruta = resultado.Rutaimagen;
+                                                     Local.Receta.Ingredientes = resultado.Instrucciones;
+                                                     dgvIngredientesBusqueda.Tag = resultado.Ingredientes.Select(x => new Articulo.Basica
+                                                     {
+                                                         ArtId = x.ArtId,
+                                                         Clave = x.Clave,
+                                                         Descripcion = x.Descripcion,
+                                                         PrecioCompra = x.PrecioCompra,
+                                                         Cantidad = x.Cantidad
+                                                     }).ToList();
+                                                     tbPesoLitroBE.Text = resultado.PesoLitro.ToString(CultureInfo.InvariantCulture);
+                                                     tbCostoElaboracionBE.Text = resultado.CostoElaboracion.ToString(CultureInfo.InvariantCulture);
+                                                     tbPrecioBE.Text = resultado.Precio.ToString(CultureInfo.InvariantCulture);
+                                                     tbPrecioTotalBE.Text = resultado.PrecioTotal.ToString(CultureInfo.InvariantCulture);
+                                                     tbDescripcionBE.Text = resultado.Descripcion;
+                                                     cbTipoBE.SelectedIndex = resultado.TiporId - 1;
+                                                     cbUnidadElaboracionBE.SelectedIndex = resultado.UnidadElaboracion - 1;
+                                                     ActualizarInputs(new Inputs
+                                                     {
+                                                         ActualizarMargen = ActualizarMargen,
+                                                         Precio = tbPrecioBE,
+                                                         PrecioTotal = tbPrecioTotalBE,
+                                                         MargenConPrecio = tbMargenConPrecioBE,
+                                                         MargenSugerido = tbMargenSugeridoBE,
+                                                         Ingredientes = dgvIngredientesBusqueda,
+                                                         ClaveReceta = tbCodigoBE,
+                                                         PesoLitro = tbPesoLitroBE,
+                                                         Descripcion = tbDescripcionBE,
+                                                         CostoElaboracion = tbCostoElaboracionBE,
+                                                         CostoEstimado = tbCostoEstimadoBE,
+                                                         PrecioSugerido = tbPrecioSugeridoBE,
+                                                         ModoElaboracion = txtinstruccionesBE,
+                                             //Diario = chDiarioBE,
+                                                          TipoReceta = cbTipoBE,
+                                                         CantidadElaboracion = tbCantidadElaboracionBE,
+                                                         UnidadElaboracion = cbUnidadElaboracionBE,
+                                             //CantidadDiario = tbCantidadDiarioBE
+                                         });
+
+                                                     tbMargenConPrecioBE.Text = resultado.Margen.ToString(CultureInfo.InvariantCulture);
+                                                     tbBuscarReceta.Text = resultado.Clave;
+                                                     cbTipoBE.SelectedIndex = resultado.TiporId - 1;
+                                                     tbCostoEstimadoBE.Text = resultado.CostoCreacion.ToString(CultureInfo.InvariantCulture);
+                                         //chDiarioBE.Checked = (resultado.Diario == 1);
+                                         tbCodigoBE.Enabled = true;
+                                                     tbCantidadElaboracionBE.Text = resultado.CantidadElaboracion.ToString(CultureInfo.InvariantCulture);
+                                                     cbUnidadElaboracionBE.SelectedIndex = resultado.UnidadElaboracion - 1;
+                                                     var datos = resultado.Instrucciones;
+                                                     txtinstruccionesBE.Text = datos;
+                                                     var calis = resultado.Rutaimagen;
+                                                     if (calis == null)
+                                                     {
+                                                         Pbreceta.Image = Image.FromFile(@"\\mercattoserver\Recetario\img\sinimagen.jpg");
+                                                     }
+                                                     else
+                                                     {
+                                                         Pbreceta.ImageLocation = calis;
+                                                     }
+                                                     btGuardar.Enabled = true;
+                                                 }));
+                                             }, false);
+                                        brd.Show();
+                                        break;
+                                    default:
+                                        MessageBox.Show(this, @"No se encontraron recetas con los parametros de busqueda ingresados");
+                                        Console.WriteLine(t.Content);
+                                        Pbreceta.Image = Image.FromFile(@"\\mercattoserver\Recetario\img\sinimagen.jpg");
+                                        break;
+                                }
+                            }));
+                    });
+                    btGuardar.Enabled = true;
+
+                }
             });
             btGuardar.Enabled = true;
         }
@@ -814,6 +915,7 @@ namespace ExcelAddIn1
                 PrecioSugerido = tbPrecioSugeridoBE,
                 PesoLitro = tbPesoLitroBE,
                 Precio = tbPrecioBE,
+                PrecioTotal=tbPrecioTotalBE,
                 TipoReceta = cbTipoBE,
                 MargenConPrecio = tbMargenConPrecioBE,
                 ActualizarMargen = ActualizarMargen,
@@ -877,6 +979,7 @@ namespace ExcelAddIn1
                 MargenConPrecio = tbMargenConPrecioBE,
                 PrecioSugerido = tbPrecioSugeridoBE,
                 Precio = tbPrecioBE,
+                PrecioTotal=tbPrecioTotalBE,
                 PesoLitro = tbPesoLitroBE,
                 TipoReceta = cbTipoBE,
                 CantidadElaboracion = tbCantidadElaboracionBE,
@@ -888,7 +991,7 @@ namespace ExcelAddIn1
         {
             Opcion.BorrarDataGridView(dgvIngredientesBusqueda);
             MessageBox.Show(this, @"Lista eliminada con exito");
-            tbPrecioBE.Text = "";
+            tbPrecioTotalBE.Text = "";
             tbMargenConPrecioBE.Text = "";
             tbCostoElaboracionBE.Text = "";     
         }
@@ -1047,6 +1150,7 @@ namespace ExcelAddIn1
                 MargenConPrecio = tbMargenConPrecioBE,
                 PrecioSugerido = tbPrecioSugeridoBE,
                 Precio = tbPrecioBE,
+                PrecioTotal=tbPrecioTotalBE,
                 PesoLitro = tbPesoLitroBE,
                 TipoReceta = cbTipoBE,
                 CantidadElaboracion = tbCantidadElaboracionBE,
@@ -1065,6 +1169,7 @@ namespace ExcelAddIn1
                 MargenConPrecio = tbMargenConPrecioBE,
                 PrecioSugerido = tbPrecioSugeridoBE,
                 Precio = tbPrecioBE,
+                PrecioTotal=tbPrecioTotalBE,
                 PesoLitro = tbPesoLitroBE,
                 TipoReceta = cbTipoBE,
                 CantidadElaboracion = tbCantidadElaboracionBE,
@@ -1083,6 +1188,7 @@ namespace ExcelAddIn1
                 MargenConPrecio = tbMargenConPrecioBE,
                 PrecioSugerido = tbPrecioSugeridoBE,
                 Precio = tbPrecioBE,
+                PrecioTotal=tbPrecioTotalBE,
                 PesoLitro = tbPesoLitroBE,
                 TipoReceta = cbTipoBE,
                 CantidadElaboracion = tbCantidadElaboracionBE,
@@ -1106,6 +1212,7 @@ namespace ExcelAddIn1
                 Ingredientes = dgvIngredientesBusqueda,
                 CostoElaboracion = tbCostoElaboracionBE,
                 Precio = tbPrecioBE,
+                PrecioTotal=tbPrecioTotalBE,
                 CostoEstimado = tbCostoEstimadoBE,
                 ActualizarMargen = ActualizarMargen
             });
@@ -1151,7 +1258,29 @@ namespace ExcelAddIn1
         }
         private void tbPrecioBE_Click(object sender, EventArgs e)
         {
-            MessageBox.Show(@"Si deseas modificar el precio, realizalo desde SICAR");
+            MessageBox.Show(@"Si deseas modificar el precio de la receta, realizalo desde SICAR");
+        }
+
+        private void btActualizacion_Click(object sender, EventArgs e)
+        {
+            ActualizarPrecios frm = new ActualizarPrecios();
+            frm.Show();
+        }
+
+        private void tbPrecioTotalBE_TextChanged(object sender, EventArgs e)
+        {
+            if (!Opcion.ValidarDouble(tbPrecioBE)) return;
+            ActualizarMargen(new Inputs
+            {
+                MargenConPrecio = tbMargenConPrecioBE,
+                Ingredientes = dgvIngredientesBusqueda,
+                CostoElaboracion = tbCostoElaboracionBE,
+                PrecioTotal = tbPrecioTotalBE,
+                CostoEstimado = tbCostoEstimadoBE,
+                ActualizarMargen = ActualizarMargen
+            });
+            btGuardar.Enabled = ValidarCamposBe();
+
         }
     }
 }

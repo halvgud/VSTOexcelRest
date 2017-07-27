@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Diagnostics;
 using System.IO;
 using System.Windows.Forms;
@@ -200,7 +201,7 @@ namespace Herramienta
         public static void BorrarFila(DataGridView pivote)
         {
             if (pivote.CurrentCell.RowIndex == -1 || pivote.Rows.Count - 1 <= 0) return;
-            var result = pivote.DataSource as List<Respuesta.MenuDia>;
+            var result = pivote.DataSource as BindingList<MenuDia>;
             if (result == null) return;
             pivote.Rows.RemoveAt(pivote.CurrentCell.RowIndex);
             pivote.DataSource = null;

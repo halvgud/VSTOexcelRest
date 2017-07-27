@@ -667,17 +667,37 @@ namespace Herramienta.Properties {
         
         [global::System.Configuration.ApplicationScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-<<<<<<< HEAD
-        [global::System.Configuration.DefaultSettingValueAttribute("/receta/IngredientesPlatillos")]
-        public string ListaIngredientesMenu1 {
-            get {
-                return ((string)(this["ListaIngredientesMenu1"]));
-=======
         [global::System.Configuration.DefaultSettingValueAttribute("/reporte/ActReceta")]
         public string RepActReceta {
             get {
                 return ((string)(this["RepActReceta"]));
->>>>>>> origin/master
+            }
+        }
+        
+        [global::System.Configuration.ApplicationScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("diarios/")]
+        public string DiariosLista {
+            get {
+                return ((string)(this["DiariosLista"]));
+            }
+        }
+        
+        [global::System.Configuration.ApplicationScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("receta/EliminarPlatillo")]
+        public string EliminarPlatillo {
+            get {
+                return ((string)(this["EliminarPlatillo"]));
+            }
+        }
+        
+        [global::System.Configuration.ApplicationScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("receta/BuscarRecetaenArticulos")]
+        public string BuscarRecetaArticulos {
+            get {
+                return ((string)(this["BuscarRecetaArticulos"]));
             }
         }
     }

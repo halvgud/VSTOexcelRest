@@ -5,6 +5,9 @@ using Herramienta;
 using Herramienta.Config;
 using Respuesta;
 using RestSharp;
+using System.Windows.Forms;
+
+
 
 
 namespace Data
@@ -175,7 +178,6 @@ namespace Data
             catch (Exception e)
             {
                 Opcion.Log(Log.Interno.Categoria, "EXCEPCION: " + e.Message);
-                //callback(null);
             }
         }
         public static void CargarPlatilloDiarios(Action<IRestResponse> callback)
@@ -195,6 +197,39 @@ namespace Data
                 callback(null);
             }
         }
+        public static void EliminarelPlatillo( int menidd)
+        {
+            var rest = new Rest(Local.Api.UrlApi, Cocina.PlatillosMenus.EliminarPlatillo, Method.POST);
+            rest.Peticion.AddHeader(Constantes.Http.ObtenerTipoDeContenido, Constantes.Http.TipoDeContenido.Json);
+            rest.Peticion.AddJsonBody(new {MenId=menidd});
+            rest.Cliente.ExecuteAsync(rest.Peticion, response =>
+            {
+                switch (response.StatusCode)
+                {
+                    case HttpStatusCode.OK:
+                        break;
+                    default:
+                        throw new Exception(@"No se realizo la actualizacion");
+                }
+            });
+        }
+        public static void ListaDiarios(Action<IRestResponse> callback/*, Form f1)*/)
+        {
+            try
+            {
+                var rest = new Rest(Local.Api.UrlApi, Cocina.PlatillosMenus.ListaDiarios + Cocina.PlatillosMenus.TipooId, Method.GET);
+
+                rest.Peticion.AddHeader(Constantes.Http.ObtenerTipoDeContenido,
+                  Constantes.Http.TipoDeContenido.Json);
+                rest.Cliente.ExecuteAsync(rest.Peticion, callback);
+            }
+            catch (Exception e)
+            {
+                Opcion.Log(Log.Interno.Categoria, "EXCEPCION: " + e.Message);
+                // callback("CONTINUAR");
+            }
+        }
+
         public static void IngredientesMenuPlatillos(Action<IRestResponse> callback)
         {
             try
@@ -210,22 +245,6 @@ namespace Data
             {
                 Opcion.Log(Log.Interno.Categoria, "EXCEPCION: " + e.Message);
                 callback(null);
-            }
-        }
-        public static void ListaIngredientes(Action<IRestResponse> callback)
-        {
-            try
-            {
-                var rest = new Rest(Local.Api.UrlApi, Cocina.PlatillosMenus.IngredientesMenu + Cocina.PlatillosMenus.Clave,
-                    Method.GET);
-                rest.Peticion.AddHeader(Constantes.Http.ObtenerTipoDeContenido,
-                    Constantes.Http.TipoDeContenido.Json);
-                rest.Cliente.ExecuteAsync(rest.Peticion, callback);
-            }
-            catch (Exception e)
-            {
-                Opcion.Log(Log.Interno.Categoria, "EXCEPCION: " + e.Message);
-                // callback("CONTINUAR");
             }
         }
         public static void InsertarMenus(Action<IRestResponse> callback, Respuesta.InsertarMenu lista)

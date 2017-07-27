@@ -35,7 +35,7 @@
     <PublishUrl>\\mercattoserver\ftp\COCINA\</PublishUrl>
     <InstallUrl>\\mercattoserver\ftp\VSTO\COCINA\</InstallUrl>
     <TargetCulture>es</TargetCulture>
-    <ApplicationVersion>1.0.0.11</ApplicationVersion>
+    <ApplicationVersion>1.0.0.32</ApplicationVersion>
     <AutoIncrementApplicationRevision>true</AutoIncrementApplicationRevision>
     <UpdateEnabled>true</UpdateEnabled>
     <UpdateInterval>7</UpdateInterval>
@@ -185,21 +185,12 @@
     can be found.
   -->
   <ItemGroup>
-<<<<<<< HEAD
-=======
-    <Compile Include="Acceso.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Acceso.Designer.cs">
-      <DependentUpon>Acceso.cs</DependentUpon>
-    </Compile>
     <Compile Include="Actualizar Precios.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Actualizar Precios.Designer.cs">
       <DependentUpon>Actualizar Precios.cs</DependentUpon>
     </Compile>
->>>>>>> origin/master
     <Compile Include="AgregarReceta.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -270,15 +261,9 @@
     <Compile Include="Properties\AssemblyInfo.cs">
       <SubType>Code</SubType>
     </Compile>
-<<<<<<< HEAD
-=======
-    <EmbeddedResource Include="Acceso.resx">
-      <DependentUpon>Acceso.cs</DependentUpon>
-    </EmbeddedResource>
     <EmbeddedResource Include="Actualizar Precios.resx">
       <DependentUpon>Actualizar Precios.cs</DependentUpon>
     </EmbeddedResource>
->>>>>>> origin/master
     <EmbeddedResource Include="AgregarReceta.resx">
       <DependentUpon>AgregarReceta.cs</DependentUpon>
     </EmbeddedResource>
@@ -375,7 +360,9 @@
     <AppDesigner Include="Properties\" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Ribbon1.xml" />
+    <EmbeddedResource Include="Ribbon1.xml">
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
     <None Include="FINAL..png" />

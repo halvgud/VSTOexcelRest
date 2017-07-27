@@ -209,13 +209,17 @@
     <Setting Name="RepoCongeladoFechado" Type="System.String" Scope="Application">
       <Value Profile="(Default)">reporte/ReporteCongeladosFechado</Value>
     </Setting>
-<<<<<<< HEAD
-    <Setting Name="ListaIngredientesMenu1" Type="System.String" Scope="Application">
-      <Value Profile="(Default)">/receta/IngredientesPlatillos</Value>
-=======
     <Setting Name="RepActReceta" Type="System.String" Scope="Application">
       <Value Profile="(Default)">/reporte/ActReceta</Value>
->>>>>>> origin/master
+    </Setting>
+    <Setting Name="DiariosLista" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">diarios/</Value>
+    </Setting>
+    <Setting Name="EliminarPlatillo" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">receta/EliminarPlatillo</Value>
+    </Setting>
+    <Setting Name="BuscarRecetaArticulos" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">receta/BuscarRecetaenArticulos</Value>
     </Setting>
   </Settings>
 </SettingsFile>

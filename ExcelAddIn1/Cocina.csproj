@@ -35,7 +35,7 @@
     <PublishUrl>\\mercattoserver\ftp\COCINA\</PublishUrl>
     <InstallUrl>\\mercattoserver\ftp\VSTO\COCINA\</InstallUrl>
     <TargetCulture>es</TargetCulture>
-    <ApplicationVersion>1.0.0.32</ApplicationVersion>
+    <ApplicationVersion>1.0.0.58</ApplicationVersion>
     <AutoIncrementApplicationRevision>true</AutoIncrementApplicationRevision>
     <UpdateEnabled>true</UpdateEnabled>
     <UpdateInterval>7</UpdateInterval>
@@ -240,12 +240,6 @@
       <DependentUpon>Diario.cs</DependentUpon>
     </Compile>
     <Compile Include="dataGridViewTextBoxColumn\Add.cs" />
-    <Compile Include="DiarioCocina.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="DiarioCocina.Designer.cs">
-      <DependentUpon>DiarioCocina.cs</DependentUpon>
-    </Compile>
     <Compile Include="EditarOrden.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -293,9 +287,6 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Diario.resx">
       <DependentUpon>Diario.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="DiarioCocina.resx">
-      <DependentUpon>DiarioCocina.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="EditarOrden.resx">
       <DependentUpon>EditarOrden.cs</DependentUpon>
@@ -390,6 +381,7 @@
       <Name>Respuesta</Name>
     </ProjectReference>
   </ItemGroup>
+  <ItemGroup />
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
     <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>
@@ -402,7 +394,7 @@
     </ManifestKeyFile>
   </PropertyGroup>
   <PropertyGroup>
-    <ManifestCertificateThumbprint>DA9EB162053F806985CB0A1D463B99A5EECC8285</ManifestCertificateThumbprint>
+    <ManifestCertificateThumbprint>0B88C84ADAABD274015CFEC1FDE2A4BB51A8044B</ManifestCertificateThumbprint>
   </PropertyGroup>
   <PropertyGroup>
     <RunPostBuildEvent>Always</RunPostBuildEvent>

@@ -327,7 +327,7 @@ namespace testVSTO2
                             RecId = 0,
                             Diario = inputs.Diario.Checked?1:0
                         };
-                       // Data.Receta.CReceta = receta;
+                        Data.Receta.CReceta = receta;
                         Opcion.EjecucionAsync(Data.Receta.Insertar, resultado =>
                         {
                             Guardado(resultado,inputs);

@@ -416,9 +416,10 @@
             // 
             // tbMargenConPrecioBE
             // 
-            this.tbMargenConPrecioBE.BackColor = System.Drawing.SystemColors.Window;
+            this.tbMargenConPrecioBE.BackColor = System.Drawing.SystemColors.InactiveCaption;
             this.tbMargenConPrecioBE.Location = new System.Drawing.Point(553, 285);
             this.tbMargenConPrecioBE.Name = "tbMargenConPrecioBE";
+            this.tbMargenConPrecioBE.ReadOnly = true;
             this.tbMargenConPrecioBE.Size = new System.Drawing.Size(100, 20);
             this.tbMargenConPrecioBE.TabIndex = 33;
             this.tbMargenConPrecioBE.TextChanged += new System.EventHandler(this.tbMargenConPrecioBE_TextChanged);

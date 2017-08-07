@@ -1,5 +1,4 @@
 ﻿using System.Collections.Generic;
-
 namespace Respuesta
 {
     public class MenuSemanal
@@ -25,7 +24,6 @@ namespace Respuesta
     }
     public class MenuDia
     {
-      
         public string TipoRecetaDgv { get; set; }
         public string Platillo { get; set; }
         public double CantidadReceta { get; set; }
@@ -37,8 +35,6 @@ namespace Respuesta
        public int MenId { get; set; }
         public List<IngredientesReceta> Ingredientes { get; set; }
     }
-
-
     public class PlatilloReceta
     {
         public int RecId { get; set; }
@@ -54,7 +50,6 @@ namespace Respuesta
         public double PrecioCompra { get; set; }
         public double Precio { get; set; }
     }
-
     public class InsertarMenu
     {
         public  int MenId { get; set; }
@@ -64,8 +59,6 @@ namespace Respuesta
         public  double PrecioFinal { get; set; }
         public  int TipoId { get; set; }
     }
-
-
     public class IngredientesReceta
     {
         public string ClaveReceta { get; set; }
@@ -78,35 +71,25 @@ namespace Respuesta
         public double PrecioCompra { get; set; }
         public  string Fecha { get; set; }
     }
-
-
-
- 
-
-    public class ListaDiario
-    {
-        public List<Diario> ListDiarios { get; set; } 
-        //public ListaDiario()
-        //{
-        //    var Anterior = new Diario {Clave = "",Platillo = "",CantidadProgramada = 0,CantidadCocina = 0,CantidadVendida = 0,Sobrantes = 0,Observacion = ""};
-        //    ListDiarios=new List<Diario> {Anterior};
-        //} 
-    }
-
     public class Diario
     {
         public int ArtId { get; set; }
         public string Clave { get; set; }
         public string Platillo { get; set; }
+        // ReSharper disable once InconsistentNaming
         public double CP { get; set; }
-        public double CC { get; set; }
+        // ReSharper disable once InconsistentNaming
+        public double CR { get; set; }
+        // ReSharper disable once InconsistentNaming
         public double CV { get; set; }
         public string Unidad { get; set; }
         
         public double S { get; set; }
+        // ReSharper disable once InconsistentNaming
         public double SR { get; set; }
         public string Observacion { get; set; }
         public List<Cantidades> ListaCantidades { get; set; }
+        public int EstadoInventarioId { get; set; }
         public class Cantidades
         {
             public int EstadoDescripcionId { get; set; }
@@ -121,12 +104,30 @@ namespace Respuesta
         public string ArtId { get; set; }
         public string Clave { get; set; }
         public string Platillo { get; set; }
+        // ReSharper disable once InconsistentNaming
         public double CR { get; set; }
+        // ReSharper disable once InconsistentNaming
         public double RV { get; set; }
+        // ReSharper disable once InconsistentNaming
         public double SR { get; set; }
         public double S { get; set; }
         public string Fecha { get; set; }
         public int EstadoId { get; set; }
+    }
+
+    public class ReportePlatilllosDiarios
+    {
+        public  string Clave { get; set; }
+        public string Platillo { get; set; }
+        public  double Existencia { get; set; }
+        // ReSharper disable once InconsistentNaming
+        public  double CP { get; set; }
+        // ReSharper disable once InconsistentNaming
+        public double CE { get; set; }
+        // ReSharper disable once InconsistentNaming
+        public double CR { get; set; }
+        public  double VentaAnterios { get; set; }
+        public  double VentaPromedio { get; set; }
     }
 
 

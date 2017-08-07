@@ -279,13 +279,13 @@ namespace ExcelAddIn1
             }
             if (inputs.MargenConPrecio.Text != string.Empty)
             {
-                inputs.PrecioTotal.Text = (Math.Round(((sum) +
-                                                    (inputs.CostoElaboracion.Text != string.Empty
-                                                        ? Convert.ToDouble(inputs.CostoElaboracion.Text)
-                                                        : 0))
-                                                        /
-                                                    (1 - (Convert.ToDouble(inputs.MargenConPrecio.Text) / 100)), 2))
-                    .ToString(CultureInfo.InvariantCulture);
+                //inputs.PrecioTotal.Text = (Math.Round(((sum) +
+                //                                    (inputs.CostoElaboracion.Text != string.Empty
+                //                                        ? Convert.ToDouble(inputs.CostoElaboracion.Text)
+                //                                        : 0))
+                //                                        /
+                //                                    (1 - (Convert.ToDouble(inputs.MargenConPrecio.Text) / 100)), 2))
+                //    .ToString(CultureInfo.InvariantCulture);
             }
             ValidarBusquedaVacia();
         }
@@ -559,7 +559,7 @@ namespace ExcelAddIn1
                             tbCantidadDiarioBE.Text = @"0";
                         }
                         mde.Show();
-                        var receta = new Receta.ActualizaPresupuesto
+                        var receta = new Receta
                         {
        
                             RecId = Local.Receta.RecId,

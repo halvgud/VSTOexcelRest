@@ -78,6 +78,8 @@ namespace Respuesta
         {
             public string Fecha1 { get; set; }
             public string Fecha2 { get; set; }
+            public string FechaIni { get; set; }
+            public string FechaFin { get; set; }
         }
 
         public class DiaanteriorX2
@@ -118,14 +120,29 @@ namespace Respuesta
 
         public class Savedaily
         {
-            public int EstadoId { get; set; }      
+            public int EstadoDescripcionId { get; set; }
+            public int EstadoInventarioId { get; set; }
             public string ArtId { get; set; }
             public string Clave { get; set; }
             public string Platillo { get; set; }
             public double Cantidad { get; set; }
             public double CantidadCocina { get; set; }
+            public  string Fecha { get; set; }
             public  string Status { get; set; }
+            public string Observacion { get; set; }
         }
+
+
+        public class ReventaDiarios
+        {
+            public int EstadoDescripcionId { get; set; }
+            public int EstadoInventarioId { get; set; }
+            public string Clave { get; set; }
+            public string Platillo { get; set; }
+            public double Cantidad { get; set; }
+            public string Fecha { get; set; }
+        }
+
 
         public class Congelados
         {

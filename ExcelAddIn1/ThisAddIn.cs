@@ -357,14 +357,13 @@ namespace ExcelAddIn1
         {
             Application.ScreenUpdating = false;
             var rri = listaArticuloBasica2;
-            var oReportWs = InicializarExcelConTemplate("IngredientesMenuDiarioxPlatillo");
+            var oReportWs = InicializarExcelConTemplate("IngredientesPreviaPlatillo");
             if (oReportWs == null) return;
             var rowcount = rri.Count + 7;
-            _reporte.Range["A7:F" + rowcount].Value2 = InicializarListaIngredientesxPlatillo(rri);
-            _reporte.Range["A7:A" + rowcount].HorizontalAlignment = Excel.XlHAlign.xlHAlignLeft;
-            _reporte.Range["B7:B" + rowcount].HorizontalAlignment = Excel.XlHAlign.xlHAlignLeft;
-            _reporte.Range["C7:C" + rowcount].HorizontalAlignment = Excel.XlHAlign.xlHAlignLeft;
-            _reporte.Range["D7:F" + rowcount].HorizontalAlignment = Excel.XlHAlign.xlHAlignCenter;
+            _reporte.Range["A6:E" + rowcount].Value2 = InicializarListaIngredientesxPlatillo(rri);
+            _reporte.Range["A6:A" + rowcount].HorizontalAlignment = Excel.XlHAlign.xlHAlignLeft;
+            _reporte.Range["B6:B" + rowcount].HorizontalAlignment = Excel.XlHAlign.xlHAlignLeft;
+            _reporte.Range["C6:C" + rowcount].HorizontalAlignment = Excel.XlHAlign.xlHAlignCenter;
             Application.Cells.Locked = false;
             Application.ScreenUpdating = true;
         }
@@ -372,51 +371,16 @@ namespace ExcelAddIn1
         {
             Application.ScreenUpdating = false;
             var rri= listaArticuloBasica2;
-            var oReportWs = InicializarExcelConTemplate("IngredientesMenuDiario");
+            var oReportWs = InicializarExcelConTemplate("IngredientesPreviaGlobal");
             if (oReportWs == null) return;
             var rowcount = rri.Count+6;
-            _reporte.Range["A6:E" + rowcount].Value2 = InicializarListaIngredientes(rri);
-            _reporte.Range["A6:A" + rowcount].HorizontalAlignment = Excel.XlHAlign.xlHAlignLeft;
-            _reporte.Range["B6:B" + rowcount].HorizontalAlignment = Excel.XlHAlign.xlHAlignLeft;
-            _reporte.Range["C6:E" + rowcount].HorizontalAlignment = Excel.XlHAlign.xlHAlignCenter;
+            _reporte.Range["A5:E" + rowcount].Value2 = InicializarListaIngredientes(rri);
+            _reporte.Range["A5:A" + rowcount].HorizontalAlignment = Excel.XlHAlign.xlHAlignLeft;
+            _reporte.Range["B5:B" + rowcount].HorizontalAlignment = Excel.XlHAlign.xlHAlignLeft;
+            _reporte.Range["C5:D" + rowcount].HorizontalAlignment = Excel.XlHAlign.xlHAlignCenter;
             Application.Cells.Locked = false;
             Application.ScreenUpdating = true;
-
-            //for (int i = 5; i < rowcount + 1; i++)
-            //{
-            //    var x = _reporte.Range["E" + i].Value2;
-            //    string y = "E" + i;
-            //    if (x == "10/07/2017")
-            //    {
-            //        _reporte.Range[y].Interior.Color = Color.Red;
-            //    }
-            //    if (x == "11/07/2017")
-            //    {
-            //        _reporte.Range[y].Interior.Color = Color.Blue;
-            //    }
-            //    if (x == "12/07/2017")
-            //    {
-            //        _reporte.Range[y].Interior.Color = Color.Green;
-            //    }
-            //    if (x == "13/07/2017")
-            //    {
-            //        _reporte.Range[y].Interior.Color = Color.Yellow;
-            //    }
-            //    if (x == "14/07/2017")
-            //    {
-            //        _reporte.Range[y].Interior.Color = Color.Fuchsia;
-            //    }
-            //    if (x == "15-07-2017")
-            //    {
-            //        _reporte.Range[y].Interior.Color = Color.IndianRed;
-            //    }
-            //    if (x == "16/07/2017")
-            //    {
-            //        _reporte.Range[y].Interior.Color = Color.Purple;
-            //    }
-            //}
         }
-        //template recetario
         public void ReporteCocina(IRestResponse restResponse)
         {
            
@@ -566,6 +530,7 @@ namespace ExcelAddIn1
             .GroupBy(p => p.Fecha)
             .Select(g => g.ToList())
             .ToList();
+
             var lista = new object[rrgi.Count + result.Count + 1, 6];
             var j = 0;
 
@@ -576,11 +541,10 @@ namespace ExcelAddIn1
                 {
 
                     lista[j, 0] =  x.DescripcionReceta;
-                    lista[j, 1] = "'" + x.Clave;
-                    lista[j, 2] = x.Descripcion;
-                    lista[j, 3] = x.Cantidad;
-                    lista[j, 4] = x.Unidad;
-                    lista[j, 5] = x.Fecha;
+                    lista[j, 1] = x.Descripcion;
+                    lista[j, 2] = x.Cantidad;
+                    lista[j, 3] = "";
+                    lista[j, 4] = x.Fecha;
                     j++;
                 }
                     lista[j, 0] = "";
@@ -588,18 +552,14 @@ namespace ExcelAddIn1
                     lista[j, 2] = "";
                     lista[j, 3] = "";
                     lista[j, 4] = "";
-                    lista[j, 5] = "";
                     j++;
-                
-
             }
-
             return lista;
         }
         private static object[,] InicializarListaIngredientes(IReadOnlyCollection<IngredientesReceta> rrgi)
         {
             var result = rrgi
-            .GroupBy(p =>p.Fecha)
+            .GroupBy(p =>p.Fecha.Max())
             .Select(g => g.ToList())
             .ToList();
             var lista = new object[rrgi.Count+ result.Count+1, 5];
@@ -613,7 +573,7 @@ namespace ExcelAddIn1
                     lista[j, 0] = "'" + x.Clave;
                     lista[j, 1] = x.Descripcion;
                     lista[j, 2] =x.Cantidad;
-                    lista[j, 3] = x.Unidad;
+                    lista[j, 3] = "";
                     lista[j, 4] = x.Fecha;
                     j++;
                 }
@@ -630,7 +590,7 @@ namespace ExcelAddIn1
         }
         private static object[,] InicializarLista(IReadOnlyList<Reporte.General.InventarioCongelados> rrgc)
         {
-            var lista = new object[rrgc.Count, 7];
+            var lista = new object[rrgc.Count, 4];
             for (var x = 0; x < rrgc.Count; x++)
             {
                 lista[x, 0] = rrgc[x].Id;

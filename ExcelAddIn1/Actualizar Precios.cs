@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Windows.Forms;
 using Herramienta;
 using Herramienta.Config;
+using Respuesta;
 
 namespace ExcelAddIn1
 {
@@ -13,10 +14,10 @@ namespace ExcelAddIn1
             InitializeComponent();
         }
 
-        public List<Respuesta.Reporte.RespuestaCocina.RepoActRec> _ListaXR;
-        public List<Respuesta.Receta.IngredientesRecetaPrecio> _ListIngredientesRecetaPrecios;
+        public List<Reporte.RespuestaCocina.RepoActRec> _listaXr;
+        public List<Receta.IngredientesRecetaPrecio> ListIngredientesRecetaPrecios;
 
-        public List<Respuesta.Reporte.RespuestaCocina.RepoActRec> ListaXr;
+        public List<Reporte.RespuestaCocina.RepoActRec> ListaXr;
 
         private void Actualizar_Precios_Load(object sender, EventArgs e)
         {
@@ -24,10 +25,10 @@ namespace ExcelAddIn1
             {
                 BeginInvoke((MethodInvoker) (() =>
                 {
-                    ListaXr = Opcion.JsonaListaGenerica<Respuesta.Reporte.RespuestaCocina.RepoActRec>(jsonResult);
+                    ListaXr = Opcion.JsonaListaGenerica<Reporte.RespuestaCocina.RepoActRec>(jsonResult);
                     if (ListaXr == null)
                     {
-                        var listavacia = new Respuesta.Reporte.RespuestaCocina.RepoActRec
+                        var listavacia = new Reporte.RespuestaCocina.RepoActRec
                         {
                             Clave = " ",
                             Receta = " ",
@@ -50,16 +51,17 @@ namespace ExcelAddIn1
 
         private void dgvrecetasact_CellClick(object sender, DataGridViewCellEventArgs e)
         {
-            Local.Receta.IngredienteActualizar.Rec_id = Convert.ToInt16(dgvrecetasact.CurrentRow.Cells[0].Value);
+            if (dgvrecetasact.CurrentRow != null)
+                Local.Receta.IngredienteActualizar.Rec_id = Convert.ToInt16(dgvrecetasact.CurrentRow.Cells[0].Value);
             Opcion.EjecucionAsync(Data.Reporte.MostrarIngredientesReceta, jsonResult =>
             {
                 BeginInvoke((MethodInvoker)(() =>
                 {
-                    _ListIngredientesRecetaPrecios = Opcion.JsonaListaGenerica<Respuesta.Receta.IngredientesRecetaPrecio>(jsonResult);
+                    ListIngredientesRecetaPrecios = Opcion.JsonaListaGenerica<Receta.IngredientesRecetaPrecio>(jsonResult);
 
-                    if (_ListIngredientesRecetaPrecios.Count == 0)
+                    if (ListIngredientesRecetaPrecios.Count == 0)
                     {
-                        dgvingredientes.DataSource = new Respuesta.Receta.IngredientesRecetaPrecio
+                        dgvingredientes.DataSource = new Receta.IngredientesRecetaPrecio
                         {
                             Clave = "",
                             Receta = "",
@@ -70,7 +72,7 @@ namespace ExcelAddIn1
                     }
                     else
                     {
-                        dgvingredientes.DataSource = _ListIngredientesRecetaPrecios;
+                        dgvingredientes.DataSource = ListIngredientesRecetaPrecios;
                     }
                 }));
 

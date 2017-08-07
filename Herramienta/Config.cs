@@ -34,8 +34,8 @@ namespace Herramienta
 
                 public class FechasReporte
                 {
-                    public string FechaInicioR { get; set; }
-                    public string FechaFinalR { get; set; }
+                    public string FechaIni { get; set; }
+                    public string FechaFin { get; set; }
                 }
             }
              public static class ActReceta
@@ -94,7 +94,7 @@ namespace Herramienta
                 public static string ActualizarX2 { get; set; } = Properties.Settings.Default.ActualizarDiarioX2;
                 public static int EstadoId { get; set; }
                 public static string ActualizarX2_Destino { get; set; } = Properties.Settings.Default.ActualizarDiarioDestinoX2;
-                public static string ActualizarX2_Fecha { get; set; } = Properties.Settings.Default.ActualizarDiarioFechaX2;
+                public static string CargarDiarios { get; set; } = Properties.Settings.Default.ReporteDiario;
                 
                 public class DestinoDif
                 {
@@ -110,6 +110,7 @@ namespace Herramienta
             public class PlatillosMenus
             {
                 public static string ListaPlatillos { get; set; } = Properties.Settings.Default.TiposPlatillosDiarios;
+                public static string ListaPlatilloClave { get; set; } = Properties.Settings.Default.PlatilloporClave;
                 public static string SacarMsReceta { get; set; } = Properties.Settings.Default.RecetaporClave;
                 public static string SacarTipoId { get; set; } = Properties.Settings.Default.TipoIdporNombre;
                 public static string ExistenciaCongelado { get; set; }=Properties.Settings.Default.ExistenciaCongeladoMenu;
@@ -149,7 +150,9 @@ namespace Herramienta
                 public static string Clave { get; set; }
                 public static string Descripcion { get; set; }
                 public static double Cantidad { get; set; }
+                public static int EstadoInventarioId { get; set; }
                 public static string Agregar { get; set; } = Properties.Settings.Default.AgregarCongelado1;
+                public static string ActualizarDestino { get; set; } = Properties.Settings.Default.ActualizarDestino;
                 public static string Agregarcantidad { get; set; } 
             }
 

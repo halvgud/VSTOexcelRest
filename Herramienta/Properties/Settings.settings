@@ -212,7 +212,6 @@
     <Setting Name="RepActReceta" Type="System.String" Scope="Application">
       <Value Profile="(Default)">/reporte/ActReceta</Value>
     </Setting>
-<<<<<<< HEAD
     <Setting Name="IngActReceta" Type="System.String" Scope="Application">
       <Value Profile="(Default)">/reporte/IngredienteActualizarReceta</Value>
     </Setting>
@@ -221,7 +220,7 @@
     </Setting>
     <Setting Name="ActRecetaDiaria" Type="System.String" Scope="Application">
       <Value Profile="(Default)">reporte/ActDiarioTable</Value>
-=======
+    </Setting>
     <Setting Name="DiariosLista" Type="System.String" Scope="Application">
       <Value Profile="(Default)">diarios/</Value>
     </Setting>
@@ -230,7 +229,15 @@
     </Setting>
     <Setting Name="BuscarRecetaArticulos" Type="System.String" Scope="Application">
       <Value Profile="(Default)">receta/BuscarRecetaenArticulos</Value>
->>>>>>> 081402c04621408aae5702319c9d8fa83a6b9e2c
+    </Setting>
+    <Setting Name="PlatilloporClave" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">/receta/SeleccionarPlatilloMenuClave</Value>
+    </Setting>
+    <Setting Name="ReporteDiario" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">/reporte/ReporteDiario</Value>
+    </Setting>
+    <Setting Name="ActualizarDestino" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">receta/ActualizarDestino</Value>
     </Setting>
   </Settings>
 </SettingsFile>

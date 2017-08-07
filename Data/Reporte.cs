@@ -22,8 +22,7 @@ namespace Data
         public static Respuesta.Receta.DiaanteriorX2 AntesDiaanteriorX2;
         public static Cocina.DetalleCocina.ReporteInventarioHistorial FechaHistorial;
         public static Cocina.ReporteDiarioCocina.FechasReporte FechasReporte;
-
-
+  
         public static void General(Action<IRestResponse> callback, Respuesta.Reporte.General repGeneral)
         {
             try
@@ -467,13 +466,13 @@ namespace Data
         }
 
 
-        public static void RepoDiarioD(Action<IRestResponse> callback,Cocina.ReporteDiarioCocina.FechasReporte Fechitas  )
+        public static void RepoDiarioD(Action<IRestResponse> callback,Cocina.ReporteDiarioCocina.FechasReporte fechas )
         {
             try
             {
                 var rest = new Rest(Local.Api.UrlApi, Cocina.ReporteDiarioCocina.reporte, Method.POST);
                 rest.Peticion.AddHeader(Constantes.Http.ObtenerTipoDeContenido, Constantes.Http.TipoDeContenido.Json);
-                rest.Peticion.AddJsonBody(Fechitas);
+                rest.Peticion.AddJsonBody(fechas);
                 rest.Cliente.ExecuteAsync(rest.Peticion, response =>
                 {
                     switch (response.StatusCode)

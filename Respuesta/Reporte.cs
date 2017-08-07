@@ -195,7 +195,10 @@ namespace Respuesta
                 public string Clave { get; set; }
                 public string Platillo { get; set; }
                 public DateTime Fecha { get; set; }
-                public Double CC { get; set; }
+                public Double CR { get; set; }
+                public  double SR { get; set; }
+                public  int EstadoInventarioId { get; set; }
+                public string Observacion { get; set; }
             }
 
             public class Reportess
@@ -209,13 +212,14 @@ namespace Respuesta
             public class Repo_Diario
             {
                 public string Clave { get; set; }
-                public string Descripcion { get; set; }
-                public Double CR { get; set; }
-                public Double CE { get; set; }
-                public Double CP { get; set; }
+                public string Platillo { get; set; }
                 public Double Existencia { get; set; }
-                public Double VA { get; set; }
-                public Double VP { get; set; }
+                public Double CP { get; set; }
+                public Double CE { get; set; }
+                public Double CR { get; set; }
+                public Double VentaAnterior { get; set; }
+                public Double VentaPromedio { get; set; }
+                public double EstadoInventarioId { get; set; }
             }
 
             public class RepoActDiarioD

@@ -526,10 +526,13 @@ namespace ExcelAddIn1
         }
         private static object[,] InicializarListaIngredientesxPlatillo(IReadOnlyCollection<IngredientesReceta> rrgi)
         {
-            var result = rrgi
+            var result = rrgi.OrderBy(p => p.Fecha)
             .GroupBy(p => p.Fecha)
             .Select(g => g.ToList())
             .ToList();
+
+
+          
 
             var lista = new object[rrgi.Count + result.Count + 1, 6];
             var j = 0;
@@ -558,8 +561,8 @@ namespace ExcelAddIn1
         }
         private static object[,] InicializarListaIngredientes(IReadOnlyCollection<IngredientesReceta> rrgi)
         {
-            var result = rrgi
-            .GroupBy(p =>p.Fecha.Max())
+            var result = rrgi.OrderBy(p => p.Fecha)
+            .GroupBy(p =>p.Fecha)
             .Select(g => g.ToList())
             .ToList();
             var lista = new object[rrgi.Count+ result.Count+1, 5];

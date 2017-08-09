@@ -197,6 +197,16 @@ namespace Herramienta
             ingredientes.Refresh();
             ingredientes.DataSource = result;
         }
+        public static void BorrarFilaDiarios(DataGridView platillosdiarios)
+        {
+            if (platillosdiarios.CurrentCell.RowIndex == -1 || platillosdiarios.Rows.Count <= 0) return;
+            var result = platillosdiarios.DataSource as List<Reporte.RespuestaCocina.Repo_Diario>;
+            if (result == null) return;
+            result.RemoveAt(platillosdiarios.CurrentCell.RowIndex);
+            platillosdiarios.DataSource = null;
+            platillosdiarios.Refresh();
+            platillosdiarios.DataSource = result;
+        }
 
         public static void BorrarFila(DataGridView pivote)
         {

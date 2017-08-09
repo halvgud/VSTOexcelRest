@@ -30,7 +30,8 @@ namespace Herramienta
             {
                 public static string reporte { get; set; } = Properties.Settings.Default.ReporteDiarioX;
                 public static string CargarRepoNew { get; set; } = Properties.Settings.Default.ActRecetaDiaria;
-    
+                public static string CargarRepoNew2 { get; set; } = Properties.Settings.Default.ActRecetaDiaria2;
+                public static string Fecha { get; set; }
 
                 public class FechasReporte
                 {

@@ -137,10 +137,14 @@ namespace Respuesta
         {
             public int EstadoDescripcionId { get; set; }
             public int EstadoInventarioId { get; set; }
+            public string ArtId { get; set; }
             public string Clave { get; set; }
             public string Platillo { get; set; }
             public double Cantidad { get; set; }
             public string Fecha { get; set; }
+            public int Status { get; set; }
+            public double CantidadCocina { get; set; }
+            public string Observacion { get; set; }
         }
 
 

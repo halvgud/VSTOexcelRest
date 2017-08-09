@@ -578,7 +578,10 @@ namespace ExcelAddIn1
                                         pivote.Rows[i1].Cells["CantidadReceta"].Style.BackColor = Color.Orange;
                                         pivote.Rows[i1].Cells["PrecioCompra"].Style.BackColor = Color.Orange;
                                         pivote.Rows[i1].Cells["GananciaTotal"].Style.BackColor = Color.Orange;
-                                   
+                                        if (Convert.ToInt16(pivote.Rows[i1].Cells["Congelado"].Value) > 0)
+                                        {
+                                            MessageBox.Show(@"Existe congelado, favor de verificar");
+                                        }
                                     }));
                                 });
                               }
@@ -622,7 +625,7 @@ namespace ExcelAddIn1
                                 var dd = Opcion.JsonaClaseGenerica<PlatilloReceta>(y).Congelado;
                                 pivote.Rows[row].Cells["Congelado"].Value = dd;
                                 pivote.Rows[row].Cells["Congelado"].Style.BackColor = Color.Aqua;
-                                if (Convert.ToInt16(pivote.Rows[row].Cells["Congelado"].Value) == 0)
+                                if (Convert.ToInt16(pivote.Rows[row].Cells["Congelado"].Value) > 0)
                                 {
                                     MessageBox.Show(@"Existe congelado, favor de verificar");
                                 }
@@ -841,7 +844,7 @@ namespace ExcelAddIn1
                     var fecha = DateTime.Parse((pivote.Tag as PropiedadesDgv)?.LabelFecha.Text, CultureInfo.CurrentCulture);
                     
                     var result = DateTime.Compare(fecha, DateTime.Now);
-                    if (result < 0) continue;
+                     if (result < 0) continue;
                     for (var i = 0; i < pivote.Rows.Count; i++)
                     {
                         var dd = pivote.Rows[i].Cells[1].Value;
@@ -915,6 +918,7 @@ namespace ExcelAddIn1
             MessageBox.Show(@"El Menú Semanal se a guardado correctamente");
             btPreviaPlatilloGlobal.Enabled = true;
             btPreviaPlatillo.Enabled = true;
+
         }
         private void dgvGenerico_CellClick(object sender, DataGridViewCellEventArgs e)
         {

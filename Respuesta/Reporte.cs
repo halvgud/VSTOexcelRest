@@ -220,6 +220,9 @@ namespace Respuesta
                 public Double VentaAnterior { get; set; }
                 public Double VentaPromedio { get; set; }
                 public double EstadoInventarioId { get; set; }
+                public int ArtId { get; set; }
+                public string Observacion { get; set; }
+                public double CantidadCocina { get; set; }
             }
 
             public class RepoActDiarioD

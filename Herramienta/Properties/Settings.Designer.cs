@@ -745,6 +745,7 @@ namespace Herramienta.Properties {
         
         [global::System.Configuration.ApplicationScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+<<<<<<< HEAD
         [global::System.Configuration.DefaultSettingValueAttribute("/reporte/RecetasparaActualizar")]
         public string ActPrecioReceta {
             get {
@@ -803,6 +804,12 @@ namespace Herramienta.Properties {
         public string EliminarRegistroPrecio {
             get {
                 return ((string)(this["EliminarRegistroPrecio"]));
+=======
+        [global::System.Configuration.DefaultSettingValueAttribute("reporte/ActDiarioTable2")]
+        public string ActRecetaDiaria2 {
+            get {
+                return ((string)(this["ActRecetaDiaria2"]));
+>>>>>>> 9e6b4dc81df1acd0c5142c700f76c015d8b0d931
             }
         }
     }

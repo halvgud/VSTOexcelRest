@@ -35,7 +35,11 @@
     <PublishUrl>\\mercattoserver\ftp\VSTO\</PublishUrl>
     <InstallUrl>\\mercattoserver\ftp\VSTO\</InstallUrl>
     <TargetCulture>es</TargetCulture>
+<<<<<<< HEAD
     <ApplicationVersion>1.0.0.45</ApplicationVersion>
+=======
+    <ApplicationVersion>1.0.0.36</ApplicationVersion>
+>>>>>>> origin/master
     <AutoIncrementApplicationRevision>true</AutoIncrementApplicationRevision>
     <UpdateEnabled>true</UpdateEnabled>
     <UpdateInterval>0</UpdateInterval>
@@ -344,7 +348,7 @@
     </ManifestKeyFile>
   </PropertyGroup>
   <PropertyGroup>
-    <ManifestCertificateThumbprint>0B88C84ADAABD274015CFEC1FDE2A4BB51A8044B</ManifestCertificateThumbprint>
+    <ManifestCertificateThumbprint>DA9EB162053F806985CB0A1D463B99A5EECC8285</ManifestCertificateThumbprint>
   </PropertyGroup>
   <PropertyGroup>
     <SignAssembly>false</SignAssembly>

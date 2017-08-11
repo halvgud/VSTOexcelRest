@@ -800,7 +800,7 @@ namespace ExcelAddIn1
 
             });
         }
-        public int menidd;
+        public int Menidd;
         private static void GuardarMenuSemanal(Control parent)
         {
             foreach (Control c in parent.Controls)
@@ -914,7 +914,12 @@ namespace ExcelAddIn1
                 MessageBox.Show(@"Seleccione el tipo de receta antes de seleccionar el platillo");
 
             }
+<<<<<<< HEAD
             menidd = Convert.ToInt32(pivote.Rows[e.RowIndex].Cells["MenId"].Value);
+=======
+
+            Menidd = Convert.ToInt32(pivote.Rows[e.RowIndex].Cells["MenId"].Value);
+>>>>>>> origin/master
             DgvSeleccionado=pivote;
         }
         private void dgvGenerico_KeyPress(object sender, KeyPressEventArgs e)
@@ -1213,7 +1218,7 @@ namespace ExcelAddIn1
             if(dgvDomingo.RowCount>0 )
             {
                 Opcion.BorrarFila(DgvSeleccionado);
-                Data.MenuSemanal.EliminarelPlatillo(menidd);
+                Data.MenuSemanal.EliminarelPlatillo(Menidd);
                 InicializarDgv(this);
             }
         }

@@ -4,6 +4,7 @@ using System.Net;
 using System.Security.Policy;
 using Herramienta;
 using Herramienta.Config;
+//using Herramienta.Config.Local.Receta;
 using RestSharp;
 
 
@@ -496,7 +497,7 @@ namespace Data
         {
             try
             {
-                var rest = new Rest(Local.Api.UrlApi, Cocina.ReporteDiarioCocina.reporte, Method.POST);
+                var rest = new Rest(Local.Api.UrlApi, Cocina.ReporteDiarioCocina.Reporte, Method.POST);
                 rest.Peticion.AddHeader(Constantes.Http.ObtenerTipoDeContenido, Constantes.Http.TipoDeContenido.Json);
                 rest.Peticion.AddJsonBody(fechas);
                 rest.Cliente.ExecuteAsync(rest.Peticion, response =>
@@ -523,7 +524,138 @@ namespace Data
 
         }
 
+        public static void ActualizacionPrecioReceta(Action<IRestResponse> callback)
+        {
+            try
+            {
+                var rest = new Rest(Local.Api.UrlApi, Cocina.RecetaActPrecio.ActRecetaPrice, Method.GET);
+                rest.Peticion.AddHeader(Constantes.Http.ObtenerTipoDeContenido, Constantes.Http.TipoDeContenido.Json);
+                rest.Cliente.ExecuteAsync(rest.Peticion, response =>
+                {
+                    switch (response.StatusCode)
+                    {
+                        case HttpStatusCode.OK:
+                            callback(response);
+                            break;
+                        default:
+                            callback(null);
+                            break;
+                            // throw new Exception(@"Error al cargar el indice de tags");
+                    }
+                });
+            }
+            catch (Exception e)
+            {
+                Opcion.Log(Log.Interno.Departamento, "EXCEPCION: " + e.Message);
+            }
+        }
 
+        public static void PreciosActualizarTabla(Action<IRestResponse> callback)
+        {
+            try
+            {
+                var rest = new Rest(Local.Api.UrlApi, Cocina.RecetaActPrecio.TablaPreciosNuevos, Method.GET);
+                rest.Peticion.AddHeader(Constantes.Http.ObtenerTipoDeContenido, Constantes.Http.TipoDeContenido.Json);
+                rest.Cliente.ExecuteAsync(rest.Peticion, response =>
+                {
+                    switch (response.StatusCode)
+                    {
+                        case HttpStatusCode.OK:
+                            callback(response);
+                            break;
+                        default:
+                            callback(null);
+                            break;
+                            // throw new Exception(@"Error al cargar el indice de tags");
+                    }
+                });
+            }
+            catch (Exception e)
+            {
+                Opcion.Log(Log.Interno.Departamento, "EXCEPCION: " + e.Message);
+            }
+        }
+
+        public static void ExistenciProductoActualizar(Action<IRestResponse> callback)
+        {
+            try
+            {
+                var rest = new Rest(Local.Api.UrlApi, Cocina.RecetaActPrecio.ProductoActualizarPrecio, Method.GET);
+                rest.Peticion.AddHeader(Constantes.Http.ObtenerTipoDeContenido, Constantes.Http.TipoDeContenido.Json);
+                rest.Cliente.ExecuteAsync(rest.Peticion, response =>
+                {
+                    switch (response.StatusCode)
+                    {
+                        case HttpStatusCode.OK:
+                         
+                            callback(response);
+                            break;
+                        default:
+                            callback(null);
+                            break;
+                            // throw new Exception(@"Error al cargar el indice de tags");
+                    }
+                });
+            }
+            catch (Exception e)
+            {
+                Opcion.Log(Log.Interno.Departamento, "EXCEPCION: " + e.Message);
+            }
+        }
+
+        public static void PreciosTablaIngredientes(Action<IRestResponse> callback)
+        {
+            try
+            {
+                var rest = new Rest(Local.Api.UrlApi, Cocina.RecetaActPrecio.Ingredientes, Method.POST);
+                rest.Peticion.AddHeader(Constantes.Http.ObtenerTipoDeContenido, Constantes.Http.TipoDeContenido.Json);
+                rest.Peticion.AddJsonBody( new { Clave=Cocina.RecetaActPrecio.Clave});
+                rest.Cliente.ExecuteAsync(rest.Peticion, response =>
+                {
+                    switch (response.StatusCode)
+                    {
+                        case HttpStatusCode.OK:
+                            callback(response);
+                            break;
+                        default:
+                            callback(null);
+                            break;
+                            // throw new Exception(@"Error al cargar el indice de tags");
+                    }
+                });
+            }
+            catch (Exception e)
+            {
+                Opcion.Log(Log.Interno.Departamento, "EXCEPCION: " + e.Message);
+            }
+        }
+
+        public static void EliminarRegistroPrecioAct(Action<IRestResponse> callback)
+        {
+            try
+            {
+                var rest = new Rest(Local.Api.UrlApi, Cocina.RecetaActPrecio.EliminarProductoPrecio, Method.POST);
+                rest.Peticion.AddHeader(Constantes.Http.ObtenerTipoDeContenido, Constantes.Http.TipoDeContenido.Json);
+                rest.Peticion.AddJsonBody(new { Clave = Cocina.RecetaActPrecio.Clave });
+                rest.Cliente.ExecuteAsync(rest.Peticion, response =>
+                {
+                    switch (response.StatusCode)
+                    {
+                        case HttpStatusCode.OK:
+                            callback(response);
+                            break;
+                        default:
+                            callback(null);
+                            break;
+                            // throw new Exception(@"Error al cargar el indice de tags");
+                    }
+                });
+            }
+            catch (Exception e)
+            {
+                Opcion.Log(Log.Interno.Departamento, "EXCEPCION: " + e.Message);
+            }
+        }
     }
 
 }

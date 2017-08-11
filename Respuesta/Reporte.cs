@@ -15,12 +15,15 @@ namespace Respuesta
             public string DepId { get; set; }
             public string CatId { get; set; }
             public string ProId { get; set; }
-            public List<string> ProId2 { get; set; } 
+            public List<string> ProId2 { get; set; }
             public string OrderBy { get; set; }
             public string IdTipo { get; set; }
-            public General() { }
 
-           
+            public General()
+            {
+            }
+
+
             public class Respuesta
             {
                 public string Clave { get; set; }
@@ -46,7 +49,7 @@ namespace Respuesta
                 public string CantidadPedir { get; set; }
             }
 
-           
+
 
 
             public class InventarioCongelados
@@ -64,7 +67,7 @@ namespace Respuesta
             public class Posicion
             {
                 public static int Clave { get; } = 0;
-                public static int Departamento { get;  } = 1;
+                public static int Departamento { get; } = 1;
                 public static int Categoria { get; set; } = 2;
                 public static int Descripcion { get; set; } = 3;
                 public static int Tipo { get; set; } = 4;
@@ -76,7 +79,7 @@ namespace Respuesta
                 public static int InventarioMaximo { get; set; } = 10;
                 public static int Factor { get; set; } = 11;
                 public static int CantidadVendida { get; set; } = 12;
-                public static int Ventas { get; set; }=13;
+                public static int Ventas { get; set; } = 13;
                 public static int FechaUltimaCompra { get; set; } = 14;
                 public static int CantidadComprada { get; set; } = 15;
                 public static int RadioInventario { get; set; } = 16;
@@ -102,9 +105,9 @@ namespace Respuesta
             public string Estado { get; set; }
             public string Since { get; set; }
             public string UltimaElaboracion { get; set; }
-            public  Double QtyUltimaElaboracion { get; set; }
-            public string medida { get; set; }
-            public string consumodia { get; set; }
+            public Double QtyUltimaElaboracion { get; set; }
+            public string Medida { get; set; }
+            public string Consumodia { get; set; }
             //public string Total { get; set; }
             //public string Nombre { get; set; }
             public Double Costo { get; set; }
@@ -115,7 +118,7 @@ namespace Respuesta
             public string Salesince { get; set; }
             public string ProfitSince { get; set; }
             public string Qtycongelado { get; set; }
-            public string RecId { get; set; } 
+            public string RecId { get; set; }
             public string Preciocongelado { get; set; }
             public string Qtymermas { get; set; }
             public string Porcentajemerma { get; set; }
@@ -123,23 +126,76 @@ namespace Respuesta
             public string Porcentajeperdida { get; set; }
             public string Qtyempleado { get; set; }
             public string Porcentajeempleado { get; set; }
-            public string rutaimagen { get; set; }
-            public string instrucciones { get; set; }
+            public string Rutaimagen { get; set; }
+            public string Instrucciones { get; set; }
             public Double PromedioMenu { get; set; }
             public Double PromedioSobrante { get; set; }
             public string NomUnidad { get; set; }
             public Double CantidadElaboracion { get; set; }
             public Double Densidad { get; set; }
-           
-            
+
+
 
             public List<IngredientesCocina> Ingredientes { get; set; }
+
             public class IngredientesCocina
             {
                 public string Nombre { get; set; }
                 public double Cantidad { get; set; }
                 public string Medida { get; set; }
                 public double Costo { get; set; }
+            }
+
+            public class ActPriceReceta
+            {
+                public string Clave { get; set; }
+                public string Descripcion { get; set; }
+                public int Rec_id { get; set; }
+                public int Status { get; set; }
+                public Double PrecioCompra { get; set; }
+            }
+
+            public class TablaPreciosNuevos
+            {
+                private string _alertaGh;
+                public int RecId { get; set; }
+                public string Clave { get; set; }
+                public double PrecioCompra { get; set; }
+                public string Platillo { get; set; }
+                public double Anterior{ get; set; }
+                public double PrecioNuevo{ get; set; }
+                public double Nuevo { get; set; }
+                public string Modificacion { get; set; }
+                public bool Alertagh { get; set; }
+
+                public class MostrarTablaPreciosNuevos
+                {
+                    public string Clave { get; set; }
+                    public string Platillo { get; set; }
+                    public Boolean Alertagh { get; set; }
+
+                }
+                public string AlertaGh
+                {
+                    get { return _alertaGh; }
+                    set
+                    {
+                        Alertagh = value == "1";
+                        _alertaGh = value;
+                    }
+                }
+
+                //public List< IngredientesReceta> Ingredientes { get; set; }
+            }
+            public class IngredientesReceta
+            {
+                public int RecId { get; set; }
+               public string Clave { get; set; }
+                public string Ingrediente { get; set; }
+                public double Precio_Nuevo { get; set; }
+                public double Precio_Viejo { get; set; }
+                public int Status { get; set; }
+                public  double Diferencia { get; set; }
             }
 
             public class Ccocinadetalle
@@ -153,8 +209,8 @@ namespace Respuesta
                 public string Since { get; set; }
                 public string UltimaElaboracion { get; set; }
                 public Double QtyUltimaElaboracion { get; set; }
-                public string medida { get; set; }
-                public string consumodia { get; set; }
+                public string Medida { get; set; }
+                public string Consumodia { get; set; }
                 //public string Total { get; set; }
                 //public string Nombre { get; set; }
                 public Double Costo { get; set; }
@@ -176,7 +232,7 @@ namespace Respuesta
 
             }
 
-            public  class CocinaDetalle
+            public class CocinaDetalle
             {
                 public int NoMenus { get; set; }
                 public double CantidadElaborada { get; set; }
@@ -186,18 +242,18 @@ namespace Respuesta
                 public string Receta { get; set; }
                 public string Foto { get; set; }
                 public double RecetaPara { get; set; }
-                
+
             }
 
             public class Comprobacion
             {
-                public int Art_id { get; set; }
+                public int ArtId { get; set; }
                 public string Clave { get; set; }
                 public string Platillo { get; set; }
                 public DateTime Fecha { get; set; }
-                public Double CR { get; set; }
-                public  double SR { get; set; }
-                public  int EstadoInventarioId { get; set; }
+                public Double Cr { get; set; }
+                public double Sr { get; set; }
+                public int EstadoInventarioId { get; set; }
                 public string Observacion { get; set; }
             }
 
@@ -209,14 +265,14 @@ namespace Respuesta
                 public DateTime FechaInicio { get; set; }
             }
 
-            public class Repo_Diario
+            public class RepoDiario
             {
                 public string Clave { get; set; }
                 public string Platillo { get; set; }
                 public Double Existencia { get; set; }
-                public Double CP { get; set; }
-                public Double CE { get; set; }
-                public Double CR { get; set; }
+                public Double Cp { get; set; }
+                public Double Ce { get; set; }
+                public Double Cr { get; set; }
                 public Double VentaAnterior { get; set; }
                 public Double VentaPromedio { get; set; }
                 public double EstadoInventarioId { get; set; }
@@ -227,11 +283,12 @@ namespace Respuesta
 
             public class RepoActDiarioD
             {
-                public int Art_id { get; set; }
+                public int ArtId { get; set; }
                 public string Clave { get; set; }
                 public string Platillo { get; set; }
                 public DateTime Fecha { get; set; }
             }
+
             public class RepoActRec
             {
                 public int Rec_id { get; set; }

@@ -2,9 +2,6 @@
 <SettingsFile xmlns="http://schemas.microsoft.com/VisualStudio/2004/01/settings" CurrentProfile="(Default)" GeneratedClassNamespace="Herramienta.Properties" GeneratedClassName="Settings">
   <Profiles />
   <Settings>
-    <Setting Name="UrlApi" Type="System.String" Scope="Application">
-      <Value Profile="(Default)">http://192.168.0.2/apiMovStock/public/</Value>
-    </Setting>
     <Setting Name="IdSucursal" Type="System.String" Scope="Application">
       <Value Profile="(Default)">2</Value>
     </Setting>
@@ -239,8 +236,31 @@
     <Setting Name="ActualizarDestino" Type="System.String" Scope="Application">
       <Value Profile="(Default)">receta/ActualizarDestino</Value>
     </Setting>
+<<<<<<< HEAD
+    <Setting Name="ActPrecioReceta" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">/reporte/RecetasparaActualizar</Value>
+    </Setting>
+    <Setting Name="ActualizacionRecetaPrecio" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">/receta/ActualizacionRecetaMs</Value>
+    </Setting>
+    <Setting Name="TablaDifPrecios" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">/reporte/TablaNuevosPrecios</Value>
+    </Setting>
+    <Setting Name="UrlApi" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">http://192.168.0.2/apiMovStock/public/</Value>
+    </Setting>
+    <Setting Name="TablaDifPrecioIngredientes" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">/reporte/TablaNuevosPreciosPlus</Value>
+    </Setting>
+    <Setting Name="PrecioActualizarProducto" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">/reporte/ProductoActualizar</Value>
+    </Setting>
+    <Setting Name="EliminarRegistroPrecio" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">/reporte/EliminarPrecioNuevoProducto</Value>
+=======
     <Setting Name="ActRecetaDiaria2" Type="System.String" Scope="Application">
       <Value Profile="(Default)">reporte/ActDiarioTable2</Value>
+>>>>>>> 9e6b4dc81df1acd0c5142c700f76c015d8b0d931
     </Setting>
   </Settings>
 </SettingsFile>

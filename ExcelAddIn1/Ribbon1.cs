@@ -10,6 +10,7 @@ using Microsoft.Office.Interop.Excel;
 using Office = Microsoft.Office.Core;
 using Herramienta;
 using Respuesta;
+using Data;
 
 // TODO:  Siga estos pasos para habilitar el elemento (XML) de la cinta de opciones:
 
@@ -42,9 +43,13 @@ namespace ExcelAddIn1
         }
         public void AbrirRecetario(Office.IRibbonControl control)
         {
+        
+
             ThisAddIn.ReporteReceta.Visible = false;
-             ThisAddIn.Recetario.Visible = true;
+            ThisAddIn.Recetario.Visible = true;
         }
+
+       
         public void AbrirReporteReceta(Office.IRibbonControl control)
         {
             ThisAddIn.Recetario.Visible = false;
@@ -62,8 +67,16 @@ namespace ExcelAddIn1
         }
         public void CrearReceta(Office.IRibbonControl control)
         {
+   
+
             var ar = new AgregarReceta();
             ar.Show();
+
+            Opcion.EjecucionAsync(Data.Reporte.ActualizacionPrecioReceta, jsonResult =>
+            {
+                var priceReceta = Opcion.JsonaListaGenerica<Respuesta.Reporte.RespuestaCocina.ActPriceReceta>(jsonResult);
+                Data.Receta.Detalle.ActualizarRecetasMS(priceReceta);
+            });
         }
         public void ReporteCongelados(Office.IRibbonControl control)
         {
@@ -101,10 +114,13 @@ namespace ExcelAddIn1
                 }));
             });
         }
+
+           
         public bool BuscarPermiso(Office.IRibbonControl control)
         {
             return true;
         }
+        
 
 
         #region Miembros de IRibbonExtensibility

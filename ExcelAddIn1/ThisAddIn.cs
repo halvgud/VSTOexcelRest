@@ -22,7 +22,7 @@ namespace ExcelAddIn1
         public static DateTime FechaFin { get; set; }
 
         public static  DateTime FechaDateTime { get; set; }
-        public static string foto { get; set; }
+        public static string Foto { get; set; }
         class Reportes
         {
             public string Nombre { get; set; }
@@ -119,7 +119,7 @@ namespace ExcelAddIn1
 
                     Reporte.RespuestaCocina listCocina =
                         Opcion.JsonaListaGenerica<Reporte.RespuestaCocina>(jsonResult)[0];
-                    foto = listCocina.rutaimagen;
+                    Foto = listCocina.Rutaimagen;
                    
                     var excelazo = InicializarExcelConTemplate("DetalleReceta");
                     excelazo.Range["A1:N2"].Interior.Color = ColorTranslator.ToOle(Color.Peru);
@@ -139,13 +139,13 @@ namespace ExcelAddIn1
                     excelazo.Range["N5"].Value2 = listCocina.Venta;
                     excelazo.Range["H5"].Value2 = listCocina.Sinceqty;
                     excelazo.Range["G5"].Value2 = listCocina.RecId;
-                    excelazo.Range["H7"].Value2 =listCocina.medida;
+                    excelazo.Range["H7"].Value2 =listCocina.Medida;
                     excelazo.Range["M5"].Value2 = listCocina.Costo;
                     excelazo.Range["N5"].Value2 = listCocina.Venta;
                     excelazo.Range["F5"].Value2 = listCocina.Since;
                     //dexcelazo.Range["H5"].Value2 = listCocina.Qtycongelado;
                     excelazo.Range["B4"].Value2 = listCocina.TipoProducto;
-                    excelazo.Range["F10"].Value2 = listCocina.instrucciones;
+                    excelazo.Range["F10"].Value2 = listCocina.Instrucciones;
                     excelazo.Range["K5"].Value2 = listCocina.PromedioMenu;
                     excelazo.Range["L5"].Value2 = listCocina.PromedioSobrante;
                     excelazo.Range["G7"].Value2 = listCocina.Densidad;
@@ -172,10 +172,9 @@ namespace ExcelAddIn1
                         int letras = listCocina.Ingredientes[i].Nombre.Length;
                         ((excelazo.Range["A"+x])).Value2 = listCocina.Ingredientes[i].Nombre;
                         excelazo.Range["A" + x].Rows.AutoFit();
-                       
 
 
-                    
+
                         ((excelazo.Range["B" + x])).Value2 = listCocina.Ingredientes[i].Cantidad;
                         ((excelazo.Range["C" + x])).Value2 = listCocina.Ingredientes[i].Medida;
                         
@@ -191,12 +190,12 @@ namespace ExcelAddIn1
                    var w= excelazo.Range["L10"].Left+10;
                     var q = excelazo.Range["L10"].Top+10;
 
-                    if (foto == null)
+                    if (Foto == null)
                     {
-                        foto = @"\\mercattoserver\Recetario\img\sinimagen.jpg";
+                        Foto = @"\\mercattoserver\Recetario\img\sinimagen.jpg";
                     }
                  
-                    excelazo.Shapes.AddPicture(foto, Microsoft.Office.Core.MsoTriState.msoFalse, Microsoft.Office.Core.MsoTriState.msoCTrue, w, q, 180, 180);
+                    excelazo.Shapes.AddPicture(Foto, Microsoft.Office.Core.MsoTriState.msoFalse, Microsoft.Office.Core.MsoTriState.msoCTrue, w, q, 180, 180);
                     excelazo.Range["D21"].Rows.AutoFit();
                     #endregion
                     
@@ -300,7 +299,7 @@ namespace ExcelAddIn1
         }
         public Excel.Worksheet InicializarExcelConTemplate(string nombreHoja)
         {
-            string ruta = foto;
+            string ruta = Foto;
             try
             {
 
@@ -634,8 +633,8 @@ namespace ExcelAddIn1
                 lista[x, 6] = rrg[x].Since;
                 lista[x, 7] = rrg[x].UltimaElaboracion;
                 lista[x, 8] = rrg[x].QtyUltimaElaboracion;
-                lista[x, 9] = rrg[x].medida;
-                lista[x, 10] = rrg[x].consumodia;
+                lista[x, 9] = rrg[x].Medida;
+                lista[x, 10] = rrg[x].Consumodia;
                 lista[x, 11] = rrg[x].Costo;
                 lista[x, 12] = rrg[x].Venta;
                 lista[x, 13] = rrg[x].Margen;

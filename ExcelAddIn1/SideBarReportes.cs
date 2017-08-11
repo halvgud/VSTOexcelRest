@@ -15,14 +15,14 @@ namespace ExcelAddIn1
     public partial class SideBarReportes : UserControl
     {
 
-        private readonly List<reportes> Reportess;
+        private readonly List<Reportes> _reportess;
         public SideBarReportes()
         {
             InitializeComponent();
-            Reportess = new List<reportes>();
+            _reportess = new List<Reportes>();
         }
 
-        public class reportes
+        public class Reportes
         {
             public int Id { get; set; }
             public string Nombre { get; set; }
@@ -30,13 +30,13 @@ namespace ExcelAddIn1
 
         private void Reportes_Load(object sender, EventArgs e)
         {
-            Reportess.Add(new reportes { Nombre="Reporte Inventario",Id=1});
-            Reportess.Add(new reportes { Nombre = "Reporte General", Id = 2 });
-            Reportess.Add(new reportes { Nombre="Reporte Destino", Id=3});
-            Reportess.Add(new reportes { Nombre = "Reporte Cocina", Id = 3 });
-            cbreportes.Items.Add(Reportess.ToList());
+            _reportess.Add(new Reportes { Nombre="Reporte Inventario",Id=1});
+            _reportess.Add(new Reportes { Nombre = "Reporte General", Id = 2 });
+            _reportess.Add(new Reportes { Nombre="Reporte Destino", Id=3});
+            _reportess.Add(new Reportes { Nombre = "Reporte Cocina", Id = 3 });
+            cbreportes.Items.Add(_reportess.ToList());
 
-            cbreportes.DataSource = Reportess.ToArray();
+            cbreportes.DataSource = _reportess.ToArray();
             cbreportes.DisplayMember = "Nombre";
             cbreportes.ValueMember = "Id";
             //cbreportes.DataSource = Reportess;

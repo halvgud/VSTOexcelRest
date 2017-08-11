@@ -26,7 +26,7 @@
     <OutputType>Library</OutputType>
     <NoStandardLibraries>false</NoStandardLibraries>
     <RootNamespace>testVSTO2</RootNamespace>
-    <AssemblyName>testVSTO2</AssemblyName>
+    <AssemblyName>testVSTO3</AssemblyName>
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <DefineConstants>VSTO40</DefineConstants>
     <IsWebBootstrapper>False</IsWebBootstrapper>
@@ -35,7 +35,7 @@
     <PublishUrl>\\mercattoserver\ftp\VSTO\</PublishUrl>
     <InstallUrl>\\mercattoserver\ftp\VSTO\</InstallUrl>
     <TargetCulture>es</TargetCulture>
-    <ApplicationVersion>1.0.0.41</ApplicationVersion>
+    <ApplicationVersion>1.0.0.45</ApplicationVersion>
     <AutoIncrementApplicationRevision>true</AutoIncrementApplicationRevision>
     <UpdateEnabled>true</UpdateEnabled>
     <UpdateInterval>0</UpdateInterval>
@@ -43,7 +43,7 @@
     <ProductName>INVENTARIO</ProductName>
     <PublisherName />
     <SupportUrl />
-    <FriendlyName>INVENTARIO</FriendlyName>
+    <FriendlyName>INVENTARIO1</FriendlyName>
     <OfficeApplicationDescription />
     <LoadBehavior>3</LoadBehavior>
   </PropertyGroup>

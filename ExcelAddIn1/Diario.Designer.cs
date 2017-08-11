@@ -300,7 +300,7 @@
             // btPreviaPlatillo
             // 
             this.btPreviaPlatillo.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btPreviaPlatillo.Location = new System.Drawing.Point(833, 512);
+            this.btPreviaPlatillo.Location = new System.Drawing.Point(833, 479);
             this.btPreviaPlatillo.Name = "btPreviaPlatillo";
             this.btPreviaPlatillo.Size = new System.Drawing.Size(118, 28);
             this.btPreviaPlatillo.TabIndex = 37;
@@ -311,7 +311,7 @@
             // btPreviaGlobal
             // 
             this.btPreviaGlobal.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btPreviaGlobal.Location = new System.Drawing.Point(833, 546);
+            this.btPreviaGlobal.Location = new System.Drawing.Point(833, 513);
             this.btPreviaGlobal.Name = "btPreviaGlobal";
             this.btPreviaGlobal.Size = new System.Drawing.Size(118, 29);
             this.btPreviaGlobal.TabIndex = 38;
@@ -402,7 +402,7 @@
             // btGuardarDiarios
             // 
             this.btGuardarDiarios.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btGuardarDiarios.Location = new System.Drawing.Point(833, 479);
+            this.btGuardarDiarios.Location = new System.Drawing.Point(833, 582);
             this.btGuardarDiarios.Name = "btGuardarDiarios";
             this.btGuardarDiarios.Size = new System.Drawing.Size(118, 27);
             this.btGuardarDiarios.TabIndex = 48;
@@ -413,7 +413,7 @@
             // btEliminarFila
             // 
             this.btEliminarFila.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btEliminarFila.Location = new System.Drawing.Point(833, 581);
+            this.btEliminarFila.Location = new System.Drawing.Point(833, 548);
             this.btEliminarFila.Name = "btEliminarFila";
             this.btEliminarFila.Size = new System.Drawing.Size(118, 28);
             this.btEliminarFila.TabIndex = 49;

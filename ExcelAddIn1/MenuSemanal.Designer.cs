@@ -95,7 +95,7 @@
             // 
             this.FechaMartes.AutoSize = true;
             this.FechaMartes.Font = new System.Drawing.Font("Modern No. 20", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.FechaMartes.Location = new System.Drawing.Point(640, 15);
+            this.FechaMartes.Location = new System.Drawing.Point(640, 16);
             this.FechaMartes.Name = "FechaMartes";
             this.FechaMartes.Size = new System.Drawing.Size(11, 15);
             this.FechaMartes.TabIndex = 4;
@@ -105,7 +105,7 @@
             // 
             this.FechaLunes.AutoSize = true;
             this.FechaLunes.Font = new System.Drawing.Font("Modern No. 20", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.FechaLunes.Location = new System.Drawing.Point(3, 15);
+            this.FechaLunes.Location = new System.Drawing.Point(3, 16);
             this.FechaLunes.Name = "FechaLunes";
             this.FechaLunes.Size = new System.Drawing.Size(11, 15);
             this.FechaLunes.TabIndex = 4;
@@ -128,9 +128,9 @@
             this.dgvMartes.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgvMartes.Dock = System.Windows.Forms.DockStyle.Fill;
             this.dgvMartes.EditMode = System.Windows.Forms.DataGridViewEditMode.EditOnEnter;
-            this.dgvMartes.Location = new System.Drawing.Point(640, 33);
+            this.dgvMartes.Location = new System.Drawing.Point(640, 35);
             this.dgvMartes.Name = "dgvMartes";
-            this.dgvMartes.Size = new System.Drawing.Size(632, 131);
+            this.dgvMartes.Size = new System.Drawing.Size(632, 128);
             this.dgvMartes.TabIndex = 2;
             this.dgvMartes.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvGenerico_CellClick);
             this.dgvMartes.CellValueChanged += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvGenerico_CellValueChanged);
@@ -147,7 +147,7 @@
             // 
             this.LabelMiercoles.AutoSize = true;
             this.LabelMiercoles.Font = new System.Drawing.Font("Modern No. 20", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.LabelMiercoles.Location = new System.Drawing.Point(3, 167);
+            this.LabelMiercoles.Location = new System.Drawing.Point(3, 166);
             this.LabelMiercoles.Name = "LabelMiercoles";
             this.LabelMiercoles.Size = new System.Drawing.Size(75, 15);
             this.LabelMiercoles.TabIndex = 10;
@@ -169,11 +169,10 @@
             this.dgvMiercoles.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgvMiercoles.Dock = System.Windows.Forms.DockStyle.Fill;
             this.dgvMiercoles.EditMode = System.Windows.Forms.DataGridViewEditMode.EditOnEnter;
-            this.dgvMiercoles.Location = new System.Drawing.Point(3, 200);
+            this.dgvMiercoles.Location = new System.Drawing.Point(3, 201);
             this.dgvMiercoles.Name = "dgvMiercoles";
-            this.dgvMiercoles.Size = new System.Drawing.Size(631, 131);
+            this.dgvMiercoles.Size = new System.Drawing.Size(631, 128);
             this.dgvMiercoles.TabIndex = 3;
-            this.dgvMiercoles.TabStop = false;
             this.dgvMiercoles.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvGenerico_CellClick);
             this.dgvMiercoles.CellValueChanged += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvGenerico_CellValueChanged);
             this.dgvMiercoles.CurrentCellDirtyStateChanged += new System.EventHandler(this.dgvGenerico_CurrentCellDirtyStateChanged);
@@ -189,7 +188,7 @@
             // 
             this.LabelJueves.AutoSize = true;
             this.LabelJueves.Font = new System.Drawing.Font("Modern No. 20", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.LabelJueves.Location = new System.Drawing.Point(640, 167);
+            this.LabelJueves.Location = new System.Drawing.Point(640, 166);
             this.LabelJueves.Name = "LabelJueves";
             this.LabelJueves.Size = new System.Drawing.Size(56, 15);
             this.LabelJueves.TabIndex = 11;
@@ -209,7 +208,7 @@
             // 
             this.LabelViernes.AutoSize = true;
             this.LabelViernes.Font = new System.Drawing.Font("Modern No. 20", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.LabelViernes.Location = new System.Drawing.Point(3, 334);
+            this.LabelViernes.Location = new System.Drawing.Point(3, 332);
             this.LabelViernes.Name = "LabelViernes";
             this.LabelViernes.Size = new System.Drawing.Size(63, 15);
             this.LabelViernes.TabIndex = 12;
@@ -219,7 +218,7 @@
             // 
             this.FechaViernes.AutoSize = true;
             this.FechaViernes.Font = new System.Drawing.Font("Modern No. 20", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.FechaViernes.Location = new System.Drawing.Point(3, 349);
+            this.FechaViernes.Location = new System.Drawing.Point(3, 348);
             this.FechaViernes.Name = "FechaViernes";
             this.FechaViernes.Size = new System.Drawing.Size(11, 15);
             this.FechaViernes.TabIndex = 5;
@@ -233,7 +232,7 @@
             this.dgvViernes.EditMode = System.Windows.Forms.DataGridViewEditMode.EditOnEnter;
             this.dgvViernes.Location = new System.Drawing.Point(3, 367);
             this.dgvViernes.Name = "dgvViernes";
-            this.dgvViernes.Size = new System.Drawing.Size(631, 131);
+            this.dgvViernes.Size = new System.Drawing.Size(631, 128);
             this.dgvViernes.TabIndex = 5;
             this.dgvViernes.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvGenerico_CellClick);
             this.dgvViernes.CellValueChanged += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvGenerico_CellValueChanged);
@@ -250,7 +249,7 @@
             // 
             this.LabelSabado.AutoSize = true;
             this.LabelSabado.Font = new System.Drawing.Font("Modern No. 20", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.LabelSabado.Location = new System.Drawing.Point(640, 334);
+            this.LabelSabado.Location = new System.Drawing.Point(640, 332);
             this.LabelSabado.Name = "LabelSabado";
             this.LabelSabado.Size = new System.Drawing.Size(59, 15);
             this.LabelSabado.TabIndex = 13;
@@ -260,7 +259,7 @@
             // 
             this.FechaSabado.AutoSize = true;
             this.FechaSabado.Font = new System.Drawing.Font("Modern No. 20", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.FechaSabado.Location = new System.Drawing.Point(640, 349);
+            this.FechaSabado.Location = new System.Drawing.Point(640, 348);
             this.FechaSabado.Name = "FechaSabado";
             this.FechaSabado.Size = new System.Drawing.Size(11, 15);
             this.FechaSabado.TabIndex = 5;
@@ -274,9 +273,8 @@
             this.dgvSabado.EditMode = System.Windows.Forms.DataGridViewEditMode.EditOnEnter;
             this.dgvSabado.Location = new System.Drawing.Point(640, 367);
             this.dgvSabado.Name = "dgvSabado";
-            this.dgvSabado.Size = new System.Drawing.Size(632, 131);
+            this.dgvSabado.Size = new System.Drawing.Size(632, 128);
             this.dgvSabado.TabIndex = 6;
-            this.dgvSabado.TabStop = false;
             this.dgvSabado.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvGenerico_CellClick);
             this.dgvSabado.CellValueChanged += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvGenerico_CellValueChanged);
             this.dgvSabado.CurrentCellDirtyStateChanged += new System.EventHandler(this.dgvGenerico_CurrentCellDirtyStateChanged);
@@ -292,7 +290,7 @@
             // 
             this.LabelDomingo.AutoSize = true;
             this.LabelDomingo.Font = new System.Drawing.Font("Modern No. 20", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.LabelDomingo.Location = new System.Drawing.Point(3, 501);
+            this.LabelDomingo.Location = new System.Drawing.Point(3, 498);
             this.LabelDomingo.Name = "LabelDomingo";
             this.LabelDomingo.Size = new System.Drawing.Size(71, 15);
             this.LabelDomingo.TabIndex = 14;
@@ -302,7 +300,7 @@
             // 
             this.FechaDomingo.AutoSize = true;
             this.FechaDomingo.Font = new System.Drawing.Font("Modern No. 20", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.FechaDomingo.Location = new System.Drawing.Point(3, 516);
+            this.FechaDomingo.Location = new System.Drawing.Point(3, 514);
             this.FechaDomingo.Name = "FechaDomingo";
             this.FechaDomingo.Size = new System.Drawing.Size(11, 15);
             this.FechaDomingo.TabIndex = 5;
@@ -324,9 +322,9 @@
             this.dgvDomingo.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgvDomingo.Dock = System.Windows.Forms.DockStyle.Fill;
             this.dgvDomingo.EditMode = System.Windows.Forms.DataGridViewEditMode.EditOnEnter;
-            this.dgvDomingo.Location = new System.Drawing.Point(3, 534);
+            this.dgvDomingo.Location = new System.Drawing.Point(3, 533);
             this.dgvDomingo.Name = "dgvDomingo";
-            this.dgvDomingo.Size = new System.Drawing.Size(631, 134);
+            this.dgvDomingo.Size = new System.Drawing.Size(631, 135);
             this.dgvDomingo.TabIndex = 17;
             this.dgvDomingo.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvGenerico_CellClick);
             this.dgvDomingo.CellValueChanged += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvGenerico_CellValueChanged);
@@ -371,18 +369,18 @@
             this.tbPreviaPlatillo.Location = new System.Drawing.Point(0, 58);
             this.tbPreviaPlatillo.Name = "tbPreviaPlatillo";
             this.tbPreviaPlatillo.RowCount = 12;
-            this.tbPreviaPlatillo.RowStyles.Add(new System.Windows.Forms.RowStyle());
-            this.tbPreviaPlatillo.RowStyles.Add(new System.Windows.Forms.RowStyle());
-            this.tbPreviaPlatillo.RowStyles.Add(new System.Windows.Forms.RowStyle());
-            this.tbPreviaPlatillo.RowStyles.Add(new System.Windows.Forms.RowStyle());
-            this.tbPreviaPlatillo.RowStyles.Add(new System.Windows.Forms.RowStyle());
-            this.tbPreviaPlatillo.RowStyles.Add(new System.Windows.Forms.RowStyle());
-            this.tbPreviaPlatillo.RowStyles.Add(new System.Windows.Forms.RowStyle());
-            this.tbPreviaPlatillo.RowStyles.Add(new System.Windows.Forms.RowStyle());
-            this.tbPreviaPlatillo.RowStyles.Add(new System.Windows.Forms.RowStyle());
-            this.tbPreviaPlatillo.RowStyles.Add(new System.Windows.Forms.RowStyle());
-            this.tbPreviaPlatillo.RowStyles.Add(new System.Windows.Forms.RowStyle());
-            this.tbPreviaPlatillo.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
+            this.tbPreviaPlatillo.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 2.5F));
+            this.tbPreviaPlatillo.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 2.5F));
+            this.tbPreviaPlatillo.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 20F));
+            this.tbPreviaPlatillo.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 2.5F));
+            this.tbPreviaPlatillo.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 2.5F));
+            this.tbPreviaPlatillo.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 20F));
+            this.tbPreviaPlatillo.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 2.5F));
+            this.tbPreviaPlatillo.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 2.5F));
+            this.tbPreviaPlatillo.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 20F));
+            this.tbPreviaPlatillo.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 2.5F));
+            this.tbPreviaPlatillo.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 2.5F));
+            this.tbPreviaPlatillo.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 20F));
             this.tbPreviaPlatillo.Size = new System.Drawing.Size(1275, 671);
             this.tbPreviaPlatillo.TabIndex = 3;
             // 
@@ -392,9 +390,9 @@
             this.dgvLunes.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgvLunes.Dock = System.Windows.Forms.DockStyle.Fill;
             this.dgvLunes.EditMode = System.Windows.Forms.DataGridViewEditMode.EditOnEnter;
-            this.dgvLunes.Location = new System.Drawing.Point(3, 33);
+            this.dgvLunes.Location = new System.Drawing.Point(3, 35);
             this.dgvLunes.Name = "dgvLunes";
-            this.dgvLunes.Size = new System.Drawing.Size(631, 131);
+            this.dgvLunes.Size = new System.Drawing.Size(631, 128);
             this.dgvLunes.TabIndex = 1;
             this.dgvLunes.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvGenerico_CellClick);
             this.dgvLunes.CellValueChanged += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvGenerico_CellValueChanged);
@@ -413,9 +411,9 @@
             this.dgvJueves.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgvJueves.Dock = System.Windows.Forms.DockStyle.Fill;
             this.dgvJueves.EditMode = System.Windows.Forms.DataGridViewEditMode.EditOnEnter;
-            this.dgvJueves.Location = new System.Drawing.Point(640, 200);
+            this.dgvJueves.Location = new System.Drawing.Point(640, 201);
             this.dgvJueves.Name = "dgvJueves";
-            this.dgvJueves.Size = new System.Drawing.Size(632, 131);
+            this.dgvJueves.Size = new System.Drawing.Size(632, 128);
             this.dgvJueves.TabIndex = 18;
             this.dgvJueves.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvGenerico_CellClick);
             this.dgvJueves.CellValueChanged += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvGenerico_CellValueChanged);

@@ -78,6 +78,7 @@
             this.dgvInventarioPlatillos.TabIndex = 0;
             this.dgvInventarioPlatillos.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvInventarioPlatillos_CellClick);
             this.dgvInventarioPlatillos.CellValueChanged += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvInventarioPlatillos_CellValueChanged);
+            this.dgvInventarioPlatillos.DataError += new System.Windows.Forms.DataGridViewDataErrorEventHandler(this.dgvInventarioPlatillos_DataError);
             // 
             // groupBox1
             // 
@@ -283,6 +284,7 @@
             this.dgvDiarios.Name = "dgvDiarios";
             this.dgvDiarios.Size = new System.Drawing.Size(821, 230);
             this.dgvDiarios.TabIndex = 0;
+            this.dgvDiarios.DataError += new System.Windows.Forms.DataGridViewDataErrorEventHandler(this.dgvDiarios_DataError);
             // 
             // btCargarDiarios
             // 

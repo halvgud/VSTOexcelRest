@@ -35,7 +35,7 @@
     <PublishUrl>\\mercattoserver\ftp\COCINA\</PublishUrl>
     <InstallUrl>\\mercattoserver\ftp\VSTO\COCINA\</InstallUrl>
     <TargetCulture>es</TargetCulture>
-    <ApplicationVersion>1.0.0.63</ApplicationVersion>
+    <ApplicationVersion>1.0.0.70</ApplicationVersion>
     <AutoIncrementApplicationRevision>true</AutoIncrementApplicationRevision>
     <UpdateEnabled>true</UpdateEnabled>
     <UpdateInterval>7</UpdateInterval>
@@ -394,7 +394,7 @@
     </ManifestKeyFile>
   </PropertyGroup>
   <PropertyGroup>
-    <ManifestCertificateThumbprint>DA9EB162053F806985CB0A1D463B99A5EECC8285</ManifestCertificateThumbprint>
+    <ManifestCertificateThumbprint>0B88C84ADAABD274015CFEC1FDE2A4BB51A8044B</ManifestCertificateThumbprint>
   </PropertyGroup>
   <PropertyGroup>
     <RunPostBuildEvent>Always</RunPostBuildEvent>

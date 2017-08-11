@@ -209,7 +209,7 @@ namespace Herramienta
             pivote.DataSource = result;
         }
 
-        public static void BorrarSeleccionRV(DataGridView datos)
+        public static void BorrarSeleccionRv(DataGridView datos)
         {
             if (datos.CurrentCell.RowIndex == -1 || datos.Rows.Count <= 0) return;
             var result = datos.DataSource as List<Respuesta.DiarioX2>;
@@ -220,7 +220,7 @@ namespace Herramienta
             datos.DataSource = result;
         }
 
-       public static void BorrarSeleccionDR(DataGridView datos)
+       public static void BorrarSeleccionDr(DataGridView datos)
        {
             if (datos.CurrentCell.RowIndex == -1 || datos.Rows.Count <= 0) return;
             var result = datos.DataSource as List<Respuesta.Diario>;

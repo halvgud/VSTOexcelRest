@@ -115,6 +115,23 @@ namespace Data
                     }
                 });
             }
+
+            public static void ActualizarRecetasMS(List<Respuesta.Reporte.RespuestaCocina.ActPriceReceta> actualizaPrecioCompraList)
+            {
+                var rest = new Rest(Local.Api.UrlApi, Cocina.RecetaActPrecio.ActRecetaPrecioCompra, Method.POST);
+                rest.Peticion.AddHeader(Constantes.Http.ObtenerTipoDeContenido, Constantes.Http.TipoDeContenido.Json);
+                rest.Peticion.AddJsonBody(actualizaPrecioCompraList);
+                rest.Cliente.ExecuteAsync(rest.Peticion, response =>
+                {
+                    switch (response.StatusCode)
+                    {
+                        case HttpStatusCode.OK:
+                            break;
+                        default:
+                            throw new Exception(@"Los datos no se pudieron actualizar");
+                    }
+                });
+            }
             public static void ActualizarPresupuesto(Respuesta.Receta.ActualizaPresupuesto actualiza)
             {
                 var rest = new Rest(Local.Api.UrlApi, Local.Receta.ActualizarPresupuesto, Method.POST);

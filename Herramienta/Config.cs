@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Net.NetworkInformation;
 
 namespace Herramienta
 {
@@ -28,7 +29,7 @@ namespace Herramienta
 
             public class ReporteDiarioCocina
             {
-                public static string reporte { get; set; } = Properties.Settings.Default.ReporteDiarioX;
+                public static string Reporte { get; set; } = Properties.Settings.Default.ReporteDiarioX;
                 public static string CargarRepoNew { get; set; } = Properties.Settings.Default.ActRecetaDiaria;
     
 
@@ -47,7 +48,7 @@ namespace Herramienta
             {
                public static string CocinaDReceta { get; set; } = Properties.Settings.Default.DetalleRecetaCocina;
                public  static string Clave { get; set; }
-                public  static string rec_id { get; set; }
+                public  static string RecId { get; set; }
                 public static string Breceta { get; set; } = Properties.Settings.Default.Buscarrecetav1;
 
                 public static string RecetaArticulo { get; set; } = Properties.Settings.Default.BuscarRecetaArticulos;
@@ -68,6 +69,20 @@ namespace Herramienta
                 }
 
                 public static string ReporteCongeladoFechas = Properties.Settings.Default.RepoCongeladoFechado;
+            }
+
+            public class RecetaActPrecio
+            {
+                public static string ActRecetaPrice = Properties.Settings.Default.ActPrecioReceta;
+                public static string ActRecetaPrecioCompra = Properties.Settings.Default.ActualizacionRecetaPrecio;
+                public static string TablaPreciosNuevos = Properties.Settings.Default.TablaDifPrecios;
+                public static string Ingredientes = Properties.Settings.Default.TablaDifPrecioIngredientes;
+                public static string ProductoActualizarPrecio = Properties.Settings.Default.PrecioActualizarProducto;
+                public static string EliminarProductoPrecio = Properties.Settings.Default.EliminarRegistroPrecio;
+               public static string Clave { get; set; }
+
+
+
             }
 
             public class Prueba
@@ -93,7 +108,7 @@ namespace Herramienta
                 public static string FechaX2 { get; set; }
                 public static string ActualizarX2 { get; set; } = Properties.Settings.Default.ActualizarDiarioX2;
                 public static int EstadoId { get; set; }
-                public static string ActualizarX2_Destino { get; set; } = Properties.Settings.Default.ActualizarDiarioDestinoX2;
+                public static string ActualizarX2Destino { get; set; } = Properties.Settings.Default.ActualizarDiarioDestinoX2;
                 public static string CargarDiarios { get; set; } = Properties.Settings.Default.ReporteDiario;
                 
                 public class DestinoDif

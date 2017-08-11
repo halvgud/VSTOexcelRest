@@ -25,7 +25,7 @@ namespace ExcelAddIn1
 
         public static DateTime FechaInicio { get; set; }
         public static DateTime FechaFinal { get; set; }
-        public class fechado
+        public class Fechado
         {
             public string FechaInicio { get; set; }
             public string FechaFinal { get; set; }

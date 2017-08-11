@@ -19,7 +19,7 @@ namespace Data
 
         public static Cocina.DiaAntesX2.DestinoDif Destino = new Cocina.DiaAntesX2.DestinoDif();
 
-        public static List<Respuesta.Receta.Savedaily> savedaily = new List<Respuesta.Receta.Savedaily>();
+        public static List<Respuesta.Receta.Savedaily> Savedaily = new List<Respuesta.Receta.Savedaily>();
         public static Respuesta.Receta.Savedaily CDestinoSavedaily = new Respuesta.Receta.Savedaily();
 
 
@@ -299,7 +299,7 @@ namespace Data
                 var rest = new Rest(Local.Api.UrlApi, Cocina.Agregarcongelados.Agregar, Method.POST);
                 rest.Peticion.AddHeader(Constantes.Http.ObtenerTipoDeContenido,
                     Constantes.Http.TipoDeContenido.Json);
-                rest.Peticion.AddJsonBody(savedaily);
+                rest.Peticion.AddJsonBody(Savedaily);
                 rest.Cliente.ExecuteAsync(rest.Peticion, response =>
                 {
                     switch (response.StatusCode)

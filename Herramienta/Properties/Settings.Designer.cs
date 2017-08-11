@@ -25,15 +25,6 @@ namespace Herramienta.Properties {
         
         [global::System.Configuration.ApplicationScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("http://192.168.0.2/apiMovStock/public/")]
-        public string UrlApi {
-            get {
-                return ((string)(this["UrlApi"]));
-            }
-        }
-        
-        [global::System.Configuration.ApplicationScopedSettingAttribute()]
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.DefaultSettingValueAttribute("2")]
         public string IdSucursal {
             get {
@@ -749,6 +740,69 @@ namespace Herramienta.Properties {
         public string ActualizarDestino {
             get {
                 return ((string)(this["ActualizarDestino"]));
+            }
+        }
+        
+        [global::System.Configuration.ApplicationScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("/reporte/RecetasparaActualizar")]
+        public string ActPrecioReceta {
+            get {
+                return ((string)(this["ActPrecioReceta"]));
+            }
+        }
+        
+        [global::System.Configuration.ApplicationScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("/receta/ActualizacionRecetaMs")]
+        public string ActualizacionRecetaPrecio {
+            get {
+                return ((string)(this["ActualizacionRecetaPrecio"]));
+            }
+        }
+        
+        [global::System.Configuration.ApplicationScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("/reporte/TablaNuevosPrecios")]
+        public string TablaDifPrecios {
+            get {
+                return ((string)(this["TablaDifPrecios"]));
+            }
+        }
+        
+        [global::System.Configuration.ApplicationScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("http://192.168.0.2/apiMovStock/public/")]
+        public string UrlApi {
+            get {
+                return ((string)(this["UrlApi"]));
+            }
+        }
+        
+        [global::System.Configuration.ApplicationScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("/reporte/TablaNuevosPreciosPlus")]
+        public string TablaDifPrecioIngredientes {
+            get {
+                return ((string)(this["TablaDifPrecioIngredientes"]));
+            }
+        }
+        
+        [global::System.Configuration.ApplicationScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("/reporte/ProductoActualizar")]
+        public string PrecioActualizarProducto {
+            get {
+                return ((string)(this["PrecioActualizarProducto"]));
+            }
+        }
+        
+        [global::System.Configuration.ApplicationScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("/reporte/EliminarPrecioNuevoProducto")]
+        public string EliminarRegistroPrecio {
+            get {
+                return ((string)(this["EliminarRegistroPrecio"]));
             }
         }
     }

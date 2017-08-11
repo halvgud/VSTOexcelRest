@@ -38,7 +38,7 @@ namespace ExcelAddIn1
         public List<Respuesta.Diario> Lista;
         public List<DiarioX2> ListaX2S;
         public List<Reporte.RespuestaCocina.Comprobacion> ListDiarioDs;
-        public List<Cocina.ReporteDiarioCocina.FechasReporte> _ListfechasList;
+        public List<Cocina.ReporteDiarioCocina.FechasReporte> ListfechasList;
         public int Xyz;
 
         private void Diario_Load(object sender, EventArgs e)
@@ -134,8 +134,8 @@ namespace ExcelAddIn1
                                         var dataGridViewImageColumn = (DataGridViewImageColumn)dgvInventarioPlatillos.Columns["Guardar"];
                                         if (dataGridViewImageColumn != null)
                                             dataGridViewImageColumn.ImageLayout = DataGridViewImageCellLayout.Stretch;
-                                        dgvInventarioPlatillos.Rows[i].Cells["CR"].Value = ListDiarioDs[j].CR;
-                                        dgvInventarioPlatillos.Rows[i].Cells["SR"].Value = ListDiarioDs[j].SR;
+                                        dgvInventarioPlatillos.Rows[i].Cells["CR"].Value = ListDiarioDs[j].Cr;
+                                        dgvInventarioPlatillos.Rows[i].Cells["SR"].Value = ListDiarioDs[j].Sr;
                                         dgvInventarioPlatillos.Rows[i].Cells["Observacion"].Value = ListDiarioDs[j].Observacion;
                                         dgvInventarioPlatillos.Rows[i].Cells["EstadoInventarioId"].Value = ListDiarioDs[j].EstadoInventarioId;
                                         dgvInventarioPlatillos.Rows[i].Cells["Guardar"].Value = Image.FromFile(@"\\mercattoserver\Recetario\icon\correcto.jpg");
@@ -172,7 +172,7 @@ namespace ExcelAddIn1
                         Observacion = dgvInventarioPlatillos.CurrentRow.Cells["Observacion"].Value.ToString(),
                         Fecha = fecha
                     });
-                    Data.MenuSemanal.savedaily = listEstado;
+                    Data.MenuSemanal.Savedaily = listEstado;
                     Opcion.EjecucionAsync(Data.MenuSemanal.AgregarDiario, jsonResult =>
                     {
                         Data.Reporte.RepDiarioAct(xxx =>
@@ -221,7 +221,7 @@ namespace ExcelAddIn1
                         Fecha = fecha
                     };
                     Data.MenuSemanal.ActualizarDestino(listado);
-                    Data.MenuSemanal.savedaily = listEstado;
+                    Data.MenuSemanal.Savedaily = listEstado;
                     Opcion.EjecucionAsync(Data.MenuSemanal.AgregarDiario, jsonResult =>
                     {
                         BeginInvoke((MethodInvoker)(() =>
@@ -253,7 +253,7 @@ namespace ExcelAddIn1
                             Observacion = dgvInventarioPlatillos.CurrentRow.Cells["Observacion"].Value.ToString(),
                             Fecha = fecha
                         });
-                        Data.MenuSemanal.savedaily = listEstado;
+                        Data.MenuSemanal.Savedaily = listEstado;
                         Opcion.EjecucionAsync(Data.MenuSemanal.AgregarDiario, jsonResult =>
                         {
                             Data.Reporte.RepDiarioAct(xxx =>
@@ -301,7 +301,7 @@ namespace ExcelAddIn1
                             Observacion = dgvInventarioPlatillos.CurrentRow.Cells["Observacion"].Value.ToString(),
                             Fecha = fecha
                         });
-                        Data.MenuSemanal.savedaily = listEstado;
+                        Data.MenuSemanal.Savedaily = listEstado;
                         Opcion.EjecucionAsync(Data.MenuSemanal.AgregarDiario, jsonResult =>
                         {
                             Data.Reporte.RepDiarioAct(xxx =>
@@ -349,7 +349,7 @@ namespace ExcelAddIn1
                             Observacion = dgvInventarioPlatillos.CurrentRow.Cells["Observacion"].Value.ToString(),
                             Fecha = fecha
                         });
-                        Data.MenuSemanal.savedaily = listEstado;
+                        Data.MenuSemanal.Savedaily = listEstado;
                         Opcion.EjecucionAsync(Data.MenuSemanal.AgregarDiario, jsonResult =>
                         {
                             Data.Reporte.RepDiarioAct(xxx =>
@@ -515,7 +515,7 @@ namespace ExcelAddIn1
                     switch (jsonResult.StatusCode)
                     {
                         case HttpStatusCode.OK:
-                            dgvDiarios.DataSource = Opcion.JsonaListaGenerica<Respuesta.Reporte.RespuestaCocina.Repo_Diario>(jsonResult);
+                            dgvDiarios.DataSource = Opcion.JsonaListaGenerica<Respuesta.Reporte.RespuestaCocina.RepoDiario>(jsonResult);
                             break;
                         default:
                             MessageBox.Show(@"Comunicar al area de Sistemas");

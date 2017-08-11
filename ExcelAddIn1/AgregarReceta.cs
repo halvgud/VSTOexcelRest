@@ -9,6 +9,7 @@ using Herramienta;
 using Herramienta.Config;
 using System.Net;
 using System.Windows.Forms;
+using System.ComponentModel;
 
 namespace ExcelAddIn1
 {
@@ -16,6 +17,8 @@ namespace ExcelAddIn1
     {
         private List<Articulo.Basica> _listaArticuloBasica1;
         private List<Articulo.Basica> _listaArticuloBasica2;
+        public List<Reporte.RespuestaCocina.TablaPreciosNuevos> _ListaActualizarListr;
+        public BindingList<Reporte.RespuestaCocina.TablaPreciosNuevos.MostrarTablaPreciosNuevos> listaBindingAct;
         public class Inputs
         {
             public DataGridView Ingredientes;
@@ -40,6 +43,7 @@ namespace ExcelAddIn1
 
         public int Reccid;
         public int Validar;
+        public int y;
         public AgregarReceta()
         {
             InitializeComponent();
@@ -97,6 +101,49 @@ namespace ExcelAddIn1
             ActiveControl = tbBuscarReceta;
             tbBuscarReceta.Focus();
             tabCon.TabPages.Remove(tabPage1);
+            //tmActualizar.Enabled = true;
+            //tmActualizar.Start();
+            Data.Reporte.PreciosActualizarTabla(t =>
+            {
+                
+                var liq = Opcion.JsonaListaGenerica<Reporte.RespuestaCocina.TablaPreciosNuevos>(t);
+            //_ListaActualizarListr = 
+            //       .Where(x => x.Modificacion == "Actualizar")
+            //       .Select(p => new Reporte.RespuestaCocina.TablaPreciosNuevos.MostrarTablaPreciosNuevos
+            //       {
+            //           Clave = p.Clave,
+            //           Platillo = p.Platillo,
+
+            //            }).ToList();
+            switch (t.StatusCode)
+                {
+                  case HttpStatusCode.OK:
+                        _ListaActualizarListr = liq.Where(x => x.Modificacion =="Actualizar").ToList();
+                        if (_ListaActualizarListr.Count>0)
+                        {
+                            if ((MessageBox.Show("Visualizar Menu de Productos con Precio Nuevo", " ", MessageBoxButtons.YesNo) == DialogResult.Yes))
+                            {
+                                BeginInvoke((MethodInvoker)(() =>
+                                {
+                                    ActualizarPrecios frm = new ActualizarPrecios();
+                                    frm.Show();
+                                }));
+                            }
+
+                        }
+
+                  
+
+                       
+
+
+
+                        break;
+                }
+
+            });
+           
+
         }
         private void btBuscar_Click(object sender, EventArgs e)
         {
@@ -291,7 +338,7 @@ namespace ExcelAddIn1
         }
         private void ActualizarMargen(Inputs inputs)
         {
-            if (inputs.MargenConPrecio.Focused) return;
+  if (inputs.MargenConPrecio.Focused) return;
             double sum = 0;
             for (var i = 0; i < inputs.Ingredientes.Rows.Count; ++i)
             {
@@ -720,6 +767,7 @@ namespace ExcelAddIn1
         #endregion
         private void btBuscarClave_Click(object sender, EventArgs e)
         {
+          
             Cocina.DetalleCocina.Clave = tbBuscarReceta.Text == string.Empty ? "%" : tbBuscarReceta.Text;
             Opcion.EjecucionAsync(Data.ReporteCocina.BuscarRecetav2, jsonResult =>
             {
@@ -1280,6 +1328,41 @@ namespace ExcelAddIn1
                 ActualizarMargen = ActualizarMargen
             });
             btGuardar.Enabled = ValidarCamposBe();
+
+        }
+
+        private void tmActualizar_Tick(object sender, EventArgs e)
+        {
+            
+            //if (y==6)
+            //{
+            //    Data.Reporte.ExistenciProductoActualizar(t =>
+            //    {
+            //        switch (t.StatusCode)
+            //        {
+            //            case HttpStatusCode.OK:
+            //                var actprecio = new ActualizarPrecios();
+            //                actprecio.Show();
+            //                //tmActualizar.Stop();
+            //               // tmActualizar.Enabled = false;
+            //               // y = 0;
+            //                break;
+            //        }
+
+            //    });
+
+            //}
+            //y = y + 1;
+            ////for (int i = 0; i <= 5; i++)
+            ////{
+            ////    //var comprobacion;
+            ////    if (i == 3)
+            ////    {
+
+
+            ////    }
+
+            ////}
 
         }
     }

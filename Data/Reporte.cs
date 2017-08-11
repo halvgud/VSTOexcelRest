@@ -179,11 +179,11 @@ namespace Data
             }
         }
 
-        public static void RepDiarioAct(Action<IRestResponse> callback)
+        public static void RepDiarioAct2(Action<IRestResponse> callback)
         {
             try
             {
-                var rest = new Rest(Local.Api.UrlApi,Cocina.ReporteDiarioCocina.CargarRepoNew, Method.GET);
+                var rest = new Rest(Local.Api.UrlApi,Cocina.ReporteDiarioCocina.CargarRepoNew2, Method.GET);
                 rest.Peticion.AddHeader(Constantes.Http.ObtenerTipoDeContenido, Constantes.Http.TipoDeContenido.Json);
                 rest.Cliente.ExecuteAsync(rest.Peticion, response =>
                 {
@@ -202,6 +202,32 @@ namespace Data
             catch (Exception e)
             {
                 Opcion.Log(Log.Interno.Departamento, "EXCEPCION: " + e.Message);
+            }
+        }
+
+        public static void RepDiarioAct(Action<IRestResponse> callback, Respuesta.Reporte.General fecha)
+        {
+            try
+            {
+                var rest = new Rest(Local.Api.UrlApi,Cocina.ReporteDiarioCocina.CargarRepoNew, Method.POST);
+                rest.Peticion.AddHeader(Constantes.Http.ObtenerTipoDeContenido, Constantes.Http.TipoDeContenido.Json);
+                rest.Peticion.AddJsonBody(fecha);
+                rest.Cliente.ExecuteAsync(rest.Peticion, response =>
+                {
+                    switch (response.StatusCode)
+                    {
+                        case HttpStatusCode.OK:
+                            callback(response);
+                            break;
+                        default:
+                            callback(null);
+                            break;
+                    }
+                });
+            }
+            catch (Exception e)
+            {
+                Opcion.Log(Log.Interno.Categoria, "EXCEPCION: " + e.Message);
             }
         }
 
@@ -483,7 +509,9 @@ namespace Data
                             callback(response);
                             break;
                         default:
-                            throw new Exception(@"Error al buscar la Informacion deseada");
+                            callback(null);
+                            break;
+                            //throw new Exception(@"Error al buscar la Informacion deseada");
                     }
                 });
             }

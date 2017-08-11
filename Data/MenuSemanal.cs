@@ -336,7 +336,7 @@ namespace Data
                 }
             });
         }
-        public static void ActualizarReventadiarios(Respuesta.Receta.ReventaDiarios actualiza)
+        public static void ActualizarReventadiarios(Respuesta.Receta.Savedaily actualiza)
         {
             var rest = new Rest(Local.Api.UrlApi, Cocina.Agregarcongelados.ActualizarDestino, Method.POST);
             rest.Peticion.AddHeader(Constantes.Http.ObtenerTipoDeContenido, Constantes.Http.TipoDeContenido.Json);

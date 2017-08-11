@@ -31,6 +31,7 @@
             this.dgvInventarioPlatillos = new System.Windows.Forms.DataGridView();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
+            this.rbregistrado = new System.Windows.Forms.RadioButton();
             this.rbreventa = new System.Windows.Forms.RadioButton();
             this.rbmerma = new System.Windows.Forms.RadioButton();
             this.rbcongelado = new System.Windows.Forms.RadioButton();
@@ -59,6 +60,7 @@
             this.btEditar = new System.Windows.Forms.Button();
             this.label17 = new System.Windows.Forms.Label();
             this.btGuardarDiarios = new System.Windows.Forms.Button();
+            this.btEliminarFila = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dgvInventarioPlatillos)).BeginInit();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
@@ -90,21 +92,34 @@
             // 
             // groupBox2
             // 
+            this.groupBox2.Controls.Add(this.rbregistrado);
             this.groupBox2.Controls.Add(this.rbreventa);
             this.groupBox2.Controls.Add(this.rbmerma);
             this.groupBox2.Controls.Add(this.rbcongelado);
             this.groupBox2.Font = new System.Drawing.Font("Modern No. 20", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.groupBox2.Location = new System.Drawing.Point(839, 81);
+            this.groupBox2.Location = new System.Drawing.Point(839, 52);
             this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Size = new System.Drawing.Size(126, 128);
+            this.groupBox2.Size = new System.Drawing.Size(126, 149);
             this.groupBox2.TabIndex = 12;
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "Destino";
             // 
+            // rbregistrado
+            // 
+            this.rbregistrado.AutoSize = true;
+            this.rbregistrado.Location = new System.Drawing.Point(5, 117);
+            this.rbregistrado.Name = "rbregistrado";
+            this.rbregistrado.Size = new System.Drawing.Size(120, 25);
+            this.rbregistrado.TabIndex = 37;
+            this.rbregistrado.TabStop = true;
+            this.rbregistrado.Text = "Registrado";
+            this.rbregistrado.UseVisualStyleBackColor = true;
+            this.rbregistrado.CheckedChanged += new System.EventHandler(this.rbregistrado_CheckedChanged);
+            // 
             // rbreventa
             // 
             this.rbreventa.AutoSize = true;
-            this.rbreventa.Location = new System.Drawing.Point(6, 94);
+            this.rbreventa.Location = new System.Drawing.Point(6, 86);
             this.rbreventa.Name = "rbreventa";
             this.rbreventa.Size = new System.Drawing.Size(108, 25);
             this.rbreventa.TabIndex = 36;
@@ -116,7 +131,7 @@
             // rbmerma
             // 
             this.rbmerma.AutoSize = true;
-            this.rbmerma.Location = new System.Drawing.Point(6, 65);
+            this.rbmerma.Location = new System.Drawing.Point(6, 57);
             this.rbmerma.Name = "rbmerma";
             this.rbmerma.Size = new System.Drawing.Size(87, 25);
             this.rbmerma.TabIndex = 35;
@@ -128,7 +143,7 @@
             // rbcongelado
             // 
             this.rbcongelado.AutoSize = true;
-            this.rbcongelado.Location = new System.Drawing.Point(5, 37);
+            this.rbcongelado.Location = new System.Drawing.Point(5, 29);
             this.rbcongelado.Name = "rbcongelado";
             this.rbcongelado.Size = new System.Drawing.Size(123, 25);
             this.rbcongelado.TabIndex = 34;
@@ -263,6 +278,7 @@
             // dgvDiarios
             // 
             this.dgvDiarios.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dgvDiarios.EditMode = System.Windows.Forms.DataGridViewEditMode.EditOnEnter;
             this.dgvDiarios.Location = new System.Drawing.Point(6, 30);
             this.dgvDiarios.Name = "dgvDiarios";
             this.dgvDiarios.Size = new System.Drawing.Size(821, 230);
@@ -271,7 +287,7 @@
             // btCargarDiarios
             // 
             this.btCargarDiarios.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btCargarDiarios.Location = new System.Drawing.Point(839, 542);
+            this.btCargarDiarios.Location = new System.Drawing.Point(833, 443);
             this.btCargarDiarios.Name = "btCargarDiarios";
             this.btCargarDiarios.Size = new System.Drawing.Size(118, 30);
             this.btCargarDiarios.TabIndex = 35;
@@ -282,7 +298,7 @@
             // btPreviaPlatillo
             // 
             this.btPreviaPlatillo.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btPreviaPlatillo.Location = new System.Drawing.Point(839, 578);
+            this.btPreviaPlatillo.Location = new System.Drawing.Point(833, 512);
             this.btPreviaPlatillo.Name = "btPreviaPlatillo";
             this.btPreviaPlatillo.Size = new System.Drawing.Size(118, 28);
             this.btPreviaPlatillo.TabIndex = 37;
@@ -293,7 +309,7 @@
             // btPreviaGlobal
             // 
             this.btPreviaGlobal.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btPreviaGlobal.Location = new System.Drawing.Point(839, 612);
+            this.btPreviaGlobal.Location = new System.Drawing.Point(833, 546);
             this.btPreviaGlobal.Name = "btPreviaGlobal";
             this.btPreviaGlobal.Size = new System.Drawing.Size(118, 29);
             this.btPreviaGlobal.TabIndex = 38;
@@ -384,20 +400,31 @@
             // btGuardarDiarios
             // 
             this.btGuardarDiarios.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btGuardarDiarios.Location = new System.Drawing.Point(839, 509);
+            this.btGuardarDiarios.Location = new System.Drawing.Point(833, 479);
             this.btGuardarDiarios.Name = "btGuardarDiarios";
             this.btGuardarDiarios.Size = new System.Drawing.Size(118, 27);
             this.btGuardarDiarios.TabIndex = 48;
             this.btGuardarDiarios.Text = "Guardar";
             this.btGuardarDiarios.UseVisualStyleBackColor = true;
-            this.btGuardarDiarios.Visible = false;
             this.btGuardarDiarios.Click += new System.EventHandler(this.btGuardarDiarios_Click);
+            // 
+            // btEliminarFila
+            // 
+            this.btEliminarFila.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btEliminarFila.Location = new System.Drawing.Point(833, 581);
+            this.btEliminarFila.Name = "btEliminarFila";
+            this.btEliminarFila.Size = new System.Drawing.Size(118, 28);
+            this.btEliminarFila.TabIndex = 49;
+            this.btEliminarFila.Text = "EliminarFila";
+            this.btEliminarFila.UseVisualStyleBackColor = true;
+            this.btEliminarFila.Click += new System.EventHandler(this.btEliminarFila_Click);
             // 
             // Diario
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(977, 675);
+            this.Controls.Add(this.btEliminarFila);
             this.Controls.Add(this.btGuardarDiarios);
             this.Controls.Add(this.label17);
             this.Controls.Add(this.btEditar);
@@ -471,5 +498,7 @@
         private System.Windows.Forms.Button btEditar;
         private System.Windows.Forms.Label label17;
         private System.Windows.Forms.Button btGuardarDiarios;
+        private System.Windows.Forms.Button btEliminarFila;
+        private System.Windows.Forms.RadioButton rbregistrado;
     }
 }

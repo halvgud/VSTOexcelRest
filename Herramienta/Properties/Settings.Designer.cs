@@ -745,7 +745,6 @@ namespace Herramienta.Properties {
         
         [global::System.Configuration.ApplicationScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-<<<<<<< HEAD
         [global::System.Configuration.DefaultSettingValueAttribute("/reporte/RecetasparaActualizar")]
         public string ActPrecioReceta {
             get {
@@ -804,12 +803,60 @@ namespace Herramienta.Properties {
         public string EliminarRegistroPrecio {
             get {
                 return ((string)(this["EliminarRegistroPrecio"]));
-=======
+            }
+        }
+        
+        [global::System.Configuration.ApplicationScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.DefaultSettingValueAttribute("reporte/ActDiarioTable2")]
         public string ActRecetaDiaria2 {
             get {
                 return ((string)(this["ActRecetaDiaria2"]));
->>>>>>> 9e6b4dc81df1acd0c5142c700f76c015d8b0d931
+            }
+        }
+        
+        [global::System.Configuration.ApplicationScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("receta/AgregarDiarioManana")]
+        public string InsertarDiariodeMañana {
+            get {
+                return ((string)(this["InsertarDiariodeMañana"]));
+            }
+        }
+        
+        [global::System.Configuration.ApplicationScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("receta/ActualizarDiarioManana")]
+        public string ActualizarDiariodeMañana {
+            get {
+                return ((string)(this["ActualizarDiariodeMañana"]));
+            }
+        }
+        
+        [global::System.Configuration.ApplicationScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("reporte/MostrarEstadoManana")]
+        public string MostrarEstadoMañana {
+            get {
+                return ((string)(this["MostrarEstadoMañana"]));
+            }
+        }
+        
+        [global::System.Configuration.ApplicationScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("/reporte/ReportePlatillosdeHoy")]
+        public string ReporteHoy {
+            get {
+                return ((string)(this["ReporteHoy"]));
+            }
+        }
+        
+        [global::System.Configuration.ApplicationScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("/reporte/ReporteCocinaPlatillo")]
+        public string ReporteCocinaPlatillo {
+            get {
+                return ((string)(this["ReporteCocinaPlatillo"]));
             }
         }
     }

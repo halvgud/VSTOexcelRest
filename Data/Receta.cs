@@ -131,6 +131,8 @@ namespace Data
                             throw new Exception(@"Los datos no se pudieron actualizar");
                     }
                 });
+
+
             }
             public static void ActualizarPresupuesto(Respuesta.Receta.ActualizaPresupuesto actualiza)
             {

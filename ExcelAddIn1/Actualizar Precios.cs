@@ -55,10 +55,6 @@ namespace ExcelAddIn1
                           Name = "Alertagh",
                           DataPropertyName = "Alertagh",
                           HeaderText = @"Alerta",
-
-                          //DataSource = _tiposrecetas,
-                          //DisplayMember = "Alerta",
-                          //ValueMember = "TipoReceta"
                       };
 
 
@@ -90,14 +86,8 @@ namespace ExcelAddIn1
                     //    dgvrecetasact.DataSource = dgvrecetasact.Tag as List<Reporte.RespuestaCocina.TablaPreciosNuevos>;
                     dgvrecetasact.Columns["Alertagh"].DisplayIndex = 2;
                       //dgvrecetasact.Columns["Alertagh"].Width = 80;
-
-                  }));
-                
+                  }));       
             });
-
-
-
-
         }
         //valuechanged
         private Int32 rowIndex = -1;
@@ -170,7 +160,7 @@ namespace ExcelAddIn1
                                     dgingredientesReceta.DataSource=null;
                                    // dgingredientesReceta.Columns.Clear();
                                     dgingredientesReceta.Refresh();
-                                    lbplatillo.Text = " ";
+                                    lbplatillo.Text =@" ";
                                 }
                                 /*en que punto le das matarile a la fila?*/
 
@@ -193,37 +183,10 @@ namespace ExcelAddIn1
 
                 });
             }
-            else
-            {
-
-            }
-
-
-            //foreach (DataGridViewRow row in dgvrecetasact.Rows)
-            //{
-            //    // number 3 represents the 4th column of dgv
-
-            //}
-
-            //DataGridViewCheckBoxColumn checkBox = dgvrecetasact.Rows[e.RowIndex].Cells["Alerta"] as DataGridViewCheckBoxColumn;
-
-
+         
         }
-
-        private void label5_Click(object sender, EventArgs e)
-        {
-
-        }
-
         private void dgvrecetasact_CellValueChanged(object sender, DataGridViewCellEventArgs e)
         {
-
-
-                //sigues hay viejo sip, vete con f11, tienes que agregar una columna en el json que sea valores 0, y luego esa la conviertes al datatable...Aimee tiene algo de eso creo
-                // no con checkbox, pero si con combobox... es mas o menos parecido... preg sobre el de inicializar dgv, hay una parte que asigna el combobox a una columna del json
-                // ps asi...
-               
-
             
 
         }

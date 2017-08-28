@@ -100,14 +100,15 @@
             this.FechaMartes.Size = new System.Drawing.Size(11, 15);
             this.FechaMartes.TabIndex = 4;
             this.FechaMartes.Text = ".";
+            this.FechaMartes.Click += new System.EventHandler(this.FechaMartes_Click);
             // 
             // FechaLunes
             // 
             this.FechaLunes.AutoSize = true;
-            this.FechaLunes.Font = new System.Drawing.Font("Modern No. 20", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.FechaLunes.Font = new System.Drawing.Font("Arial Narrow", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.FechaLunes.Location = new System.Drawing.Point(3, 16);
             this.FechaLunes.Name = "FechaLunes";
-            this.FechaLunes.Size = new System.Drawing.Size(11, 15);
+            this.FechaLunes.Size = new System.Drawing.Size(11, 16);
             this.FechaLunes.TabIndex = 4;
             this.FechaLunes.Text = ".";
             this.FechaLunes.TextAlign = System.Drawing.ContentAlignment.TopCenter;
@@ -115,16 +116,17 @@
             // LabelLunes
             // 
             this.LabelLunes.AutoSize = true;
-            this.LabelLunes.Font = new System.Drawing.Font("Modern No. 20", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.LabelLunes.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.LabelLunes.Location = new System.Drawing.Point(3, 0);
             this.LabelLunes.Name = "LabelLunes";
-            this.LabelLunes.Size = new System.Drawing.Size(54, 15);
+            this.LabelLunes.Size = new System.Drawing.Size(54, 16);
             this.LabelLunes.TabIndex = 8;
             this.LabelLunes.Text = "Lunes :";
             // 
             // dgvMartes
             // 
             this.dgvMartes.AllowDrop = true;
+            this.dgvMartes.BackgroundColor = System.Drawing.Color.LightGray;
             this.dgvMartes.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgvMartes.Dock = System.Windows.Forms.DockStyle.Fill;
             this.dgvMartes.EditMode = System.Windows.Forms.DataGridViewEditMode.EditOnEnter;
@@ -146,26 +148,27 @@
             // LabelMiercoles
             // 
             this.LabelMiercoles.AutoSize = true;
-            this.LabelMiercoles.Font = new System.Drawing.Font("Modern No. 20", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.LabelMiercoles.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.LabelMiercoles.Location = new System.Drawing.Point(3, 166);
             this.LabelMiercoles.Name = "LabelMiercoles";
-            this.LabelMiercoles.Size = new System.Drawing.Size(75, 15);
+            this.LabelMiercoles.Size = new System.Drawing.Size(77, 16);
             this.LabelMiercoles.TabIndex = 10;
             this.LabelMiercoles.Text = "Miercoles :";
             // 
             // FechaMiercoles
             // 
             this.FechaMiercoles.AutoSize = true;
-            this.FechaMiercoles.Font = new System.Drawing.Font("Modern No. 20", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.FechaMiercoles.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.FechaMiercoles.Location = new System.Drawing.Point(3, 182);
             this.FechaMiercoles.Name = "FechaMiercoles";
-            this.FechaMiercoles.Size = new System.Drawing.Size(11, 15);
+            this.FechaMiercoles.Size = new System.Drawing.Size(12, 16);
             this.FechaMiercoles.TabIndex = 5;
             this.FechaMiercoles.Text = ".";
             // 
             // dgvMiercoles
             // 
             this.dgvMiercoles.AllowDrop = true;
+            this.dgvMiercoles.BackgroundColor = System.Drawing.Color.LightGray;
             this.dgvMiercoles.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgvMiercoles.Dock = System.Windows.Forms.DockStyle.Fill;
             this.dgvMiercoles.EditMode = System.Windows.Forms.DataGridViewEditMode.EditOnEnter;
@@ -187,46 +190,47 @@
             // LabelJueves
             // 
             this.LabelJueves.AutoSize = true;
-            this.LabelJueves.Font = new System.Drawing.Font("Modern No. 20", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.LabelJueves.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.LabelJueves.Location = new System.Drawing.Point(640, 166);
             this.LabelJueves.Name = "LabelJueves";
-            this.LabelJueves.Size = new System.Drawing.Size(56, 15);
+            this.LabelJueves.Size = new System.Drawing.Size(60, 16);
             this.LabelJueves.TabIndex = 11;
             this.LabelJueves.Text = "Jueves :";
             // 
             // FechaJueves
             // 
             this.FechaJueves.AutoSize = true;
-            this.FechaJueves.Font = new System.Drawing.Font("Modern No. 20", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.FechaJueves.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.FechaJueves.Location = new System.Drawing.Point(640, 182);
             this.FechaJueves.Name = "FechaJueves";
-            this.FechaJueves.Size = new System.Drawing.Size(11, 15);
+            this.FechaJueves.Size = new System.Drawing.Size(12, 16);
             this.FechaJueves.TabIndex = 15;
             this.FechaJueves.Text = ".";
             // 
             // LabelViernes
             // 
             this.LabelViernes.AutoSize = true;
-            this.LabelViernes.Font = new System.Drawing.Font("Modern No. 20", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.LabelViernes.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.LabelViernes.Location = new System.Drawing.Point(3, 332);
             this.LabelViernes.Name = "LabelViernes";
-            this.LabelViernes.Size = new System.Drawing.Size(63, 15);
+            this.LabelViernes.Size = new System.Drawing.Size(64, 16);
             this.LabelViernes.TabIndex = 12;
             this.LabelViernes.Text = "Viernes :";
             // 
             // FechaViernes
             // 
             this.FechaViernes.AutoSize = true;
-            this.FechaViernes.Font = new System.Drawing.Font("Modern No. 20", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.FechaViernes.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.FechaViernes.Location = new System.Drawing.Point(3, 348);
             this.FechaViernes.Name = "FechaViernes";
-            this.FechaViernes.Size = new System.Drawing.Size(11, 15);
+            this.FechaViernes.Size = new System.Drawing.Size(12, 16);
             this.FechaViernes.TabIndex = 5;
             this.FechaViernes.Text = ".";
             // 
             // dgvViernes
             // 
             this.dgvViernes.AllowDrop = true;
+            this.dgvViernes.BackgroundColor = System.Drawing.Color.LightGray;
             this.dgvViernes.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgvViernes.Dock = System.Windows.Forms.DockStyle.Fill;
             this.dgvViernes.EditMode = System.Windows.Forms.DataGridViewEditMode.EditOnEnter;
@@ -248,26 +252,27 @@
             // LabelSabado
             // 
             this.LabelSabado.AutoSize = true;
-            this.LabelSabado.Font = new System.Drawing.Font("Modern No. 20", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.LabelSabado.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.LabelSabado.Location = new System.Drawing.Point(640, 332);
             this.LabelSabado.Name = "LabelSabado";
-            this.LabelSabado.Size = new System.Drawing.Size(59, 15);
+            this.LabelSabado.Size = new System.Drawing.Size(65, 16);
             this.LabelSabado.TabIndex = 13;
             this.LabelSabado.Text = "Sabado :";
             // 
             // FechaSabado
             // 
             this.FechaSabado.AutoSize = true;
-            this.FechaSabado.Font = new System.Drawing.Font("Modern No. 20", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.FechaSabado.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.FechaSabado.Location = new System.Drawing.Point(640, 348);
             this.FechaSabado.Name = "FechaSabado";
-            this.FechaSabado.Size = new System.Drawing.Size(11, 15);
+            this.FechaSabado.Size = new System.Drawing.Size(12, 16);
             this.FechaSabado.TabIndex = 5;
             this.FechaSabado.Text = ".";
             // 
             // dgvSabado
             // 
             this.dgvSabado.AllowDrop = true;
+            this.dgvSabado.BackgroundColor = System.Drawing.Color.LightGray;
             this.dgvSabado.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgvSabado.Dock = System.Windows.Forms.DockStyle.Fill;
             this.dgvSabado.EditMode = System.Windows.Forms.DataGridViewEditMode.EditOnEnter;
@@ -289,36 +294,37 @@
             // LabelDomingo
             // 
             this.LabelDomingo.AutoSize = true;
-            this.LabelDomingo.Font = new System.Drawing.Font("Modern No. 20", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.LabelDomingo.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.LabelDomingo.Location = new System.Drawing.Point(3, 498);
             this.LabelDomingo.Name = "LabelDomingo";
-            this.LabelDomingo.Size = new System.Drawing.Size(71, 15);
+            this.LabelDomingo.Size = new System.Drawing.Size(73, 16);
             this.LabelDomingo.TabIndex = 14;
             this.LabelDomingo.Text = "Domingo :";
             // 
             // FechaDomingo
             // 
             this.FechaDomingo.AutoSize = true;
-            this.FechaDomingo.Font = new System.Drawing.Font("Modern No. 20", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.FechaDomingo.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.FechaDomingo.Location = new System.Drawing.Point(3, 514);
             this.FechaDomingo.Name = "FechaDomingo";
-            this.FechaDomingo.Size = new System.Drawing.Size(11, 15);
+            this.FechaDomingo.Size = new System.Drawing.Size(12, 16);
             this.FechaDomingo.TabIndex = 5;
             this.FechaDomingo.Text = ".";
             // 
             // LabelMartes
             // 
             this.LabelMartes.AutoSize = true;
-            this.LabelMartes.Font = new System.Drawing.Font("Modern No. 20", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.LabelMartes.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.LabelMartes.Location = new System.Drawing.Point(640, 0);
             this.LabelMartes.Name = "LabelMartes";
-            this.LabelMartes.Size = new System.Drawing.Size(58, 15);
+            this.LabelMartes.Size = new System.Drawing.Size(58, 16);
             this.LabelMartes.TabIndex = 9;
             this.LabelMartes.Text = "Martes :";
             // 
             // dgvDomingo
             // 
             this.dgvDomingo.AllowDrop = true;
+            this.dgvDomingo.BackgroundColor = System.Drawing.Color.LightGray;
             this.dgvDomingo.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgvDomingo.Dock = System.Windows.Forms.DockStyle.Fill;
             this.dgvDomingo.EditMode = System.Windows.Forms.DataGridViewEditMode.EditOnEnter;
@@ -339,8 +345,10 @@
             // 
             // tbPreviaPlatillo
             // 
-            this.tbPreviaPlatillo.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            this.tbPreviaPlatillo.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
+            this.tbPreviaPlatillo.BackColor = System.Drawing.Color.White;
             this.tbPreviaPlatillo.ColumnCount = 2;
             this.tbPreviaPlatillo.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
             this.tbPreviaPlatillo.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
@@ -365,7 +373,7 @@
             this.tbPreviaPlatillo.Controls.Add(this.dgvMartes, 1, 2);
             this.tbPreviaPlatillo.Controls.Add(this.dgvJueves, 1, 5);
             this.tbPreviaPlatillo.Controls.Add(this.dgvDomingo, 0, 11);
-            this.tbPreviaPlatillo.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.tbPreviaPlatillo.Font = new System.Drawing.Font("Arial Narrow", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.tbPreviaPlatillo.Location = new System.Drawing.Point(0, 58);
             this.tbPreviaPlatillo.Name = "tbPreviaPlatillo";
             this.tbPreviaPlatillo.RowCount = 12;
@@ -387,6 +395,7 @@
             // dgvLunes
             // 
             this.dgvLunes.AllowDrop = true;
+            this.dgvLunes.BackgroundColor = System.Drawing.Color.LightGray;
             this.dgvLunes.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgvLunes.Dock = System.Windows.Forms.DockStyle.Fill;
             this.dgvLunes.EditMode = System.Windows.Forms.DataGridViewEditMode.EditOnEnter;
@@ -408,6 +417,7 @@
             // dgvJueves
             // 
             this.dgvJueves.AllowDrop = true;
+            this.dgvJueves.BackgroundColor = System.Drawing.Color.LightGray;
             this.dgvJueves.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgvJueves.Dock = System.Windows.Forms.DockStyle.Fill;
             this.dgvJueves.EditMode = System.Windows.Forms.DataGridViewEditMode.EditOnEnter;
@@ -416,6 +426,7 @@
             this.dgvJueves.Size = new System.Drawing.Size(632, 128);
             this.dgvJueves.TabIndex = 18;
             this.dgvJueves.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvGenerico_CellClick);
+            this.dgvJueves.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvJueves_CellContentClick);
             this.dgvJueves.CellValueChanged += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvGenerico_CellValueChanged);
             this.dgvJueves.CurrentCellDirtyStateChanged += new System.EventHandler(this.dgvGenerico_CurrentCellDirtyStateChanged);
             this.dgvJueves.DataError += new System.Windows.Forms.DataGridViewDataErrorEventHandler(this.dgvGenerico_DataError);
@@ -428,28 +439,32 @@
             // 
             // btGuardar
             // 
-            this.btGuardar.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btGuardar.BackColor = System.Drawing.Color.Black;
+            this.btGuardar.Font = new System.Drawing.Font("Times New Roman", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btGuardar.ForeColor = System.Drawing.Color.White;
             this.btGuardar.ImageAlign = System.Drawing.ContentAlignment.BottomCenter;
             this.btGuardar.Location = new System.Drawing.Point(792, 32);
             this.btGuardar.Name = "btGuardar";
-            this.btGuardar.Size = new System.Drawing.Size(145, 23);
+            this.btGuardar.Size = new System.Drawing.Size(145, 24);
             this.btGuardar.TabIndex = 16;
             this.btGuardar.Text = "Guardar Menu";
-            this.btGuardar.UseVisualStyleBackColor = true;
+            this.btGuardar.UseVisualStyleBackColor = false;
             this.btGuardar.Click += new System.EventHandler(this.btGuardar_Click);
             // 
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Font = new System.Drawing.Font("Modern No. 20", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.Location = new System.Drawing.Point(193, 10);
+            this.label1.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label1.Location = new System.Drawing.Point(193, 9);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(146, 18);
+            this.label1.Size = new System.Drawing.Size(152, 19);
             this.label1.TabIndex = 2;
             this.label1.Text = "Semana a Mostrar:";
             // 
             // DtpFecha
             // 
+            this.DtpFecha.CalendarFont = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.DtpFecha.CalendarTitleForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(128)))), ((int)(((byte)(0)))));
             this.DtpFecha.Location = new System.Drawing.Point(169, 32);
             this.DtpFecha.Name = "DtpFecha";
             this.DtpFecha.Size = new System.Drawing.Size(200, 20);
@@ -458,11 +473,12 @@
             // 
             // cbDias
             // 
+            this.cbDias.BackColor = System.Drawing.Color.Silver;
             checkBoxProperties2.ForeColor = System.Drawing.SystemColors.ControlText;
             this.cbDias.CheckBoxProperties = checkBoxProperties2;
             this.cbDias.DisplayMemberSingleItem = "";
             this.cbDias.FormattingEnabled = true;
-            this.cbDias.Location = new System.Drawing.Point(389, 32);
+            this.cbDias.Location = new System.Drawing.Point(389, 30);
             this.cbDias.Name = "cbDias";
             this.cbDias.Size = new System.Drawing.Size(200, 21);
             this.cbDias.TabIndex = 3;
@@ -471,72 +487,83 @@
             // label4
             // 
             this.label4.AutoSize = true;
-            this.label4.Font = new System.Drawing.Font("Modern No. 20", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label4.Location = new System.Drawing.Point(432, 10);
+            this.label4.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label4.Location = new System.Drawing.Point(422, 7);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(124, 18);
+            this.label4.Size = new System.Drawing.Size(126, 19);
             this.label4.TabIndex = 6;
             this.label4.Text = "Dias a Agregar:";
             // 
             // btAgregarSemana
             // 
-            this.btAgregarSemana.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btAgregarSemana.Location = new System.Drawing.Point(595, 26);
+            this.btAgregarSemana.BackColor = System.Drawing.Color.Black;
+            this.btAgregarSemana.Font = new System.Drawing.Font("Times New Roman", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btAgregarSemana.ForeColor = System.Drawing.Color.White;
+            this.btAgregarSemana.Location = new System.Drawing.Point(595, 19);
             this.btAgregarSemana.Name = "btAgregarSemana";
-            this.btAgregarSemana.Size = new System.Drawing.Size(166, 26);
+            this.btAgregarSemana.Size = new System.Drawing.Size(169, 33);
             this.btAgregarSemana.TabIndex = 8;
             this.btAgregarSemana.Text = "Agregar Semana Posterior";
-            this.btAgregarSemana.UseVisualStyleBackColor = true;
+            this.btAgregarSemana.UseVisualStyleBackColor = false;
             this.btAgregarSemana.Click += new System.EventHandler(this.btAgregarSemana_Click);
             // 
             // btPreviaPlatilloGlobal
             // 
-            this.btPreviaPlatilloGlobal.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btPreviaPlatilloGlobal.BackColor = System.Drawing.Color.Black;
+            this.btPreviaPlatilloGlobal.Font = new System.Drawing.Font("Times New Roman", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btPreviaPlatilloGlobal.ForeColor = System.Drawing.Color.Cornsilk;
             this.btPreviaPlatilloGlobal.Location = new System.Drawing.Point(948, 5);
             this.btPreviaPlatilloGlobal.Name = "btPreviaPlatilloGlobal";
-            this.btPreviaPlatilloGlobal.Size = new System.Drawing.Size(145, 24);
+            this.btPreviaPlatilloGlobal.Size = new System.Drawing.Size(151, 24);
             this.btPreviaPlatilloGlobal.TabIndex = 17;
             this.btPreviaPlatilloGlobal.Text = "Imprimir Previa Global";
-            this.btPreviaPlatilloGlobal.UseVisualStyleBackColor = true;
+            this.btPreviaPlatilloGlobal.UseVisualStyleBackColor = false;
             this.btPreviaPlatilloGlobal.Click += new System.EventHandler(this.btPreviaPlatilloGlobal_Click);
             // 
             // btEditarSemana
             // 
-            this.btEditarSemana.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btEditarSemana.BackColor = System.Drawing.Color.Black;
+            this.btEditarSemana.Font = new System.Drawing.Font("Times New Roman", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btEditarSemana.ForeColor = System.Drawing.Color.White;
             this.btEditarSemana.Location = new System.Drawing.Point(792, 5);
             this.btEditarSemana.Name = "btEditarSemana";
-            this.btEditarSemana.Size = new System.Drawing.Size(145, 24);
+            this.btEditarSemana.Size = new System.Drawing.Size(145, 25);
             this.btEditarSemana.TabIndex = 18;
             this.btEditarSemana.Text = "Editar Semana Actual";
-            this.btEditarSemana.UseVisualStyleBackColor = true;
+            this.btEditarSemana.UseVisualStyleBackColor = false;
             this.btEditarSemana.Click += new System.EventHandler(this.btEditarSemana_Click);
             // 
             // btBorrarFila
             // 
-            this.btBorrarFila.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btBorrarFila.Location = new System.Drawing.Point(1105, 32);
+            this.btBorrarFila.BackColor = System.Drawing.Color.Black;
+            this.btBorrarFila.Font = new System.Drawing.Font("Times New Roman", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btBorrarFila.ForeColor = System.Drawing.Color.Cornsilk;
+            this.btBorrarFila.Location = new System.Drawing.Point(1105, 30);
             this.btBorrarFila.Name = "btBorrarFila";
-            this.btBorrarFila.Size = new System.Drawing.Size(145, 24);
+            this.btBorrarFila.Size = new System.Drawing.Size(145, 26);
             this.btBorrarFila.TabIndex = 18;
             this.btBorrarFila.Text = "Borrar Fila";
-            this.btBorrarFila.UseVisualStyleBackColor = true;
+            this.btBorrarFila.UseVisualStyleBackColor = false;
             this.btBorrarFila.Click += new System.EventHandler(this.btBorrarFila_Click);
             // 
             // btPreviaPlatillo
             // 
-            this.btPreviaPlatillo.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btPreviaPlatillo.Location = new System.Drawing.Point(948, 33);
+            this.btPreviaPlatillo.BackColor = System.Drawing.Color.Black;
+            this.btPreviaPlatillo.Font = new System.Drawing.Font("Times New Roman", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btPreviaPlatillo.ForeColor = System.Drawing.Color.Cornsilk;
+            this.btPreviaPlatillo.Location = new System.Drawing.Point(948, 32);
             this.btPreviaPlatillo.Name = "btPreviaPlatillo";
-            this.btPreviaPlatillo.Size = new System.Drawing.Size(145, 23);
+            this.btPreviaPlatillo.Size = new System.Drawing.Size(151, 24);
             this.btPreviaPlatillo.TabIndex = 20;
             this.btPreviaPlatillo.Text = "Imprimir Previa Platillo";
-            this.btPreviaPlatillo.UseVisualStyleBackColor = true;
+            this.btPreviaPlatillo.UseVisualStyleBackColor = false;
             this.btPreviaPlatillo.Click += new System.EventHandler(this.btPreviaPlatillo_Click);
             // 
             // groupBox1
             // 
             this.groupBox1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
+            this.groupBox1.BackColor = System.Drawing.Color.White;
             this.groupBox1.Controls.Add(this.label1);
             this.groupBox1.Controls.Add(this.btBorrarFila);
             this.groupBox1.Controls.Add(this.btPreviaPlatillo);
@@ -557,6 +584,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.BackColor = System.Drawing.Color.White;
             this.ClientSize = new System.Drawing.Size(1276, 733);
             this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.tbPreviaPlatillo);

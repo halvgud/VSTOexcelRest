@@ -40,39 +40,45 @@ private System.ComponentModel.IContainer components = null;
             // 
             // btAceptar
             // 
+            this.btAceptar.BackColor = System.Drawing.Color.Black;
             this.btAceptar.Enabled = false;
-            this.btAceptar.Location = new System.Drawing.Point(337, 57);
+            this.btAceptar.Font = new System.Drawing.Font("Times New Roman", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btAceptar.ForeColor = System.Drawing.Color.White;
+            this.btAceptar.Location = new System.Drawing.Point(642, 76);
             this.btAceptar.Name = "btAceptar";
-            this.btAceptar.Size = new System.Drawing.Size(75, 23);
+            this.btAceptar.Size = new System.Drawing.Size(98, 34);
             this.btAceptar.TabIndex = 7;
             this.btAceptar.Text = "Aceptar";
-            this.btAceptar.UseVisualStyleBackColor = true;
+            this.btAceptar.UseVisualStyleBackColor = false;
             this.btAceptar.Click += new System.EventHandler(this.btAceptar_Click);
             // 
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(327, 13);
+            this.label1.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label1.Location = new System.Drawing.Point(643, 28);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(52, 13);
+            this.label1.Size = new System.Drawing.Size(78, 19);
             this.label1.TabIndex = 6;
-            this.label1.Text = "Cantidad:";
+            this.label1.Text = "Cantidad";
             // 
             // dgvListaArticulos
             // 
+            this.dgvListaArticulos.BackgroundColor = System.Drawing.Color.LightGray;
             this.dgvListaArticulos.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dgvListaArticulos.Location = new System.Drawing.Point(1, 13);
+            this.dgvListaArticulos.Location = new System.Drawing.Point(6, 13);
             this.dgvListaArticulos.Name = "dgvListaArticulos";
             this.dgvListaArticulos.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dgvListaArticulos.Size = new System.Drawing.Size(319, 171);
+            this.dgvListaArticulos.Size = new System.Drawing.Size(619, 348);
             this.dgvListaArticulos.TabIndex = 8;
             this.dgvListaArticulos.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvListaArticulos_CellClick);
             // 
             // tbCantidad
             // 
-            this.tbCantidad.Location = new System.Drawing.Point(326, 29);
+            this.tbCantidad.BackColor = System.Drawing.Color.Silver;
+            this.tbCantidad.Location = new System.Drawing.Point(631, 50);
             this.tbCantidad.Name = "tbCantidad";
-            this.tbCantidad.Size = new System.Drawing.Size(100, 20);
+            this.tbCantidad.Size = new System.Drawing.Size(114, 20);
             this.tbCantidad.TabIndex = 10;
             this.tbCantidad.TextChanged += new System.EventHandler(this.tbCantidad_TextChanged);
             this.tbCantidad.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.tbCantidad_KeyPress);
@@ -86,7 +92,8 @@ private System.ComponentModel.IContainer components = null;
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(436, 187);
+            this.BackColor = System.Drawing.Color.White;
+            this.ClientSize = new System.Drawing.Size(752, 364);
             this.Controls.Add(this.tbCantidad);
             this.Controls.Add(this.dgvListaArticulos);
             this.Controls.Add(this.btAceptar);

@@ -40,10 +40,10 @@
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 21.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label1.Font = new System.Drawing.Font("Arial", 21.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label1.Location = new System.Drawing.Point(3, 116);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(166, 33);
+            this.label1.Size = new System.Drawing.Size(175, 34);
             this.label1.TabIndex = 0;
             this.label1.Text = "Cargando...";
             // 
@@ -59,6 +59,7 @@
             // 
             // panel3
             // 
+            this.panel3.BackColor = System.Drawing.Color.White;
             this.panel3.Controls.Add(this.btCancelar);
             this.panel3.Controls.Add(this.pictureBox1);
             this.panel3.Controls.Add(this.label1);
@@ -67,15 +68,19 @@
             this.panel3.Name = "panel3";
             this.panel3.Size = new System.Drawing.Size(327, 154);
             this.panel3.TabIndex = 4;
+            this.panel3.Paint += new System.Windows.Forms.PaintEventHandler(this.panel3_Paint);
             // 
             // btCancelar
             // 
-            this.btCancelar.Location = new System.Drawing.Point(176, 120);
+            this.btCancelar.BackColor = System.Drawing.Color.Black;
+            this.btCancelar.Font = new System.Drawing.Font("Times New Roman", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btCancelar.ForeColor = System.Drawing.Color.White;
+            this.btCancelar.Location = new System.Drawing.Point(176, 116);
             this.btCancelar.Name = "btCancelar";
-            this.btCancelar.Size = new System.Drawing.Size(139, 23);
+            this.btCancelar.Size = new System.Drawing.Size(139, 34);
             this.btCancelar.TabIndex = 3;
             this.btCancelar.Text = "Cancelar";
-            this.btCancelar.UseVisualStyleBackColor = true;
+            this.btCancelar.UseVisualStyleBackColor = false;
             this.btCancelar.Click += new System.EventHandler(this.btCancelar_Click);
             // 
             // MensajeDeEspera

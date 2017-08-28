@@ -81,6 +81,37 @@ namespace Data
             }
         }
 
+        public static void VersionExtendidaporPlatillo(Action<IRestResponse> callback, Respuesta.Reporte.RespuestaCocina.Reportess filtroGenerico)
+        {
+            try
+            {
+                /*url local?*/
+                var rest = new Rest(Local.Api.UrlApi, Cocina.ReporteRecetario.ReporteCocinaPlatillo,
+                    Method.POST);
+                rest.Peticion.AddHeader(Constantes.Http.ObtenerTipoDeContenido,
+                    Constantes.Http.TipoDeContenido.Json);
+                rest.Peticion.AddJsonBody(filtroGenerico);
+                rest.Cliente.ExecuteAsync(rest.Peticion, response =>
+                {
+                    /*aqui es donde no entra */
+                    switch (response.StatusCode)
+                    {
+                        case HttpStatusCode.OK:
+                            callback(response);
+                            break;
+                        default:
+                            callback(null);
+                            break;
+                    }
+                });
+            }
+            catch (Exception e)
+            {
+                Opcion.Log(Log.Interno.Categoria, "EXCEPCION: " + e.Message);
+                callback(null);
+            }
+        }
+
         public static void BuscarRecetav2(Action<IRestResponse> callback)
         {
             try

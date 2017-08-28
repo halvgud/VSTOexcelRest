@@ -231,7 +231,31 @@ namespace Data
             }
         }
 
-
+        public static void MostrarEstado(Action<IRestResponse> callback, Respuesta.Reporte.General fecha)
+        {
+            try
+            {
+                var rest = new Rest(Local.Api.UrlApi, Cocina.ReporteDiarioCocina.CargarEstadoMañana, Method.POST);
+                rest.Peticion.AddHeader(Constantes.Http.ObtenerTipoDeContenido, Constantes.Http.TipoDeContenido.Json);
+                rest.Peticion.AddJsonBody(fecha);
+                rest.Cliente.ExecuteAsync(rest.Peticion, response =>
+                {
+                    switch (response.StatusCode)
+                    {
+                        case HttpStatusCode.OK:
+                            callback(response);
+                            break;
+                        default:
+                            callback(null);
+                            break;
+                    }
+                });
+            }
+            catch (Exception e)
+            {
+                Opcion.Log(Log.Interno.Categoria, "EXCEPCION: " + e.Message);
+            }
+        }
         public static void RepCongelados(Action<IRestResponse> callback)
         {
             try
@@ -246,7 +270,8 @@ namespace Data
                             callback(response);
                             break;
                         default:
-                            throw new Exception(@"Error al cargar el indice de platillos");
+                            callback(null);
+                            break;
                     }
                 });
             }
@@ -254,15 +279,15 @@ namespace Data
             {
                 Opcion.Log(Log.Interno.Departamento, "EXCEPCION: " + e.Message);
             }
-        }
+}
 
-        public static void RepCongeladosFechados(Action<IRestResponse> callback)
+        public static void RepCongeladosFechados(Action<IRestResponse> callback, Respuesta.Reporte.RespuestaCocina.Reportess fechas)
         {
             try
             {
                 var rest = new Rest(Local.Api.UrlApi, Cocina.DetalleCocina.ReporteCongeladoFechas, Method.POST);
                 rest.Peticion.AddHeader(Constantes.Http.ObtenerTipoDeContenido, Constantes.Http.TipoDeContenido.Json);
-                rest.Peticion.AddJsonBody(FechaHistorial);
+                rest.Peticion.AddJsonBody(fechas);
                 rest.Cliente.ExecuteAsync(rest.Peticion, response =>
                 {
                     switch (response.StatusCode)
@@ -523,6 +548,36 @@ namespace Data
 
 
         }
+        public static void RepoPlatillosdeHoy(Action<IRestResponse> callback, Cocina.ReporteDiarioCocina.FechasReporte fechas)
+        {
+            try
+            {
+                var rest = new Rest(Local.Api.UrlApi, Cocina.ReporteDiarioCocina.ReportePlatillosHoy, Method.POST);
+                rest.Peticion.AddHeader(Constantes.Http.ObtenerTipoDeContenido, Constantes.Http.TipoDeContenido.Json);
+                rest.Peticion.AddJsonBody(fechas);
+                rest.Cliente.ExecuteAsync(rest.Peticion, response =>
+                {
+                    switch (response.StatusCode)
+                    {
+                        case HttpStatusCode.OK:
+                            //CReceta.RecId = Convert.ToInt32(JObject.Parse(response.Content).Property("RecId").Value);
+                            callback(response);
+                            break;
+                        default:
+                            callback(null);
+                            break;
+                            //throw new Exception(@"Error al buscar la Informacion deseada");
+                    }
+                });
+            }
+            catch (Exception e)
+            {
+                Opcion.Log(Log.Interno.Categoria, "EXCEPCION: " + e.Message);
+            }
+
+
+
+        }
 
         public static void ActualizacionPrecioReceta(Action<IRestResponse> callback)
         {
@@ -552,8 +607,6 @@ namespace Data
 
         public static void PreciosActualizarTabla(Action<IRestResponse> callback)
         {
-            try
-            {
                 var rest = new Rest(Local.Api.UrlApi, Cocina.RecetaActPrecio.TablaPreciosNuevos, Method.GET);
                 rest.Peticion.AddHeader(Constantes.Http.ObtenerTipoDeContenido, Constantes.Http.TipoDeContenido.Json);
                 rest.Cliente.ExecuteAsync(rest.Peticion, response =>
@@ -566,14 +619,8 @@ namespace Data
                         default:
                             callback(null);
                             break;
-                            // throw new Exception(@"Error al cargar el indice de tags");
                     }
                 });
-            }
-            catch (Exception e)
-            {
-                Opcion.Log(Log.Interno.Departamento, "EXCEPCION: " + e.Message);
-            }
         }
 
         public static void ExistenciProductoActualizar(Action<IRestResponse> callback)

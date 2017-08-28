@@ -1,14 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel;
-using System.Drawing;
-using System.Data;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 using Herramienta;
-using Herramienta.Config;
 using Respuesta;
 using RestSharp;
 
@@ -44,48 +37,64 @@ namespace ExcelAddIn1
             //}
             // ;
             var msj = new MensajeDeEspera();
-            msj.Show();
-            var datosimportar = new Respuesta.Reporte.RespuestaCocina.Reportess
-            {
-                Id = Convert.ToInt16(cbproducto.SelectedValue.ToString()) ,
-                Orderby= cbOrdenarReceta.SelectedValue.ToString(),
-                FechaFinal = Convert.ToDateTime(FechaFinal.ToString()),
-                FechaInicio = Convert.ToDateTime(FechaInicio.ToString())
-                
-            };
-            
-            ThisAddIn.FechaIni =Convert.ToDateTime(FechaInicio.ToString("yyyy/MM/dd HH:mm:ss"));
-            ThisAddIn.FechaFin = Convert.ToDateTime(FechaFinal.ToString("yyyy/MM/dd HH:mm:ss"));
+            msj.Show();            
+            FechaInicio =Convert.ToDateTime(dtpFechaIni.Value.ToString("yyyy/MM/dd 00:00:00"));
+            FechaFinal = Convert.ToDateTime(dtpFechaFin.Value.ToString("yyyy/MM/dd HH:mm:ss"));
             ThisAddIn.FechaDateTime=DateTime.Now;
             var addIn = Globals.ThisAddIn;
-            //me marca este erros al primer opci
-
-            /*en ninguna ejecucion async se pone el parametro de clase como parametro...
-             va directo al Data, mira, recuerda que son 2 partes... una inicial y una final
-             en la inicial tu le envias, y en la final tu recibes y decides que hacer conesa info*/
-           
-
-            Opcion.EjecucionAsync(x =>
+            if(cbTipoReceta.Checked)
+            { 
+                Opcion.EjecucionAsync(x =>
             {
+                var datosimportar = new Respuesta.Reporte.RespuestaCocina.Reportess
+                {
+                    Id = Convert.ToInt16(cbproducto.SelectedValue.ToString()),
+                    Orderby = cbOrdenarReceta.SelectedValue.ToString(),
+                    FechaFinal = Convert.ToDateTime(FechaFinal.ToString()),
+                    FechaInicio = Convert.ToDateTime(FechaInicio.ToString())
+
+                };
+
                 Data.ReporteCocina.VersionExtendida(x, datosimportar); 
             }, y =>
             {
                 BeginInvoke((MethodInvoker)(() =>
                 {
-                   msj.Close();
-                   addIn.ReporteCocina(y);
-
-
+                    msj.Close();
+                    addIn.ReporteCocina(y);
                 }));
+
             });
-     
-        }
+            }
+            if (cbPlatillo.Checked)
+            {
+                Opcion.EjecucionAsync(x =>
+                {
+                    var datosimportar = new Respuesta.Reporte.RespuestaCocina.Reportess
+                    {
+                        Clave = tbProducto.Text == string.Empty ? "%" :tbProducto.Text,
+                        FechaFinal = Convert.ToDateTime(FechaFinal.ToString()),
+                        FechaInicio = Convert.ToDateTime(FechaInicio.ToString())
 
-        private void cbConceptoReceta_SelectedIndexChanged(object sender, EventArgs e)
-        {
+                    };
+
+                    Data.ReporteCocina.VersionExtendidaporPlatillo(x, datosimportar);
+                }, y =>
+                {
+                    BeginInvoke((MethodInvoker)(() =>
+                    {
+                        msj.Close();
+                        addIn.ReporteCocina(y);
+                    }));
+
+                });
+
+            }
+            cbTipoReceta.Checked = false;
+            cbPlatillo.Checked = false;
+
 
         }
-        /*por eso era mantener el nombre de la carpeta, aqui le pusiste v2*/
         public void CargarComboBox(IRestResponse json, ComboBox tipoReceta)
         {
             BeginInvoke((MethodInvoker)(() =>
@@ -100,12 +109,13 @@ namespace ExcelAddIn1
                 tipoReceta.Tag = json;
             }));
         }
-
         private void SideBarReporteReceta_Load(object sender, EventArgs e)
         {
-            
-
-
+            tbProducto.Visible = false;
+            cbproducto.Visible = false;
+            lbOrdenar.Visible = false;
+            cbOrdenarReceta.Visible = false;
+            btGenerarReceta.Enabled = false;
             Opcion.EjecucionAsync(Data.ParametroProducto.Lista, x =>
             {
                 CargarComboBox(x, cbproducto);
@@ -113,30 +123,55 @@ namespace ExcelAddIn1
             Opcion.EjecucionAsync(Data.ParametroReceta.Lista, x =>
             {
                 CargarComboBox(x, cbOrdenarReceta);
-            });
+            });   
+        }
+        private void cbOrdenarReceta_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            btGenerarReceta.Enabled = true;
+        }
+        private void cbTipoReceta_CheckedChanged(object sender, EventArgs e)
+        {
+            if (cbTipoReceta.Checked)
+            {
+                cbproducto.Visible = true;
+                lbOrdenar.Visible = true;
+                cbOrdenarReceta.Visible = true;
+                btGenerarReceta.Enabled = true;
+                cbPlatillo.Checked = false;
+            }
+            else
+            {
+                cbproducto.Visible = false;
+                lbOrdenar.Visible = false;
+                cbOrdenarReceta.Visible = false;
+                btGenerarReceta.Enabled = false;
+            }
+        }
+        private void cbPlatillo_CheckedChanged(object sender, EventArgs e)
+        {
+            if (cbPlatillo.Checked)
+            {
+                tbProducto.Visible = true;
+                btGenerarReceta.Enabled= true;
+                cbTipoReceta.Checked = false;
+            }
+            else
+            {
+                tbProducto.Visible = false;
+                btGenerarReceta.Enabled = false;
+        
+            }
+            
+        }
 
-           
+        private void tbProducto_TextChanged(object sender, EventArgs e)
+        {
+            btGenerarReceta.Enabled = true;
         }
 
         private void panel1_Paint(object sender, PaintEventArgs e)
         {
 
-        }
-
-        private void SideBarReporteReceta_MouseClick(object sender, MouseEventArgs e)
-        {
-
-        }
-
-        private void cbproducto_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            cbOrdenarReceta.Enabled = true;
-
-        }
-
-        private void cbOrdenarReceta_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            btGenerarReceta.Enabled = true;
         }
     }
 }

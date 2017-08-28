@@ -23,14 +23,17 @@ namespace Herramienta
             {
                 public static string Orden { get; set; } = Properties.Settings.Default.Orden;
                 public static string ReporteCocina { get; set; } = Properties.Settings.Default.ReporteReceta;
+                public static string ReporteCocinaPlatillo { get; set; } = Properties.Settings.Default.ReporteCocinaPlatillo;
 
-                
+
             }
 
             public class ReporteDiarioCocina
             {
+                public static string ReportePlatillosHoy { get; set; } = Properties.Settings.Default.ReporteHoy;
                 public static string Reporte { get; set; } = Properties.Settings.Default.ReporteDiarioX;
                 public static string CargarRepoNew { get; set; } = Properties.Settings.Default.ActRecetaDiaria;
+                public static string CargarEstadoMañana { get; set; } = Properties.Settings.Default.MostrarEstadoMañana;
                 public static string CargarRepoNew2 { get; set; } = Properties.Settings.Default.ActRecetaDiaria2;
                 public static string Fecha { get; set; }
 
@@ -168,6 +171,8 @@ namespace Herramienta
                 public static double Cantidad { get; set; }
                 public static int EstadoInventarioId { get; set; }
                 public static string Agregar { get; set; } = Properties.Settings.Default.AgregarCongelado1;
+                public static string AgregarMañana { get; set; } = Properties.Settings.Default.InsertarDiariodeMañana;
+                public static string ActualizarMañana { get; set; } = Properties.Settings.Default.ActualizarDiariodeMañana;
                 public static string ActualizarDestino { get; set; } = Properties.Settings.Default.ActualizarDestino;
                 public static string Agregarcantidad { get; set; } 
             }

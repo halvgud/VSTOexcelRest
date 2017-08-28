@@ -3,12 +3,11 @@ using System.Collections.Generic;
 using System.Drawing;
 using System.IO;
 using System.Linq;
-using System.Security.Policy;
+using System.Runtime.InteropServices.ComTypes;
 using System.Windows.Forms;
 using Herramienta.Config;
 using Excel = Microsoft.Office.Interop.Excel;
 using Herramienta;
-using Microsoft.Office.Tools;
 using Microsoft.Office.Tools.Excel;
 using Respuesta;
 using RestSharp;
@@ -86,9 +85,6 @@ namespace ExcelAddIn1
         void Application_SheetBeforeDoubleClick(object sh,
         Excel.Range target, ref bool cancel)
         {
-
-            
-
             _sheet1 = (Excel.Worksheet)Application.ActiveSheet;
             if (_sheet1.Name == "ReporterCocina" && target.Column == 1)
             {
@@ -101,22 +97,18 @@ namespace ExcelAddIn1
 
                 var detallereceta = new Cocina.DetalleCocina.ReporteDetalle
                 {
-                   FechaFinal = FechaFin.ToString("yyyy/MM/dd HH:mm:ss"),
-                   FechaInicio = FechaIni.ToString("yyyy/MM/dd 00:00:00"),
-                   clave = excel[1,1].ToString()
+                    ////FechaFinal = FechaFin.ToString("yyyy/MM/dd HH:mm:ss"),
+                    ////FechaInicio = FechaIni.ToString("yyyy/MM/dd 00:00:00"),
+                    clave = excel[1,1].ToString()
                 };
-               
 
-                //Opcion.EjecucionAsync(Data.ReporteCocina.DDetalleReceta(),);
+                        //Opcion.EjecucionAsync(Data.ReporteCocina.DDetalleReceta(),);
 
                 Opcion.EjecucionAsync(x =>
                 {
-                    Data.ReporteCocina.DDetalleReceta(x, detallereceta);
-                   
+                    Data.ReporteCocina.DDetalleReceta(x, detallereceta);   
                 }, jsonResult =>
                 {
-                 
-
                     Reporte.RespuestaCocina listCocina =
                         Opcion.JsonaListaGenerica<Reporte.RespuestaCocina>(jsonResult)[0];
                     Foto = listCocina.Rutaimagen;
@@ -150,17 +142,17 @@ namespace ExcelAddIn1
                     excelazo.Range["L5"].Value2 = listCocina.PromedioSobrante;
                     excelazo.Range["G7"].Value2 = listCocina.Densidad;
 
-                    if (listCocina.NomUnidad.ToString()=="LT")
+                    if (listCocina.NomUnidad.ToString() == "LT")
                     {
                         excelazo.Range["B6"].Value2 = listCocina.CantidadElaboracion;
-                        var kg = listCocina.CantidadElaboracion*listCocina.Densidad;
-                        excelazo.Range["B5"].Value2 = Math.Round(kg,2);
+                        var kg = listCocina.CantidadElaboracion * listCocina.Densidad;
+                        excelazo.Range["B5"].Value2 = Math.Round(kg, 2);
                     }
                     else
                     {
                         excelazo.Range["B5"].Value2 = listCocina.CantidadElaboracion;
-                        var lt = listCocina.CantidadElaboracion/listCocina.Densidad;
-                        excelazo.Range["B6"].Value2 = Math.Round(lt,2);
+                        var lt = listCocina.CantidadElaboracion / listCocina.Densidad;
+                        excelazo.Range["B6"].Value2 = Math.Round(lt, 2);
                     }
 
                     int x = 8;
@@ -198,13 +190,6 @@ namespace ExcelAddIn1
                     excelazo.Shapes.AddPicture(Foto, Microsoft.Office.Core.MsoTriState.msoFalse, Microsoft.Office.Core.MsoTriState.msoCTrue, w, q, 180, 180);
                     excelazo.Range["D21"].Rows.AutoFit();
                     #endregion
-                    
-                  
-
-
-
-
-
                 }
 
                 );
@@ -421,10 +406,10 @@ namespace ExcelAddIn1
             {
                 var x = _reporte.Range["F" + i].Value2;
                 string y = "F" + i;
-                if (x == "MERMA")
-                {
-                    _reporte.Range[y].Interior.Color = Color.Tomato;
-                }
+                //if (x == "MERMA")
+                //{
+                //    _reporte.Range[y].Interior.Color = Color.Tomato;
+                //}
                 if (x == "CONGELADO")
                 {
                     _reporte.Range[y].Interior.Color = Color.Turquoise;
@@ -433,77 +418,37 @@ namespace ExcelAddIn1
                 {
                     _reporte.Range[y].Interior.Color = Color.LawnGreen;
                 }
-                if (x == "EMPLEADO")
-                {
-                    _reporte.Range[y].Interior.Color = Color.Yellow;
-                }
+                //if (x == "REGISTRADO")
+                //{
+                //    _reporte.Range[y].Interior.Color = Color.Yellow;
+                //}
             }
 
             Application.Cells.Locked = false;
             Application.ScreenUpdating = true;
-           
-
         }
-
-
         //template Congelados
         public void ReporteCongelados(IRestResponse restResponse)
         {
             Application.ScreenUpdating = false;
             var rrgc = Opcion.JsonaListaGenerica<Reporte.General.InventarioCongelados>(restResponse);
-            var oReportWs = InicializarExcelConTemplate("Destino");
+            var oReportWs = InicializarExcelConTemplate("DestinoPlatillos");
             if (oReportWs == null) return;
-            var rowcount = rrgc.Count + 6;
-                //olle pero cuando aumente que ondas con esta paarte tener que poner una variable que se aumente sola un count
-            /*nop, no puedes meter por ejemplo el rrgc.Count+7 dentro de la linea de abajo porque no lo agarra... lo tienes que meter en una viarable ya fijona*/
-            /**/
-            _reporte.Range["A7:F" + rowcount].Value2 = InicializarLista(rrgc);
-            _reporte.Range["A7:F" + rowcount].Borders[Excel.XlBordersIndex.xlEdgeBottom].LineStyle =
-                Excel.XlLineStyle.xlContinuous;
-            _reporte.Range["A7:F" + rowcount].Borders[Excel.XlBordersIndex.xlEdgeLeft].LineStyle =
-                Excel.XlLineStyle.xlContinuous;
-            _reporte.Range["A7:F" + rowcount].Borders[Excel.XlBordersIndex.xlEdgeRight].LineStyle =
-                Excel.XlLineStyle.xlContinuous;
-            _reporte.Range["A7:F" + rowcount].Borders[Excel.XlBordersIndex.xlEdgeTop].LineStyle =
-                Excel.XlLineStyle.xlContinuous;
-            _reporte.Range["A7:F" + rowcount].Borders[Excel.XlBordersIndex.xlEdgeBottom].LineStyle =
-                Excel.XlLineStyle.xlContinuous;
+            var rowcount = rrgc.Count + 5;
+            _reporte.Range["A6:F" + rowcount].Value2 = InicializarLista(rrgc);
+            _reporte.Range["A6:A" + rowcount].HorizontalAlignment = Excel.XlHAlign.xlHAlignCenter;
+            _reporte.Range["B6:C" + rowcount].HorizontalAlignment = Excel.XlHAlign.xlHAlignLeft;
+            _reporte.Range["D6:F" + rowcount].HorizontalAlignment = Excel.XlHAlign.xlHAlignCenter;
 
-            _reporte.Range["A7:F" + rowcount].Borders.Color = Color.Black;
-
-            _reporte.Range["A7:F" + rowcount].Font.Size = 8;
-
-            _reporte.Range["A7:F" + rowcount].HorizontalAlignment = Excel.XlHAlign.xlHAlignCenter;
-            _reporte.Range["B7:F" + rowcount].HorizontalAlignment = Excel.XlHAlign.xlHAlignLeft;
-            _reporte.Range["C7:F" + rowcount].HorizontalAlignment = Excel.XlHAlign.xlHAlignLeft;
-            _reporte.Range["D7:F" + rowcount].HorizontalAlignment = Excel.XlHAlign.xlHAlignCenter;
-            _reporte.Range["F7:F" + rowcount].HorizontalAlignment = Excel.XlHAlign.xlHAlignCenter;
-
-
-            _reporte.Range["E7:E" + rowcount].Interior.Color = Color.Aqua;
-      
-            //_reporte.Range["A7=F" + rowcount].HorizontalAlignment = Excel.XlHAlign.xlHAlignCenter;
-            //_reporte.Range["A2:X2"].Interior.Color = ColorTranslator.ToOle(Color.Orange);
-            //_reporte.Range["Q1:X1"].Interior.Color = ColorTranslator.ToOle(Color.Orange);
-            //_reporte.Range["K3:K" + rowcount].Interior.Color = ColorTranslator.ToOle(Color.Yellow);
-            //_reporte.Range["L3:L" + rowcount].Interior.Color = ColorTranslator.ToOle(Color.Green);
-            //_reporte.Range["O3:P" + rowcount].Interior.Color = ColorTranslator.ToOle(Color.Pink);
-            //_reporte.Range["P3:P" + rowcount].Interior.Color = ColorTranslator.ToOle(Color.Pink);
-
-            _reporte.Range["C7:F" + rowcount].Columns.AutoFit();
-            _reporte.Range["B7:F" + rowcount].Columns.AutoFit();
-            _reporte.Range["F6:F" + rowcount].Columns.AutoFit();
-            _reporte.Range["D6:F" + rowcount].Columns.AutoFit();
-
-            var calis = _reporte.Range["E10"].Value2;
+            var calis = _reporte.Range["E6"].Value2;
             var calis2 = rowcount;
             for (int i = 1; i < rowcount+1; i++)
             {
                 var x = _reporte.Range["E" + i].Value2;
                 string y = "E" + i;
-                if (x=="MERMA") {
-                    _reporte.Range[y].Interior.Color = Color.OrangeRed;
-                }
+                //if (x=="MERMA") {
+                //    _reporte.Range[y].Interior.Color = Color.OrangeRed;
+                //}
                 if (x == "CONGELADO")
                 {
                     _reporte.Range[y].Interior.Color = Color.Aquamarine;
@@ -512,14 +457,12 @@ namespace ExcelAddIn1
                 {
                     _reporte.Range[y].Interior.Color = Color.Chartreuse;
                 }
-                if (x == "EMPLEADO")
-                {
-                    _reporte.Range[y].Interior.Color = Color.Gold;
-                }
+                //if (x == "REGISTRADO")
+                //{
+                //    _reporte.Range[y].Interior.Color = Color.Gold;
+                //}
             }
-
-
-
+            ThisAddIn.ReporteReceta.Visible = false;
             Application.Cells.Locked = false;
             Application.ScreenUpdating = true;
         }
@@ -529,19 +472,12 @@ namespace ExcelAddIn1
             .GroupBy(p => p.Fecha)
             .Select(g => g.ToList())
             .ToList();
-
-
-          
-
             var lista = new object[rrgi.Count + result.Count + 1, 6];
             var j = 0;
-
             foreach (var y1 in result)
             {
-
                 foreach (var x in y1)
                 {
-
                     lista[j, 0] =  x.DescripcionReceta;
                     lista[j, 1] = x.Descripcion;
                     lista[j, 2] = x.Cantidad;
@@ -566,10 +502,8 @@ namespace ExcelAddIn1
             .ToList();
             var lista = new object[rrgi.Count+ result.Count+1, 5];
             var j = 0;
-           
             foreach (var y1 in result)
             {
-
                 foreach (var x in y1)
                 {
                     lista[j, 0] = "'" + x.Clave;
@@ -585,26 +519,20 @@ namespace ExcelAddIn1
                 lista[j, 3] = "";
                 lista[j, 4] = "";
                 j++;
-
             }
-          
             return lista;
         }
         private static object[,] InicializarLista(IReadOnlyList<Reporte.General.InventarioCongelados> rrgc)
         {
-            var lista = new object[rrgc.Count, 4];
+            var lista = new object[rrgc.Count, 6];
             for (var x = 0; x < rrgc.Count; x++)
             {
                 lista[x, 0] = rrgc[x].Id;
                 lista[x, 1] = "'"+rrgc[x].Clave;
                 lista[x, 2] = rrgc[x].Descripcion;
                 lista[x, 3] = rrgc[x].Existencia;
-            
                 lista[x, 4] = rrgc[x].Estado;
                 lista[x, 5] = rrgc[x].FechaEntrada;
-
-                
-
             }
             return lista;
 
@@ -616,7 +544,7 @@ namespace ExcelAddIn1
             for (var x = 0; x < rrg.Count; x++)
             {
                 lista[x, 0] = "'"+rrg[x].Clave;
-                lista[x, 1] = rrg[x].Receta.ToString();
+                lista[x, 1] = rrg[x].Receta;
                 lista[x, 2] = rrg[x].TipoProducto;
                 lista[x, 3] = rrg[x].Cantidadinventario;
                 lista[x, 4] = rrg[x].Categoria;
@@ -731,8 +659,6 @@ namespace ExcelAddIn1
                 }
             }
             return lista;
-
-
         }
 
     }

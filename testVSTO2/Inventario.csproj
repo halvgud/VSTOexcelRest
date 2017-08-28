@@ -35,11 +35,8 @@
     <PublishUrl>\\mercattoserver\ftp\VSTO\</PublishUrl>
     <InstallUrl>\\mercattoserver\ftp\VSTO\</InstallUrl>
     <TargetCulture>es</TargetCulture>
-<<<<<<< HEAD
     <ApplicationVersion>1.0.0.45</ApplicationVersion>
-=======
     <ApplicationVersion>1.0.0.36</ApplicationVersion>
->>>>>>> origin/master
     <AutoIncrementApplicationRevision>true</AutoIncrementApplicationRevision>
     <UpdateEnabled>true</UpdateEnabled>
     <UpdateInterval>0</UpdateInterval>

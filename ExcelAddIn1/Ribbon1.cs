@@ -29,8 +29,6 @@ using Data;
 // 3. Asigne atributos a las etiquetas de control del archivo XML de la cinta de opciones para identificar los métodos de devolución de llamada apropiados en el código.  
 
 // Para obtener más información, vea la documentación XML de la cinta de opciones en la Ayuda de Visual Studio Tools para Office.
-
-
 namespace ExcelAddIn1
 {
     [ComVisible(true)]
@@ -43,16 +41,12 @@ namespace ExcelAddIn1
         }
         public void AbrirRecetario(Office.IRibbonControl control)
         {
-        
-
             ThisAddIn.ReporteReceta.Visible = false;
             ThisAddIn.Recetario.Visible = true;
         }
-
-       
         public void AbrirReporteReceta(Office.IRibbonControl control)
         {
-            ThisAddIn.Recetario.Visible = false;
+            ThisAddIn.ReportessCustomTaskPane.Visible = false;
             ThisAddIn.ReporteReceta.Visible = true;
         }
         public void Diario(Office.IRibbonControl control)
@@ -67,26 +61,37 @@ namespace ExcelAddIn1
         }
         public void CrearReceta(Office.IRibbonControl control)
         {
-   
-
             var ar = new AgregarReceta();
             ar.Show();
 
-            Opcion.EjecucionAsync(Data.Reporte.ActualizacionPrecioReceta, jsonResult =>
-            {
-                var priceReceta = Opcion.JsonaListaGenerica<Respuesta.Reporte.RespuestaCocina.ActPriceReceta>(jsonResult);
-                Data.Receta.Detalle.ActualizarRecetasMS(priceReceta);
-            });
+            //Opcion.EjecucionAsync(Data.Reporte.ActualizacionPrecioReceta, jsonResult =>
+            //{
+            //    if (jsonResult != null)
+            //    {
+            //        var priceReceta = Opcion.JsonaListaGenerica<Respuesta.Reporte.RespuestaCocina.ActPriceReceta>(jsonResult);
+            //        Data.Receta.Detalle.ActualizarRecetasMS(priceReceta);
+            //    }  
+            //});
         }
         public void ReporteCongelados(Office.IRibbonControl control)
-        {
+{
+            //ThisAddIn.ReporteReceta.Visible = false;
+            //ThisAddIn.ReportessCustomTaskPane.Visible = true;
+            //var ms = new MensajeDeEspera();
+            //ms.Show();
             var addIn = Globals.ThisAddIn;
 
             Opcion.EjecucionAsync(Data.Reporte.RepCongelados, y =>
             {
-                addIn.ReporteCongelados(y);
-            });
+                if (y != null)
+                {
+                    addIn.ReporteCongelados(y);
+                }
+                    //ms.Close();
+                });
         }
+
+
         public void Reportes(Office.IRibbonControl control)
         {
             ThisAddIn.ReportessCustomTaskPane.Visible = true;

@@ -251,10 +251,12 @@ namespace Respuesta
                 public string Clave { get; set; }
                 public string Platillo { get; set; }
                 public DateTime Fecha { get; set; }
-                public Double Cr { get; set; }
-                public double Sr { get; set; }
+                public Double CR { get; set; }
+                public double SR { get; set; }
                 public int EstadoInventarioId { get; set; }
                 public string Observacion { get; set; }
+                public int EstadoManana { get; set; }
+                public double CE { get; set; }
             }
 
             public class Reportess
@@ -263,6 +265,7 @@ namespace Respuesta
                 public string Orderby { get; set; }
                 public DateTime FechaFinal { get; set; }
                 public DateTime FechaInicio { get; set; }
+                public  string Clave { get; set; }
             }
 
             public class RepoDiario
@@ -270,15 +273,22 @@ namespace Respuesta
                 public string Clave { get; set; }
                 public string Platillo { get; set; }
                 public Double Existencia { get; set; }
-                public Double Cp { get; set; }
-                public Double Ce { get; set; }
-                public Double Cr { get; set; }
+                public Double CP { get; set; }
+                public Double CE { get; set; }
+                public Double CR { get; set; }
                 public Double VentaAnterior { get; set; }
                 public Double VentaPromedio { get; set; }
                 public double EstadoInventarioId { get; set; }
                 public int ArtId { get; set; }
                 public string Observacion { get; set; }
                 public double CantidadCocina { get; set; }
+                public  double EstadoMañana { get; set; }
+            }
+            public class CopiadoReporteDiario
+            {
+                public string Clave { get; set; }
+                public string Platillo { get; set; }
+               
             }
 
             public class RepoActDiarioD

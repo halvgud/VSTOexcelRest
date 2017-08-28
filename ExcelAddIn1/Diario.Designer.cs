@@ -70,6 +70,7 @@
             // 
             // dgvInventarioPlatillos
             // 
+            this.dgvInventarioPlatillos.BackgroundColor = System.Drawing.Color.LightGray;
             this.dgvInventarioPlatillos.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgvInventarioPlatillos.Location = new System.Drawing.Point(18, 33);
             this.dgvInventarioPlatillos.Name = "dgvInventarioPlatillos";
@@ -83,7 +84,7 @@
             // groupBox1
             // 
             this.groupBox1.Controls.Add(this.dgvInventarioPlatillos);
-            this.groupBox1.Font = new System.Drawing.Font("Modern No. 20", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.groupBox1.Font = new System.Drawing.Font("Arial", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.groupBox1.Location = new System.Drawing.Point(0, 27);
             this.groupBox1.Name = "groupBox1";
             this.groupBox1.Size = new System.Drawing.Size(833, 302);
@@ -93,14 +94,16 @@
             // 
             // groupBox2
             // 
+            this.groupBox2.BackColor = System.Drawing.Color.Gray;
             this.groupBox2.Controls.Add(this.rbregistrado);
             this.groupBox2.Controls.Add(this.rbreventa);
             this.groupBox2.Controls.Add(this.rbmerma);
             this.groupBox2.Controls.Add(this.rbcongelado);
             this.groupBox2.Font = new System.Drawing.Font("Modern No. 20", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.groupBox2.Location = new System.Drawing.Point(839, 52);
+            this.groupBox2.Margin = new System.Windows.Forms.Padding(5);
             this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Size = new System.Drawing.Size(126, 149);
+            this.groupBox2.Size = new System.Drawing.Size(134, 149);
             this.groupBox2.TabIndex = 12;
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "Destino";
@@ -255,21 +258,23 @@
             // 
             // btGuardar
             // 
+            this.btGuardar.BackColor = System.Drawing.Color.Black;
             this.btGuardar.Enabled = false;
-            this.btGuardar.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btGuardar.Location = new System.Drawing.Point(848, 267);
+            this.btGuardar.Font = new System.Drawing.Font("Times New Roman", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btGuardar.ForeColor = System.Drawing.Color.White;
+            this.btGuardar.Location = new System.Drawing.Point(844, 267);
             this.btGuardar.Name = "btGuardar";
-            this.btGuardar.Size = new System.Drawing.Size(105, 27);
+            this.btGuardar.Size = new System.Drawing.Size(117, 30);
             this.btGuardar.TabIndex = 33;
             this.btGuardar.Text = "Guardar";
-            this.btGuardar.UseVisualStyleBackColor = true;
+            this.btGuardar.UseVisualStyleBackColor = false;
             this.btGuardar.Click += new System.EventHandler(this.btGuardar_Click);
             // 
             // groupBox3
             // 
             this.groupBox3.Controls.Add(this.dgvDiarios);
-            this.groupBox3.Font = new System.Drawing.Font("Modern No. 20", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.groupBox3.Location = new System.Drawing.Point(0, 381);
+            this.groupBox3.Font = new System.Drawing.Font("Arial", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.groupBox3.Location = new System.Drawing.Point(0, 373);
             this.groupBox3.Name = "groupBox3";
             this.groupBox3.Size = new System.Drawing.Size(833, 266);
             this.groupBox3.TabIndex = 34;
@@ -278,9 +283,10 @@
             // 
             // dgvDiarios
             // 
+            this.dgvDiarios.BackgroundColor = System.Drawing.Color.LightGray;
             this.dgvDiarios.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgvDiarios.EditMode = System.Windows.Forms.DataGridViewEditMode.EditOnEnter;
-            this.dgvDiarios.Location = new System.Drawing.Point(6, 30);
+            this.dgvDiarios.Location = new System.Drawing.Point(6, 24);
             this.dgvDiarios.Name = "dgvDiarios";
             this.dgvDiarios.Size = new System.Drawing.Size(821, 230);
             this.dgvDiarios.TabIndex = 0;
@@ -288,35 +294,41 @@
             // 
             // btCargarDiarios
             // 
+            this.btCargarDiarios.BackColor = System.Drawing.Color.Black;
             this.btCargarDiarios.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btCargarDiarios.Location = new System.Drawing.Point(833, 443);
+            this.btCargarDiarios.ForeColor = System.Drawing.Color.White;
+            this.btCargarDiarios.Location = new System.Drawing.Point(843, 397);
             this.btCargarDiarios.Name = "btCargarDiarios";
-            this.btCargarDiarios.Size = new System.Drawing.Size(118, 30);
+            this.btCargarDiarios.Size = new System.Drawing.Size(122, 34);
             this.btCargarDiarios.TabIndex = 35;
             this.btCargarDiarios.Text = "Cargar Diarios";
-            this.btCargarDiarios.UseVisualStyleBackColor = true;
+            this.btCargarDiarios.UseVisualStyleBackColor = false;
             this.btCargarDiarios.Click += new System.EventHandler(this.btCargarDiarios_Click);
             // 
             // btPreviaPlatillo
             // 
+            this.btPreviaPlatillo.BackColor = System.Drawing.Color.Black;
             this.btPreviaPlatillo.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btPreviaPlatillo.Location = new System.Drawing.Point(833, 479);
+            this.btPreviaPlatillo.ForeColor = System.Drawing.Color.White;
+            this.btPreviaPlatillo.Location = new System.Drawing.Point(847, 437);
             this.btPreviaPlatillo.Name = "btPreviaPlatillo";
-            this.btPreviaPlatillo.Size = new System.Drawing.Size(118, 28);
+            this.btPreviaPlatillo.Size = new System.Drawing.Size(118, 33);
             this.btPreviaPlatillo.TabIndex = 37;
             this.btPreviaPlatillo.Text = "Previa Platillo";
-            this.btPreviaPlatillo.UseVisualStyleBackColor = true;
+            this.btPreviaPlatillo.UseVisualStyleBackColor = false;
             this.btPreviaPlatillo.Click += new System.EventHandler(this.btPreviaPlatillo_Click);
             // 
             // btPreviaGlobal
             // 
+            this.btPreviaGlobal.BackColor = System.Drawing.Color.Black;
             this.btPreviaGlobal.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btPreviaGlobal.Location = new System.Drawing.Point(833, 513);
+            this.btPreviaGlobal.ForeColor = System.Drawing.Color.White;
+            this.btPreviaGlobal.Location = new System.Drawing.Point(844, 476);
             this.btPreviaGlobal.Name = "btPreviaGlobal";
-            this.btPreviaGlobal.Size = new System.Drawing.Size(118, 29);
+            this.btPreviaGlobal.Size = new System.Drawing.Size(121, 33);
             this.btPreviaGlobal.TabIndex = 38;
             this.btPreviaGlobal.Text = "Previa Global";
-            this.btPreviaGlobal.UseVisualStyleBackColor = true;
+            this.btPreviaGlobal.UseVisualStyleBackColor = false;
             this.btPreviaGlobal.Click += new System.EventHandler(this.btPreviaGlobal_Click);
             // 
             // label11
@@ -380,13 +392,15 @@
             // 
             // btEditar
             // 
-            this.btEditar.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btEditar.Location = new System.Drawing.Point(849, 231);
+            this.btEditar.BackColor = System.Drawing.Color.Black;
+            this.btEditar.Font = new System.Drawing.Font("Times New Roman", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btEditar.ForeColor = System.Drawing.Color.White;
+            this.btEditar.Location = new System.Drawing.Point(845, 231);
             this.btEditar.Name = "btEditar";
-            this.btEditar.Size = new System.Drawing.Size(104, 27);
+            this.btEditar.Size = new System.Drawing.Size(116, 30);
             this.btEditar.TabIndex = 45;
             this.btEditar.Text = "Editar";
-            this.btEditar.UseVisualStyleBackColor = true;
+            this.btEditar.UseVisualStyleBackColor = false;
             this.btEditar.Click += new System.EventHandler(this.btEditar_Click);
             // 
             // label17
@@ -401,31 +415,36 @@
             // 
             // btGuardarDiarios
             // 
+            this.btGuardarDiarios.BackColor = System.Drawing.Color.Black;
             this.btGuardarDiarios.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btGuardarDiarios.Location = new System.Drawing.Point(833, 582);
+            this.btGuardarDiarios.ForeColor = System.Drawing.Color.White;
+            this.btGuardarDiarios.Location = new System.Drawing.Point(844, 554);
             this.btGuardarDiarios.Name = "btGuardarDiarios";
-            this.btGuardarDiarios.Size = new System.Drawing.Size(118, 27);
+            this.btGuardarDiarios.Size = new System.Drawing.Size(120, 33);
             this.btGuardarDiarios.TabIndex = 48;
             this.btGuardarDiarios.Text = "Guardar";
-            this.btGuardarDiarios.UseVisualStyleBackColor = true;
+            this.btGuardarDiarios.UseVisualStyleBackColor = false;
             this.btGuardarDiarios.Click += new System.EventHandler(this.btGuardarDiarios_Click);
             // 
             // btEliminarFila
             // 
+            this.btEliminarFila.BackColor = System.Drawing.Color.Black;
             this.btEliminarFila.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btEliminarFila.Location = new System.Drawing.Point(833, 548);
+            this.btEliminarFila.ForeColor = System.Drawing.Color.White;
+            this.btEliminarFila.Location = new System.Drawing.Point(844, 515);
             this.btEliminarFila.Name = "btEliminarFila";
-            this.btEliminarFila.Size = new System.Drawing.Size(118, 28);
+            this.btEliminarFila.Size = new System.Drawing.Size(120, 33);
             this.btEliminarFila.TabIndex = 49;
             this.btEliminarFila.Text = "EliminarFila";
-            this.btEliminarFila.UseVisualStyleBackColor = true;
+            this.btEliminarFila.UseVisualStyleBackColor = false;
             this.btEliminarFila.Click += new System.EventHandler(this.btEliminarFila_Click);
             // 
             // Diario
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(977, 675);
+            this.BackColor = System.Drawing.Color.White;
+            this.ClientSize = new System.Drawing.Size(977, 631);
             this.Controls.Add(this.btEliminarFila);
             this.Controls.Add(this.btGuardarDiarios);
             this.Controls.Add(this.label17);

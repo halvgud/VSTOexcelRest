@@ -200,7 +200,7 @@ namespace Herramienta
         public static void BorrarFilaDiarios(DataGridView platillosdiarios)
         {
             if (platillosdiarios.CurrentCell.RowIndex == -1 || platillosdiarios.Rows.Count <= 0) return;
-            var result = platillosdiarios.DataSource as List<Reporte.RespuestaCocina.Repo_Diario>;
+            var result = platillosdiarios.DataSource as List<Reporte.RespuestaCocina.RepoDiario>;
             if (result == null) return;
             result.RemoveAt(platillosdiarios.CurrentCell.RowIndex);
             platillosdiarios.DataSource = null;

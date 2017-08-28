@@ -21,6 +21,7 @@ namespace Data
 
         public static List<Respuesta.Receta.Savedaily> Savedaily = new List<Respuesta.Receta.Savedaily>();
         public static Respuesta.Receta.Savedaily CDestinoSavedaily = new Respuesta.Receta.Savedaily();
+        public static List<Respuesta.Receta.DiariosMañana> CDiariosMañanas = new List<Respuesta.Receta.DiariosMañana>();
 
 
         public static void CargarDias(Action<IRestResponse> callback,Respuesta.Reporte.General fechas)
@@ -258,7 +259,7 @@ namespace Data
                 callback(null);
             }
         }
-        public static void InsertarMenus(Action<IRestResponse> callback, Respuesta.InsertarMenu lista)
+        public static void InsertarMenus(Action<IRestResponse> callback, InsertarMenu lista)
         {
             var rest = new Rest(Local.Api.UrlApi, Cocina.DiasSemana.GuardarRecetas, Method.POST);
             rest.Peticion.AddHeader(Constantes.Http.ObtenerTipoDeContenido, Constantes.Http.TipoDeContenido.Json);
@@ -275,7 +276,7 @@ namespace Data
                 }
             });
        }
-        public static void ActualizarMenuActual(Respuesta.InsertarMenu actualiza)
+        public static void ActualizarMenuActual(InsertarMenu actualiza)
         {
             var rest = new Rest(Local.Api.UrlApi, Cocina.DiasSemana.ActualizarMenuActual, Method.POST);
             rest.Peticion.AddHeader(Constantes.Http.ObtenerTipoDeContenido, Constantes.Http.TipoDeContenido.Json);
@@ -319,6 +320,22 @@ namespace Data
                 //callback(null);
             }
         }
+        public static void InsertarDiarioMañana(List<Respuesta.Receta.DiariosMañana> inserList)
+        {
+            var rest = new Rest(Local.Api.UrlApi, Cocina.Agregarcongelados.AgregarMañana, Method.POST);
+            rest.Peticion.AddHeader(Constantes.Http.ObtenerTipoDeContenido, Constantes.Http.TipoDeContenido.Json);
+            rest.Peticion.AddJsonBody(inserList);
+            rest.Cliente.ExecuteAsync(rest.Peticion, response =>
+            {
+                switch (response.StatusCode)
+                {
+                    case HttpStatusCode.OK:
+                        break;
+                    default:
+                        throw new Exception(@"Los datos no se pudieron actualizar");
+                }
+            });
+        }
         public static void ActualizarDestino(Respuesta.Receta.Savedaily actualiza)
         {
             var rest = new Rest(Local.Api.UrlApi, Cocina.Agregarcongelados.ActualizarDestino, Method.POST);
@@ -339,6 +356,23 @@ namespace Data
         public static void ActualizarReventadiarios(Respuesta.Receta.Savedaily actualiza)
         {
             var rest = new Rest(Local.Api.UrlApi, Cocina.Agregarcongelados.ActualizarDestino, Method.POST);
+            rest.Peticion.AddHeader(Constantes.Http.ObtenerTipoDeContenido, Constantes.Http.TipoDeContenido.Json);
+            rest.Peticion.AddJsonBody(actualiza);
+            rest.Cliente.ExecuteAsync(rest.Peticion, response =>
+            {
+               switch (response.StatusCode)
+                {
+                    case HttpStatusCode.OK:
+
+                        break;
+                    default:
+                        throw new Exception(@"Los datos no se pudieron actualizar");
+                }
+            });
+        }
+        public static void ActualizarDiarioMa(Respuesta.Receta.DiariosMañana actualiza)
+        {
+            var rest = new Rest(Local.Api.UrlApi, Cocina.Agregarcongelados.ActualizarMañana, Method.POST);
             rest.Peticion.AddHeader(Constantes.Http.ObtenerTipoDeContenido, Constantes.Http.TipoDeContenido.Json);
             rest.Peticion.AddJsonBody(actualiza);
             rest.Cliente.ExecuteAsync(rest.Peticion, response =>

@@ -105,45 +105,29 @@ namespace ExcelAddIn1
             //tmActualizar.Start();
             Data.Reporte.PreciosActualizarTabla(t =>
             {
-                
-                var liq = Opcion.JsonaListaGenerica<Reporte.RespuestaCocina.TablaPreciosNuevos>(t);
-            //_ListaActualizarListr = 
-            //       .Where(x => x.Modificacion == "Actualizar")
-            //       .Select(p => new Reporte.RespuestaCocina.TablaPreciosNuevos.MostrarTablaPreciosNuevos
-            //       {
-            //           Clave = p.Clave,
-            //           Platillo = p.Platillo,
-
-            //            }).ToList();
+                if (t != null)
+                {
+                    BeginInvoke((MethodInvoker)(() =>
+                    {
+                        var liq = Opcion.JsonaListaGenerica<Reporte.RespuestaCocina.TablaPreciosNuevos>(t);
             switch (t.StatusCode)
                 {
                   case HttpStatusCode.OK:
                         _ListaActualizarListr = liq.Where(x => x.Modificacion =="Actualizar").ToList();
                         if (_ListaActualizarListr.Count>0)
                         {
-                            if ((MessageBox.Show("Visualizar Menu de Productos con Precio Nuevo", " ", MessageBoxButtons.YesNo) == DialogResult.Yes))
+                            if ((MessageBox.Show(@"Visualizar Menu de Productos con Precio Nuevo", " ", MessageBoxButtons.YesNo) == DialogResult.Yes))
                             {
-                                BeginInvoke((MethodInvoker)(() =>
-                                {
                                     ActualizarPrecios frm = new ActualizarPrecios();
                                     frm.Show();
-                                }));
+                                
                             }
-
                         }
-
-                  
-
-                       
-
-
-
-                        break;
+                    break;
                 }
-
-            });
-           
-
+            }));
+             }
+          });
         }
         private void btBuscar_Click(object sender, EventArgs e)
         {
@@ -1309,11 +1293,11 @@ namespace ExcelAddIn1
             MessageBox.Show(@"Si deseas modificar el precio de la receta, realizalo desde SICAR");
         }
 
-        private void btActualizacion_Click(object sender, EventArgs e)
-        {
-            ActualizarPrecios frm = new ActualizarPrecios();
-            frm.Show();
-        }
+        //private void btActualizacion_Click(object sender, EventArgs e)
+        //{
+        //    ActualizarPrecios frm = new ActualizarPrecios();
+        //    frm.Show();
+        //}
 
         private void tbPrecioTotalBE_TextChanged(object sender, EventArgs e)
         {
@@ -1363,6 +1347,11 @@ namespace ExcelAddIn1
             ////    }
 
             ////}
+
+        }
+
+        private void tabPage2_Click(object sender, EventArgs e)
+        {
 
         }
     }

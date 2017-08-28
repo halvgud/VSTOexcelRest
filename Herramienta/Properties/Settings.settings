@@ -236,7 +236,6 @@
     <Setting Name="ActualizarDestino" Type="System.String" Scope="Application">
       <Value Profile="(Default)">receta/ActualizarDestino</Value>
     </Setting>
-<<<<<<< HEAD
     <Setting Name="ActPrecioReceta" Type="System.String" Scope="Application">
       <Value Profile="(Default)">/reporte/RecetasparaActualizar</Value>
     </Setting>
@@ -257,10 +256,24 @@
     </Setting>
     <Setting Name="EliminarRegistroPrecio" Type="System.String" Scope="Application">
       <Value Profile="(Default)">/reporte/EliminarPrecioNuevoProducto</Value>
-=======
+    </Setting>
     <Setting Name="ActRecetaDiaria2" Type="System.String" Scope="Application">
       <Value Profile="(Default)">reporte/ActDiarioTable2</Value>
->>>>>>> 9e6b4dc81df1acd0c5142c700f76c015d8b0d931
+    </Setting>
+    <Setting Name="InsertarDiariodeMañana" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">receta/AgregarDiarioManana</Value>
+    </Setting>
+    <Setting Name="ActualizarDiariodeMañana" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">receta/ActualizarDiarioManana</Value>
+    </Setting>
+    <Setting Name="MostrarEstadoMañana" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">reporte/MostrarEstadoManana</Value>
+    </Setting>
+    <Setting Name="ReporteHoy" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">/reporte/ReportePlatillosdeHoy</Value>
+    </Setting>
+    <Setting Name="ReporteCocinaPlatillo" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">/reporte/ReporteCocinaPlatillo</Value>
     </Setting>
   </Settings>
 </SettingsFile>

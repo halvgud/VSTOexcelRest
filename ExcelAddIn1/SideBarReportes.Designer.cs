@@ -39,27 +39,32 @@
             // 
             // cbreportes
             // 
+            this.cbreportes.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
             this.cbreportes.FormattingEnabled = true;
-            this.cbreportes.Location = new System.Drawing.Point(79, 70);
+            this.cbreportes.Location = new System.Drawing.Point(114, 26);
             this.cbreportes.Name = "cbreportes";
             this.cbreportes.Size = new System.Drawing.Size(136, 21);
             this.cbreportes.TabIndex = 0;
+            this.cbreportes.Visible = false;
             this.cbreportes.SelectedIndexChanged += new System.EventHandler(this.cbreportes_SelectedIndexChanged);
             // 
             // btgenerar
             // 
-            this.btgenerar.Location = new System.Drawing.Point(79, 225);
+            this.btgenerar.BackColor = System.Drawing.Color.Black;
+            this.btgenerar.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btgenerar.ForeColor = System.Drawing.Color.Yellow;
+            this.btgenerar.Location = new System.Drawing.Point(75, 171);
             this.btgenerar.Name = "btgenerar";
             this.btgenerar.Size = new System.Drawing.Size(102, 38);
             this.btgenerar.TabIndex = 1;
             this.btgenerar.Text = "Generar";
-            this.btgenerar.UseVisualStyleBackColor = true;
+            this.btgenerar.UseVisualStyleBackColor = false;
             this.btgenerar.Click += new System.EventHandler(this.button1_Click);
             // 
             // dtpinicio
             // 
             this.dtpinicio.Format = System.Windows.Forms.DateTimePickerFormat.Short;
-            this.dtpinicio.Location = new System.Drawing.Point(30, 167);
+            this.dtpinicio.Location = new System.Drawing.Point(114, 71);
             this.dtpinicio.Name = "dtpinicio";
             this.dtpinicio.Size = new System.Drawing.Size(96, 20);
             this.dtpinicio.TabIndex = 2;
@@ -67,7 +72,7 @@
             // dtpfinal
             // 
             this.dtpfinal.Format = System.Windows.Forms.DateTimePickerFormat.Short;
-            this.dtpfinal.Location = new System.Drawing.Point(143, 167);
+            this.dtpfinal.Location = new System.Drawing.Point(114, 117);
             this.dtpfinal.Name = "dtpfinal";
             this.dtpfinal.Size = new System.Drawing.Size(96, 20);
             this.dtpfinal.TabIndex = 3;
@@ -75,27 +80,31 @@
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(17, 70);
+            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label1.Location = new System.Drawing.Point(21, 29);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(56, 13);
+            this.label1.Size = new System.Drawing.Size(87, 18);
             this.label1.TabIndex = 4;
             this.label1.Text = "Reportes :";
+            this.label1.Visible = false;
             // 
             // lbde
             // 
             this.lbde.AutoSize = true;
-            this.lbde.Location = new System.Drawing.Point(46, 142);
+            this.lbde.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lbde.Location = new System.Drawing.Point(72, 75);
             this.lbde.Name = "lbde";
-            this.lbde.Size = new System.Drawing.Size(27, 13);
+            this.lbde.Size = new System.Drawing.Size(36, 16);
             this.lbde.TabIndex = 5;
             this.lbde.Text = "De :";
             // 
             // lbhasta
             // 
             this.lbhasta.AutoSize = true;
-            this.lbhasta.Location = new System.Drawing.Point(151, 142);
+            this.lbhasta.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lbhasta.Location = new System.Drawing.Point(51, 121);
             this.lbhasta.Name = "lbhasta";
-            this.lbhasta.Size = new System.Drawing.Size(41, 13);
+            this.lbhasta.Size = new System.Drawing.Size(57, 16);
             this.lbhasta.TabIndex = 6;
             this.lbhasta.Text = "Hasta :";
             // 
@@ -103,6 +112,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.BackColor = System.Drawing.Color.White;
             this.Controls.Add(this.lbhasta);
             this.Controls.Add(this.lbde);
             this.Controls.Add(this.label1);

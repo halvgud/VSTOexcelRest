@@ -170,20 +170,16 @@ namespace Data
                 callback(null);
             }
         }
-
         public static void DDetalleReceta(Action<IRestResponse> callback, Cocina.DetalleCocina.ReporteDetalle clave)
         {
             try
             {
-                /*url local?*/
-                var rest = new Rest(Local.Api.UrlApi, Cocina.DetalleCocina.CocinaDReceta,
-                    Method.POST);
-                rest.Peticion.AddHeader(Constantes.Http.ObtenerTipoDeContenido,
-                    Constantes.Http.TipoDeContenido.Json);
+                var rest = new Rest(Local.Api.UrlApi, Cocina.DetalleCocina.CocinaDReceta,Method.POST);
+                rest.Peticion.AddHeader(Constantes.Http.ObtenerTipoDeContenido,Constantes.Http.TipoDeContenido.Json);
                 rest.Peticion.AddJsonBody(clave);// la peticion debe ser un objeto
                 rest.Cliente.ExecuteAsync(rest.Peticion, response =>
                 {
-                    switch (response.StatusCode)
+                   switch (response.StatusCode)
                     {
                         case HttpStatusCode.OK:
                             callback(response);
@@ -197,7 +193,7 @@ namespace Data
             catch (Exception e)
             {
                 Opcion.Log(Log.Interno.Categoria, "EXCEPCION: " + e.Message);
-                callback(null);
+                //callback(null);
             }
         }
 

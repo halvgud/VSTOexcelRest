@@ -12,7 +12,7 @@ namespace Respuesta
         public List<MenuDia> Domingo { get; set; } 
         public MenuSemanal()
         {
-            var claseDia = new MenuDia { TipoRecetaDgv = "", Platillo = "", CantidadElaborar = 0, UnidadDgv = "", PrecioCompra = 0, GananciaTotal= 0, Congelado = 0, MenId = 0};
+            var claseDia = new MenuDia { TipoReceta = "", Platillo = "", CantidadElab = 0, Unidad = "", Precio = 0, Venta= 0, Congelado = 0, MenId = 0};
             Lunes = new List<MenuDia> {claseDia};
             Martes = new List<MenuDia> {claseDia};
             Miercoles = new List<MenuDia> {claseDia};
@@ -24,19 +24,22 @@ namespace Respuesta
     }
     public class MenuDia
     {
-        public string TipoRecetaDgv { get; set; }
+        public string TipoReceta { get; set; }
         public string Platillo { get; set; }
         public double CantidadReceta { get; set; }
-        public double CantidadElaborar { get; set; }
-        public string UnidadDgv { get; set; }
-        public double PrecioCompra { get; set; }
-        public double GananciaTotal { get; set; }
-        public int Congelado { get; set; }
-       public int MenId { get; set; }
+        public double CantidadElab { get; set; }
+        public string Unidad { get; set; }
+        public double Precio  { get; set; }
+        public double Venta  { get; set; }
+        public double Congelado { get; set; }
+        public int MenId { get; set; }
+        public string UltimaElaboracion { get; set; }
         public List<IngredientesReceta> Ingredientes { get; set; }
     }
+
     public class PlatilloReceta
     {
+        public string TipoReceta { get; set; }
         public int RecId { get; set; }
         public  int TipoId { get; set; }
         public  string Platillo { get; set; }
@@ -44,11 +47,23 @@ namespace Respuesta
         public  double Congelado { get; set; }
         public int EstadoId { get; set; }
         public double CantidadReceta { get; set; }
+        public double CantidadElab { get; set; }
         public double CostoElaboracion { get; set; }
         public double CostoCreacion { get; set; }
-        public double GanaciaTotal { get; set; }
+        public double Venta { get; set; }
         public double PrecioCompra { get; set; }
         public double Precio { get; set; }
+        public string Unidad { get; set; }
+        public int MenId { get; set; }
+        public string UltimaElaboracion { get; set; }
+        public string Fecha { get; set; }
+        public List<PlatilloReceta> Lunes { get; set; }
+        public List<PlatilloReceta> Martes { get; set; }
+        public List<PlatilloReceta> Miercoles { get; set; }
+        public List<PlatilloReceta> Jueves { get; set; }
+        public List<PlatilloReceta> Viernes { get; set; }
+        public List<PlatilloReceta> Sabado { get; set; }
+        public List<PlatilloReceta> Domingo { get; set; }
     }
     public class InsertarMenu
     {
@@ -76,29 +91,15 @@ namespace Respuesta
         public int ArtId { get; set; }
         public string Clave { get; set; }
         public string Platillo { get; set; }
-        // ReSharper disable once InconsistentNaming
         public double CP { get; set; }
-        // ReSharper disable once InconsistentNaming
         public double CR { get; set; }
-        // ReSharper disable once InconsistentNaming
         public double CV { get; set; }
-        public string Unidad { get; set; }
-        
+        public string Unidad { get; set; }    
         public double S { get; set; }
-        // ReSharper disable once InconsistentNaming
         public double SR { get; set; }
         public string Observacion { get; set; }
-        public List<Cantidades> ListaCantidades { get; set; }
         public int EstadoInventarioId { get; set; }
-        public class Cantidades
-        {
-            public int EstadoDescripcionId { get; set; }
-
-            public double Cantidad { get; set; }
-        }
     }
-
-
     public class DiarioX2
     {
         public string ArtId { get; set; }

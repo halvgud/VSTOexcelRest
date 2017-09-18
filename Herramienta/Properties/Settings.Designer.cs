@@ -859,5 +859,23 @@ namespace Herramienta.Properties {
                 return ((string)(this["ReporteCocinaPlatillo"]));
             }
         }
+        
+        [global::System.Configuration.ApplicationScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("receta/BuscarRecetaMenu")]
+        public string RecetaMenuSemanal {
+            get {
+                return ((string)(this["RecetaMenuSemanal"]));
+            }
+        }
+        
+        [global::System.Configuration.ApplicationScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("/reporte/ReporteDiarioNewRegistro")]
+        public string DiarioNuevoRegistro {
+            get {
+                return ((string)(this["DiarioNuevoRegistro"]));
+            }
+        }
     }
 }

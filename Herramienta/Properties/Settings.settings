@@ -275,5 +275,11 @@
     <Setting Name="ReporteCocinaPlatillo" Type="System.String" Scope="Application">
       <Value Profile="(Default)">/reporte/ReporteCocinaPlatillo</Value>
     </Setting>
+    <Setting Name="RecetaMenuSemanal" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">receta/BuscarRecetaMenu</Value>
+    </Setting>
+    <Setting Name="DiarioNuevoRegistro" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">/reporte/ReporteDiarioNewRegistro</Value>
+    </Setting>
   </Settings>
 </SettingsFile>

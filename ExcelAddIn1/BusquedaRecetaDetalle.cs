@@ -1,19 +1,15 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Drawing;
 using System.Linq;
-using System.Linq.Expressions;
 using System.Windows.Forms;
 using Respuesta;
-
-
 namespace ExcelAddIn1
 {
     public partial class BusquedaRecetaDetalle : Form
     {
         private readonly List<Receta> _clave;
-        private readonly List<Receta.Congelados> _claveCongelados;
         private readonly Action<Receta> _callback;
-        private readonly Action<Receta.Congelados> _callbackCongelados;
 
         public BusquedaRecetaDetalle(List<Receta> clave, Action<Receta> callback,bool mostrarCantidad)
         {
@@ -22,69 +18,47 @@ namespace ExcelAddIn1
                 InitializeComponent();
                 if (!mostrarCantidad)
                 {
-                    tbCantidad.Visible = false;
+                    tbCantidad.Visible = true;
                     tbCantidad.Text = @"1";
                 }
                 dataGridView1.DataSource = _clave.Select(x=>new {clave = x.Clave,descripcion = x.Descripcion,precio = x.Precio}).ToArray();
                 dataGridView1.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
         }
-        public BusquedaRecetaDetalle(List<Receta.Congelados> clave, Action<Receta.Congelados> callback, bool mostrarCantidad)
-        {
-            _claveCongelados = clave;
-            _callbackCongelados = callback;
-            InitializeComponent();
-            if (!mostrarCantidad)
-            {
-                tbCantidad.Visible = false;
-                tbCantidad.Text = @"1";
-            }
-            dataGridView1.DataSource = _claveCongelados.Select(x => new { clave = x.Clave, descripcion = x.Platillo, cantidad = x.Cantidad }).ToArray();
-            dataGridView1.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
-        }
+      
         private void btAceptar_Click(object sender, EventArgs e)
         {
-            /*
-            var addIn = Globals.ThisAddIn;
-            addIn.Agregar(_clave[dataGridView1.CurrentCell.RowIndex], double.Parse(tbCantidad.Text));
-            Close();*/
             if (_callback != null)
             {
                 _clave[dataGridView1.CurrentCell.RowIndex].CantidadDiario = double.Parse(tbCantidad.Text);
                 _callback(_clave[dataGridView1.CurrentCell.RowIndex]);
-            }else
-            {
-                _claveCongelados[dataGridView1.CurrentCell.RowIndex].Cantidad = double.Parse(tbCantidad.Text);
-                _callbackCongelados(_claveCongelados[dataGridView1.CurrentCell.RowIndex]);
             }
-            //if (_banderaCongelados)
-            //{
-            //    _claveCongelados[dataGridView1.CurrentCell.RowIndex].cantidad = double.Parse(tbCantidad.Text);
-            //    _callback(_claveCongelados[dataGridView1.CurrentCell.RowIndex]);
-            //}
             //else
             //{
-             
+            //    _claveReceta[dataGridView1.CurrentCell.RowIndex].Precio= double.Parse(tbCantidad.Text);
+            //    _callbackReceta(_claveReceta[dataGridView1.CurrentCell.RowIndex]);
             //}
-
-            //COMENTADO POR SI LAS DUDASY USARSE MAS ADELANTE
-
-            /*            _clave[dataGridView1.CurrentCell.RowIndex].Cantidad = double.Parse(tbCantidad.Text);
-            _clave[dataGridView1.CurrentCell.RowIndex].Ingredientes = new List<Receta.Detalle>
-            {
-                _clave[dataGridView1.CurrentCell.RowIndex];
-            };
-            _callback(_clave[dataGridView1.CurrentCell.RowIndex]);*/
-
-
             Close();
         }
-
-
         private void tbCantidad_KeyPress(object sender, KeyPressEventArgs e)
         {
             e.Handled = Herramienta.Opcion.ValidarCaracter(e);
         }
-        
 
+
+        private void dataGridView1_CurrentCellChanged(object sender, EventArgs e)
+        {
+            dataGridView1.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
+            dataGridView1.DefaultCellStyle.Font = new Font("Arial", 9);
+            dataGridView1.Columns[1].Width = 250;
+            dataGridView1.Columns[0].Width = 100;
+            dataGridView1.Columns[2].Width = 100;
+            dataGridView1.Columns[2].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
+            dataGridView1.Columns[0].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
+        }
+
+        private void BusquedaRecetaDetalle_Load(object sender, EventArgs e)
+        {
+
+        }
     }
 }

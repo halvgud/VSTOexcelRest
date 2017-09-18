@@ -168,10 +168,5 @@ namespace ExcelAddIn1
         {
             btGenerarReceta.Enabled = true;
         }
-
-        private void panel1_Paint(object sender, PaintEventArgs e)
-        {
-
-        }
     }
 }

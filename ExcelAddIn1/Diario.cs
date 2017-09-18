@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel;
-using System.Data;
 using System.Drawing;
 using System.Linq;
 using System.Windows.Forms;
@@ -9,7 +8,7 @@ using Herramienta;
 using Herramienta.Config;
 using Respuesta;
 using System.Net;
-using RestSharp;
+
 
 namespace ExcelAddIn1
 {
@@ -22,18 +21,18 @@ namespace ExcelAddIn1
         // ReSharper disable once FieldCanBeMadeReadOnly.Local
         private List<IngredientesReceta> _listaArticuloBasica2;
         private List<IngredientesReceta> _listaArticuloBasica3;
-        private List<Reporte.RespuestaCocina.RepoDiario> _listaPlatilloHoy;
-        private List<Reporte.RespuestaCocina.RepoDiario> _listaDiarios;
-        private List<Reporte.RespuestaCocina.RepoDiario> _listavacia; 
+        private BindingList<Reporte.RespuestaCocina.RepoDiario> _listaPlatilloHoy;
+        private BindingList<Respuesta.Diario> _listainventario;
+        private BindingList<Reporte.RespuestaCocina.Comprobacion> _listinvcomprobacion;
         public int EstadoInventarioIdd;
         public Diario()
         {
+            _listinvcomprobacion= new BindingList<Reporte.RespuestaCocina.Comprobacion>();
+            _listainventario=new BindingList<Respuesta.Diario>();
             _listaArticuloBasica1 = new List<IngredientesReceta>();
             _listaArticuloBasica2 = new List<IngredientesReceta>();
             _listaArticuloBasica3 = new List<IngredientesReceta>();
-            _listaPlatilloHoy=new List<Reporte.RespuestaCocina.RepoDiario>();
-            _listaDiarios=new List<Reporte.RespuestaCocina.RepoDiario>();
-            _listavacia = new List<Reporte.RespuestaCocina.RepoDiario>();
+            _listaPlatilloHoy=new BindingList<Reporte.RespuestaCocina.RepoDiario>();
             InitializeComponent();
         }
         public class Final
@@ -50,16 +49,17 @@ namespace ExcelAddIn1
 
         private void Diario_Load(object sender, EventArgs e)
         {
+            dgvInventarioPlatillos.AllowUserToAddRows = true;
+
             PlatillosHoy();
             btGuardarDiarios.Enabled = false;
             btPreviaGlobal.Enabled = false;
             btPreviaPlatillo.Enabled = false;
-            //borrar si ya fue guardado el dato
             #region fechas
 
             var fecha = DateTime.Now.AddDays(-1).ToString("yyyy-MM-dd 07:00:00");
             var fecha1 = DateTime.Now.AddDays(-1).ToString("yyyy-MM-dd 22:00:00");
-            var fecha1R =DateTime.Now.AddDays(-1).ToString("yyyy-MM-dd");
+            var fecha1R = DateTime.Now.AddDays(-1).ToString("yyyy-MM-dd");
             var fechas = new Receta.Diaanterior
             {
                 Fecha1 = fecha,
@@ -74,7 +74,7 @@ namespace ExcelAddIn1
                 Name = "Guardar",
                 DataPropertyName = " ",
                 HeaderText = @"",
-                
+
             };
             var me = new MensajeDeEspera();
             me.Show();
@@ -83,55 +83,55 @@ namespace ExcelAddIn1
                     BeginInvoke((MethodInvoker)(() =>
                     {
                         me.Close();
-                        Lista = Opcion.JsonaListaGenerica<Respuesta.Diario>(jsonResult);
-
+                        _listainventario= new BindingList<Respuesta.Diario>(Opcion.JsonaListaGenerica<Respuesta.Diario>(jsonResult));
+                        dgvInventarioPlatillos.DataSource = _listainventario;
                         dgvInventarioPlatillos.RowHeadersVisible = false;
-                        dgvInventarioPlatillos.DataSource = Lista;
                         dgvInventarioPlatillos.Columns.Add(col2);
-                        var column1 = dgvInventarioPlatillos.Columns["Clave"];
-                        if (column1 != null)
-                            column1.ReadOnly = true;
-                        var dataGridViewColumn2 = dgvInventarioPlatillos.Columns["Platillo"];
-                        if (dataGridViewColumn2 != null)
-                            dataGridViewColumn2.ReadOnly = true;
-                        var viewColumn2 = dgvInventarioPlatillos.Columns["CV"];
-                        if (viewColumn2 != null)
-                            viewColumn2.ReadOnly = true;
-                        var gridViewColumn2 = dgvInventarioPlatillos.Columns["CP"];
-                        if (gridViewColumn2 != null)
-                            gridViewColumn2.ReadOnly = true;
-                        var column2 = dgvInventarioPlatillos.Columns["S"];
-                        if (column2 != null)
-                            column2.ReadOnly = true;
+                        //var column1 = dgvInventarioPlatillos.Columns["Clave"];
+                        //if (column1 != null)
+                        //    column1.ReadOnly = true;
+                        //var dataGridViewColumn2 = dgvInventarioPlatillos.Columns["Platillo"];
+                        //if (dataGridViewColumn2 != null)
+                        //    dataGridViewColumn2.ReadOnly = true;
+                        //var viewColumn2 = dgvInventarioPlatillos.Columns["CV"];
+                        //if (viewColumn2 != null)
+                        //    viewColumn2.ReadOnly = true;
+                        //var gridViewColumn2 = dgvInventarioPlatillos.Columns["CP"];
+                        //if (gridViewColumn2 != null)
+                        //    gridViewColumn2.ReadOnly = true;
+                        //var column2 = dgvInventarioPlatillos.Columns["S"];
+                        //if (column2 != null)
+                        //    column2.ReadOnly = true;
                         var dataGridViewColumn3 = dgvInventarioPlatillos.Columns["Unidad"];
                         if (dataGridViewColumn3 != null)
                             dataGridViewColumn3.ReadOnly = true;
                         var dataGridViewColumn = dgvInventarioPlatillos.Columns["Guardar"];
                         if (dataGridViewColumn != null) dataGridViewColumn.DisplayIndex = 9;
-                        //dgvInventarioPlatillos.DefaultCellStyle.Font = new Font("Segoe UI Light", 8, FontStyle.Bold);
+                        dgvInventarioPlatillos.DefaultCellStyle.Font = new Font("Arial", 12, FontStyle.Bold);
                         var gridViewColumn = dgvInventarioPlatillos.Columns["Guardar"];
                         if (gridViewColumn != null) gridViewColumn.Width = 30;
                         dgvInventarioPlatillos.Columns[0].Visible = false;
-                        //var gridViewColumn1 = dgvInventarioPlatillos.Columns["EstadoInventarioId"];
-                        //if (gridViewColumn1 != null)
-                        //    gridViewColumn1.Visible = false;
-                        dgvInventarioPlatillos.Columns[1].Width = 70;
-                        dgvInventarioPlatillos.Columns[2].Width = 220;
-                        dgvInventarioPlatillos.Columns[3].Width = 40;
+                        var gridViewColumn1 = dgvInventarioPlatillos.Columns["EstadoInventarioId"];
+                        if (gridViewColumn1 != null) gridViewColumn1.Visible = false;
+                        dgvInventarioPlatillos.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
+                        dgvInventarioPlatillos.Columns[1].Width = 100;
+                        dgvInventarioPlatillos.Columns[2].Width = 370;
+                        dgvInventarioPlatillos.Columns[3].Width = 60;
                         dgvInventarioPlatillos.Columns[3].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
-                        dgvInventarioPlatillos.Columns[4].Width = 40;
+                        dgvInventarioPlatillos.Columns[4].Width = 60;
                         dgvInventarioPlatillos.Columns[4].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
-                        dgvInventarioPlatillos.Columns[5].Width = 40;
+                        dgvInventarioPlatillos.Columns[5].Width = 60; dgvInventarioPlatillos.RowHeadersVisible = false;
                         dgvInventarioPlatillos.Columns[5].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
                         dgvInventarioPlatillos.Columns[6].Width = 75;
                         dgvInventarioPlatillos.Columns[6].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
                         dgvInventarioPlatillos.Columns[7].Width = 50;
                         dgvInventarioPlatillos.Columns[7].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
-                        dgvInventarioPlatillos.Columns[8].Width =50;
+                        dgvInventarioPlatillos.Columns[8].Width = 50;
                         dgvInventarioPlatillos.Columns[8].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
                         dgvInventarioPlatillos.Columns[10].Width = 30;
                         var viewColumn = dgvInventarioPlatillos.Columns["Observacion"];
-                        if (viewColumn != null) viewColumn.Width = 290;
+                        if (viewColumn != null) viewColumn.Width = 200;
+                        dgvInventarioPlatillos.Columns["Guardar"].Width = 30;
 
                         var column = dgvInventarioPlatillos.Columns["CR"];
                         if (column != null)
@@ -143,8 +143,11 @@ namespace ExcelAddIn1
                         if (viewColumn1 != null)
                             viewColumn1.DefaultCellStyle.BackColor = Color.Coral;
                         ActualizadoDgv();
+                        dgvInventarioPlatillos.Enabled = true;
+                        dgvInventarioPlatillos.AllowUserToAddRows = true;
+
                     }));
-            });
+                });
         }
         public string Observacion;
         public string ObservacionActualizada;
@@ -368,9 +371,100 @@ namespace ExcelAddIn1
         }
         private void dgvInventarioPlatillos_CellValueChanged(object sender, DataGridViewCellEventArgs e)
         {
+            if (dgvInventarioPlatillos.CurrentCell== null) return;
+            var rowIndex = dgvInventarioPlatillos.CurrentCell.RowIndex;
+            btGuardar.Enabled = true;
+            if (dgvInventarioPlatillos.Rows.Count >0 && dgvInventarioPlatillos.Rows[rowIndex].Cells["Clave"].Value != null 
+                && dgvInventarioPlatillos.Rows[rowIndex].Cells["Clave"].Value.ToString() != "" && dgvInventarioPlatillos.Rows[rowIndex].Cells["Platillo"].Value == null)
+            {
+                var fecha1R = DateTime.Now.AddDays(-30).ToString("yyyy-MM-dd");
+                var fecha2R = DateTime.Now.ToString("yyyy-MM-dd");
+                var clave = dgvInventarioPlatillos.Rows[rowIndex].Cells["Clave"].Value.ToString();
+                Opcion.EjecucionAsync(x =>
+                {
+                    var datos = new Reporte.General
+                    {
+                        FechaIni = Convert.ToDateTime(fecha1R),
+                        FechaFin = Convert.ToDateTime(fecha2R),
+                        Clave = clave
+
+                    };
+                    Data.Reporte.ReporteDiarioNuevoRegistro(x, datos);
+                }, json =>
+                {
+                    if (json != null)
+                    {
+                        switch (json.StatusCode)
+                        {
+                            case HttpStatusCode.OK:
+                                var lista = Opcion.JsonaClaseGenerica<Reporte.RespuestaCocina.Comprobacion>(json);
+                                dgvInventarioPlatillos.Rows[rowIndex].Cells["Platillo"].Value = lista.Platillo;
+                                dgvInventarioPlatillos.Rows[rowIndex].Cells["Unidad"].Value = lista.Unidad;
+                                dgvInventarioPlatillos.Rows[rowIndex].Cells["CP"].Value = lista.CP;
+                                dgvInventarioPlatillos.Rows[rowIndex].Cells["ArtId"].Value = lista.ArtId;
+                                break;
+                            default:
+                                MessageBox.Show(this,
+                                    @"No se encontraron menus con los parametros de busqueda ingresados");
+                                break;
+                        }
+                    }
+                    else
+                    {
+                        MessageBox.Show(@"La clave ingresada no existe, Favor de verificar");
+                    }
+                });
+
+            }
+            if (dgvInventarioPlatillos.Rows.Count > rowIndex && dgvInventarioPlatillos.Rows[rowIndex].Cells["Platillo"].Value != null &&
+                dgvInventarioPlatillos.Rows[rowIndex].Cells["Platillo"].Value.ToString() != "" && dgvInventarioPlatillos.Rows[rowIndex].Cells["Clave"].Value==null)
+            {
+                var fecha1R = DateTime.Now.AddDays(-30).ToString("yyyy-MM-dd");
+                var fecha2R = DateTime.Now.ToString("yyyy-MM-dd");
+                var clave = dgvInventarioPlatillos.Rows[rowIndex].Cells["Platillo"].Value.ToString();
+                Opcion.EjecucionAsync(x =>
+                {
+                    var datos = new Reporte.General
+                    {
+                        FechaIni = Convert.ToDateTime(fecha1R),
+                        FechaFin = Convert.ToDateTime(fecha2R),
+                        Clave = clave
+
+                    };
+                    Data.Reporte.ReporteDiarioNuevoRegistro(x, datos);
+                }, json =>
+                {
+                    if (json != null)
+                    {
+                        switch (json.StatusCode)
+                        {
+                            case HttpStatusCode.OK:
+                                var lista = Opcion.JsonaClaseGenerica<Reporte.RespuestaCocina.Comprobacion>(json);
+                                dgvInventarioPlatillos.Rows[rowIndex].Cells["Clave"].Value = lista.Clave;
+                                dgvInventarioPlatillos.Rows[rowIndex].Cells["CP"].Value = lista.CP;
+                                dgvInventarioPlatillos.Rows[rowIndex].Cells["ArtId"].Value = lista.ArtId;
+                                dgvInventarioPlatillos.Rows[rowIndex].Cells["Unidad"].Value = lista.Unidad;
+                                break;
+                            default:
+                                MessageBox.Show(this,
+                                    @"No se encontraron menus con los parametros de busqueda ingresados");
+                                break;
+                        }
+                    }
+                    else
+                    {
+                        MessageBox.Show(@"El nombre del platillo no es el correcto, favor de verificar");
+                    }
+                });
+
+            }
+           
             var z = Convert.ToDouble(dgvInventarioPlatillos.Rows[Xyz].Cells[4].Value);
             var y = Convert.ToDouble(dgvInventarioPlatillos.Rows[Xyz].Cells[5].Value);
             dgvInventarioPlatillos.Rows[e.RowIndex].Cells["S"].Value = Math.Round(z - y, 2);
+            dgvInventarioPlatillos.AllowUserToAddRows = true;
+            dgvInventarioPlatillos.Enabled = true;
+            dgvInventarioPlatillos.EditMode = DataGridViewEditMode.EditOnEnter;
         }
         private void btCargarDiarios_Click(object sender, EventArgs e)
         {
@@ -399,19 +493,17 @@ namespace ExcelAddIn1
                     {
                         case HttpStatusCode.OK:
 
-                            _listaDiarios= Opcion.JsonaListaGenerica<Reporte.RespuestaCocina.RepoDiario>(jsonResult);
-                            List<Reporte.RespuestaCocina.RepoDiario> filavacia = new List<Reporte.RespuestaCocina.RepoDiario>();
-                            filavacia.Add(new Reporte.RespuestaCocina.RepoDiario());
-                            _listaDiarios.AddRange(filavacia);
-                            if (_listaDiarios != null)
+                           var list=new List<Reporte.RespuestaCocina.RepoDiario>(Opcion.JsonaListaGenerica<Reporte.RespuestaCocina.RepoDiario>(jsonResult));
+                            var nuevalis = new BindingList<Reporte.RespuestaCocina.RepoDiario>(list);  
+                            nuevalis.AddNew();
+                            foreach (Reporte.RespuestaCocina.RepoDiario dd in (_listaPlatilloHoy))
                             {
-                                _listaDiarios.AddRange(_listaPlatilloHoy);
-                                dgvDiarios.DataSource = _listaDiarios;
+                                if (nuevalis != null)
+                                {
+                                    nuevalis.Add(dd);
+                                }
                             }
-                            else
-                            {
-                                dgvDiarios.DataSource = _listaPlatilloHoy;
-                            }
+                                dgvDiarios.DataSource = nuevalis;
                             break;
                             default:
                             MessageBox.Show(@"Comunicar al area de Sistemas");
@@ -440,21 +532,21 @@ namespace ExcelAddIn1
                     }));
                 }
             });
-            var dataGridViewColumn = dgvDiarios.Columns["Platillo"];
-            if (dataGridViewColumn != null) dataGridViewColumn.ReadOnly = true;
-            var gridViewColumn = dgvDiarios.Columns["Clave"];
-            if (gridViewColumn != null) gridViewColumn.ReadOnly = true;
-            var viewColumn = dgvDiarios.Columns["Existencia"];
-            if (viewColumn != null)
-                viewColumn.ReadOnly = true;
-            var column = dgvDiarios.Columns["CP"];
-            if (column != null) column.ReadOnly = true;
-            var dataGridViewColumn1 = dgvDiarios.Columns["Ventaanterior"];
-            if (dataGridViewColumn1 != null)
-                dataGridViewColumn1.ReadOnly = true;
-            var gridViewColumn1 = dgvDiarios.Columns["VentaPromedio"];
-            if (gridViewColumn1 != null)
-                gridViewColumn1.ReadOnly = true;
+            //var dataGridViewColumn = dgvDiarios.Columns["Platillo"];
+            //if (dataGridViewColumn != null) dataGridViewColumn.ReadOnly = true;
+            //var gridViewColumn = dgvDiarios.Columns["Clave"];
+            //if (gridViewColumn != null) gridViewColumn.ReadOnly = true;
+            //var viewColumn = dgvDiarios.Columns["Existencia"];
+            //if (viewColumn != null)
+            //    viewColumn.ReadOnly = true;
+            //var column = dgvDiarios.Columns["CP"];
+            //if (column != null) column.ReadOnly = true;
+            //var dataGridViewColumn1 = dgvDiarios.Columns["Ventaanterior"];
+            //if (dataGridViewColumn1 != null)
+            //    dataGridViewColumn1.ReadOnly = true;
+            //var gridViewColumn1 = dgvDiarios.Columns["VentaPromedio"];
+            //if (gridViewColumn1 != null)
+            //    gridViewColumn1.ReadOnly = true;
             var viewColumn1 = dgvDiarios.Columns["EstadoMañana"];
             if (viewColumn1 != null)
                 viewColumn1.Visible = false;
@@ -533,7 +625,6 @@ namespace ExcelAddIn1
                             }
                         });
                 });
-
                 _listaArticuloBasica3.AddRange(_listaArticuloBasica1);
                 _listaArticuloBasica3 = _listaArticuloBasica3.GroupBy(p => p.ArtId)
                          .Select(g => new IngredientesReceta
@@ -545,9 +636,7 @@ namespace ExcelAddIn1
                              Unidad = g.First().Unidad,
                              Fecha = g.First().Fecha
                          }).ToList();
-
             }
-           
             var addIn = Globals.ThisAddIn;
             addIn.IngredientesMenuGlobal(_listaArticuloBasica3);
         }
@@ -556,8 +645,8 @@ namespace ExcelAddIn1
                     dgvDiarios.AllowUserToAddRows = false;
                     for (var i = 0; i < dgvDiarios.Rows.Count; i++)
                     {
-                var clave= Convert.ToString(dgvDiarios.Rows[i].Cells["Clave"].Value.ToString());
-                var platillo= Convert.ToString(dgvDiarios.Rows[i].Cells["Platillo"].Value.ToString());
+                var clave= Convert.ToString(dgvDiarios.Rows[i].Cells["Clave"].Value);
+                var platillo= Convert.ToString(dgvDiarios.Rows[i].Cells["Platillo"].Value);
                 var cantidadpro = Convert.ToDouble(dgvDiarios.Rows[i].Cells["CP"].Value);
                 var cantidadelaborar= Convert.ToDouble(dgvDiarios.Rows[i].Cells["CE"].Value);
                 var existencia= Convert.ToDouble(dgvDiarios.Rows[i].Cells["Existencia"].Value);
@@ -700,7 +789,6 @@ namespace ExcelAddIn1
                     });
                 }
                 }
-
                 else
                 {
                     if (dgvDiarios.Rows[i].Cells["Clave"].Value != null)
@@ -720,11 +808,8 @@ namespace ExcelAddIn1
                     }
                 }
             }
-            Data.MenuSemanal.InsertarDiarioMañana(listaDiariosMa);
-           
-          
+            Data.MenuSemanal.InsertarDiarioMañana(listaDiariosMa);    
         }
-
         private void btEliminarFila_Click(object sender, EventArgs e)
         {
             if (dgvDiarios.RowCount > 0)
@@ -766,21 +851,23 @@ namespace ExcelAddIn1
         private void DiseñoDgvDiario()
         {
             dgvDiarios.RowHeadersVisible = false;
+            dgvDiarios.DefaultCellStyle.Font = new Font("Arial", 12, FontStyle.Bold);
             //dgvDiarios.DefaultCellStyle.Font = new Font("Segoe UI Light", 8, FontStyle.Bold);
-            dgvDiarios.Columns[0].Width = 100;
-            dgvDiarios.Columns[1].Width = 200;
+            dgvDiarios.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
+            dgvDiarios.Columns[0].Width = 110;
+            dgvDiarios.Columns[1].Width = 370;
             dgvDiarios.Columns[2].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
-            dgvDiarios.Columns[2].Width = 110;
+            dgvDiarios.Columns[2].Width = 100;
             dgvDiarios.Columns[3].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
-            dgvDiarios.Columns[3].Width = 40;
+            dgvDiarios.Columns[3].Width = 60;
             dgvDiarios.Columns[4].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
-            dgvDiarios.Columns[4].Width = 40;
+            dgvDiarios.Columns[4].Width = 60;
             dgvDiarios.Columns[5].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
-            dgvDiarios.Columns[5].Width = 40;
+            dgvDiarios.Columns[5].Width = 60;
             dgvDiarios.Columns[6].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
-            dgvDiarios.Columns[6].Width = 140;
+            dgvDiarios.Columns[6].Width = 130;
             dgvDiarios.Columns[7].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
-            dgvDiarios.Columns[7].Width = 150;
+            dgvDiarios.Columns[7].Width = 140;
             var dataGridViewColumn = dgvDiarios.Columns["EstadoInventarioId"];
             if (dataGridViewColumn != null)
                 dataGridViewColumn.Visible = false;
@@ -818,7 +905,6 @@ namespace ExcelAddIn1
                     BeginInvoke((MethodInvoker)(() =>
                     {
                         switch (z.StatusCode)
-
                         {
                             case HttpStatusCode.OK:
                               ListDiarioDs = Opcion.JsonaListaGenerica<Reporte.RespuestaCocina.Comprobacion>(z);
@@ -831,12 +917,10 @@ namespace ExcelAddIn1
                                         var x = Convert.ToInt32(ListDiarioDs[j].ArtId);
                                         if (x == y)
                                         {
-                                            Xyz = i;
-                                           
+                                            Xyz = i;   
                                             dgvDiarios.Rows[i].Cells["CE"].Value = ListDiarioDs[j].CE;
                                             dgvDiarios.Rows[i].Cells["CR"].Value = ListDiarioDs[j].CR;
                                             dgvDiarios.Rows[i].Cells["EstadoMañana"].Value = ListDiarioDs[j].EstadoManana;
-
                                         }
                                     }
                                 }
@@ -849,7 +933,6 @@ namespace ExcelAddIn1
                 }
             });
         }
-
         private void PlatillosHoy()
         {
             var fechainicior = DateTime.Now.AddDays(-30).ToString("yyyy-MM-dd");
@@ -872,7 +955,9 @@ namespace ExcelAddIn1
                         {
                             case HttpStatusCode.OK:
 
-                                _listaPlatilloHoy= Opcion.JsonaListaGenerica<Reporte.RespuestaCocina.RepoDiario>(w);
+                                _listaPlatilloHoy =
+                                    new BindingList<Reporte.RespuestaCocina.RepoDiario>(
+                                        Opcion.JsonaListaGenerica<Reporte.RespuestaCocina.RepoDiario>(w));
                                 break;
                             default:
                                 MessageBox.Show(@"Comunicar al area de Sistemas");
@@ -906,24 +991,24 @@ namespace ExcelAddIn1
 
                         {
                             case HttpStatusCode.OK:
-                                ListDiarioDs = Opcion.JsonaListaGenerica<Reporte.RespuestaCocina.Comprobacion>(z);
+                                _listinvcomprobacion = new BindingList<Reporte.RespuestaCocina.Comprobacion>(Opcion.JsonaListaGenerica<Reporte.RespuestaCocina.Comprobacion>(z));
                                 for (var i = 0; i < dgvInventarioPlatillos.RowCount; i++)
                                 {
                                     var y =Convert.ToInt32(dgvInventarioPlatillos.Rows[i].Cells["ArtId"].Value);
                                     // ReSharper disable once ForCanBeConvertedToForeach
-                                    for (var j = 0; j < ListDiarioDs.Count; j++)
+                                    for (var j = 0; j < _listinvcomprobacion.Count; j++)
                                     {
-                                        var x = Convert.ToInt32(ListDiarioDs[j].ArtId);
+                                        var x = Convert.ToInt32(_listinvcomprobacion[j].ArtId);
                                         if (x == y)
                                         {
                                             Xyz = i;
                                             var dataGridViewImageColumn = (DataGridViewImageColumn)dgvInventarioPlatillos.Columns["Guardar"];
                                             if (dataGridViewImageColumn != null)
                                                 dataGridViewImageColumn.ImageLayout = DataGridViewImageCellLayout.Stretch;
-                                            dgvInventarioPlatillos.Rows[i].Cells["CR"].Value = ListDiarioDs[j].CR;
-                                            dgvInventarioPlatillos.Rows[i].Cells["SR"].Value = ListDiarioDs[j].SR;
-                                            dgvInventarioPlatillos.Rows[i].Cells["Observacion"].Value = ListDiarioDs[j].Observacion;
-                                            dgvInventarioPlatillos.Rows[i].Cells["EstadoInventarioId"].Value = ListDiarioDs[j].EstadoInventarioId;
+                                            dgvInventarioPlatillos.Rows[i].Cells["CR"].Value = _listinvcomprobacion[j].CR;
+                                            dgvInventarioPlatillos.Rows[i].Cells["SR"].Value = _listinvcomprobacion[j].SR;
+                                            dgvInventarioPlatillos.Rows[i].Cells["Observacion"].Value = _listinvcomprobacion[j].Observacion;
+                                            dgvInventarioPlatillos.Rows[i].Cells["EstadoInventarioId"].Value = _listinvcomprobacion[j].EstadoInventarioId;
                                             var dataGridViewColumn = dgvInventarioPlatillos.Columns["EstadoInventarioId"];
                                             if (dataGridViewColumn != null)
                                                 dataGridViewColumn.Visible = false;
@@ -958,18 +1043,18 @@ namespace ExcelAddIn1
                         switch (z.StatusCode)
                         {
                             case HttpStatusCode.OK:
-                                ListDiarioDs = Opcion.JsonaListaGenerica<Reporte.RespuestaCocina.Comprobacion>(z);
+                                _listinvcomprobacion= new BindingList<Reporte.RespuestaCocina.Comprobacion>(Opcion.JsonaListaGenerica<Reporte.RespuestaCocina.Comprobacion>(z));
                                 for (var i = 0; i < dgvInventarioPlatillos.RowCount; i++)
                                 {
                                     var y = Convert.ToInt32(dgvInventarioPlatillos.Rows[i].Cells["ArtId"].Value);
                                     // ReSharper disable once ForCanBeConvertedToForeach
-                                    for (var j = 0; j < ListDiarioDs.Count; j++)
+                                    for (var j = 0; j < _listinvcomprobacion.Count; j++)
                                     {
-                                        var x = Convert.ToInt32(ListDiarioDs[j].ArtId);
+                                        var x = Convert.ToInt32(_listinvcomprobacion[j].ArtId);
                                         if (x == y)
                                         {
                                             Xyz = i;
-                                            dgvInventarioPlatillos.Rows[i].Cells["CR"].Value = ListDiarioDs[j].CR;
+                                            dgvInventarioPlatillos.Rows[i].Cells["CR"].Value =_listinvcomprobacion[j].CR;
                                         }
                                     }
                                 }
@@ -998,6 +1083,148 @@ namespace ExcelAddIn1
             {
                 dgvInventarioPlatillos.Rows[e.RowIndex].Cells["CE"].Value = @"0";
                 dgvInventarioPlatillos.Rows[e.RowIndex].Cells["CR"].Value = @"0";
+            }
+        }
+
+        private void btOrdendeTrabajo_Click(object sender, EventArgs e)
+        {
+            if (dgvDiarios.CurrentRow.Selected  && dgvDiarios.RowCount > 0 &&
+                dgvDiarios.CurrentRow.Cells["Clave"].Value.ToString()!= ""|| dgvDiarios.CurrentRow.Cells["Platillo"].Value.ToString() != "")
+            {
+                    var clave = Convert.ToString(dgvDiarios.CurrentRow.Cells["Clave"].Value.ToString());
+                    Cocina.DetalleCocina.Clave = clave;
+                   
+                    Opcion.EjecucionAsync(x =>
+                    {
+                        var detallereceta = new Cocina.DetalleCocina.ReporteDetalle
+                        {
+                            clave = clave
+                        };
+                        Data.ReporteCocina.DDetalleReceta(x, detallereceta);
+                    }, jsonResult =>
+                    {
+                        var listaCocina = Opcion.JsonaListaGenerica<Reporte.RespuestaCocina>(jsonResult)[0];
+                        var FechaActual = DateTime.Today.ToShortDateString();
+                        var CantidadReal = Convert.ToString(dgvDiarios.CurrentRow.Cells["CE"].Value);
+                        listaCocina.Consumodia = CantidadReal;
+                        listaCocina.UltimaElaboracion = FechaActual;
+                        if (Convert.ToInt32(dgvDiarios.CurrentRow.Cells["CR"].Value) != 0 &&
+                            Convert.ToInt32(dgvDiarios.CurrentRow.Cells["CR"].Value) > 0)
+                        {
+                            listaCocina.Cantidadinventario = Convert.ToInt32(dgvDiarios.CurrentRow.Cells["CR"].Value);
+                        }
+                        else
+                        {
+                            listaCocina.Cantidadinventario = 0;
+                        }
+                        var addIn = Globals.ThisAddIn;
+                        addIn.OrdendeTrabajo(listaCocina);
+                    }
+                );
+            }
+        }
+
+        private void dgvDiarios_CellValueChanged(object sender, DataGridViewCellEventArgs e)
+        {
+            var rowIndex = dgvDiarios.CurrentCell.RowIndex;
+            btGuardar.Enabled = true;
+            if (dgvDiarios.Rows.Count > rowIndex && dgvDiarios.Rows[rowIndex].Cells["Clave"].Value != null &&
+                dgvDiarios.Rows[rowIndex].Cells["Clave"].Value.ToString() != "" && dgvDiarios.Rows[rowIndex].Cells["Platillo"].Value == null)
+            {
+                var fecha1R = DateTime.Now.AddDays(-30).ToString("yyyy-MM-dd");
+                var fecha2R = DateTime.Now.ToString("yyyy-MM-dd");
+                var clave = dgvDiarios.Rows[rowIndex].Cells["Clave"].Value.ToString(); 
+                Opcion.EjecucionAsync(x =>
+                {
+                    var datos = new Reporte.General
+                    {
+                        FechaIni = Convert.ToDateTime(fecha1R),
+                        FechaFin = Convert.ToDateTime(fecha2R),
+                        Clave = clave
+
+                    };
+                    Data.Reporte.ReporteDiarioNuevoRegistro(x, datos);
+                }, z =>
+                {
+                    if (z != null)
+                    {
+                            switch (z.StatusCode)
+                            {
+                                case HttpStatusCode.OK:
+                                    var lista=Opcion.JsonaClaseGenerica<Reporte.RespuestaCocina.Comprobacion>(z);
+                                    dgvDiarios.Rows[rowIndex].Cells["Platillo"].Value = lista.Platillo;
+                                    dgvDiarios.Rows[rowIndex].Cells["Existencia"].Value = lista.Existencia;
+                                    dgvDiarios.Rows[rowIndex].Cells["CP"].Value = lista.CP;
+                                    dgvDiarios.Rows[rowIndex].Cells["CE"].Value = lista.CE;
+                                    dgvDiarios.Rows[rowIndex].Cells["CR"].Value = lista.CR;
+                                    dgvDiarios.Rows[rowIndex].Cells["VentaAnterior"].Value = lista.VentaAnterior;
+                                    dgvDiarios.Rows[rowIndex].Cells["VentaPromedio"].Value = lista.VentaPromedio;
+                                    dgvDiarios.Rows[rowIndex].Cells["EstadoInventarioId"].Value = lista.EstadoInventarioId;
+                                    dgvDiarios.Rows[rowIndex].Cells["ArtId"].Value = lista.ArtId;
+                                    dgvDiarios.Rows[rowIndex].Cells["Observacion"].Value = lista.Observacion;
+                                    dgvDiarios.Rows[rowIndex].Cells["CantidadCocina"].Value = lista.CantidadCocina;
+                                    dgvDiarios.Rows[rowIndex].Cells["EstadoMañana"].Value = lista.EstadoManana;
+                                    break;
+                                default:
+                                    MessageBox.Show(this, @"No se encontraron menus con los parametros de busqueda ingresados");
+                                    break;
+                            }
+                    }
+                    else
+                    {
+                        MessageBox.Show(@"La clave ingresada no existe, Favor de verificar");
+                    }
+                });
+            }
+
+            if (dgvDiarios.Rows.Count > rowIndex && dgvDiarios.Rows[rowIndex].Cells["Platillo"].Value != null &&
+                dgvDiarios.Rows[rowIndex].Cells["Platillo"].Value.ToString() != "" && dgvDiarios.Rows[rowIndex].Cells["Clave"].Value == null)
+            {
+                var fecha1R = DateTime.Now.AddDays(-30).ToString("yyyy-MM-dd");
+                var fecha2R = DateTime.Now.ToString("yyyy-MM-dd");
+                var clave = dgvDiarios.Rows[rowIndex].Cells["Platillo"].Value.ToString();
+                Opcion.EjecucionAsync(x =>
+                {
+                    var datos = new Reporte.General
+                    {
+                        FechaIni = Convert.ToDateTime(fecha1R),
+                        FechaFin = Convert.ToDateTime(fecha2R),
+                        Clave = clave
+
+                    };
+                    Data.Reporte.ReporteDiarioNuevoRegistro(x, datos);
+                }, z =>
+                {
+                    if (z != null)
+                    {
+                        switch (z.StatusCode)
+                        {
+                            case HttpStatusCode.OK:
+                                var lista = Opcion.JsonaClaseGenerica<Reporte.RespuestaCocina.Comprobacion>(z);
+                                dgvDiarios.Rows[rowIndex].Cells["Clave"].Value = lista.Clave;
+                                dgvDiarios.Rows[rowIndex].Cells["Existencia"].Value = lista.Existencia;
+                                dgvDiarios.Rows[rowIndex].Cells["CP"].Value = lista.CP;
+                                dgvDiarios.Rows[rowIndex].Cells["CE"].Value = lista.CE;
+                                dgvDiarios.Rows[rowIndex].Cells["CR"].Value = lista.CR;
+                                dgvDiarios.Rows[rowIndex].Cells["VentaAnterior"].Value = lista.VentaAnterior;
+                                dgvDiarios.Rows[rowIndex].Cells["VentaPromedio"].Value = lista.VentaPromedio;
+                                dgvDiarios.Rows[rowIndex].Cells["EstadoInventarioId"].Value = lista.EstadoInventarioId;
+                                dgvDiarios.Rows[rowIndex].Cells["ArtId"].Value = lista.ArtId;
+                                dgvDiarios.Rows[rowIndex].Cells["Observacion"].Value = lista.Observacion;
+                                dgvDiarios.Rows[rowIndex].Cells["CantidadCocina"].Value = lista.CantidadCocina;
+                                dgvDiarios.Rows[rowIndex].Cells["EstadoMañana"].Value = lista.EstadoManana;
+                                break;
+                            default:
+                                MessageBox.Show(this, @"No se encontraron menus con los parametros de busqueda ingresados");
+                                break;
+                        }
+                    }
+                    else
+                    {
+                        MessageBox.Show(@"El nombre del platillo no es el correcto, favor de verificar");
+                    }
+                });
+
             }
         }
     }

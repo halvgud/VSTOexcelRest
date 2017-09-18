@@ -157,7 +157,6 @@ namespace Herramienta
             {
                 var desSerializer = new JsonDeserializer();
                 x = desSerializer.Deserialize<T>(json);
-               // x = 
                 return x;
             }
             catch (Exception e)
@@ -166,8 +165,6 @@ namespace Herramienta
                 return x;
             }
         }
-
-
         public static string JsonaString(string json)
         {
             dynamic myObject = JsonConvert.DeserializeObject<dynamic>(json);
@@ -233,7 +230,7 @@ namespace Herramienta
        public static void BorrarSeleccionDr(DataGridView datos)
        {
             if (datos.CurrentCell.RowIndex == -1 || datos.Rows.Count <= 0) return;
-            var result = datos.DataSource as List<Respuesta.Diario>;
+            var result = datos.DataSource as List<Diario>;
             if (result == null) return;
             result.RemoveAt(datos.CurrentCell.RowIndex);
             datos.DataSource = null;
@@ -292,11 +289,6 @@ namespace Herramienta
         {
             accionInicial(accionFinal);
             //throw new NotImplementedException();
-        }
-
-        public static object JsonaListaGenerica<T>(object jsonResult)
-        {
-            throw new NotImplementedException();
         }
     }
 }

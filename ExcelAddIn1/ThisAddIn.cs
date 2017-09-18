@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using System.Drawing;
 using System.IO;
 using System.Linq;
-using System.Runtime.InteropServices.ComTypes;
 using System.Windows.Forms;
 using Herramienta.Config;
 using Excel = Microsoft.Office.Interop.Excel;
@@ -11,6 +10,8 @@ using Herramienta;
 using Microsoft.Office.Tools.Excel;
 using Respuesta;
 using RestSharp;
+using System.Net;
+using System.Reflection;
 
 namespace ExcelAddIn1
 {
@@ -45,9 +46,6 @@ namespace ExcelAddIn1
             new Reportes {Nombre = "ReporteCocina"},
             new Reportes {Nombre= "Recetario"},
             new Reportes {Nombre = "Reportes"}
-
-
-
             //Comentar despues de usar
             //new Reportes {Nombre="DetalleMenu"}
             };
@@ -68,12 +66,6 @@ namespace ExcelAddIn1
             ReportessCustomTaskPane = CustomTaskPanes.Add(_reportess, "Reportes");
             ReportessCustomTaskPane.Visible = false;
             ReportessCustomTaskPane.Width = 280;
-
-
-            //comentar desp
-            //DetalleMenu = CustomTaskPanes.Add(_detallemenu, "Detalle Menu");
-            //DetalleMenu.Visible = false;
-            //DetalleMenu.Width = 280;
             Application.WorkbookActivate += Application_ActiveWorkbookChanges;
             Application.WorkbookDeactivate += Application_ActiveWorkbookChanges;
             Globals.ThisAddIn.Application.SheetSelectionChange += activeSheet_SelectionChange;
@@ -85,25 +77,17 @@ namespace ExcelAddIn1
         void Application_SheetBeforeDoubleClick(object sh,
         Excel.Range target, ref bool cancel)
         {
+            Application.ScreenUpdating = false;
             _sheet1 = (Excel.Worksheet)Application.ActiveSheet;
             if (_sheet1.Name == "ReporterCocina" && target.Column == 1)
             {
                 cancel = true;
-                
-      
                 var excel = target.EntireRow.Value2;
-
                 Cocina.DetalleCocina.Clave = excel[1,1].ToString();
-
                 var detallereceta = new Cocina.DetalleCocina.ReporteDetalle
                 {
-                    ////FechaFinal = FechaFin.ToString("yyyy/MM/dd HH:mm:ss"),
-                    ////FechaInicio = FechaIni.ToString("yyyy/MM/dd 00:00:00"),
                     clave = excel[1,1].ToString()
                 };
-
-                        //Opcion.EjecucionAsync(Data.ReporteCocina.DDetalleReceta(),);
-
                 Opcion.EjecucionAsync(x =>
                 {
                     Data.ReporteCocina.DDetalleReceta(x, detallereceta);   
@@ -114,6 +98,14 @@ namespace ExcelAddIn1
                     Foto = listCocina.Rutaimagen;
                    
                     var excelazo = InicializarExcelConTemplate("DetalleReceta");
+                    excelazo.Range["A" + 8 + ":D"+20 + Globals.ThisAddIn.Application.ActiveSheet.Cells.Find("*", Missing.Value,
+           Missing.Value, Missing.Value, Excel.XlSearchOrder.xlByRows,
+          Excel.XlSearchDirection.xlPrevious, false, Missing.Value,
+           Missing.Value).Row + 1].Value2 = "";
+                    excelazo.Range["F" + 10 + ":N" + 20 + Globals.ThisAddIn.Application.ActiveSheet.Cells.Find("*", Missing.Value,
+          Missing.Value, Missing.Value, Excel.XlSearchOrder.xlByRows,
+         Excel.XlSearchDirection.xlPrevious, false, Missing.Value,
+          Missing.Value).Row + 1].Value2 = "";
                     excelazo.Range["A1:N2"].Interior.Color = ColorTranslator.ToOle(Color.Peru);
                     excelazo.Range["A4:A7"].Interior.Color = ColorTranslator.ToOle(Color.Peru);
                     excelazo.Range["F4:N4"].Interior.Color = ColorTranslator.ToOle(Color.Peru);
@@ -125,6 +117,7 @@ namespace ExcelAddIn1
                     
                     if (excelazo == null) return;
                     var unidad = listCocina.NomUnidad;
+                    excelazo.Range["C21"].Value2 = "Costo Total";
                     excelazo.Range["A1"].Value2 = listCocina.Receta;
                     excelazo.Range["M7"].Value2 = listCocina.Margen;
                     excelazo.Range["F7"].Value2 = listCocina.UltimaElaboracion;
@@ -164,78 +157,363 @@ namespace ExcelAddIn1
                         int letras = listCocina.Ingredientes[i].Nombre.Length;
                         ((excelazo.Range["A"+x])).Value2 = listCocina.Ingredientes[i].Nombre;
                         excelazo.Range["A" + x].Rows.AutoFit();
-
-
-
                         ((excelazo.Range["B" + x])).Value2 = listCocina.Ingredientes[i].Cantidad;
-                        ((excelazo.Range["C" + x])).Value2 = listCocina.Ingredientes[i].Medida;
-                        
+                        ((excelazo.Range["C" + x])).Value2 = listCocina.Ingredientes[i].Medida;  
                         ((excelazo.Range["D" + x])).Value2 = listCocina.Ingredientes[i].Costo;
-                        excelazo.Range["A" + x].NumberFormat = "$ #,##0.00";
-                        
+                        excelazo.Range["A" + x].NumberFormat = "$ #,##0.00";   
                         x++;
                         z = letras;
                     }
-                  
-                    excelazo.Range["D21"].Formula ="=SUM(D8:D20)";
+
+                    excelazo.Range["D21"].Formula = "=((B8*D8)+(B9*D9)+(B10*D10)+(B11*D11)+(B12*D12)+(B13*D13)+(B14*D14)+(B15*D15)+(B16*D16)+(B17*D17)+(B18*D18)+(B19*D19)+(B20*D20))";
                     excelazo.Range["F10"].Rows.AutoFit();
-                   var w= excelazo.Range["L10"].Left+10;
+                    var w= excelazo.Range["L10"].Left+10;
                     var q = excelazo.Range["L10"].Top+10;
 
-                    if (Foto == null)
+                    if (Foto == null || Foto =="")
                     {
-                        Foto = @"\\mercattoserver\Recetario\img\sinimagen.jpg";
+                        Foto = @"\\mercattoserver\Recetario\img\sinimagen.jpg";    
                     }
-                 
-                    excelazo.Shapes.AddPicture(Foto, Microsoft.Office.Core.MsoTriState.msoFalse, Microsoft.Office.Core.MsoTriState.msoCTrue, w, q, 180, 180);
+                     excelazo.Shapes.AddPicture(Foto, Microsoft.Office.Core.MsoTriState.msoFalse, Microsoft.Office.Core.MsoTriState.msoCTrue, w, q, 190, 240);
+
                     excelazo.Range["D21"].Rows.AutoFit();
                     #endregion
                 }
-
                 );
-                Reporte.RespuestaCocina rrc=new Reporte.RespuestaCocina(); //? y este para que? para meterle lo que hay en reporte .respuestacocina, pero ya lo tienes en la clase
-                //de arriba, listCocina 
-                //Opcion.EjecucionAsync(Data.ReporteCocina.DDetalleReceta(x,Cocina.DetalleCocina.Clave));
-
-                //Reporte.RespuestaCocina rrc = new Reporte.RespuestaCocina
-                //{
-                //    // SEGUIR EL LUNES
-
-                //    clave = excel[1, 1],
-                //    receta = excel[1, 2],
-                //    Since = excel[1, 7].ToString(),
-                //    ultimaElaboracion = excel[1, 8].ToString(),
-                //   Costo = (Convert.ToDouble(excel[1, 11])).ToString(),
-                //    Venta = (Convert.ToDouble(excel[1, 12])).ToString(),
-                //    Margen = (Convert.ToDouble(excel[1, 13])/100).ToString(),
-                //    medida = excel[1,9].ToString(),
-
-                //  };
-
-
-             
-                //rrc.clave = "";
-                /*algo asi... */
-                /*y esto de abajo que? es la que te digo de echo mas abajo esta, pero esta petición que hace?
-                 porque son 2? la de arriba y esta?mmmmmm entonces la puedo meter esta dentro de la otra veradd aaaaaaaaaaaaaaa 
-                 si verdad, pero porque son 2???????
-                 que hace esta versionDetallada? nada al parecer de echo esa tu a metiste hay y no supe por que
-                  yo?? cuando?  o.O entonces cual es tu duda?creo que ya la solucionaste es en esta parte de abajo esos datos no mostraba nada en detalle receta perate no te desconectes voy a intentar algo */
-                //Opcion.EjecucionAsync(Data.ReporteCocina.VersionDetallada, jsonResult =>
-                //{
-                   
-
-                   
-                //   // ((excelazo.Range["G5"])).Value2 = rrc.rec_id;
-
-
-
-
-                //} );
                 }
+            Application.Cells.Locked = false;
+            Application.ScreenUpdating = true;
+        }
+        public void OrdendeTrabajo(Reporte.RespuestaCocina listCocina)
+        {
+            Application.ScreenUpdating = false;
+            var excelazo = InicializarExcelConTemplate("OrdenTrabajo");
+            excelazo.Range["A" +10+ ":D"+24 + Globals.ThisAddIn.Application.ActiveSheet.Cells.Find("*", Missing.Value,
+                       Missing.Value, Missing.Value, Excel.XlSearchOrder.xlByRows,
+                      Excel.XlSearchDirection.xlPrevious, false, Missing.Value,
+                       Missing.Value).Row + 1].Value2 = "";
+            excelazo.Range["F"+ 18 + ":L" + Globals.ThisAddIn.Application.ActiveSheet.Cells.Find("*", Missing.Value,
+                       Missing.Value, Missing.Value, Excel.XlSearchOrder.xlByRows,
+                      Excel.XlSearchDirection.xlPrevious, false, Missing.Value,
+                       Missing.Value).Row + 1].Value2 = "";
+            Foto = "";
+            Foto = listCocina.Rutaimagen;
+            var unidad = listCocina.NomUnidad;
+            excelazo.Range["A25"].Value2 = "COMENTARIOS";
+            excelazo.Range["B4"].Value2 = listCocina.Receta;
+            excelazo.Range["B5"].Value2 = listCocina.TipoProducto;
+            excelazo.Range["D7"].Value2 = listCocina.NomUnidad;
+            excelazo.Range["A7"].Value2 = listCocina.Consumodia;
+            excelazo.Range["F18"].Value2 = listCocina.Instrucciones;
+            excelazo.Range["J3"].Value2 = listCocina.UltimaElaboracion;
+            excelazo.Range["E7"].Value2 = listCocina.Densidad;
+          
+            if (listCocina.Cantidadinventario > 0)
+            {
+                if (listCocina.NomUnidad.ToString() == "LT")
 
+                {
+                    excelazo.Range["H7"].Value2 = listCocina.Cantidadinventario;
+                    if (listCocina.Densidad > 0)
+                    {
+                        var kg = Convert.ToDouble(listCocina.Cantidadinventario) * listCocina.Densidad;
+                        excelazo.Range["G7"].Value2 = Math.Round(kg, 2);
+                    }
+                    else
+                    {
+                        excelazo.Range["G7"].Value2 = 0;
+                    }
+                }
+                if (listCocina.NomUnidad.ToString() == "KG")
+                {
+                    excelazo.Range["G7"].Value2 = listCocina.Cantidadinventario;
+                    if (listCocina.Densidad > 0)
+                    {
+                        var lt = Convert.ToDouble(listCocina.Cantidadinventario) / listCocina.Densidad;
+                        excelazo.Range["H7"].Value2 = Math.Round(lt, 2);
+                    }
+                    else
+                    {
+                        excelazo.Range["H7"].Value2 = 0;
+                    }
+                }
+                if (listCocina.NomUnidad.ToString() == "PZA" || (listCocina.NomUnidad.ToString() == "ORDEN"))
+                {
+                    excelazo.Range["G7"].Value2 = 0;
+                    excelazo.Range["H7"].Value2 = 0;
+                }
+            }
+            else
+            {
+                if (listCocina.NomUnidad.ToString() == "LT")
+
+                {
+                    excelazo.Range["H7"].Value2 = listCocina.Cantidadinventario;
+                    if (listCocina.Densidad > 0)
+                    {
+                        var kg = Convert.ToDouble(listCocina.Cantidadinventario) * listCocina.Densidad;
+                        excelazo.Range["G7"].Value2 = Math.Round(kg, 2);
+                    }
+                    else
+                    {
+                        excelazo.Range["G7"].Value2 = 0;
+                    }
+                }
+                if (listCocina.NomUnidad.ToString() == "KG")
+                {
+                    excelazo.Range["G7"].Value2 = listCocina.Cantidadinventario;
+                    if(listCocina.Densidad>0)
+                    {
+                        var lt = Convert.ToDouble(listCocina.Cantidadinventario) / listCocina.Densidad;
+                        excelazo.Range["H7"].Value2 = Math.Round(lt, 2);
+                    }
+                    else
+                    {
+                        excelazo.Range["H7"].Value2 = 0;
+                    }
+                   
+                }
+                if (listCocina.NomUnidad.ToString() == "PZA" || (listCocina.NomUnidad.ToString() == "ORDEN"))
+                {
+                    excelazo.Range["G7"].Value2 = 0;
+                    excelazo.Range["H7"].Value2 = 0;
+                }
+            }
+            int x = 10;
+            int z = 0;
+            for (int i = 0; i < listCocina.Ingredientes.Count; i++)
+            {
+
+                int letras = listCocina.Ingredientes[i].Nombre.Length;
+                ((excelazo.Range["D" + x])).Value2 = listCocina.Ingredientes[i].Nombre;
+                excelazo.Range["D" + x].Rows.AutoFit();
+                var cantidadreal = Convert.ToDouble(listCocina.Consumodia);
+                var cantidadelaboracion = listCocina.CantidadElaboracion;
+                // ReSharper disable once CompareOfFloatsByEqualityOperator
+                if (cantidadreal==cantidadelaboracion)
+                {
+                    ((excelazo.Range["C" + x])).Value2 = listCocina.Ingredientes[i].Cantidad;
+                    ((excelazo.Range["A" + x])).Value2 = listCocina.Ingredientes[i].Medida;
+                }
+                else
+                {
+                    var difcantidad = Math.Round(cantidadreal / cantidadelaboracion, 2);
+                    var cantidadingrediente = listCocina.Ingredientes[i].Cantidad;
+                    var canrealingrediente = Math.Round(cantidadingrediente * difcantidad, 2);
+                    ((excelazo.Range["C" + x])).Value2 = canrealingrediente;
+                    ((excelazo.Range["A" + x])).Value2 = listCocina.Ingredientes[i].Medida;
+                }
+                x++;
+                z = letras;
+            }
+            var w = excelazo.Range["J18"].Left + 5;
+            var q = excelazo.Range["J18"].Top + 5;
+
+            if (Foto == "" || Foto == null)
+            {
+                Foto = @"\\mercattoserver\Recetario\img\sinimagen.jpg";
+            }
+          excelazo.Shapes.AddPicture(Foto, Microsoft.Office.Core.MsoTriState.msoFalse, Microsoft.Office.Core.MsoTriState.msoCTrue, w, q, 195, 250);
+            Application.Cells.Locked = false;
+            Application.ScreenUpdating = true;
         }
 
+        public void MenuSemanal(List<PlatilloReceta> listaplatillos)
+        {
+            Application.ScreenUpdating = false;
+            var excelazo = InicializarExcelConTemplate("MenuSemanal");
+            //           excelazo.Range["A" + 8 + ":D" + 20 + Globals.ThisAddIn.Application.ActiveSheet.Cells.Find("*", Missing.Value,
+            //         Missing.Value, Missing.Value, Excel.XlSearchOrder.xlByRows,
+            //        Excel.XlSearchDirection.xlPrevious, false, Missing.Value,
+            //         Missing.Value).Row + 1].Value2 = "";
+            //           excelazo.Range["F" + 10 + ":N" + Globals.ThisAddIn.Application.ActiveSheet.Cells.Find("*", Missing.Value,
+            // Missing.Value, Missing.Value, Excel.XlSearchOrder.xlByRows,
+            //Excel.XlSearchDirection.xlPrevious, false, Missing.Value,
+            // Missing.Value).Row + 1].Value2 = "";
+            //Foto = listCocina.Rutaimagen;
+            if (excelazo == null) return;
+            var Lunes = listaplatillos[0].Lunes;
+            var Martes = listaplatillos[0].Martes;
+            var Miercoles = listaplatillos[0].Miercoles;
+            var Jueves = listaplatillos[0].Jueves;
+            var Viernes = listaplatillos[0].Viernes;
+            var Sabado = listaplatillos[0].Sabado;
+            var Domingo = listaplatillos[0].Domingo;
+
+            excelazo.Range["B5"].Value2 = Lunes[0].Fecha;
+            excelazo.Range["B21"].Value2 = Martes[0].Fecha;
+            excelazo.Range["B37"].Value2 = Miercoles[0].Fecha;
+            excelazo.Range["B53"].Value2 = Jueves[0].Fecha;
+            excelazo.Range["B69"].Value2 = Viernes[0].Fecha;
+            excelazo.Range["B85"].Value2 = Sabado[0].Fecha;
+            excelazo.Range["B101"].Value2 = Domingo[0].Fecha;
+            excelazo.Range["B3"].Value2 = Lunes[0].Fecha;
+            excelazo.Range["D3"].Value2 = Domingo[0].Fecha;
+            int x = 7;
+            for (int i = 0; i < Lunes.Count; i++)
+            {   
+                ((excelazo.Range["A" + x])).Value2 = Lunes[i].TipoReceta;
+                ((excelazo.Range["B" + x])).Value2 = Lunes[i].Platillo;
+                ((excelazo.Range["C" + x])).Value2 = Lunes[i].CantidadElab;
+                ((excelazo.Range["D" + x])).Value2 = Lunes[i].Unidad;
+                ((excelazo.Range["E" + x])).Value2 = Lunes[i].Precio;
+                ((excelazo.Range["F" + x])).Value2 = Lunes[i].Venta;
+                x++;
+            }
+
+            int y = 23;
+            for (int i = 0; i < Martes.Count; i++)
+            {
+                ((excelazo.Range["A" + y])).Value2 = Martes[i].TipoReceta;
+                ((excelazo.Range["B" + y])).Value2 = Martes[i].Platillo;
+                ((excelazo.Range["C" + y])).Value2 = Martes[i].CantidadElab;
+                ((excelazo.Range["D" + y])).Value2 = Martes[i].Unidad;
+                ((excelazo.Range["E" + y])).Value2 = Martes[i].Precio;
+                ((excelazo.Range["F" + y])).Value2 = Martes[i].Venta;
+                y++;
+
+            }
+            int w = 39;
+            for (int i = 0; i < Miercoles.Count; i++)
+            {
+                ((excelazo.Range["A" + w])).Value2 = Miercoles[i].TipoReceta;
+                ((excelazo.Range["B" + w])).Value2 = Miercoles[i].Platillo;
+                ((excelazo.Range["C" + w])).Value2 = Miercoles[i].CantidadElab;
+                ((excelazo.Range["D" + w])).Value2 = Miercoles[i].Unidad;
+                ((excelazo.Range["E" + w])).Value2 = Miercoles[i].Precio;
+                ((excelazo.Range["F" + w])).Value2 = Miercoles[i].Venta;
+                w++;
+            }
+            int z = 55;
+            for (int i = 0; i < Jueves.Count; i++)
+            {
+                ((excelazo.Range["A" + z])).Value2 = Jueves[i].TipoReceta;
+                ((excelazo.Range["B" + z])).Value2 = Jueves[i].Platillo;
+                ((excelazo.Range["C" + z])).Value2 = Jueves[i].CantidadElab;
+                ((excelazo.Range["D" + z])).Value2 = Jueves[i].Unidad;
+                ((excelazo.Range["E" + z])).Value2 = Jueves[i].Precio;
+                ((excelazo.Range["F" + z])).Value2 = Jueves[i].Venta;
+                z++;
+            }
+            int t = 71;
+            for (int i = 0; i < Viernes.Count; i++)
+            {
+                ((excelazo.Range["A" + t])).Value2 = Viernes[i].TipoReceta;
+                ((excelazo.Range["B" + t])).Value2 = Viernes[i].Platillo;
+                ((excelazo.Range["C" + t])).Value2 = Viernes[i].CantidadElab;
+                ((excelazo.Range["D" + t])).Value2 = Viernes[i].Unidad;
+                ((excelazo.Range["E" + t])).Value2 = Viernes[i].Precio;
+                ((excelazo.Range["F" + t])).Value2 = Viernes[i].Venta;
+                t++;
+            }
+            int s = 87;
+            for (int i = 0; i < Sabado.Count; i++)
+            {
+                ((excelazo.Range["A" + s])).Value2 = Sabado[i].TipoReceta;
+                ((excelazo.Range["B" + s])).Value2 = Sabado[i].Platillo;
+                ((excelazo.Range["C" + s])).Value2 = Sabado[i].CantidadElab;
+                ((excelazo.Range["D" + s])).Value2 = Sabado[i].Unidad;
+                ((excelazo.Range["E" + s])).Value2 = Sabado[i].Precio;
+                ((excelazo.Range["F" + s])).Value2 = Sabado[i].Venta;
+                s++;
+            }
+            int r = 103;
+            for (int i = 0; i < Domingo.Count; i++)
+            {
+                ((excelazo.Range["A" + r])).Value2 = Domingo[i].TipoReceta;
+                ((excelazo.Range["B" + r])).Value2 = Domingo[i].Platillo;
+                ((excelazo.Range["C" + r])).Value2 = Domingo[i].CantidadElab;
+                ((excelazo.Range["D" + r])).Value2 = Domingo[i].Unidad;
+                ((excelazo.Range["E" + r])).Value2 = Domingo[i].Precio;
+                ((excelazo.Range["F" + r])).Value2 = Domingo[i].Venta;
+                r++;
+            }
+
+            Application.Cells.Locked = false;
+            Application.ScreenUpdating = true;
+        }
+        public void DatosReceta(Reporte.RespuestaCocina listCocina)
+        {
+            Application.ScreenUpdating = false;
+            var excelazo = InicializarExcelConTemplate("DetalleReceta");
+            excelazo.Range["A" + 8 + ":D" + 20 + Globals.ThisAddIn.Application.ActiveSheet.Cells.Find("*", Missing.Value,
+          Missing.Value, Missing.Value, Excel.XlSearchOrder.xlByRows,
+         Excel.XlSearchDirection.xlPrevious, false, Missing.Value,
+          Missing.Value).Row + 1].Value2 = "";
+            excelazo.Range["F" + 10 + ":N" + Globals.ThisAddIn.Application.ActiveSheet.Cells.Find("*", Missing.Value,
+  Missing.Value, Missing.Value, Excel.XlSearchOrder.xlByRows,
+ Excel.XlSearchDirection.xlPrevious, false, Missing.Value,
+  Missing.Value).Row + 1].Value2 = "";
+            Foto = listCocina.Rutaimagen;
+            excelazo.Range["A1:N2"].Interior.Color = ColorTranslator.ToOle(Color.Peru);
+            excelazo.Range["A4:A7"].Interior.Color = ColorTranslator.ToOle(Color.Peru);
+            excelazo.Range["F4:N4"].Interior.Color = ColorTranslator.ToOle(Color.Peru);
+            excelazo.Range["F6:N6"].Interior.Color = ColorTranslator.ToOle(Color.Peru);
+            excelazo.Range["F9:N9"].Interior.Color = ColorTranslator.ToOle(Color.Peru);
+            excelazo.Range["B7:D7"].Interior.Color = ColorTranslator.ToOle(Color.Peru);
+            excelazo.Range["C21"].Interior.Color = ColorTranslator.ToOle(Color.Peru);
+        
+            if (excelazo == null) return;
+            excelazo.Range["C21"].Value2 = "Costo Total";
+            var unidad = listCocina.NomUnidad;
+            excelazo.Range["A1"].Value2 = listCocina.Receta;
+            excelazo.Range["M7"].Value2 = listCocina.Margen;
+            excelazo.Range["F7"].Value2 = listCocina.UltimaElaboracion;
+            excelazo.Range["N5"].Value2 = listCocina.Venta;
+            excelazo.Range["H5"].Value2 = listCocina.Sinceqty;
+            excelazo.Range["G5"].Value2 = listCocina.RecId;
+            excelazo.Range["H7"].Value2 = listCocina.Medida;
+            excelazo.Range["M5"].Value2 = listCocina.Costo;
+            excelazo.Range["N5"].Value2 = listCocina.Venta;
+            excelazo.Range["F5"].Value2 = listCocina.Since;
+            //dexcelazo.Range["H5"].Value2 = listCocina.Qtycongelado;
+            excelazo.Range["B4"].Value2 = listCocina.TipoProducto;
+            excelazo.Range["F10"].Value2 = listCocina.Instrucciones;
+            excelazo.Range["K5"].Value2 = listCocina.PromedioMenu;
+            excelazo.Range["L5"].Value2 = listCocina.PromedioSobrante;
+            excelazo.Range["G7"].Value2 = listCocina.Densidad;
+
+            if (listCocina.NomUnidad.ToString() == "LT")
+            {
+                excelazo.Range["B6"].Value2 = listCocina.CantidadElaboracion;
+                var kg = listCocina.CantidadElaboracion * listCocina.Densidad;
+                excelazo.Range["B5"].Value2 = Math.Round(kg, 2);
+            }
+            else
+            {
+                excelazo.Range["B5"].Value2 = listCocina.CantidadElaboracion;
+                var lt = listCocina.CantidadElaboracion / listCocina.Densidad;
+                excelazo.Range["B6"].Value2 = Math.Round(lt, 2);
+            }
+
+            int x = 8;
+            int z = 0;
+            for (int i = 0; i < listCocina.Ingredientes.Count; i++)
+            {
+                int letras = listCocina.Ingredientes[i].Nombre.Length;
+                ((excelazo.Range["A" + x])).Value2 = listCocina.Ingredientes[i].Nombre;
+                excelazo.Range["A" + x].Rows.AutoFit();
+                ((excelazo.Range["B" + x])).Value2 = listCocina.Ingredientes[i].Cantidad;
+                ((excelazo.Range["C" + x])).Value2 = listCocina.Ingredientes[i].Medida;
+                ((excelazo.Range["D" + x])).Value2 = listCocina.Ingredientes[i].Costo;
+                excelazo.Range["A" + x].NumberFormat = "$ #,##0.00";
+                x++;
+                z = letras;
+            }
+            excelazo.Range["D21"].Formula = "=((B8*D8)+(B9*D9)+(B10*D10)+(B11*D11)+(B12*D12)+(B13*D13)+(B14*D14)+(B15*D15)+(B16*D16)+(B17*D17)+(B18*D18)+(B19*D19)+(B20*D20))";
+            excelazo.Range["F10"].Rows.AutoFit();
+            var w = excelazo.Range["L10"].Left + 10;
+            var q = excelazo.Range["L10"].Top + 10;
+
+            if (Foto == "" || Foto == null)
+            {
+                Foto = @"\\mercattoserver\Recetario\img\sinimagen.jpg";
+            }
+                excelazo.Shapes.AddPicture(Foto, Microsoft.Office.Core.MsoTriState.msoFalse, Microsoft.Office.Core.MsoTriState.msoCTrue, w, q, 190, 240);
+            excelazo.Range["D21"].Rows.AutoFit();
+            Application.Cells.Locked = false;
+            Application.ScreenUpdating = true;
+        }
 
         Excel.Worksheet _sheet1;
         private List<Reportes> _reportes;
@@ -287,7 +565,6 @@ namespace ExcelAddIn1
             string ruta = Foto;
             try
             {
-
                 _sheet1 = (Excel.Worksheet)Application.ActiveSheet;
                 _sheet1.Unprotect();
                 var found = Application.Sheets.Cast<Excel.Worksheet>().Any(sheet => sheet.Name == nombreHoja);
@@ -299,6 +576,7 @@ namespace ExcelAddIn1
                     File.WriteAllBytes(sPath, Properties.Resources.FICHA_RECETA);//se copia el template
                     var oTemplate = Application.Workbooks.Add(sPath); //path del template temporal  
                     var worksheet = oTemplate.Worksheets[nombreHoja] as Excel.Worksheet;//nombre del template
+                    // en la linea de arriba, lo que hace es que si ya esta creado,sobrepone la info, tons
                     worksheet?.Copy(After: ows); oTemplate.Close(false, missing, missing);
                     //worksheet.Shapes.AddPicture(ruta, Microsoft.Office.Core.MsoTriState.msoFalse, Microsoft.Office.Core.MsoTriState.msoCTrue, 50, 50, 300, 45);
 
@@ -342,6 +620,10 @@ namespace ExcelAddIn1
             Application.ScreenUpdating = false;
             var rri = listaArticuloBasica2;
             var oReportWs = InicializarExcelConTemplate("IngredientesPreviaPlatillo");
+           _reporte.Range["A" + 6 + ":F" + Globals.ThisAddIn.Application.ActiveSheet.Cells.Find("*", Missing.Value,
+           Missing.Value, Missing.Value, Excel.XlSearchOrder.xlByRows,
+          Excel.XlSearchDirection.xlPrevious, false, Missing.Value,
+           Missing.Value).Row + 1].Value2 = "";
             if (oReportWs == null) return;
             var rowcount = rri.Count + 7;
             _reporte.Range["A6:E" + rowcount].Value2 = InicializarListaIngredientesxPlatillo(rri);
@@ -356,6 +638,10 @@ namespace ExcelAddIn1
             Application.ScreenUpdating = false;
             var rri= listaArticuloBasica2;
             var oReportWs = InicializarExcelConTemplate("IngredientesPreviaGlobal");
+           _reporte.Range["A" + 5 + ":F" + Globals.ThisAddIn.Application.ActiveSheet.Cells.Find("*", Missing.Value,
+           Missing.Value, Missing.Value, Excel.XlSearchOrder.xlByRows,
+          Excel.XlSearchDirection.xlPrevious, false, Missing.Value,
+           Missing.Value).Row + 1].Value2 = "";
             if (oReportWs == null) return;
             var rowcount = rri.Count+6;
             _reporte.Range["A5:E" + rowcount].Value2 = InicializarListaIngredientes(rri);
@@ -366,11 +652,14 @@ namespace ExcelAddIn1
             Application.ScreenUpdating = true;
         }
         public void ReporteCocina(IRestResponse restResponse)
-        {
-           
+        {   
             Application.ScreenUpdating = false;
             var rrg = Opcion.JsonaListaGenerica<Reporte.RespuestaCocina.Ccocinadetalle>(restResponse);
             var oReportWs = InicializarExcelConTemplate("ReporterCocina");
+            _reporte.Range["A" + 3 + ":Y" + Globals.ThisAddIn.Application.ActiveSheet.Cells.Find("*", Missing.Value,
+           Missing.Value, Missing.Value, Excel.XlSearchOrder.xlByRows,
+          Excel.XlSearchDirection.xlPrevious, false, Missing.Value,
+           Missing.Value).Row + 1].Value2 = "";
             if (oReportWs == null) return;
             var rowcount = rrg.Count + 2;
             _reporte.Range["A3:X" + rowcount].Value2 = InicializarLista(rrg);
@@ -430,9 +719,13 @@ namespace ExcelAddIn1
         //template Congelados
         public void ReporteCongelados(IRestResponse restResponse)
         {
-            Application.ScreenUpdating = false;
+            //Application.ScreenUpdating = false;
             var rrgc = Opcion.JsonaListaGenerica<Reporte.General.InventarioCongelados>(restResponse);
-            var oReportWs = InicializarExcelConTemplate("DestinoPlatillos");
+            var oReportWs = InicializarExcelConTemplate("StatusProducto");
+           _reporte.Range["A" + 6 + ":G" + Globals.ThisAddIn.Application.ActiveSheet.Cells.Find("*", Missing.Value,
+           Missing.Value, Missing.Value, Excel.XlSearchOrder.xlByRows,
+          Excel.XlSearchDirection.xlPrevious, false, Missing.Value,
+           Missing.Value).Row + 1].Value2 = "";
             if (oReportWs == null) return;
             var rowcount = rrgc.Count + 5;
             _reporte.Range["A6:F" + rowcount].Value2 = InicializarLista(rrgc);

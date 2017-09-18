@@ -37,11 +37,11 @@
             // 
             // tbCantidad
             // 
-            this.tbCantidad.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(128)))), ((int)(((byte)(0)))));
-            this.tbCantidad.Font = new System.Drawing.Font("Arial Narrow", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.tbCantidad.Location = new System.Drawing.Point(343, 31);
+            this.tbCantidad.BackColor = System.Drawing.Color.Silver;
+            this.tbCantidad.Font = new System.Drawing.Font("Arial Narrow", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.tbCantidad.Location = new System.Drawing.Point(690, 158);
             this.tbCantidad.Name = "tbCantidad";
-            this.tbCantidad.Size = new System.Drawing.Size(100, 22);
+            this.tbCantidad.Size = new System.Drawing.Size(116, 29);
             this.tbCantidad.TabIndex = 1;
             this.tbCantidad.Text = "1";
             this.tbCantidad.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.tbCantidad_KeyPress);
@@ -49,22 +49,21 @@
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.Location = new System.Drawing.Point(350, 9);
+            this.label1.Font = new System.Drawing.Font("Arial", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label1.Location = new System.Drawing.Point(697, 130);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(86, 19);
+            this.label1.Size = new System.Drawing.Size(100, 22);
             this.label1.TabIndex = 2;
-            this.label1.Text = "Cantidad  ";
-            this.label1.Visible = false;
+            this.label1.Text = "Cantidad:";
             // 
             // btAceptar
             // 
             this.btAceptar.BackColor = System.Drawing.Color.Black;
-            this.btAceptar.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btAceptar.ForeColor = System.Drawing.Color.Yellow;
-            this.btAceptar.Location = new System.Drawing.Point(345, 57);
+            this.btAceptar.Font = new System.Drawing.Font("Times New Roman", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btAceptar.ForeColor = System.Drawing.Color.White;
+            this.btAceptar.Location = new System.Drawing.Point(692, 193);
             this.btAceptar.Name = "btAceptar";
-            this.btAceptar.Size = new System.Drawing.Size(95, 32);
+            this.btAceptar.Size = new System.Drawing.Size(111, 39);
             this.btAceptar.TabIndex = 3;
             this.btAceptar.Text = "Aceptar";
             this.btAceptar.UseVisualStyleBackColor = false;
@@ -72,21 +71,22 @@
             // 
             // dataGridView1
             // 
-            this.dataGridView1.BackgroundColor = System.Drawing.Color.White;
+            this.dataGridView1.BackgroundColor = System.Drawing.Color.LightGray;
             this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView1.Location = new System.Drawing.Point(3, 9);
+            this.dataGridView1.Location = new System.Drawing.Point(2, 3);
             this.dataGridView1.MultiSelect = false;
             this.dataGridView1.Name = "dataGridView1";
             this.dataGridView1.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dataGridView1.Size = new System.Drawing.Size(334, 170);
+            this.dataGridView1.Size = new System.Drawing.Size(685, 429);
             this.dataGridView1.TabIndex = 4;
+            this.dataGridView1.CurrentCellChanged += new System.EventHandler(this.dataGridView1_CurrentCellChanged);
             // 
             // BusquedaRecetaDetalle
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.BackColor = System.Drawing.Color.PaleGreen;
-            this.ClientSize = new System.Drawing.Size(448, 182);
+            this.BackColor = System.Drawing.Color.White;
+            this.ClientSize = new System.Drawing.Size(818, 433);
             this.Controls.Add(this.dataGridView1);
             this.Controls.Add(this.btAceptar);
             this.Controls.Add(this.label1);
@@ -94,6 +94,7 @@
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedToolWindow;
             this.Name = "BusquedaRecetaDetalle";
             this.Text = "BusquedaRecetaDetalle";
+            this.Load += new System.EventHandler(this.BusquedaRecetaDetalle_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();

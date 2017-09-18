@@ -86,7 +86,7 @@ namespace Data
                 rest.Peticion.AddJsonBody(new {Cocina.PlatillosMenus.Nombre});
                 rest.Cliente.ExecuteAsync(rest.Peticion, response =>
                 {
-                   switch (response.StatusCode)
+                switch (response.StatusCode)
                     {
                         case HttpStatusCode.OK:
                             callback(response);
@@ -292,6 +292,35 @@ namespace Data
                 }
             });
         }
+        public static void BuscarRecetaMenu(Action<IRestResponse> callback)
+        {
+            try
+            {
+                var rest = new Rest(Local.Api.UrlApi, Cocina.PlatillosMenus.PlatilloMenu,
+                    Method.POST);
+                rest.Peticion.AddHeader(Constantes.Http.ObtenerTipoDeContenido,
+                    Constantes.Http.TipoDeContenido.Json);
+                rest.Peticion.AddJsonBody(new { Cocina.PlatillosMenus.Clave});// la peticion debe ser un objeto
+                rest.Cliente.ExecuteAsync(rest.Peticion, response =>
+                {
+                    switch (response.StatusCode)
+                    {
+                        case HttpStatusCode.OK:
+                            callback(response);
+                            break;
+                        default:
+                            callback(null);
+                            break;
+                    }
+                });
+            }
+            catch (Exception e)
+            {
+                Opcion.Log(Log.Interno.Categoria, "EXCEPCION: " + e.Message);
+                callback(null);
+            }
+        }
+
 
         public static void AgregarDiario(Action<IRestResponse> callback)
         {

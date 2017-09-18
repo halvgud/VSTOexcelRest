@@ -34,6 +34,7 @@ namespace Herramienta
                 public static string Reporte { get; set; } = Properties.Settings.Default.ReporteDiarioX;
                 public static string CargarRepoNew { get; set; } = Properties.Settings.Default.ActRecetaDiaria;
                 public static string CargarEstadoMañana { get; set; } = Properties.Settings.Default.MostrarEstadoMañana;
+                public static string ReporteNuevoRegistro { get; set; } = Properties.Settings.Default.DiarioNuevoRegistro;
                 public static string CargarRepoNew2 { get; set; } = Properties.Settings.Default.ActRecetaDiaria2;
                 public static string Fecha { get; set; }
 
@@ -128,6 +129,7 @@ namespace Herramienta
 
             public class PlatillosMenus
             {
+                public static string PlatilloMenu { get; set; } = Properties.Settings.Default.RecetaMenuSemanal;
                 public static string ListaPlatillos { get; set; } = Properties.Settings.Default.TiposPlatillosDiarios;
                 public static string ListaPlatilloClave { get; set; } = Properties.Settings.Default.PlatilloporClave;
                 public static string SacarMsReceta { get; set; } = Properties.Settings.Default.RecetaporClave;

@@ -4,18 +4,12 @@ using Respuesta;
 using Herramienta;
 using System.Collections.Generic;
 using System.ComponentModel;
-using PresentationControls;
 using System.Globalization;
 using System.Net;
-using Herramienta.Config;
-using Font = System.Drawing.Font;
-using Label = System.Windows.Forms.Label;
-using Rectangle = System.Drawing.Rectangle;
 using System.Drawing;
 using System.Linq;
-using Microsoft.Office.Interop.Excel;
-using Point = System.Drawing.Point;
-using TextBox = System.Windows.Forms.TextBox;
+using Herramienta.Config;
+using Rectangle = System.Drawing.Rectangle;
 
 namespace ExcelAddIn1
 {
@@ -25,88 +19,46 @@ namespace ExcelAddIn1
         //Drop and Drag datagridview rows
         private Rectangle _dragBoxFromMouseDown;
         private int _rowIndexFromMouseDown;
-        //private List<IngredientesReceta> _listaIngredientesRecetas;
-
-        //private int _rowIndexOfItemUnderMouseToDrop;
-
-        public object this[string propertyName]
-        {
-            get { return typeof(MenuSemanal).GetProperty(propertyName).GetValue(this, null); }
-            set { typeof(MenuSemanal).GetProperty(propertyName).SetValue(this, value, null); }
-        }
-        public BindingList<MenuDia> Lunes { get; set; }
-        public BindingList<MenuDia> Martes { get; set; }
-        public BindingList<MenuDia> Miercoles { get; set; }
-        public BindingList<MenuDia> Jueves { get; set; }
-        public BindingList<MenuDia> Viernes { get; set; }
-        public BindingList<MenuDia> Sabado { get; set; }
-        public BindingList<MenuDia> Domingo { get; set; }
-        public class Inputs
-        {
-            public CheckBoxComboBox DiasSemana;
-            public DataGridView DtvMenus;
-        }
-        public DataGridView DgvSeleccionado;
-        public DataGridView Dgvbind;
-        public class DragDropInfo
-        {
-            public MenuDia Control { get; set; }
-            public DragDropInfo(MenuDia control)
-            {
-                Control = control;
-            }
-        }
-        private List<IngredientesReceta> _listaArticuloBasica1;
-        private  List<IngredientesReceta> _listaArticuloBasica2;
-        public List<Reporte.RespuestaCocina.TablaPreciosNuevos> _ListaActualizarListr;
-        public BindingList<Reporte.RespuestaCocina.TablaPreciosNuevos.MostrarTablaPreciosNuevos> listaBindingAct;
-
-        private BindingList<MenuDia> _listaRecetaDiarias1;
-        private List<MenuDia> _listaRecetaDiarias2;
-
-        private readonly List<TipoRecetas> _tiposrecetas;
-        private readonly List<TipoUnidades> _tiposunidades;
+        DataGridView dgv1Lunes { get; set; }
+        DataGridView dgv1Martes { get; set; }
+        DataGridView dgv1Miercoles { get; set; }
+        DataGridView dgv1Jueves { get; set; }
+        DataGridView dgv1Viernes { get; set; }
+        DataGridView dgv1Sabado { get; set; }
+        DataGridView dgv1Domingo { get; set; }
         #endregion
         public MenuSemanal()
         {
             _listaArticuloBasica1 = new List<IngredientesReceta>();
             _listaArticuloBasica2 = new List<IngredientesReceta>();
-            _listaRecetaDiarias1 = new BindingList<MenuDia>();
-            _listaRecetaDiarias2 = new List<MenuDia>();
+            _listaPlatilloLunes = new List<PlatilloReceta>();
+            _listaPlatilloMartes= new List<PlatilloReceta>();
+            _listaPlatilloMiercoles = new List<PlatilloReceta>();
+            _listaPlatilloJueves = new List<PlatilloReceta>();
+            _listaPlatilloViernes = new List<PlatilloReceta>();
+            _listaPlatilloSabado = new List<PlatilloReceta>();
+            _listaPlatilloDomingo = new List<PlatilloReceta>();
+            _listaPlatilloArreglo= new List<PlatilloReceta>();
+            _listaPlatilloTodos= new List<PlatilloReceta>();
             InitializeComponent();
+            dgv1Lunes = dgvLunes;
+            dgv1Martes = dgvMartes;
+            dgv1Miercoles = dgvMiercoles;
+            dgv1Jueves = dgvJueves;
+            dgv1Viernes = dgvViernes;
+            dgv1Sabado = dgvSabado;
+            dgv1Domingo = dgvDomingo;
             _tiposrecetas = new List<TipoRecetas>();
-            _tiposunidades = new List<TipoUnidades>();
         }
 
-        private void PopulateManualCombo()
-        {
-            cbDias.Items.Add("Todos");
-            cbDias.Items.Add("Lunes");
-            cbDias.Items.Add("Martes");
-            cbDias.Items.Add("Miercoles");
-            cbDias.Items.Add("Jueves");
-            cbDias.Items.Add("Viernes");
-            cbDias.Items.Add("Sabado");
-            cbDias.Items.Add("Domingo");
-        }
-        public class PropiedadesDgv
-        {
-            public int IdDia { get; set; }
-            public string NombreDia { get; set; }
-            public Label LabelFecha { get; set; }
-        }
-        public class TipoRecetas
-        {
-            public  int IdReceta { get; set; }
-            public  string TipoReceta { get; set; }
-        }
-        public class TipoUnidades
-        {
-            public int IdUnidad { get; set; }
-            public string Unidad { get; set; }
-        }
+       
         private void MenuSemanal_Load(object sender, EventArgs e)
         {
+            Opcion.EjecucionAsync(Data.ParametroProducto.Lista, x =>
+            {
+                CargarComboBox(x, cbTipoReceta);
+            });
+
             DoubleBuffered = true;
             Data.Reporte.PreciosActualizarTabla(t =>
             {
@@ -118,10 +70,10 @@ namespace ExcelAddIn1
                         switch (t.StatusCode)
                         {
                             case HttpStatusCode.OK:
-                                _ListaActualizarListr = liq.Where(x => x.Modificacion == "Actualizar").ToList();
-                                if (_ListaActualizarListr.Count > 0)
+                              ListaActualizarListr   = liq.Where(x => x.Modificacion == "Actualizar").ToList();
+                                if (ListaActualizarListr.Count > 0)
                                 {
-                                    if ((MessageBox.Show(@"Visualizar Menu de Productos con Precio Nuevo", " ", MessageBoxButtons.YesNo) == DialogResult.Yes))
+                                    if ((MessageBox.Show(@"Visualizar Menu de Productos con Precio Nuevo", @" ", MessageBoxButtons.YesNo) == DialogResult.Yes))
                                     {
                                         ActualizarPrecios frm = new ActualizarPrecios();
                                         frm.Show();
@@ -133,13 +85,13 @@ namespace ExcelAddIn1
                 }
             });
             PopulateManualCombo();
-            dgvLunes.Tag = new PropiedadesDgv { IdDia = 1, NombreDia = "Lunes", LabelFecha = FechaLunes };
-            dgvMartes.Tag = new PropiedadesDgv { IdDia = 2, NombreDia = "Martes", LabelFecha = FechaMartes };
-            dgvMiercoles.Tag = new PropiedadesDgv { IdDia = 3, NombreDia = "Miercoles", LabelFecha = FechaMiercoles };
-            dgvJueves.Tag = new PropiedadesDgv { IdDia = 4, NombreDia = "Jueves", LabelFecha = FechaJueves };
-            dgvViernes.Tag = new PropiedadesDgv { IdDia = 5, NombreDia = "Viernes", LabelFecha = FechaViernes };
-            dgvSabado.Tag = new PropiedadesDgv { IdDia = 6, NombreDia = "Sabado", LabelFecha = FechaSabado };
-            dgvDomingo.Tag = new PropiedadesDgv { IdDia = 7, NombreDia = "Domingo", LabelFecha = FechaDomingo };
+            dgvLunes.Tag = new PropiedadesDgv { IdDia = 1, NombreDia = "Lunes", LabelFecha = FechaLunes,DGV=dgvLunes };
+            dgvMartes.Tag = new PropiedadesDgv { IdDia = 2, NombreDia = "Martes", LabelFecha = FechaMartes, DGV = dgvMartes };
+            dgvMiercoles.Tag = new PropiedadesDgv { IdDia = 3, NombreDia = "Miercoles", LabelFecha = FechaMiercoles, DGV = dgvMiercoles };
+            dgvJueves.Tag = new PropiedadesDgv { IdDia = 4, NombreDia = "Jueves", LabelFecha = FechaJueves, DGV = dgvJueves };
+            dgvViernes.Tag = new PropiedadesDgv { IdDia = 5, NombreDia = "Viernes", LabelFecha = FechaViernes , DGV = dgvViernes};
+            dgvSabado.Tag = new PropiedadesDgv { IdDia = 6, NombreDia = "Sabado", LabelFecha = FechaSabado , DGV = dgvSabado};
+            dgvDomingo.Tag = new PropiedadesDgv { IdDia = 7, NombreDia = "Domingo", LabelFecha = FechaDomingo , DGV = dgvDomingo};
 
             _tiposrecetas.Add(new TipoRecetas { IdReceta = 1, TipoReceta = "Guarnicion" });
             _tiposrecetas.Add(new TipoRecetas { IdReceta = 2, TipoReceta = "Fritangas" });
@@ -151,97 +103,80 @@ namespace ExcelAddIn1
             _tiposrecetas.Add(new TipoRecetas { IdReceta = 8, TipoReceta = "Cerdo" });
             _tiposrecetas.Add(new TipoRecetas { IdReceta = 9, TipoReceta = "Pollo" });
             _tiposrecetas.Add(new TipoRecetas { IdReceta = 10, TipoReceta = "Mariscos" });
-
-            _tiposunidades.Add(new TipoUnidades {IdUnidad = 1, Unidad = "PZA" });
-            _tiposunidades.Add(new TipoUnidades { IdUnidad = 2, Unidad = "CAJA" });
-            _tiposunidades.Add(new TipoUnidades { IdUnidad = 3, Unidad = "m" });
-            _tiposunidades.Add(new TipoUnidades { IdUnidad = 4, Unidad = "KG" });
-            _tiposunidades.Add(new TipoUnidades { IdUnidad = 5, Unidad = "LT" });
-            _tiposunidades.Add(new TipoUnidades { IdUnidad = 6, Unidad = "NA" });
-            _tiposunidades.Add(new TipoUnidades { IdUnidad = 7, Unidad = "20" });
-            _tiposunidades.Add(new TipoUnidades { IdUnidad = 8, Unidad = "GR" });
-            _tiposunidades.Add(new TipoUnidades { IdUnidad = 9, Unidad = "Pqt" });
             btPreviaPlatilloGlobal.Enabled = false;
             btPreviaPlatillo.Enabled = false;
             btAgregarSemana.Enabled = false;
             btGuardar.Enabled = false;
-        }
-        public static DateTime FirstDayOfWeek(DateTime date)
-        {
-            var fdow = CultureInfo.CurrentCulture.DateTimeFormat.FirstDayOfWeek;
-            var offset = fdow - date.DayOfWeek;
-            var fdowDate = date.AddDays(offset);
-            return fdowDate;
-        }
-        public static DateTime LastDayOfWeek(DateTime date)
-        {
-            var ldowDate = FirstDayOfWeek(date).AddDays(6);
-            return ldowDate;
+            tbPlatillo.Enabled= false;
+            cbTipoReceta.Enabled = false;
+            btPlatillo.Enabled= false;
+            ckPlatillo.Enabled = false;
+            ckTipoReceta.Enabled = false;
+            label2.Enabled = false;
+            btOrdenTrabajo.Enabled = false;
+            vScrollBar2.Enabled = false;
+            btImprimirMenu.Enabled=false;
+            btBorrarFila.Enabled = false;
         }
         // ReSharper disable once FunctionComplexityOverflow
         private void InicializarDgv(Control parent)
-        {
-           
+        {          
             foreach (Control c in parent.Controls)
             {
                 IncializarDgvDetalle(c);
             }
         }
-
+        bool flagDataSource = false;
         private void IncializarDgvDetalle(Control parent1)
         {
             var view = parent1 as DataGridView;
             if (view != null)
             {
                 var pivote = view;
+                if (!flagDataSource) { 
                 pivote.DataSource = null;
                 pivote.Rows.Clear();
                 pivote.Columns.Clear();
                 btGuardar.Enabled = false;
-                var col = new DataGridViewComboBoxColumn
-                {
-                    Name = "TipoRecetaDgv",
-                    DataPropertyName = "TipoRecetaDgv",
-                    HeaderText = @"TipoReceta",
-                    DataSource = _tiposrecetas,
-                    DisplayMember = "TipoReceta",
-                    ValueMember = "TipoReceta"
-                };
-                var col2 = new DataGridViewComboBoxColumn
-                {
-                    Name = "UnidadDgv",
-                    DataPropertyName = "UnidadDgv",
-                    HeaderText = @"Unidad",
-                    DataSource = _tiposunidades,
-                    DisplayMember = "Unidad",
-                    ValueMember = "Unidad"
-                };
-                pivote.Columns.Add(col);
-                pivote.Columns.Add(col2);
+                    //var col = new DataGridViewComboBoxColumn
+                    //{
+                    //    Name = "TipoReceta",
+                    //    DataPropertyName = "TipoReceta",
+                    //    HeaderText = @"TipoReceta",
+                    //    DataSource = _tiposrecetas,
+                    //    DisplayMember = "TipoReceta",
+                    //    ValueMember = "TipoReceta"
+                    //};
+
+                    //pivote.Columns.Add(col);
+                }
                 var propiedadesDgv = pivote.Tag as PropiedadesDgv;
-                if (propiedadesDgv != null)
-                    pivote.DataSource = this[propiedadesDgv.NombreDia] as BindingList<MenuDia>;
+                if (propiedadesDgv != null && !flagDataSource)
+                pivote.DataSource = this[propiedadesDgv.NombreDia] as BindingList<MenuDia>;
                 pivote.Columns["CantidadReceta"].ReadOnly = true;
-                pivote.Columns["GananciaTotal"].ReadOnly = true;
-                pivote.Columns["PrecioCompra"].ReadOnly = true;
+                pivote.Columns["Venta"].ReadOnly = true;
+                pivote.Columns["Precio"].ReadOnly = true;
                 pivote.Columns["Congelado"].ReadOnly = true;
-                var dataGridViewColumn1 = pivote.Columns["UnidadDgv"];
-                if (dataGridViewColumn1 != null) dataGridViewColumn1.DisplayIndex = 4;
+                pivote.Columns["Unidad"].ReadOnly = true;
+                pivote.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
                 //pivote.DefaultCellStyle.Font = new Font("Microsoft Sans Serif", 6);
-                pivote.Columns[1].Width = 300;
-                pivote.Columns[0].Width = 100;
-                pivote.Columns[3].Width = 120;
-                var column = pivote.Columns["Unidad"];
-                if (column != null) column.Width = 20;
+                pivote.Columns[0].Width = 70;
+                pivote.Columns[1].Width = 230;
+                pivote.Columns["Unidad"].Width = 40;
+                pivote.Columns["Venta"].Width = 50;
+                pivote.Columns["Congelado"].Width = 50;
+                pivote.Columns["Precio"].Width = 50;
+                pivote.Columns["CantidadElab"].Width = 65;
                 pivote.AllowUserToAddRows = true;
                 pivote.RowHeadersVisible = false;
-                var dataGridViewColumn = pivote.Columns["CantidadElaborar"];
+                pivote.Columns["Unidad"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
+                var dataGridViewColumn = pivote.Columns["CantidadElab"];
                 if (dataGridViewColumn != null)
                     dataGridViewColumn.DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
-                var gridViewColumn = pivote.Columns["PrecioCompra"];
+                var gridViewColumn = pivote.Columns["Precio"];
                 if (gridViewColumn != null)
                     gridViewColumn.DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
-                var viewColumn = pivote.Columns["GananciaTotal"];
+                var viewColumn = pivote.Columns["Venta"];
                 if (viewColumn != null)
                     viewColumn.DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
                 var dataGridViewColumn2 = pivote.Columns["Congelado"];
@@ -252,23 +187,26 @@ namespace ExcelAddIn1
                     gridViewColumn2.DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
                 var gridViewColumn1 = pivote.Columns["MenId"];
                 if (gridViewColumn1 != null) gridViewColumn1.Visible = false;
+                pivote.Columns["UltimaElaboracion"].Visible = false;
+                pivote.Columns["CantidadReceta"].Visible = false;
+                montototal(pivote);
 
                 var fecha = DateTime.Parse((pivote.Tag as PropiedadesDgv)?.LabelFecha.Text, CultureInfo.CurrentCulture);
                 var result = DateTime.Compare(fecha, DateTime.Today);
-                if (result > 0)
+                if (result >= 0)
                 {
                     for (var x = 0; x < pivote.Rows.Count; x++)
                     {
-                        pivote.Rows[x].Cells["Congelado"].Style.BackColor = Color.Aqua;
-                        pivote.Rows[x].Cells["CantidadReceta"].Style.BackColor = Color.Orange;
-                        pivote.Rows[x].Cells["PrecioCompra"].Style.BackColor = Color.Orange;
-                        pivote.Rows[x].Cells["GananciaTotal"].Style.BackColor = Color.Orange;
-                        //pivote.DefaultCellStyle.Font = new Font("Microsoft Sans Serif", 6);
-                        pivote.Columns[1].Width = 300;
-                        pivote.Columns[0].Width = 100;
-                        pivote.Columns[3].Width = 120;
-                        var columsn = pivote.Columns["Unidad"];
-                        if (columsn != null) columsn.Width = 20;
+                        if (Convert.ToInt32(pivote.Rows[x].Cells["Congelado"].Value) > 0)
+                        {
+                            MessageBox.Show(@"Existe congelado en en Menú del dia " + @" " + (pivote.Tag as PropiedadesDgv)?.NombreDia + @" " + @"favor de verificar");
+                        }
+                        //pivote.Rows[x].Cells["CantidadReceta"].Style.BackColor = Color.Orange;
+                        pivote.Rows[x].Cells["Precio"].Style.BackColor = Color.Orange;
+                        pivote.Rows[x].Cells["Venta"].Style.BackColor = Color.Orange;
+                        pivote.Rows[x].Cells["Unidad"].Style.BackColor = Color.Orange;
+                        //pivote.Columns["Congelado"].Width = 80;
+                        //pivote.Columns["Precio"].Width = 80;
                     }
                     pivote.Enabled = true;
                     pivote.DefaultCellStyle.BackColor = Color.Gainsboro;
@@ -277,56 +215,32 @@ namespace ExcelAddIn1
                 }
                 else
                 {
-                    pivote.Columns["TipoRecetaDgv"].ReadOnly = true;
+                    pivote.Columns["TipoReceta"].ReadOnly = true;
                     pivote.Columns["Platillo"].ReadOnly = true;
                     pivote.Columns["CantidadReceta"].ReadOnly = true;
-                    pivote.Columns["CantidadElaborar"].ReadOnly = true;
-                    pivote.Columns["UnidadDgv"].ReadOnly = true;
-                    pivote.Columns["PrecioCompra"].ReadOnly = true;
-                    pivote.Columns["GananciaTotal"].ReadOnly = true;
+                    pivote.Columns["CantidadElab"].ReadOnly = true;
+                    pivote.Columns["Unidad"].ReadOnly = true;
+                    pivote.Columns["Precio"].ReadOnly = true;
+                    pivote.Columns["Venta"].ReadOnly = true;
                     pivote.Columns["Congelado"].ReadOnly = true;
                     pivote.Columns["MenId"].ReadOnly = true;
-                    //pivote.DefaultCellStyle.Font = new Font("Microsoft Sans Serif", 6);
-                    pivote.Columns[1].Width = 300;
-                    pivote.Columns[0].Width = 100;
-                    pivote.Columns[3].Width = 120;
-                    var coludmn = pivote.Columns["Unidad"];
-                    if (coludmn != null) coludmn.Width = 20;
+                    pivote.Columns["Congelado"].Width = 80;
+                    pivote.Columns["Precio"].Width = 80;
+                    pivote.Columns["CantidadElab"].Width = 65;
                     pivote.Columns["Congelado"].Visible = false;
                     pivote.Columns["CantidadReceta"].Visible = false;
                     pivote.DefaultCellStyle.BackColor = Color.Yellow;
-
+                   
                 }
                 foreach (DataGridViewRow row in pivote.Rows)
                 {
+                    
                     pivote.Rows[row.Index].Cells["Congelado"].Style.BackColor = Color.Aqua;
                 }
             }
             else
             {
                 InicializarDgv(parent1);
-            }
-        }
-        private void BorrarDgv(Control parent)
-        {
-            foreach (Control c in parent.Controls)
-{
-                var view = c as DataGridView;
-                if (view != null)
-                {
-                    
-                   CheckForIllegalCrossThreadCalls = false;
-                    var pivote = view;
-
-                    pivote.DataSource = null;
-                    pivote.Rows.Clear();
-                    pivote.Columns.Clear();
-                    btGuardar.Enabled = false;
-                }
-                else
-                {
-                    BorrarDgv(c);
-                }
             }
         }
         private void DgvVacios(Control parent)
@@ -342,15 +256,22 @@ namespace ExcelAddIn1
                     var result = DateTime.Compare(fecha, DateTime.Today);
                     if (result >= 0)
                     {
+                        ////BindingList<MenuDia> filavacia=new BindingList<MenuDia>();
+                        ////filavacia.Add(new MenuDia());
+
+                        //pivote.DataSource = new BindingList<MenuDia>();
+
                         pivote.Rows.Clear();
                         IncializarDgvDetalle(pivote);
+
+
                     }
                     foreach (DataGridViewRow row in pivote.Rows)
                     {
                         pivote.Rows[row.Index].Cells["Congelado"].Style.BackColor = Color.Aqua;
                         pivote.Rows[row.Index].Cells["CantidadReceta"].Style.BackColor = Color.Orange;
-                        pivote.Rows[row.Index].Cells["PrecioCompra"].Style.BackColor = Color.Orange;
-                        pivote.Rows[row.Index].Cells["GananciaTotal"].Style.BackColor = Color.Orange;
+                        pivote.Rows[row.Index].Cells["Precio"].Style.BackColor = Color.Orange;
+                        pivote.Rows[row.Index].Cells["Venta"].Style.BackColor = Color.Orange;
                     }
                 }
                 else
@@ -363,17 +284,41 @@ namespace ExcelAddIn1
         {
             var diainicio = FirstDayOfWeek(DtpFecha.Value).ToShortDateString();
             var diafinal = LastDayOfWeek(DtpFecha.Value).ToShortDateString();
+            var lunes = Convert.ToDateTime(diainicio).ToShortDateString();
             FechaLunes.Text = Convert.ToDateTime(diainicio).ToShortDateString();
-            FechaMartes.Text = Convert.ToDateTime(diainicio).AddDays(1).ToShortDateString();
+            var martes= Convert.ToDateTime(diainicio).AddDays(1).ToShortDateString();
+            FechaMartes.Text= Convert.ToDateTime(diainicio).AddDays(1).ToShortDateString();
+            var miercoles= Convert.ToDateTime(diainicio).AddDays(2).ToShortDateString();
             FechaMiercoles.Text = Convert.ToDateTime(diainicio).AddDays(2).ToShortDateString();
+            var jueves = Convert.ToDateTime(diainicio).AddDays(3).ToShortDateString();
             FechaJueves.Text= Convert.ToDateTime(diainicio).AddDays(3).ToShortDateString();
-            FechaViernes.Text = Convert.ToDateTime(diainicio).AddDays(4).ToShortDateString();
-            FechaSabado.Text = Convert.ToDateTime(diainicio).AddDays(5).ToShortDateString();
-            FechaDomingo.Text = Convert.ToDateTime(diafinal).ToShortDateString();
+            var viernes = Convert.ToDateTime(diainicio).AddDays(4).ToShortDateString();
+            FechaViernes.Text= Convert.ToDateTime(diainicio).AddDays(4).ToShortDateString();
+            var sabado = Convert.ToDateTime(diainicio).AddDays(5).ToShortDateString();
+            FechaSabado.Text= Convert.ToDateTime(diainicio).AddDays(5).ToShortDateString();
+            var domingo= Convert.ToDateTime(diafinal).ToShortDateString();
+            FechaDomingo.Text= Convert.ToDateTime(diafinal).ToShortDateString();
+            LabelLunes.Text = @"Lunes: " + lunes;
+            LabelMartes.Text = @"Martes: " + martes;
+            LabelMiercoles.Text = @"Miercoles: " + miercoles;
+            LabelJueves.Text = @"Jueves: " + jueves;
+            LabelViernes.Text = @"Viernes:" + viernes;
+            LabelSabado.Text = @"Sabado:" + sabado;
+            LabelDomingo.Text = @"Domingo:" + domingo;
             var diainicioactual = FirstDayOfWeek(DateTime.Today);
             var diadtp = (DtpFecha.Value);
             var dtpvalue = DtpFecha.Value.ToShortDateString();
+            vScrollBar2.Enabled = true;
 
+            btPlatillo.Enabled = !(diadtp < diainicioactual);
+            //cbTipoReceta.Enabled = !(diadtp < diainicioactual);
+            //tbPlatillo.Enabled = !(diadtp < diainicioactual);
+            label2.Enabled = !(diadtp < diainicioactual);
+            ckPlatillo.Enabled = !(diadtp < diainicioactual);
+            ckTipoReceta.Enabled = !(diadtp < diainicioactual);
+            btOrdenTrabajo.Enabled = !(diadtp < diainicioactual);
+            btBorrarFila.Enabled= !(diadtp < diainicioactual);
+            btImprimirMenu.Enabled= !(diadtp < diainicioactual);
             if (diadtp < diainicioactual)
             {
                 Opcion.EjecucionAsync(x =>
@@ -392,7 +337,7 @@ namespace ExcelAddIn1
                     switch (jsonResult.StatusCode)
                     {
                         case HttpStatusCode.OK:
-                            Lunes = new BindingList<MenuDia>(Opcion.JsonaClaseGenerica2<Respuesta.MenuSemanal>(jsonResult).Lunes);
+                            Lunes= new BindingList<MenuDia>(Opcion.JsonaClaseGenerica2<Respuesta.MenuSemanal>(jsonResult).Lunes);
                             Martes =  new BindingList<MenuDia>(Opcion.JsonaClaseGenerica2<Respuesta.MenuSemanal>(jsonResult).Martes);
                             Miercoles = new BindingList<MenuDia>(Opcion.JsonaClaseGenerica2<Respuesta.MenuSemanal>(jsonResult).Miercoles);
                             Jueves =  new BindingList<MenuDia>(Opcion.JsonaClaseGenerica2<Respuesta.MenuSemanal>(jsonResult).Jueves);
@@ -438,7 +383,7 @@ namespace ExcelAddIn1
                     {
                         if (dtpvalue==diainicio && _agregarSemanaActual)
                         {
-                             MessageBox.Show(@"No se pueden agregar menus pasados, ya existe un menu semanal", "", MessageBoxButtons.OK, MessageBoxIcon.Error);  
+                             MessageBox.Show(@"No se pueden agregar menús pasados, ya existe un menú semanal", "", MessageBoxButtons.OK, MessageBoxIcon.Error);  
                         }
                         BeginInvoke((MethodInvoker)(() =>
                         {
@@ -472,25 +417,13 @@ namespace ExcelAddIn1
                         }
                         else
                         {
-                                DgvVacios(this);
-                                MessageBox.Show(@"No se encontraron menus con los parametros de busqueda ingresados");
+                            DgvVacios(this);
+                            MessageBox.Show(@"No se encontraron menus con los parametros de busqueda ingresados");
                         }
                     }
                 });
             }
         }
-        private void cbDias_SelectedIndexChanged(object sender, EventArgs e)
-        {   
-            if (cbDias.Items.Count > 0)
-            { 
-                for (var x = 1; x <= 7; x++)
-                {
-                    cbDias.CheckBoxItems[x].Checked = cbDias.CheckBoxItems[0].Checked;
-                }
-            }
-            btAgregarSemana.Enabled = true;
-        }
-
         private bool _agregarSemanaActual = false;
         private void btAgregarSemana_Click(object sender, EventArgs e)
         {
@@ -537,27 +470,27 @@ namespace ExcelAddIn1
                                     if (dd > 0)
                                         {
                                             pivote.Rows[i1].Cells["Congelado"].Value = dd;
-                                              MessageBox.Show(@"Existe congelado, favor de verificar");
+                                            //MessageBox.Show(@"Existe congelado en en Menú del dia " + @" " + pivote.Name + @" " + @"favor de verificar");
                                             pivote.Rows[i1].Cells["Congelado"].Style.BackColor = Color.Aqua;
                                         }
                                     }));
                                 });
-                              }
+                              }   
                         }
-                    
                     }
                     if (cbDias.CheckBoxItems[Convert.ToInt32((view.Tag as PropiedadesDgv)?.IdDia)].Checked) continue;
                     pivote.DefaultCellStyle.BackColor = Color.Gainsboro;
-                    pivote.Columns["TipoRecetaDgv"].ReadOnly = false;
+                    pivote.Columns["TipoReceta"].ReadOnly = false;
                     pivote.Columns["Platillo"].ReadOnly = false;
-                    pivote.Columns["CantidadElaborar"].ReadOnly = false;
-                    pivote.Columns["UnidadDgv"].ReadOnly = false;
-                    var viewColumn1 = pivote.Columns["CantidadReceta"];
-                    if (viewColumn1 != null) viewColumn1.Visible = true;
+                    pivote.Columns["CantidadElab"].ReadOnly = false;
+                    //var viewColumn1 = pivote.Columns["CantidadReceta"];
+                    //if (viewColumn1 != null) viewColumn1.Visible = true;
                     var column1 = pivote.Columns["Congelado"];
-                    if (column1 != null) column1.Visible = true;
+                    if (column1 != null) column1.Visible = true; 
                     pivote.Rows.Clear();
+                    montototal(pivote);
                 }
+
                 else
                 {
                     MoverDatosSemanaActual(c);
@@ -571,9 +504,11 @@ namespace ExcelAddIn1
             {
                 var pivote = view;
                 var row = pivote.CurrentCell.RowIndex;
-                    if (pivote.Rows.Count > 0 & Convert.ToString(pivote.Rows[row].Cells[1].Value) != "" && pivote.Rows[row].Cells[1].Value != null)
+                for (var i = 0; i < pivote.Rows.Count -1; i++)
+                {
+                    if (pivote.Rows.Count > 0 & Convert.ToString(pivote.Rows[i].Cells[1].Value) != "" && pivote.Rows[i].Cells[1].Value != null)
                     {
-                         var dato = Convert.ToString(pivote.Rows[row].Cells["Platillo"].Value.ToString());
+                         var dato = Convert.ToString(pivote.Rows[i].Cells["Platillo"].Value.ToString());
                         char[] separador = { '(', ')' };
                         var valor = Convert.ToString(dato).Split(separador);
                         var clave = valor[1];
@@ -583,11 +518,11 @@ namespace ExcelAddIn1
                             BeginInvoke((MethodInvoker)(() =>
                             {
                                 var dd = Opcion.JsonaClaseGenerica<PlatilloReceta>(y).Congelado;
-                                pivote.Rows[row].Cells["Congelado"].Value = dd;
-                                pivote.Rows[row].Cells["Congelado"].Style.BackColor = Color.Aqua;
-                                if (Convert.ToInt16(pivote.Rows[row].Cells["Congelado"].Value) > 0)
+                                pivote.Rows[i-1].Cells["Congelado"].Value = dd;
+                                //pivote.Rows[i].Cells["Congelado"].Style.BackColor = Color.Aqua;
+                                if (Convert.ToInt16(pivote.Rows[i-1].Cells["Congelado"].Value) > 0)
                                 {
-                                    MessageBox.Show(@"Existe congelado, favor de verificar");
+                                    MessageBox.Show(@"Existe congelado en en Menú del dia favor de verificar");
                                 }
                             }));
                         });
@@ -595,12 +530,16 @@ namespace ExcelAddIn1
                         {
                             BeginInvoke((MethodInvoker)(() =>
                             {
-                                var cantidadreceta = Opcion.JsonaClaseGenerica<PlatilloReceta>(z).CantidadReceta;
-                                var preciocompra = Opcion.JsonaClaseGenerica<PlatilloReceta>(z).PrecioCompra;
-                                pivote.Rows[row].Cells["PrecioCompra"].Value = preciocompra;
-                                pivote.Rows[row].Cells["CantidadReceta"].Value = cantidadreceta;
+                                //var cantidadreceta = Opcion.JsonaClaseGenerica<PlatilloReceta>(z).CantidadReceta;
+                                var precio = Opcion.JsonaClaseGenerica<PlatilloReceta>(z).Precio;
+                                var unidad = Opcion.JsonaClaseGenerica<PlatilloReceta>(z).Unidad;
+                                pivote.Rows[i-1].Cells["Precio"].Value = precio;
+                                //pivote.Rows[i].Cells["CantidadReceta"].Value = cantidadreceta;
+                                pivote.Rows[i-1].Cells["Unidad"].Value = unidad;
                             }));
                         });
+                    }
+                    montototal(pivote);
                 }
             }
         }
@@ -618,76 +557,56 @@ namespace ExcelAddIn1
             {
                 (this[propertyName] as BindingList<MenuDia>)?.Remove(c);
                 dgv.DataSource = null;
-                var col = new DataGridViewComboBoxColumn
-                {
-                    Name = "TipoRecetaDgv",
-                    DataPropertyName = "TipoRecetaDgv",
-                    HeaderText = @"TipoReceta",
-                    DataSource = _tiposrecetas,
-                    DisplayMember = "TipoReceta",
-                    ValueMember = "TipoReceta"
-                };
-                var col2 = new DataGridViewComboBoxColumn
-                {
-                    Name = "UnidadDgv",
-                    DataPropertyName = "UnidadDgv",
-                    HeaderText = @"Unidad",
-                    DataSource = _tiposunidades,
-                    DisplayMember = "Unidad",
-                    ValueMember = "Unidad"
-                };  
-                dgv.Columns.Add(col2);
-                dgv.Columns.Add(col);
+                //var col = new DataGridViewComboBoxColumn
+                //{
+                //    Name = "TipoReceta",
+                //    DataPropertyName = "TipoReceta",
+                //    HeaderText = @"TipoReceta",
+                //    DataSource = _tiposrecetas,
+                //    DisplayMember = "TipoReceta",
+                //    ValueMember = "TipoReceta"
+                //};
+               
+                //dgv.Columns.Add(col);
                 dgv.DataSource = (this[propertyName] as BindingList<MenuDia>);
                 var dataGridViewColum = dgv.Columns["MenId"];
                 if (dataGridViewColum != null) dataGridViewColum.Visible = false;
-                var viewColum = dgv.Columns["UnidadDgv"];
-                if (viewColum != null) viewColum.DisplayIndex = 4;
-                var dataGridViewColumn = dgv.Columns["CantidadElaborar"];
+                dgv.Columns["CantidadReceta"].Visible = false;
+                dgv.Columns["UltimaElaboracion"].Visible = false;
+                dgv.Columns["Unidad"].DefaultCellStyle.Alignment=DataGridViewContentAlignment.MiddleCenter;
+                var dataGridViewColumn = dgv.Columns["CantidadElab"];
                 if (dataGridViewColumn != null)
                     dataGridViewColumn.DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
-                var gridViewColumn = dgv.Columns["PrecioCompra"];
+                var gridViewColumn = dgv.Columns["Precio"];
                 if (gridViewColumn != null)
                     gridViewColumn.DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
-                var viewColumn = dgv.Columns["GananciaTotal"];
+                var viewColumn = dgv.Columns["Venta"];
                 if (viewColumn != null)
                     viewColumn.DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
                 var dataGridViewColumn2 = dgv.Columns["Congelado"];
                 if (dataGridViewColumn2 != null)
-                    dataGridViewColumn2.DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
-                var gridViewColumn2 = dgv.Columns["CantidadReceta"];
-                if (gridViewColumn2 != null)
-                    gridViewColumn2.DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
-                //pivote.DefaultCellStyle.Font = new Font("Microsoft Sans Serif", 6);
-                dgv.Columns[1].Width = 300;
-                dgv.Columns[0].Width = 100;
-                dgv.Columns[3].Width = 120;
-                var column = dgv.Columns["Unidad"];
-                if (column != null) column.Width = 20;
+                  dataGridViewColumn2.DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
+                //var gridViewColumn2 = dgv.Columns["CantidadReceta"];
+                //if (gridViewColumn2 != null)
+                //    gridViewColumn2.DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
+                dgv.Columns[0].Width = 70;
+                dgv.Columns[1].Width = 230;
+                dgv.Columns["Unidad"].Width = 40;
+                dgv.Columns["Venta"].Width = 50;
+                dgv.Columns["Congelado"].Width = 50;
+                dgv.Columns["Precio"].Width = 50;
+                dgv.Columns["CantidadElab"].Width = 65;
                 foreach (DataGridViewRow row in dgv.Rows)
                 {
                     dgv.Rows[row.Index].Cells["Congelado"].Style.BackColor = Color.Aqua;
-                    dgv.Rows[row.Index].Cells["CantidadReceta"].Style.BackColor = Color.Orange;
-                    dgv.Rows[row.Index].Cells["PrecioCompra"].Style.BackColor = Color.Orange;
-                    dgv.Rows[row.Index].Cells["GananciaTotal"].Style.BackColor = Color.Orange;
+                    //dgv.Rows[row.Index].Cells["CantidadReceta"].Style.BackColor = Color.Orange;
+                    dgv.Rows[row.Index].Cells["Precio"].Style.BackColor = Color.Orange;
+                    dgv.Rows[row.Index].Cells["Venta"].Style.BackColor = Color.Orange;
+                    dgv.Rows[row.Index].Cells["Unidad"].Style.BackColor = Color.Orange;
                 }
             }            
         }
-        private void dgvGenerico_MouseDown(object sender,MouseEventArgs e)
-        {
-            var pivote = (DataGridView)sender;
-            _rowIndexFromMouseDown = pivote.HitTest(e.X, e.Y).RowIndex;
-            if (_rowIndexFromMouseDown != -1)
-            {
-                var dragSize = SystemInformation.DragSize;
-                _dragBoxFromMouseDown = new Rectangle(new Point(e.X - (dragSize.Width / 2),
-                    e.Y - (dragSize.Height / 2)),
-                    dragSize);
-            }
-            else
-                _dragBoxFromMouseDown = Rectangle.Empty;
-         
-        }
+        
         private void dgvGenerico_DragDrop(object sender, DragEventArgs e)
         {
             var pivote = (DataGridView)sender;
@@ -704,105 +623,58 @@ namespace ExcelAddIn1
             {
                 var c = e.Data.GetData(typeof(DragDropInfo)) as DragDropInfo;  
                 (this[(pivote.Tag as PropiedadesDgv)?.NombreDia] as BindingList<MenuDia>)?.Add(c?.Control);
-                pivote.DataSource = null;//esto es para el row
-                var col = new DataGridViewComboBoxColumn
-                {
-                    Name = "TipoRecetaDgv",
-                    DataPropertyName = "TipoRecetaDgv",
-                    HeaderText = @"TipoReceta",
-                    DataSource = _tiposrecetas,
-                    DisplayMember = "TipoReceta",
-                    ValueMember = "TipoReceta"
-                };
-                var col2 = new DataGridViewComboBoxColumn
-                {
-                    Name = "UnidadDgv",
-                    DataPropertyName = "UnidadDgv",
-                    HeaderText = @"Unidad",
-                    DataSource = _tiposunidades,
-                    DisplayMember = "Unidad",
-                    ValueMember = "Unidad"
-                };
-                pivote.Columns.Add(col2);
-                pivote.Columns.Add(col);
-      
+               
+                pivote.DataSource = null;
+                //var col = new DataGridViewComboBoxColumn
+                //{
+                //    Name = "TipoReceta",
+                //    DataPropertyName = "TipoReceta",
+                //    HeaderText = @"TipoReceta",
+                //    DataSource = _tiposrecetas,
+                //    DisplayMember = "TipoReceta",
+                //    ValueMember = "TipoReceta"
+                //};
+                //pivote.Columns.Add(col);
+                /*por aqui */
                 pivote.DataSource = (this[(pivote.Tag as PropiedadesDgv)?.NombreDia] as BindingList<MenuDia>);
-                var viewColumn = pivote.Columns["UnidadDgv"];
-                if (viewColumn != null) viewColumn.DisplayIndex = 4;
                 var dataGridViewColum = pivote.Columns["MenId"];
                 if (dataGridViewColum != null) dataGridViewColum.Visible = false;
-                var dataGridViewColumn = pivote.Columns["CantidadElaborar"];
+                pivote.Columns["UltimaElaboracion"].Visible = false;
+                pivote.Columns["CantidadReceta"].Visible = false;
+                var dataGridViewColumn = pivote.Columns["CantidadElab"];
                 if (dataGridViewColumn != null)
                     dataGridViewColumn.DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
-                var gridViewColumn = pivote.Columns["PrecioCompra"];
+                var gridViewColumn = pivote.Columns["Precio"];
                 if (gridViewColumn != null)
                     gridViewColumn.DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
-                var viewColum = pivote.Columns["GananciaTotal"];
+                var viewColum = pivote.Columns["Venta"];
                 if (viewColum != null)
                     viewColum.DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
                 var dataGridViewColumn2 = pivote.Columns["Congelado"];
                 if (dataGridViewColumn2 != null)
                     dataGridViewColumn2.DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
-                var gridViewColumn2 = pivote.Columns["CantidadReceta"];
-                if (gridViewColumn2 != null)
-                    gridViewColumn2.DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
-                //pivote.DefaultCellStyle.Font = new Font("Microsoft Sans Serif", 6);
-                pivote.Columns[1].Width = 300;
-                pivote.Columns[0].Width = 100;
-                pivote.Columns[3].Width = 120;
-                var column = pivote.Columns["Unidad"];
-                if (column != null) column.Width = 20;
+                //var gridViewColumn2 = pivote.Columns["CantidadReceta"];
+                //if (gridViewColumn2 != null)
+                //    gridViewColumn2.DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter; 
+                    pivote.Columns["Unidad"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
+                pivote.Columns[0].Width = 70;
+                pivote.Columns[1].Width = 230;
+                pivote.Columns["Unidad"].Width = 40;
+                pivote.Columns["Venta"].Width = 50;
+                pivote.Columns["Congelado"].Width = 50;
+                pivote.Columns["Precio"].Width = 50;
+                pivote.Columns["CantidadElab"].Width = 65;
                 foreach (DataGridViewRow row in pivote.Rows)
                 {
                     pivote.Rows[row.Index].Cells["Congelado"].Style.BackColor = Color.Aqua;
-                    pivote.Rows[row.Index].Cells["CantidadReceta"].Style.BackColor = Color.Orange;
-                    pivote.Rows[row.Index].Cells["PrecioCompra"].Style.BackColor = Color.Orange;
-                    pivote.Rows[row.Index].Cells["GananciaTotal"].Style.BackColor = Color.Orange;
+                    //pivote.Rows[row.Index].Cells["CantidadReceta"].Style.BackColor = Color.Orange;
+                    pivote.Rows[row.Index].Cells["Precio"].Style.BackColor = Color.Orange;
+                    pivote.Rows[row.Index].Cells["Venta"].Style.BackColor = Color.Orange;
+                    pivote.Rows[row.Index].Cells["Unidad"].Style.BackColor = Color.Orange;
                 }
             }
         }
-        private void dgvGenerico_DragOver(object sender, DragEventArgs e)
-        {
-            e.Effect = DragDropEffects.Move;
-        }
-        #endregion
-        private void Generico_EditingControlShowing(object sender, DataGridViewEditingControlShowingEventArgs e)
-        {
-            var pivote = (DataGridView)sender;
-            var rowIndex = pivote.CurrentCell.RowIndex;
-            var valor = Convert.ToString(pivote.Rows[rowIndex].Cells[0].Value);
-            var column = pivote.CurrentCell.ColumnIndex;
-            var headerText = pivote.Columns[column].HeaderText;
-
-            e.Control.KeyPress -=(dgvGenerico_KeyPress);
-            if (pivote.CurrentCell.ColumnIndex == 2 ||pivote.CurrentCell.ColumnIndex==3 || pivote.CurrentCell.ColumnIndex==5)
-            {
-                var tb = e.Control as TextBox;
-                if (tb != null)
-                {
-                    tb.KeyPress +=(dgvGenerico_KeyPress);
-                }
-            }
-            if (!headerText.Equals("Platillo")) return;
-            var autoText = e.Control as TextBox;
-            if (autoText == null) return;
-            autoText.AutoCompleteMode = AutoCompleteMode.Suggest;
-            autoText.AutoCompleteSource = AutoCompleteSource.CustomSource;
-            Cocina.PlatillosMenus.Nombre = valor;
-            var dataCollection = new AutoCompleteStringCollection();
-            Opcion.EjecucionAsync(Data.MenuSemanal.ListaPlatilloRecetas, y =>
-            {
-                var dd = Opcion.JsonaListaGenerica<PlatilloReceta>(y).Select(x => x.Platillo).ToArray();
-                BeginInvoke((MethodInvoker)(() =>
-                {
-                    dataCollection.AddRange(dd);
-                    autoText.AutoCompleteCustomSource = dataCollection;
-                }));
-
-            });
-        }
-        public int Menidd;
-
+        #endregion  
         private static void GuardarDgv(Control parent)
         {
             foreach (Control c in parent.Controls)
@@ -821,14 +693,14 @@ namespace ExcelAddIn1
                     var fecha = DateTime.Parse((pivote.Tag as PropiedadesDgv)?.LabelFecha.Text, CultureInfo.CurrentCulture);
                     
                     var result = DateTime.Compare(fecha, DateTime.Now);
-                    if (result > 0) { 
+                    if (result >= 0) { 
                     for (var i = 0; i < pivote.Rows.Count; i++)
                     {
                         var dd = pivote.Rows[i].Cells[1].Value;
                         if ((string) dd != "")
                         {
                         var menid = Convert.ToInt32(pivote.Rows[i].Cells["MenId"].Value);
-                        var cantidad = Convert.ToDouble(pivote.Rows[i].Cells["CantidadElaborar"].Value);
+                        var cantidad = Convert.ToDouble(pivote.Rows[i].Cells["CantidadElab"].Value);
                         var congelado = Convert.ToDouble(pivote.Rows[i].Cells["Congelado"].Value);
                         var cantidadfinal = cantidad - congelado;
                         var dato = Convert.ToString(pivote.Rows[i].Cells["Platillo"].Value.ToString());
@@ -836,7 +708,7 @@ namespace ExcelAddIn1
                         var valor = dato.Split(separador);
                         var clave = valor[1];
                         Cocina.PlatillosMenus.Clave = clave;
-                        var tipo = Convert.ToString(pivote.Rows[i].Cells["TipoRecetaDgv"].Value.ToString());
+                        var tipo = Convert.ToString(pivote.Rows[i].Cells["TipoReceta"].Value.ToString());
                         Cocina.PlatillosMenus.Nombre = tipo;
                         var i2 = i;
                             var fechadia = Convert.ToString((pivote.Tag as PropiedadesDgv)?.LabelFecha.Text);
@@ -856,7 +728,7 @@ namespace ExcelAddIn1
                                         RecId = recid,
                                         Fecha = fechaguardar,
                                         Cantidad = cantidadfinal,
-                                        PrecioFinal = Convert.ToDouble(pivote.Rows[i1].Cells["PrecioCompra"].Value.ToString()),
+                                        PrecioFinal = Convert.ToDouble(pivote.Rows[i1].Cells["Precio"].Value.ToString()),
                                         TipoId = tipoid
                                     };
                                         Opcion.EjecucionAsync(x => {
@@ -874,15 +746,16 @@ namespace ExcelAddIn1
                                         RecId = recid,
                                         Fecha = fechaguardar,
                                         Cantidad = cantidadfinal,
-                                        PrecioFinal = Convert.ToDouble(pivote.Rows[i1].Cells["PrecioCompra"].Value.ToString()),
+                                        PrecioFinal = Convert.ToDouble(pivote.Rows[i1].Cells["Precio"].Value.ToString()),
                                         TipoId = tipoid
                                     };
                                     Data.MenuSemanal.ActualizarMenuActual(menu);
                                 }       
                             });});
-                            Data.MenuSemanal.UtilizarCongelado(1);
+                            Data.MenuSemanal.UtilizarCongelado(5);
                             pivote.Enabled = false;
-                    }
+                        }
+                      
                     }
                 }
             }
@@ -908,43 +781,30 @@ namespace ExcelAddIn1
             var pivote = (DataGridView)sender;
             if (!pivote.Rows[e.RowIndex].Cells[1].Selected & !pivote.Rows[e.RowIndex].Cells[1].Selected) return;
             pivote.AllowUserToAddRows = true;
-            if (pivote.Rows[e.RowIndex].Cells[0].Value != null)
-            {
-                pivote.Rows[e.RowIndex].Cells[1].ReadOnly = false;
+            //if (pivote.Rows[e.RowIndex].Cells[0].Value != null)
+            //{
+                //pivote.Rows[e.RowIndex].Cells[1].ReadOnly = false;
                 pivote.Rows[e.RowIndex].Cells["Congelado"].Style.BackColor = Color.Aqua;
-                pivote.Rows[e.RowIndex].Cells["CantidadReceta"].Style.BackColor = Color.Orange;
-                pivote.Rows[e.RowIndex].Cells["PrecioCompra"].Style.BackColor = Color.Orange;
-                pivote.Rows[e.RowIndex].Cells["GananciaTotal"].Style.BackColor = Color.Orange;
-            }
-            else
-            { 
-                pivote.Rows[e.RowIndex].Cells[1].ReadOnly = true;
-                MessageBox.Show(@"Seleccione el tipo de receta antes de seleccionar el platillo");
-
-            }
-
+                //pivote.Rows[e.RowIndex].Cells["CantidadReceta"].Style.BackColor = Color.Orange;
+                pivote.Rows[e.RowIndex].Cells["Precio"].Style.BackColor = Color.Orange;
+                pivote.Rows[e.RowIndex].Cells["Venta"].Style.BackColor = Color.Orange;
+                pivote.Rows[e.RowIndex].Cells["Unidad"].Style.BackColor = Color.Orange;
+            //}
+            //else
+            //{ 
+            //    pivote.Rows[e.RowIndex].Cells[1].ReadOnly = true;
+            //    MessageBox.Show(@"Seleccione el tipo de receta antes de seleccionar el platillo");
+            //}
             Menidd = Convert.ToInt32(pivote.Rows[e.RowIndex].Cells["MenId"].Value);
             DgvSeleccionado=pivote;
-        }
-        private void dgvGenerico_KeyPress(object sender, KeyPressEventArgs e)
-        {
-            if (!char.IsControl(e.KeyChar) && !char.IsDigit(e.KeyChar))
-            {
-                e.Handled = true;
-            }
-            if (!char.IsControl(e.KeyChar)
-                && !char.IsDigit(e.KeyChar)
-                && e.KeyChar != '.')
-            {
-                e.Handled = true;
-            }
         }
         private void dgvGenerico_CellValueChanged(object sender, DataGridViewCellEventArgs e)
         {
             var pivote = (DataGridView)sender;
+
             var rowIndex = pivote.CurrentCell.RowIndex;
             btGuardar.Enabled = true;
-            if (Convert.ToDouble(pivote.Rows[rowIndex].Cells["CantidadElaborar"].Value.ToString()) > 0 && Convert.ToString(pivote.Rows[rowIndex].Cells[1].Value) != "" && btAgregarSemana.Enabled==false)
+            if (Convert.ToDouble(pivote.Rows[rowIndex].Cells["CantidadElab"].Value.ToString()) > 0 && Convert.ToString(pivote.Rows[rowIndex].Cells[1].Value) != "" && btAgregarSemana.Enabled==false)
             {
                 var dato = Convert.ToString(pivote.Rows[rowIndex].Cells["Platillo"].Value.ToString());
                 char[] separador = { '(', ')' };
@@ -953,11 +813,12 @@ namespace ExcelAddIn1
                 Cocina.PlatillosMenus.Clave = clave;
                 Data.MenuSemanal.SacarParamentrosReceta(z =>
                 {
-                    var precio = Opcion.JsonaClaseGenerica<PlatilloReceta>(z).PrecioCompra;
-                    var cantidadreal2 = Convert.ToDouble(pivote.Rows[rowIndex].Cells["CantidadElaborar"].Value.ToString());
+                    var precio = Opcion.JsonaClaseGenerica<PlatilloReceta>(z).Precio;
+                    var cantidadreal2 = Convert.ToDouble(pivote.Rows[rowIndex].Cells["CantidadElab"].Value.ToString());
                     var gananciatotal = precio * cantidadreal2;
-                    pivote.Rows[rowIndex].Cells["GananciaTotal"].Value = Math.Round(gananciatotal, 2);
+                    pivote.Rows[rowIndex].Cells["Venta"].Value = Math.Round(gananciatotal, 2);
                 });
+                montototal(pivote);
             }
 
             if (!pivote.Rows[e.RowIndex].Cells[1].Selected || pivote.Rows[e.RowIndex].Cells["Platillo"].Value == null)
@@ -968,17 +829,18 @@ namespace ExcelAddIn1
         {
             var pivote = (DataGridView)sender;
             var rowIndex = pivote.CurrentCell.RowIndex;
-            //var col = pivote.Columns[pivote.CurrentCell.ColumnIndex];
+            var col = pivote.Columns[pivote.CurrentCell.ColumnIndex];
             var col2 = pivote.Rows[rowIndex].Cells[0].Selected;
             if (!(col2)) return;
             pivote.CommitEdit(DataGridViewDataErrorContexts.Commit);
             pivote.Rows[rowIndex].Cells["Platillo"].Value = "";
             pivote.Rows[rowIndex].Cells["Congelado"].Value = 0;
             pivote.Rows[rowIndex].Cells["MenId"].Value = 0;
-            pivote.Rows[rowIndex].Cells["PrecioCompra"].Value = 0;
-            pivote.Rows[rowIndex].Cells["GananciaTotal"].Value = 0;
-            pivote.Rows[rowIndex].Cells["CantidadReceta"].Value = 0;
-            pivote.Rows[rowIndex].Cells["CantidadElaborar"].Value = 0;
+            pivote.Rows[rowIndex].Cells["Precio"].Value = 0;
+            pivote.Rows[rowIndex].Cells["Venta"].Value = 0;
+            //pivote.Rows[rowIndex].Cells["CantidadReceta"].Value = 0;
+            pivote.Rows[rowIndex].Cells["CantidadElab"].Value = 0;
+            pivote.Rows[rowIndex].Cells["Unidad"].Value = "";
             pivote.AllowUserToAddRows = true;
         }
         private  void IngredientesGlobalDgv(Control parent)
@@ -1016,7 +878,7 @@ namespace ExcelAddIn1
                             var recid = Opcion.JsonaClaseGenerica<PlatilloReceta>(y).RecId;
                             Cocina.PlatillosMenus.RecId = Convert.ToString(recid);
                             var cantidadreceta = Convert.ToDouble(pivote.Rows[i1].Cells["CantidadReceta"].Value);
-                            var cantidadreal = Convert.ToDouble(pivote.Rows[i1].Cells["CantidadElaborar"].Value);
+                            var cantidadreal = Convert.ToDouble(pivote.Rows[i1].Cells["CantidadElab"].Value);
                             var congelado = Convert.ToDouble(pivote.Rows[i1].Cells["Congelado"].Value);
                             var cantidadfinal = cantidadreal - congelado;
                             Opcion.EjecucionAsync(Data.MenuSemanal.IngredientesMenuPlatillos,
@@ -1113,7 +975,7 @@ namespace ExcelAddIn1
                                 var recid = Opcion.JsonaClaseGenerica<PlatilloReceta>(y).RecId;
                                 Cocina.PlatillosMenus.RecId = Convert.ToString(recid);
                                 var cantidadreceta = Convert.ToDouble(pivote.Rows[i1].Cells["CantidadReceta"].Value);
-                                var cantidadreal = Convert.ToDouble(pivote.Rows[i1].Cells["CantidadElaborar"].Value);
+                                var cantidadreal = Convert.ToDouble(pivote.Rows[i1].Cells["CantidadElab"].Value);
                                 var congelado = Convert.ToDouble(pivote.Rows[i1].Cells["Congelado"].Value);
                                 var cantidadfinal = cantidadreal - congelado;
                                 Opcion.EjecucionAsync(Data.MenuSemanal.IngredientesMenuPlatillos,
@@ -1167,17 +1029,121 @@ namespace ExcelAddIn1
                     IngredientesPlatilloDgv(parent1);
                 }   
         }
+
+        private void SacarMenuSemanal(Control parent)
+        {
+            foreach (Control c in parent.Controls)
+            {
+                ImprimirMenuSemanal(c);
+            }
+        }
+        private void ImprimirMenuSemanal(Control parent1)
+        {
+            var view = parent1 as DataGridView;
+            if (view != null)
+            {
+                var pivote = view;
+                pivote.AllowUserToAddRows = false;
+                if (pivote.RowCount>0)
+                {
+                    var dgvseleccionado = pivote.CurrentRow;
+
+                    for (var i = 0; i < pivote.Rows.Count; i++)
+                    {
+                        var dd = pivote.Rows[i].Cells[1].Value;
+                        if ((string)dd != "")
+                        {
+                            var dato = Convert.ToString(pivote.Rows[i].Cells["Platillo"].Value.ToString());
+                            char[] separador = { '(', ')' };
+                            var valor = dato.Split(separador);
+                            var platillo = valor[0];
+                            var cantidadelab = Convert.ToDouble(pivote.Rows[i].Cells["CantidadElab"].Value);
+                            var tiporeceta = pivote.Rows[i].Cells["TipoReceta"].Value.ToString();
+                            var unidad = Convert.ToString(pivote.Rows[i].Cells["Unidad"].Value);
+                            var precio = Convert.ToDouble(pivote.Rows[i].Cells["Precio"].Value);
+                            var venta = Convert.ToDouble(pivote.Rows[i].Cells["venta"].Value);
+                            var fecha = (pivote.Tag as PropiedadesDgv)?.LabelFecha.Text;
+                            var dia= (pivote.Tag as PropiedadesDgv)?.NombreDia;
+                            if(pivote.Name=="dgvLunes")
+                            {
+                              _listaPlatilloLunes.Add(new PlatilloReceta { Platillo = platillo, CantidadElab = cantidadelab,
+                                TipoReceta = tiporeceta, Unidad = unidad, Precio = precio, Venta = venta, Fecha = "Lunes:" + fecha, UltimaElaboracion=dia });
+                            }
+                             if(pivote.Name=="dgvMartes")
+                            {
+                              _listaPlatilloMartes.Add(new PlatilloReceta { Platillo = platillo, CantidadElab = cantidadelab,
+                                TipoReceta = tiporeceta, Unidad = unidad, Precio = precio, Venta = venta, Fecha = "Martes:" + fecha, UltimaElaboracion=dia });
+                            }
+                               if(pivote.Name=="dgvMiercoles")
+                            {
+                              _listaPlatilloMiercoles.Add(new PlatilloReceta { Platillo = platillo, CantidadElab = cantidadelab,
+                                TipoReceta = tiporeceta, Unidad = unidad, Precio = precio, Venta = venta, Fecha = "Miercoles:" + fecha, UltimaElaboracion=dia });
+                            }
+                             if(pivote.Name=="dgvJueves")
+                            {
+                              _listaPlatilloJueves.Add(new PlatilloReceta { Platillo = platillo, CantidadElab = cantidadelab,
+                                TipoReceta = tiporeceta, Unidad = unidad, Precio = precio, Venta = venta, Fecha = "Jueves:" + fecha, UltimaElaboracion=dia });
+                            }
+                               if(pivote.Name=="dgvViernes")
+                            {
+                              _listaPlatilloViernes.Add(new PlatilloReceta { Platillo = platillo, CantidadElab = cantidadelab,
+                                TipoReceta = tiporeceta, Unidad = unidad, Precio = precio, Venta = venta, Fecha = "Viernes:" + fecha, UltimaElaboracion=dia });
+                            }
+                             if(pivote.Name=="dgvSabado")
+                            {
+                              _listaPlatilloSabado.Add(new PlatilloReceta { Platillo = platillo, CantidadElab = cantidadelab,
+                                TipoReceta = tiporeceta, Unidad = unidad, Precio = precio, Venta = venta, Fecha = "Sabado:" + fecha, UltimaElaboracion=dia });
+                            }
+                               if(pivote.Name=="dgvDomingo")
+                            {
+                              _listaPlatilloDomingo.Add(new PlatilloReceta { Platillo = platillo, CantidadElab = cantidadelab,
+                                TipoReceta = tiporeceta, Unidad = unidad, Precio = precio, Venta = venta, Fecha = "Domingo:" + fecha, UltimaElaboracion=dia });
+                            }
+                        }                        
+                    }   
+                }
+                _listaPlatilloArreglo.Add(new PlatilloReceta
+                {
+                    Lunes = _listaPlatilloLunes,
+                    Martes = _listaPlatilloMartes,
+                    Miercoles = _listaPlatilloMiercoles,
+                    Jueves = _listaPlatilloJueves,
+                    Viernes = _listaPlatilloViernes,
+                    Sabado = _listaPlatilloSabado,
+                    Domingo = _listaPlatilloDomingo
+                });
+            }
+            else
+            {
+                SacarMenuSemanal(parent1);
+            }
+     
+        }
         private void btEditarSemana_Click(object sender, EventArgs e)
         {
             var diainicio = FirstDayOfWeek(DateTime.Today).ToShortDateString();
             var diafinal = LastDayOfWeek(DateTime.Today).ToShortDateString();
+            var lunes = Convert.ToDateTime(diainicio).ToShortDateString();
             FechaLunes.Text = Convert.ToDateTime(diainicio).ToShortDateString();
+            var martes = Convert.ToDateTime(diainicio).AddDays(1).ToShortDateString();
             FechaMartes.Text = Convert.ToDateTime(diainicio).AddDays(1).ToShortDateString();
+            var miercoles = Convert.ToDateTime(diainicio).AddDays(2).ToShortDateString();
             FechaMiercoles.Text = Convert.ToDateTime(diainicio).AddDays(2).ToShortDateString();
+            var jueves = Convert.ToDateTime(diainicio).AddDays(3).ToShortDateString();
             FechaJueves.Text = Convert.ToDateTime(diainicio).AddDays(3).ToShortDateString();
+            var viernes = Convert.ToDateTime(diainicio).AddDays(4).ToShortDateString();
             FechaViernes.Text = Convert.ToDateTime(diainicio).AddDays(4).ToShortDateString();
+            var sabado = Convert.ToDateTime(diainicio).AddDays(5).ToShortDateString();
             FechaSabado.Text = Convert.ToDateTime(diainicio).AddDays(5).ToShortDateString();
+            var domingo = Convert.ToDateTime(diafinal).ToShortDateString();
             FechaDomingo.Text = Convert.ToDateTime(diafinal).ToShortDateString();
+            LabelLunes.Text = @"Lunes: " + lunes;
+            LabelMartes.Text = @"Martes: " + martes;
+            LabelMiercoles.Text = @"Miercoles: " + miercoles;
+            LabelJueves.Text = @"Jueves: " + jueves;
+            LabelViernes.Text = @"Viernes:" + viernes;
+            LabelSabado.Text = @"Sabado:" + sabado;
+            LabelDomingo.Text = @"Domingo:" + domingo;
             Opcion.EjecucionAsync(x =>
             {
                 var times = new Reporte.General
@@ -1192,20 +1158,31 @@ namespace ExcelAddIn1
                 {
                     BeginInvoke((MethodInvoker)(() =>
                     {
-                        switch (jsonResult.StatusCode)
-                        {
-                            case HttpStatusCode.OK:
-                                Lunes = new BindingList<MenuDia>(Opcion.JsonaClaseGenerica2<Respuesta.MenuSemanal>(jsonResult).Lunes);
-                                Martes = new BindingList<MenuDia>(Opcion.JsonaClaseGenerica2<Respuesta.MenuSemanal>(jsonResult).Martes);
-                                Miercoles = new BindingList<MenuDia>(Opcion.JsonaClaseGenerica2<Respuesta.MenuSemanal>(jsonResult).Miercoles);
-                                Jueves = new BindingList<MenuDia>(Opcion.JsonaClaseGenerica2<Respuesta.MenuSemanal>(jsonResult).Jueves);
-                                Viernes = new BindingList<MenuDia>(Opcion.JsonaClaseGenerica2<Respuesta.MenuSemanal>(jsonResult).Viernes);
-                                Sabado = new BindingList<MenuDia>(Opcion.JsonaClaseGenerica2<Respuesta.MenuSemanal>(jsonResult).Sabado);
-                                Domingo = new BindingList<MenuDia>(Opcion.JsonaClaseGenerica2<Respuesta.MenuSemanal>(jsonResult).Domingo);
-                                InicializarDgv(this);
-                                btGuardar.Enabled = true;
-                                btPreviaPlatillo.Enabled = false;
-                                btPreviaPlatilloGlobal.Enabled = false;
+                    switch (jsonResult.StatusCode)
+                    {
+                        case HttpStatusCode.OK:
+                            Lunes = new BindingList<MenuDia>(Opcion.JsonaClaseGenerica2<Respuesta.MenuSemanal>(jsonResult).Lunes);
+                            Martes = new BindingList<MenuDia>(Opcion.JsonaClaseGenerica2<Respuesta.MenuSemanal>(jsonResult).Martes);
+                            Miercoles = new BindingList<MenuDia>(Opcion.JsonaClaseGenerica2<Respuesta.MenuSemanal>(jsonResult).Miercoles);
+                            Jueves = new BindingList<MenuDia>(Opcion.JsonaClaseGenerica2<Respuesta.MenuSemanal>(jsonResult).Jueves);
+                            Viernes = new BindingList<MenuDia>(Opcion.JsonaClaseGenerica2<Respuesta.MenuSemanal>(jsonResult).Viernes);
+                            Sabado = new BindingList<MenuDia>(Opcion.JsonaClaseGenerica2<Respuesta.MenuSemanal>(jsonResult).Sabado);
+                            Domingo = new BindingList<MenuDia>(Opcion.JsonaClaseGenerica2<Respuesta.MenuSemanal>(jsonResult).Domingo);
+                            InicializarDgv(this);
+                            btGuardar.Enabled = true;
+                            btPreviaPlatillo.Enabled = false;
+                            btPreviaPlatilloGlobal.Enabled = false;
+                            btPlatillo.Enabled = true;
+                            //cbTipoReceta.Enabled = true;
+                            //tbPlatillo.Enabled = true;
+                            label2.Enabled = true;
+                            ckPlatillo.Enabled = true;
+                            ckTipoReceta.Enabled = true;
+                            btOrdenTrabajo.Enabled = true;
+                            vScrollBar2.Enabled = true;
+                            btBorrarFila.Enabled=true;
+                            btImprimirMenu.Enabled = true;
+
                                 break;
                             default:
                                 MessageBox.Show(this, @"No se encontraron menus con los parametros de busqueda ingresados");
@@ -1226,12 +1203,12 @@ namespace ExcelAddIn1
             if (e.Exception != null &&
                 e.Context == DataGridViewDataErrorContexts.Commit)
             {
-                pivote.Rows[e.RowIndex].Cells["CantidadElaborar"].Value = @"0";
+                pivote.Rows[e.RowIndex].Cells["CantidadElab"].Value = @"0";
             }
         }
         private void btBorrarFila_Click(object sender, EventArgs e)
         {
-            if(dgvDomingo.RowCount>0 )
+            if (dgvLunes.RowCount > 0)
             {
                 Opcion.BorrarFila(DgvSeleccionado);
                 Data.MenuSemanal.EliminarelPlatillo(Menidd);
@@ -1252,27 +1229,234 @@ namespace ExcelAddIn1
             var addIn = Globals.ThisAddIn;
             addIn.IngredientesMenuxPlatillo(_listaArticuloBasica2);
         }
-
-        private void FechaMartes_Click(object sender, EventArgs e)
+        private void btPlatillo_Click(object sender, EventArgs e)
         {
+            var mde = new MensajeDeEspera();
+            if (ckPlatillo.Checked)
+            {
+                mde.Show();
+                Cocina.PlatillosMenus.Clave = tbPlatillo.Text == string.Empty ? "%" : tbPlatillo.Text;
+                Opcion.EjecucionAsync(Data.MenuSemanal.BuscarRecetaMenu, jsonResult =>
+                {
+                    if (jsonResult != null)
+                    {
+                        BeginInvoke((MethodInvoker)(() =>
+                        {
+                            switch (jsonResult.StatusCode)
+                            {
+                                case HttpStatusCode.OK:
+                                    mde.Close();
+                                    var listarecetas = new BuscarPlatillo(Opcion.JsonaListaGenerica<MenuDia>(jsonResult), DtpFecha.Value, resultado =>
+                                    {
+                                        var dia = resultado;
+                                        var diaseleccionado = dia.Select(x => x.UltimaElaboracion).ToArray();
+                                        var dgv = GetControlByName<DataGridView>(this, "dgv" + diaseleccionado[0], true).FirstOrDefault();
+                                        BeginInvoke((MethodInvoker)(() =>
+                                        {
+                                            var newdgv = dgv.DataSource as BindingList<MenuDia>;
+                                            BindingList<MenuDia> la = (resultado);
 
+                                                flagDataSource = true;
+                                                if (this[diaseleccionado[0]] != null)
+                                                {
+                                                    if (newdgv != null)
+                                                        foreach ( MenuDia md in (newdgv))
+                                                        {
+                                                            la.Add(md);
+                                                        }
+                                                }
+                                            var ordenarporTipo= new BindingList<MenuDia>(la.OrderBy(x => x.TipoReceta).ToList());
+                                            dgv.DataSource = ordenarporTipo;
+                                            IncializarDgvDetalle(dgv);
+                                            DetallePlatillos(dgv);
+                                        }));
+                                    }         
+                                    , false);
+                                  listarecetas.Show();
+                                    flagDataSource = false;
+                                    break;
+                                default:
+                                    MessageBox.Show(this, @"No se encontraron recetas con los parametros de busqueda ingresados");
+                                    Console.WriteLine(jsonResult.Content);
+                                    break;
+                            }
+                        }));
+                    }
+                    
+                });
+            }
+             if (ckTipoReceta.Checked)
+            {
+                mde.Show();
+                Cocina.PlatillosMenus.Nombre = cbTipoReceta.Text == string.Empty ? "%" : cbTipoReceta.Text;
+                Opcion.EjecucionAsync(Data.MenuSemanal.ListaPlatilloRecetas, jsonResult =>
+                {
+                    if (jsonResult != null)
+                    {
+                        BeginInvoke((MethodInvoker)(() =>
+                        {
+                            switch (jsonResult.StatusCode)
+                            {
+                                case HttpStatusCode.OK:
+                                    mde.Close();
+                                    var listarecetas = new BuscarPlatillo(Opcion.JsonaListaGenerica<MenuDia>(jsonResult), DtpFecha.Value, resultado =>
+                                    {
+                                        var dia = resultado;
+                                        var diaseleccionado = dia.Select(x => x.UltimaElaboracion).ToArray();
+                                        var dgv = GetControlByName<DataGridView>(this, "dgv" + diaseleccionado[0], true).FirstOrDefault();
+                                        BeginInvoke((MethodInvoker)(() =>
+                                        {
+
+                                            var newdgv = dgv.DataSource as BindingList<MenuDia>;
+                                            BindingList<MenuDia> la = (resultado);
+
+                                            flagDataSource = true;
+                                            if (this[diaseleccionado[0]] != null)
+                                            {
+                                                if (newdgv != null)
+                                                    foreach (MenuDia md in (newdgv))
+                                                    {
+                                                        la.Add(md);
+                                                    }
+                                            }
+                                            var ordenarporTipo = new BindingList<MenuDia>(la.OrderBy(x => x.TipoReceta).ToList());
+                                            dgv.DataSource = ordenarporTipo;
+                                            IncializarDgvDetalle(dgv);
+                                            DetallePlatillos(dgv);
+
+                                        }));
+                                    },
+                                    false);
+                                    listarecetas.Show();
+                                    break;
+                                default:
+                                    MessageBox.Show(this, @"No se encontraron recetas con los parametros de busqueda ingresados");
+                                    Console.WriteLine(jsonResult.Content);
+                                    break;
+                            }
+                        }));
+                    }
+                });
+            }
+           
+         }
+        private void ckPlatillo_CheckedChanged(object sender, EventArgs e)
+        {
+            if (ckPlatillo.Checked)
+            {
+                tbPlatillo.Enabled= true;
+                btPlatillo.Enabled = true;
+                cbTipoReceta.Enabled = false;
+                ckTipoReceta.Checked = false;
+            }
+            else
+            {
+                tbPlatillo.Enabled= false;
+                //btPlatillo.Enabled = false;
+            }
         }
-
-        private void dgvJueves_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        private void ckTipoReceta_CheckedChanged(object sender, EventArgs e)
         {
+            if (ckTipoReceta.Checked)
+            {
+                cbTipoReceta.Enabled = true;
+                btPlatillo.Enabled = true;
+                tbPlatillo.Enabled = false;
+                ckPlatillo.Checked = false;
+            }
+            else
+            {
+                cbTipoReceta.Enabled= false;
+                //btPlatillo.Enabled = false;
+            }
+        }
+        private void btOrdenTrabajo_Click(object sender, EventArgs e)
+        {
+            if (DgvSeleccionado.CurrentRow != null && (DgvSeleccionado.CurrentRow.Cells[1].Selected && DgvSeleccionado.RowCount > 0))
+            {
+                var me = new MensajeDeEspera();
+                me.Show();
+                var dato = Convert.ToString(DgvSeleccionado.CurrentRow.Cells["Platillo"].Value.ToString());
+                    char[] separador = { '(', ')' };
+                    var valor = dato.Split(separador);
+                    var clave = valor[1];
+                    Cocina.DetalleCocina.Clave = clave;
+                  
+                    Opcion.EjecucionAsync(x =>
+                    {
+                        var detallereceta = new Cocina.DetalleCocina.ReporteDetalle
+                        {
+                            clave = clave
+                        };
+                        Data.ReporteCocina.DDetalleReceta(x, detallereceta);
+                    }, jsonResult =>
+                    {
+                        if (jsonResult != null)
+                        {
+                            BeginInvoke((MethodInvoker)(() =>
+                            {
+                            switch (jsonResult.StatusCode)
+                            {
+                                case HttpStatusCode.OK:
+                            me.Close();
+                            var listaCocina = Opcion.JsonaListaGenerica<Reporte.RespuestaCocina>(jsonResult)[0];
+                            var FechaActual = Convert.ToString((DgvSeleccionado.Tag as PropiedadesDgv)?.LabelFecha.Text);
+                            var CantidadReal = Convert.ToString(DgvSeleccionado.CurrentRow.Cells["CantidadElab"].Value);
+                            listaCocina.Consumodia = CantidadReal;
+                            listaCocina.UltimaElaboracion = FechaActual;
+                            listaCocina.Cantidadinventario = Convert.ToDouble(CantidadReal);
+                            var addIn = Globals.ThisAddIn;
+                            addIn.OrdendeTrabajo(listaCocina);
+                                        break;
+                                    default:
+                                        MessageBox.Show(this, @"No se encontraron menus con los parametros de busqueda ingresados");
+                                        break;
+                                }
+                            }));
+                        }
+                        else
+                        {
+                            MessageBox.Show(this, @"No se encontro informacion con los parametros de busqueda ingresados");
+                        }
+                    }
+                );
+              
+            }
+        }
+        private void vScrollBar2_Scroll(object sender, ScrollEventArgs e)
+        {
+            if (e.OldValue > e.NewValue && dgvLunes!=null)
+            {
+                //arriba
+                dgvLunes.FirstDisplayedScrollingRowIndex = dgvLunes.Rows[0].Index;
+                dgvMartes.FirstDisplayedScrollingRowIndex = dgvMartes.Rows[0].Index;
+                dgvMiercoles.FirstDisplayedScrollingRowIndex = dgvMiercoles.Rows[0].Index;
+                dgvJueves.FirstDisplayedScrollingRowIndex = dgvJueves.Rows[0].Index;
+                dgvViernes.FirstDisplayedScrollingRowIndex = dgvViernes.Rows[0].Index;
+                dgvSabado.FirstDisplayedScrollingRowIndex = dgvSabado.Rows[0].Index;
+                dgvDomingo.FirstDisplayedScrollingRowIndex = dgvDomingo.Rows[0].Index;
+            }
+            else
+            {
+                //abajo
+                if (dgvLunes != null)
+                    dgvLunes.FirstDisplayedScrollingRowIndex = dgvLunes.FirstDisplayedScrollingRowIndex + 1;
+                dgvMartes.FirstDisplayedScrollingRowIndex = dgvMartes.FirstDisplayedScrollingRowIndex + 1;
+                dgvMiercoles.FirstDisplayedScrollingRowIndex = dgvMiercoles.FirstDisplayedScrollingRowIndex + 1;
+                dgvJueves.FirstDisplayedScrollingRowIndex = dgvJueves.FirstDisplayedScrollingRowIndex + 1;
+                dgvViernes.FirstDisplayedScrollingRowIndex = dgvViernes.FirstDisplayedScrollingRowIndex + 1;
+                dgvSabado.FirstDisplayedScrollingRowIndex = dgvSabado.FirstDisplayedScrollingRowIndex + 1;
+                dgvDomingo.FirstDisplayedScrollingRowIndex = dgvDomingo.FirstDisplayedScrollingRowIndex + 1;
+            }
+                   
+        }
+        private void btImprimirMenu_Click(object sender, EventArgs e)
+        {
+            _listaPlatilloArreglo = new List<PlatilloReceta>();
+            SacarMenuSemanal(this);
+            var addIn = Globals.ThisAddIn;
+            addIn.MenuSemanal(_listaPlatilloArreglo);
 
         }
     }
 }
-
-
-
-
-
-
-
-
-
-
-
-

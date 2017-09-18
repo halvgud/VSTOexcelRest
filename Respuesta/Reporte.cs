@@ -12,6 +12,8 @@ namespace Respuesta
         {
             public DateTime FechaIni { get; set; }
             public DateTime FechaFin { get; set; }
+            public string Clave { get; set; }
+            public string Platillo { get; set; }
             public string DepId { get; set; }
             public string CatId { get; set; }
             public string ProId { get; set; }
@@ -133,9 +135,6 @@ namespace Respuesta
             public string NomUnidad { get; set; }
             public Double CantidadElaboracion { get; set; }
             public Double Densidad { get; set; }
-
-
-
             public List<IngredientesCocina> Ingredientes { get; set; }
 
             public class IngredientesCocina
@@ -247,6 +246,9 @@ namespace Respuesta
 
             public class Comprobacion
             {
+                public string Unidad { get; set; }
+                public  double CP { get; set; }
+                public  double Existencia { get; set; }
                 public int ArtId { get; set; }
                 public string Clave { get; set; }
                 public string Platillo { get; set; }
@@ -255,8 +257,11 @@ namespace Respuesta
                 public double SR { get; set; }
                 public int EstadoInventarioId { get; set; }
                 public string Observacion { get; set; }
+                public double CantidadCocina { get; set; }
                 public int EstadoManana { get; set; }
                 public double CE { get; set; }
+                public  double VentaAnterior { get; set; }
+                public  double VentaPromedio { get; set; }
             }
 
             public class Reportess

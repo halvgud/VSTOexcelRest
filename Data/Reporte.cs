@@ -256,6 +256,32 @@ namespace Data
                 Opcion.Log(Log.Interno.Categoria, "EXCEPCION: " + e.Message);
             }
         }
+
+        public static void ReporteDiarioNuevoRegistro(Action<IRestResponse> callback, Respuesta.Reporte.General datos)
+        {
+            try
+            {
+                var rest = new Rest(Local.Api.UrlApi, Cocina.ReporteDiarioCocina.ReporteNuevoRegistro, Method.POST);
+                rest.Peticion.AddHeader(Constantes.Http.ObtenerTipoDeContenido, Constantes.Http.TipoDeContenido.Json);
+                rest.Peticion.AddJsonBody(datos);
+                rest.Cliente.ExecuteAsync(rest.Peticion, response =>
+                {
+                    switch (response.StatusCode)
+                    {
+                        case HttpStatusCode.OK:
+                            callback(response);
+                            break;
+                        default:
+                            callback(null);
+                            break;
+                    }
+                });
+            }
+            catch (Exception e)
+            {
+                Opcion.Log(Log.Interno.Categoria, "EXCEPCION: " + e.Message);
+            }
+        }
         public static void RepCongelados(Action<IRestResponse> callback)
         {
             try

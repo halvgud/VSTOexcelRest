@@ -377,7 +377,7 @@ namespace ExcelAddIn1
                                 parametros.Ingredientes.Columns[x].DefaultCellStyle.BackColor = Color.LightGray;
                             }
                             parametros.Ingredientes.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
-                            parametros.Ingredientes.RowHeadersVisible = false;
+                            //parametros.Ingredientes.RowHeadersVisible = false;
                             var dataGridViewColumn = parametros.Ingredientes.Columns["Cantidad"];
                             if (dataGridViewColumn != null)
                                 dataGridViewColumn.DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
@@ -450,18 +450,7 @@ namespace ExcelAddIn1
                 {
                     #region edicion de Presupuesto
                     tbPesoLitroBE.Text = tbPesoLitroBE.Text=="" ? @"0" : tbPesoLitroBE.Text;
-                    //var checadodiario = chDiarioBE.Checked ? 1 : 0;
-                    //if (checadodiario != 0)
-                    //{
-                    //    tbCantidadDiarioBE.Text = tbCantidadDiarioBE.Text;
-                    //    cbUnidadElaboracionBE.Text = Convert.ToString(cbUnidadElaboracionBE.SelectedIndex + 3);
-                    //    tbCantidadElaboracionBE.Text = tbCantidadDiarioBE.Text;
-
-                    //}
-                    //else
-                    //{
-                    //    tbCantidadDiarioBE.Text = @"0";
-                    //}
+                 
                     Reccid = Reccid == 0 ? 0 : Local.Receta.RecId;
                     var objeto = new Receta.ActualizaPresupuesto
                     {
@@ -511,42 +500,42 @@ namespace ExcelAddIn1
                     }));
                     #endregion
                     #region actualiza Ruta de imagen e Instrucciones
-                    long a = int.Parse(DateTime.Now.ToString("yyyyMMdd"));
-
-                    if (MessageBox.Show(@"Desea agregar la imagen de la receta", @"Aviso", MessageBoxButtons.YesNo,
-                        MessageBoxIcon.Question) == DialogResult.Yes)
+                    BeginInvoke((MethodInvoker)(() =>
                     {
-                        if (Local.Receta.Ruta==null || Local.Receta.Ruta==String.Empty)
+                        long a = int.Parse(DateTime.Now.ToString("yyyyMMdd"));
+                        //if (Local.Receta.Ruta==null || Local.Receta.Ruta==String.Empty)
+                        //{
+                        //    //openFileDialog1.Filter =
+                        //    //    @"Image Files (*.png *.jpg *.bmp) | *.png; *.jpg; *.bmp | All Files(*.*) | *.* ";
+                        //    //openFileDialog1.Title = @"Buscar Imagen";
+                        //    //openFileDialog1.FileName = "";
+                        //    //openFileDialog1.ShowDialog();
+                        //}
+                        //else
+                        //{
+                        //    //var otro = Local.Receta.Ruta;
+                        //    //var final = otro.Length - 31;
+                        //    //var mundo = otro.Substring(31, final);
+                        //    //// ReSharper disable once ObjectCreationAsStatement
+                        //    //new Uri(@"file://mercattoserver/Recetario/img/" + mundo, UriKind.Absolute);
+                        //    //System.IO.File.Delete(@"\\mercattoserver\\C$\Recetario\img\" + mundo);
+                        //    //openFileDialog1.Filter = @"Image Files (*.png *.jpg *.bmp) | *.png; *.jpg; *.bmp | All Files(*.*) | *.* ";
+                        //    //openFileDialog1.Title = @"Buscar Imagen";
+                        //    //openFileDialog1.FileName = "";
+                        //    //openFileDialog1.ShowDialog();
+                        //}
+                        if(_agregarImagen || !string.IsNullOrEmpty(Pbreceta.ImageLocation) && Pbreceta.ImageLocation!=null)
                         {
-                            openFileDialog1.Filter =
-                                @"Image Files (*.png *.jpg *.bmp) | *.png; *.jpg; *.bmp | All Files(*.*) | *.* ";
-                            openFileDialog1.Title = @"Buscar Imagen";
-                            openFileDialog1.FileName = "";
-                            openFileDialog1.ShowDialog();
-                        }
-                        else
-                        {
-                            var otro = Local.Receta.Ruta;
-                            var final = otro.Length - 31;
-                            var mundo = otro.Substring(31, final);
-                            // ReSharper disable once ObjectCreationAsStatement
-                            new Uri(@"file://mercattoserver/Recetario/img/" + mundo, UriKind.Absolute);
-                            System.IO.File.Delete(@"\\mercattoserver\\C$\Recetario\img\" + mundo);
-                            openFileDialog1.Filter = @"Image Files (*.png *.jpg *.bmp) | *.png; *.jpg; *.bmp | All Files(*.*) | *.* ";
-                            openFileDialog1.Title = @"Buscar Imagen";
-                            openFileDialog1.FileName = "";
-                            openFileDialog1.ShowDialog();
-                        }
                         var listainstruccionesv1 = new Receta.ImagenAndProcess
                         {
                             RecId = Local.Receta.RecId,
                             Instrucciones = txtinstruccionesBE.Text,
                             RutaImagen = @"\\mercattoserver\Recetario\img\" + tbBuscarReceta.Text + a.ToString() + ".jpg"
-                        };
+                         };
                         Data.ReporteCocina.InsertarRutaeImagen(listainstruccionesv1);
                         Opcion.Copycmdserver(openFileDialog1.FileName, @"\\mercattoserver\Recetario\img\" + tbBuscarReceta.Text + a.ToString() + ".jpg");
-                    }
-                    else
+                       }
+                    if(_agregarImagen==false && openFileDialog1.FileName==null || string.IsNullOrEmpty(Pbreceta.ImageLocation)) 
                     {
                         var listainstruccionesv1 = new Receta.ImagenAndProcess
                         {
@@ -560,12 +549,16 @@ namespace ExcelAddIn1
                             Data.ReporteCocina.InsertarRutaeImagen(listainstruccionesv1);
                         }
                     }
-                    //tabCon.TabPages.Remove(tabPage1);
-                    MessageBox.Show(@"Los Datos de la Receta se han actualizado correctamente");
-                    Limpiarbusqueda();
+                        //tabCon.TabPages.Remove(tabPage1);
+
+                        _agregarImagen = false;
+                    }));
+
                     #endregion
                 }));
-            }
+                MessageBox.Show(@"Los Datos de la Receta se han actualizado correctamente");
+                Limpiarbusqueda();
+            } 
         }
         private void Guardar(Inputs inputs)
         {
@@ -650,26 +643,20 @@ namespace ExcelAddIn1
                 {
                     Data.Receta.Detalle.CRecetaDetalle = listRecetaDetalle;
 
-                    #region Insertar imagen y copiar a ruta            
-                    if (MessageBox.Show(@"Desea agregar la imagen de la Receta", @"Aviso", MessageBoxButtons.YesNo,
+                    #region Insertar imagen y copiar a ruta       
 
-                                      MessageBoxIcon.Question) == DialogResult.Yes)
+                    long a = int.Parse(DateTime.Now.ToString("yyyyMMdd"));
+                    if (_agregarImagen)
                     {
-                        openFileDialog1.Filter = @"Image Files (*.png *.jpg *.bmp *.jpeg *.gif) | *.png; *.jpg; *.bmp; *.jpeg  | All Files(*.*) | *.* ";
-                        openFileDialog1.Title = @"Buscar Imagen";
-                        openFileDialog1.FileName = "";
-                        openFileDialog1.ShowDialog();
-                        long a = int.Parse(DateTime.Now.ToString("yyyyMMdd"));
-                        var instructivo = new Receta.ImagenAndProcess
+                        var listainstruccionesv1 = new Receta.ImagenAndProcess
                         {
                             RecId = Data.Receta.CReceta.RecId,
-                            Instrucciones = inputs.ModoElaboracion.Text,
-                            RutaImagen = @"\\mercattoserver\Recetario\img\" + inputs.ClaveReceta.Text + a.ToString() + ".jpg"
+                            Instrucciones = txtinstruccionesBE.Text,
+                            RutaImagen = @"\\mercattoserver\Recetario\img\" + tbBuscarReceta.Text + a.ToString() + ".jpg"
                         };
-                        Data.ReporteCocina.InsertarRutaeImagen(instructivo);
-                        Opcion.Copycmdserver(openFileDialog1.FileName, @"\\mercattoserver\Recetario\img\" + inputs.ClaveReceta.Text + a.ToString() + ".jpg");
+                        Data.ReporteCocina.InsertarRutaeImagen(listainstruccionesv1);
+                        Opcion.Copycmdserver(openFileDialog1.FileName, @"\\mercattoserver\Recetario\img\" + tbBuscarReceta.Text + a.ToString() + ".jpg");
                     }
-
                     else
                     {
                         var instructivo = new Receta.ImagenAndProcess
@@ -679,8 +666,45 @@ namespace ExcelAddIn1
                             RutaImagen = ""
                         };
                         Data.ReporteCocina.InsertarRutaeImagen(instructivo);
-
                     }
+
+     
+                    _agregarImagen = false;
+                    //if (MessageBox.Show(@"Desea agregar la imagen de la Receta", @"Aviso", MessageBoxButtons.YesNo,
+
+                    //                  MessageBoxIcon.Question) == DialogResult.Yes)
+                    //{
+                    //    //openFileDialog1.Filter = @"Image Files (*.png *.jpg *.bmp *.jpeg *.gif) | *.png; *.jpg; *.bmp; *.jpeg  | All Files(*.*) | *.* ";
+                    //    //openFileDialog1.Title = @"Buscar Imagen";
+                    //    //openFileDialog1.FileName = "";
+                    //    //openFileDialog1.ShowDialog();
+                    //    long a = int.Parse(DateTime.Now.ToString("yyyyMMdd"));
+                    //    var image =Convert.ToString( Pbreceta);
+                    //    var dd = @"\\mercattoserver\Recetario\img\" + inputs.ClaveReceta.Text + a.ToString() + ".jpg";
+                    //    image = dd;
+
+
+                    //    var instructivo = new Receta.ImagenAndProcess
+                    //    {
+                    //        RecId = Data.Receta.CReceta.RecId,
+                    //        Instrucciones = inputs.ModoElaboracion.Text,
+                    //        RutaImagen = image
+                    //    };
+                    //    Data.ReporteCocina.InsertarRutaeImagen(instructivo);
+                    //    Opcion.Copycmdserver(openFileDialog1.FileName, @"\\mercattoserver\Recetario\img\" + inputs.ClaveReceta.Text + a.ToString() + ".jpg");
+                    //}
+
+                    //else
+                    //{
+                    //    var instructivo = new Receta.ImagenAndProcess
+                    //    {
+                    //        RecId = Data.Receta.CReceta.RecId,
+                    //        Instrucciones = inputs.ModoElaboracion.Text,
+                    //        RutaImagen = ""
+                    //    };
+                    //    Data.ReporteCocina.InsertarRutaeImagen(instructivo);
+
+                    //}
                     #endregion
                     Data.Receta.Detalle.InsertarDetalle(x);
                 }
@@ -705,8 +729,8 @@ namespace ExcelAddIn1
                 inputs.Precio.Text = "";
                 inputs.PesoLitro.Text = "";
                 inputs.Descripcion.Text = "";
-                inputs.TipoReceta.TabIndex = -1;
-                inputs.UnidadElaboracion.TabIndex = -1;
+                inputs.TipoReceta.TabIndex = 0;
+                inputs.UnidadElaboracion.TabIndex = 0;
                 inputs.MargenConPrecio.Text = "";
                 inputs.MargenConPrecio.Text = Convert.ToString("");
                 inputs.ModoElaboracion.Text = "";
@@ -719,19 +743,21 @@ namespace ExcelAddIn1
                 inputs.Ingredientes.DataSource = null;
                 inputs.Ingredientes.DataSource = "";
                 inputs.Ingredientes.Columns.Clear();
-                inputs.Ingredientes.Rows.Clear();
+                //inputs.Ingredientes.Rows.Clear();
                 inputs.Ingredientes.Update();
                 mde?.Close();
             }));
         }
         public void Limpiarbusqueda()
         {
+            txtClave.Text = "";
+            tbCodigoBE.Text = "";
             tbBuscarReceta.Text = "";
             tbDescripcionBE.Text = "";
             tbPesoLitroBE.Text = "";
             tbCantidadElaboracionBE.Text = "";
-            cbUnidadElaboracionBE.SelectedIndex = -1;
-            cbTipoBE.SelectedIndex = -1;
+            cbUnidadElaboracionBE.SelectedIndex = 0;
+            cbTipoBE.SelectedIndex =0;
             tbCostoElaboracionBE.Text = "";
             tbMargenConPrecioBE.Text = "";
             tbMargenConPrecioBE.Text = Convert.ToString("");
@@ -784,7 +810,9 @@ namespace ExcelAddIn1
                                          tbCostoElaboracionBE.Text = resultado.CostoElaboracion.ToString(CultureInfo.InvariantCulture);
                                          tbPrecioBE.Text = resultado.Precio.ToString(CultureInfo.InvariantCulture);
                                          tbPrecioTotalBE.Text = resultado.PrecioTotal.ToString(CultureInfo.InvariantCulture);
-                                         tbDescripcionBE.Text = resultado.Descripcion;
+                                         tbDescripcionBE.Text = resultado.Descripcion;/*@"Receta:"+ resultado.Descripcion + @"   
+                                       " +@"Clave:" + resultado.Clave;*/
+                                         txtClave.Text = resultado.Clave;
                                          cbTipoBE.SelectedIndex = resultado.TiporId - 1;
                                          cbUnidadElaboracionBE.SelectedIndex = resultado.UnidadElaboracion - 1;
                                          ActualizarInputs(new Inputs
@@ -811,6 +839,7 @@ namespace ExcelAddIn1
 
                                          tbMargenConPrecioBE.Text = resultado.Margen.ToString(CultureInfo.InvariantCulture);
                                          tbBuscarReceta.Text = resultado.Clave;
+                                         tbBuscarReceta.ForeColor = Color.WhiteSmoke;
                                          cbTipoBE.SelectedIndex = resultado.TiporId - 1;
                                          tbCostoEstimadoBE.Text = resultado.CostoCreacion.ToString(CultureInfo.InvariantCulture);
                                          //chDiarioBE.Checked = (resultado.Diario == 1);
@@ -873,6 +902,7 @@ namespace ExcelAddIn1
                                                      tbPrecioBE.Text = resultado.Precio.ToString(CultureInfo.InvariantCulture);
                                                      tbPrecioTotalBE.Text = resultado.PrecioTotal.ToString(CultureInfo.InvariantCulture);
                                                      tbDescripcionBE.Text = resultado.Descripcion;
+                                                     txtClave.Text = resultado.Clave;
                                                      cbTipoBE.SelectedIndex = resultado.TiporId - 1;
                                                      cbUnidadElaboracionBE.SelectedIndex = resultado.UnidadElaboracion - 1;
                                                      ActualizarInputs(new Inputs
@@ -1278,7 +1308,16 @@ namespace ExcelAddIn1
                 dgvIngredientesBusqueda.Rows[i].Cells[1].ReadOnly = true;
                 dgvIngredientesBusqueda.Rows[i].Cells[2].ReadOnly = true;
                 dgvIngredientesBusqueda.Rows[i].Cells[3].ReadOnly = true;
+                dgvIngredientesBusqueda.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
+                dgvIngredientesBusqueda.DefaultCellStyle.Font = new Font("Arial", 9);
+                dgvIngredientesBusqueda.Columns[0].Width = 60;
+                dgvIngredientesBusqueda.Columns["Clave"].Width = 90;
+                dgvIngredientesBusqueda.Columns["Cantidad"].Width = 110;
+                dgvIngredientesBusqueda.Columns["Descripcion"].Width = 270;
+                dgvIngredientesBusqueda.Columns["Cantidad"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
+                dgvIngredientesBusqueda.Columns["PrecioCompra"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
             }   
+
         }
         private void dgvIngredientesBusqueda_DataError(object sender, DataGridViewDataErrorEventArgs e)
         {
@@ -1349,10 +1388,68 @@ namespace ExcelAddIn1
             ////}
 
         }
+        private bool _agregarImagen= false;
 
-        private void tabPage2_Click(object sender, EventArgs e)
+        private void btImagen_Click(object sender, EventArgs e)
         {
+            if (MessageBox.Show(@"Desea agregar la imagen de la receta", @"Aviso", MessageBoxButtons.YesNo,
+                MessageBoxIcon.Question) == DialogResult.Yes)
+            {
+                _agregarImagen = true;
+                if (Local.Receta.Ruta == null || Local.Receta.Ruta == String.Empty)
+                {
+                    openFileDialog1.Filter = @"Image Files (*.png *.jpg *.bmp) | *.png; *.jpg; *.bmp | All Files(*.*) | *.* ";
+                    openFileDialog1.Title = @"Buscar Imagen";
+                    openFileDialog1.FileName = "";
+                    DialogResult result = openFileDialog1.ShowDialog();
+                    if (result == DialogResult.OK)
+                    {
+                        Pbreceta.Image = Image.FromFile(openFileDialog1.FileName);
+                    }
+                }
+                else
+                {
+                    var otro = Local.Receta.Ruta;
+                    var final = otro.Length - 31;
+                    var mundo = otro.Substring(31, final);
+                    // ReSharper disable once ObjectCreationAsStatement
+                    new Uri(@"file://mercattoserver/Recetario/img/" + mundo, UriKind.Absolute);
+                    System.IO.File.Delete(@"\\mercattoserver\\C$\Recetario\img\" + mundo);
+                    openFileDialog1.Filter = @"Image Files (*.png *.jpg *.bmp) | *.png; *.jpg; *.bmp | All Files(*.*) | *.* ";
+                    openFileDialog1.Title = @"Buscar Imagen";
+                    openFileDialog1.FileName = "";
+                    DialogResult result = openFileDialog1.ShowDialog();
+                    if (result == DialogResult.OK)
+                    {
+                        Pbreceta.Image = Image.FromFile(openFileDialog1.FileName);
+                    }
+                }
+            }
+       }
 
+        private void btImprimirReceta_Click(object sender, EventArgs e)
+        {
+            Cocina.DetalleCocina.Clave = tbBuscarReceta.Text == string.Empty ? "%" : tbBuscarReceta.Text;
+           
+            Opcion.EjecucionAsync(x =>
+            {
+                var detallereceta = new Cocina.DetalleCocina.ReporteDetalle
+                {
+                    clave = tbBuscarReceta.Text
+                };
+                Data.ReporteCocina.DDetalleReceta(x, detallereceta);
+            }, jsonResult =>
+            {
+               Reporte.RespuestaCocina listaCocina= Opcion.JsonaListaGenerica<Reporte.RespuestaCocina>(jsonResult)[0];
+                var addIn = Globals.ThisAddIn;
+                addIn.DatosReceta(listaCocina);
+            }
+            );        
+        }
+
+        private void tbBuscarReceta_Click(object sender, EventArgs e)
+        {
+            tbBuscarReceta.ForeColor = Color.Black;
         }
     }
 }

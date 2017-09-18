@@ -47,10 +47,10 @@
             // lbOrdenar
             // 
             this.lbOrdenar.AutoSize = true;
-            this.lbOrdenar.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lbOrdenar.Location = new System.Drawing.Point(88, 249);
+            this.lbOrdenar.Font = new System.Drawing.Font("Arial", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lbOrdenar.Location = new System.Drawing.Point(65, 318);
             this.lbOrdenar.Name = "lbOrdenar";
-            this.lbOrdenar.Size = new System.Drawing.Size(111, 19);
+            this.lbOrdenar.Size = new System.Drawing.Size(136, 22);
             this.lbOrdenar.TabIndex = 2;
             this.lbOrdenar.Text = "Ordenar por :";
             // 
@@ -58,21 +58,22 @@
             // 
             this.cbOrdenarReceta.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend;
             this.cbOrdenarReceta.BackColor = System.Drawing.Color.Silver;
+            this.cbOrdenarReceta.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.cbOrdenarReceta.FormattingEnabled = true;
-            this.cbOrdenarReceta.Location = new System.Drawing.Point(77, 270);
+            this.cbOrdenarReceta.Location = new System.Drawing.Point(47, 343);
             this.cbOrdenarReceta.Name = "cbOrdenarReceta";
-            this.cbOrdenarReceta.Size = new System.Drawing.Size(148, 21);
+            this.cbOrdenarReceta.Size = new System.Drawing.Size(165, 26);
             this.cbOrdenarReceta.TabIndex = 4;
             this.cbOrdenarReceta.SelectedIndexChanged += new System.EventHandler(this.cbOrdenarReceta_SelectedIndexChanged);
             // 
             // btGenerarReceta
             // 
             this.btGenerarReceta.BackColor = System.Drawing.Color.Black;
-            this.btGenerarReceta.Font = new System.Drawing.Font("Times New Roman", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btGenerarReceta.Font = new System.Drawing.Font("Times New Roman", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btGenerarReceta.ForeColor = System.Drawing.Color.White;
-            this.btGenerarReceta.Location = new System.Drawing.Point(97, 310);
+            this.btGenerarReceta.Location = new System.Drawing.Point(69, 391);
             this.btGenerarReceta.Name = "btGenerarReceta";
-            this.btGenerarReceta.Size = new System.Drawing.Size(99, 33);
+            this.btGenerarReceta.Size = new System.Drawing.Size(112, 33);
             this.btGenerarReceta.TabIndex = 6;
             this.btGenerarReceta.Text = "Generar";
             this.btGenerarReceta.UseVisualStyleBackColor = false;
@@ -95,26 +96,26 @@
             this.panel1.Controls.Add(this.lbOrdenar);
             this.panel1.Location = new System.Drawing.Point(3, 3);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(305, 375);
+            this.panel1.Size = new System.Drawing.Size(282, 454);
             this.panel1.TabIndex = 7;
-            this.panel1.Paint += new System.Windows.Forms.PaintEventHandler(this.panel1_Paint);
             // 
             // tbProducto
             // 
             this.tbProducto.BackColor = System.Drawing.Color.Silver;
-            this.tbProducto.Location = new System.Drawing.Point(137, 211);
+            this.tbProducto.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.tbProducto.Location = new System.Drawing.Point(103, 267);
             this.tbProducto.Name = "tbProducto";
-            this.tbProducto.Size = new System.Drawing.Size(165, 20);
+            this.tbProducto.Size = new System.Drawing.Size(165, 24);
             this.tbProducto.TabIndex = 15;
             this.tbProducto.TextChanged += new System.EventHandler(this.tbProducto_TextChanged);
             // 
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Font = new System.Drawing.Font("Modern No. 20", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.Location = new System.Drawing.Point(94, 141);
+            this.label1.Font = new System.Drawing.Font("Arial", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label1.Location = new System.Drawing.Point(80, 191);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(89, 17);
+            this.label1.Size = new System.Drawing.Size(121, 22);
             this.label1.TabIndex = 14;
             this.label1.Text = "Buscar por:";
             // 
@@ -122,7 +123,7 @@
             // 
             this.cbTipoReceta.AutoSize = true;
             this.cbTipoReceta.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.cbTipoReceta.Location = new System.Drawing.Point(6, 173);
+            this.cbTipoReceta.Location = new System.Drawing.Point(8, 227);
             this.cbTipoReceta.Name = "cbTipoReceta";
             this.cbTipoReceta.Size = new System.Drawing.Size(125, 23);
             this.cbTipoReceta.TabIndex = 13;
@@ -134,7 +135,7 @@
             // 
             this.cbPlatillo.AutoSize = true;
             this.cbPlatillo.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.cbPlatillo.Location = new System.Drawing.Point(6, 211);
+            this.cbPlatillo.Location = new System.Drawing.Point(3, 268);
             this.cbPlatillo.Name = "cbPlatillo";
             this.cbPlatillo.Size = new System.Drawing.Size(105, 23);
             this.cbPlatillo.TabIndex = 12;
@@ -144,35 +145,37 @@
             // 
             // dtpFechaFin
             // 
-            this.dtpFechaFin.Location = new System.Drawing.Point(49, 101);
+            this.dtpFechaFin.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.dtpFechaFin.Location = new System.Drawing.Point(17, 118);
             this.dtpFechaFin.Name = "dtpFechaFin";
-            this.dtpFechaFin.Size = new System.Drawing.Size(200, 20);
+            this.dtpFechaFin.Size = new System.Drawing.Size(251, 22);
             this.dtpFechaFin.TabIndex = 11;
             // 
             // dtpFechaIni
             // 
-            this.dtpFechaIni.Location = new System.Drawing.Point(49, 46);
+            this.dtpFechaIni.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.dtpFechaIni.Location = new System.Drawing.Point(17, 50);
             this.dtpFechaIni.Name = "dtpFechaIni";
-            this.dtpFechaIni.Size = new System.Drawing.Size(200, 20);
+            this.dtpFechaIni.Size = new System.Drawing.Size(251, 22);
             this.dtpFechaIni.TabIndex = 10;
             // 
             // lbFin
             // 
             this.lbFin.AutoSize = true;
-            this.lbFin.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lbFin.Location = new System.Drawing.Point(113, 80);
+            this.lbFin.Font = new System.Drawing.Font("Arial", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lbFin.Location = new System.Drawing.Point(98, 93);
             this.lbFin.Name = "lbFin";
-            this.lbFin.Size = new System.Drawing.Size(86, 19);
+            this.lbFin.Size = new System.Drawing.Size(103, 22);
             this.lbFin.TabIndex = 9;
             this.lbFin.Text = "FechaFin:";
             // 
             // lbIni
             // 
             this.lbIni.AutoSize = true;
-            this.lbIni.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lbIni.Location = new System.Drawing.Point(116, 25);
+            this.lbIni.Font = new System.Drawing.Font("Arial", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lbIni.Location = new System.Drawing.Point(105, 25);
             this.lbIni.Name = "lbIni";
-            this.lbIni.Size = new System.Drawing.Size(80, 19);
+            this.lbIni.Size = new System.Drawing.Size(96, 22);
             this.lbIni.TabIndex = 8;
             this.lbIni.Text = "FechaIni:";
             // 
@@ -180,10 +183,11 @@
             // 
             this.cbproducto.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend;
             this.cbproducto.BackColor = System.Drawing.Color.Silver;
+            this.cbproducto.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.cbproducto.FormattingEnabled = true;
-            this.cbproducto.Location = new System.Drawing.Point(137, 175);
+            this.cbproducto.Location = new System.Drawing.Point(134, 227);
             this.cbproducto.Name = "cbproducto";
-            this.cbproducto.Size = new System.Drawing.Size(131, 21);
+            this.cbproducto.Size = new System.Drawing.Size(134, 26);
             this.cbproducto.TabIndex = 7;
             // 
             // SideBarReporteReceta
@@ -192,7 +196,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.Controls.Add(this.panel1);
             this.Name = "SideBarReporteReceta";
-            this.Size = new System.Drawing.Size(309, 378);
+            this.Size = new System.Drawing.Size(286, 460);
             this.Load += new System.EventHandler(this.SideBarReporteReceta_Load);
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
@@ -201,7 +205,6 @@
         }
 
         #endregion
-        private System.Windows.Forms.Label lbProducto;
         private System.Windows.Forms.Label lbOrdenar;
         private System.Windows.Forms.ComboBox cbOrdenarReceta;
         private System.Windows.Forms.Button btGenerarReceta;

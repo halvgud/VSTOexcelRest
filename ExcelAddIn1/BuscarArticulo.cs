@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Drawing;
 using System.Linq;
 using System.Windows.Forms;
 using Respuesta;
@@ -60,6 +61,17 @@ namespace ExcelAddIn1
            // Regex regex = new Regex(@"^[0-9]*([0-9]+\.[0-9]{1,2})*$");
             ValidarEspacioVacio();
 
+        }
+
+        private void dgvListaArticulos_CurrentCellChanged(object sender, EventArgs e)
+        {
+          dgvListaArticulos.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
+          dgvListaArticulos.DefaultCellStyle.Font = new Font("Arial", 9);
+          dgvListaArticulos.Columns[1].Width = 250;
+          dgvListaArticulos.Columns[0].Width = 100;
+          dgvListaArticulos.Columns[2].Width = 100;
+          dgvListaArticulos.Columns[2].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
+          dgvListaArticulos.Columns[0].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
         }
     }
 }

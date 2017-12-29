@@ -25,7 +25,7 @@ namespace ExcelAddIn1
             dataGridView1.DataSource = _platillo.Select(x => new { platillo = x.Platillo, ultimaElaboracion=x.UltimaElaboracion }).ToArray();
             dataGridView1.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
             dataGridView1.DefaultCellStyle.Font = new Font("Arial", 11);
-            DeshabilitarRadioButtons(this,diaSeleccionado);
+            //DeshabilitarRadioButtons(this,diaSeleccionado);
         }
 
         private int DevolverDia(string dia)
@@ -54,13 +54,7 @@ namespace ExcelAddIn1
                     var result = DateTime.Compare(diaSeleccionado, DateTime.Today);
                     int day = 0;
                     day = (DateTime.Now.DayOfWeek == 0) ? 7 : (int)DateTime.Now.DayOfWeek;
-                    view.Enabled = !(radioDay <= day);
-                    view.Enabled = radioDay == day;
-
-                    if (day == 7)
-                    {
-                        view.Enabled = true;
-                    }
+                    view.Enabled = !(radioDay <= day) || radioDay == day || day == 7;
                 }
                 else
                 {

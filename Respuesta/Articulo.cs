@@ -24,10 +24,12 @@ namespace Respuesta
         public string IdUnidad { get; set; }
         public string Descripcion { get; set; }
         public double PrecioTotal { get; set; }
+        public string Estado { get; set; }
+        public string Unidad { get; set; }
 
         public Basica CopiadoSencillo()
         {
-            var art = new Basica {Clave = Clave, Descripcion = Descripcion, PrecioCompra = PrecioCompra, Cantidad=Cantidad,ArtId=ArtId};
+            var art = new Basica {Clave = Clave, Descripcion = Descripcion, PrecioCompra = PrecioCompra, Cantidad=Cantidad,Unidad= Unidad,ArtId = ArtId,Estado = Estado};
             return art;
         }
         public class Basica
@@ -37,6 +39,8 @@ namespace Respuesta
             public string Descripcion { get; set; }
             public double PrecioCompra { get; set; }
             public double Cantidad { get; set; }
+            public string Estado { get; set; }
+            public  string Unidad { get; set; }
             //public int Status { get; set; }
             //public DateTime Fecha { get; set; }
         }
@@ -44,8 +48,9 @@ namespace Respuesta
         {
             public class Tipo
             {
-                public string Clave { get; set; }
+                public string clave { get; set; }
                 public string tipo { get; set; }
+                //public string art_id { get; set; }
             }
             public class MaximosMinimos
             {

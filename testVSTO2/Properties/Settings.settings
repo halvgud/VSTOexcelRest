@@ -3,7 +3,7 @@
   <Profiles />
   <Settings>
     <Setting Name="UrlApi" Type="System.String" Scope="Application">
-      <Value Profile="(Default)">http://192.168.0.2/apiMovStock/public/</Value>
+      <Value Profile="(Default)">http://192.168.0.4/apiMovStock/public/</Value>
     </Setting>
     <Setting Name="IdSucursal" Type="System.String" Scope="Application">
       <Value Profile="(Default)">2</Value>

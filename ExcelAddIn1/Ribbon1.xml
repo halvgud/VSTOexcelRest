@@ -14,8 +14,6 @@
           <button id ="btOrden" label="Orden de Trabajo" imageMso="CalendarToolImport" size="large" onAction="CrearOrdenTrabajo" getEnabled="BuscarPermiso"/>
           <button id="btCongelados" label="Congelados" imageMso="ObjectFormatDialog" size="large" onAction="CapturaCongelado" getEnabled="BuscarPermiso"/>-->
           
-        
-        
         </group>
       </tab>
     </tabs>

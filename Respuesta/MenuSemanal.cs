@@ -64,6 +64,7 @@ namespace Respuesta
         public List<PlatilloReceta> Viernes { get; set; }
         public List<PlatilloReceta> Sabado { get; set; }
         public List<PlatilloReceta> Domingo { get; set; }
+        public List<PlatilloReceta> FechasList { get; set; }
     }
     public class InsertarMenu
     {

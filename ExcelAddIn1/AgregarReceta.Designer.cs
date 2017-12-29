@@ -30,6 +30,8 @@
         {
             this.components = new System.ComponentModel.Container();
             this.panel1 = new System.Windows.Forms.Panel();
+            this.label29 = new System.Windows.Forms.Label();
+            this.cbReportesReceta = new System.Windows.Forms.ComboBox();
             this.btImprimirReceta = new System.Windows.Forms.Button();
             this.btImagen = new System.Windows.Forms.Button();
             this.btAyudar = new System.Windows.Forms.Button();
@@ -40,6 +42,7 @@
             this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
             this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.tabPage2 = new System.Windows.Forms.TabPage();
+            this.btIngredienteBase = new System.Windows.Forms.Button();
             this.txtClave = new System.Windows.Forms.TextBox();
             this.label27 = new System.Windows.Forms.Label();
             this.button1 = new System.Windows.Forms.Button();
@@ -48,7 +51,6 @@
             this.lbCantidadElaboracionBE = new System.Windows.Forms.Label();
             this.tbCantidadElaboracionBE = new System.Windows.Forms.MaskedTextBox();
             this.txtinstruccionesBE = new System.Windows.Forms.TextBox();
-            this.tbCodigoBE = new System.Windows.Forms.TextBox();
             this.tbDescripcionBE = new System.Windows.Forms.TextBox();
             this.tbBuscarReceta = new System.Windows.Forms.TextBox();
             this.Pbreceta = new System.Windows.Forms.PictureBox();
@@ -82,6 +84,7 @@
             this.chDiarioBE = new System.Windows.Forms.CheckBox();
             this.label23 = new System.Windows.Forms.Label();
             this.label28 = new System.Windows.Forms.Label();
+            this.tbCodigoBE = new System.Windows.Forms.TextBox();
             this.tabPage1 = new System.Windows.Forms.TabPage();
             this.tbCostoEstimado = new System.Windows.Forms.MaskedTextBox();
             this.cbUnidadElaboracion = new System.Windows.Forms.ComboBox();
@@ -133,6 +136,8 @@
             // panel1
             // 
             this.panel1.BackColor = System.Drawing.Color.White;
+            this.panel1.Controls.Add(this.label29);
+            this.panel1.Controls.Add(this.cbReportesReceta);
             this.panel1.Controls.Add(this.btImprimirReceta);
             this.panel1.Controls.Add(this.btImagen);
             this.panel1.Controls.Add(this.btAyudar);
@@ -143,16 +148,41 @@
             this.panel1.Size = new System.Drawing.Size(1354, 48);
             this.panel1.TabIndex = 3;
             // 
+            // label29
+            // 
+            this.label29.AutoSize = true;
+            this.label29.Font = new System.Drawing.Font("Arial", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label29.Location = new System.Drawing.Point(340, 13);
+            this.label29.Name = "label29";
+            this.label29.Size = new System.Drawing.Size(198, 24);
+            this.label29.TabIndex = 64;
+            this.label29.Text = "Reporte a Mostrar:";
+            // 
+            // cbReportesReceta
+            // 
+            this.cbReportesReceta.BackColor = System.Drawing.Color.WhiteSmoke;
+            this.cbReportesReceta.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.cbReportesReceta.FormattingEnabled = true;
+            this.cbReportesReceta.Items.AddRange(new object[] {
+            "Receta Sencilla",
+            "Receta Completa",
+            "Orden de Trabajo"});
+            this.cbReportesReceta.Location = new System.Drawing.Point(542, 11);
+            this.cbReportesReceta.Name = "cbReportesReceta";
+            this.cbReportesReceta.Size = new System.Drawing.Size(228, 26);
+            this.cbReportesReceta.TabIndex = 63;
+            this.cbReportesReceta.SelectedIndexChanged += new System.EventHandler(this.cbReportesReceta_SelectedIndexChanged);
+            // 
             // btImprimirReceta
             // 
             this.btImprimirReceta.BackColor = System.Drawing.Color.Black;
             this.btImprimirReceta.Font = new System.Drawing.Font("Times New Roman", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btImprimirReceta.ForeColor = System.Drawing.Color.White;
-            this.btImprimirReceta.Location = new System.Drawing.Point(226, 5);
+            this.btImprimirReceta.Location = new System.Drawing.Point(776, 5);
             this.btImprimirReceta.Name = "btImprimirReceta";
-            this.btImprimirReceta.Size = new System.Drawing.Size(178, 39);
+            this.btImprimirReceta.Size = new System.Drawing.Size(100, 39);
             this.btImprimirReceta.TabIndex = 62;
-            this.btImprimirReceta.Text = "Imprimir Receta";
+            this.btImprimirReceta.Text = "Aceptar";
             this.btImprimirReceta.UseVisualStyleBackColor = false;
             this.btImprimirReceta.Click += new System.EventHandler(this.btImprimirReceta_Click);
             // 
@@ -161,17 +191,17 @@
             this.btImagen.BackColor = System.Drawing.Color.Black;
             this.btImagen.Font = new System.Drawing.Font("Times New Roman", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btImagen.ForeColor = System.Drawing.Color.White;
-            this.btImagen.Location = new System.Drawing.Point(1092, 5);
+            this.btImagen.Location = new System.Drawing.Point(1121, 3);
             this.btImagen.Name = "btImagen";
-            this.btImagen.Size = new System.Drawing.Size(178, 39);
+            this.btImagen.Size = new System.Drawing.Size(142, 39);
             this.btImagen.TabIndex = 61;
-            this.btImagen.Text = "Adjuntar imagen";
+            this.btImagen.Text = "Add imagen";
             this.btImagen.UseVisualStyleBackColor = false;
             this.btImagen.Click += new System.EventHandler(this.btImagen_Click);
             // 
             // btAyudar
             // 
-            this.btAyudar.Location = new System.Drawing.Point(700, 12);
+            this.btAyudar.Location = new System.Drawing.Point(987, 11);
             this.btAyudar.Name = "btAyudar";
             this.btAyudar.Size = new System.Drawing.Size(75, 23);
             this.btAyudar.TabIndex = 60;
@@ -232,6 +262,7 @@
             // tabPage2
             // 
             this.tabPage2.BackColor = System.Drawing.Color.White;
+            this.tabPage2.Controls.Add(this.btIngredienteBase);
             this.tabPage2.Controls.Add(this.txtClave);
             this.tabPage2.Controls.Add(this.label27);
             this.tabPage2.Controls.Add(this.button1);
@@ -240,7 +271,6 @@
             this.tabPage2.Controls.Add(this.lbCantidadElaboracionBE);
             this.tabPage2.Controls.Add(this.tbCantidadElaboracionBE);
             this.tabPage2.Controls.Add(this.txtinstruccionesBE);
-            this.tabPage2.Controls.Add(this.tbCodigoBE);
             this.tabPage2.Controls.Add(this.tbDescripcionBE);
             this.tabPage2.Controls.Add(this.tbBuscarReceta);
             this.tabPage2.Controls.Add(this.Pbreceta);
@@ -274,6 +304,7 @@
             this.tabPage2.Controls.Add(this.chDiarioBE);
             this.tabPage2.Controls.Add(this.label23);
             this.tabPage2.Controls.Add(this.label28);
+            this.tabPage2.Controls.Add(this.tbCodigoBE);
             this.tabPage2.Font = new System.Drawing.Font("Arial", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.tabPage2.Location = new System.Drawing.Point(4, 31);
             this.tabPage2.Name = "tabPage2";
@@ -282,11 +313,25 @@
             this.tabPage2.TabIndex = 1;
             this.tabPage2.Text = "Buscar y Editar";
             // 
+            // btIngredienteBase
+            // 
+            this.btIngredienteBase.BackColor = System.Drawing.Color.Black;
+            this.btIngredienteBase.Enabled = false;
+            this.btIngredienteBase.Font = new System.Drawing.Font("Times New Roman", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btIngredienteBase.ForeColor = System.Drawing.Color.White;
+            this.btIngredienteBase.Location = new System.Drawing.Point(450, 109);
+            this.btIngredienteBase.Name = "btIngredienteBase";
+            this.btIngredienteBase.Size = new System.Drawing.Size(231, 31);
+            this.btIngredienteBase.TabIndex = 73;
+            this.btIngredienteBase.Text = "Add Ingrediente Base";
+            this.btIngredienteBase.UseVisualStyleBackColor = false;
+            this.btIngredienteBase.Click += new System.EventHandler(this.btIngredienteBase_Click);
+            // 
             // txtClave
             // 
-            this.txtClave.BackColor = System.Drawing.Color.Aqua;
+            this.txtClave.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(128)))), ((int)(((byte)(0)))));
             this.txtClave.Font = new System.Drawing.Font("Arial Narrow", 21.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtClave.Location = new System.Drawing.Point(222, 76);
+            this.txtClave.Location = new System.Drawing.Point(212, 36);
             this.txtClave.Name = "txtClave";
             this.txtClave.ReadOnly = true;
             this.txtClave.Size = new System.Drawing.Size(268, 41);
@@ -365,22 +410,11 @@
             this.txtinstruccionesBE.TabIndex = 61;
             this.txtinstruccionesBE.TextChanged += new System.EventHandler(this.txtinstruccionesBE_TextChanged);
             // 
-            // tbCodigoBE
-            // 
-            this.tbCodigoBE.BackColor = System.Drawing.Color.WhiteSmoke;
-            this.tbCodigoBE.Enabled = false;
-            this.tbCodigoBE.Location = new System.Drawing.Point(478, 39);
-            this.tbCodigoBE.Name = "tbCodigoBE";
-            this.tbCodigoBE.Size = new System.Drawing.Size(326, 29);
-            this.tbCodigoBE.TabIndex = 52;
-            this.tbCodigoBE.TextChanged += new System.EventHandler(this.tbCodigoBE_TextChanged);
-            this.tbCodigoBE.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.tbCodigoBE_KeyPress);
-            // 
             // tbDescripcionBE
             // 
-            this.tbDescripcionBE.BackColor = System.Drawing.Color.Aqua;
+            this.tbDescripcionBE.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(128)))), ((int)(((byte)(0)))));
             this.tbDescripcionBE.Font = new System.Drawing.Font("Arial Narrow", 21.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.tbDescripcionBE.Location = new System.Drawing.Point(611, 76);
+            this.tbDescripcionBE.Location = new System.Drawing.Point(625, 36);
             this.tbDescripcionBE.Name = "tbDescripcionBE";
             this.tbDescripcionBE.ReadOnly = true;
             this.tbDescripcionBE.Size = new System.Drawing.Size(623, 41);
@@ -391,7 +425,7 @@
             // tbBuscarReceta
             // 
             this.tbBuscarReceta.BackColor = System.Drawing.Color.WhiteSmoke;
-            this.tbBuscarReceta.Location = new System.Drawing.Point(478, 6);
+            this.tbBuscarReceta.Location = new System.Drawing.Point(180, 4);
             this.tbBuscarReceta.Name = "tbBuscarReceta";
             this.tbBuscarReceta.Size = new System.Drawing.Size(326, 29);
             this.tbBuscarReceta.TabIndex = 5;
@@ -425,22 +459,24 @@
             this.btBuscarBE.Enabled = false;
             this.btBuscarBE.Font = new System.Drawing.Font("Times New Roman", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btBuscarBE.ForeColor = System.Drawing.Color.White;
-            this.btBuscarBE.Location = new System.Drawing.Point(810, 39);
+            this.btBuscarBE.Location = new System.Drawing.Point(150, 109);
             this.btBuscarBE.Name = "btBuscarBE";
-            this.btBuscarBE.Size = new System.Drawing.Size(93, 31);
+            this.btBuscarBE.Size = new System.Drawing.Size(239, 31);
             this.btBuscarBE.TabIndex = 54;
-            this.btBuscarBE.Text = "Buscar...";
+            this.btBuscarBE.Text = "Add Ingrediente General";
             this.btBuscarBE.UseVisualStyleBackColor = false;
             this.btBuscarBE.Click += new System.EventHandler(this.btBuscarBE_Click);
             // 
             // label24
             // 
             this.label24.AutoSize = true;
-            this.label24.Location = new System.Drawing.Point(182, 42);
+            this.label24.Font = new System.Drawing.Font("Arial", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label24.Location = new System.Drawing.Point(636, 55);
             this.label24.Name = "label24";
-            this.label24.Size = new System.Drawing.Size(299, 22);
+            this.label24.Size = new System.Drawing.Size(168, 14);
             this.label24.TabIndex = 53;
             this.label24.Text = "Codigo o nombre de ingredientes:";
+            this.label24.Visible = false;
             // 
             // dgvIngredientesBusqueda
             // 
@@ -484,7 +520,6 @@
             this.tbMargenConPrecioBE.Size = new System.Drawing.Size(229, 29);
             this.tbMargenConPrecioBE.TabIndex = 33;
             this.tbMargenConPrecioBE.TextChanged += new System.EventHandler(this.tbMargenConPrecioBE_TextChanged);
-            this.tbMargenConPrecioBE.Validating += new System.ComponentModel.CancelEventHandler(this.tbMargenConPrecioBE_Validating);
             // 
             // tbPrecioBE
             // 
@@ -585,7 +620,7 @@
             this.btBorrarSelecBE.BackColor = System.Drawing.Color.Black;
             this.btBorrarSelecBE.Font = new System.Drawing.Font("Times New Roman", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btBorrarSelecBE.ForeColor = System.Drawing.Color.White;
-            this.btBorrarSelecBE.Location = new System.Drawing.Point(569, 392);
+            this.btBorrarSelecBE.Location = new System.Drawing.Point(555, 392);
             this.btBorrarSelecBE.Name = "btBorrarSelecBE";
             this.btBorrarSelecBE.Size = new System.Drawing.Size(158, 39);
             this.btBorrarSelecBE.TabIndex = 35;
@@ -598,7 +633,7 @@
             this.btBorrarListaBE.BackColor = System.Drawing.Color.Black;
             this.btBorrarListaBE.Font = new System.Drawing.Font("Times New Roman", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btBorrarListaBE.ForeColor = System.Drawing.Color.White;
-            this.btBorrarListaBE.Location = new System.Drawing.Point(733, 392);
+            this.btBorrarListaBE.Location = new System.Drawing.Point(718, 392);
             this.btBorrarListaBE.Name = "btBorrarListaBE";
             this.btBorrarListaBE.Size = new System.Drawing.Size(124, 39);
             this.btBorrarListaBE.TabIndex = 37;
@@ -609,19 +644,19 @@
             // label22
             // 
             this.label22.AutoSize = true;
-            this.label22.Font = new System.Drawing.Font("Arial", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label22.Location = new System.Drawing.Point(6, 119);
+            this.label22.Font = new System.Drawing.Font("Arial", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label22.Location = new System.Drawing.Point(348, 84);
             this.label22.Name = "label22";
-            this.label22.Size = new System.Drawing.Size(216, 22);
+            this.label22.Size = new System.Drawing.Size(154, 24);
             this.label22.TabIndex = 29;
-            this.label22.Text = "Lista de ingredientes :";
+            this.label22.Text = " Ingredientes :";
             // 
             // btBuscarClave
             // 
             this.btBuscarClave.BackColor = System.Drawing.Color.Black;
             this.btBuscarClave.Font = new System.Drawing.Font("Times New Roman", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btBuscarClave.ForeColor = System.Drawing.Color.White;
-            this.btBuscarClave.Location = new System.Drawing.Point(810, 3);
+            this.btBuscarClave.Location = new System.Drawing.Point(512, 3);
             this.btBuscarClave.Name = "btBuscarClave";
             this.btBuscarClave.Size = new System.Drawing.Size(93, 33);
             this.btBuscarClave.TabIndex = 6;
@@ -633,11 +668,11 @@
             // 
             this.label3.AutoSize = true;
             this.label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label3.Location = new System.Drawing.Point(181, 8);
+            this.label3.Location = new System.Drawing.Point(6, 3);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(290, 24);
+            this.label3.Size = new System.Drawing.Size(168, 24);
             this.label3.TabIndex = 4;
-            this.label3.Text = "Clave o Nombre de la Receta:";
+            this.label3.Text = "Receta a Buscar:";
             // 
             // tbMargenSugeridoBE
             // 
@@ -686,7 +721,6 @@
             this.tbCantidadDiarioBE.Size = new System.Drawing.Size(66, 29);
             this.tbCantidadDiarioBE.TabIndex = 66;
             this.tbCantidadDiarioBE.Visible = false;
-            this.tbCantidadDiarioBE.TextChanged += new System.EventHandler(this.tbCantidadDiarioBE_TextChanged);
             // 
             // lbCantidadDiarioBE
             // 
@@ -707,13 +741,12 @@
             this.chDiarioBE.TabIndex = 62;
             this.chDiarioBE.Text = "Diario";
             this.chDiarioBE.UseVisualStyleBackColor = true;
-            this.chDiarioBE.CheckedChanged += new System.EventHandler(this.chDiarioBE_CheckedChanged);
             // 
             // label23
             // 
             this.label23.AutoSize = true;
             this.label23.Font = new System.Drawing.Font("Arial Narrow", 24F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label23.Location = new System.Drawing.Point(505, 76);
+            this.label23.Location = new System.Drawing.Point(505, 40);
             this.label23.Name = "label23";
             this.label23.Size = new System.Drawing.Size(114, 37);
             this.label23.TabIndex = 70;
@@ -723,11 +756,23 @@
             // 
             this.label28.AutoSize = true;
             this.label28.Font = new System.Drawing.Font("Arial Narrow", 24F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label28.Location = new System.Drawing.Point(134, 76);
+            this.label28.Location = new System.Drawing.Point(109, 36);
             this.label28.Name = "label28";
             this.label28.Size = new System.Drawing.Size(97, 37);
             this.label28.TabIndex = 71;
             this.label28.Text = "Clave:";
+            // 
+            // tbCodigoBE
+            // 
+            this.tbCodigoBE.BackColor = System.Drawing.Color.WhiteSmoke;
+            this.tbCodigoBE.Enabled = false;
+            this.tbCodigoBE.Location = new System.Drawing.Point(832, 44);
+            this.tbCodigoBE.Name = "tbCodigoBE";
+            this.tbCodigoBE.Size = new System.Drawing.Size(10, 29);
+            this.tbCodigoBE.TabIndex = 52;
+            this.tbCodigoBE.Visible = false;
+            this.tbCodigoBE.TextChanged += new System.EventHandler(this.tbCodigoBE_TextChanged);
+            this.tbCodigoBE.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.tbCodigoBE_KeyPress);
             // 
             // tabPage1
             // 
@@ -901,7 +946,6 @@
             this.tbMargenConPrecio.TabIndex = 6;
             this.tbMargenConPrecio.TextChanged += new System.EventHandler(this.tbMargenConPrecio_TextChanged);
             this.tbMargenConPrecio.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.tbMargenConPrecio_KeyPress);
-            this.tbMargenConPrecio.Validating += new System.ComponentModel.CancelEventHandler(this.tbMargenConPrecio_Validating);
             // 
             // tbPrecio
             // 
@@ -1091,7 +1135,6 @@
             this.tbCantidadDiario.Size = new System.Drawing.Size(67, 29);
             this.tbCantidadDiario.TabIndex = 62;
             this.tbCantidadDiario.Visible = false;
-            this.tbCantidadDiario.TextChanged += new System.EventHandler(this.tbCantidadDiario_TextChanged);
             // 
             // chDiario
             // 
@@ -1104,7 +1147,6 @@
             this.chDiario.Text = "Diario";
             this.chDiario.UseVisualStyleBackColor = true;
             this.chDiario.Visible = false;
-            this.chDiario.CheckedChanged += new System.EventHandler(this.chDiario_CheckedChanged);
             // 
             // lbCantidadDiario
             // 
@@ -1147,6 +1189,7 @@
             this.Text = "Recetario";
             this.Load += new System.EventHandler(this.AgregarReceta_Load);
             this.panel1.ResumeLayout(false);
+            this.panel1.PerformLayout();
             this.menuStrip1.ResumeLayout(false);
             this.menuStrip1.PerformLayout();
             this.tabPage2.ResumeLayout(false);
@@ -1254,5 +1297,8 @@
         private System.Windows.Forms.TextBox txtClave;
         private System.Windows.Forms.Label label28;
         private System.Windows.Forms.Label label23;
+        private System.Windows.Forms.Button btIngredienteBase;
+        private System.Windows.Forms.Label label29;
+        private System.Windows.Forms.ComboBox cbReportesReceta;
     }
 }

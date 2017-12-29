@@ -73,6 +73,17 @@ namespace Respuesta
             public Double PrecioAnterior { get; set; }
             public Double PrecioNuevo { get; set; }
         }
+        public class  IngredientesBase
+        {
+            public int Id { get; set; }
+            public int Clave { get; set; }
+            public string Descripcion { get; set; }
+            public double Cantidad { get; set; }
+            public string Unidad { get; set; }
+            public double Costo { get; set; }
+            //public string Nombre { get; set; }
+            //public int Status { get; set; }
+        }
 
         public class Diaanterior
         {
@@ -116,6 +127,7 @@ namespace Respuesta
             public string Unidad { get; set; }
             public double PrecioTotal { get; set; }
             public int TiporId { get; set; }
+            public string Estado { get; set; }
         }
 
         public class Savedaily
@@ -130,6 +142,7 @@ namespace Respuesta
             public  string Fecha { get; set; }
             public  string Status { get; set; }
             public string Observacion { get; set; }
+            public double CantidadElaborar { get; set; }
         }
 
         public class DiariosMañana

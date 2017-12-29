@@ -52,36 +52,35 @@
             this.label7 = new System.Windows.Forms.Label();
             this.dgvMartes = new System.Windows.Forms.DataGridView();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
-            this.tableLayoutPanel5 = new System.Windows.Forms.TableLayoutPanel();
-            this.label4 = new System.Windows.Forms.Label();
-            this.cbDias = new PresentationControls.CheckBoxComboBox();
-            this.tableLayoutPanel4 = new System.Windows.Forms.TableLayoutPanel();
-            this.btAgregarSemana = new System.Windows.Forms.Button();
-            this.tableLayoutPanel3 = new System.Windows.Forms.TableLayoutPanel();
-            this.btPlatillo = new System.Windows.Forms.Button();
-            this.tableLayoutPanel2 = new System.Windows.Forms.TableLayoutPanel();
-            this.ckPlatillo = new System.Windows.Forms.CheckBox();
-            this.cbTipoReceta = new System.Windows.Forms.ComboBox();
-            this.ckTipoReceta = new System.Windows.Forms.CheckBox();
-            this.tbPlatillo = new System.Windows.Forms.TextBox();
-            this.FechaDomingo = new System.Windows.Forms.Label();
-            this.FechaSabado = new System.Windows.Forms.Label();
-            this.FechaViernes = new System.Windows.Forms.Label();
-            this.FechaJueves = new System.Windows.Forms.Label();
-            this.FechaMiercoles = new System.Windows.Forms.Label();
-            this.FechaMartes = new System.Windows.Forms.Label();
-            this.FechaLunes = new System.Windows.Forms.Label();
-            this.label2 = new System.Windows.Forms.Label();
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
+            this.btBorrarFila = new System.Windows.Forms.Button();
             this.btEditarSemana = new System.Windows.Forms.Button();
             this.btPreviaPlatillo = new System.Windows.Forms.Button();
             this.btImprimirMenu = new System.Windows.Forms.Button();
             this.btGuardar = new System.Windows.Forms.Button();
             this.btOrdenTrabajo = new System.Windows.Forms.Button();
-            this.btBorrarFila = new System.Windows.Forms.Button();
+            this.tableLayoutPanel2 = new System.Windows.Forms.TableLayoutPanel();
+            this.cbTipoReceta = new System.Windows.Forms.ComboBox();
+            this.ckPlatillo = new System.Windows.Forms.CheckBox();
+            this.ckTipoReceta = new System.Windows.Forms.CheckBox();
+            this.tbPlatillo = new System.Windows.Forms.TextBox();
+            this.tableLayoutPanel3 = new System.Windows.Forms.TableLayoutPanel();
+            this.btPlatillo = new System.Windows.Forms.Button();
+            this.tableLayoutPanel5 = new System.Windows.Forms.TableLayoutPanel();
+            this.cbDias = new PresentationControls.CheckBoxComboBox();
+            this.label4 = new System.Windows.Forms.Label();
+            this.tableLayoutPanel4 = new System.Windows.Forms.TableLayoutPanel();
+            this.btAgregarSemana = new System.Windows.Forms.Button();
+            this.label2 = new System.Windows.Forms.Label();
+            this.FechaDomingo = new System.Windows.Forms.Label();
+            this.FechaViernes = new System.Windows.Forms.Label();
+            this.FechaJueves = new System.Windows.Forms.Label();
+            this.FechaMiercoles = new System.Windows.Forms.Label();
+            this.FechaMartes = new System.Windows.Forms.Label();
+            this.FechaLunes = new System.Windows.Forms.Label();
+            this.FechaSabado = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
             this.DtpFecha = new System.Windows.Forms.DateTimePicker();
-            this.dgvLunes = new System.Windows.Forms.DataGridView();
             this.btPreviaPlatilloGlobal = new System.Windows.Forms.Button();
             this.dgvMiercoles = new System.Windows.Forms.DataGridView();
             this.LabelLunes = new System.Windows.Forms.Label();
@@ -102,6 +101,7 @@
             this.LabelDomingo = new System.Windows.Forms.Label();
             this.label8 = new System.Windows.Forms.Label();
             this.tbPreviaPlatillo = new System.Windows.Forms.TableLayoutPanel();
+            this.dgvLunes = new System.Windows.Forms.DataGridView();
             this.groupBox7 = new System.Windows.Forms.GroupBox();
             this.groupBox8 = new System.Windows.Forms.GroupBox();
             this.groupBox9 = new System.Windows.Forms.GroupBox();
@@ -111,12 +111,11 @@
             this.groupBox5.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvMartes)).BeginInit();
             this.groupBox2.SuspendLayout();
+            this.tableLayoutPanel1.SuspendLayout();
+            this.tableLayoutPanel2.SuspendLayout();
+            this.tableLayoutPanel3.SuspendLayout();
             this.tableLayoutPanel5.SuspendLayout();
             this.tableLayoutPanel4.SuspendLayout();
-            this.tableLayoutPanel3.SuspendLayout();
-            this.tableLayoutPanel2.SuspendLayout();
-            this.tableLayoutPanel1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dgvLunes)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgvMiercoles)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgvJueves)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgvViernes)).BeginInit();
@@ -125,6 +124,7 @@
             this.groupBox4.SuspendLayout();
             this.groupBox6.SuspendLayout();
             this.tbPreviaPlatillo.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvLunes)).BeginInit();
             this.groupBox7.SuspendLayout();
             this.groupBox8.SuspendLayout();
             this.groupBox9.SuspendLayout();
@@ -323,296 +323,78 @@
             // 
             // groupBox2
             // 
+            this.groupBox2.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.groupBox2.Controls.Add(this.tableLayoutPanel1);
+            this.groupBox2.Controls.Add(this.tableLayoutPanel2);
+            this.groupBox2.Controls.Add(this.tableLayoutPanel3);
             this.groupBox2.Controls.Add(this.tableLayoutPanel5);
             this.groupBox2.Controls.Add(this.tableLayoutPanel4);
-            this.groupBox2.Controls.Add(this.tableLayoutPanel3);
-            this.groupBox2.Controls.Add(this.tableLayoutPanel2);
+            this.groupBox2.Controls.Add(this.label2);
             this.groupBox2.Controls.Add(this.FechaDomingo);
-            this.groupBox2.Controls.Add(this.FechaSabado);
             this.groupBox2.Controls.Add(this.FechaViernes);
             this.groupBox2.Controls.Add(this.FechaJueves);
             this.groupBox2.Controls.Add(this.FechaMiercoles);
             this.groupBox2.Controls.Add(this.FechaMartes);
             this.groupBox2.Controls.Add(this.FechaLunes);
-            this.groupBox2.Controls.Add(this.label2);
-            this.groupBox2.Controls.Add(this.tableLayoutPanel1);
-            this.groupBox2.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.groupBox2.Controls.Add(this.FechaSabado);
+            this.groupBox2.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.groupBox2.Location = new System.Drawing.Point(3, 28);
             this.groupBox2.Name = "groupBox2";
             this.groupBox2.Size = new System.Drawing.Size(619, 145);
             this.groupBox2.TabIndex = 19;
             this.groupBox2.TabStop = false;
             // 
-            // tableLayoutPanel5
-            // 
-            this.tableLayoutPanel5.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.tableLayoutPanel5.ColumnCount = 1;
-            this.tableLayoutPanel5.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle());
-            this.tableLayoutPanel5.Controls.Add(this.label4, 0, 0);
-            this.tableLayoutPanel5.Controls.Add(this.cbDias, 0, 1);
-            this.tableLayoutPanel5.Location = new System.Drawing.Point(233, 4);
-            this.tableLayoutPanel5.Name = "tableLayoutPanel5";
-            this.tableLayoutPanel5.RowCount = 2;
-            this.tableLayoutPanel5.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tableLayoutPanel5.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tableLayoutPanel5.Size = new System.Drawing.Size(261, 75);
-            this.tableLayoutPanel5.TabIndex = 39;
-            // 
-            // label4
-            // 
-            this.label4.AutoSize = true;
-            this.label4.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.label4.Font = new System.Drawing.Font("Arial", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label4.Location = new System.Drawing.Point(3, 0);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(255, 37);
-            this.label4.TabIndex = 6;
-            this.label4.Text = "Menús a Agregar:";
-            this.label4.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
-            // 
-            // cbDias
-            // 
-            this.cbDias.BackColor = System.Drawing.Color.Silver;
-            checkBoxProperties2.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.cbDias.CheckBoxProperties = checkBoxProperties2;
-            this.cbDias.DisplayMemberSingleItem = "";
-            this.cbDias.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.cbDias.Font = new System.Drawing.Font("Arial", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.cbDias.FormattingEnabled = true;
-            this.cbDias.Location = new System.Drawing.Point(3, 40);
-            this.cbDias.Name = "cbDias";
-            this.cbDias.Size = new System.Drawing.Size(255, 30);
-            this.cbDias.TabIndex = 3;
-            // 
-            // tableLayoutPanel4
-            // 
-            this.tableLayoutPanel4.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.tableLayoutPanel4.ColumnCount = 1;
-            this.tableLayoutPanel4.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tableLayoutPanel4.Controls.Add(this.btAgregarSemana, 0, 0);
-            this.tableLayoutPanel4.Location = new System.Drawing.Point(500, 8);
-            this.tableLayoutPanel4.Name = "tableLayoutPanel4";
-            this.tableLayoutPanel4.RowCount = 1;
-            this.tableLayoutPanel4.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tableLayoutPanel4.Size = new System.Drawing.Size(113, 71);
-            this.tableLayoutPanel4.TabIndex = 38;
-            // 
-            // btAgregarSemana
-            // 
-            this.btAgregarSemana.BackColor = System.Drawing.Color.Black;
-            this.btAgregarSemana.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.btAgregarSemana.Font = new System.Drawing.Font("Times New Roman", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btAgregarSemana.ForeColor = System.Drawing.Color.White;
-            this.btAgregarSemana.Location = new System.Drawing.Point(3, 3);
-            this.btAgregarSemana.Name = "btAgregarSemana";
-            this.btAgregarSemana.Size = new System.Drawing.Size(107, 65);
-            this.btAgregarSemana.TabIndex = 8;
-            this.btAgregarSemana.Text = " + Semana Posterior";
-            this.btAgregarSemana.UseVisualStyleBackColor = false;
-            this.btAgregarSemana.Click += new System.EventHandler(this.btAgregarSemana_Click);
-            // 
-            // tableLayoutPanel3
-            // 
-            this.tableLayoutPanel3.ColumnCount = 1;
-            this.tableLayoutPanel3.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tableLayoutPanel3.Controls.Add(this.btPlatillo, 0, 0);
-            this.tableLayoutPanel3.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.tableLayoutPanel3.Location = new System.Drawing.Point(404, 24);
-            this.tableLayoutPanel3.Name = "tableLayoutPanel3";
-            this.tableLayoutPanel3.RowCount = 1;
-            this.tableLayoutPanel3.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tableLayoutPanel3.Size = new System.Drawing.Size(96, 67);
-            this.tableLayoutPanel3.TabIndex = 37;
-            // 
-            // btPlatillo
-            // 
-            this.btPlatillo.BackColor = System.Drawing.Color.Black;
-            this.btPlatillo.Font = new System.Drawing.Font("Times New Roman", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btPlatillo.ForeColor = System.Drawing.Color.White;
-            this.btPlatillo.Location = new System.Drawing.Point(3, 3);
-            this.btPlatillo.Name = "btPlatillo";
-            this.btPlatillo.Size = new System.Drawing.Size(90, 61);
-            this.btPlatillo.TabIndex = 28;
-            this.btPlatillo.Text = "Buscar Platillo";
-            this.btPlatillo.UseVisualStyleBackColor = false;
-            this.btPlatillo.Click += new System.EventHandler(this.btPlatillo_Click);
-            // 
-            // tableLayoutPanel2
-            // 
-            this.tableLayoutPanel2.ColumnCount = 2;
-            this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle());
-            this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle());
-            this.tableLayoutPanel2.Controls.Add(this.ckPlatillo, 0, 0);
-            this.tableLayoutPanel2.Controls.Add(this.cbTipoReceta, 1, 1);
-            this.tableLayoutPanel2.Controls.Add(this.ckTipoReceta, 0, 1);
-            this.tableLayoutPanel2.Controls.Add(this.tbPlatillo, 1, 0);
-            this.tableLayoutPanel2.Location = new System.Drawing.Point(4, 27);
-            this.tableLayoutPanel2.Name = "tableLayoutPanel2";
-            this.tableLayoutPanel2.RowCount = 2;
-            this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
-            this.tableLayoutPanel2.Size = new System.Drawing.Size(397, 67);
-            this.tableLayoutPanel2.TabIndex = 36;
-            // 
-            // ckPlatillo
-            // 
-            this.ckPlatillo.AutoSize = true;
-            this.ckPlatillo.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.ckPlatillo.Font = new System.Drawing.Font("Arial", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.ckPlatillo.Location = new System.Drawing.Point(3, 3);
-            this.ckPlatillo.Name = "ckPlatillo";
-            this.ckPlatillo.Size = new System.Drawing.Size(141, 27);
-            this.ckPlatillo.TabIndex = 30;
-            this.ckPlatillo.Text = "Platillo:";
-            this.ckPlatillo.UseVisualStyleBackColor = true;
-            this.ckPlatillo.CheckedChanged += new System.EventHandler(this.ckPlatillo_CheckedChanged);
-            // 
-            // cbTipoReceta
-            // 
-            this.cbTipoReceta.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.cbTipoReceta.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.cbTipoReceta.FormattingEnabled = true;
-            this.cbTipoReceta.Location = new System.Drawing.Point(150, 37);
-            this.cbTipoReceta.Name = "cbTipoReceta";
-            this.cbTipoReceta.Size = new System.Drawing.Size(244, 27);
-            this.cbTipoReceta.TabIndex = 31;
-            // 
-            // ckTipoReceta
-            // 
-            this.ckTipoReceta.AutoSize = true;
-            this.ckTipoReceta.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.ckTipoReceta.Font = new System.Drawing.Font("Arial", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.ckTipoReceta.Location = new System.Drawing.Point(3, 36);
-            this.ckTipoReceta.Name = "ckTipoReceta";
-            this.ckTipoReceta.Size = new System.Drawing.Size(141, 28);
-            this.ckTipoReceta.TabIndex = 32;
-            this.ckTipoReceta.Text = "TipoReceta:";
-            this.ckTipoReceta.UseVisualStyleBackColor = true;
-            this.ckTipoReceta.CheckedChanged += new System.EventHandler(this.ckTipoReceta_CheckedChanged);
-            // 
-            // tbPlatillo
-            // 
-            this.tbPlatillo.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.tbPlatillo.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.tbPlatillo.Location = new System.Drawing.Point(150, 4);
-            this.tbPlatillo.Name = "tbPlatillo";
-            this.tbPlatillo.Size = new System.Drawing.Size(244, 26);
-            this.tbPlatillo.TabIndex = 33;
-            // 
-            // FechaDomingo
-            // 
-            this.FechaDomingo.AutoSize = true;
-            this.FechaDomingo.Location = new System.Drawing.Point(599, 0);
-            this.FechaDomingo.Name = "FechaDomingo";
-            this.FechaDomingo.Size = new System.Drawing.Size(14, 15);
-            this.FechaDomingo.TabIndex = 27;
-            this.FechaDomingo.Text = "d";
-            this.FechaDomingo.Visible = false;
-            // 
-            // FechaSabado
-            // 
-            this.FechaSabado.AutoSize = true;
-            this.FechaSabado.Location = new System.Drawing.Point(596, 0);
-            this.FechaSabado.Name = "FechaSabado";
-            this.FechaSabado.Size = new System.Drawing.Size(14, 15);
-            this.FechaSabado.TabIndex = 26;
-            this.FechaSabado.Text = "s";
-            this.FechaSabado.Visible = false;
-            // 
-            // FechaViernes
-            // 
-            this.FechaViernes.AutoSize = true;
-            this.FechaViernes.Location = new System.Drawing.Point(576, 0);
-            this.FechaViernes.Name = "FechaViernes";
-            this.FechaViernes.Size = new System.Drawing.Size(13, 15);
-            this.FechaViernes.TabIndex = 25;
-            this.FechaViernes.Text = "v";
-            this.FechaViernes.Visible = false;
-            // 
-            // FechaJueves
-            // 
-            this.FechaJueves.AutoSize = true;
-            this.FechaJueves.Location = new System.Drawing.Point(559, 0);
-            this.FechaJueves.Name = "FechaJueves";
-            this.FechaJueves.Size = new System.Drawing.Size(10, 15);
-            this.FechaJueves.TabIndex = 24;
-            this.FechaJueves.Text = "j";
-            this.FechaJueves.Visible = false;
-            // 
-            // FechaMiercoles
-            // 
-            this.FechaMiercoles.AutoSize = true;
-            this.FechaMiercoles.Location = new System.Drawing.Point(533, 0);
-            this.FechaMiercoles.Name = "FechaMiercoles";
-            this.FechaMiercoles.Size = new System.Drawing.Size(21, 15);
-            this.FechaMiercoles.TabIndex = 23;
-            this.FechaMiercoles.Text = "mi";
-            this.FechaMiercoles.Visible = false;
-            // 
-            // FechaMartes
-            // 
-            this.FechaMartes.AutoSize = true;
-            this.FechaMartes.Location = new System.Drawing.Point(510, 0);
-            this.FechaMartes.Name = "FechaMartes";
-            this.FechaMartes.Size = new System.Drawing.Size(18, 15);
-            this.FechaMartes.TabIndex = 22;
-            this.FechaMartes.Text = "m";
-            this.FechaMartes.Visible = false;
-            // 
-            // FechaLunes
-            // 
-            this.FechaLunes.AutoSize = true;
-            this.FechaLunes.Location = new System.Drawing.Point(493, 0);
-            this.FechaLunes.Name = "FechaLunes";
-            this.FechaLunes.Size = new System.Drawing.Size(10, 15);
-            this.FechaLunes.TabIndex = 21;
-            this.FechaLunes.Text = "l";
-            this.FechaLunes.Visible = false;
-            // 
-            // label2
-            // 
-            this.label2.AutoSize = true;
-            this.label2.Font = new System.Drawing.Font("Arial", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label2.Location = new System.Drawing.Point(6, 1);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(129, 24);
-            this.label2.TabIndex = 29;
-            this.label2.Text = "Buscar por:";
-            // 
             // tableLayoutPanel1
             // 
             this.tableLayoutPanel1.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
             this.tableLayoutPanel1.ColumnCount = 3;
-            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 47.57281F));
-            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 52.42719F));
-            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 212F));
+            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 44.13793F));
+            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 55.86207F));
+            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 208F));
+            this.tableLayoutPanel1.Controls.Add(this.btBorrarFila, 2, 1);
             this.tableLayoutPanel1.Controls.Add(this.btEditarSemana, 0, 0);
             this.tableLayoutPanel1.Controls.Add(this.btPreviaPlatillo, 1, 1);
             this.tableLayoutPanel1.Controls.Add(this.btImprimirMenu, 0, 1);
             this.tableLayoutPanel1.Controls.Add(this.btGuardar, 1, 0);
             this.tableLayoutPanel1.Controls.Add(this.btOrdenTrabajo, 2, 0);
-            this.tableLayoutPanel1.Controls.Add(this.btBorrarFila, 2, 1);
-            this.tableLayoutPanel1.Location = new System.Drawing.Point(0, 45);
+            this.tableLayoutPanel1.Font = new System.Drawing.Font("Arial", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.tableLayoutPanel1.Location = new System.Drawing.Point(3, 82);
             this.tableLayoutPanel1.Name = "tableLayoutPanel1";
             this.tableLayoutPanel1.RowCount = 2;
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tableLayoutPanel1.Size = new System.Drawing.Size(619, 100);
+            this.tableLayoutPanel1.Size = new System.Drawing.Size(610, 64);
             this.tableLayoutPanel1.TabIndex = 40;
+            // 
+            // btBorrarFila
+            // 
+            this.btBorrarFila.AutoSize = true;
+            this.btBorrarFila.BackColor = System.Drawing.Color.Black;
+            this.btBorrarFila.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.btBorrarFila.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btBorrarFila.ForeColor = System.Drawing.Color.White;
+            this.btBorrarFila.Location = new System.Drawing.Point(404, 35);
+            this.btBorrarFila.Name = "btBorrarFila";
+            this.btBorrarFila.Size = new System.Drawing.Size(203, 26);
+            this.btBorrarFila.TabIndex = 18;
+            this.btBorrarFila.Text = "Borrar Fila";
+            this.btBorrarFila.UseVisualStyleBackColor = false;
+            this.btBorrarFila.Click += new System.EventHandler(this.btBorrarFila_Click);
             // 
             // btEditarSemana
             // 
             this.btEditarSemana.AutoSize = true;
             this.btEditarSemana.BackColor = System.Drawing.Color.Black;
             this.btEditarSemana.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.btEditarSemana.Font = new System.Drawing.Font("Times New Roman", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btEditarSemana.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btEditarSemana.ForeColor = System.Drawing.Color.White;
             this.btEditarSemana.Location = new System.Drawing.Point(3, 3);
             this.btEditarSemana.Name = "btEditarSemana";
-            this.btEditarSemana.Size = new System.Drawing.Size(187, 44);
+            this.btEditarSemana.Size = new System.Drawing.Size(171, 26);
             this.btEditarSemana.TabIndex = 18;
-            this.btEditarSemana.Text = "Editar Menu";
+            this.btEditarSemana.Text = "Menu Actual";
             this.btEditarSemana.UseVisualStyleBackColor = false;
             this.btEditarSemana.Click += new System.EventHandler(this.btEditarSemana_Click);
             // 
@@ -621,11 +403,11 @@
             this.btPreviaPlatillo.AutoSize = true;
             this.btPreviaPlatillo.BackColor = System.Drawing.Color.Black;
             this.btPreviaPlatillo.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.btPreviaPlatillo.Font = new System.Drawing.Font("Times New Roman", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btPreviaPlatillo.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btPreviaPlatillo.ForeColor = System.Drawing.Color.Cornsilk;
-            this.btPreviaPlatillo.Location = new System.Drawing.Point(196, 53);
+            this.btPreviaPlatillo.Location = new System.Drawing.Point(180, 35);
             this.btPreviaPlatillo.Name = "btPreviaPlatillo";
-            this.btPreviaPlatillo.Size = new System.Drawing.Size(207, 44);
+            this.btPreviaPlatillo.Size = new System.Drawing.Size(218, 26);
             this.btPreviaPlatillo.TabIndex = 20;
             this.btPreviaPlatillo.Text = "Imprimir Previa";
             this.btPreviaPlatillo.UseVisualStyleBackColor = false;
@@ -636,11 +418,11 @@
             this.btImprimirMenu.AutoSize = true;
             this.btImprimirMenu.BackColor = System.Drawing.Color.Black;
             this.btImprimirMenu.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.btImprimirMenu.Font = new System.Drawing.Font("Times New Roman", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btImprimirMenu.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btImprimirMenu.ForeColor = System.Drawing.Color.White;
-            this.btImprimirMenu.Location = new System.Drawing.Point(3, 53);
+            this.btImprimirMenu.Location = new System.Drawing.Point(3, 35);
             this.btImprimirMenu.Name = "btImprimirMenu";
-            this.btImprimirMenu.Size = new System.Drawing.Size(187, 44);
+            this.btImprimirMenu.Size = new System.Drawing.Size(171, 26);
             this.btImprimirMenu.TabIndex = 35;
             this.btImprimirMenu.Text = "Imprimir Menu";
             this.btImprimirMenu.UseVisualStyleBackColor = false;
@@ -651,12 +433,12 @@
             this.btGuardar.AutoSize = true;
             this.btGuardar.BackColor = System.Drawing.Color.Black;
             this.btGuardar.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.btGuardar.Font = new System.Drawing.Font("Times New Roman", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btGuardar.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btGuardar.ForeColor = System.Drawing.Color.White;
             this.btGuardar.ImageAlign = System.Drawing.ContentAlignment.BottomCenter;
-            this.btGuardar.Location = new System.Drawing.Point(196, 3);
+            this.btGuardar.Location = new System.Drawing.Point(180, 3);
             this.btGuardar.Name = "btGuardar";
-            this.btGuardar.Size = new System.Drawing.Size(207, 44);
+            this.btGuardar.Size = new System.Drawing.Size(218, 26);
             this.btGuardar.TabIndex = 16;
             this.btGuardar.Text = "Guardar Menu";
             this.btGuardar.UseVisualStyleBackColor = false;
@@ -666,38 +448,258 @@
             // 
             this.btOrdenTrabajo.BackColor = System.Drawing.Color.Black;
             this.btOrdenTrabajo.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.btOrdenTrabajo.Font = new System.Drawing.Font("Times New Roman", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btOrdenTrabajo.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btOrdenTrabajo.ForeColor = System.Drawing.Color.White;
             this.btOrdenTrabajo.ImageAlign = System.Drawing.ContentAlignment.TopLeft;
-            this.btOrdenTrabajo.Location = new System.Drawing.Point(409, 3);
+            this.btOrdenTrabajo.Location = new System.Drawing.Point(404, 3);
             this.btOrdenTrabajo.Name = "btOrdenTrabajo";
-            this.btOrdenTrabajo.Size = new System.Drawing.Size(207, 44);
+            this.btOrdenTrabajo.Size = new System.Drawing.Size(203, 26);
             this.btOrdenTrabajo.TabIndex = 34;
             this.btOrdenTrabajo.Text = "Orden de Trabajo";
             this.btOrdenTrabajo.UseVisualStyleBackColor = false;
             this.btOrdenTrabajo.Click += new System.EventHandler(this.btOrdenTrabajo_Click);
             // 
-            // btBorrarFila
+            // tableLayoutPanel2
             // 
-            this.btBorrarFila.AutoSize = true;
-            this.btBorrarFila.BackColor = System.Drawing.Color.Black;
-            this.btBorrarFila.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.btBorrarFila.Font = new System.Drawing.Font("Times New Roman", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btBorrarFila.ForeColor = System.Drawing.Color.White;
-            this.btBorrarFila.Location = new System.Drawing.Point(409, 53);
-            this.btBorrarFila.Name = "btBorrarFila";
-            this.btBorrarFila.Size = new System.Drawing.Size(207, 44);
-            this.btBorrarFila.TabIndex = 18;
-            this.btBorrarFila.Text = "Borrar Fila";
-            this.btBorrarFila.UseVisualStyleBackColor = false;
-            this.btBorrarFila.Click += new System.EventHandler(this.btBorrarFila_Click);
+            this.tableLayoutPanel2.ColumnCount = 2;
+            this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle());
+            this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle());
+            this.tableLayoutPanel2.Controls.Add(this.cbTipoReceta, 1, 1);
+            this.tableLayoutPanel2.Controls.Add(this.ckPlatillo, 0, 0);
+            this.tableLayoutPanel2.Controls.Add(this.ckTipoReceta, 0, 1);
+            this.tableLayoutPanel2.Controls.Add(this.tbPlatillo, 1, 0);
+            this.tableLayoutPanel2.Location = new System.Drawing.Point(0, 20);
+            this.tableLayoutPanel2.Name = "tableLayoutPanel2";
+            this.tableLayoutPanel2.RowCount = 2;
+            this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 45F));
+            this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 55F));
+            this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
+            this.tableLayoutPanel2.Size = new System.Drawing.Size(278, 60);
+            this.tableLayoutPanel2.TabIndex = 36;
+            // 
+            // cbTipoReceta
+            // 
+            this.cbTipoReceta.Font = new System.Drawing.Font("Arial", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.cbTipoReceta.FormattingEnabled = true;
+            this.cbTipoReceta.Location = new System.Drawing.Point(122, 30);
+            this.cbTipoReceta.Name = "cbTipoReceta";
+            this.cbTipoReceta.Size = new System.Drawing.Size(153, 26);
+            this.cbTipoReceta.TabIndex = 31;
+            // 
+            // ckPlatillo
+            // 
+            this.ckPlatillo.AutoSize = true;
+            this.ckPlatillo.Font = new System.Drawing.Font("Arial", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.ckPlatillo.Location = new System.Drawing.Point(3, 3);
+            this.ckPlatillo.Name = "ckPlatillo";
+            this.ckPlatillo.Size = new System.Drawing.Size(79, 21);
+            this.ckPlatillo.TabIndex = 30;
+            this.ckPlatillo.Text = "Platillo:";
+            this.ckPlatillo.UseVisualStyleBackColor = true;
+            this.ckPlatillo.CheckedChanged += new System.EventHandler(this.ckPlatillo_CheckedChanged);
+            // 
+            // ckTipoReceta
+            // 
+            this.ckTipoReceta.AutoSize = true;
+            this.ckTipoReceta.Font = new System.Drawing.Font("Arial", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.ckTipoReceta.Location = new System.Drawing.Point(3, 30);
+            this.ckTipoReceta.Name = "ckTipoReceta";
+            this.ckTipoReceta.Size = new System.Drawing.Size(113, 22);
+            this.ckTipoReceta.TabIndex = 32;
+            this.ckTipoReceta.Text = "TipoReceta:";
+            this.ckTipoReceta.UseVisualStyleBackColor = true;
+            this.ckTipoReceta.CheckedChanged += new System.EventHandler(this.ckTipoReceta_CheckedChanged);
+            // 
+            // tbPlatillo
+            // 
+            this.tbPlatillo.Font = new System.Drawing.Font("Arial", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.tbPlatillo.Location = new System.Drawing.Point(122, 3);
+            this.tbPlatillo.Name = "tbPlatillo";
+            this.tbPlatillo.Size = new System.Drawing.Size(153, 25);
+            this.tbPlatillo.TabIndex = 33;
+            this.tbPlatillo.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.tbPlatillo_KeyPress);
+            // 
+            // tableLayoutPanel3
+            // 
+            this.tableLayoutPanel3.ColumnCount = 1;
+            this.tableLayoutPanel3.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.tableLayoutPanel3.Controls.Add(this.btPlatillo, 0, 0);
+            this.tableLayoutPanel3.Font = new System.Drawing.Font("Arial", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.tableLayoutPanel3.Location = new System.Drawing.Point(281, 19);
+            this.tableLayoutPanel3.Name = "tableLayoutPanel3";
+            this.tableLayoutPanel3.RowCount = 1;
+            this.tableLayoutPanel3.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.tableLayoutPanel3.Size = new System.Drawing.Size(71, 60);
+            this.tableLayoutPanel3.TabIndex = 37;
+            // 
+            // btPlatillo
+            // 
+            this.btPlatillo.BackColor = System.Drawing.Color.Black;
+            this.btPlatillo.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.btPlatillo.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btPlatillo.ForeColor = System.Drawing.Color.White;
+            this.btPlatillo.Location = new System.Drawing.Point(3, 3);
+            this.btPlatillo.Name = "btPlatillo";
+            this.btPlatillo.Size = new System.Drawing.Size(65, 54);
+            this.btPlatillo.TabIndex = 28;
+            this.btPlatillo.Text = "Buscar Platillo";
+            this.btPlatillo.UseVisualStyleBackColor = false;
+            this.btPlatillo.Click += new System.EventHandler(this.btPlatillo_Click);
+            // 
+            // tableLayoutPanel5
+            // 
+            this.tableLayoutPanel5.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.tableLayoutPanel5.ColumnCount = 1;
+            this.tableLayoutPanel5.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle());
+            this.tableLayoutPanel5.Controls.Add(this.cbDias, 0, 1);
+            this.tableLayoutPanel5.Controls.Add(this.label4, 0, 0);
+            this.tableLayoutPanel5.Location = new System.Drawing.Point(357, 0);
+            this.tableLayoutPanel5.Name = "tableLayoutPanel5";
+            this.tableLayoutPanel5.RowCount = 2;
+            this.tableLayoutPanel5.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 41.66667F));
+            this.tableLayoutPanel5.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 58.33333F));
+            this.tableLayoutPanel5.Size = new System.Drawing.Size(165, 61);
+            this.tableLayoutPanel5.TabIndex = 39;
+            // 
+            // cbDias
+            // 
+            this.cbDias.BackColor = System.Drawing.Color.Silver;
+            checkBoxProperties2.ForeColor = System.Drawing.SystemColors.ControlText;
+            this.cbDias.CheckBoxProperties = checkBoxProperties2;
+            this.cbDias.DisplayMemberSingleItem = "";
+            this.cbDias.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.cbDias.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.cbDias.FormattingEnabled = true;
+            this.cbDias.Location = new System.Drawing.Point(3, 28);
+            this.cbDias.Name = "cbDias";
+            this.cbDias.Size = new System.Drawing.Size(159, 27);
+            this.cbDias.TabIndex = 3;
+            this.cbDias.SelectedIndexChanged += new System.EventHandler(this.cbDias_SelectedIndexChanged);
+            // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.label4.Font = new System.Drawing.Font("Arial", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label4.Location = new System.Drawing.Point(3, 0);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(159, 25);
+            this.label4.TabIndex = 6;
+            this.label4.Text = "Menús a Agregar:";
+            this.label4.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
+            // 
+            // tableLayoutPanel4
+            // 
+            this.tableLayoutPanel4.ColumnCount = 1;
+            this.tableLayoutPanel4.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.tableLayoutPanel4.Controls.Add(this.btAgregarSemana, 0, 0);
+            this.tableLayoutPanel4.Location = new System.Drawing.Point(525, 1);
+            this.tableLayoutPanel4.Name = "tableLayoutPanel4";
+            this.tableLayoutPanel4.RowCount = 1;
+            this.tableLayoutPanel4.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.tableLayoutPanel4.Size = new System.Drawing.Size(94, 55);
+            this.tableLayoutPanel4.TabIndex = 38;
+            // 
+            // btAgregarSemana
+            // 
+            this.btAgregarSemana.BackColor = System.Drawing.Color.Black;
+            this.btAgregarSemana.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.btAgregarSemana.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btAgregarSemana.ForeColor = System.Drawing.Color.White;
+            this.btAgregarSemana.Location = new System.Drawing.Point(3, 3);
+            this.btAgregarSemana.Name = "btAgregarSemana";
+            this.btAgregarSemana.Size = new System.Drawing.Size(88, 49);
+            this.btAgregarSemana.TabIndex = 8;
+            this.btAgregarSemana.Text = " + Semana Posterior";
+            this.btAgregarSemana.UseVisualStyleBackColor = false;
+            this.btAgregarSemana.Click += new System.EventHandler(this.btAgregarSemana_Click);
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Font = new System.Drawing.Font("Arial", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label2.Location = new System.Drawing.Point(6, -3);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(121, 22);
+            this.label2.TabIndex = 29;
+            this.label2.Text = "Buscar por:";
+            // 
+            // FechaDomingo
+            // 
+            this.FechaDomingo.AutoSize = true;
+            this.FechaDomingo.Location = new System.Drawing.Point(599, 0);
+            this.FechaDomingo.Name = "FechaDomingo";
+            this.FechaDomingo.Size = new System.Drawing.Size(22, 24);
+            this.FechaDomingo.TabIndex = 27;
+            this.FechaDomingo.Text = "d";
+            this.FechaDomingo.Visible = false;
+            // 
+            // FechaViernes
+            // 
+            this.FechaViernes.AutoSize = true;
+            this.FechaViernes.Location = new System.Drawing.Point(576, 0);
+            this.FechaViernes.Name = "FechaViernes";
+            this.FechaViernes.Size = new System.Drawing.Size(20, 24);
+            this.FechaViernes.TabIndex = 25;
+            this.FechaViernes.Text = "v";
+            this.FechaViernes.Visible = false;
+            // 
+            // FechaJueves
+            // 
+            this.FechaJueves.AutoSize = true;
+            this.FechaJueves.Location = new System.Drawing.Point(559, 0);
+            this.FechaJueves.Name = "FechaJueves";
+            this.FechaJueves.Size = new System.Drawing.Size(15, 24);
+            this.FechaJueves.TabIndex = 24;
+            this.FechaJueves.Text = "j";
+            this.FechaJueves.Visible = false;
+            // 
+            // FechaMiercoles
+            // 
+            this.FechaMiercoles.AutoSize = true;
+            this.FechaMiercoles.Location = new System.Drawing.Point(533, 0);
+            this.FechaMiercoles.Name = "FechaMiercoles";
+            this.FechaMiercoles.Size = new System.Drawing.Size(32, 24);
+            this.FechaMiercoles.TabIndex = 23;
+            this.FechaMiercoles.Text = "mi";
+            this.FechaMiercoles.Visible = false;
+            // 
+            // FechaMartes
+            // 
+            this.FechaMartes.AutoSize = true;
+            this.FechaMartes.Location = new System.Drawing.Point(510, 0);
+            this.FechaMartes.Name = "FechaMartes";
+            this.FechaMartes.Size = new System.Drawing.Size(27, 24);
+            this.FechaMartes.TabIndex = 22;
+            this.FechaMartes.Text = "m";
+            this.FechaMartes.Visible = false;
+            // 
+            // FechaLunes
+            // 
+            this.FechaLunes.AutoSize = true;
+            this.FechaLunes.Location = new System.Drawing.Point(493, 0);
+            this.FechaLunes.Name = "FechaLunes";
+            this.FechaLunes.Size = new System.Drawing.Size(15, 24);
+            this.FechaLunes.TabIndex = 21;
+            this.FechaLunes.Text = "l";
+            this.FechaLunes.Visible = false;
+            // 
+            // FechaSabado
+            // 
+            this.FechaSabado.AutoSize = true;
+            this.FechaSabado.Location = new System.Drawing.Point(596, 0);
+            this.FechaSabado.Name = "FechaSabado";
+            this.FechaSabado.Size = new System.Drawing.Size(20, 24);
+            this.FechaSabado.TabIndex = 26;
+            this.FechaSabado.Text = "s";
+            this.FechaSabado.Visible = false;
             // 
             // label1
             // 
             this.label1.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Arial", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.Location = new System.Drawing.Point(3, -5);
+            this.label1.Location = new System.Drawing.Point(2, -5);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(212, 29);
             this.label1.TabIndex = 2;
@@ -711,31 +713,9 @@
             this.DtpFecha.Font = new System.Drawing.Font("Arial", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.DtpFecha.Location = new System.Drawing.Point(211, -7);
             this.DtpFecha.Name = "DtpFecha";
-            this.DtpFecha.Size = new System.Drawing.Size(408, 32);
+            this.DtpFecha.Size = new System.Drawing.Size(420, 32);
             this.DtpFecha.TabIndex = 7;
             this.DtpFecha.ValueChanged += new System.EventHandler(this.DtpFecha_ValueChanged);
-            // 
-            // dgvLunes
-            // 
-            this.dgvLunes.AllowDrop = true;
-            this.dgvLunes.BackgroundColor = System.Drawing.Color.LightGray;
-            this.dgvLunes.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dgvLunes.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.dgvLunes.EditMode = System.Windows.Forms.DataGridViewEditMode.EditOnEnter;
-            this.dgvLunes.Location = new System.Drawing.Point(628, 28);
-            this.dgvLunes.Name = "dgvLunes";
-            this.dgvLunes.Size = new System.Drawing.Size(620, 145);
-            this.dgvLunes.TabIndex = 1;
-            this.dgvLunes.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvGenerico_CellClick);
-            this.dgvLunes.CellValueChanged += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvGenerico_CellValueChanged);
-            this.dgvLunes.CurrentCellDirtyStateChanged += new System.EventHandler(this.dgvGenerico_CurrentCellDirtyStateChanged);
-            this.dgvLunes.DataError += new System.Windows.Forms.DataGridViewDataErrorEventHandler(this.dgvGenerico_DataError);
-            this.dgvLunes.EditingControlShowing += new System.Windows.Forms.DataGridViewEditingControlShowingEventHandler(this.Generico_EditingControlShowing);
-            this.dgvLunes.DragDrop += new System.Windows.Forms.DragEventHandler(this.dgvGenerico_DragDrop);
-            this.dgvLunes.DragOver += new System.Windows.Forms.DragEventHandler(this.dgvGenerico_DragOver);
-            this.dgvLunes.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.dgvGenerico_KeyPress);
-            this.dgvLunes.MouseDown += new System.Windows.Forms.MouseEventHandler(this.dgvGenerico_MouseDown);
-            this.dgvLunes.MouseMove += new System.Windows.Forms.MouseEventHandler(this.dgvGenerico_MouseMove);
             // 
             // btPreviaPlatilloGlobal
             // 
@@ -1037,6 +1017,29 @@
             this.tbPreviaPlatillo.Size = new System.Drawing.Size(1251, 733);
             this.tbPreviaPlatillo.TabIndex = 3;
             // 
+            // dgvLunes
+            // 
+            this.dgvLunes.AllowDrop = true;
+            this.dgvLunes.BackgroundColor = System.Drawing.Color.LightGray;
+            this.dgvLunes.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dgvLunes.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.dgvLunes.EditMode = System.Windows.Forms.DataGridViewEditMode.EditOnEnter;
+            this.dgvLunes.Location = new System.Drawing.Point(628, 28);
+            this.dgvLunes.Name = "dgvLunes";
+            this.dgvLunes.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.CellSelect;
+            this.dgvLunes.Size = new System.Drawing.Size(620, 145);
+            this.dgvLunes.TabIndex = 1;
+            this.dgvLunes.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvGenerico_CellClick);
+            this.dgvLunes.CellValueChanged += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvGenerico_CellValueChanged);
+            this.dgvLunes.CurrentCellDirtyStateChanged += new System.EventHandler(this.dgvGenerico_CurrentCellDirtyStateChanged);
+            this.dgvLunes.DataError += new System.Windows.Forms.DataGridViewDataErrorEventHandler(this.dgvGenerico_DataError);
+            this.dgvLunes.EditingControlShowing += new System.Windows.Forms.DataGridViewEditingControlShowingEventHandler(this.Generico_EditingControlShowing);
+            this.dgvLunes.DragDrop += new System.Windows.Forms.DragEventHandler(this.dgvGenerico_DragDrop);
+            this.dgvLunes.DragOver += new System.Windows.Forms.DragEventHandler(this.dgvGenerico_DragOver);
+            this.dgvLunes.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.dgvGenerico_KeyPress);
+            this.dgvLunes.MouseDown += new System.Windows.Forms.MouseEventHandler(this.dgvGenerico_MouseDown);
+            this.dgvLunes.MouseMove += new System.Windows.Forms.MouseEventHandler(this.dgvGenerico_MouseMove);
+            // 
             // groupBox7
             // 
             this.groupBox7.Controls.Add(this.tbMontoSabado);
@@ -1104,15 +1107,14 @@
             ((System.ComponentModel.ISupportInitialize)(this.dgvMartes)).EndInit();
             this.groupBox2.ResumeLayout(false);
             this.groupBox2.PerformLayout();
+            this.tableLayoutPanel1.ResumeLayout(false);
+            this.tableLayoutPanel1.PerformLayout();
+            this.tableLayoutPanel2.ResumeLayout(false);
+            this.tableLayoutPanel2.PerformLayout();
+            this.tableLayoutPanel3.ResumeLayout(false);
             this.tableLayoutPanel5.ResumeLayout(false);
             this.tableLayoutPanel5.PerformLayout();
             this.tableLayoutPanel4.ResumeLayout(false);
-            this.tableLayoutPanel3.ResumeLayout(false);
-            this.tableLayoutPanel2.ResumeLayout(false);
-            this.tableLayoutPanel2.PerformLayout();
-            this.tableLayoutPanel1.ResumeLayout(false);
-            this.tableLayoutPanel1.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dgvLunes)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgvMiercoles)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgvJueves)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgvViernes)).EndInit();
@@ -1125,6 +1127,7 @@
             this.groupBox6.PerformLayout();
             this.tbPreviaPlatillo.ResumeLayout(false);
             this.tbPreviaPlatillo.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvLunes)).EndInit();
             this.groupBox7.ResumeLayout(false);
             this.groupBox7.PerformLayout();
             this.groupBox8.ResumeLayout(false);
@@ -1173,7 +1176,6 @@
         private System.Windows.Forms.Label label4;
         private PresentationControls.CheckBoxComboBox cbDias;
         private System.Windows.Forms.Button btAgregarSemana;
-        private System.Windows.Forms.DataGridView dgvLunes;
         private System.Windows.Forms.Button btPreviaPlatilloGlobal;
         private System.Windows.Forms.DataGridView dgvMiercoles;
         private System.Windows.Forms.Label LabelLunes;
@@ -1210,5 +1212,6 @@
         private System.Windows.Forms.Button btImprimirMenu;
         private System.Windows.Forms.Button btOrdenTrabajo;
         private System.Windows.Forms.Button btGuardar;
+        private System.Windows.Forms.DataGridView dgvLunes;
     }
 }

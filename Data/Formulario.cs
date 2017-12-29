@@ -4,7 +4,6 @@ using Herramienta;
 using Herramienta.Config;
 using RestSharp;
 
-
 namespace Data
 {
    public class Formulario

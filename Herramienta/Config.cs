@@ -31,6 +31,7 @@ namespace Herramienta
             public class ReporteDiarioCocina
             {
                 public static string ReportePlatillosHoy { get; set; } = Properties.Settings.Default.ReporteHoy;
+                public static string ReporteOtrosPlatillos { get; set; } = Properties.Settings.Default.OtrosPlatillosVenta;
                 public static string Reporte { get; set; } = Properties.Settings.Default.ReporteDiarioX;
                 public static string CargarRepoNew { get; set; } = Properties.Settings.Default.ActRecetaDiaria;
                 public static string CargarEstadoMañana { get; set; } = Properties.Settings.Default.MostrarEstadoMañana;
@@ -242,7 +243,13 @@ namespace Herramienta
                 public static int RecId { get; set; }
                 public  static  string Ruta { get; set; }
                 public static string Ingredientes { get; set; }
-
+                public static string IngredienteBase { get; set; } =Properties.Settings.Default.BuscarIngredredienteBase;
+                public static string Id { get; set; }
+                public static string UnidadIngrediente { get; set; } = Properties.Settings.Default.UnidadIngredientes;
+                public static string InsertarBase { get; set; } = Properties.Settings.Default.InsertarIngredienteBase;
+                public static string ActualizarBase { get; set; } = Properties.Settings.Default.ActualizarIngredienteBase;
+                public static string InsertarUnidadBase { get; set; } = Properties.Settings.Default.AgregarUnidad;
+                public static string ActualizarUnidadBase { get; set; } = Properties.Settings.Default.ActualizarUnidad;
                 public static string ActualizarPresupuesto { get; set; } = Properties.Settings.Default.actualizarpresupuesto;
                 public static string EliminarIngre { get; set; } = Properties.Settings.Default.eliminaringredientes;
 

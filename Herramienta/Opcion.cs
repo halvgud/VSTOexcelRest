@@ -115,7 +115,7 @@ namespace Herramienta
             return 0;
         }
 
-
+   
         public static List<T> JsonaListaGenerica<T>(IRestResponse json)
         {
           List<T> x=new List<T>();

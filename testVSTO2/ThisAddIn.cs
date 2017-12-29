@@ -1,4 +1,5 @@
 ﻿using System;
+using System.CodeDom;
 using System.Collections.Generic;
 using System.Drawing;
 using System.Globalization;
@@ -46,6 +47,8 @@ namespace testVSTO2
            Application_ActiveWorkbookChanges;
             Application.WorkbookDeactivate +=Application_ActiveWorkbookChanges;
             Globals.ThisAddIn.Application.SheetSelectionChange += activeSheet_SelectionChange;
+            //Application.SheetBeforeDoubleClick += Application_SheetBeforeClick;
+            Application.SheetBeforeRightClick += Application_SheetBeforeClick;
             _sheet1 = (Excel.Worksheet) Application.ActiveSheet;
         }
         
@@ -58,7 +61,7 @@ namespace testVSTO2
                 {
                     _sheet1.Unprotect();
                     Globals.ThisAddIn.Application.Cells.Locked = false;
-                    BloquearRango(_rowCount);
+                   
                     _sheet1.Protect(AllowSorting: true, AllowFiltering: true);
                 }
                 catch (Exception e)
@@ -69,6 +72,63 @@ namespace testVSTO2
             else
             {
                 _sheet1.Unprotect();
+            }
+            try
+            {
+                var cancelar = false;
+                string name = Globals.ThisAddIn.Application.ActiveSheet.Name;
+                if (name.Equals(@"ReporteInventarioImprimirrr") && target.Column == 11 && target.Row == 2)
+                {
+                    var mse = new MensajeDeEspera(() =>
+                    {
+                        DialogResult continuarCancelacion = MessageBox.Show(@"¿Desea detener la operación?",
+                        @"Alerta",
+                        MessageBoxButtons.YesNoCancel,
+                        MessageBoxIcon.Question);
+                        cancelar = continuarCancelacion == DialogResult.Yes;
+                        return cancelar;
+                    });
+                    mse.Show();
+                    var sheet = Globals.ThisAddIn.Application.ActiveSheet;
+                    var nInLastRow = sheet.Cells.Find("*", Missing.Value, Missing.Value, Missing.Value, Excel.XlSearchOrder.xlByRows,
+                       Excel.XlSearchDirection.xlPrevious, false, Missing.Value, Missing.Value)
+                        .Row;
+                    object[,] value = sheet.Range["A5", "J" + nInLastRow].Value;
+                    var lista = new List<Articulo.Basica>();
+
+                    for (var x = 1; x <= (value.Length / 10); x++)
+                    {
+                        if (value[x, 10].ToString() != "0" && value[x, 10].ToString() != "Desconocido" && Convert.ToInt32(value[x, 10]) > 0)
+                        {
+                            lista.Add(new Articulo.Basica
+                            {
+                                Descripcion = value[x, Reporte.General.Pedido.Producto + 1].ToString(),
+                                Clave = value[x, Reporte.General.Pedido.Cantidad].ToString()
+                            });
+                        }
+                    }
+                    var excelazo = InicializarExcelConTemplate("ImprimirPedido");
+                    int y = 6;
+                    for (var x = 0; x < lista.Count; x++)
+                    {
+                        //if (lista[x].Clave != "0")
+                        //{
+                        ((excelazo.Range["A" + y])).Value2 = lista[x].Descripcion;
+                        ((excelazo.Range["B" + y])).Value2 = lista[x].Clave;
+                        //}
+                        y++;
+
+                    }
+                    //var oRng = excelazo.Range["A5", "B" + (lista.Count + 5)];
+                    //oRng.Cells.AutoFilter(10, "> 0", Excel.XlAutoFilterOperator.xlAnd, Type.Missing, true);
+                    Application.ScreenUpdating = true;
+                    mse.Close();
+
+                }
+            }
+            catch (Exception e)
+            {
+                MessageBox.Show(e.Message);
             }
         }
 
@@ -100,11 +160,12 @@ namespace testVSTO2
         }
                 
         public void ReporteGeneral(IRestResponse restResponse,Action callback)
+
         {
-            Application.ScreenUpdating = false;
-            var rrg = Opcion.JsonaListaGenerica<Reporte.General.Respuesta>(restResponse);
-            _rowCount = (rrg.Count + 1);
+             var rrg = Opcion.JsonaListaGenerica<Reporte.General.Respuesta>(restResponse);
+            Application.ScreenUpdating = false;  
             _reporte =InicializarExcelConTemplate("ReporteInventario"); //TODO traer de la base de datos 
+            _rowCount = (rrg.Count + 2);
             var list = new List<string> { "P-1", "P-.5","PD", "1", "4", "DESCONOCIDO" };//TODO traer de la base de datos
             var flatList = string.Join(",", list.ToArray());
             if (_reporte != null)
@@ -112,14 +173,20 @@ namespace testVSTO2
                 try
                 {
                     Application.Cells.Locked = false;
-                    var oRng = _reporte.Range["A1", "T" + (rrg.Count+1)];
-                    oRng.Cells.AutoFilter(1, Type.Missing,Excel.XlAutoFilterOperator.xlAnd, Type.Missing, true);
-                    _reporte.Range[
-                        "A" + 2 + ":T" + Globals.ThisAddIn.Application.ActiveSheet.Cells.Find("*", Missing.Value,
-                            Missing.Value, Missing.Value, Excel.XlSearchOrder.xlByRows,
-                           Excel.XlSearchDirection.xlPrevious, false, Missing.Value,
-                            Missing.Value)
-                            .Row].Value2 = "";
+                    var column1Row6 = _reporte.Range[_reporte.Cells[1, 1], _reporte.Cells[1, 1]];
+                    column1Row6.AutoFilter(1,
+                            Type.Missing,
+                            Excel.XlAutoFilterOperator.xlAnd,
+                            Type.Missing,
+                            true);
+                    //var oRng = _reporte.Range["A", "T"];
+                    // oRng.Cells.AutoFilter(1, Type.Missing,Excel.XlAutoFilterOperator.xlAnd, Type.Missing, true);
+                     _reporte.Range["A" + 3 + ":T" + Globals.ThisAddIn.Application.ActiveSheet.Cells.Find("*", Missing.Value,
+                             Missing.Value, Missing.Value, Excel.XlSearchOrder.xlByRows,
+                            Excel.XlSearchDirection.xlPrevious, false, Missing.Value,
+                             Missing.Value)
+                             .Row+1].Value2 = "";
+                    _reporte.Unprotect();
                     _reporte.Range["A" + 2 + ":T" + _rowCount].Value2 = InicializarLista(rrg); 
                     _reporte.Range["F" + 2 + ":F" + _rowCount].NumberFormat = "0.0";
                     _reporte.Range["T" + 2 + ":T" + _rowCount].NumberFormat = "0.000";
@@ -128,14 +195,16 @@ namespace testVSTO2
                     Excel.XlDVAlertStyle.xlValidAlertInformation,Excel.XlFormatConditionOperator.xlBetween,flatList,Type.Missing);
                     ConfigurarFormulas(Local.Formulario.Reporte.General, 2, rrg.Count, resultado =>
                     {
-                        _sheet1.Protect(AllowSorting: true, AllowFiltering: true, UserInterfaceOnly: true);
+                        //_sheet1.Protect(AllowSorting: true, AllowFiltering: true, UserInterfaceOnly: true);
                         callback();
+                        BloquearRango(_rowCount);
                         Application.ScreenUpdating = true;
                     });
                 }
                 catch (Exception e)
                 {
-                    MessageBox.Show(e.Message);}
+                    MessageBox.Show(e.Message);
+                }
             }
             else
             {
@@ -176,7 +245,7 @@ namespace testVSTO2
             var lista = new object[rrg.Count, 20];
             for (var x = 0; x < rrg.Count; x++)
             {
-                lista[x, Reporte.General.Posicion.Clave]                = rrg[x].Clave+"";
+                lista[x, Reporte.General.Posicion.Clave]                = "'" + rrg[x].Clave;
                 lista[x, Reporte.General.Posicion.Departamento]         = rrg[x].Departamento;
                 lista[x, Reporte.General.Posicion.Categoria]            = rrg[x].Categoria;
                 lista[x, Reporte.General.Posicion.Descripcion]          = rrg[x].Descripcion;
@@ -196,6 +265,8 @@ namespace testVSTO2
                 lista[x, Reporte.General.Posicion.PrecioCompra]         = rrg[x].PrecioCompra;
                 lista[x, Reporte.General.Posicion.PrecioVenta]          = rrg[x].PrecioVenta;
                 lista[x, Reporte.General.Posicion.Margen]               = double.Parse(rrg[x].Margen) / 100;
+                //lista[x, Reporte.General.Posicion.ArtId]                 = rrg[x].ArtId;
+
             }
             return lista;
         }
@@ -227,7 +298,7 @@ namespace testVSTO2
         public void ReporteImprimir(IRestResponse restResponse,Action callback ){
             var rrg = Opcion.JsonaListaGenerica<Reporte.General.Respuesta>(restResponse);
             Application.ScreenUpdating = false;
-            _reporte = InicializarExcelConTemplate("ReporteInventarioImprimir");
+            _reporte = InicializarExcelConTemplate("ReporteInventarioImprimirrr");
             _rowCount = rrg.Count + 4;
             if (_reporte != null)
             {
@@ -244,37 +315,39 @@ namespace testVSTO2
                         lista[x, 7] = rrg[x].Factor;
                         lista[x, 8] = rrg[x].RadioInventario;
                     }
-                    if (_reporte.AutoFilter != null)
-                    {
-                        _reporte.AutoFilterMode = false;
-                    }
+                   
                     _reporte.Range["A" + 5 + ":J" + Globals.ThisAddIn.Application.ActiveSheet.Cells.Find("*", Missing.Value,
                            Missing.Value, Missing.Value, Excel.XlSearchOrder.xlByRows,
                           Excel.XlSearchDirection.xlPrevious, false, Missing.Value,
-                           Missing.Value).Row+1].Value2 = "";_reporte.Range["A" + 5 + ":I" + _rowCount].Value2 = lista;
-                    //LINEAS BORDES Y ESTRUCTURA DE EXCEL
+                           Missing.Value).Row+1].Value2 = "";
+                    _reporte.Range["A" + 5 + ":I" + _rowCount].Value2 = lista;
                     _reporte.Range["A" + 5 + ":J" + _rowCount].Borders[Excel.XlBordersIndex.xlEdgeBottom].LineStyle = Excel.XlLineStyle.xlContinuous;
                     _reporte.Range["A" + 5 + ":J" + _rowCount].Borders[Excel.XlBordersIndex.xlEdgeLeft].LineStyle = Excel.XlLineStyle.xlContinuous;
                     _reporte.Range["A" + 5 + ":J" + _rowCount].Borders[Excel.XlBordersIndex.xlEdgeRight].LineStyle = Excel.XlLineStyle.xlContinuous;
                     _reporte.Range["A" + 5 + ":J" + _rowCount].Borders[Excel.XlBordersIndex.xlEdgeTop].LineStyle = Excel.XlLineStyle.xlContinuous;
-                    _reporte.Range["A" + 5 + ":J" + _rowCount].Borders[Excel.XlBordersIndex.xlEdgeBottom].LineStyle = Excel.XlLineStyle.xlContinuous;
                     _reporte.Range["A" + 5 + ":J" + _rowCount].Borders.Color = Color.Black;
                     _reporte.Range["A" + 5 + ":J" + _rowCount].Font.Size = 8;
                     _reporte.Range["A" + 5 + ":J" + _rowCount].WrapText = true;
-                    _reporte.Range["A"+5+":J"+_rowCount].Cells.HorizontalAlignment =Excel.XlHAlign.xlHAlignLeft;
-                    _reporte.Range["J5:J"+_rowCount].Interior.Color = ColorTranslator.ToOle(Color.Yellow);
-                    ConfigurarFormulas(Local.Formulario.Reporte.Imprimir, 5, rrg.Count, resultado =>
+                    _reporte.Range["A" + 5 + ":A" + _rowCount].Cells.HorizontalAlignment = Excel.XlHAlign.xlHAlignLeft;
+                    _reporte.Range["B" + 5 + ":J" + _rowCount].Cells.HorizontalAlignment = Excel.XlHAlign.xlHAlignCenter;
+                    _reporte.Range["J5:J" + _rowCount].Interior.Color = ColorTranslator.ToOle(Color.Yellow);
+                    if (_reporte.AutoFilter != null)
                     {
-                        
-                        resultado.Range["C" + 5 + ":D" + _rowCount].NumberFormat = "0.00";
-                        resultado.Range["F" + 5 + ":H" + _rowCount].NumberFormat = "0.00";
-                        resultado.Range["FECHA_INI_IMP"].Value2 = Data.Reporte.FechaIni;
-                        resultado.Range["FECHA_FIN_IMP"].Value2 = Data.Reporte.FechaFin;
+                        _reporte.AutoFilterMode = false;
+                    }
+                    ////LINEAS BORDES Y ESTRUCTURA DE EXCEL   
+                    ConfigurarFormulas(Local.Formulario.Reporte.Imprimir, 5, rrg.Count, resultado =>
+                    { 
+                        resultado.Range["I"+1].Value2 = Data.Reporte.FechaIni;
+                        resultado.Range["I"+2].Value2 = Data.Reporte.FechaFin;
+                        //resultado.Range["C" + 5 + ":D" + _rowCount].NumberFormat = "0.00";
+                        //resultado.Range["F" + 5 + ":H" + _rowCount].NumberFormat = "0.00";
                         var oRng = resultado.Range["A4", "J" + (rrg.Count + 5)];
                         oRng.Cells.AutoFilter(10, ">0", Excel.XlAutoFilterOperator.xlAnd, Type.Missing, true);
                         callback();
                         Application.ScreenUpdating = true;
                     });
+               
                 }
                 catch (Exception e)
                 {
@@ -282,7 +355,6 @@ namespace testVSTO2
                 }
             }
         }
-
         public void Agregar(Receta receta)
         {
             Local.Receta.IdReceta = receta.RecId;
@@ -313,7 +385,68 @@ namespace testVSTO2
                 inicioTabla++;
             }
         }
+        void Application_SheetBeforeClick(object sh,
+       Excel.Range target, ref bool cancel)
+        {
+            try
+            {
+                var cancelar = false;
+                string name = Globals.ThisAddIn.Application.ActiveSheet.Name;
+                if (name.Equals(@"ReporteInventarioImprimirrr" ) && target.Column == 11 && target.Row==2)
+                {
+                    var mse = new MensajeDeEspera(() =>
+                    {
+                        DialogResult continuarCancelacion = MessageBox.Show(@"¿Desea detener la operación?",
+                        @"Alerta",
+                        MessageBoxButtons.YesNoCancel,
+                        MessageBoxIcon.Question);
+                        cancelar = continuarCancelacion == DialogResult.Yes;
+                        return cancelar;
+                    });
+                    mse.Show();
+                    var sheet = Globals.ThisAddIn.Application.ActiveSheet;
+                    var nInLastRow = sheet.Cells.Find("*", Missing.Value, Missing.Value, Missing.Value, Excel.XlSearchOrder.xlByRows,
+                       Excel.XlSearchDirection.xlPrevious, false, Missing.Value, Missing.Value)
+                        .Row;
+                    object[,] value = sheet.Range["A5", "J" + nInLastRow].Value;
+                    var lista = new List<Articulo.Basica>();
 
+                    for (var x = 1; x <= (value.Length / 10); x++)
+                    {
+                        if (value[x, 10].ToString() != "0" && value[x, 10].ToString() != "Desconocido" && Convert.ToInt32(value[x, 10]) > 0 )
+                        {
+                            lista.Add(new Articulo.Basica
+                            {
+                                Descripcion = value[x, Reporte.General.Pedido.Producto + 1].ToString(),
+                                Clave = value[x, Reporte.General.Pedido.Cantidad].ToString()
+                            });
+                        }    
+                    }
+                    var excelazo = InicializarExcelConTemplate("ImprimirPedido");
+                    int y = 6;
+                    for (var x = 0; x < lista.Count; x++)
+                    {
+                        //if (lista[x].Clave != "0")
+                        //{
+                            ((excelazo.Range["A" + y])).Value2 = lista[x].Descripcion;
+                            ((excelazo.Range["B" + y])).Value2 = lista[x].Clave;
+                        //}
+                        y++;
+
+                     }
+                    //var oRng = excelazo.Range["A5", "B" + (lista.Count + 5)];
+                    //oRng.Cells.AutoFilter(10, "> 0", Excel.XlAutoFilterOperator.xlAnd, Type.Missing, true);
+                    Application.ScreenUpdating = true;
+                    mse.Close();
+
+                }
+            }
+            catch (Exception e)
+            {
+                MessageBox.Show(e.Message);
+            }
+            Application.ScreenUpdating = true;
+        }
         private void ThisAddIn_Shutdown(object sender, EventArgs e)
         {
         }

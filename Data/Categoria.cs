@@ -17,7 +17,7 @@ namespace Data
                     Method.GET);
                 rest.Peticion.AddHeader(Constantes.Http.ObtenerTipoDeContenido,
                     Constantes.Http.TipoDeContenido.Json);
-                rest.Cliente.ExecuteAsync(rest.Peticion,response=>
+                rest.Cliente.ExecuteAsync(rest.Peticion, response =>
                 {
                     switch (response.StatusCode)
                     {

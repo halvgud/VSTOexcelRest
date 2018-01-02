@@ -69,7 +69,6 @@ namespace ExcelAddIn1
         public List<Reporte.RespuestaCocina.TablaPreciosNuevos> ListaActualizarListr;
         public BindingList<Reporte.RespuestaCocina.TablaPreciosNuevos.MostrarTablaPreciosNuevos> ListaBindingAct;
         private List<PlatilloReceta> _listaPlatilloLunes;
-        private List<PlatilloReceta> _listaPlatilloFechas;
         private List<PlatilloReceta> _listaPlatilloMartes;
         private List<PlatilloReceta> _listaPlatilloMiercoles;
         private List<PlatilloReceta> _listaPlatilloJueves;
@@ -123,7 +122,28 @@ namespace ExcelAddIn1
                                       .Concat(controls)
                                       .Where(c => c.GetType() == type);
         }
+        private void BorrarDgv(Control parent)
+        {
+            foreach (Control c in parent.Controls)
+            {
+                var view = c as DataGridView;
+                if (view != null)
+                {
 
+                    CheckForIllegalCrossThreadCalls = false;
+                    var pivote = view;
+
+                    pivote.DataSource = null;
+                    pivote.Rows.Clear();
+                    pivote.Columns.Clear();
+                    btGuardar.Enabled = false;
+                }
+                else
+                {
+                    BorrarDgv(c);
+                }
+            }
+        }
         private void cbDias_SelectedIndexChanged(object sender, EventArgs e)
         {
             if (cbDias.Items.Count > 0)
@@ -217,6 +237,7 @@ namespace ExcelAddIn1
                 tipoReceta.Tag = json;
             }));
         }
+
         private void montototal(Control parent1)
         {
             var view = parent1 as DataGridView;

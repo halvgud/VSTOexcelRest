@@ -33,7 +33,7 @@ namespace testVSTO2
             Opcion.EjecucionAsync(Data.Sucursal.Lista,x=>CargarComboBox(x,cbSucursal,false));
             cbImprimir.Checked = Data.Permiso.ListaPermisos.Find(x => x.IdControl == "cbImprimir.Checked")?.Valor == "1";
             cbImprimir.Enabled = Data.Permiso.ListaPermisos.Find(x => x.IdControl == "cbImprimir.Enabled")?.Valor == "1";
-            dtFechaIni.Value = dtFechaFin.Value.AddDays(-90);
+            dtFechaIni.Value = dtFechaFin.Value.AddDays(-30);
         }
         public void CargarComboBox(IRestResponse json,ComboBox cb,bool habilitar)
         {
@@ -96,44 +96,31 @@ namespace testVSTO2
             Data.Reporte.FechaFin = dtFechaFin.Value;
             Data.Reporte.Categoria = cbCategoria.Text;
             Data.Reporte.Departamento = cbDepartamento.Text;
-            if (cbImprimir.Checked)
-            {
-                Opcion.EjecucionAsync(x =>
-                {
+            Opcion.EjecucionAsync(x =>
+            {   
+                if (cbImprimir.Checked)
                     Data.Reporte.Imprimir(x, respuestaReporteGeneral);
-                }, y =>
-                {
-                    AccionY(() => { addIn.ReporteImprimir(y, () => CerrarCuadroDeEspera(mse));},cancelar,mse,y);
-                });
-            }
-            else
-            {
-                Opcion.EjecucionAsync(x =>
-                {
-                    Data.Reporte.General(x, respuestaReporteGeneral);
-                }, y =>
-                {
-                    AccionY(() => { addIn.ReporteGeneral(y, () => CerrarCuadroDeEspera(mse)); }, cancelar, mse, y);
-                });
-            }
-        }
-
-        private void AccionY(Action funcion,bool cancelar,MensajeDeEspera mse,IRestResponse y )
-        {
-            BeginInvoke((MethodInvoker)(() =>
-            {
-                if (y != null && !cancelar)
-
-                   funcion();
                 else
+                    Data.Reporte.General(x, respuestaReporteGeneral);
+            }, y =>
+            {
+                BeginInvoke((MethodInvoker)(() =>
                 {
-                    CerrarCuadroDeEspera(mse);
-                    BeginInvoke((MethodInvoker)(() =>
+                    if (y != null&&!cancelar)
+                        if (cbImprimir.Checked)
+                            addIn.ReporteImprimir(y, () => CerrarCuadroDeEspera(mse));
+                        else
+                            addIn.ReporteGeneral(y, () => CerrarCuadroDeEspera(mse));
+                    else
                     {
-                        MessageBox.Show(@"No se encontró registros con los parámetros utilizados");
-                    }));
-                }
-            }));
+                        CerrarCuadroDeEspera(mse);
+                        BeginInvoke((MethodInvoker) (() =>
+                        {
+                            MessageBox.Show(@"No se encontró registros con los parámetros utilizados");
+                        }));
+                    }    
+                }));
+            });
         }
         private void CerrarCuadroDeEspera(MensajeDeEspera mse)
         {

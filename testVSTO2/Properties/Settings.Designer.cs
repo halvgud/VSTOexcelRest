@@ -25,7 +25,7 @@ namespace testVSTO2.Properties {
         
         [global::System.Configuration.ApplicationScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("http://192.168.0.4/apiMovStock/public/")]
+        [global::System.Configuration.DefaultSettingValueAttribute("http://192.168.0.2/apiMovStock/public/")]
         public string UrlApi {
             get {
                 return ((string)(this["UrlApi"]));

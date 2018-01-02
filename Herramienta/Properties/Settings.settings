@@ -281,26 +281,5 @@
     <Setting Name="DiarioNuevoRegistro" Type="System.String" Scope="Application">
       <Value Profile="(Default)">/reporte/ReporteDiarioNewRegistro</Value>
     </Setting>
-    <Setting Name="OtrosPlatillosVenta" Type="System.String" Scope="Application">
-      <Value Profile="(Default)">/reporte/RepoOtrosPlatillos</Value>
-    </Setting>
-    <Setting Name="BuscarIngredredienteBase" Type="System.String" Scope="Application">
-      <Value Profile="(Default)">/receta/IngredienteBase</Value>
-    </Setting>
-    <Setting Name="InsertarIngredienteBase" Type="System.String" Scope="Application">
-      <Value Profile="(Default)">/receta/InsertarIngredienteBase</Value>
-    </Setting>
-    <Setting Name="ActualizarIngredienteBase" Type="System.String" Scope="Application">
-      <Value Profile="(Default)">/receta/ActualizarIngredienteBase</Value>
-    </Setting>
-    <Setting Name="UnidadIngredientes" Type="System.String" Scope="Application">
-      <Value Profile="(Default)">/receta/UnidadBase</Value>
-    </Setting>
-    <Setting Name="AgregarUnidad" Type="System.String" Scope="Application">
-      <Value Profile="(Default)">/receta/InsertarUnidadBase</Value>
-    </Setting>
-    <Setting Name="ActualizarUnidad" Type="System.String" Scope="Application">
-      <Value Profile="(Default)">/receta/ActualizarUnidadBase</Value>
-    </Setting>
   </Settings>
 </SettingsFile>

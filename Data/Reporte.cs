@@ -600,37 +600,10 @@ namespace Data
             {
                 Opcion.Log(Log.Interno.Categoria, "EXCEPCION: " + e.Message);
             }
-        }
-        public static void RepoOtrosPlatillosHoy(Action<IRestResponse> callback, Cocina.ReporteDiarioCocina.FechasReporte fechas)
-        {
-            try
-            {
-                var rest = new Rest(Local.Api.UrlApi, Cocina.ReporteDiarioCocina.ReporteOtrosPlatillos, Method.POST);
-                rest.Peticion.AddHeader(Constantes.Http.ObtenerTipoDeContenido, Constantes.Http.TipoDeContenido.Json);
-                rest.Peticion.AddJsonBody(fechas);
-                rest.Cliente.ExecuteAsync(rest.Peticion, response =>
-                {
-                    switch (response.StatusCode)
-                    {
-                        case HttpStatusCode.OK:
-                            callback(response);
-                            break;
-                        default:
-                            callback(null);
-                            break;
-                            //throw new Exception(@"Error al buscar la Informacion deseada");
-                    }
-                });
-            }
-            catch (Exception e)
-            {
-                Opcion.Log(Log.Interno.Categoria, "EXCEPCION: " + e.Message);
-            }
 
 
 
         }
-
 
         public static void ActualizacionPrecioReceta(Action<IRestResponse> callback)
         {

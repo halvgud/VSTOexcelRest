@@ -10,7 +10,6 @@ using Herramienta.Config;
 using System.Net;
 using System.Windows.Forms;
 using System.ComponentModel;
-using System.Net.Mime;
 
 namespace ExcelAddIn1
 {
@@ -45,9 +44,6 @@ namespace ExcelAddIn1
         public int Reccid;
         public int Validar;
         public int y;
-        public Image NuImage;
-        public string validarImagen;
-        public string newImage;
         public AgregarReceta()
         {
             InitializeComponent();
@@ -102,8 +98,6 @@ namespace ExcelAddIn1
         }
         private void AgregarReceta_Load(object sender, EventArgs e)
         {
-            cbReportesReceta.Enabled = false;
-            btImprimirReceta.Enabled = false;
             ActiveControl = tbBuscarReceta;
             tbBuscarReceta.Focus();
             tabCon.TabPages.Remove(tabPage1);
@@ -116,28 +110,28 @@ namespace ExcelAddIn1
                     BeginInvoke((MethodInvoker)(() =>
                     {
                         var liq = Opcion.JsonaListaGenerica<Reporte.RespuestaCocina.TablaPreciosNuevos>(t);
-                        switch (t.StatusCode)
+            switch (t.StatusCode)
+                {
+                  case HttpStatusCode.OK:
+                        _ListaActualizarListr = liq.Where(x => x.Modificacion =="Actualizar").ToList();
+                        if (_ListaActualizarListr.Count>0)
                         {
-                            case HttpStatusCode.OK:
-                                _ListaActualizarListr = liq.Where(x => x.Modificacion == "Actualizar").ToList();
-                                if (_ListaActualizarListr.Count > 0)
-                                {
-                                    if ((MessageBox.Show(@"Visualizar Menu de Productos con Precio Nuevo", " ", MessageBoxButtons.YesNo) == DialogResult.Yes))
-                                    {
-                                        ActualizarPrecios frm = new ActualizarPrecios();
-                                        frm.Show();
-
-                                    }
-                                }
-                                break;
+                            if ((MessageBox.Show(@"Visualizar Menu de Productos con Precio Nuevo", " ", MessageBoxButtons.YesNo) == DialogResult.Yes))
+                            {
+                                    ActualizarPrecios frm = new ActualizarPrecios();
+                                    frm.Show();
+                                
+                            }
                         }
-                    }));
+                    break;
                 }
-            });
+            }));
+             }
+          });
         }
         private void btBuscar_Click(object sender, EventArgs e)
         {
-            BuscarIngredientesGenerales(ActualizarInputs, new Inputs
+            BuscarReceta(ActualizarInputs, new Inputs
             {
                 ClaveReceta = tbCodigo,
                 CostoElaboracion = tbCostoElaboracion,
@@ -275,22 +269,11 @@ namespace ExcelAddIn1
             inputs.Ingredientes.DataSource = inputs.Ingredientes.Tag;
             for (var i = 0; i < inputs.Ingredientes.Rows.Count; ++i)
             {
-                double costo1 = 0;
-                if (inputs.Ingredientes.Rows[i].Cells["Estado"].Value.ToString() == "G")
-                {
-                    costo1 = Convert.ToDouble(inputs.Ingredientes.Rows[i].Cells[3].Value);
-                    var cantidad1 = Convert.ToDouble(inputs.Ingredientes.Rows[i].Cells[4].Value);
-                    sum += (costo1 * cantidad1);
-                }
-                else
-                {
-                    costo1 = Convert.ToDouble(inputs.Ingredientes.Rows[i].Cells[3].Value);
-                    var cantidad1 = Convert.ToDouble(inputs.Ingredientes.Rows[i].Cells[4].Value);
-                    var valordiv= (costo1/cantidad1);
-                    sum += valordiv*cantidad1;
-                }
+                var costo1 = Convert.ToDouble(inputs.Ingredientes.Rows[i].Cells[3].Value);
+                var cantidad1 = Convert.ToDouble(inputs.Ingredientes.Rows[i].Cells[4].Value);
+                sum += (costo1 * cantidad1);
             }
-            inputs.CostoEstimado.Text = Math.Round(sum,2).ToString(CultureInfo.InvariantCulture);
+            inputs.CostoEstimado.Text = sum.ToString(CultureInfo.InvariantCulture);
             //if (inputs.TipoReceta.Items.Count <= 0) return;
             //var lista = Opcion.JsonaListaGenerica<CbGenerico>((IRestResponse)inputs.TipoReceta.Tag);
             //    inputs.MargenSugerido.Text = lista[inputs.TipoReceta.SelectedIndex+1].Margen;
@@ -321,20 +304,9 @@ namespace ExcelAddIn1
             double sum = 0;
             for (var i = 0; i < inputs.Ingredientes.Rows.Count; ++i)
             {
-                double costo1 = 0;
-                if (inputs.Ingredientes.Rows[i].Cells["Estado"].Value.ToString() == "G")
-                {
-                    costo1 = Convert.ToDouble(inputs.Ingredientes.Rows[i].Cells[3].Value);
-                    var cantidad1 = Convert.ToDouble(inputs.Ingredientes.Rows[i].Cells[4].Value);
-                    sum += (costo1 * cantidad1);
-                }
-                else
-                {
-                    costo1 = Convert.ToDouble(inputs.Ingredientes.Rows[i].Cells[3].Value);
-                    var cantidad1 = Convert.ToDouble(inputs.Ingredientes.Rows[i].Cells[4].Value);
-                    var valordiv = (costo1 / cantidad1);
-                    sum += valordiv * costo1;
-                }
+                var costo = Convert.ToDouble(inputs.Ingredientes.Rows[i].Cells[3].Value);
+                var cantidad = Convert.ToDouble(inputs.Ingredientes.Rows[i].Cells[4].Value);
+                sum += (costo * cantidad);
             }
             if (inputs.MargenConPrecio.Text != string.Empty)
             {
@@ -354,20 +326,9 @@ namespace ExcelAddIn1
             double sum = 0;
             for (var i = 0; i < inputs.Ingredientes.Rows.Count; ++i)
             {
-                double costo1 = 0;
-                if (inputs.Ingredientes.Rows[i].Cells["Estado"].Value.ToString() == "G")
-                {
-                    costo1 = Convert.ToDouble(inputs.Ingredientes.Rows[i].Cells[3].Value);
-                    var cantidad1 = Convert.ToDouble(inputs.Ingredientes.Rows[i].Cells[4].Value);
-                    sum += (costo1*cantidad1);
-                }
-                else
-                {
-                    costo1 = Convert.ToDouble(inputs.Ingredientes.Rows[i].Cells[3].Value);
-                    var cantidad1 = Convert.ToDouble(inputs.Ingredientes.Rows[i].Cells[4].Value);
-                    var valordiv= (costo1/cantidad1);
-                    sum += valordiv*cantidad1;
-                }
+                var costo1 = Convert.ToDouble(inputs.Ingredientes.Rows[i].Cells[3].Value);
+                var cantidad1 = Convert.ToDouble(inputs.Ingredientes.Rows[i].Cells[4].Value);
+                sum += (costo1 * cantidad1);
             }
             var costo = sum + (inputs.CostoElaboracion.Text != string.Empty
                             ? Convert.ToDouble(inputs.CostoElaboracion.Text)
@@ -378,17 +339,17 @@ namespace ExcelAddIn1
             inputs.MargenConPrecio.Text = margenprecio;
             ValidarBusquedaVacia();
         }
-        private void BuscarIngredientesGenerales(Action<Inputs> actualizarInputs, Inputs parametros)
+        private void BuscarReceta(Action<Inputs> actualizarInputs, Inputs parametros)
         {
-            //Local.Articulo.IdArticulo = parametros.ClaveReceta.Text.Trim();
-            //Opcion.EjecucionAsync(x =>
-            //{
-            //    Data.Articulo.Lista(x, this);
-            //}, jsonResult =>
+            Local.Articulo.IdArticulo = parametros.ClaveReceta.Text.Trim();
+            Opcion.EjecucionAsync(x =>
+            {
+                Data.Articulo.Lista(x, this);
+            }, jsonResult =>
             {
                 BeginInvoke((MethodInvoker)(() =>
                 {
-                    var brd = new BuscarArticulo(null, listaArticulo=>
+                    var brd = new BuscarArticulo(Opcion.JsonaListaGenerica<Articulo>(jsonResult), listaArticulo=>
                     {
                         BeginInvoke((MethodInvoker)(() =>
                         {
@@ -406,9 +367,7 @@ namespace ExcelAddIn1
                                         Clave = g.First().Clave,
                                         Descripcion = g.First().Descripcion,
                                         PrecioCompra = g.First().PrecioCompra,
-                                        Cantidad = g.Sum(i => i.Cantidad),
-                                        Unidad = g.First().Unidad,
-                                        Estado = g.First().Estado
+                                        Cantidad = g.Sum(i => i.Cantidad)
                                     }).ToList();
                             btGuardar.Enabled = ValidarCampos();
                             btGuardar.Enabled = true;
@@ -419,18 +378,12 @@ namespace ExcelAddIn1
                             }
                             parametros.Ingredientes.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
                             //parametros.Ingredientes.RowHeadersVisible = false;
-                            dgvIngredientesBusqueda.Columns[0].Visible = false;
-                            dgvIngredientesBusqueda.Columns[3].Visible = false;
-                            dgvIngredientesBusqueda.Columns[5].Visible = false;
                             var dataGridViewColumn = parametros.Ingredientes.Columns["Cantidad"];
                             if (dataGridViewColumn != null)
                                 dataGridViewColumn.DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
                             var gridViewColumn = parametros.Ingredientes.Columns["PrecioCompra"];
                             if (gridViewColumn != null)
                                 gridViewColumn.DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
-                            var gridViewColumn2 = parametros.Ingredientes.Columns["Unidad"];
-                            if (gridViewColumn2 != null)
-                                gridViewColumn2.DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
                             parametros.ClaveReceta.Text = "";
                             parametros.ClaveReceta.Focus();
                             actualizarInputs(parametros);
@@ -438,64 +391,7 @@ namespace ExcelAddIn1
                     });
                     brd.Show();
                 }));
-            }/*);*/
-        }
-        private void BuscarIngredientesBase(Action<Inputs> actualizarInputs, Inputs parametros)
-        {
-            {
-                BeginInvoke((MethodInvoker)(() =>
-                {
-                    var brd = new BuscarIngredienteBase(null, listaArticulo =>
-                    {
-                        BeginInvoke((MethodInvoker)(() =>
-                        {
-                            _listaArticuloBasica1 = parametros.Ingredientes.Tag as List<Articulo.Basica>;
-                            _listaArticuloBasica2 = (listaArticulo.Select(x => x.CopiadoSencillo()).ToList());
-                            if (_listaArticuloBasica1 != null)
-                            {
-                                _listaArticuloBasica2.AddRange(_listaArticuloBasica1);
-                            }
-                            parametros.Ingredientes.Tag = _listaArticuloBasica2
-                                    .GroupBy(p => p.ArtId)
-                                    .Select(g => new Articulo.Basica
-                                    {
-                                        ArtId = g.Key,
-                                        Clave = g.First().Clave,
-                                        Descripcion = g.First().Descripcion,
-                                        PrecioCompra = g.Sum(i => i.PrecioCompra),
-                                        Cantidad = g.Sum(i => i.Cantidad),
-                                        Unidad = g.First().Unidad,
-                                        Estado = g.First().Estado
-                                    }).ToList();
-                            btGuardar.Enabled = ValidarCampos();
-                            btGuardar.Enabled = true;
-                            for (var x = 0; x == 3; x++)
-                            {
-                                parametros.Ingredientes.Columns[x].ReadOnly = true;
-                                parametros.Ingredientes.Columns[x].DefaultCellStyle.BackColor = Color.LightGray;
-                            }
-                            parametros.Ingredientes.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
-                            //parametros.Ingredientes.RowHeadersVisible = false;
-                            dgvIngredientesBusqueda.Columns[0].Visible = false;
-                            dgvIngredientesBusqueda.Columns[3].Visible = false;
-                            dgvIngredientesBusqueda.Columns[5].Visible = false;
-                            var dataGridViewColumn = parametros.Ingredientes.Columns["Cantidad"];
-                            if (dataGridViewColumn != null)
-                                dataGridViewColumn.DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
-                            var gridViewColumn = parametros.Ingredientes.Columns["PrecioCompra"];
-                            if (gridViewColumn != null)
-                                gridViewColumn.DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
-                            var gridViewColumn2 = parametros.Ingredientes.Columns["Unidad"];
-                            if (gridViewColumn2 != null)
-                                gridViewColumn2.DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
-                            parametros.ClaveReceta.Text = "";
-                            parametros.ClaveReceta.Focus();
-                            actualizarInputs(parametros);
-                        }));
-                    });
-                    brd.Show();
-                }));
-            }/*);*/
+            });
         }
         private void btBorrarLista_Click(object sender, EventArgs e)
         {
@@ -582,18 +478,9 @@ namespace ExcelAddIn1
                     {
                         for (var i = 0; i < dgvIngredientesBusqueda.Rows.Count; i++)
                         {
-                            double precioTotal = 0;
-                            if (dgvIngredientesBusqueda.Rows[i].Cells["Estado"].Value.ToString() == "G")
-                            {
-                                var cantidad = double.Parse(dgvIngredientesBusqueda.Rows[i].Cells[4].Value.ToString());
-                                var precioCompra = Convert.ToDouble(dgvIngredientesBusqueda.Rows[i].Cells[3].Value);
-                                precioTotal = precioCompra * cantidad;
-                            }
-                            else
-                            {
-                                var precioCompra = Convert.ToDouble(dgvIngredientesBusqueda.Rows[i].Cells[3].Value);
-                                precioTotal = precioCompra;
-                            }
+                            var cantidad = double.Parse(dgvIngredientesBusqueda.Rows[i].Cells[4].Value.ToString());
+                            var precioCompra = Convert.ToDouble(dgvIngredientesBusqueda.Rows[i].Cells[3].Value);
+                            var precioTotal = precioCompra * cantidad;
                             listaingredientes.Add(new Receta.Detalle
                             {
                                 RecId = Local.Receta.RecId,
@@ -601,36 +488,53 @@ namespace ExcelAddIn1
                                 Cantidad = double.Parse(dgvIngredientesBusqueda.Rows[i].Cells[4].Value.ToString()),
                                 Clave = dgvIngredientesBusqueda.Rows[i].Cells[1].Value.ToString(),
                                 Descripcion = dgvIngredientesBusqueda.Rows[i].Cells[2].Value.ToString(),
-                                Unidad = dgvIngredientesBusqueda.Rows[i].Cells["Unidad"].Value.ToString(),
+                                IdUnidad = 1,
                                 PrecioCompra = Convert.ToDouble(dgvIngredientesBusqueda.Rows[i].Cells[3].Value),
-                                PrecioTotal = precioTotal,
-                                Estado = dgvIngredientesBusqueda.Rows[i].Cells["Estado"].Value.ToString()
+                                PrecioTotal = precioTotal
+
                             });
                         }
                         Data.Receta.Detalle.Eliminar();
                         Data.Receta.Detalle.ActualizarIngredientes(listaingredientes);
+
+                    }));
                     #endregion
                     #region actualiza Ruta de imagen e Instrucciones
+                    BeginInvoke((MethodInvoker)(() =>
+                    {
                         long a = int.Parse(DateTime.Now.ToString("yyyyMMdd"));
+                        //if (Local.Receta.Ruta==null || Local.Receta.Ruta==String.Empty)
+                        //{
+                        //    //openFileDialog1.Filter =
+                        //    //    @"Image Files (*.png *.jpg *.bmp) | *.png; *.jpg; *.bmp | All Files(*.*) | *.* ";
+                        //    //openFileDialog1.Title = @"Buscar Imagen";
+                        //    //openFileDialog1.FileName = "";
+                        //    //openFileDialog1.ShowDialog();
+                        //}
+                        //else
+                        //{
+                        //    //var otro = Local.Receta.Ruta;
+                        //    //var final = otro.Length - 31;
+                        //    //var mundo = otro.Substring(31, final);
+                        //    //// ReSharper disable once ObjectCreationAsStatement
+                        //    //new Uri(@"file://mercattoserver/Recetario/img/" + mundo, UriKind.Absolute);
+                        //    //System.IO.File.Delete(@"\\mercattoserver\\C$\Recetario\img\" + mundo);
+                        //    //openFileDialog1.Filter = @"Image Files (*.png *.jpg *.bmp) | *.png; *.jpg; *.bmp | All Files(*.*) | *.* ";
+                        //    //openFileDialog1.Title = @"Buscar Imagen";
+                        //    //openFileDialog1.FileName = "";
+                        //    //openFileDialog1.ShowDialog();
+                        //}
                         if(_agregarImagen || !string.IsNullOrEmpty(Pbreceta.ImageLocation) && Pbreceta.ImageLocation!=null)
                         {
                         var listainstruccionesv1 = new Receta.ImagenAndProcess
                         {
                             RecId = Local.Receta.RecId,
                             Instrucciones = txtinstruccionesBE.Text,
-                            RutaImagen = @"\\mercattoserver\Recetario\img\" + tbBuscarReceta.Text + a + ".jpg"
+                            RutaImagen = @"\\mercattoserver\Recetario\img\" + tbBuscarReceta.Text + a.ToString() + ".jpg"
                          };
                         Data.ReporteCocina.InsertarRutaeImagen(listainstruccionesv1);
-                            if (validarImagen!=Pbreceta.ImageLocation)
-                            {
-                                Opcion.Copycmdserver(openFileDialog1.FileName, @"\\mercattoserver\Recetario\img\" + tbBuscarReceta.Text + a.ToString() + ".jpg");
-                            }
-                            if(validarImagen!=newImage /*&& _agregarImagen*/)
-                            {
-                                Opcion.Copycmdserver(openFileDialog1.FileName, @"\\mercattoserver\Recetario\img\" + tbBuscarReceta.Text + a.ToString() + ".jpg");
-                            }
-
-                        }
+                        Opcion.Copycmdserver(openFileDialog1.FileName, @"\\mercattoserver\Recetario\img\" + tbBuscarReceta.Text + a.ToString() + ".jpg");
+                       }
                     if(_agregarImagen==false && openFileDialog1.FileName==null || string.IsNullOrEmpty(Pbreceta.ImageLocation)) 
                     {
                         var listainstruccionesv1 = new Receta.ImagenAndProcess
@@ -648,7 +552,6 @@ namespace ExcelAddIn1
                         //tabCon.TabPages.Remove(tabPage1);
 
                         _agregarImagen = false;
-                        newImage = null;
                     }));
 
                     #endregion
@@ -767,7 +670,41 @@ namespace ExcelAddIn1
 
      
                     _agregarImagen = false;
-                    newImage = null;
+                    //if (MessageBox.Show(@"Desea agregar la imagen de la Receta", @"Aviso", MessageBoxButtons.YesNo,
+
+                    //                  MessageBoxIcon.Question) == DialogResult.Yes)
+                    //{
+                    //    //openFileDialog1.Filter = @"Image Files (*.png *.jpg *.bmp *.jpeg *.gif) | *.png; *.jpg; *.bmp; *.jpeg  | All Files(*.*) | *.* ";
+                    //    //openFileDialog1.Title = @"Buscar Imagen";
+                    //    //openFileDialog1.FileName = "";
+                    //    //openFileDialog1.ShowDialog();
+                    //    long a = int.Parse(DateTime.Now.ToString("yyyyMMdd"));
+                    //    var image =Convert.ToString( Pbreceta);
+                    //    var dd = @"\\mercattoserver\Recetario\img\" + inputs.ClaveReceta.Text + a.ToString() + ".jpg";
+                    //    image = dd;
+
+
+                    //    var instructivo = new Receta.ImagenAndProcess
+                    //    {
+                    //        RecId = Data.Receta.CReceta.RecId,
+                    //        Instrucciones = inputs.ModoElaboracion.Text,
+                    //        RutaImagen = image
+                    //    };
+                    //    Data.ReporteCocina.InsertarRutaeImagen(instructivo);
+                    //    Opcion.Copycmdserver(openFileDialog1.FileName, @"\\mercattoserver\Recetario\img\" + inputs.ClaveReceta.Text + a.ToString() + ".jpg");
+                    //}
+
+                    //else
+                    //{
+                    //    var instructivo = new Receta.ImagenAndProcess
+                    //    {
+                    //        RecId = Data.Receta.CReceta.RecId,
+                    //        Instrucciones = inputs.ModoElaboracion.Text,
+                    //        RutaImagen = ""
+                    //    };
+                    //    Data.ReporteCocina.InsertarRutaeImagen(instructivo);
+
+                    //}
                     #endregion
                     Data.Receta.Detalle.InsertarDetalle(x);
                 }
@@ -840,6 +777,7 @@ namespace ExcelAddIn1
         #endregion
         private void btBuscarClave_Click(object sender, EventArgs e)
         {
+          
             Cocina.DetalleCocina.Clave = tbBuscarReceta.Text == string.Empty ? "%" : tbBuscarReceta.Text;
             Opcion.EjecucionAsync(Data.ReporteCocina.BuscarRecetav2, jsonResult =>
             {
@@ -865,11 +803,8 @@ namespace ExcelAddIn1
                                              ArtId = x.ArtId,
                                              Clave = x.Clave,
                                              Descripcion = x.Descripcion,
-                                             PrecioCompra = Math.Round(x.PrecioCompra,2),
-                                             Cantidad = x.Cantidad,
-                                             Unidad = x.Unidad,
-                                             Estado= x.Estado
-                                            
+                                             PrecioCompra = x.PrecioCompra,
+                                             Cantidad = x.Cantidad
                                          }).ToList();
                                          tbPesoLitroBE.Text = resultado.PesoLitro.ToString(CultureInfo.InvariantCulture);
                                          tbCostoElaboracionBE.Text = resultado.CostoElaboracion.ToString(CultureInfo.InvariantCulture);
@@ -914,22 +849,7 @@ namespace ExcelAddIn1
                                          var datos = resultado.Instrucciones;
                                          txtinstruccionesBE.Text = datos;
                                          var calis = resultado.Rutaimagen;
-                                         dgvIngredientesBusqueda.Columns[0].Visible = false;
-                                         dgvIngredientesBusqueda.Columns[3].Visible = false;
-                                         dgvIngredientesBusqueda.Columns[5].Visible = false;
-                                         var gridViewColumn2 =dgvIngredientesBusqueda.Columns["Unidad"];
-                                         if (gridViewColumn2 != null)
-                                             gridViewColumn2.DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
-                                         //try
-                                         //{
-                                         //    NuImage= Image.FromFile(calis);
-                                         //}
-                                         //catch (Exception)
-                                         //{
-                                         //    // ignored
-                                         //}
-
-                                         if (calis == "" /*|| NuImage==null*/)
+                                         if (calis == null)
                                          {
                                              Pbreceta.Image = Image.FromFile(@"\\mercattoserver\Recetario\img\sinimagen.jpg");
                                          }
@@ -937,11 +857,7 @@ namespace ExcelAddIn1
                                          {
                                              Pbreceta.ImageLocation = calis;
                                          }
-                                         validarImagen = calis;
-                                         btBuscarBE.Enabled = true;
-                                         btIngredienteBase.Enabled = true;
                                          btGuardar.Enabled = true;
-                                         cbReportesReceta.Enabled = true;
                                      }));
                                  }, false);
                             brd.Show();
@@ -1022,16 +938,7 @@ namespace ExcelAddIn1
                                                      var datos = resultado.Instrucciones;
                                                      txtinstruccionesBE.Text = datos;
                                                      var calis = resultado.Rutaimagen;
-                                                     //try
-                                                     //{
-                                                     //    NuImage = Image.FromFile(calis);
-                                                     //}
-                                                     //catch (Exception)
-                                                     //{
-                                                     //    // ignored
-                                                     //}
-
-                                                     if (calis == null /*|| NuImage == null*/)
+                                                     if (calis == null)
                                                      {
                                                          Pbreceta.Image = Image.FromFile(@"\\mercattoserver\Recetario\img\sinimagen.jpg");
                                                      }
@@ -1052,18 +959,15 @@ namespace ExcelAddIn1
                                 }
                             }));
                     });
+                    btGuardar.Enabled = true;
+
                 }
             });
             btGuardar.Enabled = true;
-            btBuscarBE.Enabled = true;
-            btIngredienteBase.Enabled = true;
-            btImprimirReceta.Enabled = true;
         }
-
-      
         private void btBuscarBE_Click(object sender, EventArgs e)
         {
-            BuscarIngredientesGenerales(ActualizarInputs, new Inputs
+            BuscarReceta(ActualizarInputs, new Inputs
             {
                 ClaveReceta = tbCodigoBE,
                 CostoElaboracion = tbCostoElaboracionBE,
@@ -1127,12 +1031,6 @@ namespace ExcelAddIn1
         private void btBorrarSelecBE_Click(object sender, EventArgs e)
         {
             Opcion.BorrarSeleccion(dgvIngredientesBusqueda);
-            dgvIngredientesBusqueda.Columns[0].Visible = false;
-            dgvIngredientesBusqueda.Columns[3].Visible = false;
-            dgvIngredientesBusqueda.Columns[5].Visible = false;
-            var gridViewColumn2 = dgvIngredientesBusqueda.Columns["Unidad"];
-            if (gridViewColumn2 != null)
-                gridViewColumn2.DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
             ActualizarInputs(new Inputs
             {
                 ActualizarMargen = ActualizarMargen,
@@ -1169,7 +1067,7 @@ namespace ExcelAddIn1
         }
         private void tbCodigoBE_TextChanged(object sender, EventArgs e)
         {
-            //btBuscarBE.Enabled = ValidarBusquedaVacia1();
+            btBuscarBE.Enabled = ValidarBusquedaVacia1();
         }
         private void tbCodigoBE_KeyPress(object sender, KeyPressEventArgs e)
         {
@@ -1208,15 +1106,79 @@ namespace ExcelAddIn1
         {
             btGuardar.Enabled = ValidarCamposBe();
         }
+        private void chDiario_CheckedChanged(object sender, EventArgs e)
+        {
+            //if (chDiario.Checked)
+            //{
+            //    tbCantidadDiario.Visible = true;
+            //    lbCantidadDiario.Visible = true;
+            //    tbCantidadElaboracion.Visible = false;
+            //    cbUnidadElaboracion.Visible = false;
+            //    lbCantidadElaboracion.Visible = false;
+            //    Validar = 1;
+            //}
+            //else
+            //{
+            //    tbCantidadDiario.Visible = false;
+            //    lbCantidadDiario.Visible = false;
+            //    tbCantidadElaboracion.Visible = true;
+            //    cbUnidadElaboracion.Visible = true;
+            //    lbCantidadElaboracion.Visible = true;
+            //}
+        }
+        private void chDiarioBE_CheckedChanged(object sender, EventArgs e)
+        {
+            //if (chDiarioBE.Checked)
+            //{
+            //    tbCantidadDiarioBE.Visible = true;
+            //    lbCantidadDiarioBE.Visible = true;
+            //    tbCantidadElaboracionBE.Visible = false;
+            //    cbUnidadElaboracionBE.Visible = false;
+            //    lbCantidadElaboracionBE.Visible = false;
+            //    Validar = 1;
+            //}
+            //else
+            //{
+            //    tbCantidadDiarioBE.Visible = false;
+            //    lbCantidadDiarioBE.Visible = false;
+            //    tbCantidadElaboracionBE.Visible = true;
+            //    cbUnidadElaboracionBE.Visible = true;
+            //    lbCantidadElaboracionBE.Visible = true;
+            //}
+        }
         private void tbCantidadElaboracion_TextChanged(object sender, EventArgs e)
         {
             Opcion.ValidarDouble(tbCantidadElaboracion);
             btGuardar.Enabled = ValidarCampos();
         }
+        private void tbCantidadDiario_TextChanged(object sender, EventArgs e)
+        {
+            //Opcion.ValidarDouble(tbCantidadDiario);
+        }
         private void tbCantidadElaboracionBE_TextChanged(object sender, EventArgs e)
         {
             Opcion.ValidarDouble(tbCantidadElaboracionBE);
             btGuardar.Enabled = ValidarCamposBe();
+        }
+        private void tbCantidadDiarioBE_TextChanged(object sender, EventArgs e)
+        {
+            //Opcion.ValidarDouble(tbCantidadDiarioBE);
+        }
+        private void tbMargenConPrecio_Validating(object sender, System.ComponentModel.CancelEventArgs e)
+        {
+            //if (tbMargenConPrecio.Text == "") return;
+            //if (!(Convert.ToDouble(tbMargenConPrecio.Text) < 30)) return;
+            //MessageBox.Show(@"El margen no puede ser menor al 30%");
+            //tbMargenConPrecio.Clear();
+            //tbMargenConPrecio.Focus();
+        }
+        private void tbMargenConPrecioBE_Validating(object sender, System.ComponentModel.CancelEventArgs e)
+        {
+            //if (Convert.ToDouble(tbMargenConPrecioBE.Text) <= 0)
+            //{
+            //    MessageBox.Show(@"La receta no cuenta con un margen, revisar los costos");
+
+            //}
         }
         private void tbCostoEstimado_TextChanged(object sender, EventArgs e)
         {
@@ -1337,6 +1299,7 @@ namespace ExcelAddIn1
             dgvIngredientesBusqueda.Rows[e.RowIndex].Cells[2].ReadOnly = true;
             dgvIngredientesBusqueda.Rows[e.RowIndex].Cells[3].ReadOnly = true;
         }
+
         private void dgvIngredientesBusqueda_CurrentCellChanged(object sender, EventArgs e)
         {
             for (var i = 0; i < dgvIngredientesBusqueda.RowCount; i++)
@@ -1347,11 +1310,10 @@ namespace ExcelAddIn1
                 dgvIngredientesBusqueda.Rows[i].Cells[3].ReadOnly = true;
                 dgvIngredientesBusqueda.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
                 dgvIngredientesBusqueda.DefaultCellStyle.Font = new Font("Arial", 9);
-                //dgvIngredientesBusqueda.Columns[0].Width = 60;
+                dgvIngredientesBusqueda.Columns[0].Width = 60;
                 dgvIngredientesBusqueda.Columns["Clave"].Width = 90;
                 dgvIngredientesBusqueda.Columns["Cantidad"].Width = 110;
                 dgvIngredientesBusqueda.Columns["Descripcion"].Width = 270;
-                dgvIngredientesBusqueda.Columns["Unidad"].Width = 80;
                 dgvIngredientesBusqueda.Columns["Cantidad"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
                 dgvIngredientesBusqueda.Columns["PrecioCompra"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
             }   
@@ -1369,6 +1331,13 @@ namespace ExcelAddIn1
         {
             MessageBox.Show(@"Si deseas modificar el precio de la receta, realizalo desde SICAR");
         }
+
+        //private void btActualizacion_Click(object sender, EventArgs e)
+        //{
+        //    ActualizarPrecios frm = new ActualizarPrecios();
+        //    frm.Show();
+        //}
+
         private void tbPrecioTotalBE_TextChanged(object sender, EventArgs e)
         {
             if (!Opcion.ValidarDouble(tbPrecioBE)) return;
@@ -1384,7 +1353,43 @@ namespace ExcelAddIn1
             btGuardar.Enabled = ValidarCamposBe();
 
         }
+
+        private void tmActualizar_Tick(object sender, EventArgs e)
+        {
+            
+            //if (y==6)
+            //{
+            //    Data.Reporte.ExistenciProductoActualizar(t =>
+            //    {
+            //        switch (t.StatusCode)
+            //        {
+            //            case HttpStatusCode.OK:
+            //                var actprecio = new ActualizarPrecios();
+            //                actprecio.Show();
+            //                //tmActualizar.Stop();
+            //               // tmActualizar.Enabled = false;
+            //               // y = 0;
+            //                break;
+            //        }
+
+            //    });
+
+            //}
+            //y = y + 1;
+            ////for (int i = 0; i <= 5; i++)
+            ////{
+            ////    //var comprobacion;
+            ////    if (i == 3)
+            ////    {
+
+
+            ////    }
+
+            ////}
+
+        }
         private bool _agregarImagen= false;
+
         private void btImagen_Click(object sender, EventArgs e)
         {
             if (MessageBox.Show(@"Desea agregar la imagen de la receta", @"Aviso", MessageBoxButtons.YesNo,
@@ -1417,138 +1422,34 @@ namespace ExcelAddIn1
                     if (result == DialogResult.OK)
                     {
                         Pbreceta.Image = Image.FromFile(openFileDialog1.FileName);
-                        newImage = openFileDialog1.FileName;
                     }
-
-                    
                 }
             }
        }
 
         private void btImprimirReceta_Click(object sender, EventArgs e)
         {
-            if (cbReportesReceta.SelectedIndex == 0)
+            Cocina.DetalleCocina.Clave = tbBuscarReceta.Text == string.Empty ? "%" : tbBuscarReceta.Text;
+           
+            Opcion.EjecucionAsync(x =>
             {
-                Cocina.DetalleCocina.Clave = tbBuscarReceta.Text == string.Empty ? "%" : tbBuscarReceta.Text;
-
-                Opcion.EjecucionAsync(x =>
+                var detallereceta = new Cocina.DetalleCocina.ReporteDetalle
                 {
-                    var detallereceta = new Cocina.DetalleCocina.ReporteDetalle
-                    {
-                        clave = tbBuscarReceta.Text
-                    };
-                    Data.ReporteCocina.DDetalleReceta(x, detallereceta);
-                }, jsonResult =>
-                {
-                    Reporte.RespuestaCocina listaCocina = Opcion.JsonaListaGenerica<Reporte.RespuestaCocina>(jsonResult)[0];
-                    var addIn = Globals.ThisAddIn;
-                    addIn.RecetaElaboracion(listaCocina);
-                }
-                );
-            }
-            if (cbReportesReceta.SelectedIndex==1)
+                    clave = tbBuscarReceta.Text
+                };
+                Data.ReporteCocina.DDetalleReceta(x, detallereceta);
+            }, jsonResult =>
             {
-                Cocina.DetalleCocina.Clave = tbBuscarReceta.Text == string.Empty ? "%" : tbBuscarReceta.Text;
-
-                Opcion.EjecucionAsync(x =>
-                {
-                    var detallereceta = new Cocina.DetalleCocina.ReporteDetalle
-                    {
-                        clave = tbBuscarReceta.Text
-                    };
-                    Data.ReporteCocina.DDetalleReceta(x, detallereceta);
-                }, jsonResult =>
-                {
-                    Reporte.RespuestaCocina listaCocina = Opcion.JsonaListaGenerica<Reporte.RespuestaCocina>(jsonResult)[0];
-                    var addIn = Globals.ThisAddIn;
-                    addIn.DatosReceta(listaCocina);
-                }
-                );
+               Reporte.RespuestaCocina listaCocina= Opcion.JsonaListaGenerica<Reporte.RespuestaCocina>(jsonResult)[0];
+                var addIn = Globals.ThisAddIn;
+                addIn.DatosReceta(listaCocina);
             }
-            if (cbReportesReceta.SelectedIndex == 2)
-            {
-                Cocina.DetalleCocina.Clave = tbBuscarReceta.Text == string.Empty ? "%" : tbBuscarReceta.Text;
-                ;
-
-                Opcion.EjecucionAsync(x =>
-                {
-                    var detallereceta = new Cocina.DetalleCocina.ReporteDetalle
-                    {
-                        clave = Cocina.DetalleCocina.Clave
-                    };
-                    Data.ReporteCocina.DDetalleReceta(x, detallereceta);
-                }, jsonResult =>
-                {
-                    if (jsonResult != null)
-                    {
-                        BeginInvoke((MethodInvoker) (() =>
-                        {
-                            switch (jsonResult.StatusCode)
-                            {
-                                case HttpStatusCode.OK:
-                                    var listaCocina = Opcion.JsonaListaGenerica<Reporte.RespuestaCocina>(jsonResult)[0];
-                                    var fechaActual = DateTime.Today.ToShortDateString();
-                                    var cantidadReal = Convert.ToString(tbCantidadElaboracionBE.Text);
-                                    listaCocina.Consumodia = cantidadReal;
-                                    listaCocina.UltimaElaboracion = fechaActual;
-                                    listaCocina.Cantidadinventario = Convert.ToDouble(cantidadReal);
-                                    var addIn = Globals.ThisAddIn;
-                                    addIn.OrdendeTrabajo(listaCocina);
-                                    break;
-                                default:
-                                    MessageBox.Show(this,
-                                        @"No se encontraron menus con los parametros de busqueda ingresados");
-                                    break;
-                            }
-                        }));
-                    }
-                    else
-                    {
-                        MessageBox.Show(this, @"No se encontro informacion con los parametros de busqueda ingresados");
-                    }
-                }
-                    );
-
-            }
-            else
-            {
-                MessageBox.Show(this, @"No se encontro informacion con los parametros de busqueda ingresados");
-            }
-
+            );        
         }
+
         private void tbBuscarReceta_Click(object sender, EventArgs e)
         {
             tbBuscarReceta.ForeColor = Color.Black;
-        }
-
-        private void btIngredienteBase_Click(object sender, EventArgs e)
-        {
-            BuscarIngredientesBase(ActualizarInputs, new Inputs
-            {
-                ClaveReceta = tbCodigoBE,
-                CostoElaboracion = tbCostoElaboracionBE,
-                CostoEstimado = tbCostoEstimadoBE,
-                Ingredientes = dgvIngredientesBusqueda,
-                MargenSugerido = tbMargenSugeridoBE,
-                PrecioSugerido = tbPrecioSugeridoBE,
-                PesoLitro = tbPesoLitroBE,
-                Precio = tbPrecioBE,
-                PrecioTotal = tbPrecioTotalBE,
-                TipoReceta = cbTipoBE,
-                MargenConPrecio = tbMargenConPrecioBE,
-                ActualizarMargen = ActualizarMargen,
-                CantidadElaboracion = tbCantidadElaboracionBE,
-                UnidadElaboracion = cbUnidadElaboracionBE,
-                //CantidadDiario = tbCantidadDiarioBE
-            });
-            btGuardar.Enabled = true;
-        }
-        private void cbReportesReceta_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            if (cbReportesReceta.Items.Count > 0)
-            {
-                btImprimirReceta.Enabled = true;
-            }
         }
     }
 }

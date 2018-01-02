@@ -242,7 +242,6 @@ namespace testVSTO2
         }
         public void GuardarTipoArticulo(Office.IRibbonControl control)
         {
-            //var rrg = Opcion.JsonaListaGenerica<Reporte.General.Respuesta>();
             try
             {
                 var cancelar = false;
@@ -267,11 +266,10 @@ namespace testVSTO2
                     var lista = new List<Articulo.Guardar.Tipo>();
                     for (var x = 1; x <= (value.Length/5); x++)
                     {
-                        lista.Add(new Articulo.Guardar.Tipo
+                        lista.Add(new Articulo.Guardar.Tipo 
                         {
-                            clave = value[x, Reporte.General.Posicion.Clave + 1].ToString(),
-                            tipo = value[x, Reporte.General.Posicion.Tipo + 1].ToString(),
-                        });
+                            Clave = value[x, Reporte.General.Posicion.Clave+1].ToString(),
+                            tipo = value[x, Reporte.General.Posicion.Tipo+1].ToString()});
                     }
                     if (!cancelar)
                     {

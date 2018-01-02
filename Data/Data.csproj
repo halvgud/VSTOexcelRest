@@ -37,7 +37,7 @@
     </Reference>
     <Reference Include="RestSharp, Version=105.2.3.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\ExcelAddIn1\bin\Debug\RestSharp.dll</HintPath>
+      <HintPath>bin\Debug\RestSharp.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />

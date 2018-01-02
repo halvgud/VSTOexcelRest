@@ -49,7 +49,6 @@ namespace Respuesta
                 public string PrecioVenta { get; set; }
                 public string Margen { get; set; }
                 public string CantidadPedir { get; set; }
-                public  int ArtId { get; set; }
             }
 
 
@@ -89,18 +88,9 @@ namespace Respuesta
                 public static int PrecioCompra { get; set; } = 17;
                 public static int PrecioVenta { get; set; } = 18;
                 public static int Margen { get; set; } = 19;
-                public static int ArtId { get;} = 22;
 
-            }
-
-            public class Pedido
-            {
-                public static int Producto { get; set; } = 0;
-                public static int Cantidad { get; set; } = 10;
             }
         }
-
-     
 
 
 
@@ -295,6 +285,9 @@ namespace Respuesta
                 public Double VentaPromedio { get; set; }
                 public double EstadoInventarioId { get; set; }
                 public int ArtId { get; set; }
+                public string Observacion { get; set; }
+                public double CantidadCocina { get; set; }
+                public  double EstadoMañana { get; set; }
             }
             public class CopiadoReporteDiario
             {

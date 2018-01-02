@@ -182,24 +182,33 @@ namespace Data
                 callback(null);
             }
         }
-        public static void UtilizarCongelado(string clave)
+        public static void UtilizarCongelado(int estadoId)
         {
+            try
+            {
                 var rest = new Rest(Local.Api.UrlApi, Cocina.PlatillosMenus.UsarCongelado,
                     Method.POST);
                 rest.Peticion.AddHeader(Constantes.Http.ObtenerTipoDeContenido,
                     Constantes.Http.TipoDeContenido.Json);
-                rest.Peticion.AddJsonBody(new { Clave=clave});
+                rest.Peticion.AddJsonBody(new
+                {
+                    EstadoId = estadoId
+                }
+            );
                 rest.Cliente.ExecuteAsync(rest.Peticion, response =>
                 {
-                   switch (response.StatusCode)
+                    switch (response.StatusCode)
                     {
                         case HttpStatusCode.OK:
                             break;
-                        default:
-                            throw new Exception(@"No se realizo la actualizacion");
                     }
                 });
             }
+            catch (Exception e)
+            {
+                Opcion.Log(Log.Interno.Categoria, "EXCEPCION: " + e.Message);
+            }
+        }
         public static void EliminarelPlatillo( int menidd)
         {
             var rest = new Rest(Local.Api.UrlApi, Cocina.PlatillosMenus.EliminarPlatillo, Method.POST);
@@ -340,7 +349,7 @@ namespace Data
                 //callback(null);
             }
         }
-        public static void InsertarDiarioMañana(List<Respuesta.Receta.Savedaily> inserList)
+        public static void InsertarDiarioMañana(List<Respuesta.Receta.DiariosMañana> inserList)
         {
             var rest = new Rest(Local.Api.UrlApi, Cocina.Agregarcongelados.AgregarMañana, Method.POST);
             rest.Peticion.AddHeader(Constantes.Http.ObtenerTipoDeContenido, Constantes.Http.TipoDeContenido.Json);
@@ -390,7 +399,7 @@ namespace Data
                 }
             });
         }
-        public static void ActualizarDiarioMa(Respuesta.Receta.Savedaily actualiza)
+        public static void ActualizarDiarioMa(Respuesta.Receta.DiariosMañana actualiza)
         {
             var rest = new Rest(Local.Api.UrlApi, Cocina.Agregarcongelados.ActualizarMañana, Method.POST);
             rest.Peticion.AddHeader(Constantes.Http.ObtenerTipoDeContenido, Constantes.Http.TipoDeContenido.Json);

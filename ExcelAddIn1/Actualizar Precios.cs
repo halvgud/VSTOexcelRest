@@ -54,7 +54,7 @@ namespace ExcelAddIn1
                       {
                           Name = "Alertagh",
                           DataPropertyName = "Alertagh",
-                          HeaderText = @"Alerta"
+                          HeaderText = @"Alerta",
                       };
 
 
